@@ -1,0 +1,46 @@
+---
+title: Button
+description: クリック可能なボタンコンポーネント
+---
+
+## Preview
+
+<ComponentPreview component="button" example="preview">
+  <ButtonPreview />
+</ComponentPreview>
+
+## Installation
+
+```bash
+npx shadcn add https://ui.tyap.me/r/button.json
+```
+
+## Usage
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+export default function Page() {
+  return <Button>送信</Button>
+}
+```
+
+## Variants
+
+| variant | 説明 |
+|---------|------|
+| default | 塗りつぶし |
+| destructive | 危険なアクション |
+| outline | ボーダーのみ |
+| secondary | セカンダリカラー |
+| ghost | 透明背景 |
+| link | リンクスタイル |
+
+## Sizes
+
+| size | 説明 |
+|------|------|
+| default | 標準サイズ |
+| sm | 小さめ |
+| lg | 大きめ |
+| icon | アイコン用正方形 |

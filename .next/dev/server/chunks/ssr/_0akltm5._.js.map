@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/yki/ui.tyap.me/src/app/layout.tsx"],"sourcesContent":["import \"./global.css\";\nimport { RootProvider } from \"fumadocs-ui/provider\";\nimport type { ReactNode } from \"react\";\n\nexport default function RootLayout({ children }: { children: ReactNode }) {\n  return (\n    <html lang=\"ja\" suppressHydrationWarning>\n      <body>\n        <RootProvider>{children}</RootProvider>\n      </body>\n    </html>\n  );\n}\n"],"names":["RootLayout","children","lang","suppressHydrationWarning","RootProvider"],"mappings":";;;;;;;;;;;;;AAIe,SAASA,WAAW,EAAEC,QAAQ,EAA2B;IACtE,qBACE,6WAAC;QAAKC,MAAK;QAAKC,wBAAwB;kBACtC,cAAA,6WAAC;sBACC,cAAA,6WAACC;0BAAcH;;;;;;;;;;;;;;;;AAIvB"}},
+    {"offset": {"line": 48, "column": 0}, "map": {"version":3,"sources":["file:///Users/yki/ui.tyap.me/node_modules/.pnpm/next%4016.2.6_react-dom%4019.2.6_react%4019.2.6__react%4019.2.6/node_modules/next/src/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.ts"],"sourcesContent":["module.exports = (\n  require('../../module.compiled') as typeof import('../../module.compiled')\n).vendored['react-rsc']!.ReactJsxDevRuntime\n"],"names":["module","exports","require","vendored","ReactJsxDevRuntime"],"mappings":"AAAAA,OAAOC,OAAO,GACZC,QAAQ,uMACRC,QAAQ,CAAC,YAAY,CAAEC,kBAAkB","ignoreList":[0]}}]
+}

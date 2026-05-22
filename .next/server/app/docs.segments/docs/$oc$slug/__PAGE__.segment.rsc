@@ -1,0 +1,9 @@
+1:"$Sreact.fragment"
+2:I[12761,["/_next/static/chunks/05ewx64i2q1k9.js","/_next/static/chunks/0kvng2bcqo576.js","/_next/static/chunks/0h.bntekc58gh.js","/_next/static/chunks/05rz2ponvom~7.js","/_next/static/chunks/0-~4g-04zj79o.js","/_next/static/chunks/0a9s749j2zws_.js"],"DocsPage"]
+3:I[12761,["/_next/static/chunks/05ewx64i2q1k9.js","/_next/static/chunks/0kvng2bcqo576.js","/_next/static/chunks/0h.bntekc58gh.js","/_next/static/chunks/05rz2ponvom~7.js","/_next/static/chunks/0-~4g-04zj79o.js","/_next/static/chunks/0a9s749j2zws_.js"],"DocsTitle"]
+4:I[12761,["/_next/static/chunks/05ewx64i2q1k9.js","/_next/static/chunks/0kvng2bcqo576.js","/_next/static/chunks/0h.bntekc58gh.js","/_next/static/chunks/05rz2ponvom~7.js","/_next/static/chunks/0-~4g-04zj79o.js","/_next/static/chunks/0a9s749j2zws_.js"],"DocsDescription"]
+5:I[12761,["/_next/static/chunks/05ewx64i2q1k9.js","/_next/static/chunks/0kvng2bcqo576.js","/_next/static/chunks/0h.bntekc58gh.js","/_next/static/chunks/05rz2ponvom~7.js","/_next/static/chunks/0-~4g-04zj79o.js","/_next/static/chunks/0a9s749j2zws_.js"],"DocsBody"]
+6:I[99674,["/_next/static/chunks/05ewx64i2q1k9.js","/_next/static/chunks/0kvng2bcqo576.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"children":[["$","div",null,{"className":"animate-in-content","children":[["$","$L3",null,{"children":"Components"}],["$","$L4",null,{}]]}],["$","$L5",null,{"children":["$","div",null,{"className":"animate-in-content","style":{"animationDelay":"50ms"},"children":["$","p",null,{"children":"tyap UI のコンポーネント一覧"}]}]}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/0-~4g-04zj79o.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/0a9s749j2zws_.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"yK16dABYZn4x7M2YrmMGg"}
+8:null

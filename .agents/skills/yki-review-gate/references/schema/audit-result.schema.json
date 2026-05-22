@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Phase 2: Auditor が各 finding の妥当性を判定した結果",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "auditor_id",
+    "reviewed_findings",
+    "summary"
+  ],
+  "properties": {
+    "auditor_id": {
+      "type": "string",
+      "const": "auditor"
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["valid_count", "invalid_count", "note_only_count"],
+      "properties": {
+        "valid_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "invalid_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "note_only_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "valid_overview": {
+          "type": "string",
+          "description": "valid な finding の概要"
+        },
+        "invalid_overview": {
+          "type": "string",
+          "description": "invalid にした主な理由パターン"
+        }
+      }
+    },
+    "reviewed_findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "finding_id",
+          "reviewer_id",
+          "verdict",
+          "reason"
+        ],
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "description": "Phase 1 の finding.id に対応",
+            "minLength": 1
+          },
+          "reviewer_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "verdict": {
+            "type": "string",
+            "enum": ["valid", "invalid", "note_only"]
+          },
+          "reason": {
+            "type": "string",
+            "description": "判定理由。invalid の場合は特に詳細に書く。",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

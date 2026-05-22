@@ -1,0 +1,96 @@
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
+
+/* ================================================================
+   DESIGN TOKENS
+   ================================================================ */
+
+:root {
+  --radius: 0.625rem;
+
+  /* Motion — subtle, shadcn-like */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+  }
+}
+
+/* ================================================================
+   BASE STYLES
+   ================================================================ */
+
+@layer base {
+  body {
+    font-family: var(--font-geist-sans, ui-sans-serif, system-ui, sans-serif);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code, pre, kbd {
+    font-family: var(--font-geist-mono, ui-monospace, monospace);
+  }
+}
+
+/* ================================================================
+   TRANSITIONS — subtle content reveals
+   ================================================================ */
+
+@layer utilities {
+  /* Stagger fade-in for docs content */
+  .animate-in-content {
+    animation: fade-up var(--duration-normal) var(--ease-out-expo) both;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+      filter: blur(1px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  /* Interactive elements — subtle hover lift */
+  .transition-interactive {
+    transition:
+      background-color var(--duration-fast) ease,
+      border-color var(--duration-fast) ease,
+      box-shadow var(--duration-fast) ease,
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  .transition-interactive:hover {
+    transform: translateY(-1px);
+  }
+
+  .transition-interactive:active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-in-content {
+    animation: none !important;
+  }
+  .transition-interactive {
+    transition: none !important;
+  }
+  .transition-interactive:hover,
+  .transition-interactive:active {
+    transform: none !important;
+  }
+}

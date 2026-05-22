@@ -1,0 +1,11 @@
+{
+  "pages": {},
+  "app": {
+    "[project]/src/app/_not-found/page": [
+      "static/media/Geist_Variable-s.p.0tfjw0g40zzvd.woff2",
+      "static/media/GeistMono_Variable.p.0f6hsxe9py8pr.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pagesUsingSizeAdjust": false
+}
