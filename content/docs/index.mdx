@@ -1,5 +1,21 @@
 ---
-title: Components
+title: はじめに
+description: コピー&ペーストで使える、プロダクション対応のUIコンポーネント集。
 ---
 
-tyap UI のコンポーネント一覧
+## tyap/ui とは
+
+再利用可能な UI コンポーネントのレジストリです。shadcn/ui と同じ仕組みで、`npx shadcn add` コマンドでプロジェクトに直接コンポーネントを追加できます。
+
+## インストール
+
+```bash
+npx shadcn add https://ui.tyap.me/r/button.json
+```
+
+## 設計方針
+
+- **コピー&ペースト** — npm パッケージではなく、コードを直接所有
+- **カスタマイズ可能** — Tailwind CSS + CSS 変数でスタイルを完全制御
+- **アクセシブル** — WAI-ARIA に準拠
+- **TypeScript** — 型安全な props 設計

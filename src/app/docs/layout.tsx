@@ -4,7 +4,15 @@ import { source } from "@/lib/source";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <DocsLayout tree={source.pageTree}>
+    <DocsLayout
+      tree={source.pageTree}
+      nav={{
+        title: "tyap/ui",
+      }}
+      sidebar={{
+        collapsible: false,
+      }}
+    >
       {children}
     </DocsLayout>
   );
