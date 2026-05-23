@@ -40,10 +40,6 @@ export function SiteHeader() {
                 navItems={siteConfig.navItems}
               />
             </div>
-            <Separator
-              orientation="vertical"
-              className="ml-2 hidden lg:block"
-            />
             <SiteConfig className="hidden 3xl:flex 3xl:group-has-data-[slot=designer]/layout:hidden" />
             <Separator orientation="vertical" />
             <ModeSwitcher />

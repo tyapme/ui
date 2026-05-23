@@ -5,12 +5,10 @@ import { getGroupedPagesFromFolder, type PageTreeFolder } from "@/lib/page-tree"
 
 export function ComponentsList({
   componentsFolder,
-  currentBase,
 }: {
   componentsFolder: PageTreeFolder
-  currentBase: string
 }) {
-  const groups = getGroupedPagesFromFolder(componentsFolder, currentBase)
+  const groups = getGroupedPagesFromFolder(componentsFolder)
 
   return (
     <div className="space-y-10">

@@ -49,10 +49,9 @@ export type GroupedPages = {
 
 // Group pages by COMPONENT_CATEGORIES. Pages not listed in any category go into a fallback group.
 export function getGroupedPagesFromFolder(
-  folder: PageTreeFolder,
-  currentBase: string
+  folder: PageTreeFolder
 ): GroupedPages[] {
-  const allPages = getPagesFromFolder(folder, currentBase)
+  const allPages = getPagesFromFolder(folder)
   const pagesBySlug = new Map(
     allPages.map((p) => {
       const slug = p.url.split("/").pop() ?? ""

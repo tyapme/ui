@@ -9,11 +9,7 @@ export const revalidate = false
 export const dynamic = "force-static"
 export const dynamicParams = true
 
-function getStyleFromSlug(slug: string[] | undefined, fallbackStyle: string) {
-  // Detect base from URL: /docs/components/base/...
-  if (slug && slug[0] === "components" && slug[1] === "base") {
-    return "base-nova"
-  }
+function getStyleFromSlug(_slug: string[] | undefined, fallbackStyle: string) {
   return fallbackStyle
 }
 

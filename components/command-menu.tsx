@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { usePathname, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { IconArrowRight } from "@tabler/icons-react"
 import { useDocsSearch } from "fumadocs-core/search/client"
 import { CornerDownLeftIcon } from "lucide-react"
@@ -9,7 +9,7 @@ import { Dialog as DialogPrimitive } from "radix-ui"
 
 import { trackEvent } from "@/lib/events"
 import { showMcpDocs } from "@/lib/flags"
-import { getCurrentBase, getPagesFromFolder } from "@/lib/page-tree"
+import { getPagesFromFolder } from "@/lib/page-tree"
 import { type source } from "@/lib/source"
 import { cn } from "@/lib/utils"
 import { useMutationObserver } from "@/hooks/use-mutation-observer"
@@ -43,8 +43,6 @@ export function CommandMenu({
   navItems?: { href: string; label: string }[]
 }) {
   const router = useRouter()
-  const pathname = usePathname()
-  const currentBase = getCurrentBase(pathname)
   const [open, setOpen] = React.useState(false)
   const [renderDelayedGroups, setRenderDelayedGroups] = React.useState(false)
   const [selectedType, setSelectedType] = React.useState<
@@ -185,7 +183,7 @@ export function CommandMenu({
         return null
       }
 
-      const pages = getPagesFromFolder(group, currentBase).filter((item) => {
+      const pages = getPagesFromFolder(group).filter((item) => {
         if (!showMcpDocs && item.url.includes("/mcp")) {
           return false
         }
@@ -230,7 +228,7 @@ export function CommandMenu({
         </CommandGroup>
       )
     })
-  }, [tree.children, currentBase, handlePageHighlight, runCommand, router])
+  }, [tree.children, handlePageHighlight, runCommand, router])
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {

@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation"
 import { PAGES_NEW } from "@/lib/docs"
 import { showMcpDocs } from "@/lib/flags"
 import {
-  getCurrentBase,
   getGroupedPagesFromFolder,
   getPagesFromFolder,
 } from "@/lib/page-tree"
@@ -64,8 +63,6 @@ export function DocsSidebar({
   ...props
 }: React.ComponentProps<typeof Sidebar> & { tree: typeof source.pageTree }) {
   const pathname = usePathname()
-  const currentBase = getCurrentBase(pathname)
-
   return (
     <Sidebar
       className="sticky top-[calc(var(--header-height)+0.6rem)] z-30 hidden h-[calc(100svh-10rem)] overscroll-none bg-transparent [--sidebar-menu-width:--spacing(56)] lg:flex"
@@ -123,7 +120,7 @@ export function DocsSidebar({
             item.$id === "components" || item.name === "Components"
 
           if (item.type === "folder" && isComponents) {
-            const groups = getGroupedPagesFromFolder(item, currentBase)
+            const groups = getGroupedPagesFromFolder(item)
             return groups.map((group) => (
               <SidebarGroup key={group.category.label}>
                 <SidebarGroupLabel className="font-medium text-muted-foreground">
@@ -173,7 +170,7 @@ export function DocsSidebar({
               <SidebarGroupContent>
                 {item.type === "folder" && (
                   <SidebarMenu className="gap-0.5">
-                    {getPagesFromFolder(item, currentBase).map((page) => {
+                    {getPagesFromFolder(item).map((page) => {
                       if (!showMcpDocs && page.url.includes("/mcp")) {
                         return null
                       }

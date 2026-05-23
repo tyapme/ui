@@ -22,13 +22,13 @@ links:
 
 <Steps className="mb-0 pt-2">
 
-<Step>Run the following command:</Step>
+<Step>以下のコマンドを実行します:</Step>
 
 ```bash
 npx shadcn@latest add tooltip
 ```
 
-<Step>Add the `TooltipProvider` to the root of your app.</Step>
+<Step>`TooltipProvider` をアプリのルートに追加します。</Step>
 
 ```tsx title="app/layout.tsx" showLineNumbers {1,7}
 import { TooltipProvider } from "@/components/ui/tooltip"
@@ -68,7 +68,7 @@ npm install @base-ui/react
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
 
-<Step>Add the `TooltipProvider` to the root of your app.</Step>
+<Step>`TooltipProvider` をアプリのルートに追加します。</Step>
 
 ```tsx title="app/layout.tsx" showLineNumbers {1,7}
 import { TooltipProvider } from "@/components/ui/tooltip"
@@ -123,7 +123,7 @@ Tooltip
 
 ### Side
 
-Use the `side` prop to change the position of the tooltip.
+`side` でツールチップの表示位置を変更します。
 
 <ComponentPreview styleName="base-nova" name="tooltip-sides" />
 
@@ -133,7 +133,7 @@ Use the `side` prop to change the position of the tooltip.
 
 ### Disabled Button
 
-Show a tooltip on a disabled button by wrapping it with a span.
+無効化されたボタンを span で包括することで、その上にツールチップを表示できます。
 
 <ComponentPreview styleName="base-nova" name="tooltip-disabled" />
 
@@ -143,4 +143,4 @@ Show a tooltip on a disabled button by wrapping it with a span.
 
 ## API リファレンス
 
-See the [Base UI Tooltip](https://base-ui.com/react/components/tooltip#api-reference) documentation.
+詳細は [Base UI Tooltip](https://base-ui.com/react/components/tooltip#api-reference) ドキュメントを参照してください。

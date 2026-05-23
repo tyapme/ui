@@ -41,25 +41,21 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/docs/components/radix/form",
-        destination: "/docs/forms",
-        permanent: true,
-      },
-      {
         source: "/docs/components/base/form",
         destination: "/docs/forms",
         permanent: true,
       },
-      // Component redirects (default to radix).
+      // Old base/ prefix → flat URL (permanent redirect for SEO).
       {
-        source: "/docs/components/:name((?!radix|base|form)[^/]+)",
-        destination: "/docs/components/radix/:name",
-        permanent: false,
+        source: "/docs/components/base/:name",
+        destination: "/docs/components/:name",
+        permanent: true,
       },
+      // Old radix/ prefix → flat URL.
       {
-        source: "/docs/components/:name((?!radix|base|form)[^/]+).md",
-        destination: "/docs/components/radix/:name.md",
-        permanent: false,
+        source: "/docs/components/radix/:name",
+        destination: "/docs/components/:name",
+        permanent: true,
       },
       // Other redirects.
       {

@@ -6,7 +6,6 @@ import { type PageTreeFolder } from "@/lib/page-tree"
 import { source } from "@/lib/source"
 import { cn } from "@/lib/utils"
 import { Callout } from "@/components/callout"
-import { CodeBlockCommand } from "@/components/code-block-command"
 import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
 import { CodeTabs } from "@/components/code-tabs"
 import { ComponentPreview } from "@/components/component-preview"
@@ -42,7 +41,6 @@ import {
 } from "@/registry/new-york-v4/ui/tabs"
 
 // Wrapper component that passes the components folder from the server.
-// This is only used on /docs/components/ index page, so default to radix.
 function ComponentsListWrapper() {
   const componentsFolder = source.pageTree.children.find(
     (page) => page.$id === "components"
@@ -55,7 +53,6 @@ function ComponentsListWrapper() {
   return (
     <ComponentsList
       componentsFolder={componentsFolder as PageTreeFolder}
-      currentBase="radix"
     />
   )
 }
@@ -343,19 +340,6 @@ export const mdxComponents = {
             className
           )}
           {...props}
-        />
-      )
-    }
-
-    // npm command.
-    const isNpmCommand = __npm__ && __yarn__ && __pnpm__ && __bun__
-    if (isNpmCommand) {
-      return (
-        <CodeBlockCommand
-          __npm__={__npm__}
-          __yarn__={__yarn__}
-          __pnpm__={__pnpm__}
-          __bun__={__bun__}
         />
       )
     }

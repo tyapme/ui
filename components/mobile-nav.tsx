@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation"
 
 import { PAGES_NEW } from "@/lib/docs"
 import { showMcpDocs } from "@/lib/flags"
-import { getCurrentBase, getPagesFromFolder } from "@/lib/page-tree"
+import { getPagesFromFolder } from "@/lib/page-tree"
 import { type source } from "@/lib/source"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/new-york-v4/ui/button"
@@ -47,7 +47,6 @@ export function MobileNav({
 }) {
   const [open, setOpen] = React.useState(false)
   const pathname = usePathname()
-  const currentBase = getCurrentBase(pathname)
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -130,7 +129,7 @@ export function MobileNav({
           <div className="flex flex-col gap-8">
             {tree?.children?.map((group, index) => {
               if (group.type === "folder") {
-                const pages = getPagesFromFolder(group, currentBase)
+                const pages = getPagesFromFolder(group)
                 return (
                   <div key={index} className="flex flex-col gap-4">
                     <div className="text-sm font-medium text-muted-foreground">

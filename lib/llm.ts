@@ -43,11 +43,11 @@ export function replaceComponentsList(content: string) {
   )
   const list =
     componentsFolder?.type === "folder"
-      ? getPagesFromFolder(componentsFolder as PageTreeFolder, "base")
+      ? getPagesFromFolder(componentsFolder as PageTreeFolder)
           .map((component) => {
             const slug = component.url.replace(/^\/docs\//, "").split("/")
             const description = source.getPage(slug)?.data.description?.trim()
-            const url = absoluteUrl(component.url.replace("/base/", "/"))
+            const url = absoluteUrl(component.url)
             return `- [${component.name}](${url})${
               description ? `: ${description}` : ""
             }`
