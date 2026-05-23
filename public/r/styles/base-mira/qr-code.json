@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qr-code",
+  "dependencies": [
+    "react-qr-code"
+  ],
+  "files": [
+    {
+      "path": "registry/base-mira/ui/qr-code.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport QRCodeLib from \"react-qr-code\"\n\nimport { cn } from \"@/registry/base-mira/lib/utils\"\n\ninterface QRCodeProps extends React.ComponentProps<\"div\"> {\n  value: string\n  size?: number\n  fgColor?: string\n  bgColor?: string\n  errorCorrectionLevel?: \"L\" | \"M\" | \"Q\" | \"H\"\n}\n\nfunction QRCode({\n  value,\n  size = 268,\n  fgColor = \"var(--foreground)\",\n  bgColor = \"var(--background)\",\n  errorCorrectionLevel = \"M\",\n  className,\n  ...props\n}: QRCodeProps) {\n  return (\n    <div\n      data-slot=\"qr-code\"\n      className={cn(\"inline-flex\", className)}\n      {...props}\n    >\n      <QRCodeLib\n        value={value}\n        size={size}\n        fgColor={fgColor}\n        bgColor={bgColor}\n        level={errorCorrectionLevel}\n      />\n    </div>\n  )\n}\n\nexport { QRCode, type QRCodeProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "links": {
+      "docs": "https://ui.shadcn.com/docs/components/base/qr-code"
+    }
+  },
+  "type": "registry:ui"
+}

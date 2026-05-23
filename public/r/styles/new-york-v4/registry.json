@@ -212,6 +212,28 @@
       "type": "registry:ui"
     },
     {
+      "name": "color-field",
+      "dependencies": ["react-aria-components"],
+      "files": [
+        {
+          "path": "registry/new-york-v4/ui/color-field.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "color-picker",
+      "dependencies": ["react-aria-components", "radix-ui"],
+      "files": [
+        {
+          "path": "registry/new-york-v4/ui/color-picker.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
       "name": "combobox",
       "dependencies": ["@base-ui/react"],
       "registryDependencies": ["button", "input-group"],
@@ -684,6 +706,17 @@
         }
       ],
       "docs": "The `tooltip` component has been added. Remember to wrap your app with the `TooltipProvider` component.\n\n```tsx title=\"app/layout.tsx\"\nimport { TooltipProvider } from \"@/components/ui/tooltip\"\n\nexport default function RootLayout({ children }: { children: React.ReactNode }) {\n  return (\n    <html lang=\"en\">\n      <body>\n        <TooltipProvider>{children}</TooltipProvider>\n      </body>\n    </html>\n  )\n}\n```\n",
+      "type": "registry:ui"
+    },
+    {
+      "name": "time-field",
+      "dependencies": ["react-aria-components", "@internationalized/date"],
+      "files": [
+        {
+          "path": "registry/new-york-v4/ui/time-field.tsx",
+          "type": "registry:ui"
+        }
+      ],
       "type": "registry:ui"
     },
     {

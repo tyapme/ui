@@ -162,7 +162,7 @@ export const ui: Registry["items"] = [
   {
     name: "calendar",
     type: "registry:ui",
-    dependencies: ["react-day-picker@latest", "date-fns"],
+    dependencies: ["react-aria-components", "@internationalized/date"],
     registryDependencies: ["button"],
     files: [
       {
@@ -185,7 +185,6 @@ export const ui: Registry["items"] = [
     dependencies: [
       "react-aria-components",
       "@internationalized/date",
-      "react-day-picker@latest",
     ],
     registryDependencies: ["button", "calendar", "popover"],
     files: [
@@ -290,6 +289,38 @@ export const ui: Registry["items"] = [
         examples:
           "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/collapsible-example.tsx",
         api: "https://base-ui.com/react/components/collapsible.md",
+      },
+    },
+  },
+  {
+    name: "color-field",
+    type: "registry:ui",
+    dependencies: ["react-aria-components"],
+    files: [
+      {
+        path: "ui/color-field.tsx",
+        type: "registry:ui",
+      },
+    ],
+    meta: {
+      links: {
+        api: "https://react-spectrum.adobe.com/react-aria/ColorField.html",
+      },
+    },
+  },
+  {
+    name: "color-picker",
+    type: "registry:ui",
+    dependencies: ["react-aria-components"],
+    files: [
+      {
+        path: "ui/color-picker.tsx",
+        type: "registry:ui",
+      },
+    ],
+    meta: {
+      links: {
+        api: "https://react-spectrum.adobe.com/react-aria/ColorPicker.html",
       },
     },
   },
@@ -994,6 +1025,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     },
   },
   {
+    name: "time-field",
+    type: "registry:ui",
+    dependencies: ["react-aria-components", "@internationalized/date"],
+    files: [
+      {
+        path: "ui/time-field.tsx",
+        type: "registry:ui",
+      },
+    ],
+    meta: {
+      links: {
+        docs: "https://ui.shadcn.com/docs/components/base/time-field",
+        api: "https://react-spectrum.adobe.com/react-aria/TimeField.html",
+      },
+    },
+  },
+  {
     name: "kbd",
     type: "registry:ui",
     files: [
@@ -1041,6 +1089,56 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       links: {
         docs: "https://ui.shadcn.com/docs/components/base/direction",
         api: "https://base-ui.com/react/utils/direction-provider.md",
+      },
+    },
+  },
+  {
+    name: "qr-code",
+    type: "registry:ui",
+    dependencies: ["react-qr-code"],
+    files: [
+      {
+        path: "ui/qr-code.tsx",
+        type: "registry:ui",
+      },
+    ],
+    meta: {
+      links: {
+        docs: "https://ui.shadcn.com/docs/components/base/qr-code",
+      },
+    },
+  },
+  {
+    name: "number-field",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react"],
+    files: [
+      {
+        path: "ui/number-field.tsx",
+        type: "registry:ui",
+      },
+    ],
+    meta: {
+      links: {
+        docs: "https://ui.shadcn.com/docs/components/base/number-field",
+        api: "https://base-ui.com/react/components/number-field.md",
+      },
+    },
+  },
+  {
+    name: "sortable",
+    type: "registry:ui",
+    dependencies: ["@dnd-kit/core", "@dnd-kit/sortable", "@dnd-kit/utilities"],
+    files: [
+      {
+        path: "ui/sortable.tsx",
+        type: "registry:ui",
+      },
+    ],
+    meta: {
+      links: {
+        docs: "https://ui.shadcn.com/docs/components/base/sortable",
+        api: "https://dndkit.com",
       },
     },
   },

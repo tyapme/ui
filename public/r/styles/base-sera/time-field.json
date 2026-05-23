@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "time-field",
+  "dependencies": [
+    "react-aria-components",
+    "@internationalized/date"
+  ],
+  "files": [
+    {
+      "path": "registry/base-sera/ui/time-field.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Time } from \"@internationalized/date\"\nimport {\n  DateInput as AriaDateInput,\n  DateSegment as AriaDateSegment,\n  TimeField as AriaTimeField,\n  type DateSegmentProps as AriaDateSegmentProps,\n  type TimeValue as AriaTimeValue,\n} from \"react-aria-components\"\n\nimport { cn } from \"@/registry/base-sera/lib/utils\"\n\n// ============================================================================\n// TimeSegment — 個別の時刻セグメント（時/分/秒）\n// ============================================================================\n\nfunction TimeSegment({\n  className,\n  ...props\n}: AriaDateSegmentProps & { className?: string }) {\n  return (\n    <AriaDateSegment\n      data-slot=\"time-segment\"\n      className={cn(\n        \"inline rounded-sm px-0.5 tabular-nums caret-transparent outline-none\",\n        \"data-[placeholder]:text-muted-foreground\",\n        \"data-[focused]:bg-accent data-[focused]:text-accent-foreground\",\n        \"data-[type=literal]:px-0 data-[type=literal]:text-muted-foreground\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n// ============================================================================\n// TimeFieldInput — セグメント型時刻入力\n// ============================================================================\n\ninterface TimeFieldInputProps {\n  value?: Date\n  onValueChange?: (date: Date | undefined) => void\n  disabled?: boolean\n  className?: string\n  id?: string\n  \"aria-label\"?: string\n  granularity?: \"hour\" | \"minute\" | \"second\"\n}\n\nfunction TimeFieldInput({\n  value,\n  onValueChange,\n  disabled = false,\n  className,\n  id,\n  \"aria-label\": ariaLabel,\n  granularity = \"minute\",\n}: TimeFieldInputProps) {\n  const ariaValue = React.useMemo((): AriaTimeValue | undefined => {\n    if (!value) return undefined\n    return new Time(value.getHours(), value.getMinutes(), value.getSeconds())\n  }, [value])\n\n  function handleChange(timeValue: AriaTimeValue | null) {\n    if (!timeValue) {\n      onValueChange?.(undefined)\n      return\n    }\n    const d = value ? new Date(value) : new Date()\n    d.setHours(timeValue.hour, timeValue.minute, timeValue.second, 0)\n    onValueChange?.(d)\n  }\n\n  return (\n    <AriaTimeField\n      aria-label={ariaLabel}\n      data-slot=\"time-field\"\n      granularity={granularity}\n      id={id}\n      isDisabled={disabled}\n      value={ariaValue}\n      onChange={handleChange}\n      className={cn(\"flex flex-col\", className)}\n    >\n      <AriaDateInput\n        data-slot=\"time-field-input\"\n        className=\"inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:bg-input/30\"\n      >\n        {(segment) => <TimeSegment segment={segment} />}\n      </AriaDateInput>\n    </AriaTimeField>\n  )\n}\n\nexport { TimeFieldInput, TimeSegment }\nexport type { TimeFieldInputProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "links": {
+      "docs": "https://ui.shadcn.com/docs/components/base/time-field",
+      "api": "https://react-spectrum.adobe.com/react-aria/TimeField.html"
+    }
+  },
+  "type": "registry:ui"
+}

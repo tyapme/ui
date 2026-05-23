@@ -1,9 +1,15 @@
 "use client"
 
+import * as React from "react"
 import { useTheme } from "next-themes"
-import { Toaster as Sonner, type ToasterProps } from "sonner"
+import { toast, Toaster as Sonner, type ToasterProps } from "sonner"
 
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
+import { cn } from "@/registry/bases/base/lib/utils"
+
+// ============================================================================
+// Toaster — sonner の Provider（ルートに1つ配置）
+// ============================================================================
 
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme()
@@ -82,4 +88,162 @@ const Toaster = ({ ...props }: ToasterProps) => {
   )
 }
 
-export { Toaster }
+// ============================================================================
+// Toast compound components — カスタムレンダリング用
+// ============================================================================
+
+type ToastVariant = "default" | "success" | "info" | "warning" | "danger"
+
+function Toast({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="toast"
+      className={cn(
+        "flex w-full items-start gap-3 rounded-lg border border-border bg-popover p-4 text-popover-foreground shadow-lg",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+}
+
+function ToastIndicator({
+  variant = "default",
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"div"> & { variant?: ToastVariant }) {
+  if (!children && variant === "default") return null
+
+  return (
+    <div
+      data-slot="toast-indicator"
+      className={cn("flex shrink-0 items-center", className)}
+      {...props}
+    >
+      {children ?? (
+        <>
+          {variant === "success" && (
+            <IconPlaceholder lucide="CircleCheckIcon" className="size-4" />
+          )}
+          {variant === "info" && (
+            <IconPlaceholder lucide="InfoIcon" className="size-4" />
+          )}
+          {variant === "warning" && (
+            <IconPlaceholder lucide="TriangleAlertIcon" className="size-4" />
+          )}
+          {variant === "danger" && (
+            <IconPlaceholder lucide="OctagonXIcon" className="size-4" />
+          )}
+        </>
+      )}
+    </div>
+  )
+}
+
+function ToastContent({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="toast-content"
+      className={cn("flex min-w-0 flex-1 flex-col gap-1", className)}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+}
+
+function ToastTitle({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"p">) {
+  return (
+    <p
+      data-slot="toast-title"
+      className={cn("text-sm font-medium", className)}
+      {...props}
+    >
+      {children}
+    </p>
+  )
+}
+
+function ToastDescription({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"p">) {
+  return (
+    <p
+      data-slot="toast-description"
+      className={cn("text-sm text-muted-foreground", className)}
+      {...props}
+    >
+      {children}
+    </p>
+  )
+}
+
+function ToastCloseButton({
+  className,
+  ...props
+}: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="toast-close"
+      type="button"
+      className={cn(
+        "inline-flex shrink-0 items-center justify-center rounded-md p-1 text-muted-foreground opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        className
+      )}
+      {...props}
+    >
+      <IconPlaceholder lucide="XIcon" className="size-3.5" />
+      <span className="sr-only">Close</span>
+    </button>
+  )
+}
+
+function ToastAction({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="toast-action"
+      type="button"
+      className={cn(
+        "inline-flex shrink-0 items-center justify-center rounded-md border border-border bg-transparent px-3 py-1.5 text-xs font-medium transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </button>
+  )
+}
+
+export {
+  toast,
+  Toast,
+  ToastAction,
+  ToastCloseButton,
+  ToastContent,
+  ToastDescription,
+  ToastIndicator,
+  Toaster,
+  ToastTitle,
+}
+export type { ToastVariant }

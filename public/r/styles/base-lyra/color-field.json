@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "color-field",
+  "dependencies": [
+    "react-aria-components"
+  ],
+  "files": [
+    {
+      "path": "registry/base-lyra/ui/color-field.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport {\n  ColorField as ColorFieldPrimitive,\n  Input,\n  type ColorFieldProps,\n  type InputProps,\n} from \"react-aria-components\"\n\nimport { cn } from \"@/registry/base-lyra/lib/utils\"\n\nfunction ColorField({ className, ...props }: ColorFieldProps) {\n  return (\n    <ColorFieldPrimitive\n      data-slot=\"color-field\"\n      className={cn(\"flex flex-col gap-1.5\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction ColorFieldGroup({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"color-field-group\"\n      className={cn(\n        \"relative flex h-9 w-full items-center overflow-hidden rounded-md border border-input bg-transparent shadow-xs transition-[color,box-shadow] outline-none\",\n        \"focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50\",\n        \"has-[[aria-invalid]]:border-destructive has-[[aria-invalid]]:ring-destructive/20\",\n        \"has-[[data-disabled]]:pointer-events-none has-[[data-disabled]]:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction ColorFieldInput({ className, ...props }: InputProps) {\n  return (\n    <Input\n      data-slot=\"color-field-input\"\n      className={cn(\n        \"min-w-0 flex-1 bg-transparent px-3 py-1 text-base outline-none placeholder:text-muted-foreground disabled:pointer-events-none md:text-sm\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction ColorFieldPrefix({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"color-field-prefix\"\n      className={cn(\n        \"flex shrink-0 items-center pl-3 text-muted-foreground [&+[data-slot=color-field-input]]:pl-2\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction ColorFieldSuffix({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"color-field-suffix\"\n      className={cn(\n        \"flex shrink-0 items-center pr-3 text-muted-foreground\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport {\n  ColorField,\n  ColorFieldGroup,\n  ColorFieldInput,\n  ColorFieldPrefix,\n  ColorFieldSuffix,\n}\nexport type { ColorFieldProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "links": {
+      "api": "https://react-spectrum.adobe.com/react-aria/ColorField.html"
+    }
+  },
+  "type": "registry:ui"
+}

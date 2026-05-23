@@ -169,6 +169,28 @@ export const ui: Registry["items"] = [
     ],
   },
   {
+    name: "color-field",
+    type: "registry:ui",
+    dependencies: ["react-aria-components"],
+    files: [
+      {
+        path: "ui/color-field.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "color-picker",
+    type: "registry:ui",
+    dependencies: ["react-aria-components", "radix-ui"],
+    files: [
+      {
+        path: "ui/color-picker.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
     name: "combobox",
     type: "registry:ui",
     dependencies: ["@base-ui/react"],
@@ -668,6 +690,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     files: [
       {
         path: "ui/tooltip.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "time-field",
+    type: "registry:ui",
+    dependencies: ["react-aria-components", "@internationalized/date"],
+    files: [
+      {
+        path: "ui/time-field.tsx",
         type: "registry:ui",
       },
     ],

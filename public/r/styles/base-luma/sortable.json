@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sortable",
+  "dependencies": [
+    "@dnd-kit/core",
+    "@dnd-kit/sortable",
+    "@dnd-kit/utilities"
+  ],
+  "files": [
+    {
+      "path": "registry/base-luma/ui/sortable.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport {\n  closestCenter,\n  DndContext,\n  KeyboardSensor,\n  MouseSensor,\n  TouchSensor,\n  useSensor,\n  useSensors,\n  type DragEndEvent,\n  type UniqueIdentifier,\n} from \"@dnd-kit/core\"\nimport {\n  arrayMove,\n  horizontalListSortingStrategy,\n  rectSortingStrategy,\n  SortableContext,\n  useSortable,\n  verticalListSortingStrategy,\n} from \"@dnd-kit/sortable\"\nimport { CSS } from \"@dnd-kit/utilities\"\n\nimport { cn } from \"@/registry/base-luma/lib/utils\"\n\ntype SortableLayout = \"vertical\" | \"grid\" | \"nested\"\n\ninterface SortableProps<T> extends React.ComponentProps<\"div\"> {\n  value: T[]\n  onValueChange: (value: T[]) => void\n  getItemValue: (item: T) => UniqueIdentifier\n  layout?: SortableLayout\n}\n\nfunction Sortable<T>({\n  value,\n  onValueChange,\n  getItemValue,\n  layout = \"vertical\",\n  className,\n  children,\n  ...props\n}: SortableProps<T>) {\n  const sensors = useSensors(\n    useSensor(MouseSensor, {}),\n    useSensor(TouchSensor, {}),\n    useSensor(KeyboardSensor, {})\n  )\n\n  const itemIds = React.useMemo(\n    () => value.map((item) => getItemValue(item)),\n    [value, getItemValue]\n  )\n\n  const strategy =\n    layout === \"grid\"\n      ? rectSortingStrategy\n      : layout === \"nested\"\n        ? rectSortingStrategy\n        : verticalListSortingStrategy\n\n  function handleDragEnd(event: DragEndEvent) {\n    const { active, over } = event\n\n    if (over && active.id !== over.id) {\n      const oldIndex = itemIds.indexOf(active.id)\n      const newIndex = itemIds.indexOf(over.id)\n\n      if (oldIndex !== -1 && newIndex !== -1) {\n        onValueChange(arrayMove(value, oldIndex, newIndex))\n      }\n    }\n  }\n\n  return (\n    <DndContext\n      sensors={sensors}\n      collisionDetection={closestCenter}\n      onDragEnd={handleDragEnd}\n    >\n      <SortableContext items={itemIds} strategy={strategy}>\n        <div\n          data-slot=\"sortable\"\n          data-layout={layout}\n          className={cn(\n            \"flex\",\n            layout === \"vertical\" && \"flex-col\",\n            layout === \"grid\" && \"flex-wrap\",\n            className\n          )}\n          {...props}\n        >\n          {children}\n        </div>\n      </SortableContext>\n    </DndContext>\n  )\n}\n\ninterface SortableItemProps extends React.ComponentProps<\"div\"> {\n  value: UniqueIdentifier\n  disabled?: boolean\n}\n\nfunction SortableItem({\n  value,\n  disabled = false,\n  className,\n  children,\n  ...props\n}: SortableItemProps) {\n  const {\n    attributes,\n    listeners,\n    setNodeRef,\n    transform,\n    transition,\n    isDragging,\n  } = useSortable({ id: value, disabled })\n\n  return (\n    <div\n      ref={setNodeRef}\n      data-slot=\"sortable-item\"\n      data-dragging={isDragging}\n      className={cn(\"relative\", isDragging && \"z-10 opacity-80\", className)}\n      style={{\n        transform: CSS.Transform.toString(transform),\n        transition,\n      }}\n      {...attributes}\n      {...listeners}\n      {...props}\n    >\n      {children}\n    </div>\n  )\n}\n\ninterface SortableItemHandleProps extends React.ComponentProps<\"button\"> {\n  value?: UniqueIdentifier\n}\n\nfunction SortableItemHandle({\n  className,\n  children,\n  ...props\n}: SortableItemHandleProps) {\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"sortable-item-handle\"\n      className={cn(\n        \"inline-flex cursor-grab items-center justify-center active:cursor-grabbing\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </button>\n  )\n}\n\nexport { Sortable, SortableItem, SortableItemHandle }\nexport { arrayMove } from \"@dnd-kit/sortable\"\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "links": {
+      "docs": "https://ui.shadcn.com/docs/components/base/sortable",
+      "api": "https://dndkit.com"
+    }
+  },
+  "type": "registry:ui"
+}

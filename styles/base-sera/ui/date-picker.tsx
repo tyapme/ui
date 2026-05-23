@@ -15,16 +15,21 @@ import {
   type TimeValue as AriaTimeValue,
   type RangeValue,
 } from "react-aria-components"
-import { type DateRange } from "react-day-picker"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/styles/base-sera/ui/button"
-import { Calendar } from "@/styles/base-sera/ui/calendar"
+import { Calendar, RangeCalendar } from "@/styles/base-sera/ui/calendar"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/styles/base-sera/ui/popover"
+
+// ローカル型定義 (react-day-picker 非依存)
+type DateRange = {
+  from: Date | undefined
+  to?: Date | undefined
+}
 
 // ============================================================================
 // DateSegment — 個別の日付セグメント（年/月/日）
@@ -201,7 +206,7 @@ interface DatePickerProps {
   granularity?: Granularity
   calendarProps?: Omit<
     React.ComponentProps<typeof Calendar>,
-    "mode" | "selected" | "onSelect"
+    "value" | "onChange" | "defaultFocusedValue"
   >
   className?: string
   id?: string
@@ -234,8 +239,9 @@ function DatePicker({
     onValueChange?.(toNativeDate(dateValue))
   }
 
-  function handleCalendarSelect(date: Date | undefined) {
-    if (date && value && granularity !== "day") {
+  function handleCalendarChange(dateValue: AriaDateValue) {
+    const date = toNativeDate(dateValue)
+    if (value && granularity !== "day") {
       date.setHours(value.getHours(), value.getMinutes(), value.getSeconds())
     }
     onValueChange?.(date)
@@ -286,10 +292,9 @@ function DatePicker({
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start" sideOffset={8}>
               <Calendar
-                mode="single"
-                selected={value}
-                onSelect={handleCalendarSelect}
-                defaultMonth={value}
+                value={ariaValue}
+                onChange={handleCalendarChange}
+                defaultFocusedValue={ariaValue}
                 {...calendarProps}
               />
             </PopoverContent>
@@ -311,8 +316,8 @@ interface DateRangePickerProps {
   disabled?: boolean
   numberOfMonths?: number
   calendarProps?: Omit<
-    React.ComponentProps<typeof Calendar>,
-    "mode" | "selected" | "onSelect" | "numberOfMonths"
+    React.ComponentProps<typeof RangeCalendar>,
+    "value" | "onChange" | "visibleDuration"
   >
   className?: string
   id?: string
@@ -367,11 +372,19 @@ function DateRangePicker({
     onValueChange?.({ from, to })
   }
 
-  function handleCalendarSelect(range: DateRange | undefined) {
-    onValueChange?.(range)
-    if (range?.from && range?.to) {
-      setOpen(false)
-    }
+  function handleRangeCalendarChange(rangeValue: RangeValue<AriaDateValue>) {
+    const from = new Date(
+      rangeValue.start.year,
+      rangeValue.start.month - 1,
+      rangeValue.start.day
+    )
+    const to = new Date(
+      rangeValue.end.year,
+      rangeValue.end.month - 1,
+      rangeValue.end.day
+    )
+    onValueChange?.({ from, to })
+    setOpen(false)
   }
 
   return (
@@ -413,12 +426,12 @@ function DateRangePicker({
                 align="start"
                 sideOffset={8}
               >
-                <Calendar
-                  mode="range"
-                  selected={value}
-                  onSelect={handleCalendarSelect}
-                  numberOfMonths={numberOfMonths}
-                  defaultMonth={value?.from}
+                <RangeCalendar
+                  value={ariaValue}
+                  onChange={handleRangeCalendarChange}
+                  visibleDuration={
+                    numberOfMonths > 1 ? { months: numberOfMonths } : undefined
+                  }
                   {...calendarProps}
                 />
               </PopoverContent>
