@@ -4,8 +4,8 @@ import * as React from "react"
 import { useRouter } from "next/navigation"
 import { IconArrowRight } from "@tabler/icons-react"
 import { useDocsSearch } from "fumadocs-core/search/client"
-import { CornerDownLeftIcon } from "lucide-react"
-import { Dialog as DialogPrimitive } from "radix-ui"
+import { CornerDownLeftIcon, SearchIcon } from "lucide-react"
+import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 
 import { trackEvent } from "@/lib/events"
 import { showMcpDocs } from "@/lib/flags"
@@ -257,16 +257,19 @@ export function CommandMenu({
       <DialogTrigger
         render={
           <Button
-            variant="outline"
+            variant="ghost"
+            size="icon"
             className={cn(
-              "relative h-8 w-full justify-start rounded-lg pl-3 font-normal text-foreground shadow-none hover:bg-muted/50 sm:pr-12 md:w-48 lg:w-40 xl:w-64 dark:bg-card"
+              "extend-touch-target size-8",
+              "md:w-48 md:justify-start md:rounded-lg md:pl-3 md:pr-12 md:font-normal md:hover:bg-muted/50 md:dark:bg-card lg:w-40 xl:w-64"
             )}
             onClick={() => setOpen(true)}
           />
         }
       >
-          <span className="hidden xl:inline-flex">Search documentation...</span>
-          <span className="inline-flex xl:hidden">Search...</span>
+        <SearchIcon className="size-4.5 md:size-4 md:shrink-0 md:opacity-50" />
+        <span className="hidden md:inline-flex xl:hidden">Search...</span>
+        <span className="hidden xl:inline-flex">Search documentation...</span>
       </DialogTrigger>
       <DialogContent className="rounded-xl border-none bg-clip-padding p-2 pb-11 shadow-2xl ring-4 ring-neutral-200/80 dark:bg-neutral-900 dark:ring-neutral-800">
         <DialogHeader className="sr-only">
@@ -274,7 +277,7 @@ export function CommandMenu({
           <DialogDescription>コマンドを検索して実行できます。</DialogDescription>
         </DialogHeader>
         <Command
-          className="rounded-none bg-transparent **:data-[slot=command-input]:h-9! **:data-[slot=command-input]:py-0 **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:h-9! **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border **:data-[slot=command-input-wrapper]:border-input **:data-[slot=command-input-wrapper]:bg-input/50"
+          className="rounded-none bg-transparent **:data-[slot=command-input]:h-9! **:data-[slot=command-input]:py-0 **:data-[slot=command-input-wrapper]:h-9! **:data-[slot=command-input-wrapper]:pb-1"
           filter={commandFilter}
         >
           <div className="relative">
@@ -288,7 +291,9 @@ export function CommandMenu({
               </div>
             )}
           </div>
-          <CommandList className="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-1.5">
+          {/* input 下のぼかし */}
+          <div className="pointer-events-none relative z-10 -mb-4 h-4 shrink-0 bg-gradient-to-b from-background to-transparent dark:from-neutral-900" />
+          <CommandList className="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-8">
             <CommandEmpty className="py-12 text-center text-sm text-muted-foreground">
               {query.isLoading ? "検索中..." : "結果が見つかりませんでした。"}
             </CommandEmpty>
@@ -304,6 +309,8 @@ export function CommandMenu({
               </>
             ) : null}
           </CommandList>
+          {/* リスト下のぼかし（フッターバーの直上） */}
+          <div className="pointer-events-none relative z-10 -mt-8 h-8 shrink-0 bg-gradient-to-t from-background to-transparent dark:from-neutral-900" />
         </Command>
         <div className="absolute inset-x-0 bottom-0 z-20 flex h-10 items-center gap-2 rounded-b-xl border-t border-t-neutral-100 bg-neutral-50 px-4 text-xs font-medium text-muted-foreground dark:border-t-neutral-700 dark:bg-neutral-800">
           <div className="flex items-center gap-2">
@@ -448,13 +455,13 @@ function DialogContent({
   className,
   children,
   ...props
-}: React.ComponentProps<typeof DialogPrimitive.Content> & {
+}: React.ComponentProps<typeof DialogPrimitive.Popup> & {
   showCloseButton?: boolean
 }) {
   return (
     <DialogPortal data-slot="dialog-portal">
-      {/* <DialogOverlay /> */}
-      <DialogPrimitive.Content
+      <DialogOverlay />
+      <DialogPrimitive.Popup
         data-slot="dialog-content"
         className={cn(
           "fixed top-[15%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] gap-4 rounded-lg border bg-background p-6 shadow-lg duration-200 outline-none sm:max-w-lg",
@@ -463,7 +470,7 @@ function DialogContent({
         {...props}
       >
         {children}
-      </DialogPrimitive.Content>
+      </DialogPrimitive.Popup>
     </DialogPortal>
   )
 }

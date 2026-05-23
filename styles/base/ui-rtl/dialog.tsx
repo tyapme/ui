@@ -20,8 +20,13 @@ function DialogTrigger({
   asChild?: boolean
   children?: React.ReactNode
 }) {
-  const resolvedRender =
-    asChild && React.isValidElement(children) ? children : render
+  let resolvedRender = asChild && React.isValidElement(children) ? children : render
+  if (React.isValidElement(resolvedRender)) {
+    resolvedRender = React.cloneElement(
+      resolvedRender as React.ReactElement<{ "data-slot"?: string }>,
+      { "data-slot": "dialog-trigger" }
+    )
+  }
 
   return (
     <DialogPrimitive.Trigger
@@ -72,7 +77,7 @@ function DialogContent({
       <DialogPrimitive.Popup
         data-slot="dialog-content"
         className={cn(
-          "t-modal fixed start-1/2 top-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-6 rounded-4xl bg-popover p-6 text-sm text-popover-foreground ring-1 ring-foreground/5 outline-none sm:max-w-md rtl:translate-x-1/2",
+          "t-modal fixed start-1/2 top-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] gap-6 rounded-4xl bg-popover p-6 text-sm text-popover-foreground ring-1 ring-foreground/5 outline-none sm:max-w-md",
           className
         )}
         {...props}

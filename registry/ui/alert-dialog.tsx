@@ -52,7 +52,7 @@ function AlertDialogContent({
         data-slot="alert-dialog-content"
         data-size={size}
         className={cn(
-          "t-modal cn-alert-dialog-content group/alert-dialog-content fixed top-1/2 left-1/2 z-50 grid w-full -translate-x-1/2 -translate-y-1/2 outline-none",
+          "t-modal cn-alert-dialog-content group/alert-dialog-content fixed top-1/2 left-1/2 z-50 grid w-full outline-none",
           className
         )}
         {...props}
@@ -154,7 +154,7 @@ function AlertDialogCancel({
       data-slot="alert-dialog-cancel"
       className={cn("cn-alert-dialog-cancel", className)}
       nativeButton
-      render={<Button variant={variant} size={size} />}
+      render={<Button data-slot="alert-dialog-cancel" variant={variant} size={size} />}
       {...props}
     />
   )

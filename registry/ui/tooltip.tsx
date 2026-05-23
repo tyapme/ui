@@ -54,7 +54,7 @@ function TooltipArrow({
     <TooltipPrimitive.Arrow
       data-slot="tooltip-arrow"
       className={cn(
-        "cn-tooltip-arrow cn-tooltip-arrow-logical z-50 bg-foreground fill-foreground data-[side=bottom]:top-1 data-[side=left]:top-1/2! data-[side=left]:-right-1 data-[side=left]:-translate-y-1/2 data-[side=right]:top-1/2! data-[side=right]:-left-1 data-[side=right]:-translate-y-1/2 data-[side=top]:-bottom-2.5",
+        "cn-tooltip-arrow cn-tooltip-arrow-logical z-50 data-[side=bottom]:top-1 data-[side=left]:top-1/2! data-[side=left]:-right-1 data-[side=left]:-translate-y-1/2 data-[side=right]:top-1/2! data-[side=right]:-left-1 data-[side=right]:-translate-y-1/2 data-[side=top]:-bottom-2.5",
         className
       )}
       {...props}
@@ -68,7 +68,7 @@ function TooltipContent({
   sideOffset = 4,
   align = "center",
   alignOffset = 0,
-  showArrow = true,
+  showArrow = false,
   children,
   ...props
 }: TooltipPrimitive.Popup.Props &
@@ -90,7 +90,7 @@ function TooltipContent({
         <TooltipPrimitive.Popup
           data-slot="tooltip-content"
           className={cn(
-            "cn-tooltip-content cn-tooltip-content-logical z-50 w-fit max-w-xs origin-(--transform-origin) bg-foreground text-background",
+            "cn-tooltip-content cn-tooltip-content-logical z-50 w-fit max-w-xs origin-(--transform-origin)",
             className
           )}
           {...props}

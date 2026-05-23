@@ -37,7 +37,7 @@ export function SiteHeader() {
           </Button>
           <MainNav items={siteConfig.navItems} className="hidden lg:flex" />
           <div className="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
-            <div className="hidden w-full flex-1 md:flex md:w-auto md:flex-none">
+            <div className="flex w-auto flex-none">
               <CommandMenu
                 tree={pageTree}
                 navItems={siteConfig.navItems}

@@ -44,9 +44,9 @@ const Toaster = ({ ...props }: ToasterProps) => {
           title: "text-sm font-medium",
           description: "text-sm text-muted-foreground",
           actionButton:
-            "bg-primary text-primary-foreground text-xs font-medium rounded-md px-3 py-1.5",
+            "bg-primary text-primary-foreground text-xs font-medium rounded-4xl px-3 py-1.5",
           cancelButton:
-            "bg-muted text-muted-foreground text-xs font-medium rounded-md px-3 py-1.5",
+            "bg-muted text-muted-foreground text-xs font-medium rounded-4xl px-3 py-1.5",
           closeButton:
             "cn-toast-close absolute top-1.5 left-1.5 border border-border/30 bg-popover/80 text-muted-foreground hover:text-foreground rounded-lg p-1 opacity-0 group-hover:opacity-100 transition-all duration-200 [&_svg]:size-3",
         },

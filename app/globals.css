@@ -555,31 +555,31 @@
 
   /* Modal open / close */
   .t-modal {
-    transform-origin: center;
-    transform: translate(-50%, -50%) scale(var(--modal-scale));
+    translate: -50% -50%;
+    scale: var(--modal-scale);
     opacity: 0;
     pointer-events: none;
     transition:
-      transform var(--modal-open-dur) var(--modal-ease),
-      opacity   var(--modal-open-dur) var(--modal-ease);
-    will-change: transform, opacity;
+      scale   var(--modal-open-dur) var(--modal-ease),
+      opacity var(--modal-open-dur) var(--modal-ease);
+    will-change: scale, opacity;
   }
   .t-modal[data-open],
   .t-modal[data-state="open"],
   .t-modal.is-open {
-    transform: translate(-50%, -50%) scale(1);
+    scale: 1;
     opacity: 1;
     pointer-events: auto;
   }
   .t-modal[data-ending-style],
   .t-modal[data-state="closed"],
   .t-modal.is-closing {
-    transform: translate(-50%, -50%) scale(var(--modal-scale-close));
+    scale: var(--modal-scale-close);
     opacity: 0;
     pointer-events: none;
     transition:
-      transform var(--modal-close-dur) var(--modal-ease),
-      opacity   var(--modal-close-dur) var(--modal-ease);
+      scale   var(--modal-close-dur) var(--modal-ease),
+      opacity var(--modal-close-dur) var(--modal-ease);
   }
 
   /* Panel reveal */
