@@ -180,6 +180,28 @@ export const ui: Registry["items"] = [
     },
   },
   {
+    name: "date-picker",
+    type: "registry:ui",
+    dependencies: [
+      "react-aria-components",
+      "@internationalized/date",
+      "react-day-picker@latest",
+    ],
+    registryDependencies: ["button", "calendar", "popover"],
+    files: [
+      {
+        path: "ui/date-picker.tsx",
+        type: "registry:ui",
+      },
+    ],
+    meta: {
+      links: {
+        docs: "https://ui.shadcn.com/docs/components/base/date-picker",
+        api: "https://react-spectrum.adobe.com/react-aria/DatePicker.html",
+      },
+    },
+  },
+  {
     name: "card",
     type: "registry:ui",
     files: [

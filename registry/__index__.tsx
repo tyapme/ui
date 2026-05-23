@@ -10997,6 +10997,36 @@ export const Index: Record<string, Record<string, any>> = {
         },
       },
     },
+    "date-picker": {
+      name: "date-picker",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button", "calendar", "popover"],
+      files: [
+        {
+          path: "styles/base-nova/ui/date-picker.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base-nova/ui/date-picker")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "date-picker"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          docs: "https://ui.shadcn.com/docs/components/base/date-picker",
+          api: "https://react-spectrum.adobe.com/react-aria/DatePicker.html",
+        },
+      },
+    },
     card: {
       name: "card",
       title: "undefined",
@@ -12741,6 +12771,36 @@ export const Index: Record<string, Record<string, any>> = {
           examples:
             "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/calendar-example.tsx",
           api: "https://react-day-picker.js.org",
+        },
+      },
+    },
+    "date-picker": {
+      name: "date-picker",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button", "calendar", "popover"],
+      files: [
+        {
+          path: "styles/base-vega/ui/date-picker.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base-vega/ui/date-picker")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "date-picker"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          docs: "https://ui.shadcn.com/docs/components/base/date-picker",
+          api: "https://react-spectrum.adobe.com/react-aria/DatePicker.html",
         },
       },
     },
@@ -14491,6 +14551,36 @@ export const Index: Record<string, Record<string, any>> = {
         },
       },
     },
+    "date-picker": {
+      name: "date-picker",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button", "calendar", "popover"],
+      files: [
+        {
+          path: "styles/base-maia/ui/date-picker.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base-maia/ui/date-picker")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "date-picker"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          docs: "https://ui.shadcn.com/docs/components/base/date-picker",
+          api: "https://react-spectrum.adobe.com/react-aria/DatePicker.html",
+        },
+      },
+    },
     card: {
       name: "card",
       title: "undefined",
@@ -16235,6 +16325,36 @@ export const Index: Record<string, Record<string, any>> = {
           examples:
             "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/calendar-example.tsx",
           api: "https://react-day-picker.js.org",
+        },
+      },
+    },
+    "date-picker": {
+      name: "date-picker",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button", "calendar", "popover"],
+      files: [
+        {
+          path: "styles/base-lyra/ui/date-picker.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base-lyra/ui/date-picker")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "date-picker"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          docs: "https://ui.shadcn.com/docs/components/base/date-picker",
+          api: "https://react-spectrum.adobe.com/react-aria/DatePicker.html",
         },
       },
     },
@@ -17985,6 +18105,36 @@ export const Index: Record<string, Record<string, any>> = {
         },
       },
     },
+    "date-picker": {
+      name: "date-picker",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button", "calendar", "popover"],
+      files: [
+        {
+          path: "styles/base-mira/ui/date-picker.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base-mira/ui/date-picker")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "date-picker"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          docs: "https://ui.shadcn.com/docs/components/base/date-picker",
+          api: "https://react-spectrum.adobe.com/react-aria/DatePicker.html",
+        },
+      },
+    },
     card: {
       name: "card",
       title: "undefined",
@@ -19732,6 +19882,36 @@ export const Index: Record<string, Record<string, any>> = {
         },
       },
     },
+    "date-picker": {
+      name: "date-picker",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button", "calendar", "popover"],
+      files: [
+        {
+          path: "styles/base-luma/ui/date-picker.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base-luma/ui/date-picker")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "date-picker"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          docs: "https://ui.shadcn.com/docs/components/base/date-picker",
+          api: "https://react-spectrum.adobe.com/react-aria/DatePicker.html",
+        },
+      },
+    },
     card: {
       name: "card",
       title: "undefined",
@@ -21476,6 +21656,36 @@ export const Index: Record<string, Record<string, any>> = {
           examples:
             "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/calendar-example.tsx",
           api: "https://react-day-picker.js.org",
+        },
+      },
+    },
+    "date-picker": {
+      name: "date-picker",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button", "calendar", "popover"],
+      files: [
+        {
+          path: "styles/base-sera/ui/date-picker.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base-sera/ui/date-picker")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "date-picker"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          docs: "https://ui.shadcn.com/docs/components/base/date-picker",
+          api: "https://react-spectrum.adobe.com/react-aria/DatePicker.html",
         },
       },
     },

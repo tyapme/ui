@@ -321,6 +321,36 @@ export const Index: Record<string, Record<string, any>> = {
         },
       },
     },
+    "date-picker": {
+      name: "date-picker",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button", "calendar", "popover"],
+      files: [
+        {
+          path: "registry/bases/base/ui/date-picker.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/bases/base/ui/date-picker")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "date-picker"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          docs: "https://ui.shadcn.com/docs/components/base/date-picker",
+          api: "https://react-spectrum.adobe.com/react-aria/DatePicker.html",
+        },
+      },
+    },
     card: {
       name: "card",
       title: "undefined",

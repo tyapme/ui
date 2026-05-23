@@ -1,7 +1,11 @@
 "use client"
 
 import * as React from "react"
-import { CalendarDate, CalendarDateTime, Time } from "@internationalized/date"
+import {
+  CalendarDate,
+  CalendarDateTime,
+  Time,
+} from "@internationalized/date"
 import { CalendarIcon } from "lucide-react"
 import {
   DateField as AriaDateField,
@@ -12,19 +16,19 @@ import {
   TimeField as AriaTimeField,
   type DateSegmentProps as AriaDateSegmentProps,
   type DateValue as AriaDateValue,
-  type TimeValue as AriaTimeValue,
   type RangeValue,
+  type TimeValue as AriaTimeValue,
 } from "react-aria-components"
 import { type DateRange } from "react-day-picker"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/styles/base-nova/ui/button"
-import { Calendar } from "@/styles/base-nova/ui/calendar"
+import { Button } from "@/registry/bases/base/ui/button"
+import { Calendar } from "@/registry/bases/base/ui/calendar"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/styles/base-nova/ui/popover"
+} from "@/registry/bases/base/ui/popover"
 
 // ============================================================================
 // DateSegment — 個別の日付セグメント（年/月/日）
@@ -127,7 +131,7 @@ function DateFieldInput({
       onChange={handleChange}
       className={cn("flex flex-col", className)}
     >
-      <AriaDateInput className="inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:bg-input/30">
+      <AriaDateInput className="inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs outline-none transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:bg-input/30">
         {(segment) => <DateSegment segment={segment} />}
       </AriaDateInput>
     </AriaDateField>
@@ -182,7 +186,7 @@ function TimeFieldInput({
       onChange={handleChange}
       className={cn("flex flex-col", className)}
     >
-      <AriaDateInput className="inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:bg-input/30">
+      <AriaDateInput className="inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs outline-none transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:bg-input/30">
         {(segment) => <DateSegment segment={segment} />}
       </AriaDateInput>
     </AriaTimeField>
@@ -266,7 +270,7 @@ function DatePicker({
         value={ariaValue as AriaDateValue | undefined}
         onChange={handleFieldChange}
       >
-        <AriaGroup className="inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:bg-input/30">
+        <AriaGroup className="inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs outline-none transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:bg-input/30">
           <AriaDateInput className="flex flex-1 items-center">
             {(segment) => <DateSegment segment={segment} />}
           </AriaDateInput>
@@ -332,7 +336,9 @@ function DateRangePicker({
 }: DateRangePickerProps) {
   const [open, setOpen] = React.useState(false)
 
-  const ariaValue = React.useMemo((): RangeValue<AriaDateValue> | undefined => {
+  const ariaValue = React.useMemo(():
+    | RangeValue<AriaDateValue>
+    | undefined => {
     if (!value?.from) return undefined
     const start = new CalendarDate(
       value.from.getFullYear(),
@@ -349,7 +355,9 @@ function DateRangePicker({
     return { start, end }
   }, [value])
 
-  function handleAriaChange(rangeValue: RangeValue<AriaDateValue> | null) {
+  function handleAriaChange(
+    rangeValue: RangeValue<AriaDateValue> | null
+  ) {
     if (!rangeValue) {
       onValueChange?.(undefined)
       return
@@ -383,7 +391,7 @@ function DateRangePicker({
         value={ariaValue}
         onChange={handleAriaChange}
       >
-        <AriaGroup className="inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:bg-input/30">
+        <AriaGroup className="inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs outline-none transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:bg-input/30">
           <AriaDateInput slot="start" className="flex items-center">
             {(segment) => <DateSegment segment={segment} />}
           </AriaDateInput>
