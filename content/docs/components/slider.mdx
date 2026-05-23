@@ -1,0 +1,101 @@
+---
+title: Slider
+description: 指定した範囲内の値をユーザーが選択できる入力コンポーネント。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/slider
+  api: https://base-ui.com/react/components/slider#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="slider-demo" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add slider
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="slider"
+  title="components/ui/slider.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx
+import { Slider } from "@/components/ui/slider"
+```
+
+```tsx
+<Slider defaultValue={[33]} max={100} step={1} />
+```
+
+## 使用例
+
+### Range
+
+2 つの値を持つ配列でレンジスライダーを作成できます。
+
+<ComponentPreview styleName="base-nova" name="slider-range" />
+
+### Multiple Thumbs
+
+複数の値を持つ配列で複数のサムを使用できます。
+
+<ComponentPreview styleName="base-nova" name="slider-multiple" />
+
+### Vertical
+
+`orientation="vertical"` で縦向きのスライダーにします。
+
+<ComponentPreview styleName="base-nova" name="slider-vertical" />
+
+### Controlled
+
+<ComponentPreview styleName="base-nova" name="slider-controlled" />
+
+### Disabled
+
+`disabled` でスライダーを無効化します。
+
+<ComponentPreview styleName="base-nova" name="slider-disabled" />
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="slider-rtl" direction="rtl" />
+
+## API リファレンス
+
+詳細は [Base UI Slider](https://base-ui.com/react/components/slider#api-reference) ドキュメントを参照してください。

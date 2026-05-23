@@ -1,0 +1,43 @@
+---
+title: タイポグラフィ
+description: タイポグラフィの定義は、一貫性のあるユーザー体験を作り上げる上で極めて重要な役割を果たし、ウェブサイトの全体的な視覚的アイデンティティ、読みやすさ、ユーザー体験等に大きな影響を与えます。
+---
+
+<DesignTypographyScale />
+
+## タイプスケール
+
+| レベル  | クラス                   | サイズ | ウェイト | 用途                 |
+| ------- | ------------------------ | ------ | -------- | -------------------- |
+| H1      | `text-4xl font-bold`     | 36px   | 700      | ページタイトル       |
+| H2      | `text-3xl font-semibold` | 30px   | 600      | セクション見出し     |
+| H3      | `text-2xl font-semibold` | 24px   | 600      | サブセクション       |
+| H4      | `text-xl font-medium`    | 20px   | 500      | グループ見出し       |
+| Body LG | `text-base`              | 16px   | 400      | リード文・説明       |
+| Body    | `text-sm`                | 14px   | 400      | 本文・UI ラベル      |
+| Caption | `text-xs`                | 12px   | 400      | 補足・メタ情報       |
+| Code    | `text-sm font-mono`      | 14px   | 500      | コード・トークン表示 |
+
+## フォント変数
+
+フォントは CSS 変数で管理されています。
+
+| 変数             | 役割              |
+| ---------------- | ----------------- |
+| `--font-sans`    | 本文・UI テキスト |
+| `--font-heading` | 見出し（H1〜H4）  |
+| `--font-mono`    | コード・トークン  |
+
+```css
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-mono);
+}
+```
+
+## ルール
+
+- **行長** — 本文カラムは最大 `65ch` に抑えて読みやすさを確保します。
+- **行間** — 本文は `leading-relaxed`（1.625）、見出しは `leading-tight`（1.25）を基準にします。
+- **日本語フォント** — `[data-lang="ja"]` にスコープされた日本語フォント変数（`--font-ja`）が適用されます。

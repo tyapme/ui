@@ -1,0 +1,92 @@
+---
+title: リンクテキスト
+description: リンクテキストは通常、色や下線などの視覚的な表現で通常のテキストと区別され、URLと関連づけられたテキスト文字列です。
+---
+
+## 種別
+
+### インラインリンク
+
+本文中に埋め込まれるリンクです。下線と色で通常テキストと区別します。
+
+```tsx
+<Link
+  href="/docs/design"
+  className="text-primary underline underline-offset-3 hover:opacity-70 transition-opacity"
+>
+  デザインシステムのドキュメント
+</Link>
+```
+
+### 外部リンク
+
+外部サイトへのリンクです。アイコンで外部遷移を明示します。
+
+```tsx
+import { IconExternalLink } from "@tabler/icons-react"
+
+<Link
+  href="https://example.com"
+  className="inline-flex items-center gap-1 text-primary underline underline-offset-3 hover:opacity-70 transition-opacity"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  外部サイト
+  <IconExternalLink className="size-3.5 shrink-0" />
+</Link>
+```
+
+### ナビゲーションリンク
+
+メニューや一覧などナビゲーション用途のリンクです。下線なしで、ホバー時に色変化します。
+
+```tsx
+<Link
+  href="/docs"
+  className="text-muted-foreground hover:text-foreground transition-colors"
+>
+  ドキュメント
+</Link>
+```
+
+### アクティブリンク
+
+現在表示しているページを示す状態です。
+
+```tsx
+<Link
+  href="/docs/design"
+  className={cn(
+    "text-sm transition-colors",
+    isActive
+      ? "text-foreground font-medium"
+      : "text-muted-foreground hover:text-foreground"
+  )}
+>
+  デザイン
+</Link>
+```
+
+## スタイルルール
+
+| 状態                     | テキストカラー                | 下線                           | 備考                |
+| ------------------------ | ----------------------------- | ------------------------------ | ------------------- |
+| デフォルト（インライン） | `text-primary`                | `underline underline-offset-3` | 本文内              |
+| ホバー（インライン）     | 変化なし                      | 維持                           | `hover:opacity-70`  |
+| デフォルト（ナビ）       | `text-muted-foreground`       | なし                           | ナビ・サイドバー    |
+| ホバー（ナビ）           | `text-foreground`             | なし                           | `transition-colors` |
+| アクティブ（ナビ）       | `text-foreground font-medium` | なし                           | 現在ページ          |
+
+## アクセシビリティ
+
+- リンクテキストは **リンク先が何かを示す** 文言にします（「こちら」「クリック」は避ける）。
+- 外部リンクには `target="_blank" rel="noopener noreferrer"` を付与します。
+- キーボードフォーカス時に視覚的に識別できるよう `focus-visible:ring-2` を保持します。
+
+```tsx
+// ✅ Good — 目的地がわかる
+<Link href="/docs/button">Button コンポーネントのドキュメント</Link>
+
+// ❌ Bad — 目的地がわからない
+<Link href="/docs/button">こちら</Link>
+```

@@ -1,0 +1,79 @@
+---
+title: レイアウト
+description: ページのレイアウトは文書構造上の要素を画面内のどこにどのように配置するかという設計のことです。ブラウザや表示デバイスに依存した制約の中で情報を視覚的に伝達するための技術であり、明確な情報伝達を実現するものです。
+---
+
+## グリッドシステム
+
+12 カラムの CSS Grid を基本単位として使います。
+
+```tsx
+<div className="grid grid-cols-12 gap-4">
+  <div className="col-span-12 md:col-span-8">メインコンテンツ</div>
+  <div className="col-span-12 md:col-span-4">サイドバー</div>
+</div>
+```
+
+## ブレークポイント
+
+Tailwind のブレークポイントをそのまま使います。
+
+| 名前    | 幅         | プレフィックス | 主な用途                 |
+| ------- | ---------- | -------------- | ------------------------ |
+| Default | `< 640px`  | —              | モバイル縦持ち           |
+| sm      | `≥ 640px`  | `sm:`          | モバイル横持ち           |
+| md      | `≥ 768px`  | `md:`          | タブレット               |
+| lg      | `≥ 1024px` | `lg:`          | デスクトップ             |
+| xl      | `≥ 1280px` | `xl:`          | ワイド                   |
+| 2xl     | `≥ 1536px` | `2xl:`         | フルHD 以上              |
+| 3xl     | `≥ 1600px` | `3xl:`         | 超ワイド（カスタム追加） |
+
+<Callout>
+  モバイルファーストで記述します。`md:` は「md 以上で適用」という意味です。
+</Callout>
+
+## コンテナ
+
+| utility             | 最大幅                | 説明                 |
+| ------------------- | --------------------- | -------------------- |
+| `container`         | 1400px                | ページコンテンツ領域 |
+| `container-wrapper` | max-screen-2xl + 2rem | 最外側のラッパー     |
+
+```tsx
+<div className="container-wrapper px-6">
+  <div className="container">
+    {/* コンテンツ */}
+  </div>
+</div>
+```
+
+## ページ構造パターン
+
+### スタンダード（サイドバーなし）
+
+```tsx
+<div className="border-grid border-b">
+  <div className="container-wrapper">
+    <div className="container py-10">
+      {/* コンテンツ */}
+    </div>
+  </div>
+</div>
+```
+
+### サイドバー付き（Docs レイアウト）
+
+```tsx
+<div className="flex">
+  <aside className="w-64 shrink-0">/* サイドバー */</aside>
+  <main className="flex-1 min-w-0">/* メインコンテンツ */</main>
+</div>
+```
+
+## 間隔の基準
+
+コンポーネント間のマージンは 4px グリッドに揃えます。
+
+- **セクション間**: `py-12` または `py-16`
+- **コンポーネント間**: `gap-4` または `gap-6`
+- **テキストと要素**: `mt-2` または `mt-4`

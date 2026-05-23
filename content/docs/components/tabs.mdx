@@ -1,0 +1,117 @@
+---
+title: Tabs
+description: タブパネルと呼ばれる、一度に1つずつ表示されるコンテンツセクションのセット。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/tabs
+  api: https://base-ui.com/react/components/tabs#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="tabs-demo"
+  previewClassName="h-96"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add tabs
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="tabs"
+  title="components/ui/tabs.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+```
+
+```tsx showLineNumbers
+<Tabs defaultValue="account" className="w-[400px]">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">Make changes to your account here.</TabsContent>
+  <TabsContent value="password">Change your password here.</TabsContent>
+</Tabs>
+```
+
+## 構成
+
+Use the following composition to build `Tabs`:
+
+```text
+Tabs
+├── TabsList
+│   ├── TabsTrigger
+│   └── TabsTrigger
+├── TabsContent
+└── TabsContent
+```
+
+## 使用例
+
+### Line
+
+Use the `variant="line"` prop on `TabsList` for a line style.
+
+<ComponentPreview styleName="base-nova" name="tabs-line" />
+
+### Vertical
+
+Use `orientation="vertical"` for vertical tabs.
+
+<ComponentPreview styleName="base-nova" name="tabs-vertical" />
+
+### Disabled
+
+<ComponentPreview styleName="base-nova" name="tabs-disabled" />
+
+### Icons
+
+<ComponentPreview styleName="base-nova" name="tabs-icons" />
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="tabs-rtl" direction="rtl" />
+
+## API リファレンス
+
+See the [Base UI Tabs](https://base-ui.com/react/components/tabs#api-reference) documentation.

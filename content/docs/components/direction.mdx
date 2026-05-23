@@ -1,0 +1,93 @@
+---
+title: Direction
+description: アプリのテキスト方向を設定するプロバイダーコンポーネント。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/utils/direction-provider
+  api: https://base-ui.com/react/utils/direction-provider#api-reference
+---
+
+`DirectionProvider` コンポーネントは、アプリのテキスト方向（`ltr` または `rtl`）を設定するために使用します。アラビア語・ヘブライ語・ペルシア語などの右対左言語をサポートする際に不可欠です。
+
+RTL モードのプレビューです。言語セレクターで言語を切り替えられます。各コンポーネントページの RTL セクションでさらなる例を確認できます。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="card-rtl"
+  direction="rtl"
+  previewClassName="h-auto"
+  hideCode
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add direction
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="direction"
+  title="components/ui/direction.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import { DirectionProvider } from "@/components/ui/direction"
+```
+
+```tsx showLineNumbers
+<html dir="rtl">
+  <body>
+    <DirectionProvider direction="rtl">
+      {/* Your app content */}
+    </DirectionProvider>
+  </body>
+</html>
+```
+
+## useDirection
+
+`useDirection` フックは、アプリの現在の方向を取得するために使用します。
+
+```tsx showLineNumbers
+import { useDirection } from "@/components/ui/direction"
+
+function MyComponent() {
+  const direction = useDirection()
+  return <div>Current direction: {direction}</div>
+}
+```

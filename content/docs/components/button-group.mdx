@@ -1,0 +1,243 @@
+---
+title: Button Group
+description: 関連するボタンを一貫したスタイルでまとめるコンテナ。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="button-group-demo" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add button-group
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="button-group"
+  title="components/ui/button-group.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx
+import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+} from "@/components/ui/button-group"
+```
+
+```tsx
+<ButtonGroup>
+  <Button>Button 1</Button>
+  <Button>Button 2</Button>
+</ButtonGroup>
+```
+
+## 構成
+
+`ButtonGroup` の構成:
+
+```text
+ButtonGroup
+├── Button or Input
+├── ButtonGroupSeparator
+└── ButtonGroupText
+```
+
+## アクセシビリティ
+
+- `ButtonGroup` コンポーネントの `role` 属性は `group` に設定されています。
+- <Kbd>Tab</Kbd> でグループ内のボタンを移動できます。
+- `aria-label` または `aria-labelledby` でボタングループにラベルを付けてください。
+
+```tsx showLineNumbers
+<ButtonGroup aria-label="Button group">
+  <Button>Button 1</Button>
+  <Button>Button 2</Button>
+</ButtonGroup>
+```
+
+## ButtonGroup vs ToggleGroup
+
+- アクションを実行するボタンをグループ化する場合は `ButtonGroup` を使います。
+- 状態をトグルするボタンをグループ化する場合は `ToggleGroup` を使います。
+
+## 使用例
+
+### Orientation
+
+`orientation` プロパティでボタングループのレイアウトを変更します。
+
+<ComponentPreview styleName="base-nova" name="button-group-orientation" />
+
+### Size
+
+個別ボタンの `size` プロパティでボタンのサイズを制御します。
+
+<ComponentPreview styleName="base-nova" name="button-group-size" />
+
+### Nested
+
+`<ButtonGroup>` をネストして、間隔付きのボタングループを作成します。
+
+<ComponentPreview styleName="base-nova" name="button-group-nested" />
+
+### Separator
+
+`ButtonGroupSeparator` コンポーネントはグループ内のボタンを視覚的に分割します。
+
+`outline` バリアントのボタンにはボーダーがあるためセパレーターは不要です。その他のバリアントにはセパレーターを追加すると視覚的な階層が明確になります。
+
+<ComponentPreview styleName="base-nova" name="button-group-separator" />
+
+### Split
+
+`ButtonGroupSeparator` で区切った2つのボタンでスプリットボタングループを作成します。
+
+<ComponentPreview styleName="base-nova" name="button-group-split" />
+
+### Input
+
+ボタンと `Input` コンポーネントを組み合わせます。
+
+<ComponentPreview styleName="base-nova" name="button-group-input" />
+
+### Input Group
+
+`InputGroup` コンポーネントで複雑な入力レイアウトを作成します。
+
+<ComponentPreview styleName="base-nova" name="button-group-input-group" />
+
+### Dropdown Menu
+
+`DropdownMenu` コンポーネントを使ったスプリットボタングループを作成します。
+
+<ComponentPreview styleName="base-nova" name="button-group-dropdown" />
+
+### Select
+
+`Select` コンポーネントと組み合わせます。
+
+<ComponentPreview styleName="base-nova" name="button-group-select" />
+
+### Popover
+
+`Popover` コンポーネントと組み合わせます。
+
+<ComponentPreview styleName="base-nova" name="button-group-popover" />
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="button-group-rtl"
+  direction="rtl"
+/>
+
+## API リファレンス
+
+### ButtonGroup
+
+`ButtonGroup` コンポーネントは関連するボタンを一貫したスタイルでまとめるコンテナです。
+
+| Prop          | Type                         | Default        |
+| ------------- | ---------------------------- | -------------- |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` |
+
+```tsx
+<ButtonGroup>
+  <Button>Button 1</Button>
+  <Button>Button 2</Button>
+</ButtonGroup>
+```
+
+複数のボタングループをネストして間隔付きの複雑なレイアウトを作成できます。詳細は [nested](#nested) の例を参照してください。
+
+```tsx
+<ButtonGroup>
+  <ButtonGroup />
+  <ButtonGroup />
+</ButtonGroup>
+```
+
+### ButtonGroupSeparator
+
+`ButtonGroupSeparator` コンポーネントはグループ内のボタンを視覚的に分割します。
+
+| Prop          | Type                         | Default      |
+| ------------- | ---------------------------- | ------------ |
+| `orientation` | `"horizontal" \| "vertical"` | `"vertical"` |
+
+```tsx
+<ButtonGroup>
+  <Button>Button 1</Button>
+  <ButtonGroupSeparator />
+  <Button>Button 2</Button>
+</ButtonGroup>
+```
+
+### ButtonGroupText
+
+ボタングループ内にテキストを表示するためのコンポーネントです。
+
+| Prop      | Type      | Default |
+| --------- | --------- | ------- |
+| `asChild` | `boolean` | `false` |
+
+```tsx
+<ButtonGroup>
+  <ButtonGroupText>Text</ButtonGroupText>
+  <Button>Button</Button>
+</ButtonGroup>
+```
+
+`asChild` プロパティを使ってカスタムコンポーネント（例: label）としてレンダリングできます。
+
+```tsx showLineNumbers
+import { ButtonGroupText } from "@/components/ui/button-group"
+import { Label } from "@/components/ui/label"
+
+export function ButtonGroupTextDemo() {
+  return (
+    <ButtonGroup>
+      <ButtonGroupText asChild>
+        <Label htmlFor="name">Text</Label>
+      </ButtonGroupText>
+      <Input placeholder="Type something here..." id="name" />
+    </ButtonGroup>
+  )
+}
+```

@@ -1,0 +1,165 @@
+---
+title: Alert
+description: ユーザーの注意を引くコールアウトを表示します。
+base: base
+component: true
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-demo"
+  previewClassName="h-auto sm:h-72 p-6"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add alert
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource name="alert" title="components/ui/alert.tsx" />
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Alert,
+  AlertAction,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
+```
+
+```tsx showLineNumbers
+<Alert>
+  <InfoIcon />
+  <AlertTitle>Heads up!</AlertTitle>
+  <AlertDescription>
+    You can add components and dependencies to your app using the cli.
+  </AlertDescription>
+  <AlertAction>
+    <Button variant="outline">Enable</Button>
+  </AlertAction>
+</Alert>
+```
+
+## 構成
+
+`Alert` の構成:
+
+```text
+Alert
+├── Icon
+├── AlertTitle
+├── AlertDescription
+└── AlertAction
+```
+
+## 使用例
+
+### Basic
+
+アイコン・タイトル・説明を持つシンプルなアラート。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-basic"
+  previewClassName="h-auto sm:h-72 p-6"
+/>
+
+### Destructive
+
+`variant="destructive"` で破壊的アラートを作成します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-destructive"
+  previewClassName="h-auto sm:h-72 p-6"
+/>
+
+### Action
+
+`AlertAction` でボタンなどのアクション要素を追加します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-action"
+  previewClassName="h-auto sm:h-72 p-6"
+/>
+
+### Custom Colors
+
+`Alert` コンポーネントに `bg-amber-50 dark:bg-amber-950` などのカスタムクラスを追加してカラーをカスタマイズできます。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-colors"
+  previewClassName="h-auto sm:h-72 p-6"
+/>
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-rtl"
+  direction="rtl"
+  previewClassName="h-auto sm:h-72 p-6"
+/>
+
+## API リファレンス
+
+### Alert
+
+`Alert` コンポーネントはユーザーの注意を引くコールアウトを表示します。
+
+| Prop      | Type                         | Default     |
+| --------- | ---------------------------- | ----------- |
+| `variant` | `"default" \| "destructive"` | `"default"` |
+
+### AlertTitle
+
+`AlertTitle` コンポーネントはアラートのタイトルを表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### AlertDescription
+
+`AlertDescription` コンポーネントはアラートの説明またはコンテンツを表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### AlertAction
+
+`AlertAction` コンポーネントはアラートの右上にアクション要素（ボタンなど）を絶対配置で表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |

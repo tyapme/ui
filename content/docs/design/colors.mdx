@@ -1,0 +1,63 @@
+---
+title: カラー
+description: デザインシステムのカラーは、個々のウェブサイトで使用されるスタイルガイドに必要なカラースキームの構築を目的としたシステムです。
+---
+
+カラートークンは `app/globals.css` の `:root` に CSS 変数として定義されています。Tailwind の `bg-*`、`text-*`、`border-*` で参照します。
+
+<DesignColorSwatches />
+
+## トークン一覧
+
+### ベース
+
+| トークン       | Tailwind          | 役割                 |
+| -------------- | ----------------- | -------------------- |
+| `--background` | `bg-background`   | ページ背景           |
+| `--foreground` | `text-foreground` | 本文テキスト         |
+| `--surface`    | `bg-surface`      | カードの一段上の背景 |
+
+### プライマリ
+
+| トークン               | Tailwind                  | 役割                       |
+| ---------------------- | ------------------------- | -------------------------- |
+| `--primary`            | `bg-primary`              | 主要アクション（ボタン等） |
+| `--primary-foreground` | `text-primary-foreground` | primary 上のテキスト       |
+
+### セカンダリ / ミュート / アクセント
+
+| トークン             | Tailwind                | 役割                           |
+| -------------------- | ----------------------- | ------------------------------ |
+| `--secondary`        | `bg-secondary`          | サブアクション                 |
+| `--muted`            | `bg-muted`              | 非アクティブ背景               |
+| `--muted-foreground` | `text-muted-foreground` | 補足テキスト・プレースホルダー |
+| `--accent`           | `bg-accent`             | ホバー背景など                 |
+
+### フィードバック
+
+| トークン                   | Tailwind                      | 役割                     |
+| -------------------------- | ----------------------------- | ------------------------ |
+| `--destructive`            | `bg-destructive`              | 削除・エラー             |
+| `--destructive-foreground` | `text-destructive-foreground` | destructive 上のテキスト |
+
+### UI 要素
+
+| トークン    | Tailwind        | 役割                     |
+| ----------- | --------------- | ------------------------ |
+| `--card`    | `bg-card`       | カード背景               |
+| `--popover` | `bg-popover`    | ポップオーバー背景       |
+| `--border`  | `border-border` | ボーダー                 |
+| `--input`   | `border-input`  | 入力フィールドのボーダー |
+| `--ring`    | `ring-ring`     | フォーカスリング         |
+
+## ダークモード
+
+`.dark` クラスで同じトークンを上書きします。コンポーネント側の変更は不要です。
+
+```css
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  /* ... */
+}
+```

@@ -1,0 +1,131 @@
+---
+title: Drawer
+description: React 向けのドロワーコンポーネント。
+base: base
+component: true
+links:
+  doc: https://vaul.emilkowal.ski/getting-started
+---
+
+<ComponentPreview styleName="base-nova" name="drawer-demo" />
+
+## について
+
+Drawer は [emilkowalski](https://twitter.com/emilkowalski) による [Vaul](https://github.com/emilkowalski/vaul) をベースに構築されています。
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add drawer
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install vaul
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="drawer"
+  title="components/ui/drawer.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+```
+
+```tsx showLineNumbers
+<Drawer>
+  <DrawerTrigger>Open</DrawerTrigger>
+  <DrawerContent>
+    <DrawerHeader>
+      <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+      <DrawerDescription>This action cannot be undone.</DrawerDescription>
+    </DrawerHeader>
+    <DrawerFooter>
+      <Button>Submit</Button>
+      <DrawerClose>
+        <Button variant="outline">Cancel</Button>
+      </DrawerClose>
+    </DrawerFooter>
+  </DrawerContent>
+</Drawer>
+```
+
+## 構成
+
+`Drawer` の構成:
+
+```text
+Drawer
+├── DrawerTrigger
+└── DrawerContent
+    ├── DrawerHeader
+    │   ├── DrawerTitle
+    │   └── DrawerDescription
+    └── DrawerFooter
+```
+
+## 使用例
+
+### スクロール可能なコンテンツ
+
+コンテンツがスクロールしてもアクションを常に表示します。
+
+<ComponentPreview styleName="base-nova" name="drawer-scrollable-content" />
+
+### 方向
+
+`direction` prop でドロワーの表示方向を設定します。`top`、`right`、`bottom`、`left` が利用可能です。
+
+<ComponentPreview styleName="base-nova" name="drawer-sides" />
+
+### レスポンシブダイアログ
+
+`Dialog` と `Drawer` を組み合わせてレスポンシブなダイアログを作成できます。デスクトップでは `Dialog`、モバイルでは `Drawer` が表示されます。
+
+<ComponentPreview styleName="base-nova" name="drawer-dialog" />
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="drawer-rtl" direction="rtl" />
+
+## API リファレンス
+
+完全な API リファレンスは [Vaul ドキュメント](https://vaul.emilkowal.ski/getting-started) を参照してください。

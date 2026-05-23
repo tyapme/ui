@@ -1,0 +1,431 @@
+---
+title: Calendar
+description: 日付または日付範囲を選択できるカレンダーコンポーネント。
+base: base
+component: true
+links:
+  doc: https://react-day-picker.js.org
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-demo"
+  previewClassName="h-96"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add calendar
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install react-day-picker date-fns
+```
+
+<Step>
+  `Button` コンポーネントをプロジェクトに追加します。`Calendar` コンポーネントは
+  `Button` コンポーネントを使用します。事前にインストールしてください。
+</Step>
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="calendar"
+  title="components/ui/calendar.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import { Calendar } from "@/components/ui/calendar"
+```
+
+```tsx showLineNumbers
+const [date, setDate] = React.useState<Date | undefined>(new Date())
+
+return (
+  <Calendar
+    mode="single"
+    selected={date}
+    onSelect={setDate}
+    className="rounded-lg border"
+  />
+)
+```
+
+[React DayPicker](https://react-day-picker.js.org) のドキュメントも併せて参照してください。
+
+## About
+
+`Calendar` コンポーネントは [React DayPicker](https://react-day-picker.js.org) をベースに構築されています。
+
+## Date Picker
+
+`<Calendar>` コンポーネントを使って日付ピッカーを構築できます。詳細は [Date Picker](/docs/components/base/date-picker) ページを参照してください。
+
+## ペルシア / ヒジュラ / ジャラリカレンダー
+
+ペルシア歷を使用するには、`components/ui/calendar.tsx` を編集して `react-day-picker` を `react-day-picker/persian` に置き換えてください。
+
+```diff
+- import { DayPicker } from "react-day-picker"
++ import { DayPicker } from "react-day-picker/persian"
+```
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-hijri"
+  title="Persian / Hijri / Jalali Calendar"
+  description="A Persian calendar."
+  previewClassName="h-[400px]"
+/>
+
+## 選択日付（タイムゾーン対応）
+
+`Calendar` コンポーネントは `timeZone` プロパティを受け付け、ユーザーのローカルタイムゾーンで日付を表示・選択するために利用します。
+
+```tsx showLineNumbers
+export function CalendarWithTimezone() {
+  const [date, setDate] = React.useState<Date | undefined>(undefined)
+  const [timeZone, setTimeZone] = React.useState<string | undefined>(undefined)
+
+  React.useEffect(() => {
+    setTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone)
+  }, [])
+
+  return (
+    <Calendar
+      mode="single"
+      selected={date}
+      onSelect={setDate}
+      timeZone={timeZone}
+    />
+  )
+}
+```
+
+**注意:** 選択日付にずれが発生する場合（例: 20日を選ぶと 19日がハイライトされる）は、`timeZone` プロパティがユーザーのローカルタイムゾーンに設定されているか確認してください。
+
+**なぜクライアントサイドなのか?** タイムゾーンは `useEffect` 内で `Intl.DateTimeFormat().resolvedOptions().timeZone` を用いて検出されます。サーバーとクライアントのタイムゾーンが異なる場合にハイドレーションの不一致が発生するため、レンダリング中に検出することは避けています。
+
+## 使用例
+
+### Basic
+
+シンプルなカレンダーコンポーネント。スタイルに `className="rounded-lg border"` を使用しています。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-basic"
+  previewClassName="h-96"
+/>
+
+### Range Calendar
+
+`mode="range"` プロパティで日付範囲選択を有効にします。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-range"
+  previewClassName="h-[36rem] md:h-96"
+/>
+
+### Month and Year Selector
+
+`captionLayout="dropdown"` で月・年のドロップダウンを表示します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-caption"
+  previewClassName="h-96"
+/>
+
+### Presets
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-presets"
+  previewClassName="h-[650px]"
+/>
+
+### Date and Time Picker
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-time"
+  previewClassName="h-[600px]"
+/>
+
+### Booked dates
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-booked-dates"
+  previewClassName="h-96"
+/>
+
+### Custom Cell Size
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-custom-days"
+  title="Custom Cell Size"
+  description="A calendar with custom cell size that's responsive."
+  className="**:[.preview]:h-[560px]"
+/>
+
+セルのサイズは `--cell-size` CSS 変数でカスタマイズできます。ブレークポイント別の値を使ってレスポンシブ対応にすることもできます:
+
+```tsx showLineNumbers
+<Calendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+  className="rounded-lg border [--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]"
+/>
+```
+
+または固定値を指定することもできます:
+
+```tsx showLineNumbers
+<Calendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+  className="rounded-lg border [--cell-size:2.75rem] md:[--cell-size:3rem]"
+/>
+```
+
+### Week Numbers
+
+`showWeekNumber` で週番号を表示します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-week-numbers"
+  previewClassName="h-96"
+/>
+
+## RTL
+
+ペルシア / ヒジュラ / ジャラリカレンダーの有効化については [Hijri ガイド](#%E3%83%9A%E3%83%AB%E3%82%B7%E3%82%A2--%E3%83%92%E3%82%B8%E3%83%A5%E3%83%A9--%E3%82%B8%E3%83%A3%E3%83%A9%E3%83%AA%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC) も参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-rtl"
+  direction="rtl"
+  previewClassName="h-96"
+/>
+
+RTL を使用する場合は、`react-day-picker/locale` からロケールをインポートし、`locale` と `dir` の両方の props を Calendar コンポーネントに渡します:
+
+```tsx showLineNumbers
+import { arSA } from "react-day-picker/locale"
+
+;<Calendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+  locale={arSA}
+  dir="rtl"
+/>
+```
+
+## API リファレンス
+
+`Calendar` コンポーネントの詳細は [React DayPicker](https://react-day-picker.js.org) のドキュメントを参照してください。
+
+## 変更履歴
+
+### RTL 対応
+
+`Calendar` コンポーネントの以前のバージョンからアップグレードする場合、ロケールサポートを追加するために以下の変更を適用する必要があります:
+
+<Steps>
+
+<Step>
+
+`Locale` 型をインポートします。
+
+`react-day-picker` のインポートに `Locale` を追加します:
+
+```diff
+  import {
+    DayPicker,
+    getDefaultClassNames,
+    type DayButton,
++   type Locale,
+  } from "react-day-picker"
+```
+
+</Step>
+
+<Step>
+
+Calendar コンポーネントに `locale` prop を追加します。
+
+Props に `locale` を追加します:
+
+```diff
+  function Calendar({
+    className,
+    classNames,
+    showOutsideDays = true,
+    captionLayout = "label",
+    buttonVariant = "ghost",
++   locale,
+    formatters,
+    components,
+    ...props
+  }: React.ComponentProps<typeof DayPicker> & {
+    buttonVariant?: React.ComponentProps<typeof Button>["variant"]
+  }) {
+```
+
+</Step>
+
+<Step>
+
+`DayPicker` に `locale` を渡します。
+
+`DayPicker` コンポーネントに `locale` prop を渡します:
+
+```diff
+    <DayPicker
+      showOutsideDays={showOutsideDays}
+      className={cn(...)}
+      captionLayout={captionLayout}
++     locale={locale}
+      formatters={{
+        formatMonthDropdown: (date) =>
+-         date.toLocaleString("default", { month: "short" }),
++         date.toLocaleString(locale?.code, { month: "short" }),
+        ...formatters,
+      }}
+```
+
+</Step>
+
+<Step>
+
+`CalendarDayButton` が locale を受け入れるように更新します。
+
+`CalendarDayButton` コンポーネントのシグネチャーを更新し、`locale` を渡します:
+
+```diff
+  function CalendarDayButton({
+    className,
+    day,
+    modifiers,
++   locale,
+    ...props
+- }: React.ComponentProps<typeof DayButton>) {
++ }: React.ComponentProps<typeof DayButton> & { locale?: Partial<Locale> }) {
+```
+
+</Step>
+
+<Step>
+
+`CalendarDayButton` の日付フォーマットを更新します。
+
+日付フォーマットで `locale?.code` を使用します:
+
+```diff
+    <Button
+      variant="ghost"
+      size="icon"
+-     data-day={day.date.toLocaleDateString()}
++     data-day={day.date.toLocaleDateString(locale?.code)}
+      ...
+    />
+```
+
+</Step>
+
+<Step>
+
+`DayButton` コンポーネントに locale を渡します。
+
+`DayButton` の使用箇所を更新して `locale` prop を渡します:
+
+```diff
+      components={{
+        ...
+-       DayButton: CalendarDayButton,
++       DayButton: ({ ...props }) => (
++         <CalendarDayButton locale={locale} {...props} />
++       ),
+        ...
+      }}
+```
+
+</Step>
+
+<Step>
+
+RTL 対応の CSS クラスを更新します。
+
+方向指定クラスを論理プロパティに置き換えてより良い RTL 対応を実現します:
+
+```diff
+  // In the day classNames:
+- [&:last-child[data-selected=true]_button]:rounded-r-(--cell-radius)
++ [&:last-child[data-selected=true]_button]:rounded-e-(--cell-radius)
+- [&:nth-child(2)[data-selected=true]_button]:rounded-l-(--cell-radius)
++ [&:nth-child(2)[data-selected=true]_button]:rounded-s-(--cell-radius)
+- [&:first-child[data-selected=true]_button]:rounded-l-(--cell-radius)
++ [&:first-child[data-selected=true]_button]:rounded-s-(--cell-radius)
+
+  // In range_start classNames:
+- rounded-l-(--cell-radius) ... after:right-0
++ rounded-s-(--cell-radius) ... after:end-0
+
+  // In range_end classNames:
+- rounded-r-(--cell-radius) ... after:left-0
++ rounded-e-(--cell-radius) ... after:start-0
+
+  // In CalendarDayButton className:
+- data-[range-end=true]:rounded-r-(--cell-radius)
++ data-[range-end=true]:rounded-e-(--cell-radius)
+- data-[range-start=true]:rounded-l-(--cell-radius)
++ data-[range-start=true]:rounded-s-(--cell-radius)
+```
+
+</Step>
+
+</Steps>
+
+これらの変更を適用すると、`locale` prop でロケール固有のフォーマットを提供できます:
+
+```tsx
+import { enUS } from "react-day-picker/locale"
+
+;<Calendar mode="single" selected={date} onSelect={setDate} locale={enUS} />
+```

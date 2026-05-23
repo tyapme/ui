@@ -1,0 +1,210 @@
+---
+title: Pagination
+description: ページナビゲーション、次へ・前へリンク付きのページネーション。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="pagination-demo" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add pagination
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="pagination"
+  title="components/ui/pagination.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+```
+
+```tsx showLineNumbers
+<Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationPrevious href="#" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">1</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#" isActive>
+        2
+      </PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">3</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationEllipsis />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext href="#" />
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>
+```
+
+## 構成
+
+`Pagination` の構成:
+
+```text
+Pagination
+└── PaginationContent
+    ├── PaginationItem
+    │   └── PaginationPrevious
+    ├── PaginationItem
+    │   └── PaginationLink
+    ├── PaginationItem
+    │   └── PaginationEllipsis
+    └── PaginationItem
+        └── PaginationNext
+```
+
+## 使用例
+
+### シンプル
+
+Page 番号のみのシンプルなページネーション。
+
+<ComponentPreview styleName="base-nova" name="pagination-simple" />
+
+### アイコンのみ
+
+ページ番号なしに前・次ボタンのみ表示します。表示件数セレクター付きのデータテーブルに適しています。
+
+<ComponentPreview styleName="base-nova" name="pagination-icons-only" />
+
+## Next.js
+
+デフォルトで `<PaginationLink />` は `<a />` タグをレンダリングします。
+
+Next.js の `<Link />` コンポーネントを使用するには `pagination.tsx` を次のように更新してください。
+
+```diff showLineNumbers /typeof Link/ {1}
++ import Link from "next/link"
+
+- type PaginationLinkProps = ... & React.ComponentProps<"a">
++ type PaginationLinkProps = ... & React.ComponentProps<typeof Link>
+
+const PaginationLink = ({...props }: ) => (
+  <PaginationItem>
+-   <a>
++   <Link>
+      // ...
+-   </a>
++   </Link>
+  </PaginationItem>
+)
+
+```
+
+<Callout className="mt-6">
+
+**注意:** CLI が自動的に対応できるよう消済される予定です。
+
+</Callout>
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="pagination-rtl" direction="rtl" />
+
+## 変更履歴
+
+### RTL サポート
+
+前のバージョンからアップグレードする場合、`text` prop を追加するために以下の更新を適用してください:
+
+<Steps>
+
+<Step>`PaginationPrevious` を更新します。</Step>
+
+```diff
+  function PaginationPrevious({
+    className,
++   text = "Previous",
+    ...props
+- }: React.ComponentProps<typeof PaginationLink>) {
++ }: React.ComponentProps<typeof PaginationLink> & { text?: string }) {
+    return (
+      <PaginationLink
+        aria-label="Go to previous page"
+        size="default"
+        className={cn("cn-pagination-previous", className)}
+        {...props}
+      >
+        <ChevronLeftIcon />
+        <span className="cn-pagination-previous-text hidden sm:block">
+-         Previous
++         {text}
+        </span>
+      </PaginationLink>
+    )
+  }
+```
+
+<Step>`PaginationNext` を更新します。</Step>
+
+```diff
+  function PaginationNext({
+    className,
++   text = "Next",
+    ...props
+- }: React.ComponentProps<typeof PaginationLink>) {
++ }: React.ComponentProps<typeof PaginationLink> & { text?: string }) {
+    return (
+      <PaginationLink
+        aria-label="Go to next page"
+        size="default"
+        className={cn("cn-pagination-next", className)}
+        {...props}
+      >
+-       <span className="cn-pagination-next-text hidden sm:block">Next</span>
++       <span className="cn-pagination-next-text hidden sm:block">{text}</span>
+        <ChevronRightIcon />
+      </PaginationLink>
+    )
+  }
+```
+
+</Steps>

@@ -1,0 +1,182 @@
+---
+title: Card
+description: ヘッダー、コンテンツ、フッターを持つカードを表示します。
+base: base
+component: true
+---
+
+<ComponentPreview
+  name="card-demo"
+  styleName="base-nova"
+  previewClassName="h-[30rem]"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add card
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="card"
+  title="components/ui/card.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+```
+
+```tsx showLineNumbers
+<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Card Description</CardDescription>
+    <CardAction>Card Action</CardAction>
+  </CardHeader>
+  <CardContent>
+    <p>Card Content</p>
+  </CardContent>
+  <CardFooter>
+    <p>Card Footer</p>
+  </CardFooter>
+</Card>
+```
+
+## 構成
+
+`Card` の構成:
+
+```text
+Card
+├── CardHeader
+│   ├── CardTitle
+│   ├── CardDescription
+│   └── CardAction
+├── CardContent
+└── CardFooter
+```
+
+## 使用例
+
+### Size
+
+`size="sm"` プロパティでカードのサイズを小さくします。小サイズは間隔が小さくなります。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="card-small"
+  previewClassName="h-96"
+/>
+
+### Image
+
+カードヘッダーの前に画像を追加して画像付きカードを作成します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="card-image"
+  previewClassName="h-[32rem]"
+/>
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="card-rtl"
+  direction="rtl"
+  previewClassName="h-[30rem]"
+/>
+
+## API リファレンス
+
+### Card
+
+`Card` コンポーネントはカードコンテンツのルートコンテナです。
+
+| Prop        | Type                | Default     |
+| ----------- | ------------------- | ----------- |
+| `size`      | `"default" \| "sm"` | `"default"` |
+| `className` | `string`            | -           |
+
+### CardHeader
+
+`CardHeader` コンポーネントはタイトル・説明・オプショナルなアクションに使用します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### CardTitle
+
+`CardTitle` コンポーネントはカードのタイトルに使用します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### CardDescription
+
+`CardDescription` コンポーネントはタイトル下の補助テキストに使用します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### CardAction
+
+`CardAction` コンポーネントはヘッダー左上（ボタンやバッジなど）にコンテンツを配置します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### CardContent
+
+`CardContent` コンポーネントはカードのメインボディに使用します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### CardFooter
+
+`CardFooter` コンポーネントはカード下部のアクションや補助コンテンツに使用します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |

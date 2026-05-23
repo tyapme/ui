@@ -1,0 +1,58 @@
+import { PlusIcon } from "lucide-react"
+
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarImage,
+} from "@/styles/base-nova/ui/avatar"
+import { Button } from "@/styles/base-nova/ui/button"
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/styles/base-nova/ui/empty"
+
+export function EmptyAvatarGroup() {
+  return (
+    <Empty className="flex-none border py-10">
+      <EmptyHeader>
+        <EmptyMedia>
+          <AvatarGroup className="grayscale">
+            <Avatar>
+              <AvatarImage src="/avatars/01.png" alt="TYAP.ME member" />
+              <AvatarFallback>TM</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarImage
+                src="https://github.com/maxleiter.png"
+                alt="@maxleiter"
+              />
+              <AvatarFallback>LR</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarImage
+                src="https://github.com/evilrabbit.png"
+                alt="@evilrabbit"
+              />
+              <AvatarFallback>ER</AvatarFallback>
+            </Avatar>
+          </AvatarGroup>
+        </EmptyMedia>
+        <EmptyTitle>No Team Members</EmptyTitle>
+        <EmptyDescription>
+          Invite your team to collaborate on this project.
+        </EmptyDescription>
+      </EmptyHeader>
+      <EmptyContent>
+        <Button size="sm">
+          <PlusIcon />
+          Invite Members
+        </Button>
+      </EmptyContent>
+    </Empty>
+  )
+}

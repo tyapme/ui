@@ -1,0 +1,124 @@
+---
+title: Kbd
+description: キーボードからのテキスト入力を表示するコンポーネント。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="kbd-demo" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add kbd
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="kbd"
+  title="components/ui/kbd.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx
+import { Kbd } from "@/components/ui/kbd"
+```
+
+```tsx
+<Kbd>Ctrl</Kbd>
+```
+
+## 構成
+
+以下の構成で `Kbd` と `KbdGroup` を構築します:
+
+```text
+Kbd
+KbdGroup
+├── Kbd
+└── Kbd
+```
+
+## 使用例
+
+### グループ
+
+`KbdGroup` でキーをまとめて表示します。
+
+<ComponentPreview styleName="base-nova" name="kbd-group" />
+
+### ボタン
+
+`Button` 内に `Kbd` を使ってボタン上にキーを表示します。
+
+<ComponentPreview styleName="base-nova" name="kbd-button" />
+
+### ツールチップ
+
+`Tooltip` 内に `Kbd` を使ってキー付きツールチップを表示できます。
+
+<ComponentPreview styleName="base-nova" name="kbd-tooltip" />
+
+### Input Group
+
+`InputGroupAddon` 内に `Kbd` を使って入力グループ内にキーを表示できます。
+
+<ComponentPreview styleName="base-nova" name="kbd-input-group" />
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="kbd-rtl" direction="rtl" />
+
+## API リファレンス
+
+### Kbd
+
+キーボードキーを表示するコンポーネント。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | ``      |
+
+```tsx
+<Kbd>Ctrl</Kbd>
+```
+
+### KbdGroup
+
+`Kbd` コンポーネントをグループ化するコンポーネント。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | ``      |
+
+```tsx
+<KbdGroup>
+  <Kbd>Ctrl</Kbd>
+  <Kbd>B</Kbd>
+</KbdGroup>
+```

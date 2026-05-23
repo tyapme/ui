@@ -1,0 +1,53 @@
+---
+title: Installation
+description: TYAP.ME UI を使うための基本設定。
+---
+
+TYAP.ME UI は Next.js App Router、TypeScript、Tailwind CSS、registry ベースのコンポーネントを前提にしています。
+
+新しい画面やコンポーネントを追加する前に、`components.json`、`tsconfig.json`、`app/globals.css` の設定が既存プロジェクトと揃っていることを確認してください。
+
+## コンポーネント基盤
+
+TYAP.ME UI は **Base UI (`@base-ui/react`)** のみを使用します。Radix UI のサポートは終了しています。
+
+すべてのコンポーネントは `@/styles/base-nova/ui/` または `@/registry/bases/base/ui/` からインポートしてください。
+
+```ts
+// ✅ 正しい
+import { Button } from "@/styles/base-nova/ui/button"
+import { TooltipProvider } from "@/registry/bases/base/ui/tooltip"
+
+// ❌ 使用禁止（Radix UI は廃止）
+// import { Button } from "@/styles/radix-nova/ui/button"
+// import { TooltipProvider } from "@/registry/bases/radix/ui/tooltip"
+```
+
+## 基本設定
+
+```json title="components.json"
+{
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "@/components",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks",
+    "utils": "@/lib/utils"
+  }
+}
+```
+
+## 実装前に確認すること
+
+- UI は既存コンポーネントから使う。
+- 色、余白、radius、shadow は token を経由する。
+- 新しいパターンが必要な場合は、ページ側ではなく共通コンポーネントまたは docs を先に更新する。
+- 変更後は lint、typecheck、build を実行する。

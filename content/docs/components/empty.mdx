@@ -1,0 +1,240 @@
+---
+title: Empty
+description: 空の状態を表示するための Empty コンポーネント。
+base: base
+component: true
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="empty-demo"
+  previewClassName="h-96 p-0"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add empty
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="empty"
+  title="components/ui/empty.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty"
+```
+
+```tsx
+<Empty>
+  <EmptyHeader>
+    <EmptyMedia variant="icon">
+      <Icon />
+    </EmptyMedia>
+    <EmptyTitle>No data</EmptyTitle>
+    <EmptyDescription>No data found</EmptyDescription>
+  </EmptyHeader>
+  <EmptyContent>
+    <Button>Add data</Button>
+  </EmptyContent>
+</Empty>
+```
+
+## 構成
+
+以下の構成を使って `Empty` ステートを構築します:
+
+```text
+Empty
+├── EmptyHeader
+│   ├── EmptyMedia
+│   ├── EmptyTitle
+│   └── EmptyDescription
+└── EmptyContent
+```
+
+## 使用例
+
+### アウトライン
+
+`border` ユーティリティクラスでアウトライン付き空ステートを作成します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="empty-outline"
+  previewClassName="h-96 p-6 md:p-10"
+/>
+
+### バックグラウンド
+
+`bg-*` や `bg-gradient-*` ユーティリティで空ステートに背景を追加します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="empty-background"
+  previewClassName="h-96 p-0"
+/>
+
+### アバター
+
+`EmptyMedia` コンポーネントで空ステートにアバターを表示します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="empty-avatar"
+  previewClassName="h-96 p-0"
+/>
+
+### アバターグループ
+
+`EmptyMedia` コンポーネントで空ステートにアバターグループを表示します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="empty-avatar-group"
+  previewClassName="h-96 p-0"
+/>
+
+### InputGroup
+
+`EmptyContent` コンポーネントに `InputGroup` を追加できます。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="empty-input-group"
+  previewClassName="h-96 p-0"
+/>
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="empty-rtl" direction="rtl" />
+
+## API リファレンス
+
+### Empty
+
+空ステートのメインコンポーネント。`EmptyHeader` と `EmptyContent` を包括します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<Empty>
+  <EmptyHeader />
+  <EmptyContent />
+</Empty>
+```
+
+### EmptyHeader
+
+`EmptyHeader` はエンプティメディア、タイトル、説明を包括します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<EmptyHeader>
+  <EmptyMedia />
+  <EmptyTitle />
+  <EmptyDescription />
+</EmptyHeader>
+```
+
+### EmptyMedia
+
+`EmptyMedia` コンポーネントは空ステートのメディア（アイコンや画像など）を表示します。アバターなど他のコンポーネントを使用することもできます。
+
+| Prop        | Type                  | Default   |
+| ----------- | --------------------- | --------- |
+| `variant`   | `"default" \| "icon"` | `default` |
+| `className` | `string`              |           |
+
+```tsx
+<EmptyMedia variant="icon">
+  <Icon />
+</EmptyMedia>
+```
+
+```tsx
+<EmptyMedia>
+  <Avatar>
+    <AvatarImage src="..." />
+    <AvatarFallback>CN</AvatarFallback>
+  </Avatar>
+</EmptyMedia>
+```
+
+### EmptyTitle
+
+`EmptyTitle` コンポーネントは空ステートのタイトルを表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<EmptyTitle>No data</EmptyTitle>
+```
+
+### EmptyDescription
+
+`EmptyDescription` コンポーネントは空ステートの説明を表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<EmptyDescription>You do not have any notifications.</EmptyDescription>
+```
+
+### EmptyContent
+
+`EmptyContent` コンポーネントは空ステートのコンテンツ（ボタン、入力欄、リンクなど）を表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<EmptyContent>
+  <Button>Add Project</Button>
+</EmptyContent>
+```

@@ -1,0 +1,14 @@
+{
+    "title": "基本デザイン",
+    "pages": [
+        "index",
+        "colors",
+        "typography",
+        "icons",
+        "layout",
+        "link-text",
+        "spacing",
+        "radius",
+        "elevation"
+    ]
+}

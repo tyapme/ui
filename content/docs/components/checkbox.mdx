@@ -1,0 +1,134 @@
+---
+title: Checkbox
+description: チェック状態とそれ以外を切り替えるコントロール。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/checkbox
+  api: https://base-ui.com/react/components/checkbox#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="checkbox-demo"
+  previewClassName="h-80"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add checkbox
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="checkbox"
+  title="components/ui/checkbox.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx
+import { Checkbox } from "@/components/ui/checkbox"
+```
+
+```tsx
+<Checkbox />
+```
+
+## チェック状態
+
+革制されないチェックボックスには `defaultChecked` を、状態を制御する場合は `checked` と `onCheckedChange` を使用します。
+
+```tsx showLineNumbers
+import * as React from "react"
+
+export function Example() {
+  const [checked, setChecked] = React.useState(false)
+
+  return <Checkbox checked={checked} onCheckedChange={setChecked} />
+}
+```
+
+## 無効状態
+
+チェックボックスに `aria-invalid`、フィールドラッパーに `data-invalid` を設定して無効スタイルを表示します。
+
+<ComponentPreview styleName="base-nova" name="checkbox-invalid" />
+
+## 使用例
+
+### Basic
+
+`Field` と `FieldLabel` と組み合わせて正しいレイアウトとラベリングを実現します。
+
+<ComponentPreview styleName="base-nova" name="checkbox-basic" />
+
+### Description
+
+`FieldContent` と `FieldDescription` で補助テキストを追加します。
+
+<ComponentPreview styleName="base-nova" name="checkbox-description" />
+
+### Disabled
+
+`disabled` プロパティで法動を禁止し、`<Field>` コンポーネントに `data-disabled` 属性を追加して無効スタイルを適用します。
+
+<ComponentPreview styleName="base-nova" name="checkbox-disabled" />
+
+### Group
+
+複数のフィールドを使ってチェックボックスリストを作成します。
+
+<ComponentPreview styleName="base-nova" name="checkbox-group" />
+
+### Table
+
+<ComponentPreview
+  styleName="base-nova"
+  name="checkbox-table"
+  previewClassName="p-4 md:p-8"
+/>
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="checkbox-rtl"
+  direction="rtl"
+  previewClassName="h-80"
+/>
+
+## API リファレンス
+
+詳細は [Base UI](https://base-ui.com/react/components/checkbox#api-reference) のドキュメントを参照してください。

@@ -1,0 +1,143 @@
+---
+title: Hover Card
+description: リンクの先にあるコンテンツをユーザーがプレビューするためのカード。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/hover-card
+  api: https://base-ui.com/react/components/hover-card#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="hover-card-demo"
+  previewClassName="h-80"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add hover-card
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="hover-card"
+  title="components/ui/hover-card.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
+```
+
+```tsx showLineNumbers
+<HoverCard>
+  <HoverCardTrigger>Hover</HoverCardTrigger>
+  <HoverCardContent>
+    TYAP.ME UI component notes for product surfaces.
+  </HoverCardContent>
+</HoverCard>
+```
+
+## 構成
+
+`HoverCard` の構成:
+
+```text
+HoverCard
+├── HoverCardTrigger
+└── HoverCardContent
+```
+
+## トリガーの遅延
+
+トリガーの `delay` と `closeDelay` でカードの開閉タイミングを制御します。
+
+```tsx showLineNumbers
+<HoverCard>
+  <HoverCardTrigger delay={100} closeDelay={200}>
+    Hover
+  </HoverCardTrigger>
+  <HoverCardContent>Content</HoverCardContent>
+</HoverCard>
+```
+
+## 配置
+
+`HoverCardContent` の `side` と `align` で表示位置を制御します。
+
+```tsx showLineNumbers
+<HoverCard>
+  <HoverCardTrigger>Hover</HoverCardTrigger>
+  <HoverCardContent side="top" align="start">
+    Content
+  </HoverCardContent>
+</HoverCard>
+```
+
+## 使用例
+
+### Basic
+
+<ComponentPreview
+  styleName="base-nova"
+  name="hover-card-demo"
+  previewClassName="h-80"
+/>
+
+### 方向
+
+<ComponentPreview
+  styleName="base-nova"
+  name="hover-card-sides"
+  previewClassName="h-[22rem]"
+/>
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="hover-card-rtl"
+  direction="rtl"
+  previewClassName="h-80"
+/>
+
+## API リファレンス
+
+詳細は [Base UI](https://base-ui.com/react/components/hover-card#api-reference) ドキュメントを参照してください。

@@ -1,0 +1,22 @@
+"use client"
+
+import * as React from "react"
+
+import { DatePicker } from "@/styles/base-nova/ui/date-picker"
+import { Field, FieldLabel } from "@/styles/base-nova/ui/field"
+
+export function DatePickerSimple() {
+  const [date, setDate] = React.useState<Date>()
+
+  return (
+    <Field className="mx-auto w-48">
+      <FieldLabel htmlFor="date-picker-simple">Date</FieldLabel>
+      <DatePicker
+        id="date-picker-simple"
+        value={date}
+        onValueChange={setDate}
+        aria-label="Date"
+      />
+    </Field>
+  )
+}

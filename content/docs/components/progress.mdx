@@ -1,0 +1,112 @@
+---
+title: Progress
+description: タスクの完了進捗を示すインジケーター。通常はプログレスバーとして表示されます。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/progress
+  api: https://base-ui.com/react/components/progress#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="progress-demo" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add progress
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="progress"
+  title="components/ui/progress.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import { Progress } from "@/components/ui/progress"
+```
+
+```tsx showLineNumbers
+<Progress value={33} />
+```
+
+## 構成
+
+### ラベルと値の表示
+
+`ProgressLabel` と `ProgressValue` でラベルと値を表示します。
+
+```tsx showLineNumbers
+import {
+  Progress,
+  ProgressLabel,
+  ProgressValue,
+} from "@/components/ui/progress"
+
+;<Progress value={56} className="w-full max-w-sm">
+  <ProgressLabel>Upload progress</ProgressLabel>
+  <ProgressValue />
+</Progress>
+```
+
+```text
+Progress
+├── ProgressLabel
+├── ProgressValue
+└── ProgressTrack
+    └── ProgressIndicator
+```
+
+## 使用例
+
+### ラベル
+
+`ProgressLabel` と `ProgressValue` でラベルと値を表示します。
+
+<ComponentPreview styleName="base-nova" name="progress-label" />
+
+### 制御
+
+スライダーで制御できるプログレスバー。
+
+<ComponentPreview styleName="base-nova" name="progress-controlled" />
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="progress-rtl" direction="rtl" />
+
+## API リファレンス
+
+詳細は [Base UI Progress](https://base-ui.com/react/components/progress#api-reference) ドキュメントを参照してください。

@@ -1,0 +1,42 @@
+---
+title: エレベーション
+description: エレベーションは、ブラウザ上で表示されるコンポーネントの高さの度合いを示します。
+---
+
+エレベーションは CSS の `box-shadow` で表現します。Tailwind の `shadow-*` ユーティリティを使用します。
+
+<DesignElevationScale />
+
+## レベル定義
+
+| レベル | クラス        | `box-shadow`  | 用途                                 |
+| ------ | ------------- | ------------- | ------------------------------------ |
+| 0      | `shadow-none` | なし          | フラットな要素                       |
+| 1      | `shadow-sm`   | `0 1px 2px`   | カード、入力フィールド               |
+| 2      | `shadow-md`   | `0 4px 6px`   | ドロップダウン、コンテキストメニュー |
+| 3      | `shadow-lg`   | `0 10px 15px` | モーダル、ダイアログ                 |
+| 4      | `shadow-xl`   | `0 20px 25px` | フルスクリーンオーバーレイ           |
+
+## 使い方
+
+```tsx
+// Level 1 — カード
+<div className="rounded-xl bg-card shadow-sm" />
+
+// Level 2 — ドロップダウン
+<div className="rounded-lg bg-popover shadow-md" />
+
+// Level 3 — モーダル
+<div className="rounded-xl bg-card shadow-lg" />
+```
+
+## ルール
+
+- エレベーションは **UI の重なり順を視覚的に表す** ために使います。単純な装飾目的では使いません。
+- 同じ画面に `shadow-xl` を多用しないでください。最も高いレベルのコンポーネントが際立たなくなります。
+- ダークモードでは影が見えにくくなるため、`border` と組み合わせて奥行きを補完します。
+
+```tsx
+// ダークモード対応
+<div className="rounded-xl bg-card shadow-sm ring-1 ring-border/50" />
+```

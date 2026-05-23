@@ -1,0 +1,59 @@
+---
+title: アイコン
+description: デジタル庁デザインシステムでは、文書構造中でアイコンが使われる位置ごとに、4つのアイコン仕様を定義しています。
+---
+
+アイコンには [@tabler/icons-react](https://tabler.io/icons) を使用します。6000 種類以上のアイコンが SVG で提供され、サイズ・色は Tailwind クラスで制御します。
+
+<DesignIconGallery />
+
+## インストール
+
+```bash
+pnpm add @tabler/icons-react
+```
+
+## 使い方
+
+```tsx
+import { IconHome, IconSearch } from "@tabler/icons-react"
+
+// サイズ・色を Tailwind で指定
+<IconHome className="size-5 text-foreground" />
+<IconSearch className="size-4 text-muted-foreground" />
+```
+
+## サイズ仕様
+
+| サイズ | クラス   | px   | 使用場面                 |
+| ------ | -------- | ---- | ------------------------ |
+| XS     | `size-3` | 12px | バッジ、インラインヒント |
+| SM     | `size-4` | 16px | ボタン内、リストアイテム |
+| MD     | `size-5` | 20px | 標準 UI アイコン         |
+| LG     | `size-6` | 24px | ナビゲーション、強調     |
+| XL     | `size-8` | 32px | 空状態、イラスト的用途   |
+
+## 配色ルール
+
+アイコンは単体で色を持たず、必ず親コンテキストのカラートークンを参照します。
+
+```tsx
+// ✅ Good — トークンを使う
+<IconCheck className="size-4 text-foreground" />
+<IconAlertCircle className="size-4 text-destructive" />
+
+// ❌ Bad — 直値カラーは使わない
+<IconCheck className="size-4 text-[#333]" />
+```
+
+## アクセシビリティ
+
+装飾目的のアイコンは `aria-hidden="true"` を付け、意味を持つ場合は `aria-label` を指定します。
+
+```tsx
+{/* 装飾 */}
+<IconStar aria-hidden="true" className="size-4" />
+
+{/* 意味あり */}
+<IconAlertCircle aria-label="警告" className="size-4 text-destructive" />
+```

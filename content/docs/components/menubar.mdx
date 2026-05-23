@@ -1,0 +1,161 @@
+---
+title: Menubar
+description: デスクトップアプリでよく見られる、一連のコマンドにすばやくアクセスできる常時表示メニュー。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/menubar
+  api: https://base-ui.com/react/components/menubar#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="menubar-demo" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add menubar
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="menubar"
+  title="components/ui/menubar.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Menubar,
+  MenubarContent,
+  MenubarGroup,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@/components/ui/menubar"
+```
+
+```tsx showLineNumbers
+<Menubar>
+  <MenubarMenu>
+    <MenubarTrigger>File</MenubarTrigger>
+    <MenubarContent>
+      <MenubarGroup>
+        <MenubarItem>
+          New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+        </MenubarItem>
+        <MenubarItem>New Window</MenubarItem>
+      </MenubarGroup>
+      <MenubarSeparator />
+      <MenubarGroup>
+        <MenubarItem>Share</MenubarItem>
+        <MenubarItem>Print</MenubarItem>
+      </MenubarGroup>
+    </MenubarContent>
+  </MenubarMenu>
+</Menubar>
+```
+
+## 構成
+
+`Menubar` の構成:
+
+```text
+Menubar
+├── MenubarMenu
+│   ├── MenubarTrigger
+│   └── MenubarContent
+│       ├── MenubarGroup
+│       │   ├── MenubarLabel
+│       │   ├── MenubarItem
+│       │   └── MenubarItem
+│       ├── MenubarSeparator
+│       ├── MenubarGroup
+│       │   ├── MenubarLabel
+│       │   ├── MenubarCheckboxItem
+│       │   └── MenubarCheckboxItem
+│       ├── MenubarSeparator
+│       ├── MenubarGroup
+│       │   ├── MenubarLabel
+│       │   └── MenubarRadioGroup
+│       │       ├── MenubarRadioItem
+│       │       └── MenubarRadioItem
+│       └── MenubarSub
+│           ├── MenubarSubTrigger
+│           └── MenubarSubContent
+│               └── MenubarGroup
+│                   ├── MenubarLabel
+│                   ├── MenubarItem
+│                   └── MenubarItem
+└── MenubarMenu
+    ├── MenubarTrigger
+    └── MenubarContent
+        └── MenubarGroup
+            ├── MenubarLabel
+            ├── MenubarItem
+            └── MenubarItem
+```
+
+## 使用例
+
+### チェックボックス
+
+`MenubarCheckboxItem` でトグルオプションを作成します。
+
+<ComponentPreview styleName="base-nova" name="menubar-checkbox" />
+
+### ラジオ
+
+`MenubarRadioGroup` と `MenubarRadioItem` で単一選択オプションを作成します。
+
+<ComponentPreview styleName="base-nova" name="menubar-radio" />
+
+### サブメニュー
+
+`MenubarSub`、`MenubarSubTrigger`、`MenubarSubContent` でネストメニューを作成します。
+
+<ComponentPreview styleName="base-nova" name="menubar-submenu" />
+
+### アイコン付き
+
+<ComponentPreview styleName="base-nova" name="menubar-icons" />
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="menubar-rtl" direction="rtl" />
+
+## API リファレンス
+
+詳細は [Base UI Menubar](https://base-ui.com/react/components/menubar#api-reference) ドキュメントを参照してください。

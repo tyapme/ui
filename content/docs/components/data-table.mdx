@@ -1,0 +1,844 @@
+---
+title: Data Table
+description: TanStack Table を使った高機能なテーブルとデータグリッド。
+base: base
+component: true
+links:
+  doc: https://tanstack.com/table/v8/docs/introduction
+---
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="data-table-demo"
+  align="start"
+  previewClassName="items-start h-auto px-4 md:px-8"
+  hideCode
+/>
+
+## はじめに
+
+私がこれまで作ってきたデータテーブル・データグリッドはすべて営別でした。ソート・フィルタリングの要件も異なり、データソースも様々です。
+
+これらすべてを単一のコンポーネントによくまとめる意味はありません。そうすると、[headless UI](https://tanstack.com/table/v8/docs/introduction#what-is-headless-ui) が提供する柔軟性が失われてしまいます。
+
+そのため、data-table コンポーネントとして提供するのではなく、自分で実装するためのガイドを用意しました。
+
+基本の `<Table />` コンポーネントから始め、複雑なデータテーブルをスクラッチから構築します。
+
+<Callout className="mt-4">
+
+**ヒント:** 同じテーブルをアプリの複数箇所で使用する場合は、常に再利用可能なコンポーネントに抽出することができます。
+
+</Callout>
+
+## 目次
+
+このガイドでは [TanStack Table](https://tanstack.com/table) と `<Table />` コンポーネントを使ってカスタムなデータテーブルを構築する方法を説明します。以下のトピックを山います:
+
+- [Basic Table](#basic-table)
+- [Row Actions](#row-actions)
+- [Pagination](#pagination)
+- [Sorting](#sorting)
+- [Filtering](#filtering)
+- [Visibility](#visibility)
+- [Row Selection](#row-selection)
+- [Reusable Components](#reusable-components)
+
+## インストール
+
+1. `<Table />` コンポーネントをプロジェクトに追加します:
+
+```bash
+npx shadcn@latest add table
+```
+
+2. `tanstack/react-table` ドライバを追加します:
+
+```bash
+npm install @tanstack/react-table
+```
+
+## 前提条件
+
+最近の支払い一覧を表示するテーブルを作成します。データの構造は次のとおりです:
+
+```tsx showLineNumbers
+type Payment = {
+  id: string
+  amount: number
+  status: "pending" | "processing" | "success" | "failed"
+  email: string
+}
+
+export const payments: Payment[] = [
+  {
+    id: "728ed52f",
+    amount: 100,
+    status: "pending",
+    email: "m@example.com",
+  },
+  {
+    id: "489e1d42",
+    amount: 125,
+    status: "processing",
+    email: "example@gmail.com",
+  },
+  // ...
+]
+```
+
+## プロジェクト構成
+
+以下のファイル構造を作成します:
+
+```txt
+app
+└── payments
+    ├── columns.tsx
+    ├── data-table.tsx
+    └── page.tsx
+```
+
+Next.js の例ですが、他の React フレームワークでも動作します。
+
+- `columns.tsx`（クライアントコンポーネント）には列定義を記述します。
+- `data-table.tsx`（クライアントコンポーネント）には `<DataTable />` コンポーネントを記述します。
+- `page.tsx`（サーバーコンポーネント）でデータを取得してテーブルをレンダリングします。
+
+## 基本テーブル
+
+まず基本的なテーブルを作成します。
+
+<Steps className="mb-0 pt-2">
+
+### 列定義
+
+まず列を定義します。
+
+```tsx showLineNumbers title="app/payments/columns.tsx" {3,14-27}
+"use client"
+
+import { ColumnDef } from "@tanstack/react-table"
+
+// This type is used to define the shape of our data.
+// You can use a Zod schema here if you want.
+export type Payment = {
+  id: string
+  amount: number
+  status: "pending" | "processing" | "success" | "failed"
+  email: string
+}
+
+export const columns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: "status",
+    header: "Status",
+  },
+  {
+    accessorKey: "email",
+    header: "Email",
+  },
+  {
+    accessorKey: "amount",
+    header: "Amount",
+  },
+]
+```
+
+<Callout className="mt-4">
+
+**注意:** 列はテーブルの外見の中核を定義する場所です。表示データ、フォーマット、ソート、フィルタリングを定義します。
+
+</Callout>
+
+### `<DataTable />` コンポーネント
+
+次に `<DataTable />` コンポーネントを作成してテーブルをレンダリングします。
+
+```tsx showLineNumbers title="app/payments/data-table.tsx"
+"use client"
+
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from "@tanstack/react-table"
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+
+interface DataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[]
+  data: TData[]
+}
+
+export function DataTable<TData, TValue>({
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) {
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  })
+
+  return (
+    <div className="overflow-hidden rounded-md border">
+      <Table>
+        <TableHeader>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
+                return (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                )
+              })}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          {table.getRowModel().rows?.length ? (
+            table.getRowModel().rows.map((row) => (
+              <TableRow
+                key={row.id}
+                data-state={row.getIsSelected() && "selected"}
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={columns.length} className="h-24 text-center">
+                No results.
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </div>
+  )
+}
+```
+
+<Callout>
+
+**ヒント**: `<DataTable />` を複数箇所で使用する場合は `components/ui/data-table.tsx` に抽出すると再利用できます。
+
+`<DataTable columns={columns} data={data} />`
+
+</Callout>
+
+### テーブルのレンダリング
+
+最後にページコンポーネントでテーブルをレンダリングします。
+
+```tsx showLineNumbers title="app/payments/page.tsx" {22}
+import { columns, Payment } from "./columns"
+import { DataTable } from "./data-table"
+
+async function getData(): Promise<Payment[]> {
+  // API からデータを取得する。
+  return [
+    {
+      id: "728ed52f",
+      amount: 100,
+      status: "pending",
+      email: "m@example.com",
+    },
+    // ...
+  ]
+}
+
+export default async function DemoPage() {
+  const data = await getData()
+
+  return (
+    <div className="container mx-auto py-10">
+      <DataTable columns={columns} data={data} />
+    </div>
+  )
+}
+```
+
+</Steps>
+
+## セルフォーマット
+
+金額セルをドル表示にフォーマットし、右寄せにします。
+
+<Steps className="mb-0 pt-2">
+
+### 列定義の更新
+
+`amount` の `header` と `cell` 定義を次のように更新します:
+
+```tsx showLineNumbers title="app/payments/columns.tsx" {4-15}
+export const columns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: "amount",
+    header: () => <div className="text-right">Amount</div>,
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue("amount"))
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(amount)
+
+      return <div className="text-right font-medium">{formatted}</div>
+    },
+  },
+]
+```
+
+同じアプローチで他のセルやヘッダーもフォーマットできます。
+
+</Steps>
+
+## 行アクション
+
+`<DropdownMenu />` コンポーネントを使って行アクションを追加します。
+
+<Steps className="mb-0 pt-2">
+
+### 列定義の更新
+
+`actions` 列を追加するように列定義を更新します。`actions` セルは `<DropdownMenu />` コンポーネントを返します。
+
+```tsx showLineNumbers title="app/payments/columns.tsx" {4,6-14,18-45}
+"use client"
+
+import { ColumnDef } from "@tanstack/react-table"
+import { MoreHorizontal } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+export const columns: ColumnDef<Payment>[] = [
+  // ...
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      const payment = row.original
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem
+              onClick={() => navigator.clipboard.writeText(payment.id)}
+            >
+              Copy payment ID
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>View customer</DropdownMenuItem>
+            <DropdownMenuItem>View payment details</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )
+    },
+  },
+  // ...
+]
+```
+
+`cell` 関数内で `row.original` を使って行データにアクセスできます。例えば `id` を使って API への DELETE 呼び出しなどを実装できます。
+
+</Steps>
+
+## ページネーション
+
+テーブルにページネーションを追加します。
+
+<Steps className="mb-0 pt-2">
+
+### `<DataTable>` の更新
+
+```tsx showLineNumbers title="app/payments/data-table.tsx" {5,17}
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table"
+
+export function DataTable<TData, TValue>({
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) {
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  })
+
+  // ...
+}
+```
+
+行は自動的に 10 件ごとのページに分割されます。ページサイズのカスタマイズや手動ページネーションの実装については [pagination docs](https://tanstack.com/table/v8/docs/api/features/pagination) を参照してください。
+
+### ページネーションコントロールの追加
+
+`<Button />` コンポーネントと `table.previousPage()`、`table.nextPage()` API メソッドでページネーションコントロールを追加できます。
+
+```tsx showLineNumbers title="app/payments/data-table.tsx" {1,15,21-39}
+import { Button } from "@/components/ui/button"
+
+export function DataTable<TData, TValue>({
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) {
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  })
+
+  return (
+    <div>
+      <div className="overflow-hidden rounded-md border">
+        <Table>
+          { // .... }
+        </Table>
+      </div>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Previous
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next
+        </Button>
+      </div>
+    </div>
+  )
+}
+```
+
+より高機能なページネーションコンポーネントについては、[Reusable Components](#reusable-components) セクションを参照してください。
+
+</Steps>
+
+## ソート
+
+Email 列をソート可能にします。
+
+<Steps className="mb-0 pt-2">
+
+### `<DataTable>` の更新
+
+```tsx showLineNumbers title="app/payments/data-table.tsx" {3,6,10,18,25-29}
+"use client"
+
+import * as React from "react"
+import {
+  ColumnDef,
+  SortingState,
+  flexRender,
+  getCoreRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from "@tanstack/react-table"
+
+export function DataTable<TData, TValue>({
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) {
+  const [sorting, setSorting] = React.useState<SortingState>([])
+
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
+    state: {
+      sorting,
+    },
+  })
+
+  return (
+    <div>
+      <div className="overflow-hidden rounded-md border">
+        <Table>{ ... }</Table>
+      </div>
+    </div>
+  )
+}
+```
+
+### ヘッダーセルをソート可能にする
+
+`email` ヘッダーセルにソートコントロールを追加します。
+
+```tsx showLineNumbers title="app/payments/columns.tsx" {4,9-19}
+"use client"
+
+import { ColumnDef } from "@tanstack/react-table"
+import { ArrowUpDown } from "lucide-react"
+
+export const columns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: "email",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Email
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+  },
+]
+```
+
+ヘッダーセルをクリックすると自動的にテーブルが昇順・降順にソートされます。
+
+</Steps>
+
+## フィルタリング
+
+Email をフィルタリングする検索入力欄を追加します。
+
+<Steps className="mb-0 pt-2">
+
+### `<DataTable>` の更新
+
+```tsx showLineNumbers title="app/payments/data-table.tsx" {6,10,17,24-26,35-36,39,45-54}
+"use client"
+
+import * as React from "react"
+import {
+  ColumnDef,
+  ColumnFiltersState,
+  SortingState,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from "@tanstack/react-table"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+
+export function DataTable<TData, TValue>({
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) {
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  )
+
+  const table = useReactTable({
+    data,
+    columns,
+    onSortingChange: setSorting,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      sorting,
+      columnFilters,
+    },
+  })
+
+  return (
+    <div>
+      <div className="flex items-center py-4">
+        <Input
+          placeholder="Filter emails..."
+          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("email")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+      </div>
+      <div className="overflow-hidden rounded-md border">
+        <Table>{ ... }</Table>
+      </div>
+    </div>
+  )
+}
+```
+
+`email` 列のフィルタリングが有効になりました。他の列にもフィルターを追加できます。フィルターのカスタマイズについては [filtering docs](https://tanstack.com/table/v8/docs/guide/filters) を参照してください。
+
+</Steps>
+
+## 列表示
+
+`@tanstack/react-table` の visibility API を使って列の表示切り替えを簡単に追加できます。
+
+<Steps className="mb-0 pt-2">
+
+### `<DataTable>` の更新
+
+```tsx showLineNumbers title="app/payments/data-table.tsx" {8,18-23,33-34,45,49,64-91}
+"use client"
+
+import * as React from "react"
+import {
+  ColumnDef,
+  ColumnFiltersState,
+  SortingState,
+  VisibilityState,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from "@tanstack/react-table"
+
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+export function DataTable<TData, TValue>({
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) {
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  )
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({})
+
+  const table = useReactTable({
+    data,
+    columns,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
+    state: {
+      sorting,
+      columnFilters,
+      columnVisibility,
+    },
+  })
+
+  return (
+    <div>
+      <div className="flex items-center py-4">
+        <Input
+          placeholder="Filter emails..."
+          value={table.getColumn("email")?.getFilterValue() as string}
+          onChange={(event) =>
+            table.getColumn("email")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="ml-auto">
+              Columns
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            {table
+              .getAllColumns()
+              .filter(
+                (column) => column.getCanHide()
+              )
+              .map((column) => {
+                return (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="capitalize"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value) =>
+                      column.toggleVisibility(!!value)
+                    }
+                  >
+                    {column.id}
+                  </DropdownMenuCheckboxItem>
+                )
+              })}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+      <div className="overflow-hidden rounded-md border">
+        <Table>{ ... }</Table>
+      </div>
+    </div>
+  )
+}
+```
+
+列の表示切り替えに使用できるドロップダウンメニューが追加されました。
+
+</Steps>
+
+## 行選択
+
+テーブルに行選択機能を追加します。
+
+<Steps className="mb-0 pt-2">
+
+### 列定義の更新
+
+```tsx showLineNumbers title="app/payments/columns.tsx" {6,9-27}
+"use client"
+
+import { ColumnDef } from "@tanstack/react-table"
+
+import { Badge } from "@/components/ui/badge"
+import { Checkbox } from "@/components/ui/checkbox"
+
+export const columns: ColumnDef<Payment>[] = [
+  {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+]
+```
+
+### `<DataTable>` の更新
+
+```tsx showLineNumbers title="app/payments/data-table.tsx" {11,23,28}
+export function DataTable<TData, TValue>({
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) {
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  )
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({})
+  const [rowSelection, setRowSelection] = React.useState({})
+
+  const table = useReactTable({
+    data,
+    columns,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
+    onRowSelectionChange: setRowSelection,
+    state: {
+      sorting,
+      columnFilters,
+      columnVisibility,
+      rowSelection,
+    },
+  })
+
+  return (
+    <div>
+      <div className="overflow-hidden rounded-md border">
+        <Table />
+      </div>
+    </div>
+  )
+}
+```
+
+各行にチェックボックスと、全行を選択するヘッダーのチェックボックスが追加されます。
+
+### 選択行数の表示
+
+`table.getFilteredSelectedRowModel()` API で選択行数を表示できます。
+
+```tsx
+<div className="flex-1 text-sm text-muted-foreground">
+  {table.getFilteredSelectedRowModel().rows.length} of{" "}
+  {table.getFilteredRowModel().rows.length} row(s) selected.
+</div>
+```
+
+</Steps>
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="data-table-rtl"
+  direction="rtl"
+  previewClassName="items-start h-auto px-4 md:px-8"
+  hideCode
+/>

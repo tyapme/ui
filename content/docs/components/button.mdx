@@ -1,46 +1,161 @@
 ---
 title: Button
-description: クリック可能なボタンコンポーネント
+description: ボタンまたはボタンのようなコンポーネントを表示します。
+featured: true
+base: base
+component: true
 ---
 
-## Preview
+<ComponentPreview styleName="base-nova" name="button-demo" />
 
-<ComponentPreview component="button" example="preview">
-  <ButtonPreview />
-</ComponentPreview>
+## インストール
 
-## Installation
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
 
 ```bash
-npx shadcn add https://ui.tyap.me/r/button.json
+npx shadcn@latest add button
 ```
 
-## Usage
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="button"
+  title="components/ui/button.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
 
 ```tsx
 import { Button } from "@/components/ui/button"
+```
 
-export default function Page() {
-  return <Button>送信</Button>
+```tsx
+<Button variant="outline">Button</Button>
+```
+
+## Cursor
+
+Tailwind v4 ではボタンコンポーネントの `cursor: pointer` から `cursor: default` への[変更](https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor)が行われました。
+
+`cursor: pointer` の振る舞いを維持したい場合は、CSS ファイルに以下のコードを追加してください:
+
+`npx shadcn@latest init --pointer` でプロジェクト設定時にも有効化できます。
+
+```css showLineNumbers title="globals.css"
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
 ```
 
-## Variants
+## 使用例
 
-| variant | 説明 |
-|---------|------|
-| default | 塗りつぶし |
-| destructive | 危険なアクション |
-| outline | ボーダーのみ |
-| secondary | セカンダリカラー |
-| ghost | 透明背景 |
-| link | リンクスタイル |
+### Size
 
-## Sizes
+`size` プロパティでボタンのサイズを変更します。
 
-| size | 説明 |
-|------|------|
-| default | 標準サイズ |
-| sm | 小さめ |
-| lg | 大きめ |
-| icon | アイコン用正方形 |
+<ComponentPreview styleName="base-nova" name="button-size" />
+
+### Default
+
+<ComponentPreview styleName="base-nova" name="button-default" />
+
+### Outline
+
+<ComponentPreview styleName="base-nova" name="button-outline" />
+
+### Secondary
+
+<ComponentPreview styleName="base-nova" name="button-secondary" />
+
+### Ghost
+
+<ComponentPreview styleName="base-nova" name="button-ghost" />
+
+### Destructive
+
+<ComponentPreview styleName="base-nova" name="button-destructive" />
+
+### Link
+
+<ComponentPreview styleName="base-nova" name="button-link" />
+
+### Icon
+
+<ComponentPreview styleName="base-nova" name="button-icon" />
+
+### With Icon
+
+アイコンに `data-icon="inline-start"` または `data-icon="inline-end"` 属性を付けて正しい間隔を確保してください。
+
+<ComponentPreview styleName="base-nova" name="button-with-icon" />
+
+### Rounded
+
+`rounded-full` クラスでボタンを丸くします。
+
+<ComponentPreview styleName="base-nova" name="button-rounded" />
+
+### Spinner
+
+リーディング状態を表示するため、`<Spinner />` コンポーネントをボタンの中に配置します。スピナーに `data-icon="inline-start"` または `data-icon="inline-end"` 属性を付けて正しい間隔を確保してください。
+
+<ComponentPreview styleName="base-nova" name="button-spinner" />
+
+### Button Group
+
+ボタングループを作成するには `ButtonGroup` コンポーネントを使います。詳細は [Button Group](/docs/components/base/button-group) のドキュメントを参照してください。
+
+<ComponentPreview styleName="base-nova" name="button-group-demo" />
+
+### As Link
+
+`buttonVariants` ヘルパーを使ってリンクをボタンのように見せることができます。
+
+**リンクには `<Button render={<a />} nativeButton={false} />` を使わないでください。** Base UI の `Button` コンポーネントは常に `role="button"` を適用するため、`<a>` 要素のセマンティックなリンクロールを上書きしてしまいます。代わりに `buttonVariants` と通常の `<a>` タグを使用してください。
+
+<ComponentPreview styleName="base-nova" name="button-render" />
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="button-rtl" direction="rtl" />
+
+## API リファレンス
+
+### Button
+
+`Button` コンポーネントは `button` 要素のラッパーで、各種スタイルと機能を追加します。
+
+| Prop      | Type                                                                                 | Default     |
+| --------- | ------------------------------------------------------------------------------------ | ----------- |
+| `variant` | `"default" \| "outline" \| "ghost" \| "destructive" \| "secondary" \| "link"`        | `"default"` |
+| `size`    | `"default" \| "xs" \| "sm" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"` | `"default"` |

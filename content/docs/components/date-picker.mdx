@@ -1,0 +1,199 @@
+---
+title: Date Picker
+description: セグメント型の日付・時刻入力とカレンダーポップオーバーを組み合わせた日付選択コンポーネント。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="date-picker-demo" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+pnpm dlx shadcn@latest add field
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+pnpm add react-aria-components @internationalized/date react-day-picker date-fns
+```
+
+<Step>以下のコンポーネントのインストールが必要です:</Step>
+
+- [Field](/docs/components/base/field)
+- [Popover](/docs/components/base/popover)
+- [Calendar](/docs/components/base/calendar)
+- [Button](/docs/components/base/button)
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="date-picker"
+  title="components/ui/date-picker.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx
+import {
+  DatePicker,
+  DateRangePicker,
+  DateFieldInput,
+  TimeFieldInput,
+} from "@/components/ui/date-picker"
+```
+
+```tsx
+<DatePicker value={date} onValueChange={setDate} />
+```
+
+## 構成
+
+```text
+DatePicker
+├── DateFieldInput (セグメント型入力)
+│   └── DateSegment (年/月/日/時/分/秒)
+└── Calendar Popover (カレンダー)
+```
+
+## 使用例
+
+### Basic
+
+ラベル付きの基本的な日付選択。年・月・日をセグメントで個別に編集可能。
+
+<ComponentPreview styleName="base-nova" name="date-picker-basic" />
+
+### Date Field Only
+
+`showCalendar={false}` でカレンダーポップオーバーを非表示にし、セグメント入力のみ表示。
+
+<ComponentPreview styleName="base-nova" name="date-picker-input" />
+
+### Date & Time
+
+`granularity="minute"` で日時入力に拡張。時刻セグメントも自動追加される。
+
+<ComponentPreview styleName="base-nova" name="date-picker-datetime" />
+
+### Date + Time (Separate Fields)
+
+日付と時刻を `DatePicker` + `TimeFieldInput` で分離表示。
+
+<ComponentPreview styleName="base-nova" name="date-picker-time" />
+
+### Range Picker
+
+日付範囲を選択するコンポーネント。開始日・終了日それぞれセグメント入力。
+
+<ComponentPreview styleName="base-nova" name="date-picker-range" />
+
+### Date of Birth
+
+ドロップダウンキャプション付きの生年月日選択。
+
+<ComponentPreview styleName="base-nova" name="date-picker-dob" />
+
+### Standalone Date Field
+
+`DateFieldInput` を単体で使用。カレンダーなしのセグメント型日付入力。
+
+<ComponentPreview styleName="base-nova" name="date-picker-field" />
+
+### Natural Language
+
+`chrono-node` を使用した自然言語日付入力。
+
+<ComponentPreview styleName="base-nova" name="date-picker-natural-language" />
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="date-picker-rtl"
+  direction="rtl"
+/>
+
+## API
+
+### DatePicker
+
+| Prop            | Type                                      | Default | Description                                           |
+| --------------- | ----------------------------------------- | ------- | ----------------------------------------------------- |
+| `value`         | `Date \| undefined`                       | -       | 選択された日付                                        |
+| `onValueChange` | `(date: Date \| undefined) => void`       | -       | 日付変更時のコールバック                              |
+| `showCalendar`  | `boolean`                                 | `true`  | カレンダーポップオーバーの表示/非表示                 |
+| `granularity`   | `"day" \| "hour" \| "minute" \| "second"` | `"day"` | 入力の粒度。`"hour"` 以上で時刻セグメントが追加される |
+| `disabled`      | `boolean`                                 | `false` | 無効状態                                              |
+| `calendarProps` | `CalendarProps`                           | -       | Calendar に渡す追加 props                             |
+| `className`     | `string`                                  | -       | className                                             |
+| `id`            | `string`                                  | -       | ID                                                    |
+
+### DateRangePicker
+
+| Prop             | Type                                      | Default | Description                           |
+| ---------------- | ----------------------------------------- | ------- | ------------------------------------- |
+| `value`          | `DateRange \| undefined`                  | -       | 選択された日付範囲                    |
+| `onValueChange`  | `(range: DateRange \| undefined) => void` | -       | 範囲変更時のコールバック              |
+| `showCalendar`   | `boolean`                                 | `true`  | カレンダーポップオーバーの表示/非表示 |
+| `disabled`       | `boolean`                                 | `false` | 無効状態                              |
+| `numberOfMonths` | `number`                                  | `2`     | 表示する月数                          |
+| `calendarProps`  | `CalendarProps`                           | -       | Calendar に渡す追加 props             |
+| `className`      | `string`                                  | -       | className                             |
+| `id`             | `string`                                  | -       | ID                                    |
+
+### DateFieldInput
+
+| Prop            | Type                                      | Default | Description              |
+| --------------- | ----------------------------------------- | ------- | ------------------------ |
+| `value`         | `Date \| undefined`                       | -       | 選択された日付           |
+| `onValueChange` | `(date: Date \| undefined) => void`       | -       | 日付変更時のコールバック |
+| `granularity`   | `"day" \| "hour" \| "minute" \| "second"` | `"day"` | 入力の粒度               |
+| `disabled`      | `boolean`                                 | `false` | 無効状態                 |
+| `className`     | `string`                                  | -       | className                |
+| `id`            | `string`                                  | -       | ID                       |
+
+### TimeFieldInput
+
+| Prop            | Type                                | Default    | Description              |
+| --------------- | ----------------------------------- | ---------- | ------------------------ |
+| `value`         | `Date \| undefined`                 | -          | 時刻を含む Date          |
+| `onValueChange` | `(date: Date \| undefined) => void` | -          | 時刻変更時のコールバック |
+| `granularity`   | `"hour" \| "minute" \| "second"`    | `"minute"` | 入力の粒度               |
+| `disabled`      | `boolean`                           | `false`    | 無効状態                 |
+| `className`     | `string`                            | -          | className                |
+| `id`            | `string`                            | -          | ID                       |
+
+## キーボード操作
+
+| キー        | 動作                       |
+| ----------- | -------------------------- |
+| `Tab`       | 次のセグメントに移動       |
+| `Shift+Tab` | 前のセグメントに移動       |
+| `↑` / `↓`   | セグメントの値を増減       |
+| `0-9`       | セグメントに数値を直接入力 |
+| `Backspace` | セグメントの値をクリア     |

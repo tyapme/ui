@@ -1,0 +1,140 @@
+---
+title: Navigation Menu
+description: ウェブサイトをナビゲートするためのリンク集。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/navigation-menu
+  api: https://base-ui.com/react/components/navigation-menu#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="navigation-menu-demo"
+  previewClassName="h-96"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add navigation-menu
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="navigation-menu"
+  title="components/ui/navigation-menu.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
+```
+
+```tsx showLineNumbers
+<NavigationMenu>
+  <NavigationMenuList>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+      <NavigationMenuContent>
+        <NavigationMenuLink>Link</NavigationMenuLink>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+  </NavigationMenuList>
+</NavigationMenu>
+```
+
+## 構成
+
+`NavigationMenu` の構成:
+
+```text
+NavigationMenu
+├── NavigationMenuList
+│   ├── NavigationMenuItem
+│   │   ├── NavigationMenuTrigger
+│   │   └── NavigationMenuContent
+│   │       ├── NavigationMenuLink
+│   │       └── NavigationMenuLink
+│   └── NavigationMenuItem
+│       └── NavigationMenuLink
+└── NavigationMenuIndicator
+```
+
+## リンクコンポーネント
+
+`render` で Next.js `Link` などのカスタムリンクコンポーネントを組み合わせます。
+
+```tsx showLineNumbers
+import Link from "next/link"
+
+import {
+  NavigationMenuItem,
+  NavigationMenuLink,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
+
+export function NavigationMenuDemo() {
+  return (
+    <NavigationMenuItem>
+      <NavigationMenuLink
+        render={<Link href="/docs" />}
+        className={navigationMenuTriggerStyle()}
+      >
+        Documentation
+      </NavigationMenuLink>
+    </NavigationMenuItem>
+  )
+}
+```
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="navigation-menu-rtl"
+  direction="rtl"
+  previewClassName="h-96"
+/>
+
+## API リファレンス
+
+詳細は [Base UI Navigation Menu](https://base-ui.com/react/components/navigation-menu#api-reference) ドキュメントを参照してください。

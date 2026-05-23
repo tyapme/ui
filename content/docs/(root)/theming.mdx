@@ -1,0 +1,278 @@
+---
+title: テーマ設定
+description: CSS 変数とテーマトークンの使い方。
+---
+
+テーマ設定には CSS 変数を使用することを推奨します。
+
+これにより、`background`、`foreground`、`primary` のようなセマンティックなテーマトークンがコンポーネントのデフォルト値として使えるようになります。コンポーネントのクラスを書き直すことなく、CSS のトークンを上書きするだけでアプリの見た目を変更できます。
+
+```tsx /bg-background/ /text-foreground/
+<div className="bg-background text-foreground" />
+```
+
+CSS 変数をテーマ設定に使用するには、`components.json` の `tailwind.cssVariables` を `true` に設定してください。これはデフォルト値です。
+
+```json {8} title="components.json" showLineNumbers
+{
+  "style": "base-nova",
+  "rsc": true,
+  "tailwind": {
+    "config": "",
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  }
+}
+```
+
+Tailwind はこれらのトークンを `bg-background`、`text-foreground`、`border-border`、`ring-ring` などのユーティリティクラスにマッピングします。
+
+ダークモードは `.dark` セレクター内で同じトークンを上書きすることで動作します。テーマプロバイダーの追加と `.dark` クラスの切り替えについては [ダークモードのドキュメント](/docs/dark-mode/next) を参照してください。
+
+## トークンの規則
+
+セマンティックな background と foreground のペアを使用します。基本トークンがサーフェスの色を制御し、`-foreground` トークンがそのサーフェス上のテキストやアイコンの色を制御します。
+
+<Callout className="mt-4">
+
+サーフェストークンでは background サフィックスが省略されます。たとえば、`primary` は `primary-foreground` とペアになります。
+
+</Callout>
+
+次の CSS 変数が定義されている場合：
+
+```css
+--primary: oklch(0.205 0 0);
+--primary-foreground: oklch(0.985 0 0);
+```
+
+以下のコンポーネントの `background` カラーは `var(--primary)`、`foreground` カラーは `var(--primary-foreground)` になります。
+
+```tsx
+<div className="bg-primary text-primary-foreground">Hello</div>
+```
+
+## テーマトークン一覧
+
+これらのトークンは CSS ファイルの `:root` と `.dark` に定義されています。
+
+| トークン                                         | 制御する内容                                                   | 使用箇所                                                                         |
+| ------------------------------------------------ | -------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `background` / `foreground`                      | アプリのデフォルト背景色とテキスト色。                         | ページシェル、ページセクション、デフォルトテキスト。                             |
+| `card` / `card-foreground`                       | 浮き上がったサーフェスとその内部コンテンツ。                   | `Card`、ダッシュボードパネル、設定パネル。                                       |
+| `popover` / `popover-foreground`                 | フローティングサーフェスとその内部コンテンツ。                 | `Popover`、`DropdownMenu`、`ContextMenu` などのオーバーレイ。                    |
+| `primary` / `primary-foreground`                 | 強調度の高いアクションとブランドサーフェス。                   | デフォルトの `Button`、選択状態、バッジ、アクティブなアクセント。                |
+| `secondary` / `secondary-foreground`             | 強調度の低い塗りつぶしアクションとサポートサーフェス。         | セカンダリボタン、セカンダリバッジ、サポート UI。                                |
+| `muted` / `muted-foreground`                     | 控えめなサーフェスと低強調コンテンツ。                         | 説明文、プレースホルダー、空の状態、ヘルパーテキスト、控えめなサーフェス。       |
+| `accent` / `accent-foreground`                   | ホバー・フォーカス・アクティブ時のインタラクティブサーフェス。 | ゴーストボタン、メニューのハイライト状態、ホバー行、選択アイテム。               |
+| `destructive`                                    | 破壊的アクションとエラー強調。                                 | 破壊的ボタン、無効状態、破壊的メニューアイテム。                                 |
+| `border`                                         | デフォルトのボーダーとセパレーター。                           | カード、メニュー、テーブル、セパレーター、レイアウト区切り。                     |
+| `input`                                          | フォームコントロールのボーダーと入力サーフェス処理。           | `Input`、`Textarea`、`Select`、アウトラインスタイルのコントロール。              |
+| `ring`                                           | フォーカスリングとアウトライン。                               | ボタン、入力欄、チェックボックス、メニュー、その他フォーカス可能なコントロール。 |
+| `chart-1` ... `chart-5`                          | デフォルトのチャートパレット。                                 | チャートおよびチャートを使ったダッシュボードブロック。                           |
+| `sidebar` / `sidebar-foreground`                 | サイドバーのベースサーフェスとデフォルトテキスト。             | `Sidebar` コンテナとそのデフォルトコンテンツ。                                   |
+| `sidebar-primary` / `sidebar-primary-foreground` | サイドバー内の強調度の高いアクション。                         | アクティブアイテム、アイコンタイル、バッジ、サイドバー CTA。                     |
+| `sidebar-accent` / `sidebar-accent-foreground`   | サイドバー内のホバー・選択状態。                               | サイドバーメニューのホバー状態、展開アイテム、インタラクティブ行。               |
+| `sidebar-border`                                 | サイドバー固有のボーダーとセパレーター。                       | サイドバーのヘッダー、グループ、内部区切り。                                     |
+| `sidebar-ring`                                   | サイドバー固有のフォーカスリング。                             | サイドバー内のフォーカス可能なコントロール。                                     |
+| `radius`                                         | ベースの角丸スケール。                                         | カード、入力欄、ボタン、ポップオーバー、および派生する `radius-*` トークン。     |
+
+<Callout className="mt-4">
+
+チャートトークンの詳細は [チャートのテーマ設定ドキュメント](/docs/components/chart#theming) を参照してください。
+
+</Callout>
+
+## 角丸スケール
+
+`--radius` はテーマのベース角丸トークンです。
+
+このトークンから小さな角丸スケールを派生させることで、コンポーネントが単一の情報源を共有しながら一貫したコーナーサイズを使えるようにしています。
+
+```css title="app/globals.css" showLineNumbers
+@theme inline {
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+```
+
+つまり：
+
+- `radius-lg` がベース値です。
+- 小さい角丸は `--radius` から縮小されます。
+- 大きい角丸は `--radius` から拡大されます。
+- `--radius` を変更すると、角丸スケール全体が更新されます。
+
+## 新しいトークンの追加
+
+新しいトークンを追加するには、`:root` と `.dark` に定義してから、`@theme inline` で Tailwind に公開します。
+
+```css title="app/globals.css" showLineNumbers
+:root {
+  --warning: oklch(0.84 0.16 84);
+  --warning-foreground: oklch(0.28 0.07 46);
+}
+
+.dark {
+  --warning: oklch(0.41 0.11 46);
+  --warning-foreground: oklch(0.99 0.02 95);
+}
+
+@theme inline {
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+}
+```
+
+これで `bg-warning` と `text-warning-foreground` をコンポーネントで使用できます。
+
+```tsx /bg-warning/ /text-warning-foreground/
+<div className="bg-warning text-warning-foreground" />
+```
+
+## ベースカラー
+
+`tailwind.baseColor` は、`init` 実行時やプリセット使用時にプロジェクトに生成されるデフォルトトークン値を制御します。
+
+利用可能なベースカラーは **Neutral**、**Stone**、**Zinc**、**Mauve**、**Olive**、**Mist**、**Taupe** です。
+
+## デフォルトテーマ CSS
+
+以下はデフォルトの `neutral` テーマのフルスキャフォールドです。グローバル CSS ファイルにコピーし、必要に応じてトークンを調整してください。
+
+<CodeCollapsibleWrapper>
+
+```css showLineNumbers title="app/globals.css"
+@import "tailwindcss";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+```
+
+</CodeCollapsibleWrapper>

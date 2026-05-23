@@ -1,0 +1,134 @@
+---
+title: Dialog
+description: メインウィンドウや別のダイアログウィンドウの上に重なるウィンドウ。背後のコンテンツは操作不可になります。
+featured: true
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/dialog
+  api: https://base-ui.com/react/components/dialog#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="dialog-demo"
+  description="プロフィール詳細を編集するダイアログ。"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add dialog
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="dialog"
+  title="components/ui/dialog.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+```
+
+```tsx showLineNumbers
+<Dialog>
+  <DialogTrigger>Open</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Are you absolutely sure?</DialogTitle>
+      <DialogDescription>
+        This action cannot be undone. This will permanently delete your account
+        and remove your data from our servers.
+      </DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+```
+
+## 構成
+
+`Dialog` の構成:
+
+```text
+Dialog
+├── DialogTrigger
+└── DialogContent
+    ├── DialogHeader
+    │   ├── DialogTitle
+    │   └── DialogDescription
+    └── DialogFooter
+```
+
+## 使用例
+
+### カスタムクローズボタン
+
+デフォルトの閉じるコントロールを独自のボタンに置き換えます。
+
+<ComponentPreview styleName="base-nova" name="dialog-close-button" />
+
+### クローズボタンなし
+
+`showCloseButton={false}` を指定すると閉じるボタンを非表示にできます。
+
+<ComponentPreview styleName="base-nova" name="dialog-no-close-button" />
+
+### スティッキーフッター
+
+コンテンツがスクロールしてもアクションを常に表示します。
+
+<ComponentPreview styleName="base-nova" name="dialog-sticky-footer" />
+
+### スクロール可能なコンテンツ
+
+長いコンテンツはスクロールし、ヘッダーは常に表示されます。
+
+<ComponentPreview styleName="base-nova" name="dialog-scrollable-content" />
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="dialog-rtl" direction="rtl" />
+
+## API リファレンス
+
+詳細は [Base UI](https://base-ui.com/react/components/dialog#api-reference) ドキュメントを参照してください。

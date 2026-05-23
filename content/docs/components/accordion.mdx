@@ -1,0 +1,165 @@
+---
+title: Accordion
+description: クリックで内容を開閉できる、縦に並んだインタラクティブな見出しのセット。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/accordion
+  api: https://base-ui.com/react/components/accordion#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="accordion-demo"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add accordion
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="accordion"
+  title="components/ui/accordion.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+```
+
+```tsx showLineNumbers
+<Accordion defaultValue={["item-1"]}>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>
+      Yes. It adheres to the WAI-ARIA design pattern.
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## 構成
+
+`Accordion` の構成:
+
+```text
+Accordion
+├── AccordionItem
+│   ├── AccordionTrigger
+│   └── AccordionContent
+└── AccordionItem
+    ├── AccordionTrigger
+    └── AccordionContent
+```
+
+## 使用例
+
+### Basic
+
+一度に1つのアイテムを表示するシンプルなアコーディオン。最初のアイテムがデフォルトで開いています。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="accordion-basic"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
+/>
+
+### Multiple
+
+`multiple` プロパティで複数のアイテムを同時に開けるようにします。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="accordion-multiple"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[450px]"
+/>
+
+### Disabled
+
+`AccordionItem` の `disabled` プロパティで個別アイテムを無効化します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="accordion-disabled"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
+/>
+
+### Borders
+
+`Accordion` に `border`、`AccordionItem` に `border-b last:border-b-0` を追加してボーダーを表示します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="accordion-borders"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
+/>
+
+### Card
+
+`Accordion` を `Card` コンポーネントで包みます。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="accordion-card"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[435px]"
+/>
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="accordion-rtl"
+  align="start"
+  direction="rtl"
+/>
+
+## API リファレンス
+
+詳細は [Base UI](https://base-ui.com/react/components/accordion#api-reference) のドキュメントを参照してください。

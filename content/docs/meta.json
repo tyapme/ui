@@ -1,0 +1,11 @@
+{
+  "root": true,
+  "pages": [
+    "components",
+    "(root)",
+    "design",
+    "forms",
+    "installation",
+    "dark-mode"
+  ]
+}

@@ -1,0 +1,66 @@
+---
+title: Next.js
+description: Next.js アプリにダークモードを追加する方法。
+---
+
+<Steps>
+
+## next-themes をインストール
+
+`next-themes` をインストールします:
+
+```bash
+npm install next-themes
+```
+
+## テーマプロバイダーを作成
+
+```tsx title="components/theme-provider.tsx" showLineNumbers
+"use client"
+
+import * as React from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+
+export function ThemeProvider({
+  children,
+  ...props
+}: React.ComponentProps<typeof NextThemesProvider>) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+}
+```
+
+## ルートレイアウトをラップ
+
+`ThemeProvider` をルートレイアウトに追加し、`html` タグに `suppressHydrationWarning` プロパティを付けてください。
+
+```tsx {1,6,9-14,16} title="app/layout.tsx" showLineNumbers
+import { ThemeProvider } from "@/components/theme-provider"
+
+export default function RootLayout({ children }: RootLayoutProps) {
+  return (
+    <>
+      <html lang="ja" suppressHydrationWarning>
+        <head />
+        <body>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </>
+  )
+}
+```
+
+## モード切替を追加
+
+サイトにモード切替を配置して、ライトモードとダークモードを切り替えられるようにします。
+
+<ComponentPreview name="mode-toggle" className="[&_.preview]:items-start" />
+
+</Steps>

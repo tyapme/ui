@@ -1,0 +1,205 @@
+---
+title: Dropdown Menu
+description: ボタンをトリガーに、アクションや機能などのメニューをユーザーに表示します。
+featured: true
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/menu
+  api: https://base-ui.com/react/components/menu#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="dropdown-menu-demo"
+  description="アイコン、ショートカット、サブメニューを含むドロップダウンメニュー。"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add dropdown-menu
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="dropdown-menu"
+  title="components/ui/dropdown-menu.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+```
+
+```tsx showLineNumbers
+<DropdownMenu>
+  <DropdownMenuTrigger render={<Button variant="outline" />}>
+    Open
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuGroup>
+      <DropdownMenuLabel>My Account</DropdownMenuLabel>
+      <DropdownMenuItem>Profile</DropdownMenuItem>
+      <DropdownMenuItem>Billing</DropdownMenuItem>
+    </DropdownMenuGroup>
+    <DropdownMenuSeparator />
+    <DropdownMenuGroup>
+      <DropdownMenuItem>Team</DropdownMenuItem>
+      <DropdownMenuItem>Subscription</DropdownMenuItem>
+    </DropdownMenuGroup>
+  </DropdownMenuContent>
+</DropdownMenu>
+```
+
+## 構成
+
+`DropdownMenu` の構成:
+
+```text
+DropdownMenu
+├── DropdownMenuTrigger
+└── DropdownMenuContent
+    ├── DropdownMenuGroup
+    │   ├── DropdownMenuLabel
+    │   ├── DropdownMenuItem
+    │   └── DropdownMenuItem
+    ├── DropdownMenuSeparator
+    ├── DropdownMenuGroup
+    │   ├── DropdownMenuLabel
+    │   ├── DropdownMenuCheckboxItem
+    │   └── DropdownMenuCheckboxItem
+    ├── DropdownMenuSeparator
+    ├── DropdownMenuGroup
+    │   ├── DropdownMenuLabel
+    │   └── DropdownMenuRadioGroup
+    │       ├── DropdownMenuRadioItem
+    │       └── DropdownMenuRadioItem
+    └── DropdownMenuSub
+        ├── DropdownMenuSubTrigger
+        └── DropdownMenuSubContent
+            └── DropdownMenuGroup
+                ├── DropdownMenuLabel
+                ├── DropdownMenuItem
+                └── DropdownMenuItem
+```
+
+## 使用例
+
+### 基本
+
+ラベルとセパレータを使った基本的なドロップダウンメニュー。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-basic" />
+
+### サブメニュー
+
+`DropdownMenuSub` でサブアクションをネストさせます。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-submenu" />
+
+### ショートカット
+
+`DropdownMenuShortcut` でキーボードヒントを表示します。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-shortcuts" />
+
+### アイコン
+
+ラベルにアイコンを組み合わせて一目でわかるメニューを作成します。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-icons" />
+
+### チェックボックス
+
+`DropdownMenuCheckboxItem` でトグル項目を作成します。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-checkboxes" />
+
+### チェックボックス + アイコン
+
+チェックボックス項目にアイコンを追加します。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-checkboxes-icons" />
+
+### ラジオグループ
+
+`DropdownMenuRadioGroup` で排他的な選択項目を作成します。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-radio-group" />
+
+### ラジオ + アイコン
+
+ラジオ項目にアイコンを表示します。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-radio-icons" />
+
+### 破壊的アクション
+
+元に戻せない操作には `variant="destructive"` を使用します。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-destructive" />
+
+### アバター
+
+アバターでトリガーするアカウント切り替えドロップダウン。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-avatar" />
+
+### 複合
+
+グループ、アイコン、サブメニューを組み合わせたよりリッチな例。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-complex" />
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="dropdown-menu-rtl"
+  direction="rtl"
+/>
+
+## API リファレンス
+
+完全な API リファレンスは [Base UI ドキュメント](https://base-ui.com/react/components/menu) を参照してください。

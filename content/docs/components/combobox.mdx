@@ -1,0 +1,326 @@
+---
+title: Combobox
+description: 候補一覧付きのオートコンプリート入力欄。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/combobox
+  api: https://base-ui.com/react/components/combobox#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="combobox-demo"
+  description="フレームワーク一覧付きのコンボボックス。"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add combobox
+```
+
+</TabsContent>
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="combobox"
+  title="components/ui/combobox.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+} from "@/components/ui/combobox"
+```
+
+```tsx showLineNumbers
+const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"]
+
+export function ExampleCombobox() {
+  return (
+    <Combobox items={frameworks}>
+      <ComboboxInput placeholder="Select a framework" />
+      <ComboboxContent>
+        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxList>
+          {(item) => (
+            <ComboboxItem key={item} value={item}>
+              {item}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  )
+}
+```
+
+## 構成
+
+### Simple
+
+シングルライン入力とフラットな一覧（[Basic](#basic) を参照）。
+
+```text
+Combobox
+├── ComboboxInput
+└── ComboboxContent
+    ├── ComboboxEmpty
+    └── ComboboxList
+        ├── ComboboxItem
+        └── ComboboxItem
+```
+
+### With chips
+
+`multiple`、chips、chips 入力欄を使った複数選択（[Multiple](#multiple) を参照）。
+
+```text
+Combobox
+├── ComboboxChips
+│   ├── ComboboxValue
+│   │   └── ComboboxChip
+│   └── ComboboxChipsInput
+└── ComboboxContent
+    ├── ComboboxEmpty
+    └── ComboboxList
+        ├── ComboboxItem
+        └── ComboboxItem
+```
+
+### With groups and collection
+
+各 `ComboboxGroup` 内で `ComboboxCollection` を使ったグループ内ネスト、グループ間にセパレーター（[Groups](#groups) を参照）。
+
+```text
+Combobox
+├── ComboboxInput
+└── ComboboxContent
+    ├── ComboboxEmpty
+    └── ComboboxList
+        ├── ComboboxGroup
+        │   ├── ComboboxLabel
+        │   └── ComboboxCollection
+        │       ├── ComboboxItem
+        │       └── ComboboxItem
+        ├── ComboboxSeparator
+        └── ComboboxGroup
+            ├── ComboboxLabel
+            └── ComboboxCollection
+                ├── ComboboxItem
+                └── ComboboxItem
+```
+
+## カスタムアイテム
+
+アイテムがオブジェクトの場合は `itemToStringValue` を使用します。
+
+```tsx showLineNumbers
+import * as React from "react"
+
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+} from "@/components/ui/combobox"
+
+type Framework = {
+  label: string
+  value: string
+}
+
+const frameworks: Framework[] = [
+  { label: "Next.js", value: "next" },
+  { label: "SvelteKit", value: "sveltekit" },
+  { label: "Nuxt", value: "nuxt" },
+]
+
+export function ExampleComboboxCustomItems() {
+  return (
+    <Combobox
+      items={frameworks}
+      itemToStringValue={(framework) => framework.label}
+    >
+      <ComboboxInput placeholder="Select a framework" />
+      <ComboboxContent>
+        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxList>
+          {(framework) => (
+            <ComboboxItem key={framework.value} value={framework}>
+              {framework.label}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  )
+}
+```
+
+## 複数選択
+
+複数選択の振る舞いには `multiple` と chips を組み合わせます。
+
+```tsx showLineNumbers
+import * as React from "react"
+
+import {
+  Combobox,
+  ComboboxChip,
+  ComboboxChips,
+  ComboboxChipsInput,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+  ComboboxValue,
+} from "@/components/ui/combobox"
+
+const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"]
+
+export function ExampleComboboxMultiple() {
+  const [value, setValue] = React.useState<string[]>([])
+
+  return (
+    <Combobox
+      items={frameworks}
+      multiple
+      value={value}
+      onValueChange={setValue}
+    >
+      <ComboboxChips>
+        <ComboboxValue>
+          {value.map((item) => (
+            <ComboboxChip key={item}>{item}</ComboboxChip>
+          ))}
+        </ComboboxValue>
+        <ComboboxChipsInput placeholder="Add framework" />
+      </ComboboxChips>
+      <ComboboxContent>
+        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxList>
+          {(item) => (
+            <ComboboxItem key={item} value={item}>
+              {item}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  )
+}
+```
+
+## 使用例
+
+### Basic
+
+フレームワーク一覧付きのシンプルなコンボボックス。
+
+<ComponentPreview styleName="base-nova" name="combobox-basic" />
+
+### Multiple
+
+`multiple` と `ComboboxChips` を使った複数選択コンボボックス。
+
+<ComponentPreview styleName="base-nova" name="combobox-multiple" />
+
+### Clear Button
+
+`showClear` プロパティでクリアボタンを表示します。
+
+<ComponentPreview styleName="base-nova" name="combobox-clear" />
+
+### Groups
+
+`ComboboxGroup` と `ComboboxSeparator` でアイテムをグループ化します。
+
+<ComponentPreview styleName="base-nova" name="combobox-groups" />
+
+### Custom Items
+
+`ComboboxItem` の中にカスタムコンポーネントをレンダリングできます。
+
+<ComponentPreview styleName="base-nova" name="combobox-custom" />
+
+### Invalid
+
+`aria-invalid` プロパティでコンボボックスを無効状態にします。
+
+<ComponentPreview styleName="base-nova" name="combobox-invalid" />
+
+### Disabled
+
+`disabled` プロパティでコンボボックスを無効化します。
+
+<ComponentPreview styleName="base-nova" name="combobox-disabled" />
+
+### Auto Highlight
+
+`autoHighlight` プロパティでフィルター時に最初のアイテムを自動でハイライトします。
+
+<ComponentPreview styleName="base-nova" name="combobox-auto-highlight" />
+
+### Popup
+
+`render` プロパティを使ってボタンや他のコンポーネントからコンボボックスをトリガーできます。`ComboboxInput` を `ComboboxContent` 内に移動してください。
+
+<ComponentPreview styleName="base-nova" name="combobox-popup" />
+
+### Input Group
+
+`ComboboxInput` 内で `InputGroupAddon` コンポーネントを使ってアドオンを追加できます。
+
+<ComponentPreview styleName="base-nova" name="combobox-input-group" />
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="combobox-rtl"
+  direction="rtl"
+  align="start"
+/>
+
+## API リファレンス
+
+詳細は [Base UI](https://base-ui.com/react/components/combobox#api-reference) のドキュメントを参照してください。

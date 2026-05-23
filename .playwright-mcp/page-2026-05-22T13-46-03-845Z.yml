@@ -1,0 +1,388 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - link "TYAP.ME UI" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img
+          - generic [ref=e7]: TYAP.ME UI
+        - navigation [ref=e8]:
+          - link "Docs" [ref=e9] [cursor=pointer]:
+            - /url: /docs/installation
+          - link "Components" [ref=e10] [cursor=pointer]:
+            - /url: /docs/components
+        - generic [ref=e11]:
+          - button "Search..." [ref=e13]:
+            - generic [ref=e14]: Search...
+          - button "Toggle theme" [ref=e15]:
+            - img
+            - generic [ref=e16]: Toggle theme
+    - main [ref=e17]:
+      - generic [ref=e19]:
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - generic [ref=e26]: Sections
+            - list [ref=e28]:
+              - listitem [ref=e29]:
+                - link "Introduction" [ref=e30] [cursor=pointer]:
+                  - /url: /docs
+                  - text: Introduction
+              - listitem [ref=e32]:
+                - link "Components" [ref=e33] [cursor=pointer]:
+                  - /url: /docs/components
+                  - text: Components
+              - listitem [ref=e35]:
+                - link "Installation" [ref=e36] [cursor=pointer]:
+                  - /url: /docs/installation
+                  - text: Installation
+              - listitem [ref=e38]:
+                - link "Theming" [ref=e39] [cursor=pointer]:
+                  - /url: /docs/theming
+                  - text: Theming
+              - listitem [ref=e41]:
+                - link "Forms" [ref=e42] [cursor=pointer]:
+                  - /url: /docs/forms
+                  - text: Forms
+          - generic [ref=e44]:
+            - generic [ref=e45]: Components
+            - list [ref=e47]:
+              - listitem [ref=e48]:
+                - link "Accordion" [ref=e49] [cursor=pointer]:
+                  - /url: /docs/components/radix/accordion
+                  - text: Accordion
+              - listitem [ref=e51]:
+                - link "Alert" [ref=e52] [cursor=pointer]:
+                  - /url: /docs/components/radix/alert
+                  - text: Alert
+              - listitem [ref=e54]:
+                - link "Alert Dialog" [ref=e55] [cursor=pointer]:
+                  - /url: /docs/components/radix/alert-dialog
+                  - text: Alert Dialog
+              - listitem [ref=e57]:
+                - link "Aspect Ratio" [ref=e58] [cursor=pointer]:
+                  - /url: /docs/components/radix/aspect-ratio
+                  - text: Aspect Ratio
+              - listitem [ref=e60]:
+                - link "Avatar" [ref=e61] [cursor=pointer]:
+                  - /url: /docs/components/radix/avatar
+                  - text: Avatar
+              - listitem [ref=e63]:
+                - link "Badge" [ref=e64] [cursor=pointer]:
+                  - /url: /docs/components/radix/badge
+                  - text: Badge
+              - listitem [ref=e66]:
+                - link "Breadcrumb" [ref=e67] [cursor=pointer]:
+                  - /url: /docs/components/radix/breadcrumb
+                  - text: Breadcrumb
+              - listitem [ref=e69]:
+                - link "Button" [ref=e70] [cursor=pointer]:
+                  - /url: /docs/components/radix/button
+                  - text: Button
+              - listitem [ref=e72]:
+                - link "Button Group" [ref=e73] [cursor=pointer]:
+                  - /url: /docs/components/radix/button-group
+                  - text: Button Group
+              - listitem [ref=e75]:
+                - link "Calendar" [ref=e76] [cursor=pointer]:
+                  - /url: /docs/components/radix/calendar
+                  - text: Calendar
+              - listitem [ref=e78]:
+                - link "Card" [ref=e79] [cursor=pointer]:
+                  - /url: /docs/components/radix/card
+                  - text: Card
+              - listitem [ref=e81]:
+                - link "Carousel" [ref=e82] [cursor=pointer]:
+                  - /url: /docs/components/radix/carousel
+                  - text: Carousel
+              - listitem [ref=e84]:
+                - link "Chart" [ref=e85] [cursor=pointer]:
+                  - /url: /docs/components/radix/chart
+                  - text: Chart
+              - listitem [ref=e87]:
+                - link "Checkbox" [ref=e88] [cursor=pointer]:
+                  - /url: /docs/components/radix/checkbox
+                  - text: Checkbox
+              - listitem [ref=e90]:
+                - link "Collapsible" [ref=e91] [cursor=pointer]:
+                  - /url: /docs/components/radix/collapsible
+                  - text: Collapsible
+              - listitem [ref=e93]:
+                - link "Combobox" [ref=e94] [cursor=pointer]:
+                  - /url: /docs/components/radix/combobox
+                  - text: Combobox
+              - listitem [ref=e96]:
+                - link "Command" [ref=e97] [cursor=pointer]:
+                  - /url: /docs/components/radix/command
+                  - text: Command
+              - listitem [ref=e99]:
+                - link "Context Menu" [ref=e100] [cursor=pointer]:
+                  - /url: /docs/components/radix/context-menu
+                  - text: Context Menu
+              - listitem [ref=e102]:
+                - link "Data Table" [ref=e103] [cursor=pointer]:
+                  - /url: /docs/components/radix/data-table
+                  - text: Data Table
+              - listitem [ref=e105]:
+                - link "Date Picker" [ref=e106] [cursor=pointer]:
+                  - /url: /docs/components/radix/date-picker
+                  - text: Date Picker
+              - listitem [ref=e108]:
+                - link "Dialog" [ref=e109] [cursor=pointer]:
+                  - /url: /docs/components/radix/dialog
+                  - text: Dialog
+              - listitem [ref=e111]:
+                - link "Direction" [ref=e112] [cursor=pointer]:
+                  - /url: /docs/components/radix/direction
+                  - text: Direction
+              - listitem [ref=e114]:
+                - link "Drawer" [ref=e115] [cursor=pointer]:
+                  - /url: /docs/components/radix/drawer
+                  - text: Drawer
+              - listitem [ref=e117]:
+                - link "Dropdown Menu" [ref=e118] [cursor=pointer]:
+                  - /url: /docs/components/radix/dropdown-menu
+                  - text: Dropdown Menu
+              - listitem [ref=e120]:
+                - link "Empty" [ref=e121] [cursor=pointer]:
+                  - /url: /docs/components/radix/empty
+                  - text: Empty
+              - listitem [ref=e123]:
+                - link "Field" [ref=e124] [cursor=pointer]:
+                  - /url: /docs/components/radix/field
+                  - text: Field
+              - listitem [ref=e126]:
+                - link "Hover Card" [ref=e127] [cursor=pointer]:
+                  - /url: /docs/components/radix/hover-card
+                  - text: Hover Card
+              - listitem [ref=e129]:
+                - link "Input" [ref=e130] [cursor=pointer]:
+                  - /url: /docs/components/radix/input
+                  - text: Input
+              - listitem [ref=e132]:
+                - link "Input Group" [ref=e133] [cursor=pointer]:
+                  - /url: /docs/components/radix/input-group
+                  - text: Input Group
+              - listitem [ref=e135]:
+                - link "Input OTP" [ref=e136] [cursor=pointer]:
+                  - /url: /docs/components/radix/input-otp
+                  - text: Input OTP
+              - listitem [ref=e138]:
+                - link "Item" [ref=e139] [cursor=pointer]:
+                  - /url: /docs/components/radix/item
+                  - text: Item
+              - listitem [ref=e141]:
+                - link "Kbd" [ref=e142] [cursor=pointer]:
+                  - /url: /docs/components/radix/kbd
+                  - text: Kbd
+              - listitem [ref=e144]:
+                - link "Label" [ref=e145] [cursor=pointer]:
+                  - /url: /docs/components/radix/label
+                  - text: Label
+              - listitem [ref=e147]:
+                - link "Menubar" [ref=e148] [cursor=pointer]:
+                  - /url: /docs/components/radix/menubar
+                  - text: Menubar
+              - listitem [ref=e150]:
+                - link "Native Select" [ref=e151] [cursor=pointer]:
+                  - /url: /docs/components/radix/native-select
+                  - text: Native Select
+              - listitem [ref=e153]:
+                - link "Navigation Menu" [ref=e154] [cursor=pointer]:
+                  - /url: /docs/components/radix/navigation-menu
+                  - text: Navigation Menu
+              - listitem [ref=e156]:
+                - link "Pagination" [ref=e157] [cursor=pointer]:
+                  - /url: /docs/components/radix/pagination
+                  - text: Pagination
+              - listitem [ref=e159]:
+                - link "Popover" [ref=e160] [cursor=pointer]:
+                  - /url: /docs/components/radix/popover
+                  - text: Popover
+              - listitem [ref=e162]:
+                - link "Progress" [ref=e163] [cursor=pointer]:
+                  - /url: /docs/components/radix/progress
+                  - text: Progress
+              - listitem [ref=e165]:
+                - link "Radio Group" [ref=e166] [cursor=pointer]:
+                  - /url: /docs/components/radix/radio-group
+                  - text: Radio Group
+              - listitem [ref=e168]:
+                - link "Resizable" [ref=e169] [cursor=pointer]:
+                  - /url: /docs/components/radix/resizable
+                  - text: Resizable
+              - listitem [ref=e171]:
+                - link "Scroll Area" [ref=e172] [cursor=pointer]:
+                  - /url: /docs/components/radix/scroll-area
+                  - text: Scroll Area
+              - listitem [ref=e174]:
+                - link "Select" [ref=e175] [cursor=pointer]:
+                  - /url: /docs/components/radix/select
+                  - text: Select
+              - listitem [ref=e177]:
+                - link "Separator" [ref=e178] [cursor=pointer]:
+                  - /url: /docs/components/radix/separator
+                  - text: Separator
+              - listitem [ref=e180]:
+                - link "Sheet" [ref=e181] [cursor=pointer]:
+                  - /url: /docs/components/radix/sheet
+                  - text: Sheet
+              - listitem [ref=e183]:
+                - link "Sidebar" [ref=e184] [cursor=pointer]:
+                  - /url: /docs/components/radix/sidebar
+                  - text: Sidebar
+              - listitem [ref=e186]:
+                - link "Skeleton" [ref=e187] [cursor=pointer]:
+                  - /url: /docs/components/radix/skeleton
+                  - text: Skeleton
+              - listitem [ref=e189]:
+                - link "Slider" [ref=e190] [cursor=pointer]:
+                  - /url: /docs/components/radix/slider
+                  - text: Slider
+              - listitem [ref=e192]:
+                - link "Sonner" [ref=e193] [cursor=pointer]:
+                  - /url: /docs/components/radix/sonner
+                  - text: Sonner
+              - listitem [ref=e195]:
+                - link "Spinner" [ref=e196] [cursor=pointer]:
+                  - /url: /docs/components/radix/spinner
+                  - text: Spinner
+              - listitem [ref=e198]:
+                - link "Switch" [ref=e199] [cursor=pointer]:
+                  - /url: /docs/components/radix/switch
+                  - text: Switch
+              - listitem [ref=e201]:
+                - link "Table" [ref=e202] [cursor=pointer]:
+                  - /url: /docs/components/radix/table
+                  - text: Table
+              - listitem [ref=e204]:
+                - link "Tabs" [ref=e205] [cursor=pointer]:
+                  - /url: /docs/components/radix/tabs
+                  - text: Tabs
+              - listitem [ref=e207]:
+                - link "Textarea" [ref=e208] [cursor=pointer]:
+                  - /url: /docs/components/radix/textarea
+                  - text: Textarea
+              - listitem [ref=e210]:
+                - link "Toast" [ref=e211] [cursor=pointer]:
+                  - /url: /docs/components/radix/toast
+                  - text: Toast
+              - listitem [ref=e213]:
+                - link "Toggle" [ref=e214] [cursor=pointer]:
+                  - /url: /docs/components/radix/toggle
+                  - text: Toggle
+              - listitem [ref=e216]:
+                - link "Toggle Group" [ref=e217] [cursor=pointer]:
+                  - /url: /docs/components/radix/toggle-group
+                  - text: Toggle Group
+              - listitem [ref=e219]:
+                - link "Tooltip" [ref=e220] [cursor=pointer]:
+                  - /url: /docs/components/radix/tooltip
+                  - text: Tooltip
+              - listitem [ref=e222]:
+                - link "Typography" [ref=e223] [cursor=pointer]:
+                  - /url: /docs/components/radix/typography
+                  - text: Typography
+          - generic [ref=e225]:
+            - generic [ref=e226]: Get Started
+            - list [ref=e228]:
+              - listitem [ref=e229]:
+                - link "Installation" [ref=e230] [cursor=pointer]:
+                  - /url: /docs/installation
+                  - text: Installation
+              - listitem [ref=e232]:
+                - link "components.json" [ref=e233] [cursor=pointer]:
+                  - /url: /docs/components-json
+                  - text: components.json
+              - listitem [ref=e235]:
+                - link "Theming" [ref=e236] [cursor=pointer]:
+                  - /url: /docs/theming
+                  - text: Theming
+              - listitem [ref=e238]:
+                - link "Dark Mode" [ref=e239] [cursor=pointer]:
+                  - /url: /docs/dark-mode
+                  - text: Dark Mode
+          - generic [ref=e241]:
+            - generic [ref=e242]: Forms
+            - list [ref=e244]:
+              - listitem [ref=e245]:
+                - link "React Hook Form" [ref=e246] [cursor=pointer]:
+                  - /url: /docs/forms/react-hook-form
+                  - text: React Hook Form
+              - listitem [ref=e248]:
+                - link "TanStack Form" [ref=e249] [cursor=pointer]:
+                  - /url: /docs/forms/tanstack-form
+                  - text: TanStack Form
+              - listitem [ref=e251]:
+                - link "Formisch" [ref=e252] [cursor=pointer]:
+                  - /url: /docs/forms/formisch
+                  - text: Formisch
+        - generic [ref=e259]:
+          - generic [ref=e261]:
+            - generic [ref=e262]:
+              - heading "Introduction" [level=1] [ref=e263]
+              - generic [ref=e264]:
+                - generic [ref=e266]:
+                  - button "Copy Page" [ref=e267]:
+                    - img
+                    - text: Copy Page
+                  - button [ref=e268]:
+                    - img
+                - generic [ref=e269]:
+                  - link "Previous" [ref=e270] [cursor=pointer]:
+                    - /url: /docs/components/radix/typography
+                    - img
+                    - generic [ref=e271]: Previous
+                  - link "Next" [ref=e272] [cursor=pointer]:
+                    - /url: /docs/installation
+                    - generic [ref=e273]: Next
+                    - img
+            - paragraph [ref=e274]: TYAP.ME UI は TYAP.ME のプロダクト画面を一貫して組み立てるための UI ドキュメントです。
+          - generic [ref=e275]:
+            - paragraph [ref=e276]: TYAP.ME UI は、TYAP.ME の画面で使うコンポーネント、テーマ、フォーム、実装ルールをまとめたプロダクト UI の基盤です。
+            - paragraph [ref=e277]: 目的は、画面ごとの例外を増やさず、同じ役割の UI を同じ見た目と挙動で実装できる状態を保つことです。
+            - heading "方針" [level=2] [ref=e278]:
+              - link "方針" [ref=e279] [cursor=pointer]:
+                - /url: "#方針"
+                - text: 方針#
+            - list [ref=e280]:
+              - listitem [ref=e281]:
+                - strong [ref=e282]: "一貫性:"
+                - text: コンポーネント、余白、色、タイポグラフィを共通ルールに揃える。
+              - listitem [ref=e283]:
+                - strong [ref=e284]: "再利用:"
+                - text: 同じ役割の UI はページ単位で作らず、共通コンポーネントとして扱う。
+              - listitem [ref=e285]:
+                - strong [ref=e286]: "保守性:"
+                - text: 実装・テスト・ドキュメントを同じ変更単位で更新する。
+              - listitem [ref=e287]:
+                - strong [ref=e288]: "プロダクト優先:"
+                - text: TYAP.ME の勤務管理体験に必要な UI だけを残す。
+            - heading "使い方" [level=2] [ref=e289]:
+              - link "使い方" [ref=e290] [cursor=pointer]:
+                - /url: "#使い方"
+                - text: 使い方#
+            - paragraph [ref=e291]:
+              - text: まず
+              - link "Installation" [ref=e292] [cursor=pointer]:
+                - /url: /docs/installation
+              - text: でプロジェクト設定を確認し、
+              - link "Components" [ref=e293] [cursor=pointer]:
+                - /url: /docs/components
+              - text: で利用できる UI を確認してください。
+            - paragraph [ref=e294]:
+              - text: フォーム実装は
+              - link "Forms" [ref=e295] [cursor=pointer]:
+                - /url: /docs/forms
+              - text: にまとめています。
+          - generic [ref=e296]:
+            - link "Typography" [ref=e297] [cursor=pointer]:
+              - /url: /docs/components/radix/typography
+              - img
+              - text: Typography
+            - link "Installation" [ref=e298] [cursor=pointer]:
+              - /url: /docs/installation
+              - text: Installation
+              - img
+  - region "Notifications alt+T"
+  - generic [ref=e300]: lg
+  - alert [ref=e301]

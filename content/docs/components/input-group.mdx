@@ -1,0 +1,313 @@
+---
+title: Input Group
+description: 入力欄にアドオン、ボタン、補足コンテンツを追加します。
+base: base
+component: true
+---
+
+import { IconInfoCircle } from "@tabler/icons-react"
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-group-demo"
+  previewClassName="h-[26rem]"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add input-group
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="input-group"
+  title="components/ui/input-group.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  InputGroupText,
+  InputGroupTextarea,
+} from "@/components/ui/input-group"
+```
+
+```tsx showLineNumbers
+<InputGroup>
+  <InputGroupInput placeholder="Search..." />
+  <InputGroupAddon>
+    <SearchIcon />
+  </InputGroupAddon>
+</InputGroup>
+```
+
+## 構成
+
+`InputGroup` の構成:
+
+```text
+InputGroup
+├── InputGroupInput or InputGroupTextarea
+├── InputGroupAddon
+├── InputGroupButton
+└── InputGroupText
+```
+
+## 配置
+
+`InputGroupAddon` の `align` でアドオンの入力に対する位置を制御します。
+
+<Callout>
+  フォーカス管理を正しく動作させるため、`InputGroupAddon` は DOM 上で常に `InputGroupInput` または `InputGroupTextarea` の後に配置してください。視覚的な位置小けに `align` を使用してください。
+</Callout>
+
+### inline-start
+
+`align="inline-start"` でアドオンを入力の屈枫山側に配置します。デフォルトです。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-group-inline-start"
+  previewClassName="h-48"
+/>
+
+### inline-end
+
+`align="inline-end"` でアドオンを入力の局町側に配置します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-group-inline-end"
+  previewClassName="h-48"
+/>
+
+### block-start
+
+`align="block-start"` でアドオンを入力の上部に配置します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-group-block-start"
+  previewClassName="h-96"
+/>
+
+### block-end
+
+`align="block-end"` でアドオンを入力の下部に配置します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-group-block-end"
+  previewClassName="h-[26rem]"
+/>
+
+## 使用例
+
+### Icon
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-group-icon"
+  previewClassName="h-80"
+/>
+
+### Text
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-group-text"
+  previewClassName="h-80"
+/>
+
+### Button
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-group-button"
+  previewClassName="h-72"
+/>
+
+### Kbd
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-group-kbd"
+  previewClassName="h-40"
+/>
+
+### Dropdown
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-group-dropdown"
+  previewClassName="h-56"
+/>
+
+### Spinner
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-group-spinner"
+  previewClassName="h-80"
+/>
+
+### Textarea
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-group-textarea"
+  previewClassName="h-96"
+/>
+
+### カスタム入力
+
+カスタム入力に `data-slot="input-group-control"` 属性を付けるとフォーカス状態が自動処理されます。
+
+サードパーティライブラリのリサイズ可能なテキストエリアの例です。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-group-custom"
+  previewClassName="h-56"
+/>
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-group-rtl"
+  direction="rtl"
+  previewClassName="h-[30rem]"
+/>
+
+## API リファレンス
+
+### InputGroup
+
+入力とアドオンを包括するメインコンポーネント。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<InputGroup>
+  <InputGroupInput />
+  <InputGroupAddon />
+</InputGroup>
+```
+
+### InputGroupAddon
+
+入力の横にアイコン、テキスト、ボタン、その他のコンテンツを表示します。
+
+<Callout icon={<IconInfoCircle />} title="フォーカスナビゲーション">
+  正しいフォーカスナビゲーションのため、`InputGroupAddon` は常に入力の後に配置してください。`align` で表示位置を調整します。
+</Callout>
+
+| Prop        | Type                                                             | Default          |
+| ----------- | ---------------------------------------------------------------- | ---------------- |
+| `align`     | `"inline-start" \| "inline-end" \| "block-start" \| "block-end"` | `"inline-start"` |
+| `className` | `string`                                                         |                  |
+
+```tsx
+<InputGroupAddon align="inline-end">
+  <SearchIcon />
+</InputGroupAddon>
+```
+
+**`<InputGroupInput />` には `inline-start` または `inline-end`、`<InputGroupTextarea />` には `block-start` または `block-end` を使用します。**
+
+`InputGroupAddon` には複数の `InputGroupButton` やアイコンを含めることができます。
+
+```tsx
+<InputGroupAddon>
+  <InputGroupButton>Button</InputGroupButton>
+  <InputGroupButton>Button</InputGroupButton>
+</InputGroupAddon>
+```
+
+### InputGroupButton
+
+入力グループ内にボタンを表示します。
+
+| Prop        | Type                                                                          | Default   |
+| ----------- | ----------------------------------------------------------------------------- | --------- |
+| `size`      | `"xs" \| "icon-xs" \| "sm" \| "icon-sm"`                                      | `"xs"`    |
+| `variant`   | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link"` | `"ghost"` |
+| `className` | `string`                                                                      |           |
+
+```tsx
+<InputGroupButton>Button</InputGroupButton>
+<InputGroupButton size="icon-xs" aria-label="Copy">
+  <CopyIcon />
+</InputGroupButton>
+```
+
+### InputGroupInput
+
+入力グループ構築時に `<Input />` の代替となるコンポーネント。入力グループ向けスタイルが先に適用され、`data-slot="input-group-control"` でフォーカス状態を管理します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+その他の props は内部の `<Input />` コンポーネントにそのまま渡されます。
+
+```tsx
+<InputGroup>
+  <InputGroupInput placeholder="テキストを入力..." />
+  <InputGroupAddon>
+    <SearchIcon />
+  </InputGroupAddon>
+</InputGroup>
+```
+
+### InputGroupTextarea
+
+入力グループ構築時に `<Textarea />` の代替となるコンポーネント。テキストエリアグループ向けスタイルが先に適用され、`data-slot="input-group-control"` でフォーカス状態を管理します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+その他の props は内部の `<Textarea />` コンポーネントにそのまま渡されます。
+
+```tsx
+<InputGroup>
+  <InputGroupTextarea placeholder="メッセージを入力..." />
+  <InputGroupAddon align="block-end">
+    <InputGroupButton>送信</InputGroupButton>
+  </InputGroupAddon>
+</InputGroup>
+```

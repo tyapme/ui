@@ -1,0 +1,202 @@
+---
+title: Breadcrumb
+description: リンクの階層でカレントリソースへのパスを表示します。
+base: base
+component: true
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="breadcrumb-demo"
+  previewClassName="p-2"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add breadcrumb
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="breadcrumb"
+  title="components/ui/breadcrumb.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+```
+
+```tsx showLineNumbers
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink render={<a href="/" />}>Home</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbLink render={<a href="/components" />}>
+        Components
+      </BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+## 構成
+
+`Breadcrumb` の構成:
+
+```text
+Breadcrumb
+└── BreadcrumbList
+    ├── BreadcrumbItem
+    │   └── BreadcrumbLink
+    ├── BreadcrumbSeparator
+    ├── BreadcrumbItem
+    │   └── BreadcrumbLink
+    ├── BreadcrumbSeparator
+    └── BreadcrumbItem
+        └── BreadcrumbPage
+```
+
+## 使用例
+
+### Basic
+
+ホームリンクとコンポーネントリンクを持つシンプルなパンくずリスト。
+
+<ComponentPreview styleName="base-nova" name="breadcrumb-basic" />
+
+### Custom separator
+
+`<BreadcrumbSeparator />` の `children` にカスタムコンポーネントを指定してセパレーターを変更します。
+
+<ComponentPreview styleName="base-nova" name="breadcrumb-separator" />
+
+### Dropdown
+
+`<BreadcrumbItem />` と `<DropdownMenu />` を組み合わせてパンくずリスト内にドロップダウンを作成できます。
+
+<ComponentPreview styleName="base-nova" name="breadcrumb-dropdown" />
+
+### Collapsed
+
+パンくずリストが長すぎる場合に折りたたまんだ状態を表示する `<BreadcrumbEllipsis />` コンポーネントを提供しています。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="breadcrumb-ellipsis"
+  previewClassName="p-2"
+/>
+
+### Link component
+
+ルーティングライブラリのカスタムリンクコンポーネントを使うには、`<BreadcrumbLink />` の `render` プロパティを使用します。
+
+<ComponentPreview styleName="base-nova" name="breadcrumb-link" />
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="breadcrumb-rtl"
+  direction="rtl"
+  previewClassName="p-2"
+/>
+
+## API リファレンス
+
+### Breadcrumb
+
+`Breadcrumb` コンポーネントはすべてのパンくずリスト要素を包むルートナビゲーション要素です。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### BreadcrumbList
+
+`BreadcrumbList` コンポーネントはパンくずリストアイテムの順序付きリストを表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### BreadcrumbItem
+
+`BreadcrumbItem` コンポーネントは個別のパンくずリストアイテムを包みます。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### BreadcrumbLink
+
+`BreadcrumbLink` コンポーネントはパンくずリスト内のクリック可能なリンクを表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### BreadcrumbPage
+
+`BreadcrumbPage` コンポーネントはパンくずリストの現在のページ（クリック不可）を表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### BreadcrumbSeparator
+
+`BreadcrumbSeparator` コンポーネントはパンくずリストアイテム間のセパレーターを表示します。カスタムな children を渡すとデフォルトのセパレーターアイコンを上書きできます。
+
+| Prop        | Type              | Default |
+| ----------- | ----------------- | ------- |
+| `children`  | `React.ReactNode` | -       |
+| `className` | `string`          | -       |
+
+### BreadcrumbEllipsis
+
+`BreadcrumbEllipsis` コンポーネントは折りたたまれたパンくずリストアイテムのエリプシス表示を可能にします。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |

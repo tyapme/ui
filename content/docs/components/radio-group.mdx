@@ -1,0 +1,127 @@
+---
+title: Radio Group
+description: 同時に1つしか選択できないラジオボタンのセット。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/radio-group
+  api: https://base-ui.com/react/components/radio-group#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="radio-group-demo" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add radio-group
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="radio-group"
+  title="components/ui/radio-group.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+```
+
+```tsx showLineNumbers
+<RadioGroup defaultValue="option-one">
+  <div className="flex items-center gap-3">
+    <RadioGroupItem value="option-one" id="option-one" />
+    <Label htmlFor="option-one">Option One</Label>
+  </div>
+  <div className="flex items-center gap-3">
+    <RadioGroupItem value="option-two" id="option-two" />
+    <Label htmlFor="option-two">Option Two</Label>
+  </div>
+</RadioGroup>
+```
+
+## 構成
+
+`RadioGroup` の構成:
+
+```text
+RadioGroup
+├── RadioGroupItem
+└── RadioGroupItem
+```
+
+## 使用例
+
+### 説明
+
+`Field` コンポーネントを使った説明付きのラジオグループ項目。
+
+<ComponentPreview styleName="base-nova" name="radio-group-description" />
+
+### Choice Card
+
+`FieldLabel` で `Field` 全体を包括してクリック可能なカード形式の選択屋を作成します。
+
+<ComponentPreview styleName="base-nova" name="radio-group-choice-card" />
+
+### Fieldset
+
+`FieldSet` と `FieldLegend` でラジオ項目をラベルと説明付きのグループにまとめます。
+
+<ComponentPreview styleName="base-nova" name="radio-group-fieldset" />
+
+### 無効
+
+`RadioGroup` の `disabled` で全項目を無効化します。
+
+<ComponentPreview styleName="base-nova" name="radio-group-disabled" />
+
+### エラー
+
+`RadioGroupItem` の `aria-invalid` と `Field` の `data-invalid` でバリデーションエラーを表示します。
+
+<ComponentPreview styleName="base-nova" name="radio-group-invalid" />
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="radio-group-rtl"
+  direction="rtl"
+/>
+
+## API リファレンス
+
+詳細は [Base UI Radio Group](https://base-ui.com/react/components/radio-group#api-reference) ドキュメントを参照してください。

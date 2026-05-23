@@ -1,0 +1,91 @@
+---
+title: Separator
+description: 視覚的または意味的にコンテンツを区切ります。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/separator
+  api: https://base-ui.com/react/components/separator#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="separator-demo" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add separator
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="separator"
+  title="components/ui/separator.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import { Separator } from "@/components/ui/separator"
+```
+
+```tsx showLineNumbers
+<Separator />
+```
+
+## 使用例
+
+### 縦方向
+
+`orientation="vertical"` で縦方向の区切り線になります。
+
+<ComponentPreview styleName="base-nova" name="separator-vertical" />
+
+### メニュー
+
+説明付きのメニュー項目間の縦区切り線。
+
+<ComponentPreview styleName="base-nova" name="separator-menu" />
+
+### リスト
+
+リスト項目間の横区切り線。
+
+<ComponentPreview styleName="base-nova" name="separator-list" />
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="separator-rtl" direction="rtl" />
+
+## API リファレンス
+
+詳細は [Base UI Separator](https://base-ui.com/react/components/separator#api-reference) ドキュメントを参照してください。

@@ -1,0 +1,172 @@
+---
+title: Input OTP
+description: コピー&ペースト機能付きのアクセシブルなワンタイムパスワードコンポーネント。
+base: base
+component: true
+links:
+  doc: https://input-otp.rodz.dev
+---
+
+<ComponentPreview styleName="base-nova" name="input-otp-demo" />
+
+## について
+
+Input OTP は [@guilherme_rodz](https://twitter.com/guilherme_rodz) による [input-otp](https://github.com/guilhermerodz/input-otp) をベースに構築されています。
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add input-otp
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install input-otp
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="input-otp"
+  title="components/ui/input-otp.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp"
+```
+
+```tsx showLineNumbers
+<InputOTP maxLength={6}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+  </InputOTPGroup>
+  <InputOTPSeparator />
+  <InputOTPGroup>
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>
+```
+
+## 構成
+
+`InputOTP` の構成:
+
+```text
+InputOTP
+├── InputOTPGroup
+│   ├── InputOTPSlot
+│   ├── InputOTPSlot
+│   └── InputOTPSlot
+├── InputOTPSeparator
+├── InputOTPGroup
+│   ├── InputOTPSlot
+│   ├── InputOTPSlot
+│   └── InputOTPSlot
+├── InputOTPSeparator
+└── InputOTPGroup
+    ├── InputOTPSlot
+    └── InputOTPSlot
+```
+
+## パターン
+
+`pattern` で OTP 入力のカスタムパターンを定義できます。
+
+```tsx showLineNumbers {1,5}
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp"
+
+;<InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS}>
+  ...
+</InputOTP>
+```
+
+<ComponentPreview styleName="base-nova" name="input-otp-pattern" />
+
+## 使用例
+
+### セパレーター
+
+`<InputOTPSeparator />` で入力グループ間にセパレーターを追加します。
+
+<ComponentPreview styleName="base-nova" name="input-otp-separator" />
+
+### 無効
+
+`disabled` で入力を無効化します。
+
+<ComponentPreview styleName="base-nova" name="input-otp-disabled" />
+
+### 制御
+
+`value` と `onChange` で入力値を制御します。
+
+<ComponentPreview styleName="base-nova" name="input-otp-controlled" />
+
+### エラー
+
+スロットに `aria-invalid` を付けるとエラー状態を表示できます。
+
+<ComponentPreview styleName="base-nova" name="input-otp-invalid" />
+
+### 4桁数入力
+
+PIN コードで一般的なパターン。`pattern={REGEXP_ONLY_DIGITS}` を使用しています。
+
+<ComponentPreview styleName="base-nova" name="input-otp-four-digits" />
+
+### 英数字
+
+`REGEXP_ONLY_DIGITS_AND_CHARS` で文字と数字の両方を許可します。
+
+<ComponentPreview styleName="base-nova" name="input-otp-alphanumeric" />
+
+### Form
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-otp-form"
+  previewClassName="h-[30rem]"
+/>
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="input-otp-rtl" direction="rtl" />
+
+## API リファレンス
+
+詳細は [input-otp](https://input-otp.rodz.dev) ドキュメントを参照してください。

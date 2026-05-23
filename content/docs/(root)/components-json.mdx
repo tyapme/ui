@@ -1,0 +1,46 @@
+---
+title: components.json
+description: TYAP.ME UI のコンポーネント生成設定です。
+---
+
+`components.json` は、コンポーネントの配置先、import alias、Tailwind CSS の参照先を揃えるための設定ファイルです。
+
+TYAP.ME UI では、この設定をプロジェクト間で揃えて、コンポーネントの追加や更新時に import path と theme token がぶれないようにします。
+
+## 役割
+
+- `ui` コンポーネントの配置先を固定する。
+- `lib`, `hooks`, `utils` の alias を固定する。
+- Tailwind CSS と theme token の参照先を固定する。
+- TypeScript / React Server Components の前提を明示する。
+
+## 基本例
+
+```json title="components.json"
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks",
+    "utils": "@/lib/utils"
+  }
+}
+```
+
+## 運用
+
+`aliases` を変える場合は、既存 import と生成される component path の両方に影響します。変更する時は、関連するコンポーネント docs と typecheck を同じ変更で確認してください。
+
+`tailwind.cssVariables` は `true` を前提にします。色や余白の表現は token を経由し、ページ単位の直値追加は避けます。

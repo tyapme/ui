@@ -1,0 +1,157 @@
+---
+title: Select
+description: ボタンをトリガーに、ユーザーが選択できるオプション一覧を表示します。
+base: base
+component: true
+featured: true
+links:
+  doc: https://base-ui.com/react/components/select
+  api: https://base-ui.com/react/components/select#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="select-demo" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add select
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="select"
+  title="components/ui/select.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+```
+
+```tsx showLineNumbers
+const items = [
+  { label: "Light", value: "light" },
+  { label: "Dark", value: "dark" },
+  { label: "System", value: "system" },
+]
+
+<Select items={items}>
+  <SelectTrigger className="w-[180px]">
+    <SelectValue placeholder="Theme" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectGroup>
+      {items.map((item) => (
+        <SelectItem key={item.value} value={item.value}>
+          {item.label}
+        </SelectItem>
+      ))}
+    </SelectGroup>
+  </SelectContent>
+</Select>
+```
+
+## 構成
+
+`Select` の構成:
+
+```text
+Select
+├── SelectTrigger
+│   └── SelectValue
+└── SelectContent
+    ├── SelectGroup
+    │   ├── SelectLabel
+    │   ├── SelectItem
+    │   └── SelectItem
+    ├── SelectSeparator
+    └── SelectGroup
+        ├── SelectLabel
+        ├── SelectItem
+        └── SelectItem
+```
+
+## 使用例
+
+### 選択項目をトリガーに履わせる
+
+`SelectContent` の `alignItemWithTrigger` で選択項目をトリガーに履わせるかどうかを制御します。`true`（デフォルト）の場合、選択中の項目がトリガーの上に表示されます。`false` の場合、ポップアップがトリガーの端に履わされます。
+
+<ComponentPreview styleName="base-nova" name="select-align-item" />
+
+### グループ
+
+`SelectGroup`、`SelectLabel`、`SelectSeparator` で項目を整理します。
+
+<ComponentPreview styleName="base-nova" name="select-groups" />
+
+### スクロール
+
+多数の項目を持つスクロール対応のセレクト。
+
+<ComponentPreview styleName="base-nova" name="select-scrollable" />
+
+### Disabled
+
+<ComponentPreview styleName="base-nova" name="select-disabled" />
+
+### エラー
+
+`Field` に `data-invalid`、`SelectTrigger` に `aria-invalid` を付けてエラー状態を表示します。
+
+```tsx showLineNumbers /data-invalid/ /aria-invalid/
+<Field data-invalid>
+  <FieldLabel>Fruit</FieldLabel>
+  <SelectTrigger aria-invalid>
+    <SelectValue />
+  </SelectTrigger>
+</Field>
+```
+
+<ComponentPreview styleName="base-nova" name="select-invalid" />
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="select-rtl" direction="rtl" />
+
+## API リファレンス
+
+詳細は [Base UI Select](https://base-ui.com/react/components/select#api-reference) ドキュメントを参照してください。

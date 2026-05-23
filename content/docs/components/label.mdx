@@ -1,0 +1,92 @@
+---
+title: Label
+description: コントロールに関連付けられたアクセシブルなラベルをレンダリングします。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/label
+  api: https://base-ui.com/react/components/label#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="label-demo" />
+
+<Callout>
+  フォームフィールドには、ラベル・説明・エラー処理を内包する [Field](/docs/components/base/field) コンポーネントを使用してください。
+</Callout>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add label
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="label"
+  title="components/ui/label.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx
+import { Label } from "@/components/ui/label"
+```
+
+```tsx
+<Label htmlFor="email">Your email address</Label>
+```
+
+## Field 内の Label
+
+フォームフィールドには、`FieldLabel`、`FieldDescription`、`FieldError` を内包する [Field](/docs/components/base/field) コンポーネントを使用してください。
+
+```tsx
+<Field>
+  <FieldLabel htmlFor="email">Your email address</FieldLabel>
+  <Input id="email" />
+</Field>
+```
+
+<ComponentPreview
+  styleName="base-nova"
+  name="field-demo"
+  previewClassName="h-[44rem]"
+/>
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="label-rtl" direction="rtl" />
+
+## API リファレンス
+
+詳細は [Base UI Label](https://base-ui.com/react/components/label#api-reference) ドキュメントを参照してください。

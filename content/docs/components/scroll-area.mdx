@@ -1,0 +1,99 @@
+---
+title: Scroll Area
+description: ネイティブスクロール機能を拡張し、カスタムかつクロスブラウザ対応のスタイリングを実現します。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/scroll-area
+  api: https://base-ui.com/react/components/scroll-area#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="scroll-area-demo"
+  previewClassName="h-96"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add scroll-area
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="scroll-area"
+  title="components/ui/scroll-area.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+```
+
+```tsx showLineNumbers
+<ScrollArea className="h-[200px] w-[350px] rounded-md border p-4">
+  Your scrollable content here.
+</ScrollArea>
+```
+
+## 構成
+
+`ScrollArea` の構成:
+
+```text
+ScrollArea
+└── ScrollBar
+```
+
+## 使用例
+
+### 横方向
+
+`ScrollBar` に `orientation="horizontal"` を設定すると横方向スクロールが有効になります。
+
+<ComponentPreview styleName="base-nova" name="scroll-area-horizontal-demo" />
+
+## RTL
+
+<ComponentPreview
+  styleName="base-nova"
+  name="scroll-area-rtl"
+  direction="rtl"
+  previewClassName="h-auto"
+/>
+
+## API リファレンス
+
+詳細は [Base UI Scroll Area](https://base-ui.com/react/components/scroll-area#api-reference) ドキュメントを参照してください。

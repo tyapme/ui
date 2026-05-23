@@ -1,0 +1,118 @@
+---
+title: Popover
+description: ボタンをトリガーに、ポータル内にリッチコンテンツを表示します。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/popover
+  api: https://base-ui.com/react/components/popover#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="popover-demo" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add popover
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="popover"
+  title="components/ui/popover.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+```
+
+```tsx showLineNumbers
+<Popover>
+  <PopoverTrigger render={<Button variant="outline" />}>
+    Open Popover
+  </PopoverTrigger>
+  <PopoverContent>
+    <PopoverHeader>
+      <PopoverTitle>Title</PopoverTitle>
+      <PopoverDescription>Description text here.</PopoverDescription>
+    </PopoverHeader>
+  </PopoverContent>
+</Popover>
+```
+
+## 構成
+
+`Popover` の構成:
+
+```text
+Popover
+├── PopoverTrigger
+└── PopoverContent
+```
+
+## 使用例
+
+### 基本
+
+ヘッダー、タイトル、説明を持つシンプルなポピーバー。
+
+<ComponentPreview styleName="base-nova" name="popover-basic" />
+
+### 配置
+
+`PopoverContent` の `align` で水平方向の位置を制御します。
+
+<ComponentPreview styleName="base-nova" name="popover-alignments" />
+
+### フォーム付き
+
+フォームフィールドを含むポピーバー。
+
+<ComponentPreview styleName="base-nova" name="popover-form" />
+
+## RTL
+
+<ComponentPreview styleName="base-nova" name="popover-rtl" direction="rtl" />
+
+## API リファレンス
+
+詳細は [Base UI Popover](https://base-ui.com/react/components/popover#api-reference) ドキュメントを参照してください。
