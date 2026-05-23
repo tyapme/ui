@@ -77,6 +77,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           "--border-radius": "var(--radius)",
         } as React.CSSProperties
       }
+      closeButton
       toastOptions={{
         classNames: {
           toast: "cn-toast",
@@ -86,6 +87,8 @@ const Toaster = ({ ...props }: ToasterProps) => {
             "bg-primary text-primary-foreground text-xs font-medium rounded-md px-3 py-1.5",
           cancelButton:
             "bg-muted text-muted-foreground text-xs font-medium rounded-md px-3 py-1.5",
+          closeButton:
+            "cn-toast-close absolute top-1.5 right-1.5 border border-border/30 bg-popover/80 text-muted-foreground hover:text-foreground rounded-lg p-1 opacity-0 group-hover:opacity-100 transition-all duration-200 [&_svg]:size-3",
         },
       }}
       {...props}
