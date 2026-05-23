@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { IconAlertCircle } from "@tabler/icons-react"
+import { Tooltip as TooltipPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 import {
@@ -225,7 +226,9 @@ function PreviewWrapper({
           previewClassName
         )}
       >
-        {children}
+        <TooltipPrimitive.Provider delayDuration={0}>
+          {children}
+        </TooltipPrimitive.Provider>
       </div>
     </div>
   )
