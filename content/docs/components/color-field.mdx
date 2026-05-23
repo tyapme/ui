@@ -1,0 +1,118 @@
+---
+title: Color Field
+description: カラーチャンネルの値をテキスト入力で編集できるカラーフィールドコンポーネント。
+base: base
+component: true
+links:
+  api: https://react-spectrum.adobe.com/react-aria/ColorField.html
+---
+
+<ComponentPreview styleName="base-nova" name="color-field-demo" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add color-field
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install react-aria-components
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="color-field"
+  title="components/ui/color-field.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx
+import {
+  ColorField,
+  ColorFieldGroup,
+  ColorFieldInput,
+  ColorFieldPrefix,
+  ColorFieldSuffix,
+} from "@/components/ui/color-field"
+```
+
+```tsx
+<ColorField defaultValue="#3b82f6">
+  <Label>カラー</Label>
+  <ColorFieldGroup>
+    <ColorFieldInput />
+  </ColorFieldGroup>
+</ColorField>
+```
+
+## 使用例
+
+### Channel Input
+
+`colorSpace` と `channel` props でチャンネル個別入力を実現します。
+
+<ComponentPreview styleName="base-nova" name="color-field-channel" />
+
+## API
+
+### ColorField
+
+| Prop           | Type                                                          | Default | Description              |
+| -------------- | ------------------------------------------------------------- | ------- | ------------------------ |
+| `value`        | `string \| Color \| null`                                    | -       | 制御された色の値         |
+| `defaultValue` | `string \| Color \| null`                                    | -       | 初期値（非制御）         |
+| `onChange`     | `(color: Color) => void`                                      | -       | 値変更時のコールバック   |
+| `colorSpace`   | `"rgb" \| "hsl" \| "hsb" \| "hsl"`                           | -       | 入力するカラースペース   |
+| `channel`      | `"red" \| "green" \| "blue" \| "hue" \| "saturation" \| ...` | -       | 編集するチャンネル       |
+| `isDisabled`   | `boolean`                                                     | `false` | 無効状態                 |
+| `isReadOnly`   | `boolean`                                                     | `false` | 読み取り専用             |
+| `isInvalid`    | `boolean`                                                     | `false` | バリデーションエラー状態 |
+| `className`    | `string`                                                      | -       | className                |
+
+### ColorFieldGroup
+
+`div` のすべての props を受け取ります。フォーカス・バリデーション状態のスタイルを管理します。
+
+### ColorFieldInput
+
+`react-aria-components` の `Input` props を受け取ります。
+
+### ColorFieldPrefix / ColorFieldSuffix
+
+`div` のすべての props を受け取ります。入力フィールドの前後に装飾要素を追加します。
+
+## キーボード操作
+
+| キー  | 動作               |
+| ----- | ------------------ |
+| `↑`   | 値を 1 増加        |
+| `↓`   | 値を 1 減少        |
+| `↑×10`| 値を 10 増加       |
+| `↓×10`| 値を 10 減少       |

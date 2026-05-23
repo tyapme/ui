@@ -1089,7 +1089,8 @@
     },
     {
       "name": "number-field",
-      "dependencies": ["@base-ui/react"],
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["label"],
       "files": [
         {
           "path": "registry/base-nova/ui/number-field.tsx",
@@ -1107,6 +1108,7 @@
     {
       "name": "sortable",
       "dependencies": [
+        "@base-ui/react",
         "@dnd-kit/core",
         "@dnd-kit/sortable",
         "@dnd-kit/utilities"

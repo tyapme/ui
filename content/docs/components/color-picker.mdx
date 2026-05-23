@@ -1,0 +1,160 @@
+---
+title: Color Picker
+description: カラーエリア・スライダー・スウォッチを組み合わせた色選択コンポーネント。
+base: base
+component: true
+links:
+  api: https://react-spectrum.adobe.com/react-aria/ColorPicker.html
+---
+
+<ComponentPreview styleName="base-nova" name="color-picker-demo" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add color-picker
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install react-aria-components
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="color-picker"
+  title="components/ui/color-picker.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx
+import { parseColor } from "react-aria-components"
+import {
+  ColorArea,
+  ColorPicker,
+  ColorPickerContent,
+  ColorPickerTrigger,
+  ColorSlider,
+  ColorSwatch,
+  ColorSwatchPicker,
+} from "@/components/ui/color-picker"
+```
+
+```tsx
+<ColorPicker defaultValue={parseColor("hsl(200, 100%, 50%)")}>
+  <ColorPickerTrigger>
+    <ColorSwatch className="size-8 rounded-md border border-input" />
+  </ColorPickerTrigger>
+  <ColorPickerContent>
+    <ColorArea colorSpace="hsb" xChannel="saturation" yChannel="brightness">
+      <ColorArea.Thumb />
+    </ColorArea>
+    <ColorSlider channel="hue" colorSpace="hsb">
+      <ColorSlider.Track>
+        <ColorSlider.Thumb />
+      </ColorSlider.Track>
+    </ColorSlider>
+  </ColorPickerContent>
+</ColorPicker>
+```
+
+## 構成
+
+```text
+ColorPicker
+├── ColorPickerTrigger (ポップオーバートリガー)
+└── ColorPickerContent (ポップオーバー)
+    ├── ColorArea (2次元カラー選択エリア)
+    │   └── ColorArea.Thumb
+    ├── ColorSlider (チャンネル別スライダー)
+    │   ├── ColorSlider.Track
+    │   │   └── ColorSlider.Thumb
+    │   └── ColorSlider.Output (オプション)
+    ├── ColorSwatch (現在の色を表示)
+    └── ColorSwatchPicker (プリセットスウォッチ)
+        └── ColorSwatchPicker.Item
+            └── ColorSwatchPicker.Swatch
+```
+
+## 使用例
+
+### With Swatches
+
+プリセットカラーのスウォッチピッカーを組み合わせた例。
+
+<ComponentPreview styleName="base-nova" name="color-picker-swatches" />
+
+## API
+
+### ColorPicker
+
+| Prop           | Type                       | Default | Description            |
+| -------------- | -------------------------- | ------- | ---------------------- |
+| `value`        | `string \| Color \| null` | -       | 制御された色の値       |
+| `defaultValue` | `string \| Color \| null` | -       | 初期値（非制御）       |
+| `onChange`     | `(color: Color) => void`   | -       | 値変更時のコールバック |
+| `className`    | `string`                   | -       | className              |
+
+### ColorPickerTrigger
+
+`button` のすべての props を受け取ります。
+
+### ColorPickerContent
+
+| Prop          | Type                                  | Default   | Description              |
+| ------------- | ------------------------------------- | --------- | ------------------------ |
+| `side`        | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"` | ポップオーバーの表示位置 |
+| `align`       | `"start" \| "center" \| "end"`        | `"start"` | 配置の基準               |
+| `sideOffset`  | `number`                              | `4`       | トリガーとの距離         |
+| `alignOffset` | `number`                              | `0`       | 配置オフセット           |
+
+### ColorArea
+
+| Prop         | Type                          | Default | Description              |
+| ------------ | ----------------------------- | ------- | ------------------------ |
+| `colorSpace` | `"rgb" \| "hsl" \| "hsb"`    | -       | カラースペース           |
+| `xChannel`   | `ColorChannel`                | -       | X 軸のチャンネル         |
+| `yChannel`   | `ColorChannel`                | -       | Y 軸のチャンネル         |
+| `className`  | `string`                      | -       | className                |
+
+### ColorSlider
+
+| Prop         | Type           | Default | Description            |
+| ------------ | -------------- | ------- | ---------------------- |
+| `channel`    | `ColorChannel` | -       | 制御するチャンネル     |
+| `colorSpace` | `ColorSpace`   | -       | カラースペース         |
+| `className`  | `string`       | -       | className              |
+
+### ColorSwatch
+
+カラースペースに依存せず現在の色を表示します。`size-*` / `rounded-*` クラスでカスタマイズ可能。
+
+### ColorSwatchPicker
+
+プリセットカラーのスウォッチ一覧を表示します。`ColorSwatchPicker.Item` で各カラーを追加し、`ColorSwatchPicker.Swatch` で表示します。
