@@ -86,14 +86,14 @@ export const columns: ColumnDef<Payment>[] = [
           (table.getIsSomePageRowsSelected() && "indeterminate")
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
+        aria-label="すべて選択"
       />
     ),
     cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
+        aria-label="行を選択"
       />
     ),
     enableSorting: false,
@@ -101,7 +101,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: "ステータス",
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("status")}</div>
     ),
@@ -114,7 +114,7 @@ export const columns: ColumnDef<Payment>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Email
+          メール
           <ArrowUpDown />
         </Button>
       )
@@ -123,7 +123,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    header: () => <div className="text-right">鈇額</div>,
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("amount"))
 
@@ -146,20 +146,20 @@ export const columns: ColumnDef<Payment>[] = [
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
+              <span className="sr-only">メニューを開く</span>
               <MoreHorizontal />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuLabel>操作</DropdownMenuLabel>
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(payment.id)}
             >
-              Copy payment ID
+              支払いIDをコピー
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>顧客を表示</DropdownMenuItem>
+            <DropdownMenuItem>支払い詳細を表示</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
@@ -199,7 +199,7 @@ export default function DataTableDemo() {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
+          placeholder="メールでフィルター..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("email")?.setFilterValue(event.target.value)
@@ -209,7 +209,7 @@ export default function DataTableDemo() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown />
+              列 <ChevronDown />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -276,7 +276,7 @@ export default function DataTableDemo() {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  該当なし。
                 </TableCell>
               </TableRow>
             )}
@@ -285,8 +285,8 @@ export default function DataTableDemo() {
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
+          {table.getFilteredSelectedRowModel().rows.length} / {" "}
+          {table.getFilteredRowModel().rows.length} 行選択中。
         </div>
         <div className="space-x-2">
           <Button
@@ -295,7 +295,7 @@ export default function DataTableDemo() {
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Previous
+            前へ
           </Button>
           <Button
             variant="outline"
@@ -303,7 +303,7 @@ export default function DataTableDemo() {
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Next
+            次へ
           </Button>
         </div>
       </div>

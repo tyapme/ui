@@ -26,11 +26,11 @@ import { Input } from "@/registry/new-york-v4/ui/input"
 const formSchema = z.object({
   username: z
     .string()
-    .min(3, "Username must be at least 3 characters.")
-    .max(10, "Username must be at most 10 characters.")
+    .min(3, "ユーザー名は3文字以上で入力してください。")
+    .max(10, "ユーザー名は10文字以内で入力してください。")
     .regex(
       /^[a-zA-Z0-9_]+$/,
-      "Username can only contain letters, numbers, and underscores."
+      "ユーザー名に使えるのは英数字とアンダースコアのみです。"
     ),
 })
 
@@ -43,7 +43,7 @@ export default function FormTanstackInput() {
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      toast("You submitted the following values:", {
+      toast("以下の内容を送信しました：", {
         description: (
           <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
             <code>{JSON.stringify(value, null, 2)}</code>
@@ -63,9 +63,9 @@ export default function FormTanstackInput() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Profile Settings</CardTitle>
+        <CardTitle>プロフィール設定</CardTitle>
         <CardDescription>
-          Update your profile information below.
+          プロフィール情報を更新してください。
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -85,7 +85,7 @@ export default function FormTanstackInput() {
                 return (
                   <Field data-invalid={isInvalid}>
                     <FieldLabel htmlFor="form-tanstack-input-username">
-                      Username
+                      ユーザー名
                     </FieldLabel>
                     <Input
                       id="form-tanstack-input-username"
@@ -98,9 +98,7 @@ export default function FormTanstackInput() {
                       autoComplete="username"
                     />
                     <FieldDescription>
-                      This is your public display name. Must be between 3 and 10
-                      characters. Must only contain letters, numbers, and
-                      underscores.
+                      公開表示名です〃30文字3～10文字で、英数字・アンダースコアのみ使用できます。
                     </FieldDescription>
                     {isInvalid && (
                       <FieldError errors={field.state.meta.errors} />
@@ -115,10 +113,10 @@ export default function FormTanstackInput() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-tanstack-input">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

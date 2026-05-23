@@ -27,8 +27,8 @@ import { Textarea } from "@/registry/new-york-v4/ui/textarea"
 const FormSchema = v.object({
   about: v.pipe(
     v.string(),
-    v.minLength(10, "Please provide at least 10 characters."),
-    v.maxLength(200, "Please keep it under 200 characters.")
+    v.minLength(10, "10文字以上入力してください。"),
+    v.maxLength(200, "200文字以内で入力してください。")
   ),
 })
 
@@ -41,7 +41,7 @@ export default function FormFormischTextarea() {
   })
 
   const handleSubmit: SubmitHandler<typeof FormSchema> = (output) => {
-    toast("You submitted the following values:", {
+    toast("以下の内容を送信しました：", {
       description: (
         <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
           <code>{JSON.stringify(output, null, 2)}</code>
@@ -60,9 +60,9 @@ export default function FormFormischTextarea() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Personalization</CardTitle>
+        <CardTitle>パーソナライズ</CardTitle>
         <CardDescription>
-          Customize your experience by telling us more about yourself.
+          自分について教えていただくと、より良いエクスペリエンスを提供できます。
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -72,19 +72,18 @@ export default function FormFormischTextarea() {
               {(field) => (
                 <Field data-invalid={field.errors !== null}>
                   <FieldLabel htmlFor="form-formisch-textarea-about">
-                    More about you
+                    自分について
                   </FieldLabel>
                   <Textarea
                     {...field.props}
                     id="form-formisch-textarea-about"
                     value={field.input ?? ""}
                     aria-invalid={field.errors !== null}
-                    placeholder="I'm a software engineer..."
+                    placeholder="ソフトウェアエンジニアです..."
                     className="min-h-[120px]"
                   />
                   <FieldDescription>
-                    Tell us more about yourself. This will be used to help us
-                    personalize your experience.
+                    自分についてお知らせください。エクスペリエンスのパーソナライズに利用させていただきます。
                   </FieldDescription>
                   {field.errors && (
                     <FieldError
@@ -100,10 +99,10 @@ export default function FormFormischTextarea() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => reset(form)}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-formisch-textarea">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

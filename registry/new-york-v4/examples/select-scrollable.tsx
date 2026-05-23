@@ -14,11 +14,11 @@ export default function SelectScrollable() {
   return (
     <Select>
       <SelectTrigger className="w-[280px]">
-        <SelectValue placeholder="Select a timezone" />
+        <SelectValue placeholder="タイムゾーンを選択" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>North America</SelectLabel>
+          <SelectLabel>北アメリカ</SelectLabel>
           <SelectItem value="est">Eastern Standard Time (EST)</SelectItem>
           <SelectItem value="cst">Central Standard Time (CST)</SelectItem>
           <SelectItem value="mst">Mountain Standard Time (MST)</SelectItem>
@@ -27,7 +27,7 @@ export default function SelectScrollable() {
           <SelectItem value="hst">Hawaii Standard Time (HST)</SelectItem>
         </SelectGroup>
         <SelectGroup>
-          <SelectLabel>Europe & Africa</SelectLabel>
+          <SelectLabel>ヨーロッパ & アフリカ</SelectLabel>
           <SelectItem value="gmt">Greenwich Mean Time (GMT)</SelectItem>
           <SelectItem value="cet">Central European Time (CET)</SelectItem>
           <SelectItem value="eet">Eastern European Time (EET)</SelectItem>
@@ -38,7 +38,7 @@ export default function SelectScrollable() {
           <SelectItem value="eat">East Africa Time (EAT)</SelectItem>
         </SelectGroup>
         <SelectGroup>
-          <SelectLabel>Asia</SelectLabel>
+          <SelectLabel>アジア</SelectLabel>
           <SelectItem value="msk">Moscow Time (MSK)</SelectItem>
           <SelectItem value="ist">India Standard Time (IST)</SelectItem>
           <SelectItem value="cst_china">China Standard Time (CST)</SelectItem>
@@ -49,7 +49,7 @@ export default function SelectScrollable() {
           </SelectItem>
         </SelectGroup>
         <SelectGroup>
-          <SelectLabel>Australia & Pacific</SelectLabel>
+          <SelectLabel>オーストラリア & 太平洋</SelectLabel>
           <SelectItem value="awst">
             Australian Western Standard Time (AWST)
           </SelectItem>
@@ -63,7 +63,7 @@ export default function SelectScrollable() {
           <SelectItem value="fjt">Fiji Time (FJT)</SelectItem>
         </SelectGroup>
         <SelectGroup>
-          <SelectLabel>South America</SelectLabel>
+          <SelectLabel>南アメリカ</SelectLabel>
           <SelectItem value="art">Argentina Time (ART)</SelectItem>
           <SelectItem value="bot">Bolivia Time (BOT)</SelectItem>
           <SelectItem value="brt">Brasilia Time (BRT)</SelectItem>

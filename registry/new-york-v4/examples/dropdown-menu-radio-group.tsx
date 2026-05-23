@@ -19,15 +19,15 @@ export default function DropdownMenuRadioGroupDemo() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">Open</Button>
+        <Button variant="outline">開く</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
+        <DropdownMenuLabel>パネル位置</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-          <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="bottom">Bottom</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="right">Right</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="top">上</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="bottom">下</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="right">右</DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

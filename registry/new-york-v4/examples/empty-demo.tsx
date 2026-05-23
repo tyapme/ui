@@ -18,16 +18,15 @@ export default function EmptyDemo() {
         <EmptyMedia variant="icon">
           <IconFolderCode />
         </EmptyMedia>
-        <EmptyTitle>No Projects Yet</EmptyTitle>
+        <EmptyTitle>プロジェクトなし</EmptyTitle>
         <EmptyDescription>
-          You haven&apos;t created any projects yet. Get started by creating
-          your first project.
+          プロジェクトがまだありません。最初のプロジェクトを作成して始めましょう。
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
         <div className="flex gap-2">
-          <Button>Create Project</Button>
-          <Button variant="outline">Import Project</Button>
+          <Button>プロジェクトを作成</Button>
+          <Button variant="outline">インポート</Button>
         </div>
       </EmptyContent>
       <Button
@@ -37,7 +36,7 @@ export default function EmptyDemo() {
         size="sm"
       >
         <a href="#">
-          Learn More <ArrowUpRightIcon />
+          詳細を見る <ArrowUpRightIcon />
         </a>
       </Button>
     </Empty>

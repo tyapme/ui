@@ -7,30 +7,30 @@ import {
 export default function NativeSelectGroups() {
   return (
     <NativeSelect>
-      <NativeSelectOption value="">Select department</NativeSelectOption>
-      <NativeSelectOptGroup label="Engineering">
-        <NativeSelectOption value="frontend">Frontend</NativeSelectOption>
-        <NativeSelectOption value="backend">Backend</NativeSelectOption>
+      <NativeSelectOption value="">部門を選択</NativeSelectOption>
+      <NativeSelectOptGroup label="エンジニアリング">
+        <NativeSelectOption value="frontend">フロントエンド</NativeSelectOption>
+        <NativeSelectOption value="backend">バックエンド</NativeSelectOption>
         <NativeSelectOption value="devops">DevOps</NativeSelectOption>
       </NativeSelectOptGroup>
-      <NativeSelectOptGroup label="Sales">
-        <NativeSelectOption value="sales-rep">Sales Rep</NativeSelectOption>
+      <NativeSelectOptGroup label="営業">
+        <NativeSelectOption value="sales-rep">営業担当</NativeSelectOption>
         <NativeSelectOption value="account-manager">
-          Account Manager
+          アカウントマネージャー
         </NativeSelectOption>
         <NativeSelectOption value="sales-director">
-          Sales Director
+          営業部長
         </NativeSelectOption>
       </NativeSelectOptGroup>
-      <NativeSelectOptGroup label="Operations">
+      <NativeSelectOptGroup label="オペレーションズ">
         <NativeSelectOption value="support">
-          Customer Support
+          カスタマーサポート
         </NativeSelectOption>
         <NativeSelectOption value="product-manager">
-          Product Manager
+          プロダクトマネージャー
         </NativeSelectOption>
         <NativeSelectOption value="ops-manager">
-          Operations Manager
+          オペレーションズマネージャー
         </NativeSelectOption>
       </NativeSelectOptGroup>
     </NativeSelect>

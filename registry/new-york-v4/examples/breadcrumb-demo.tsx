@@ -22,7 +22,7 @@ export default function BreadcrumbDemo() {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="/">Home</Link>
+            <Link href="/">ホーム</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
@@ -33,8 +33,8 @@ export default function BreadcrumbDemo() {
               <span className="sr-only">Toggle menu</span>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
-              <DropdownMenuItem>Documentation</DropdownMenuItem>
-              <DropdownMenuItem>Themes</DropdownMenuItem>
+              <DropdownMenuItem>ドキュメント</DropdownMenuItem>
+              <DropdownMenuItem>テーマ</DropdownMenuItem>
               <DropdownMenuItem>GitHub</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -42,12 +42,12 @@ export default function BreadcrumbDemo() {
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="/docs/components">Components</Link>
+            <Link href="/docs/components">コンポーネント</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+          <BreadcrumbPage>パンくず</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

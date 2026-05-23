@@ -46,7 +46,7 @@ export default function ComboboxDropdownMenu() {
         <span className="mr-2 rounded-lg bg-primary px-2 py-1 text-xs text-primary-foreground">
           {label}
         </span>
-        <span className="text-muted-foreground">Create a new project</span>
+        <span className="text-muted-foreground">新しいプロジェクトを作成</span>
       </p>
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
@@ -55,22 +55,22 @@ export default function ComboboxDropdownMenu() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-[200px]">
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          <DropdownMenuLabel>アクション</DropdownMenuLabel>
           <DropdownMenuGroup>
-            <DropdownMenuItem>Assign to...</DropdownMenuItem>
-            <DropdownMenuItem>Set due date...</DropdownMenuItem>
+            <DropdownMenuItem>担当者を指定...</DropdownMenuItem>
+            <DropdownMenuItem>期限日を設定...</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuSub>
-              <DropdownMenuSubTrigger>Apply label</DropdownMenuSubTrigger>
+              <DropdownMenuSubTrigger>ラベルを適用</DropdownMenuSubTrigger>
               <DropdownMenuSubContent className="p-0">
                 <Command>
                   <CommandInput
-                    placeholder="Filter label..."
+                    placeholder="ラベルをフィルター..."
                     autoFocus={true}
                     className="h-9"
                   />
                   <CommandList>
-                    <CommandEmpty>No label found.</CommandEmpty>
+                    <CommandEmpty>該当なし。</CommandEmpty>
                     <CommandGroup>
                       {labels.map((label) => (
                         <CommandItem
@@ -91,7 +91,7 @@ export default function ComboboxDropdownMenu() {
             </DropdownMenuSub>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="text-red-600">
-              Delete
+              削除
               <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
             </DropdownMenuItem>
           </DropdownMenuGroup>

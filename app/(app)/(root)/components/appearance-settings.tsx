@@ -43,9 +43,9 @@ export function AppearanceSettings() {
     <FieldSet>
       <FieldGroup>
         <FieldSet>
-          <FieldLegend>Compute Environment</FieldLegend>
+          <FieldLegend>コンピュート環境</FieldLegend>
           <FieldDescription>
-            Select the compute environment for your cluster.
+            クラスターのコンピュート環境を選択してください。
           </FieldDescription>
           <RadioGroup defaultValue="kubernetes">
             <FieldLabel htmlFor="kubernetes-r2h">
@@ -53,8 +53,7 @@ export function AppearanceSettings() {
                 <FieldContent>
                   <FieldTitle>Kubernetes</FieldTitle>
                   <FieldDescription>
-                    Run GPU workloads on a K8s configured cluster. This is the
-                    default.
+                    K8s構成のクラスターでGPUワークロードを実行します。デフォルト設定です。
                   </FieldDescription>
                 </FieldContent>
                 <RadioGroupItem
@@ -67,16 +66,15 @@ export function AppearanceSettings() {
             <FieldLabel htmlFor="vm-z4k">
               <Field orientation="horizontal">
                 <FieldContent>
-                  <FieldTitle>Virtual Machine</FieldTitle>
+                  <FieldTitle>仮想マシン</FieldTitle>
                   <FieldDescription>
-                    Access a VM configured cluster to run workloads. (Coming
-                    soon)
+                    VM構成のクラスターでワークロードを実行します。（準備中）
                   </FieldDescription>
                 </FieldContent>
                 <RadioGroupItem
                   value="vm"
                   id="vm-z4k"
-                  aria-label="Virtual Machine"
+                  aria-label="仮想マシン"
                 />
               </Field>
             </FieldLabel>
@@ -85,8 +83,8 @@ export function AppearanceSettings() {
         <FieldSeparator />
         <Field orientation="horizontal">
           <FieldContent>
-            <FieldLabel htmlFor="number-of-gpus-f6l">Number of GPUs</FieldLabel>
-            <FieldDescription>You can add more later.</FieldDescription>
+            <FieldLabel htmlFor="number-of-gpus-f6l">GPU数</FieldLabel>
+            <FieldDescription>後から追加することもできます。</FieldDescription>
           </FieldContent>
           <ButtonGroup>
             <Input
@@ -101,7 +99,7 @@ export function AppearanceSettings() {
               variant="outline"
               size="icon-sm"
               type="button"
-              aria-label="Decrement"
+              aria-label="減算"
               onClick={() => handleGpuAdjustment(-1)}
               disabled={gpuCount <= 1}
             >
@@ -111,7 +109,7 @@ export function AppearanceSettings() {
               variant="outline"
               size="icon-sm"
               type="button"
-              aria-label="Increment"
+              aria-label="加算"
               onClick={() => handleGpuAdjustment(1)}
               disabled={gpuCount >= 99}
             >
@@ -122,9 +120,9 @@ export function AppearanceSettings() {
         <FieldSeparator />
         <Field orientation="horizontal">
           <FieldContent>
-            <FieldLabel htmlFor="tinting">Wallpaper Tinting</FieldLabel>
+            <FieldLabel htmlFor="tinting">壁紙の色灰色化</FieldLabel>
             <FieldDescription>
-              Allow the wallpaper to be tinted.
+              壁紙にティントを適用します。
             </FieldDescription>
           </FieldContent>
           <Switch id="tinting" defaultChecked />

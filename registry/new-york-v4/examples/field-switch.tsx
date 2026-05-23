@@ -11,10 +11,9 @@ export default function FieldSwitch() {
     <div className="w-full max-w-md">
       <Field orientation="horizontal">
         <FieldContent>
-          <FieldLabel htmlFor="2fa">Multi-factor authentication</FieldLabel>
+          <FieldLabel htmlFor="2fa">多要素認証</FieldLabel>
           <FieldDescription>
-            Enable multi-factor authentication. If you do not have a two-factor
-            device, you can use a one-time code sent to your email.
+            多要素認証を有効にします。二要素認証デバイスがない場合、メールに送信されるワンタイムコードを使用できます。
           </FieldDescription>
         </FieldContent>
         <Switch id="2fa" />

@@ -18,14 +18,14 @@ export default function ItemIcon() {
           <ShieldAlertIcon />
         </ItemMedia>
         <ItemContent>
-          <ItemTitle>Security Alert</ItemTitle>
+          <ItemTitle>セキュリティアラート</ItemTitle>
           <ItemDescription>
-            New login detected from unknown device.
+            不明なデバイスから新たなログインが検知されました。
           </ItemDescription>
         </ItemContent>
         <ItemActions>
           <Button size="sm" variant="outline">
-            Review
+            確認
           </Button>
         </ItemActions>
       </Item>

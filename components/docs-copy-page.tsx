@@ -37,7 +37,7 @@ const menuItems = {
           fill="currentColor"
         />
       </svg>
-      View as Markdown
+      Markdownで表示
     </a>
   ),
   chatgpt: (url: string) => (
@@ -52,7 +52,7 @@ const menuItems = {
           fill="currentColor"
         />
       </svg>
-      Open in ChatGPT
+      ChatGPTで開く
     </a>
   ),
   claude: (url: string) => (
@@ -67,7 +67,7 @@ const menuItems = {
           fill="currentColor"
         />
       </svg>
-      Open in Claude
+      Claudeで開く
     </a>
   ),
   scira: (url: string) => (
@@ -131,7 +131,7 @@ const menuItems = {
           strokeLinejoin="round"
         />
       </svg>
-      Open in Scira
+      Sciraで開く
     </a>
   ),
 }
@@ -160,7 +160,7 @@ export function DocsCopyPage({ page, url }: { page: string; url: string }) {
           onClick={() => copyToClipboard(page)}
         >
           {isCopied ? <IconCheck /> : <IconCopy />}
-          Copy Page
+          ページをコピー
         </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild className="hidden sm:flex">

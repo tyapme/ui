@@ -33,23 +33,23 @@ import {
 const plans = [
   {
     id: "starter",
-    title: "Starter (100K tokens/month)",
-    description: "For everyday use with basic features.",
+    title: "Starter （10万トークン/月）",
+    description: "基本機能で日常的な利用に最適。",
   },
   {
     id: "pro",
-    title: "Pro (1M tokens/month)",
-    description: "For advanced AI usage with more features.",
+    title: "Pro ／ Pro （100万トークン/月）",
+    description: "機能豊富な高度なAI利用向け。",
   },
   {
     id: "enterprise",
-    title: "Enterprise (Unlimited tokens)",
-    description: "For large teams and heavy usage.",
+    title: "Enterprise （無制限）",
+    description: "大規模チームおよびヘビーユース向け。",
   },
 ] as const
 
 const formSchema = z.object({
-  plan: z.string().min(1, "You must select a subscription plan to continue."),
+  plan: z.string().min(1, "続けるにはサブスクリプションプランを選択してください。"),
 })
 
 export default function FormTanstackRadioGroup() {
@@ -61,7 +61,7 @@ export default function FormTanstackRadioGroup() {
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      toast("You submitted the following values:", {
+      toast("以下の内容を送信しました：", {
         description: (
           <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
             <code>{JSON.stringify(value, null, 2)}</code>
@@ -81,9 +81,9 @@ export default function FormTanstackRadioGroup() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Subscription Plan</CardTitle>
+        <CardTitle>サブスクリプションプラン</CardTitle>
         <CardDescription>
-          See pricing and features for each plan.
+          各プランの料金と機能をご確認ください。
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -102,9 +102,9 @@ export default function FormTanstackRadioGroup() {
                   field.state.meta.isTouched && !field.state.meta.isValid
                 return (
                   <FieldSet>
-                    <FieldLegend>Plan</FieldLegend>
+                    <FieldLegend>プラン</FieldLegend>
                     <FieldDescription>
-                      You can upgrade or downgrade your plan at any time.
+                      プランはいつでもアップグレード・ダウングレードできます。
                     </FieldDescription>
                     <RadioGroup
                       name={field.name}
@@ -148,10 +148,10 @@ export default function FormTanstackRadioGroup() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-tanstack-radiogroup">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

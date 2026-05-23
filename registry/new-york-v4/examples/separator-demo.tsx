@@ -6,16 +6,16 @@ export default function SeparatorDemo() {
       <div className="space-y-1">
         <h4 className="text-sm leading-none font-medium">Radix Primitives</h4>
         <p className="text-sm text-muted-foreground">
-          An open-source UI component library.
+          オープンソースのUIコンポーネントライブラリ。
         </p>
       </div>
       <Separator className="my-4" />
       <div className="flex h-5 items-center space-x-4 text-sm">
-        <div>Blog</div>
+        <div>ブログ</div>
         <Separator orientation="vertical" />
-        <div>Docs</div>
+        <div>ドキュメント</div>
         <Separator orientation="vertical" />
-        <div>Source</div>
+        <div>ソース</div>
       </div>
     </div>
   )

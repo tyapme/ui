@@ -12,20 +12,20 @@ import {
 
 const options = [
   {
-    label: "Social Media",
+    label: "ソーシャルメディア",
     value: "social-media",
   },
 
   {
-    label: "Search Engine",
+    label: "検索エンジン",
     value: "search-engine",
   },
   {
-    label: "Referral",
+    label: "紹介",
     value: "referral",
   },
   {
-    label: "Other",
+    label: "その他",
     value: "other",
   },
 ]
@@ -37,9 +37,9 @@ export function FieldHear() {
         <form>
           <FieldGroup>
             <FieldSet className="gap-4">
-              <FieldLegend>How did you hear about us?</FieldLegend>
+              <FieldLegend>どこで知りましたか？</FieldLegend>
               <FieldDescription className="line-clamp-1">
-                Select the option that best describes how you heard about us.
+                サービスを知ったきっかけを選んでください。
               </FieldDescription>
               <FieldGroup className="flex flex-row flex-wrap gap-2 [--radius:9999rem]">
                 {options.map((option) => (

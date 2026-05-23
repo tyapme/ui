@@ -6,11 +6,11 @@ import {
 export default function NativeSelectDisabled() {
   return (
     <NativeSelect disabled>
-      <NativeSelectOption value="">Select priority</NativeSelectOption>
-      <NativeSelectOption value="low">Low</NativeSelectOption>
-      <NativeSelectOption value="medium">Medium</NativeSelectOption>
-      <NativeSelectOption value="high">High</NativeSelectOption>
-      <NativeSelectOption value="critical">Critical</NativeSelectOption>
+      <NativeSelectOption value="">優先度を選択</NativeSelectOption>
+      <NativeSelectOption value="low">低</NativeSelectOption>
+      <NativeSelectOption value="medium">中</NativeSelectOption>
+      <NativeSelectOption value="high">高</NativeSelectOption>
+      <NativeSelectOption value="critical">緊急</NativeSelectOption>
     </NativeSelect>
   )
 }

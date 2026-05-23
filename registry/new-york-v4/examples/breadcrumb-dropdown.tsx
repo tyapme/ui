@@ -22,7 +22,7 @@ export default function BreadcrumbWithDropdown() {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="/">Home</Link>
+            <Link href="/">ホーム</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
@@ -35,8 +35,8 @@ export default function BreadcrumbWithDropdown() {
               <ChevronDownIcon />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
-              <DropdownMenuItem>Documentation</DropdownMenuItem>
-              <DropdownMenuItem>Themes</DropdownMenuItem>
+              <DropdownMenuItem>ドキュメント</DropdownMenuItem>
+              <DropdownMenuItem>テーマ</DropdownMenuItem>
               <DropdownMenuItem>GitHub</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -45,7 +45,7 @@ export default function BreadcrumbWithDropdown() {
           <SlashIcon />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
-          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+          <BreadcrumbPage>パンくず</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

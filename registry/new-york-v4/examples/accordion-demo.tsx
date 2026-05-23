@@ -14,45 +14,39 @@ export default function AccordionDemo() {
       defaultValue="item-1"
     >
       <AccordionItem value="item-1">
-        <AccordionTrigger>Product Information</AccordionTrigger>
+        <AccordionTrigger>商品情報</AccordionTrigger>
         <AccordionContent className="flex flex-col gap-4 text-balance">
           <p>
-            Our flagship product combines cutting-edge technology with sleek
-            design. Built with premium materials, it offers unparalleled
-            performance and reliability.
+            最先端の技術とスタイリッシュなデザインを融合した主力製品です。
+            プレミアム素材で作られており、卓越したパフォーマンスと信頼性を提供します。
           </p>
           <p>
-            Key features include advanced processing capabilities, and an
-            intuitive user interface designed for both beginners and experts.
+            高度な処理性能と、初心者から上級者まで直感的に使えるインターフェースを備えています。
           </p>
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
-        <AccordionTrigger>Shipping Details</AccordionTrigger>
+        <AccordionTrigger>配送について</AccordionTrigger>
         <AccordionContent className="flex flex-col gap-4 text-balance">
           <p>
-            We offer worldwide shipping through trusted courier partners.
-            Standard delivery takes 3-5 business days, while express shipping
-            ensures delivery within 1-2 business days.
+            信頼できる配送パートナーを通じて全世界に発送しています。
+            通常配送は3〜5営業日、速達配送は1〜2営業日でお届けします。
           </p>
           <p>
-            All orders are carefully packaged and fully insured. Track your
-            shipment in real-time through our dedicated tracking portal.
+            すべての注文は丁寧に梱包し、完全保険付きでお届けします。
+            専用の追跡ポータルでリアルタイムに配送状況を確認できます。
           </p>
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3">
-        <AccordionTrigger>Return Policy</AccordionTrigger>
+        <AccordionTrigger>返品ポリシー</AccordionTrigger>
         <AccordionContent className="flex flex-col gap-4 text-balance">
           <p>
-            We stand behind our products with a comprehensive 30-day return
-            policy. If you&apos;re not completely satisfied, simply return the
-            item in its original condition.
+            30日間の充実した返品保証を設けています。
+            万が一ご満足いただけない場合は、元の状態で返品してください。
           </p>
           <p>
-            Our hassle-free return process includes free return shipping and
-            full refunds processed within 48 hours of receiving the returned
-            item.
+            手続きは簡単で、返送料無料・返金は商品受取後48時間以内に処理されます。
           </p>
         </AccordionContent>
       </AccordionItem>

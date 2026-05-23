@@ -17,40 +17,39 @@ export default function FieldResponsive() {
     <div className="w-full max-w-4xl">
       <form>
         <FieldSet>
-          <FieldLegend>Profile</FieldLegend>
-          <FieldDescription>Fill in your profile information.</FieldDescription>
+          <FieldLegend>プロフィール</FieldLegend>
+          <FieldDescription>プロフィール情報を入力してください。</FieldDescription>
           <FieldSeparator />
           <FieldGroup>
             <Field orientation="responsive">
               <FieldContent>
-                <FieldLabel htmlFor="name">Name</FieldLabel>
+                <FieldLabel htmlFor="name">氏名</FieldLabel>
                 <FieldDescription>
-                  Provide your full name for identification
+                  本名を入力してください
                 </FieldDescription>
               </FieldContent>
-              <Input id="name" placeholder="Evil Rabbit" required />
+              <Input id="name" placeholder="山田 太郎" required />
             </Field>
             <FieldSeparator />
             <Field orientation="responsive">
               <FieldContent>
-                <FieldLabel htmlFor="lastName">Message</FieldLabel>
+                <FieldLabel htmlFor="lastName">メッセージ</FieldLabel>
                 <FieldDescription>
-                  You can write your message here. Keep it short, preferably
-                  under 100 characters.
+                  メッセージをここに入力してください《100文字以内が望ましい。
                 </FieldDescription>
               </FieldContent>
               <Textarea
                 id="message"
-                placeholder="Hello, world!"
+                placeholder="ハロー、ワールド！"
                 required
                 className="min-h-[100px] resize-none sm:min-w-[300px]"
               />
             </Field>
             <FieldSeparator />
             <Field orientation="responsive">
-              <Button type="submit">Submit</Button>
+              <Button type="submit">送信</Button>
               <Button type="button" variant="outline">
-                Cancel
+                キャンセル
               </Button>
             </Field>
           </FieldGroup>

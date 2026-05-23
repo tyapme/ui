@@ -11,21 +11,21 @@ import {
 
 const music = [
   {
-    title: "Midnight City Lights",
-    artist: "Neon Dreams",
-    album: "Electric Nights",
+    title: "ミッドナイトシティライツ",
+    artist: "ネオンドリームス",
+    album: "エレクトリックナイツ",
     duration: "3:45",
   },
   {
-    title: "Coffee Shop Conversations",
-    artist: "The Morning Brew",
-    album: "Urban Stories",
+    title: "コーヒーショップの会話",
+    artist: "モーニングブリュー",
+    album: "都市の物語",
     duration: "4:05",
   },
   {
-    title: "Digital Rain",
-    artist: "Cyber Symphony",
-    album: "Binary Beats",
+    title: "デジタルレイン",
+    artist: "サイバーシンフォニー",
+    album: "バイナリービーツ",
     duration: "3:30",
   },
 ]

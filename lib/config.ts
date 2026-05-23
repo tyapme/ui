@@ -10,15 +10,15 @@ export const siteConfig = {
   navItems: [
     {
       href: "/docs/installation",
-      label: "Docs",
+      label: "ドキュメント",
     },
     {
       href: "/docs/components",
-      label: "Components",
+      label: "コンポーネント",
     },
     {
       href: "/docs/design",
-      label: "Design",
+      label: "デザイン",
     },
   ],
 }

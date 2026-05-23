@@ -3,25 +3,25 @@ import { z } from "zod"
 export const formSchema = z.object({
   plan: z
     .string({
-      required_error: "Please select a subscription plan",
+      required_error: "サブスクリプションプランを選択してください",
     })
-    .min(1, "Please select a subscription plan")
+    .min(1, "サブスクリプションプランを選択してください")
     .refine((value) => value === "basic" || value === "pro", {
-      message: "Invalid plan selection. Please choose Basic or Pro",
+      message: "無効なプラン選択です。BasicまたはProを選んでください",
     }),
   billingPeriod: z
     .string({
-      required_error: "Please select a billing period",
+      required_error: "課金期間を選択してください",
     })
-    .min(1, "Please select a billing period"),
+    .min(1, "課金期間を選択してください"),
   addons: z
     .array(z.string())
-    .min(1, "Please select at least one add-on")
-    .max(3, "You can select up to 3 add-ons")
+    .min(1, "アドオンを少なくとも1つ選択してください")
+    .max(3, "アドオンは最大3つまで選択できます")
     .refine(
       (value) => value.every((addon) => addons.some((a) => a.id === addon)),
       {
-        message: "You selected an invalid add-on",
+        message: "無効なアドオンが選択されています",
       }
     ),
   emailNotifications: z.boolean(),
@@ -36,17 +36,17 @@ export type FormState = {
 export const addons = [
   {
     id: "analytics",
-    title: "Analytics",
-    description: "Advanced analytics and reporting",
+    title: "分析",
+    description: "高度な分析とレポート",
   },
   {
     id: "backup",
-    title: "Backup",
-    description: "Automated daily backups",
+    title: "バックアップ",
+    description: "毎日自動バックアップ",
   },
   {
     id: "support",
-    title: "Priority Support",
-    description: "24/7 premium customer support",
+    title: "優先サポート",
+    description: "24時間365日のプレミアムサポート",
   },
 ] as const

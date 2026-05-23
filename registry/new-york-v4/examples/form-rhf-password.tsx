@@ -32,23 +32,23 @@ import { Progress } from "@/registry/new-york-v4/ui/progress"
 const passwordRequirements = [
   {
     id: "length",
-    label: "At least 8 characters",
+    label: "8文字以上",
     test: (val: string) => val.length >= 8,
   },
   {
     id: "lowercase",
-    label: "One lowercase letter",
+    label: "小文字を含む",
     test: (val: string) => /[a-z]/.test(val),
   },
   {
     id: "uppercase",
-    label: "One uppercase letter",
+    label: "大文字を含む",
     test: (val: string) => /[A-Z]/.test(val),
   },
-  { id: "number", label: "One number", test: (val: string) => /\d/.test(val) },
+  { id: "number", label: "数字を含む", test: (val: string) => /\d/.test(val) },
   {
     id: "special",
-    label: "One special character",
+    label: "特殊文字を含む",
     test: (val: string) => /[!@#$%^&*(),.?":{}|<>]/.test(val),
   },
 ]
@@ -56,22 +56,22 @@ const passwordRequirements = [
 const formSchema = z.object({
   password: z
     .string()
-    .min(8, "Password must be at least 8 characters")
+    .min(8, "パスワードは8文字以上入力してください")
     .refine(
       (val) => /[a-z]/.test(val),
-      "Password must contain at least one lowercase letter"
+      "小文字を少なくとも1字含む必要があります"
     )
     .refine(
       (val) => /[A-Z]/.test(val),
-      "Password must contain at least one uppercase letter"
+      "大文字を少なくとも1字含む必要があります"
     )
     .refine(
       (val) => /\d/.test(val),
-      "Password must contain at least one number"
+      "数字を少なくとも1字含む必要があります"
     )
     .refine(
       (val) => /[!@#$%^&*(),.?":{}|<>]/.test(val),
-      "Password must contain at least one special character"
+      "特殊文字を少なくとも1字含む必要があります"
     ),
 })
 
@@ -107,7 +107,7 @@ export default function FormRhfPassword() {
     metRequirements.length === passwordRequirements.length
 
   function onSubmit(data: z.infer<typeof formSchema>) {
-    toast("You submitted the following values:", {
+    toast("以下の内容を送信しました：", {
       description: (
         <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
           <code>{JSON.stringify(data, null, 2)}</code>
@@ -126,9 +126,9 @@ export default function FormRhfPassword() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader className="border-b">
-        <CardTitle>Create Password</CardTitle>
+        <CardTitle>パスワードを作成</CardTitle>
         <CardDescription>
-          Choose a strong password to secure your account.
+          アカウントを守るため、強力なパスワードを設定してください。
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -140,14 +140,14 @@ export default function FormRhfPassword() {
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel htmlFor="form-rhf-password-input">
-                    Password
+                    パスワード
                   </FieldLabel>
                   <InputGroup>
                     <InputGroupInput
                       {...field}
                       id="form-rhf-password-input"
                       type="password"
-                      placeholder="Enter your password"
+                      placeholder="パスワードを入力"
                       aria-invalid={fieldState.invalid}
                       autoComplete="new-password"
                     />
@@ -212,10 +212,10 @@ export default function FormRhfPassword() {
       <CardFooter className="border-t">
         <Field>
           <Button type="submit" form="form-rhf-password">
-            Create Password
+            パスワードを作成
           </Button>
           <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
+            リセット
           </Button>
         </Field>
       </CardFooter>

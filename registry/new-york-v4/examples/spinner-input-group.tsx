@@ -13,18 +13,18 @@ export default function SpinnerInputGroup() {
   return (
     <div className="flex w-full max-w-md flex-col gap-4">
       <InputGroup>
-        <InputGroupInput placeholder="Send a message..." disabled />
+        <InputGroupInput placeholder="メッセージを送信..." disabled />
         <InputGroupAddon align="inline-end">
           <Spinner />
         </InputGroupAddon>
       </InputGroup>
       <InputGroup>
-        <InputGroupTextarea placeholder="Send a message..." disabled />
+        <InputGroupTextarea placeholder="メッセージを送信..." disabled />
         <InputGroupAddon align="block-end">
-          <Spinner /> Validating...
+          <Spinner /> 検証中...
           <InputGroupButton className="ml-auto" variant="default">
             <ArrowUpIcon />
-            <span className="sr-only">Send</span>
+            <span className="sr-only">送信</span>
           </InputGroupButton>
         </InputGroupAddon>
       </InputGroup>

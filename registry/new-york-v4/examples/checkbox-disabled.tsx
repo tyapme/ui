@@ -8,7 +8,7 @@ export default function CheckboxDisabled() {
         htmlFor="terms2"
         className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
       >
-        Accept terms and conditions
+        \u5229\u7528\u898f\u7d04\u306b\u540c\u610f\u3059\u308b
       </label>
     </div>
   )

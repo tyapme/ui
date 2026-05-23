@@ -34,23 +34,23 @@ import {
 const plans = [
   {
     id: "starter",
-    title: "Starter (100K tokens/month)",
-    description: "For everyday use with basic features.",
+    title: "Starter（月100Kトークン）",
+    description: "基本機能で毎日の作業に。",
   },
   {
     id: "pro",
-    title: "Pro (1M tokens/month)",
-    description: "For advanced AI usage with more features.",
+    title: "Pro（月100万トークン）",
+    description: "高度なAI機能を多く利用する方向け。",
   },
   {
     id: "enterprise",
-    title: "Enterprise (Unlimited tokens)",
-    description: "For large teams and heavy usage.",
+    title: "Enterprise（無制限トークン）",
+    description: "大規模チームや重度利用向け。",
   },
 ] as const
 
 const formSchema = z.object({
-  plan: z.string().min(1, "You must select a subscription plan to continue."),
+  plan: z.string().min(1, "プランを選択して続行してください。"),
 })
 
 export default function FormRhfRadioGroup() {
@@ -62,7 +62,7 @@ export default function FormRhfRadioGroup() {
   })
 
   function onSubmit(data: z.infer<typeof formSchema>) {
-    toast("You submitted the following values:", {
+    toast("以下の内容を送信しました：", {
       description: (
         <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
           <code>{JSON.stringify(data, null, 2)}</code>
@@ -81,9 +81,9 @@ export default function FormRhfRadioGroup() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Subscription Plan</CardTitle>
+        <CardTitle>サブスクリプションプラン</CardTitle>
         <CardDescription>
-          See pricing and features for each plan.
+          各プランの料金と機能を確認してください。
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -94,9 +94,9 @@ export default function FormRhfRadioGroup() {
               control={form.control}
               render={({ field, fieldState }) => (
                 <FieldSet data-invalid={fieldState.invalid}>
-                  <FieldLegend>Plan</FieldLegend>
+                  <FieldLegend>プラン</FieldLegend>
                   <FieldDescription>
-                    You can upgrade or downgrade your plan at any time.
+                    プランはいつでもアップグレードまたはダウングレードできます。
                   </FieldDescription>
                   <RadioGroup
                     name={field.name}
@@ -140,10 +140,10 @@ export default function FormRhfRadioGroup() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-rhf-radiogroup">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

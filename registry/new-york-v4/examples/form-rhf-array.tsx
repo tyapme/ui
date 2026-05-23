@@ -36,11 +36,11 @@ const formSchema = z.object({
   emails: z
     .array(
       z.object({
-        address: z.string().email("Enter a valid email address."),
+        address: z.string().email("有効なメールアドレスを入力してください。"),
       })
     )
-    .min(1, "Add at least one email address.")
-    .max(5, "You can add up to 5 email addresses."),
+    .min(1, "メールアドレスを少なくとも1つ追加してください。")
+    .max(5, "メールアドレスは最大5件まで追加できます。"),
 })
 
 export default function FormRhfArray() {
@@ -57,7 +57,7 @@ export default function FormRhfArray() {
   })
 
   function onSubmit(data: z.infer<typeof formSchema>) {
-    toast("You submitted the following values:", {
+    toast("以下の値が送信されました：", {
       description: (
         <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
           <code>{JSON.stringify(data, null, 2)}</code>
@@ -76,15 +76,15 @@ export default function FormRhfArray() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader className="border-b">
-        <CardTitle>Contact Emails</CardTitle>
-        <CardDescription>Manage your contact email addresses.</CardDescription>
+        <CardTitle>連絡先メール</CardTitle>
+        <CardDescription>連絡先メールアドレスを管理します。</CardDescription>
       </CardHeader>
       <CardContent>
         <form id="form-rhf-array" onSubmit={form.handleSubmit(onSubmit)}>
           <FieldSet className="gap-4">
-            <FieldLegend variant="label">Email Addresses</FieldLegend>
+            <FieldLegend variant="label">メールアドレス</FieldLegend>
             <FieldDescription>
-              Add up to 5 email addresses where we can contact you.
+              連絡可能なメールアドレスを最大5件まで追加できます。
             </FieldDescription>
             <FieldGroup className="gap-4">
               {fields.map((field, index) => (
@@ -114,7 +114,7 @@ export default function FormRhfArray() {
                                 variant="ghost"
                                 size="icon-xs"
                                 onClick={() => remove(index)}
-                                aria-label={`Remove email ${index + 1}`}
+                                aria-label={`メール${index + 1}を削除`}
                               >
                                 <XIcon />
                               </InputGroupButton>
@@ -136,7 +136,7 @@ export default function FormRhfArray() {
                 onClick={() => append({ address: "" })}
                 disabled={fields.length >= 5}
               >
-                Add Email Address
+                メールアドレスを追加
               </Button>
             </FieldGroup>
             {form.formState.errors.emails?.root && (
@@ -148,10 +148,10 @@ export default function FormRhfArray() {
       <CardFooter className="border-t">
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-rhf-array">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

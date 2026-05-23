@@ -21,12 +21,12 @@ export default function CollapsibleDemo() {
     >
       <div className="flex items-center justify-between gap-4 px-4">
         <h4 className="text-sm font-semibold">
-          @peduarte starred 3 repositories
+          @peduarteが3つのリポジトリにスターしました
         </h4>
         <CollapsibleTrigger asChild>
           <Button variant="ghost" size="icon" className="size-8">
             <ChevronsUpDown />
-            <span className="sr-only">Toggle</span>
+            <span className="sr-only">開閉</span>
           </Button>
         </CollapsibleTrigger>
       </div>

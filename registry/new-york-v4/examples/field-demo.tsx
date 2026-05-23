@@ -25,24 +25,24 @@ export default function FieldDemo() {
       <form>
         <FieldGroup>
           <FieldSet>
-            <FieldLegend>Payment Method</FieldLegend>
+            <FieldLegend>支払い方法</FieldLegend>
             <FieldDescription>
-              All transactions are secure and encrypted
+              すべての取引は安全に暗号化されています
             </FieldDescription>
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="checkout-7j9-card-name-43j">
-                  Name on Card
+                  カード名義人
                 </FieldLabel>
                 <Input
                   id="checkout-7j9-card-name-43j"
-                  placeholder="Evil Rabbit"
+                  placeholder="山田 太郎"
                   required
                 />
               </Field>
               <Field>
                 <FieldLabel htmlFor="checkout-7j9-card-number-uw1">
-                  Card Number
+                  カード番号
                 </FieldLabel>
                 <Input
                   id="checkout-7j9-card-number-uw1"
@@ -50,13 +50,13 @@ export default function FieldDemo() {
                   required
                 />
                 <FieldDescription>
-                  Enter your 16-digit card number
+                  16桁のカード番号を入力してください
                 </FieldDescription>
               </Field>
               <div className="grid grid-cols-3 gap-4">
                 <Field>
                   <FieldLabel htmlFor="checkout-exp-month-ts6">
-                    Month
+                    月
                   </FieldLabel>
                   <Select defaultValue="">
                     <SelectTrigger id="checkout-exp-month-ts6">
@@ -80,7 +80,7 @@ export default function FieldDemo() {
                 </Field>
                 <Field>
                   <FieldLabel htmlFor="checkout-7j9-exp-year-f59">
-                    Year
+                    年
                   </FieldLabel>
                   <Select defaultValue="">
                     <SelectTrigger id="checkout-7j9-exp-year-f59">
@@ -105,9 +105,9 @@ export default function FieldDemo() {
           </FieldSet>
           <FieldSeparator />
           <FieldSet>
-            <FieldLegend>Billing Address</FieldLegend>
+            <FieldLegend>請求先住所</FieldLegend>
             <FieldDescription>
-              The billing address associated with your payment method
+              支払い方法に登録された請求先住所
             </FieldDescription>
             <FieldGroup>
               <Field orientation="horizontal">
@@ -119,7 +119,7 @@ export default function FieldDemo() {
                   htmlFor="checkout-7j9-same-as-shipping-wgm"
                   className="font-normal"
                 >
-                  Same as shipping address
+                  配送先住所と同じ
                 </FieldLabel>
               </Field>
             </FieldGroup>
@@ -128,20 +128,20 @@ export default function FieldDemo() {
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="checkout-7j9-optional-comments">
-                  Comments
+                  コメント
                 </FieldLabel>
                 <Textarea
                   id="checkout-7j9-optional-comments"
-                  placeholder="Add any additional comments"
+                  placeholder="備考などがあればご記入ください"
                   className="resize-none"
                 />
               </Field>
             </FieldGroup>
           </FieldSet>
           <Field orientation="horizontal">
-            <Button type="submit">Submit</Button>
+            <Button type="submit">送信</Button>
             <Button variant="outline" type="button">
-              Cancel
+              キャンセル
             </Button>
           </Field>
         </FieldGroup>

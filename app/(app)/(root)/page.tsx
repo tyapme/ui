@@ -51,10 +51,10 @@ export default function IndexPage() {
         <PageHeaderDescription>{description}</PageHeaderDescription>
         <PageActions>
           <Button asChild size="sm" className="h-[31px] rounded-lg">
-            <Link href="/docs/components">Components</Link>
+            <Link href="/docs/components">コンポーネント</Link>
           </Button>
           <Button asChild size="sm" variant="ghost" className="rounded-lg">
-            <Link href="/docs/installation">Docs</Link>
+            <Link href="/docs/installation">ドキュメント</Link>
           </Button>
         </PageActions>
       </PageHeader>
@@ -65,7 +65,7 @@ export default function IndexPage() {
               src="/r/styles/new-york-v4/dashboard-01-light.png"
               width={1400}
               height={875}
-              alt="Dashboard"
+              alt="ダッシュボード"
               className="block dark:hidden"
               priority
             />
@@ -73,7 +73,7 @@ export default function IndexPage() {
               src="/r/styles/new-york-v4/dashboard-01-dark.png"
               width={1400}
               height={875}
-              alt="Dashboard"
+              alt="ダッシュボード"
               className="hidden dark:block"
               priority
             />

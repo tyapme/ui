@@ -61,86 +61,39 @@ import {
 
 const SAMPLE_DATA = {
   mentionable: [
-    {
-      type: "page",
-      title: "Meeting Notes",
-      image: "📝",
-    },
-    {
-      type: "page",
-      title: "Project Dashboard",
-      image: "📊",
-    },
-    {
-      type: "page",
-      title: "Ideas & Brainstorming",
-      image: "💡",
-    },
-    {
-      type: "page",
-      title: "Calendar & Events",
-      image: "📅",
-    },
-    {
-      type: "page",
-      title: "Documentation",
-      image: "📚",
-    },
-    {
-      type: "page",
-      title: "Goals & Objectives",
-      image: "🎯",
-    },
-    {
-      type: "page",
-      title: "Budget Planning",
-      image: "💰",
-    },
-    {
-      type: "page",
-      title: "Team Directory",
-      image: "👥",
-    },
-    {
-      type: "page",
-      title: "Technical Specs",
-      image: "🔧",
-    },
-    {
-      type: "page",
-      title: "Analytics Report",
-      image: "📈",
-    },
+    { type: "page", title: "会議メモ", image: "📝" },
+    { type: "page", title: "プロジェクトダッシュボード", image: "📊" },
+    { type: "page", title: "アイデア・ブレインストーミング", image: "💡" },
+    { type: "page", title: "カレンダー・イベント", image: "📅" },
+    { type: "page", title: "ドキュメント", image: "📚" },
+    { type: "page", title: "ゴール・目標", image: "🎯" },
+    { type: "page", title: "予算計画", image: "💰" },
+    { type: "page", title: "チームディレクトリ", image: "👥" },
+    { type: "page", title: "技術仕様", image: "🔧" },
+    { type: "page", title: "分析レポート", image: "📈" },
     {
       type: "user",
       title: "TYAP.ME",
       image: "/avatars/01.png",
-      workspace: "Product",
+      workspace: "プロダクト",
     },
     {
       type: "user",
       title: "maxleiter",
       image: "https://github.com/maxleiter.png",
-      workspace: "Workspace",
+      workspace: "ワークスペース",
     },
     {
       type: "user",
       title: "evilrabbit",
       image: "https://github.com/evilrabbit.png",
-      workspace: "Workspace",
+      workspace: "ワークスペース",
     },
   ],
   models: [
-    {
-      name: "Auto",
-    },
-    {
-      name: "Agent Mode",
-      badge: "Beta",
-    },
-    {
-      name: "Plan Mode",
-    },
+    { name: "自動" },
+    { name: "エージェントモード", badge: "Beta" },
+    { name: "プランモード" },
   ],
 }
 
@@ -193,12 +146,12 @@ export function NotionPromptForm() {
     <form>
       <Field>
         <FieldLabel htmlFor="notion-prompt" className="sr-only">
-          Prompt
+          プロンプト
         </FieldLabel>
         <InputGroup className="rounded-xl">
           <InputGroupTextarea
             id="notion-prompt"
-            placeholder="Ask, search, or make anything..."
+            placeholder="質問、検索、何でも作れます..."
           />
           <InputGroupAddon align="block-start" className="pt-3">
             <Popover
@@ -218,21 +171,21 @@ export function NotionPromptForm() {
                         />
                       }
                     >
-                      <IconAt /> {!hasMentions && "Add context"}
+                      <IconAt /> {!hasMentions && "コンテキストを追加"}
                     </PopoverTrigger>
                   }
                 />
-                <TooltipContent>Mention a person, page, or date</TooltipContent>
+                <TooltipContent>ページ、ユーザー、日付をメンション</TooltipContent>
               </Tooltip>
               <PopoverContent className="p-0" align="start">
                 <Command>
-                  <CommandInput placeholder="Search pages..." />
+                  <CommandInput placeholder="ページを検索..." />
                   <CommandList>
-                    <CommandEmpty>No pages found</CommandEmpty>
+                    <CommandEmpty>ページが見つかりません</CommandEmpty>
                     {Object.entries(grouped).map(([type, items]) => (
                       <CommandGroup
                         key={type}
-                        heading={type === "page" ? "Pages" : "Users"}
+                        heading={type === "page" ? "ページ" : "ユーザー"}
                       >
                         {items.map((item) => (
                           <CommandItem
@@ -289,13 +242,13 @@ export function NotionPromptForm() {
                   <InputGroupButton
                     size="icon-sm"
                     className="rounded-full"
-                    aria-label="Attach file"
+                    aria-label="ファイルを添付"
                   />
                 }
               >
                 <IconPaperclip />
               </TooltipTrigger>
-              <TooltipContent>Attach file</TooltipContent>
+                <TooltipContent>ファイルを添付</TooltipContent>
             </Tooltip>
             <DropdownMenu
               open={modelPopoverOpen}
@@ -305,7 +258,7 @@ export function NotionPromptForm() {
                 <DropdownMenuTrigger render={<InputGroupButton size="sm" className="rounded-full" />}>
                   {selectedModel.name}
                 </DropdownMenuTrigger>
-                <TooltipContent>Select AI model</TooltipContent>
+                <TooltipContent>AIモデルを選択</TooltipContent>
               </Tooltip>
               <DropdownMenuContent
                 side="top"
@@ -314,7 +267,7 @@ export function NotionPromptForm() {
               >
                 <DropdownMenuGroup>
                   <DropdownMenuLabel className="text-xs text-muted-foreground">
-                    Select Agent Mode
+                    エージェントモードを選択
                   </DropdownMenuLabel>
                   {SAMPLE_DATA.models.map((model) => (
                     <DropdownMenuCheckboxItem
@@ -343,7 +296,7 @@ export function NotionPromptForm() {
             </DropdownMenu>
             <DropdownMenu open={scopeMenuOpen} onOpenChange={setScopeMenuOpen}>
               <DropdownMenuTrigger render={<InputGroupButton size="sm" className="rounded-full" />}>
-                <IconWorld /> All Sources
+                <IconWorld /> すべてのソース
               </DropdownMenuTrigger>
               <DropdownMenuContent side="top" align="end" className="w-72">
                 <DropdownMenuGroup>
@@ -351,7 +304,7 @@ export function NotionPromptForm() {
                     render={<label htmlFor="web-search" />}
                     onSelect={(e) => e.preventDefault()}
                   >
-                    <IconWorld /> Web Search{" "}
+                    <IconWorld /> Web検索{" "}
                     <Switch
                       id="web-search"
                       className="ml-auto"
@@ -365,11 +318,11 @@ export function NotionPromptForm() {
                     render={<label htmlFor="apps" />}
                     onSelect={(e) => e.preventDefault()}
                   >
-                      <IconApps /> Apps and Integrations
+                      <IconApps /> アプリと連携サービス
                       <Switch id="apps" className="ml-auto" defaultChecked />
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <IconCircleDashedPlus /> All Sources I can access
+                    <IconCircleDashedPlus /> アクセスできるすべてのソース
                   </DropdownMenuItem>
                   <DropdownMenuSub>
                     <DropdownMenuSubTrigger>
@@ -382,11 +335,11 @@ export function NotionPromptForm() {
                     <DropdownMenuSubContent className="w-72 p-0 [--radius:1rem]">
                       <Command>
                         <CommandInput
-                          placeholder="Find or use knowledge in..."
+                          placeholder="ノレッジを検索..."
                           autoFocus
                         />
                         <CommandList>
-                          <CommandEmpty>No knowledge found</CommandEmpty>
+                          <CommandEmpty>ノレッジが見つかりません</CommandEmpty>
                           <CommandGroup>
                             {SAMPLE_DATA.mentionable
                               .filter((item) => item.type === "user")
@@ -417,22 +370,22 @@ export function NotionPromptForm() {
                     </DropdownMenuSubContent>
                   </DropdownMenuSub>
                   <DropdownMenuItem>
-                    <IconBook /> Help Center
+                    <IconBook /> ヘルプセンター
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
-                    <IconPlus /> Connect Apps
+                    <IconPlus /> アプリを連携
                   </DropdownMenuItem>
                   <DropdownMenuLabel className="text-xs text-muted-foreground">
-                    We&apos;ll only search in the sources selected here.
+                    選択したソースのみ検索します。
                   </DropdownMenuLabel>
                 </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>
             <InputGroupButton
-              aria-label="Send"
+              aria-label="送信"
               className="ml-auto rounded-full"
               variant="default"
               size="icon-sm"

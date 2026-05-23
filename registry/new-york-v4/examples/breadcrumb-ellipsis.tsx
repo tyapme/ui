@@ -16,7 +16,7 @@ export default function BreadcrumbCollapsed() {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="/">Home</Link>
+            <Link href="/">ホーム</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
@@ -26,12 +26,12 @@ export default function BreadcrumbCollapsed() {
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="/docs/components">Components</Link>
+            <Link href="/docs/components">コンポーネント</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+          <BreadcrumbPage>パンくず</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

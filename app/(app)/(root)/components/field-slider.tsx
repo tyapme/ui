@@ -14,11 +14,11 @@ export function FieldSlider() {
   return (
     <div className="w-full max-w-md">
       <Field>
-        <FieldTitle>Price Range</FieldTitle>
+        <FieldTitle>価格帯</FieldTitle>
         <FieldDescription>
-          Set your budget range ($
-          <span className="font-medium tabular-nums">{value[0]}</span> -{" "}
-          <span className="font-medium tabular-nums">{value[1]}</span>).
+          予算の範囲を設定してください（￥
+          <span className="font-medium tabular-nums">{value[0]}</span> ～{" "}
+          <span className="font-medium tabular-nums">{value[1]}</span>）。
         </FieldDescription>
         <Slider
           value={value}
@@ -27,7 +27,7 @@ export function FieldSlider() {
           min={0}
           step={10}
           className="mt-2 w-full"
-          aria-label="Price Range"
+          aria-label="価格帯"
         />
       </Field>
     </div>

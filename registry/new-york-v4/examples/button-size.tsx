@@ -7,23 +7,23 @@ export default function ButtonSize() {
     <div className="flex flex-col items-start gap-8 sm:flex-row">
       <div className="flex items-start gap-2">
         <Button size="sm" variant="outline">
-          Small
+          小
         </Button>
-        <Button size="icon-sm" aria-label="Submit" variant="outline">
+        <Button size="icon-sm" aria-label="送信" variant="outline">
           <ArrowUpRightIcon />
         </Button>
       </div>
       <div className="flex items-start gap-2">
-        <Button variant="outline">Default</Button>
-        <Button size="icon" aria-label="Submit" variant="outline">
+        <Button variant="outline">標準</Button>
+        <Button size="icon" aria-label="送信" variant="outline">
           <ArrowUpRightIcon />
         </Button>
       </div>
       <div className="flex items-start gap-2">
         <Button variant="outline" size="lg">
-          Large
+          大
         </Button>
-        <Button size="icon-lg" aria-label="Submit" variant="outline">
+        <Button size="icon-lg" aria-label="送信" variant="outline">
           <ArrowUpRightIcon />
         </Button>
       </div>

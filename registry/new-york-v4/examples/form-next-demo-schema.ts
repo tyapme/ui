@@ -3,12 +3,12 @@ import { z } from "zod"
 export const formSchema = z.object({
   title: z
     .string()
-    .min(5, "Bug title must be at least 5 characters.")
-    .max(32, "Bug title must be at most 32 characters."),
+    .min(5, "バグタイトルは5文字以上で入力してください。")
+    .max(32, "バグタイトルは32文字以内で入力してください。"),
   description: z
     .string()
-    .min(20, "Description must be at least 20 characters.")
-    .max(100, "Description must be at most 100 characters."),
+    .min(20, "説明は20文字以上で入力してください。")
+    .max(100, "説明は100文字以内で入力してください。"),
 })
 
 export type FormState = {

@@ -26,7 +26,7 @@ export function InputGroupDemo() {
   return (
     <div className="grid w-full max-w-sm gap-6">
       <InputGroup>
-        <InputGroupInput placeholder="Search..." />
+        <InputGroupInput placeholder="検索..." />
         <InputGroupAddon>
           <Search />
         </InputGroupAddon>
@@ -44,7 +44,7 @@ export function InputGroupDemo() {
                 <InputGroupButton
                   className="rounded-full"
                   size="icon-xs"
-                  aria-label="Info"
+                  aria-label="情報"
                 />
               }
             >
@@ -55,13 +55,13 @@ export function InputGroupDemo() {
         </InputGroupAddon>
       </InputGroup>
       <InputGroup>
-        <InputGroupTextarea placeholder="Ask, Search or Chat..." />
+        <InputGroupTextarea placeholder="質問、検索、チャット..." />
         <InputGroupAddon align="block-end">
           <InputGroupButton
             variant="outline"
             className="rounded-full"
             size="icon-xs"
-            aria-label="Add"
+            aria-label="追加"
           >
             <IconPlus />
           </InputGroupButton>

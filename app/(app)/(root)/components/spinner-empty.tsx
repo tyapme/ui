@@ -16,14 +16,14 @@ export function SpinnerEmpty() {
         <EmptyMedia variant="icon">
           <Spinner />
         </EmptyMedia>
-        <EmptyTitle>Processing your request</EmptyTitle>
+        <EmptyTitle>リクエストを処理中</EmptyTitle>
         <EmptyDescription>
-          Please wait while we process your request. Do not refresh the page.
+          処理が完了するまでお待ちください。ページを更新しないでください。
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
         <Button variant="outline" size="sm">
-          Cancel
+          キャンセル
         </Button>
       </EmptyContent>
     </Empty>

@@ -43,8 +43,8 @@ export function SearchDirectory({
           className="data-[disabled=true]:hidden"
         >
           <InputGroupButton
-            aria-label="Clear"
-            title="Clear"
+            aria-label="クリア"
+            title="クリア"
             size="icon-xs"
             onClick={() => setQuery(null)}
           >

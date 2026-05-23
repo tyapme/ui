@@ -10,27 +10,27 @@ export default function ToggleGroupSpacing() {
     <ToggleGroup type="multiple" variant="outline" spacing={2} size="sm">
       <ToggleGroupItem
         value="star"
-        aria-label="Toggle star"
+        aria-label="スターをトグル"
         className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-yellow-500 data-[state=on]:*:[svg]:stroke-yellow-500"
       >
         <StarIcon />
-        Star
+        スター
       </ToggleGroupItem>
       <ToggleGroupItem
         value="heart"
-        aria-label="Toggle heart"
+        aria-label="ハートをトグル"
         className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500"
       >
         <HeartIcon />
-        Heart
+        ハート
       </ToggleGroupItem>
       <ToggleGroupItem
         value="bookmark"
-        aria-label="Toggle bookmark"
+        aria-label="ブックマークをトグル"
         className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-blue-500 data-[state=on]:*:[svg]:stroke-blue-500"
       >
         <BookmarkIcon />
-        Bookmark
+        ブックマーク
       </ToggleGroupItem>
     </ToggleGroup>
   )

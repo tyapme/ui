@@ -4,7 +4,7 @@ import { Toggle } from "@/registry/new-york-v4/ui/toggle"
 
 export default function ToggleDisabled() {
   return (
-    <Toggle aria-label="Toggle italic" disabled>
+    <Toggle aria-label="イタリックをトグル" disabled>
       <Underline className="h-4 w-4" />
     </Toggle>
   )

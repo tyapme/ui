@@ -35,55 +35,55 @@ export function ButtonGroupDemo() {
   return (
     <ButtonGroup>
       <ButtonGroup className="hidden sm:flex">
-        <Button variant="outline" size="icon-sm" aria-label="Go Back">
+        <Button variant="outline" size="icon-sm" aria-label="戻る">
           <ArrowLeftIcon />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
         <Button variant="outline" size="sm">
-          Archive
+          アーカイブ
         </Button>
         <Button variant="outline" size="sm">
-          Report
+          報告
         </Button>
       </ButtonGroup>
       <ButtonGroup>
         <Button variant="outline" size="sm">
-          Snooze
+          スヌーズ
         </Button>
         <DropdownMenu>
-          <DropdownMenuTrigger render={<Button variant="outline" size="icon-sm" aria-label="More Options" />}>
+          <DropdownMenuTrigger render={<Button variant="outline" size="icon-sm" aria-label="その他のオプション" />}>
             <MoreHorizontalIcon />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-48">
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <MailCheckIcon />
-                Mark as Read
+                既読にする
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <ArchiveIcon />
-                Archive
+                アーカイブ
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <ClockIcon />
-                Snooze
+                スヌーズ
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <CalendarPlusIcon />
-                Add to Calendar
+                カレンダーに追加
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <ListFilterIcon />
-                Add to List
+                リストに追加
               </DropdownMenuItem>
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger>
                   <TagIcon />
-                  Label As...
+                  ラベルを付ける...
                 </DropdownMenuSubTrigger>
                 <DropdownMenuSubContent>
                   <DropdownMenuRadioGroup
@@ -91,13 +91,13 @@ export function ButtonGroupDemo() {
                     onValueChange={setLabel}
                   >
                     <DropdownMenuRadioItem value="personal">
-                      Personal
+                      個人
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="work">
-                      Work
+                      仕事
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="other">
-                      Other
+                      その他
                     </DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
                 </DropdownMenuSubContent>
@@ -107,7 +107,7 @@ export function ButtonGroupDemo() {
             <DropdownMenuGroup>
               <DropdownMenuItem variant="destructive">
                 <Trash2Icon />
-                Trash
+                ゴミ筒に移動
               </DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>

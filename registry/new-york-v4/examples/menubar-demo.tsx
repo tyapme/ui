@@ -18,88 +18,88 @@ export default function MenubarDemo() {
   return (
     <Menubar>
       <MenubarMenu>
-        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarTrigger>ファイル</MenubarTrigger>
         <MenubarContent>
           <MenubarItem>
-            New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+            新しいタブ <MenubarShortcut>⌘T</MenubarShortcut>
           </MenubarItem>
           <MenubarItem>
-            New Window <MenubarShortcut>⌘N</MenubarShortcut>
+            新しいウィンドウ <MenubarShortcut>⌘N</MenubarShortcut>
           </MenubarItem>
-          <MenubarItem disabled>New Incognito Window</MenubarItem>
+          <MenubarItem disabled>シークレットウィンドウ</MenubarItem>
           <MenubarSeparator />
           <MenubarSub>
-            <MenubarSubTrigger>Share</MenubarSubTrigger>
+            <MenubarSubTrigger>共有</MenubarSubTrigger>
             <MenubarSubContent>
-              <MenubarItem>Email link</MenubarItem>
-              <MenubarItem>Messages</MenubarItem>
-              <MenubarItem>Notes</MenubarItem>
+              <MenubarItem>メールでリンクを送信</MenubarItem>
+              <MenubarItem>メッセージ</MenubarItem>
+              <MenubarItem>メモ</MenubarItem>
             </MenubarSubContent>
           </MenubarSub>
           <MenubarSeparator />
           <MenubarItem>
-            Print... <MenubarShortcut>⌘P</MenubarShortcut>
+            印刷... <MenubarShortcut>⌘P</MenubarShortcut>
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>
-        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarTrigger>編集</MenubarTrigger>
         <MenubarContent>
           <MenubarItem>
-            Undo <MenubarShortcut>⌘Z</MenubarShortcut>
+            元に戻す <MenubarShortcut>⌘Z</MenubarShortcut>
           </MenubarItem>
           <MenubarItem>
-            Redo <MenubarShortcut>⇧⌘Z</MenubarShortcut>
+            やり直す <MenubarShortcut>⇧⌘Z</MenubarShortcut>
           </MenubarItem>
           <MenubarSeparator />
           <MenubarSub>
-            <MenubarSubTrigger>Find</MenubarSubTrigger>
+            <MenubarSubTrigger>検索</MenubarSubTrigger>
             <MenubarSubContent>
-              <MenubarItem>Search the web</MenubarItem>
+              <MenubarItem>ウェブで検索</MenubarItem>
               <MenubarSeparator />
-              <MenubarItem>Find...</MenubarItem>
-              <MenubarItem>Find Next</MenubarItem>
-              <MenubarItem>Find Previous</MenubarItem>
+              <MenubarItem>検索...</MenubarItem>
+              <MenubarItem>次を検索</MenubarItem>
+              <MenubarItem>前を検索</MenubarItem>
             </MenubarSubContent>
           </MenubarSub>
           <MenubarSeparator />
-          <MenubarItem>Cut</MenubarItem>
-          <MenubarItem>Copy</MenubarItem>
-          <MenubarItem>Paste</MenubarItem>
+          <MenubarItem>切り取り</MenubarItem>
+          <MenubarItem>コピー</MenubarItem>
+          <MenubarItem>貼り付け</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>
-        <MenubarTrigger>View</MenubarTrigger>
+        <MenubarTrigger>表示</MenubarTrigger>
         <MenubarContent>
-          <MenubarCheckboxItem>Always Show Bookmarks Bar</MenubarCheckboxItem>
+          <MenubarCheckboxItem>ブックマークバーを常に表示</MenubarCheckboxItem>
           <MenubarCheckboxItem checked>
-            Always Show Full URLs
+            完全なURLを常に表示
           </MenubarCheckboxItem>
           <MenubarSeparator />
           <MenubarItem inset>
-            Reload <MenubarShortcut>⌘R</MenubarShortcut>
+            再読み込み <MenubarShortcut>⌘R</MenubarShortcut>
           </MenubarItem>
           <MenubarItem disabled inset>
-            Force Reload <MenubarShortcut>⇧⌘R</MenubarShortcut>
+            強制再読み込み <MenubarShortcut>⇧⌘R</MenubarShortcut>
           </MenubarItem>
           <MenubarSeparator />
-          <MenubarItem inset>Toggle Fullscreen</MenubarItem>
+          <MenubarItem inset>フルスクリーン切り替え</MenubarItem>
           <MenubarSeparator />
-          <MenubarItem inset>Hide Sidebar</MenubarItem>
+          <MenubarItem inset>サイドバーを隠す</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>
-        <MenubarTrigger>Profiles</MenubarTrigger>
+        <MenubarTrigger>プロフィール</MenubarTrigger>
         <MenubarContent>
           <MenubarRadioGroup value="benoit">
-            <MenubarRadioItem value="andy">Andy</MenubarRadioItem>
-            <MenubarRadioItem value="benoit">Benoit</MenubarRadioItem>
-            <MenubarRadioItem value="Luis">Luis</MenubarRadioItem>
+            <MenubarRadioItem value="andy">山田</MenubarRadioItem>
+            <MenubarRadioItem value="benoit">田中</MenubarRadioItem>
+            <MenubarRadioItem value="Luis">佐藤</MenubarRadioItem>
           </MenubarRadioGroup>
           <MenubarSeparator />
-          <MenubarItem inset>Edit...</MenubarItem>
+          <MenubarItem inset>編集...</MenubarItem>
           <MenubarSeparator />
-          <MenubarItem inset>Add Profile...</MenubarItem>
+          <MenubarItem inset>プロフィールを追加...</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>

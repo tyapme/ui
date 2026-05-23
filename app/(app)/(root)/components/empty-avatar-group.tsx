@@ -42,15 +42,15 @@ export function EmptyAvatarGroup() {
             </Avatar>
           </AvatarGroup>
         </EmptyMedia>
-        <EmptyTitle>No Team Members</EmptyTitle>
+        <EmptyTitle>チームメンバーなし</EmptyTitle>
         <EmptyDescription>
-          Invite your team to collaborate on this project.
+          チームを招待してこのプロジェクトで協力しましょう。
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
         <Button size="sm">
           <PlusIcon />
-          Invite Members
+          メンバーを招待
         </Button>
       </EmptyContent>
     </Empty>

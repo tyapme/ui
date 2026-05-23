@@ -153,7 +153,7 @@ export function CommandMenu({
 
     return (
       <CommandGroup
-        heading="Pages"
+        heading="ページ"
         className="p-0! **:[[cmdk-group-heading]]:scroll-mt-16 **:[[cmdk-group-heading]]:p-3! **:[[cmdk-group-heading]]:pb-1!"
       >
         {navItems.map((item) => (
@@ -269,8 +269,8 @@ export function CommandMenu({
       </DialogTrigger>
       <DialogContent className="rounded-xl border-none bg-clip-padding p-2 pb-11 shadow-2xl ring-4 ring-neutral-200/80 dark:bg-neutral-900 dark:ring-neutral-800">
         <DialogHeader className="sr-only">
-          <DialogTitle>Search documentation...</DialogTitle>
-          <DialogDescription>Search for a command to run...</DialogDescription>
+          <DialogTitle>ドキュメントを検索...</DialogTitle>
+          <DialogDescription>コマンドを検索して実行できます。</DialogDescription>
         </DialogHeader>
         <Command
           className="rounded-none bg-transparent **:data-[slot=command-input]:h-9! **:data-[slot=command-input]:py-0 **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:h-9! **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border **:data-[slot=command-input-wrapper]:border-input **:data-[slot=command-input-wrapper]:bg-input/50"
@@ -278,7 +278,7 @@ export function CommandMenu({
         >
           <div className="relative">
             <CommandInput
-              placeholder="Search documentation..."
+              placeholder="ドキュメントを検索..."
               onValueChange={handleSearchChange}
             />
             {query.isLoading && (
@@ -289,7 +289,7 @@ export function CommandMenu({
           </div>
           <CommandList className="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-1.5">
             <CommandEmpty className="py-12 text-center text-sm text-muted-foreground">
-              {query.isLoading ? "Searching..." : "No results found."}
+              {query.isLoading ? "検索中..." : "結果が見つかりませんでした。"}
             </CommandEmpty>
             {navItemsSection}
             {renderDelayedGroups ? (
@@ -310,7 +310,7 @@ export function CommandMenu({
               <CornerDownLeftIcon />
             </CommandMenuKbd>{" "}
             {selectedType === "page" || selectedType === "component"
-              ? "Go to Page"
+              ? "ページへ移動"
               : null}
           </div>
           {copyPayload && (
@@ -420,7 +420,7 @@ function SearchResults({
   return (
     <CommandGroup
       className="px-0! **:[[cmdk-group-heading]]:scroll-mt-16 **:[[cmdk-group-heading]]:p-3! **:[[cmdk-group-heading]]:pb-1!"
-      heading="Search Results"
+      heading="検索結果"
     >
       {uniqueResults.map((item) => {
         return (

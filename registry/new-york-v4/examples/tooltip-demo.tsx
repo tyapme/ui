@@ -9,10 +9,10 @@ export default function TooltipDemo() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button variant="outline">Hover</Button>
+        <Button variant="outline">ホバーしてみて</Button>
       </TooltipTrigger>
       <TooltipContent>
-        <p>Add to library</p>
+        <p>ライブラリに追加</p>
       </TooltipContent>
     </Tooltip>
   )

@@ -23,9 +23,9 @@ export function InputGroupTextareaExample() {
           className="min-h-[180px]"
         />
         <InputGroupAddon align="block-end" className="border-t">
-          <InputGroupText>Line 1, Column 1</InputGroupText>
+          <InputGroupText>1\u884c\u76ee\u30011\u5217\u76ee</InputGroupText>
           <InputGroupButton size="sm" className="ml-auto" variant="default">
-            Run <IconCornerDownLeft />
+            \u5b9f\u884c <IconCornerDownLeft />
           </InputGroupButton>
         </InputGroupAddon>
         <InputGroupAddon align="block-start" className="border-b">

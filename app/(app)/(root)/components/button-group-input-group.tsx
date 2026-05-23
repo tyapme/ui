@@ -22,7 +22,7 @@ export function ButtonGroupInputGroup() {
   return (
     <ButtonGroup className="[--radius:9999rem]">
       <ButtonGroup>
-        <Button variant="outline" size="icon" aria-label="Add">
+        <Button variant="outline" size="icon" aria-label="追加">
           <PlusIcon />
         </Button>
       </ButtonGroup>
@@ -30,7 +30,7 @@ export function ButtonGroupInputGroup() {
         <InputGroup>
           <InputGroupInput
             placeholder={
-              voiceEnabled ? "Record and send audio..." : "Send a message..."
+              voiceEnabled ? "音声を録音して送信..." : "メッセージを入力..."
             }
             disabled={voiceEnabled}
           />
@@ -44,13 +44,13 @@ export function ButtonGroupInputGroup() {
                     className="data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
                     aria-pressed={voiceEnabled}
                     size="icon-xs"
-                    aria-label="Voice Mode"
+                    aria-label="音声モード"
                   />
                 }
               >
                 <AudioLinesIcon />
               </TooltipTrigger>
-              <TooltipContent>Voice Mode</TooltipContent>
+              <TooltipContent>音声モード</TooltipContent>
             </Tooltip>
           </InputGroupAddon>
         </InputGroup>

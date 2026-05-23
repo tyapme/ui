@@ -12,23 +12,23 @@ export default function FieldFieldset() {
   return (
     <div className="w-full max-w-md space-y-6">
       <FieldSet>
-        <FieldLegend>Address Information</FieldLegend>
+        <FieldLegend>住所情報</FieldLegend>
         <FieldDescription>
-          We need your address to deliver your order.
+          お届けのためにご住所が必要です。
         </FieldDescription>
         <FieldGroup>
           <Field>
-            <FieldLabel htmlFor="street">Street Address</FieldLabel>
-            <Input id="street" type="text" placeholder="123 Main St" />
+            <FieldLabel htmlFor="street">番地</FieldLabel>
+            <Input id="street" type="text" placeholder="東京都渋谷区渋谷1–1" />
           </Field>
           <div className="grid grid-cols-2 gap-4">
             <Field>
-              <FieldLabel htmlFor="city">City</FieldLabel>
-              <Input id="city" type="text" placeholder="New York" />
+              <FieldLabel htmlFor="city">市区町村</FieldLabel>
+              <Input id="city" type="text" placeholder="渋谷区" />
             </Field>
             <Field>
-              <FieldLabel htmlFor="zip">Postal Code</FieldLabel>
-              <Input id="zip" type="text" placeholder="90502" />
+              <FieldLabel htmlFor="zip">郵便番号</FieldLabel>
+              <Input id="zip" type="text" placeholder="150-0001" />
             </Field>
           </div>
         </FieldGroup>

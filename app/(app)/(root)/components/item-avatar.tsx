@@ -27,14 +27,14 @@ export function ItemAvatar() {
         </ItemMedia>
         <ItemContent>
           <ItemTitle>Max Leiter</ItemTitle>
-          <ItemDescription>Last seen 5 months ago</ItemDescription>
+          <ItemDescription>5か月前に最終ログイン</ItemDescription>
         </ItemContent>
         <ItemActions>
           <Button
             size="icon-sm"
             variant="outline"
             className="rounded-full"
-            aria-label="Invite"
+            aria-label="招待"
           >
             <Plus />
           </Button>
@@ -64,12 +64,12 @@ export function ItemAvatar() {
           </div>
         </ItemMedia>
         <ItemContent>
-          <ItemTitle>No Team Members</ItemTitle>
-          <ItemDescription>Invite your team to collaborate.</ItemDescription>
+          <ItemTitle>チームメンバーなし</ItemTitle>
+          <ItemDescription>チームを招待して共同作業しましょう。</ItemDescription>
         </ItemContent>
         <ItemActions>
           <Button size="sm" variant="outline">
-            Invite
+            招待
           </Button>
         </ItemActions>
       </Item>

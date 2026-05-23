@@ -8,13 +8,13 @@ import {
 export default function ToggleGroupDemo() {
   return (
     <ToggleGroup type="multiple" size="lg">
-      <ToggleGroupItem value="bold" aria-label="Toggle bold">
+      <ToggleGroupItem value="bold" aria-label="太字をトグル">
         <Bold className="h-4 w-4" />
       </ToggleGroupItem>
-      <ToggleGroupItem value="italic" aria-label="Toggle italic">
+      <ToggleGroupItem value="italic" aria-label="イタリックをトグル">
         <Italic className="h-4 w-4" />
       </ToggleGroupItem>
-      <ToggleGroupItem value="strikethrough" aria-label="Toggle strikethrough">
+      <ToggleGroupItem value="strikethrough" aria-label="取り消し線をトグル">
         <Underline className="h-4 w-4" />
       </ToggleGroupItem>
     </ToggleGroup>

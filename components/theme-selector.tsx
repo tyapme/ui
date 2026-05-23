@@ -41,7 +41,7 @@ export function ThemeSelector({ className }: React.ComponentProps<"div">) {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Theme</SelectLabel>
+            <SelectLabel>テーマ</SelectLabel>
             {items.map((item) => (
               <SelectItem
                 key={item.value}

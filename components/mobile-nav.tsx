@@ -17,21 +17,21 @@ import {
 } from "@/registry/new-york-v4/ui/popover"
 
 const TOP_LEVEL_SECTIONS = [
-  { name: "Introduction", href: "/docs" },
+  { name: "はじめに", href: "/docs" },
   {
-    name: "Components",
+    name: "コンポーネント",
     href: "/docs/components",
   },
   {
-    name: "Installation",
+    name: "インストール",
     href: "/docs/installation",
   },
   {
-    name: "Theming",
+    name: "テーマ",
     href: "/docs/theming",
   },
   {
-    name: "Forms",
+    name: "フォーム",
     href: "/docs/forms",
   },
 ]
@@ -73,7 +73,7 @@ export function MobileNav({
                 )}
               />
             </div>
-            <span className="sr-only">Toggle Menu</span>
+            <span className="sr-only">メニューを開く</span>
           </div>
           <span className="flex h-8 items-center text-lg leading-none font-medium">
             Menu

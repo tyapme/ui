@@ -48,7 +48,7 @@ export default function CarouselDApiDemo() {
         <CarouselNext />
       </Carousel>
       <div className="py-2 text-center text-sm text-muted-foreground">
-        Slide {current} of {count}
+        {current} / {count}
       </div>
     </div>
   )

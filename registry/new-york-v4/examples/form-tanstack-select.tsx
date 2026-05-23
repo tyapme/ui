@@ -32,22 +32,22 @@ import {
 } from "@/registry/new-york-v4/ui/select"
 
 const spokenLanguages = [
-  { label: "English", value: "en" },
-  { label: "Spanish", value: "es" },
-  { label: "French", value: "fr" },
-  { label: "German", value: "de" },
-  { label: "Italian", value: "it" },
-  { label: "Chinese", value: "zh" },
-  { label: "Japanese", value: "ja" },
+  { label: "英語", value: "en" },
+  { label: "スペイン語", value: "es" },
+  { label: "フランス語", value: "fr" },
+  { label: "ドイツ語", value: "de" },
+  { label: "イタリア語", value: "it" },
+  { label: "中国語", value: "zh" },
+  { label: "日本語", value: "ja" },
 ] as const
 
 const formSchema = z.object({
   language: z
     .string()
-    .min(1, "Please select your spoken language.")
+    .min(1, "使用言語を選択してください。")
     .refine((val) => val !== "auto", {
       message:
-        "Auto-detection is not allowed. Please select a specific language.",
+        "自動検出は利用できません。特定の言語を選択してください。",
     }),
 })
 
@@ -60,7 +60,7 @@ export default function FormTanstackSelect() {
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      toast("You submitted the following values:", {
+      toast("以下の内容を送信しました：", {
         description: (
           <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
             <code>{JSON.stringify(value, null, 2)}</code>
@@ -80,9 +80,9 @@ export default function FormTanstackSelect() {
   return (
     <Card className="w-full sm:max-w-lg">
       <CardHeader>
-        <CardTitle>Language Preferences</CardTitle>
+        <CardTitle>言語設定</CardTitle>
         <CardDescription>
-          Select your preferred spoken language.
+          希望の使用言語を選択してください。
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -103,10 +103,10 @@ export default function FormTanstackSelect() {
                   <Field orientation="responsive" data-invalid={isInvalid}>
                     <FieldContent>
                       <FieldLabel htmlFor="form-tanstack-select-language">
-                        Spoken Language
+                        使用言語
                       </FieldLabel>
                       <FieldDescription>
-                        For best results, select the language you speak.
+                        最良の結果を得るために、お使いの言語を選択してください。
                       </FieldDescription>
                       {isInvalid && (
                         <FieldError errors={field.state.meta.errors} />
@@ -122,10 +122,10 @@ export default function FormTanstackSelect() {
                         aria-invalid={isInvalid}
                         className="min-w-[120px]"
                       >
-                        <SelectValue placeholder="Select" />
+                        <SelectValue placeholder="選択" />
                       </SelectTrigger>
                       <SelectContent position="item-aligned">
-                        <SelectItem value="auto">Auto</SelectItem>
+                        <SelectItem value="auto">自動</SelectItem>
                         <SelectSeparator />
                         {spokenLanguages.map((language) => (
                           <SelectItem
@@ -147,10 +147,10 @@ export default function FormTanstackSelect() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-tanstack-select">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

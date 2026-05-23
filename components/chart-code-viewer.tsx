@@ -38,7 +38,7 @@ export function ChartCodeViewer({
       variant="outline"
       className="h-6 rounded-[6px] border bg-transparent px-2 text-xs text-foreground shadow-none hover:bg-muted dark:text-foreground"
     >
-      View Code
+      コードを表示
     </Button>
   )
 
@@ -88,8 +88,8 @@ export function ChartCodeViewer({
           )}
         >
           <DrawerHeader className="sr-only">
-            <DrawerTitle>Code</DrawerTitle>
-            <DrawerDescription>View the code for the chart.</DrawerDescription>
+            <DrawerTitle>コード</DrawerTitle>
+            <DrawerDescription>チャートのコードを表示します。</DrawerDescription>
           </DrawerHeader>
           <div className="flex h-full flex-col overflow-auto">{content}</div>
         </DrawerContent>
@@ -108,8 +108,8 @@ export function ChartCodeViewer({
         )}
       >
         <SheetHeader className="sr-only">
-          <SheetTitle>Code</SheetTitle>
-          <SheetDescription>View the code for the chart.</SheetDescription>
+          <SheetTitle>コード</SheetTitle>
+          <SheetDescription>チャートのコードを表示します。</SheetDescription>
         </SheetHeader>
         {content}
       </SheetContent>

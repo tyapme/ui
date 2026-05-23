@@ -46,13 +46,13 @@ const FormSchema = v.object({
       v.object({
         address: v.pipe(
           v.string(),
-          v.nonEmpty("Enter an email address."),
-          v.email("Enter a valid email address.")
+          v.nonEmpty("メールアドレスを入力してください。"),
+          v.email("有効なメールアドレスを入力してください。")
         ),
       })
     ),
-    v.minLength(1, "Add at least one email address."),
-    v.maxLength(5, "You can add up to 5 email addresses.")
+    v.minLength(1, "メールアドレスを少なくとも1つ追加してください。"),
+    v.maxLength(5, "メールアドレスは最大5つまで登録できます。")
   ),
 })
 
@@ -65,7 +65,7 @@ export default function FormFormischArray() {
   })
 
   const handleSubmit: SubmitHandler<typeof FormSchema> = (output) => {
-    toast("You submitted the following values:", {
+    toast("以下の内容を送信しました：", {
       description: (
         <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
           <code>{JSON.stringify(output, null, 2)}</code>
@@ -84,17 +84,17 @@ export default function FormFormischArray() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader className="border-b">
-        <CardTitle>Contact Emails</CardTitle>
-        <CardDescription>Manage your contact email addresses.</CardDescription>
+        <CardTitle>連絡先メール</CardTitle>
+        <CardDescription>連絡先のメールアドレスを管理します。</CardDescription>
       </CardHeader>
       <CardContent>
         <Form of={form} id="form-formisch-array" onSubmit={handleSubmit}>
           <FieldArray of={form} path={["emails"]}>
             {(fieldArray) => (
               <FieldSet className="gap-4">
-                <FieldLegend variant="label">Email Addresses</FieldLegend>
+                <FieldLegend variant="label">メールアドレス</FieldLegend>
                 <FieldDescription>
-                  Add up to 5 email addresses where we can contact you.
+                  連絡先のメールアドレスを最大5つまで追加できます。
                 </FieldDescription>
                 <FieldGroup className="gap-4">
                   {fieldArray.items.map((item, index) => (
@@ -131,7 +131,7 @@ export default function FormFormischArray() {
                                         at: index,
                                       })
                                     }
-                                    aria-label={`Remove email ${index + 1}`}
+                                    aria-label={`メール ${index + 1} を削除`}
                                   >
                                     <XIcon />
                                   </InputGroupButton>
@@ -162,7 +162,7 @@ export default function FormFormischArray() {
                     }
                     disabled={fieldArray.items.length >= 5}
                   >
-                    Add Email Address
+                    メールアドレスを追加
                   </Button>
                 </FieldGroup>
                 {fieldArray.errors && (
@@ -178,10 +178,10 @@ export default function FormFormischArray() {
       <CardFooter className="border-t">
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => reset(form)}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-formisch-array">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

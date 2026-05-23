@@ -21,38 +21,38 @@ import {
 export default function CommandDemo() {
   return (
     <Command className="rounded-lg border shadow-md md:min-w-[450px]">
-      <CommandInput placeholder="Type a command or search..." />
+      <CommandInput placeholder="コマンドを入力または検索..." />
       <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Suggestions">
+        <CommandEmpty>該当なし。</CommandEmpty>
+        <CommandGroup heading="ていあん">
           <CommandItem>
             <Calendar />
-            <span>Calendar</span>
+            <span>カレンダー</span>
           </CommandItem>
           <CommandItem>
             <Smile />
-            <span>Search Emoji</span>
+            <span>絵文字検索</span>
           </CommandItem>
           <CommandItem disabled>
             <Calculator />
-            <span>Calculator</span>
+            <span>電卓</span>
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />
-        <CommandGroup heading="Settings">
+        <CommandGroup heading="設定">
           <CommandItem>
             <User />
-            <span>Profile</span>
+            <span>プロフィール</span>
             <CommandShortcut>⌘P</CommandShortcut>
           </CommandItem>
           <CommandItem>
             <CreditCard />
-            <span>Billing</span>
+            <span>請求管理</span>
             <CommandShortcut>⌘B</CommandShortcut>
           </CommandItem>
           <CommandItem>
             <Settings />
-            <span>Settings</span>
+            <span>設定</span>
             <CommandShortcut>⌘S</CommandShortcut>
           </CommandItem>
         </CommandGroup>

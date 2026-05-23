@@ -30,11 +30,11 @@ import {
 const tasks = [
   {
     id: "push",
-    label: "Push notifications",
+    label: "プッシュ通知",
   },
   {
     id: "email",
-    label: "Email notifications",
+    label: "メール通知",
   },
 ] as const
 
@@ -42,11 +42,11 @@ const formSchema = z.object({
   responses: z.boolean(),
   tasks: z
     .array(z.string())
-    .min(1, "Please select at least one notification type.")
+    .min(1, "通知の種類を少なくとも1つ選択してください。")
     .refine(
       (value) => value.every((task) => tasks.some((t) => t.id === task)),
       {
-        message: "Invalid notification type selected.",
+        message: "無効な通知の種類が選択されています。",
       }
     ),
 })
@@ -61,7 +61,7 @@ export default function FormRhfCheckbox() {
   })
 
   function onSubmit(data: z.infer<typeof formSchema>) {
-    toast("You submitted the following values:", {
+    toast("以下の内容を送信しました：", {
       description: (
         <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
           <code>{JSON.stringify(data, null, 2)}</code>
@@ -80,8 +80,8 @@ export default function FormRhfCheckbox() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Notifications</CardTitle>
-        <CardDescription>Manage your notification preferences.</CardDescription>
+        <CardTitle>通知</CardTitle>
+        <CardDescription>通知の設定を管理します。</CardDescription>
       </CardHeader>
       <CardContent>
         <form id="form-rhf-checkbox" onSubmit={form.handleSubmit(onSubmit)}>
@@ -92,10 +92,9 @@ export default function FormRhfCheckbox() {
               render={({ field, fieldState }) => (
                 <div>
                   <FieldSet data-invalid={fieldState.invalid}>
-                    <FieldLegend variant="label">Responses</FieldLegend>
+                    <FieldLegend variant="label">返信</FieldLegend>
                     <FieldDescription>
-                      Get notified for requests that take time, like research or
-                      image generation.
+                      リサーチや画像生成など時間のかかるリクエストで通知を受け取ります。
                     </FieldDescription>
                     <FieldGroup data-slot="checkbox-group">
                       <Field orientation="horizontal">
@@ -110,7 +109,7 @@ export default function FormRhfCheckbox() {
                           htmlFor="form-rhf-checkbox-responses"
                           className="font-normal"
                         >
-                          Push notifications
+                          プッシュ通知
                         </FieldLabel>
                       </Field>
                     </FieldGroup>
@@ -128,9 +127,9 @@ export default function FormRhfCheckbox() {
               render={({ field, fieldState }) => (
                 <FieldGroup>
                   <FieldSet data-invalid={fieldState.invalid}>
-                    <FieldLegend variant="label">Tasks</FieldLegend>
+                    <FieldLegend variant="label">タスク</FieldLegend>
                     <FieldDescription>
-                      Get notified when tasks you&apos;ve created have updates.
+                      作成したタスクに更新があるときに通知を受け取ります。
                     </FieldDescription>
                     <FieldGroup data-slot="checkbox-group">
                       {tasks.map((task) => (
@@ -175,10 +174,10 @@ export default function FormRhfCheckbox() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-rhf-checkbox">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

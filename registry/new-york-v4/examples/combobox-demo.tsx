@@ -57,15 +57,15 @@ export default function ComboboxDemo() {
         >
           {value
             ? frameworks.find((framework) => framework.value === value)?.label
-            : "Select framework..."}
+            : "フレームワークを選択..."}
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." className="h-9" />
+          <CommandInput placeholder="フレームワークを検索..." className="h-9" />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>該当なし。</CommandEmpty>
             <CommandGroup>
               {frameworks.map((framework) => (
                 <CommandItem

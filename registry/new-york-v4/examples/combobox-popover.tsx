@@ -25,23 +25,23 @@ type Status = {
 const statuses: Status[] = [
   {
     value: "backlog",
-    label: "Backlog",
+    label: "バックログ",
   },
   {
     value: "todo",
-    label: "Todo",
+    label: "未着手",
   },
   {
     value: "in progress",
-    label: "In Progress",
+    label: "進行中",
   },
   {
     value: "done",
-    label: "Done",
+    label: "完了",
   },
   {
     value: "canceled",
-    label: "Canceled",
+    label: "キャンセル済み",
   },
 ]
 
@@ -53,18 +53,18 @@ export default function ComboboxPopover() {
 
   return (
     <div className="flex items-center space-x-4">
-      <p className="text-sm text-muted-foreground">Status</p>
+      <p className="text-sm text-muted-foreground">ステータス</p>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button variant="outline" className="w-[150px] justify-start">
-            {selectedStatus ? <>{selectedStatus.label}</> : <>+ Set status</>}
+            {selectedStatus ? <>{selectedStatus.label}</> : <>＋ステータスを設定</>}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="p-0" side="right" align="start">
           <Command>
-            <CommandInput placeholder="Change status..." />
+            <CommandInput placeholder="ステータスを変更..." />
             <CommandList>
-              <CommandEmpty>No results found.</CommandEmpty>
+              <CommandEmpty>該当なし。</CommandEmpty>
               <CommandGroup>
                 {statuses.map((status) => (
                   <CommandItem

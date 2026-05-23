@@ -27,10 +27,10 @@ export default function HoverCardDemo() {
           <div className="space-y-1">
             <h4 className="text-sm font-semibold">@nextjs</h4>
             <p className="text-sm">
-              The React Framework – created and maintained by @vercel.
+              Reactフレームワーク——@vercelによって作成・維持されています。
             </p>
             <div className="text-xs text-muted-foreground">
-              Joined December 2021
+              2021年12月に参加
             </div>
           </div>
         </div>

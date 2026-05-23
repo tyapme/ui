@@ -34,57 +34,56 @@ export default function DropdownMenuDialog() {
     <>
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" aria-label="Open menu" size="icon-sm">
+          <Button variant="outline" aria-label="メニューを開く" size="icon-sm">
             <MoreHorizontalIcon />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-40" align="end">
-          <DropdownMenuLabel>File Actions</DropdownMenuLabel>
+          <DropdownMenuLabel>ファイル操作</DropdownMenuLabel>
           <DropdownMenuGroup>
             <DropdownMenuItem onSelect={() => setShowNewDialog(true)}>
-              New File...
+              新規ファイル...
             </DropdownMenuItem>
             <DropdownMenuItem onSelect={() => setShowShareDialog(true)}>
-              Share...
+              共有...
             </DropdownMenuItem>
-            <DropdownMenuItem disabled>Download</DropdownMenuItem>
+            <DropdownMenuItem disabled>ダウンロード</DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
       <Dialog open={showNewDialog} onOpenChange={setShowNewDialog}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Create New File</DialogTitle>
+            <DialogTitle>新規ファイルを作成</DialogTitle>
             <DialogDescription>
-              Provide a name for your new file. Click create when you&apos;re
-              done.
+              新しいファイルの名前を入力してください。完了したら作成をクリックしてください。
             </DialogDescription>
           </DialogHeader>
           <FieldGroup className="pb-3">
             <Field>
-              <FieldLabel htmlFor="filename">File Name</FieldLabel>
+              <FieldLabel htmlFor="filename">ファイル名</FieldLabel>
               <Input id="filename" name="filename" placeholder="document.txt" />
             </Field>
           </FieldGroup>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">キャンセル</Button>
             </DialogClose>
-            <Button type="submit">Create</Button>
+            <Button type="submit">作成</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
       <Dialog open={showShareDialog} onOpenChange={setShowShareDialog}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Share File</DialogTitle>
+            <DialogTitle>ファイルを共有</DialogTitle>
             <DialogDescription>
-              Anyone with the link will be able to view this file.
+              リンクを持っている人は誤れなくこのファイルを表示できます。
             </DialogDescription>
           </DialogHeader>
           <FieldGroup className="py-3">
             <Field>
-              <Label htmlFor="email">Email Address</Label>
+              <Label htmlFor="email">メールアドレス</Label>
               <Input
                 id="email"
                 name="email"
@@ -94,19 +93,19 @@ export default function DropdownMenuDialog() {
               />
             </Field>
             <Field>
-              <FieldLabel htmlFor="message">Message (Optional)</FieldLabel>
+              <FieldLabel htmlFor="message">メッセージ（任意）</FieldLabel>
               <Textarea
                 id="message"
                 name="message"
-                placeholder="Check out this file"
+                placeholder="このファイルを見てください"
               />
             </Field>
           </FieldGroup>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">キャンセル</Button>
             </DialogClose>
-            <Button type="submit">Send Invite</Button>
+            <Button type="submit">招待を送る</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

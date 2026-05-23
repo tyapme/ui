@@ -32,11 +32,11 @@ import {
 } from "@/registry/new-york-v4/ui/dropdown-menu"
 
 const items = [
-  { href: "#", label: "Home" },
-  { href: "#", label: "Documentation" },
-  { href: "#", label: "Build Your Application" },
-  { href: "#", label: "Data Fetching" },
-  { label: "Caching and Revalidating" },
+  { href: "#", label: "ホーム" },
+  { href: "#", label: "ドキュメント" },
+  { href: "#", label: "アプリの構築" },
+  { href: "#", label: "データ取得" },
+  { label: "キャッシュと再検証" },
 ]
 
 const ITEMS_TO_DISPLAY = 3
@@ -61,7 +61,7 @@ export default function BreadcrumbResponsive() {
                 <DropdownMenu open={open} onOpenChange={setOpen}>
                   <DropdownMenuTrigger
                     className="flex items-center gap-1"
-                    aria-label="Toggle menu"
+                    aria-label="メニューを切り替え"
                   >
                     <BreadcrumbEllipsis className="size-4" />
                   </DropdownMenuTrigger>
@@ -77,14 +77,14 @@ export default function BreadcrumbResponsive() {
                 </DropdownMenu>
               ) : (
                 <Drawer open={open} onOpenChange={setOpen}>
-                  <DrawerTrigger aria-label="Toggle Menu">
+                  <DrawerTrigger aria-label="メニューを切り替え">
                     <BreadcrumbEllipsis className="h-4 w-4" />
                   </DrawerTrigger>
                   <DrawerContent>
                     <DrawerHeader className="text-left">
-                      <DrawerTitle>Navigate to</DrawerTitle>
+                      <DrawerTitle>ページに移動</DrawerTitle>
                       <DrawerDescription>
-                        Select a page to navigate to.
+                        移動先のページを選択してください。
                       </DrawerDescription>
                     </DrawerHeader>
                     <div className="grid gap-1 px-4">
@@ -100,7 +100,7 @@ export default function BreadcrumbResponsive() {
                     </div>
                     <DrawerFooter className="pt-4">
                       <DrawerClose asChild>
-                        <Button variant="outline">Close</Button>
+                        <Button variant="outline">閉じる</Button>
                       </DrawerClose>
                     </DrawerFooter>
                   </DrawerContent>

@@ -18,45 +18,45 @@ export default function ContextMenuDemo() {
   return (
     <ContextMenu>
       <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
-        Right click here
+        右クリックしてください
       </ContextMenuTrigger>
       <ContextMenuContent className="w-52">
         <ContextMenuItem inset>
-          Back
+          戻る
           <ContextMenuShortcut>⌘[</ContextMenuShortcut>
         </ContextMenuItem>
         <ContextMenuItem inset disabled>
-          Forward
+          進む
           <ContextMenuShortcut>⌘]</ContextMenuShortcut>
         </ContextMenuItem>
         <ContextMenuItem inset>
-          Reload
+          再読み込み
           <ContextMenuShortcut>⌘R</ContextMenuShortcut>
         </ContextMenuItem>
         <ContextMenuSub>
-          <ContextMenuSubTrigger inset>More Tools</ContextMenuSubTrigger>
+          <ContextMenuSubTrigger inset>その他のツール</ContextMenuSubTrigger>
           <ContextMenuSubContent className="w-44">
-            <ContextMenuItem>Save Page...</ContextMenuItem>
-            <ContextMenuItem>Create Shortcut...</ContextMenuItem>
-            <ContextMenuItem>Name Window...</ContextMenuItem>
+            <ContextMenuItem>ページを保存...</ContextMenuItem>
+            <ContextMenuItem>ショートカットを作成...</ContextMenuItem>
+            <ContextMenuItem>ウィンドウを設定...</ContextMenuItem>
             <ContextMenuSeparator />
-            <ContextMenuItem>Developer Tools</ContextMenuItem>
+            <ContextMenuItem>開発者ツール</ContextMenuItem>
             <ContextMenuSeparator />
-            <ContextMenuItem variant="destructive">Delete</ContextMenuItem>
+            <ContextMenuItem variant="destructive">削除</ContextMenuItem>
           </ContextMenuSubContent>
         </ContextMenuSub>
         <ContextMenuSeparator />
         <ContextMenuCheckboxItem checked>
-          Show Bookmarks
+          ブックマークを表示
         </ContextMenuCheckboxItem>
-        <ContextMenuCheckboxItem>Show Full URLs</ContextMenuCheckboxItem>
+        <ContextMenuCheckboxItem>完全URLを表示</ContextMenuCheckboxItem>
         <ContextMenuSeparator />
         <ContextMenuRadioGroup value="pedro">
-          <ContextMenuLabel inset>People</ContextMenuLabel>
+          <ContextMenuLabel inset>メンバー</ContextMenuLabel>
           <ContextMenuRadioItem value="pedro">
-            Pedro Duarte
+            田中 太郎
           </ContextMenuRadioItem>
-          <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>
+          <ContextMenuRadioItem value="colm">金山 花子</ContextMenuRadioItem>
         </ContextMenuRadioGroup>
       </ContextMenuContent>
     </ContextMenu>

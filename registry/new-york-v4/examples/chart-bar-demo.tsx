@@ -8,21 +8,21 @@ import {
 } from "@/registry/new-york-v4/ui/chart"
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "1月", desktop: 186, mobile: 80 },
+  { month: "2月", desktop: 305, mobile: 200 },
+  { month: "3月", desktop: 237, mobile: 120 },
+  { month: "4月", desktop: 73, mobile: 190 },
+  { month: "5月", desktop: 209, mobile: 130 },
+  { month: "6月", desktop: 214, mobile: 140 },
 ]
 
 const chartConfig = {
   desktop: {
-    label: "Desktop",
+    label: "デスクトップ",
     color: "#2563eb",
   },
   mobile: {
-    label: "Mobile",
+    label: "モバイル",
     color: "#60a5fa",
   },
 } satisfies ChartConfig

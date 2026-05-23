@@ -7,19 +7,19 @@ import { Button } from "@/registry/new-york-v4/ui/button"
 export default function SonnerTypes() {
   return (
     <div className="flex flex-wrap gap-2">
-      <Button variant="outline" onClick={() => toast("Event has been created")}>
+      <Button variant="outline" onClick={() => toast("イベントが登録されました")}>
         Default
       </Button>
       <Button
         variant="outline"
-        onClick={() => toast.success("Event has been created")}
+        onClick={() => toast.success("イベントが登録されました")}
       >
         Success
       </Button>
       <Button
         variant="outline"
         onClick={() =>
-          toast.info("Be at the area 10 minutes before the event time")
+          toast.info("イベント開始の10分前に現地にお越しください")
         }
       >
         Info
@@ -27,14 +27,14 @@ export default function SonnerTypes() {
       <Button
         variant="outline"
         onClick={() =>
-          toast.warning("Event start time cannot be earlier than 8am")
+          toast.warning("イベントの開始時刱80時以前は設定できません")
         }
       >
         Warning
       </Button>
       <Button
         variant="outline"
-        onClick={() => toast.error("Event has not been created")}
+        onClick={() => toast.error("イベントの登録に失敗しました")}
       >
         Error
       </Button>
@@ -47,9 +47,9 @@ export default function SonnerTypes() {
                 setTimeout(() => resolve({ name: "Event" }), 2000)
               ),
             {
-              loading: "Loading...",
-              success: (data) => `${data.name} has been created`,
-              error: "Error",
+              loading: "読み込み中...",
+              success: (data) => `${data.name} が登録されました`,
+              error: "エラー",
             }
           )
         }}

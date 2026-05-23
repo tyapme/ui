@@ -33,12 +33,12 @@ import {
 const formSchema = z.object({
   title: z
     .string()
-    .min(5, "Bug title must be at least 5 characters.")
-    .max(32, "Bug title must be at most 32 characters."),
+    .min(5, "バグタイトルは5文字以上で入力してください。")
+    .max(32, "バグタイトルは32文字以内で入力してください。"),
   description: z
     .string()
-    .min(20, "Description must be at least 20 characters.")
-    .max(100, "Description must be at most 100 characters."),
+    .min(20, "説明は20文字以上で入力してください。")
+    .max(100, "説明は100文字以内で入力してください。"),
 })
 
 export default function BugReportForm() {
@@ -51,7 +51,7 @@ export default function BugReportForm() {
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      toast("You submitted the following values:", {
+      toast("以下の内容を送信しました：", {
         description: (
           <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
             <code>{JSON.stringify(value, null, 2)}</code>
@@ -71,9 +71,9 @@ export default function BugReportForm() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Bug Report</CardTitle>
+        <CardTitle>バグ報告</CardTitle>
         <CardDescription>
-          Help us improve by reporting bugs you encounter.
+          気づいたバグを報告して、改善にご協力ください。
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -92,7 +92,7 @@ export default function BugReportForm() {
                   field.state.meta.isTouched && !field.state.meta.isValid
                 return (
                   <Field data-invalid={isInvalid}>
-                    <FieldLabel htmlFor={field.name}>Bug Title</FieldLabel>
+                    <FieldLabel htmlFor={field.name}>バグタイトル</FieldLabel>
                     <Input
                       id={field.name}
                       name={field.name}
@@ -100,7 +100,7 @@ export default function BugReportForm() {
                       onBlur={field.handleBlur}
                       onChange={(e) => field.handleChange(e.target.value)}
                       aria-invalid={isInvalid}
-                      placeholder="Login button not working on mobile"
+                      placeholder="モバイルでログインボタンが機能しない"
                       autoComplete="off"
                     />
                     {isInvalid && (
@@ -117,7 +117,7 @@ export default function BugReportForm() {
                   field.state.meta.isTouched && !field.state.meta.isValid
                 return (
                   <Field data-invalid={isInvalid}>
-                    <FieldLabel htmlFor={field.name}>Description</FieldLabel>
+                    <FieldLabel htmlFor={field.name}>説明</FieldLabel>
                     <InputGroup>
                       <InputGroupTextarea
                         id={field.name}
@@ -125,20 +125,19 @@ export default function BugReportForm() {
                         value={field.state.value}
                         onBlur={field.handleBlur}
                         onChange={(e) => field.handleChange(e.target.value)}
-                        placeholder="I'm having an issue with the login button on mobile."
+                        placeholder="モバイルでログインボタンに問題があります。"
                         rows={6}
                         className="min-h-24 resize-none"
                         aria-invalid={isInvalid}
                       />
                       <InputGroupAddon align="block-end">
                         <InputGroupText className="tabular-nums">
-                          {field.state.value.length}/100 characters
+                          {field.state.value.length}/100 文字
                         </InputGroupText>
                       </InputGroupAddon>
                     </InputGroup>
                     <FieldDescription>
-                      Include steps to reproduce, expected behavior, and what
-                      actually happened.
+                      再現手順、期待される振る舞い、実際の振る舞いを記入してください。
                     </FieldDescription>
                     {isInvalid && (
                       <FieldError errors={field.state.meta.errors} />
@@ -153,10 +152,10 @@ export default function BugReportForm() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="bug-report-form">
-            Submit
+            送信
           </Button>
         </Field>
       </CardFooter>

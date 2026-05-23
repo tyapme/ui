@@ -5,7 +5,7 @@ export default function ButtonLoading() {
   return (
     <Button size="sm" variant="outline" disabled>
       <Spinner />
-      Submit
+      送信
     </Button>
   )
 }

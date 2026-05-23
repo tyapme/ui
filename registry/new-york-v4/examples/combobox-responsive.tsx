@@ -31,23 +31,23 @@ type Status = {
 const statuses: Status[] = [
   {
     value: "backlog",
-    label: "Backlog",
+    label: "バックログ",
   },
   {
     value: "todo",
-    label: "Todo",
+    label: "未着手",
   },
   {
     value: "in progress",
-    label: "In Progress",
+    label: "進行中",
   },
   {
     value: "done",
-    label: "Done",
+    label: "完了",
   },
   {
     value: "canceled",
-    label: "Canceled",
+    label: "キャンセル済み",
   },
 ]
 
@@ -63,7 +63,7 @@ export default function ComboBoxResponsive() {
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button variant="outline" className="w-[150px] justify-start">
-            {selectedStatus ? <>{selectedStatus.label}</> : <>+ Set status</>}
+            {selectedStatus ? <>{selectedStatus.label}</> : <>＋ステータスを設定</>}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0" align="start">
@@ -77,7 +77,7 @@ export default function ComboBoxResponsive() {
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         <Button variant="outline" className="w-[150px] justify-start">
-          {selectedStatus ? <>{selectedStatus.label}</> : <>+ Set status</>}
+          {selectedStatus ? <>{selectedStatus.label}</> : <>＋ステータスを設定</>}
         </Button>
       </DrawerTrigger>
       <DrawerContent>
@@ -98,9 +98,9 @@ function StatusList({
 }) {
   return (
     <Command>
-      <CommandInput placeholder="Filter status..." />
+      <CommandInput placeholder="ステータスをフィルター..." />
       <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandEmpty>該当なし。</CommandEmpty>
         <CommandGroup>
           {statuses.map((status) => (
             <CommandItem

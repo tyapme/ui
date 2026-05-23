@@ -10,9 +10,9 @@ export default function AlertDestructive() {
   return (
     <Alert variant="destructive">
       <AlertCircleIcon />
-      <AlertTitle>Error</AlertTitle>
+      <AlertTitle>エラー</AlertTitle>
       <AlertDescription>
-        Your session has expired. Please log in again.
+        セッションが切れました。再度ログインしてください。
       </AlertDescription>
     </Alert>
   )

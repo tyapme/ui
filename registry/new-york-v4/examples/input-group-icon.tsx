@@ -17,19 +17,19 @@ export default function InputGroupIcon() {
   return (
     <div className="grid w-full max-w-sm gap-6">
       <InputGroup>
-        <InputGroupInput placeholder="Search..." />
+        <InputGroupInput placeholder="検索..." />
         <InputGroupAddon>
           <SearchIcon />
         </InputGroupAddon>
       </InputGroup>
       <InputGroup>
-        <InputGroupInput type="email" placeholder="Enter your email" />
+        <InputGroupInput type="email" placeholder="メールアドレスを入力" />
         <InputGroupAddon>
           <MailIcon />
         </InputGroupAddon>
       </InputGroup>
       <InputGroup>
-        <InputGroupInput placeholder="Card number" />
+        <InputGroupInput placeholder="カード番号" />
         <InputGroupAddon>
           <CreditCardIcon />
         </InputGroupAddon>
@@ -38,7 +38,7 @@ export default function InputGroupIcon() {
         </InputGroupAddon>
       </InputGroup>
       <InputGroup>
-        <InputGroupInput placeholder="Card number" />
+        <InputGroupInput placeholder="カード番号" />
         <InputGroupAddon align="inline-end">
           <StarIcon />
           <InfoIcon />

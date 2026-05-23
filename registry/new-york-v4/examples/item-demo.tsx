@@ -15,14 +15,14 @@ export default function ItemDemo() {
     <div className="flex w-full max-w-md flex-col gap-6">
       <Item variant="outline">
         <ItemContent>
-          <ItemTitle>Basic Item</ItemTitle>
+          <ItemTitle>基本アイテム</ItemTitle>
           <ItemDescription>
-            A simple item with title and description.
+            タイトルと説明があるシンプルなアイテムです。
           </ItemDescription>
         </ItemContent>
         <ItemActions>
           <Button variant="outline" size="sm">
-            Action
+            アクション
           </Button>
         </ItemActions>
       </Item>
@@ -32,7 +32,7 @@ export default function ItemDemo() {
             <BadgeCheckIcon className="size-5" />
           </ItemMedia>
           <ItemContent>
-            <ItemTitle>Your profile has been verified.</ItemTitle>
+            <ItemTitle>プロフィールが認証されました。</ItemTitle>
           </ItemContent>
           <ItemActions>
             <ChevronRightIcon className="size-4" />

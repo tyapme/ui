@@ -14,16 +14,16 @@ export default function SelectDemo() {
   return (
     <Select>
       <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Select a fruit" />
+        <SelectValue placeholder="果物を選択" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>Fruits</SelectLabel>
-          <SelectItem value="apple">Apple</SelectItem>
-          <SelectItem value="banana">Banana</SelectItem>
-          <SelectItem value="blueberry">Blueberry</SelectItem>
-          <SelectItem value="grapes">Grapes</SelectItem>
-          <SelectItem value="pineapple">Pineapple</SelectItem>
+          <SelectLabel>果物</SelectLabel>
+          <SelectItem value="apple">リンゴ</SelectItem>
+          <SelectItem value="banana">バナナ</SelectItem>
+          <SelectItem value="blueberry">ブルーベリー</SelectItem>
+          <SelectItem value="grapes">ブドウ</SelectItem>
+          <SelectItem value="pineapple">パイナップル</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>

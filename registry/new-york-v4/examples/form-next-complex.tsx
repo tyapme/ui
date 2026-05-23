@@ -53,8 +53,8 @@ export default function FormNextComplex() {
 
   React.useEffect(() => {
     if (formState.success) {
-      toast.success("Preferences saved", {
-        description: "Your subscription plan has been updated.",
+      toast.success("設定を保存しました", {
+        description: "サブスクリプションプランを更新しました。",
       })
     }
   }, [formState.success])
@@ -112,7 +112,7 @@ export default function FormNextComplex() {
                 aria-invalid={!!formState.errors?.billingPeriod?.length}
               >
                 <SelectTrigger id="billingPeriod">
-                  <SelectValue placeholder="Select" />
+                  <SelectValue placeholder="選択" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="monthly">Monthly</SelectItem>

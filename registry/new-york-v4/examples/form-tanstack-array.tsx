@@ -52,7 +52,7 @@ export default function FormTanstackArray() {
       onBlur: formSchema,
     },
     onSubmit: async ({ value }) => {
-      toast("You submitted the following values:", {
+      toast("以下の内容を送信しました：", {
         description: (
           <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
             <code>{JSON.stringify(value, null, 2)}</code>
@@ -72,8 +72,8 @@ export default function FormTanstackArray() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader className="border-b">
-        <CardTitle>Contact Emails</CardTitle>
-        <CardDescription>Manage your contact email addresses.</CardDescription>
+        <CardTitle>連絡先メール</CardTitle>
+        <CardDescription>連絡先のメールアドレスを管理します。</CardDescription>
       </CardHeader>
       <CardContent>
         <form
@@ -89,9 +89,9 @@ export default function FormTanstackArray() {
                 field.state.meta.isTouched && !field.state.meta.isValid
               return (
                 <FieldSet className="gap-4">
-                  <FieldLegend variant="label">Email Addresses</FieldLegend>
+                  <FieldLegend variant="label">メールアドレス</FieldLegend>
                   <FieldDescription>
-                    Add up to 5 email addresses where we can contact you.
+                    連絡先のメールアドレスを最大5つまで追加できます。
                   </FieldDescription>
                   <FieldGroup className="gap-4">
                     {field.state.value.map((_, index) => (
@@ -129,7 +129,7 @@ export default function FormTanstackArray() {
                                         variant="ghost"
                                         size="icon-xs"
                                         onClick={() => field.removeValue(index)}
-                                        aria-label={`Remove email ${index + 1}`}
+                                        aria-label={`メール ${index + 1} を削除`}
                                       >
                                         <XIcon />
                                       </InputGroupButton>
@@ -154,7 +154,7 @@ export default function FormTanstackArray() {
                       onClick={() => field.pushValue({ address: "" })}
                       disabled={field.state.value.length >= 5}
                     >
-                      Add Email Address
+                      メールアドレスを追加
                     </Button>
                   </FieldGroup>
                   {isInvalid && <FieldError errors={field.state.meta.errors} />}
@@ -167,10 +167,10 @@ export default function FormTanstackArray() {
       <CardFooter className="border-t">
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-tanstack-array">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

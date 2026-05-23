@@ -6,11 +6,11 @@ import {
 export default function NativeSelectInvalid() {
   return (
     <NativeSelect aria-invalid="true">
-      <NativeSelectOption value="">Select role</NativeSelectOption>
-      <NativeSelectOption value="admin">Admin</NativeSelectOption>
-      <NativeSelectOption value="editor">Editor</NativeSelectOption>
-      <NativeSelectOption value="viewer">Viewer</NativeSelectOption>
-      <NativeSelectOption value="guest">Guest</NativeSelectOption>
+      <NativeSelectOption value="">ロールを選択</NativeSelectOption>
+      <NativeSelectOption value="admin">管理者</NativeSelectOption>
+      <NativeSelectOption value="editor">編集者</NativeSelectOption>
+      <NativeSelectOption value="viewer">閲覧者</NativeSelectOption>
+      <NativeSelectOption value="guest">ゲスト</NativeSelectOption>
     </NativeSelect>
   )
 }

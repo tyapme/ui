@@ -28,7 +28,7 @@ export function DocsPageLinks({ page, url }: { page: string; url: string }) {
             ) : (
               <IconCopy className="size-4" />
             )}
-            Copy page
+            ページをコピー
           </button>
         </li>
         <li>
@@ -46,7 +46,7 @@ export function DocsPageLinks({ page, url }: { page: string; url: string }) {
                 fill="currentColor"
               />
             </svg>
-            View as Markdown
+            Markdownで表示
           </a>
         </li>
         <li>
@@ -66,7 +66,7 @@ export function DocsPageLinks({ page, url }: { page: string; url: string }) {
                 fill="currentColor"
               />
             </svg>
-            Open in ChatGPT
+            ChatGPTで開く
           </a>
         </li>
         <li>
@@ -86,7 +86,7 @@ export function DocsPageLinks({ page, url }: { page: string; url: string }) {
                 fill="currentColor"
               />
             </svg>
-            Open in Claude
+            Claudeで開く
           </a>
         </li>
         <li>
@@ -152,7 +152,7 @@ export function DocsPageLinks({ page, url }: { page: string; url: string }) {
                 strokeLinejoin="round"
               />
             </svg>
-            Open in Scira
+            Sciraで開く
           </a>
         </li>
       </ul>

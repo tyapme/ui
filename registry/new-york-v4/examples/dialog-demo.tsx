@@ -17,31 +17,30 @@ export default function DialogDemo() {
     <Dialog>
       <form>
         <DialogTrigger asChild>
-          <Button variant="outline">Open Dialog</Button>
+          <Button variant="outline">ダイアログを開く</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
+            <DialogTitle>プロフィールを編集</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when you&apos;re
-              done.
+              ここでプロフィールを変更できます。完了したら保存をクリックしてください。
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4">
             <div className="grid gap-3">
-              <Label htmlFor="name-1">Name</Label>
-              <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
+              <Label htmlFor="name-1">名前</Label>
+              <Input id="name-1" name="name" defaultValue="田中太郎" />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="username-1">Username</Label>
-              <Input id="username-1" name="username" defaultValue="@peduarte" />
+              <Label htmlFor="username-1">ユーザー名</Label>
+              <Input id="username-1" name="username" defaultValue="@tanaka" />
             </div>
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">キャンセル</Button>
             </DialogClose>
-            <Button type="submit">Save changes</Button>
+            <Button type="submit">変更を保存</Button>
           </DialogFooter>
         </DialogContent>
       </form>

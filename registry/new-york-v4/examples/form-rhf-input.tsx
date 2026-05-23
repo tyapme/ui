@@ -26,11 +26,11 @@ import { Input } from "@/registry/new-york-v4/ui/input"
 const formSchema = z.object({
   username: z
     .string()
-    .min(3, "Username must be at least 3 characters.")
-    .max(10, "Username must be at most 10 characters.")
+    .min(3, "ユーザー名は3文字以上入力してください。")
+    .max(10, "ユーザー名は10文字以内で入力してください。")
     .regex(
       /^[a-zA-Z0-9_]+$/,
-      "Username can only contain letters, numbers, and underscores."
+      "ユーザー名に使えるのは英数字とアンダースコアのみです。"
     ),
 })
 
@@ -43,7 +43,7 @@ export default function FormRhfInput() {
   })
 
   function onSubmit(data: z.infer<typeof formSchema>) {
-    toast("You submitted the following values:", {
+    toast("以下の値が送信されました：", {
       description: (
         <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
           <code>{JSON.stringify(data, null, 2)}</code>
@@ -62,9 +62,9 @@ export default function FormRhfInput() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Profile Settings</CardTitle>
+        <CardTitle>プロフィール設定</CardTitle>
         <CardDescription>
-          Update your profile information below.
+          プロフィール情報を更新します。
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -76,7 +76,7 @@ export default function FormRhfInput() {
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel htmlFor="form-rhf-input-username">
-                    Username
+                    ユーザー名
                   </FieldLabel>
                   <Input
                     {...field}
@@ -86,9 +86,7 @@ export default function FormRhfInput() {
                     autoComplete="username"
                   />
                   <FieldDescription>
-                    This is your public display name. Must be between 3 and 10
-                    characters. Must only contain letters, numbers, and
-                    underscores.
+                    公開表示名です。3文字以上10文字以内、英数字とアンダースコアのみ使用できます。
                   </FieldDescription>
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
@@ -102,10 +100,10 @@ export default function FormRhfInput() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-rhf-input">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

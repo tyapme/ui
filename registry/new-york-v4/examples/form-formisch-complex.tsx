@@ -44,41 +44,41 @@ import { Switch } from "@/registry/new-york-v4/ui/switch"
 const addons = [
   {
     id: "analytics",
-    title: "Analytics",
-    description: "Advanced analytics and reporting",
+    title: "分析",
+    description: "高度な分析・レポート",
   },
   {
     id: "backup",
-    title: "Backup",
-    description: "Automated daily backups",
+    title: "バックアップ",
+    description: "毎日自動バックアップ",
   },
   {
     id: "support",
-    title: "Priority Support",
-    description: "24/7 premium customer support",
+    title: "優先サポート",
+    description: "24時間4強のプレミアムサポート",
   },
 ] as const
 
 const FormSchema = v.object({
   plan: v.pipe(
     v.string(),
-    v.minLength(1, "Please select a subscription plan"),
+    v.minLength(1, "サブスクリプションプランを選択してください"),
     v.check(
       (value) => value === "basic" || value === "pro",
-      "Invalid plan selection. Please choose Basic or Pro"
+      "無効なプランです。BasicまたはProを選択してください"
     )
   ),
   billingPeriod: v.pipe(
     v.string(),
-    v.minLength(1, "Please select a billing period")
+    v.minLength(1, "請求期間を選択してください")
   ),
   addons: v.pipe(
     v.array(v.string()),
-    v.minLength(1, "Please select at least one add-on"),
-    v.maxLength(3, "You can select up to 3 add-ons"),
+    v.minLength(1, "アドオンを少なくとも1つ選択してください"),
+    v.maxLength(3, "アドオンは最大3つまで選択できます"),
     v.check(
       (value) => value.every((addon) => addons.some((a) => a.id === addon)),
-      "You selected an invalid add-on"
+      "無効なアドオンが選ばれています"
     )
   ),
   emailNotifications: v.boolean(),
@@ -96,7 +96,7 @@ export default function FormFormischComplex() {
   })
 
   const handleSubmit: SubmitHandler<typeof FormSchema> = (output) => {
-    toast("You submitted the following values:", {
+    toast("以下の内容を送信しました：", {
       description: (
         <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
           <code>{JSON.stringify(output, null, 2)}</code>
@@ -115,9 +115,9 @@ export default function FormFormischComplex() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader className="border-b">
-        <CardTitle>You&apos;re almost there!</CardTitle>
+        <CardTitle>もう少しで完了です！</CardTitle>
         <CardDescription>
-          Choose your subscription plan and billing period.
+          サブスクリプションプランと請求期間を選択してください。
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -126,9 +126,9 @@ export default function FormFormischComplex() {
             <FormischField of={form} path={["plan"]}>
               {(field) => (
                 <FieldSet data-invalid={field.errors !== null}>
-                  <FieldLegend variant="label">Subscription Plan</FieldLegend>
+                  <FieldLegend variant="label">サブスクリプションプラン</FieldLegend>
                   <FieldDescription>
-                    Choose your subscription plan.
+                    プランを選択してください。
                   </FieldDescription>
                   <RadioGroup
                     value={field.input ?? ""}
@@ -140,7 +140,7 @@ export default function FormFormischComplex() {
                         <FieldContent>
                           <FieldTitle>Basic</FieldTitle>
                           <FieldDescription>
-                            For individuals and small teams
+                            個人や小規模チーム向け
                           </FieldDescription>
                         </FieldContent>
                         <RadioGroupItem
@@ -154,7 +154,7 @@ export default function FormFormischComplex() {
                         <FieldContent>
                           <FieldTitle>Pro</FieldTitle>
                           <FieldDescription>
-                            For businesses with higher demands
+                            高い需求のあるビジネス向け
                           </FieldDescription>
                         </FieldContent>
                         <RadioGroupItem
@@ -177,7 +177,7 @@ export default function FormFormischComplex() {
               {(field) => (
                 <Field data-invalid={field.errors !== null}>
                   <FieldLabel htmlFor="form-formisch-complex-billingPeriod">
-                    Billing Period
+                    請求期間
                   </FieldLabel>
                   <Select
                     value={field.input ?? ""}
@@ -187,15 +187,15 @@ export default function FormFormischComplex() {
                       id="form-formisch-complex-billingPeriod"
                       aria-invalid={field.errors !== null}
                     >
-                      <SelectValue placeholder="Select" />
+                      <SelectValue placeholder="選択" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="monthly">Monthly</SelectItem>
-                      <SelectItem value="yearly">Yearly</SelectItem>
+                      <SelectItem value="monthly">毎月払い</SelectItem>
+                      <SelectItem value="yearly">年払い</SelectItem>
                     </SelectContent>
                   </Select>
                   <FieldDescription>
-                    Choose how often you want to be billed.
+                    請求の頻度を選択してください。
                   </FieldDescription>
                   {field.errors && (
                     <FieldError
@@ -211,9 +211,9 @@ export default function FormFormischComplex() {
                 const current = field.input ?? []
                 return (
                   <FieldSet>
-                    <FieldLegend>Add-ons</FieldLegend>
+                    <FieldLegend>アドオン</FieldLegend>
                     <FieldDescription>
-                      Select additional features you&apos;d like to include.
+                      追加したい機能を選択してください。
                     </FieldDescription>
                     <FieldGroup data-slot="checkbox-group">
                       {addons.map((addon) => (
@@ -267,10 +267,10 @@ export default function FormFormischComplex() {
                 >
                   <FieldContent>
                     <FieldLabel htmlFor="form-formisch-complex-emailNotifications">
-                      Email Notifications
+                      メール通知
                     </FieldLabel>
                     <FieldDescription>
-                      Receive email updates about your subscription
+                      サブスクリプションの更新情報をメールで受け取る
                     </FieldDescription>
                   </FieldContent>
                   <Switch
@@ -293,10 +293,10 @@ export default function FormFormischComplex() {
       <CardFooter className="border-t">
         <Field>
           <Button type="submit" form="form-formisch-complex">
-            Save Preferences
+            設定を保存
           </Button>
           <Button type="button" variant="outline" onClick={() => reset(form)}>
-            Reset
+            リセット
           </Button>
         </Field>
       </CardFooter>

@@ -27,7 +27,7 @@ import { Switch } from "@/registry/new-york-v4/ui/switch"
 
 const formSchema = z.object({
   twoFactor: z.boolean().refine((val) => val === true, {
-    message: "It is highly recommended to enable two-factor authentication.",
+    message: "二要素認証の有効化を強くお勧めします。",
   }),
 })
 
@@ -40,7 +40,7 @@ export default function FormRhfSwitch() {
   })
 
   function onSubmit(data: z.infer<typeof formSchema>) {
-    toast("You submitted the following values:", {
+    toast("以下の値が送信されました：", {
       description: (
         <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
           <code>{JSON.stringify(data, null, 2)}</code>
@@ -59,9 +59,9 @@ export default function FormRhfSwitch() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Security Settings</CardTitle>
+        <CardTitle>セキュリティ設定</CardTitle>
         <CardDescription>
-          Manage your account security preferences.
+          アカウントのセキュリティ設定を管理します。
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -77,10 +77,10 @@ export default function FormRhfSwitch() {
                 >
                   <FieldContent>
                     <FieldLabel htmlFor="form-rhf-switch-twoFactor">
-                      Multi-factor authentication
+                      多要素認証
                     </FieldLabel>
                     <FieldDescription>
-                      Enable multi-factor authentication to secure your account.
+                      多要素認証を有効にしてアカウントを保護します。
                     </FieldDescription>
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
@@ -102,10 +102,10 @@ export default function FormRhfSwitch() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-rhf-switch">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

@@ -22,7 +22,7 @@ export function InputGroupButtonExample() {
   return (
     <div className="grid w-full max-w-sm gap-6">
       <Label htmlFor="input-secure-19" className="sr-only">
-        Input Secure
+        安全な入力欄
       </Label>
       <InputGroup className="[--radius:9999px]">
         <InputGroupInput id="input-secure-19" className="pl-0.5!" />
@@ -33,7 +33,7 @@ export function InputGroupButtonExample() {
                 <InputGroupButton
                   variant="secondary"
                   size="icon-xs"
-                  aria-label="Info"
+                  aria-label="情報"
                 />
               }
             >
@@ -45,8 +45,8 @@ export function InputGroupButtonExample() {
             alignOffset={10}
             className="flex flex-col gap-1 rounded-xl text-sm"
           >
-            <p className="font-medium">Your connection is not secure.</p>
-            <p>You should not enter any sensitive information on this site.</p>
+            <p className="font-medium">正規の接続ではありません。</p>
+            <p>このサイトに機密情報は入力しないでください。</p>
           </PopoverContent>
         </Popover>
         <InputGroupAddon className="pl-1! text-muted-foreground">
@@ -56,7 +56,7 @@ export function InputGroupButtonExample() {
           <InputGroupButton
             onClick={() => setIsFavorite(!isFavorite)}
             size="icon-xs"
-            aria-label="Favorite"
+            aria-label="お気に入り"
           >
             <IconStar
               data-favorite={isFavorite}

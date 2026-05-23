@@ -27,14 +27,14 @@ export default function ItemAvatar() {
         </ItemMedia>
         <ItemContent>
           <ItemTitle>Evil Rabbit</ItemTitle>
-          <ItemDescription>Last seen 5 months ago</ItemDescription>
+          <ItemDescription>5ヶ月前に最後に確認</ItemDescription>
         </ItemContent>
         <ItemActions>
           <Button
             size="icon-sm"
             variant="outline"
             className="rounded-full"
-            aria-label="Invite"
+            aria-label="招待"
           >
             <Plus />
           </Button>
@@ -64,14 +64,14 @@ export default function ItemAvatar() {
           </div>
         </ItemMedia>
         <ItemContent>
-          <ItemTitle>No Team Members</ItemTitle>
+          <ItemTitle>チームメンバーなし</ItemTitle>
           <ItemDescription>
-            Invite your team to collaborate on this project.
+            チームを招待してこのプロジェクトで協力しましょう。
           </ItemDescription>
         </ItemContent>
         <ItemActions>
           <Button size="sm" variant="outline">
-            Invite
+            招待
           </Button>
         </ItemActions>
       </Item>

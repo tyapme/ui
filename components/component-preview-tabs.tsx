@@ -68,7 +68,7 @@ export function ComponentPreviewTabs({
                     className="ml-auto size-7"
                   >
                     <IconAlertCircle />
-                    <span className="sr-only">Toggle</span>
+                    <span className="sr-only">切り替え</span>
                   </Button>
                 }
               ></PopoverTrigger>
@@ -153,7 +153,7 @@ export function ComponentPreviewTabs({
                     setIsMobileCodeVisible(true)
                   }}
                 >
-                  View Code
+                  コードを表示
                 </Button>
               </div>
             </div>

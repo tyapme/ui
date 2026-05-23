@@ -7,8 +7,8 @@ import { Input } from "@/registry/new-york-v4/ui/input"
 export default function ButtonGroupInput() {
   return (
     <ButtonGroup>
-      <Input placeholder="Search..." />
-      <Button variant="outline" aria-label="Search">
+      <Input placeholder="検索..." />
+      <Button variant="outline" aria-label="検索">
         <SearchIcon />
       </Button>
     </ButtonGroup>

@@ -23,21 +23,21 @@ export default function CardWithForm() {
   return (
     <Card className="w-[350px]">
       <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
+        <CardTitle>プロジェクトを作成</CardTitle>
+        <CardDescription>ワンクリックで新しいプロジェクトをデプロイ。</CardDescription>
       </CardHeader>
       <CardContent>
         <form>
           <div className="grid w-full items-center gap-6">
             <div className="flex flex-col gap-3">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" placeholder="Name of your project" />
+              <Label htmlFor="name">名前</Label>
+              <Input id="name" placeholder="プロジェクト名を入力" />
             </div>
             <div className="flex flex-col gap-3">
-              <Label htmlFor="framework">Framework</Label>
+              <Label htmlFor="framework">フレームワーク</Label>
               <Select>
                 <SelectTrigger id="framework" className="w-full">
-                  <SelectValue placeholder="Select" />
+                  <SelectValue placeholder="選択" />
                 </SelectTrigger>
                 <SelectContent position="popper">
                   <SelectItem value="next">Next.js</SelectItem>
@@ -51,8 +51,8 @@ export default function CardWithForm() {
         </form>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button>Deploy</Button>
+        <Button variant="outline">キャンセル</Button>
+        <Button>デプロイ</Button>
       </CardFooter>
     </Card>
   )

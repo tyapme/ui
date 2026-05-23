@@ -31,7 +31,7 @@ export default function ButtonGroupInputGroup() {
         <InputGroup>
           <InputGroupInput
             placeholder={
-              voiceEnabled ? "Record and send audio..." : "Send a message..."
+              voiceEnabled ? "音声を録音して送信...": "メッセージを送信..."
             }
             disabled={voiceEnabled}
           />
@@ -48,7 +48,7 @@ export default function ButtonGroupInputGroup() {
                   <AudioLinesIcon />
                 </InputGroupButton>
               </TooltipTrigger>
-              <TooltipContent>Voice Mode</TooltipContent>
+              <TooltipContent>鉢身モード</TooltipContent>
             </Tooltip>
           </InputGroupAddon>
         </InputGroup>

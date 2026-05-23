@@ -4,9 +4,9 @@ import { Toggle } from "@/registry/new-york-v4/ui/toggle"
 
 export default function ToggleWithText() {
   return (
-    <Toggle aria-label="Toggle italic">
+    <Toggle aria-label="イタリックをトグル">
       <Italic />
-      Italic
+      イタリック
     </Toggle>
   )
 }

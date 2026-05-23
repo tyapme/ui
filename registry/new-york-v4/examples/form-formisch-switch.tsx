@@ -30,7 +30,7 @@ const FormSchema = v.object({
     v.boolean(),
     v.check(
       (value) => value === true,
-      "It is highly recommended to enable two-factor authentication."
+      "二要素認証の有効化を強くお勧めします。"
     )
   ),
 })
@@ -44,7 +44,7 @@ export default function FormFormischSwitch() {
   })
 
   const handleSubmit: SubmitHandler<typeof FormSchema> = (output) => {
-    toast("You submitted the following values:", {
+    toast("以下の内容を送信しました：", {
       description: (
         <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
           <code>{JSON.stringify(output, null, 2)}</code>
@@ -63,9 +63,9 @@ export default function FormFormischSwitch() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Security Settings</CardTitle>
+        <CardTitle>セキュリティ設定</CardTitle>
         <CardDescription>
-          Manage your account security preferences.
+          アカウントのセキュリティ設定を管理します。
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -79,10 +79,10 @@ export default function FormFormischSwitch() {
                 >
                   <FieldContent>
                     <FieldLabel htmlFor="form-formisch-switch-twoFactor">
-                      Multi-factor authentication
+                      多要素認証
                     </FieldLabel>
                     <FieldDescription>
-                      Enable multi-factor authentication to secure your account.
+                      多要素認証を有効にしてアカウントを守りましょう。
                     </FieldDescription>
                     {field.errors && (
                       <FieldError
@@ -105,10 +105,10 @@ export default function FormFormischSwitch() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => reset(form)}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-formisch-switch">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

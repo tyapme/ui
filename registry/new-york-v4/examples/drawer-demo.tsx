@@ -68,13 +68,13 @@ export default function DrawerDemo() {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant="outline">Open Drawer</Button>
+        <Button variant="outline">ドロワーを開く</Button>
       </DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
-            <DrawerTitle>Move Goal</DrawerTitle>
-            <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+            <DrawerTitle>ゴールを設定</DrawerTitle>
+            <DrawerDescription>毎日の活動ゴールを設定してください。</DrawerDescription>
           </DrawerHeader>
           <div className="p-4 pb-0">
             <div className="flex items-center justify-center space-x-2">
@@ -86,14 +86,14 @@ export default function DrawerDemo() {
                 disabled={goal <= 200}
               >
                 <Minus />
-                <span className="sr-only">Decrease</span>
+                <span className="sr-only">減らす</span>
               </Button>
               <div className="flex-1 text-center">
                 <div className="text-7xl font-bold tracking-tighter">
                   {goal}
                 </div>
                 <div className="text-[0.70rem] text-muted-foreground uppercase">
-                  Calories/day
+                  カロリー/日
                 </div>
               </div>
               <Button
@@ -104,7 +104,7 @@ export default function DrawerDemo() {
                 disabled={goal >= 400}
               >
                 <Plus />
-                <span className="sr-only">Increase</span>
+                <span className="sr-only">増やす</span>
               </Button>
             </div>
             <div className="mt-3 h-[120px]">
@@ -124,9 +124,9 @@ export default function DrawerDemo() {
             </div>
           </div>
           <DrawerFooter>
-            <Button>Submit</Button>
+            <Button>送信</Button>
             <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">キャンセル</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>

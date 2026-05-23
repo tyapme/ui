@@ -19,12 +19,12 @@ export default function SpinnerItem() {
           <Spinner />
         </ItemMedia>
         <ItemContent>
-          <ItemTitle>Downloading...</ItemTitle>
+          <ItemTitle>ダウンロード中...</ItemTitle>
           <ItemDescription>129 MB / 1000 MB</ItemDescription>
         </ItemContent>
         <ItemActions className="hidden sm:flex">
           <Button variant="outline" size="sm">
-            Cancel
+            キャンセル
           </Button>
         </ItemActions>
         <ItemFooter>

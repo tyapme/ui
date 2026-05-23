@@ -46,7 +46,7 @@ export default function ItemDropdown() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="sm" className="w-fit">
-            Select <ChevronDownIcon />
+            \u9078\u629e <ChevronDownIcon />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-72 [--radius:0.65rem]" align="end">

@@ -16,19 +16,19 @@ export default function DialogCloseButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Share</Button>
+        <Button variant="outline">共有</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Share link</DialogTitle>
+          <DialogTitle>リンクを共有</DialogTitle>
           <DialogDescription>
-            Anyone who has this link will be able to view this.
+            このリンクを持っている人は誤れなく表示できます。
           </DialogDescription>
         </DialogHeader>
         <div className="flex items-center gap-2">
           <div className="grid flex-1 gap-2">
             <Label htmlFor="link" className="sr-only">
-              Link
+              リンク
             </Label>
             <Input
               id="link"
@@ -40,7 +40,7 @@ export default function DialogCloseButton() {
         <DialogFooter className="sm:justify-start">
           <DialogClose asChild>
             <Button type="button" variant="secondary">
-              Close
+              閉じる
             </Button>
           </DialogClose>
         </DialogFooter>

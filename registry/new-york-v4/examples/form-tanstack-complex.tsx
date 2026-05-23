@@ -37,43 +37,43 @@ import { Switch } from "@/registry/new-york-v4/ui/switch"
 const addons = [
   {
     id: "analytics",
-    title: "Analytics",
-    description: "Advanced analytics and reporting",
+    title: "分析",
+    description: "高度な分析・レポート",
   },
   {
     id: "backup",
-    title: "Backup",
-    description: "Automated daily backups",
+    title: "バックアップ",
+    description: "毎日自動バックアップ",
   },
   {
     id: "support",
-    title: "Priority Support",
-    description: "24/7 premium customer support",
+    title: "優先サポート",
+    description: "24時間4強のプレミアムサポート",
   },
 ] as const
 
 const formSchema = z.object({
   plan: z
     .string({
-      required_error: "Please select a subscription plan",
+      required_error: "サブスクリプションプランを選択してください",
     })
-    .min(1, "Please select a subscription plan")
+    .min(1, "サブスクリプションプランを選択してください")
     .refine((value) => value === "basic" || value === "pro", {
-      message: "Invalid plan selection. Please choose Basic or Pro",
+      message: "無効なプランです。BasicまたはProを選択してください",
     }),
   billingPeriod: z
     .string({
-      required_error: "Please select a billing period",
+      required_error: "請求期間を選択してください",
     })
-    .min(1, "Please select a billing period"),
+    .min(1, "請求期間を選択してください"),
   addons: z
     .array(z.string())
-    .min(1, "Please select at least one add-on")
-    .max(3, "You can select up to 3 add-ons")
+    .min(1, "アドオンを少なくとも1つ選択してください")
+    .max(3, "アドオンは最大3つまで選択できます")
     .refine(
       (value) => value.every((addon) => addons.some((a) => a.id === addon)),
       {
-        message: "You selected an invalid add-on",
+        message: "無効なアドオンが選ばれています",
       }
     ),
   emailNotifications: z.boolean(),
@@ -91,7 +91,7 @@ export default function FormTanstackComplex() {
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      toast("You submitted the following values:", {
+      toast("以下の内容を送信しました：", {
         description: (
           <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
             <code>{JSON.stringify(value, null, 2)}</code>
@@ -126,9 +126,9 @@ export default function FormTanstackComplex() {
                   field.state.meta.isTouched && !field.state.meta.isValid
                 return (
                   <FieldSet>
-                    <FieldLegend>Subscription Plan</FieldLegend>
+                    <FieldLegend>サブスクリプションプラン</FieldLegend>
                     <FieldDescription>
-                      Choose your subscription plan.
+                      プランを選択してください。
                     </FieldDescription>
                     <RadioGroup
                       name={field.name}
@@ -143,7 +143,7 @@ export default function FormTanstackComplex() {
                           <FieldContent>
                             <FieldTitle>Basic</FieldTitle>
                             <FieldDescription>
-                              For individuals and small teams
+                              個人や小規模チーム向け
                             </FieldDescription>
                           </FieldContent>
                           <RadioGroupItem
@@ -161,7 +161,7 @@ export default function FormTanstackComplex() {
                           <FieldContent>
                             <FieldTitle>Pro</FieldTitle>
                             <FieldDescription>
-                              For businesses with higher demands
+                              高い需求のあるビジネス向け
                             </FieldDescription>
                           </FieldContent>
                           <RadioGroupItem
@@ -187,7 +187,7 @@ export default function FormTanstackComplex() {
                   field.state.meta.isTouched && !field.state.meta.isValid
                 return (
                   <Field data-invalid={isInvalid}>
-                    <FieldLabel htmlFor={field.name}>Billing Period</FieldLabel>
+                    <FieldLabel htmlFor={field.name}>請求期間</FieldLabel>
                     <Select
                       name={field.name}
                       value={field.state.value}
@@ -195,15 +195,15 @@ export default function FormTanstackComplex() {
                       aria-invalid={isInvalid}
                     >
                       <SelectTrigger id={field.name}>
-                        <SelectValue placeholder="Select" />
+                        <SelectValue placeholder="選択" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="monthly">Monthly</SelectItem>
-                        <SelectItem value="yearly">Yearly</SelectItem>
+                        <SelectItem value="monthly">毎月払い</SelectItem>
+                        <SelectItem value="yearly">年払い</SelectItem>
                       </SelectContent>
                     </Select>
                     <FieldDescription>
-                      Choose how often you want to be billed.
+                      請求の頻度を選択してください。
                     </FieldDescription>
                     {isInvalid && (
                       <FieldError errors={field.state.meta.errors} />
@@ -221,9 +221,9 @@ export default function FormTanstackComplex() {
                   field.state.meta.isTouched && !field.state.meta.isValid
                 return (
                   <FieldSet>
-                    <FieldLegend>Add-ons</FieldLegend>
+                    <FieldLegend>アドオン</FieldLegend>
                     <FieldDescription>
-                      Select additional features you&apos;d like to include.
+                      追加したい機能を選択してください。
                     </FieldDescription>
                     <FieldGroup data-slot="checkbox-group">
                       {addons.map((addon) => (
@@ -278,10 +278,10 @@ export default function FormTanstackComplex() {
                   <Field orientation="horizontal" data-invalid={isInvalid}>
                     <FieldContent>
                       <FieldLabel htmlFor={field.name}>
-                        Email Notifications
+                        メール通知
                       </FieldLabel>
                       <FieldDescription>
-                        Receive email updates about your subscription
+                        サブスクリプションの更新情報をメールで受け取る
                       </FieldDescription>
                     </FieldContent>
                     <Switch
@@ -304,7 +304,7 @@ export default function FormTanstackComplex() {
       <CardFooter>
         <Field orientation="horizontal" className="justify-end">
           <Button type="submit" form="subscription-form">
-            Save Preferences
+            設定を保存
           </Button>
         </Field>
       </CardFooter>

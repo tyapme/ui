@@ -48,8 +48,8 @@ export default function FormNextDemo() {
 
   React.useEffect(() => {
     if (formState.success) {
-      toast("Thank you for your feedback", {
-        description: "We'll review your report and get back to you soon.",
+      toast("フィードバックありがとうございます", {
+        description: "内容を確認して、近日中にご連絡いたします。",
       })
     }
   }, [formState.success])
@@ -61,23 +61,23 @@ export default function FormNextDemo() {
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
-        <CardTitle>Bug Report</CardTitle>
+        <CardTitle>バグ報告</CardTitle>
         <CardDescription>
-          Help us improve by reporting bugs you encounter.
+          気づいたバグを報告して、改善にご協力ください。
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Form action={formAction} id="bug-report-form">
           <FieldGroup>
             <Field data-invalid={!!formState.errors?.title?.length}>
-              <FieldLabel htmlFor="title">Bug Title</FieldLabel>
+              <FieldLabel htmlFor="title">バグタイトル</FieldLabel>
               <Input
                 id="title"
                 name="title"
                 defaultValue={formState.values.title}
                 disabled={pending}
                 aria-invalid={!!formState.errors?.title?.length}
-                placeholder="Login button not working on mobile"
+                placeholder="モバイルでログインボタンが機能しない"
                 autoComplete="off"
               />
               {formState.errors?.title && (
@@ -85,13 +85,13 @@ export default function FormNextDemo() {
               )}
             </Field>
             <Field data-invalid={!!formState.errors?.description?.length}>
-              <FieldLabel htmlFor="description">Description</FieldLabel>
+              <FieldLabel htmlFor="description">説明</FieldLabel>
               <InputGroup>
                 <InputGroupTextarea
                   id="description"
                   name="description"
                   defaultValue={formState.values.description}
-                  placeholder="I'm having an issue with the login button on mobile."
+                  placeholder="モバイルでログインボタンに問題があります。"
                   rows={6}
                   className="min-h-24 resize-none"
                   disabled={pending}
@@ -100,13 +100,12 @@ export default function FormNextDemo() {
                 />
                 <InputGroupAddon align="block-end">
                   <InputGroupText className="tabular-nums">
-                    {descriptionLength}/100 characters
+                    {descriptionLength}/100 文字
                   </InputGroupText>
                 </InputGroupAddon>
               </InputGroup>
               <FieldDescription>
-                Include steps to reproduce, expected behavior, and what actually
-                happened.
+                再現手順、期待される振る舞い、実際の振る舞いを記入してください。
               </FieldDescription>
               {formState.errors?.description && (
                 <FieldError>{formState.errors.description[0]}</FieldError>
@@ -119,7 +118,7 @@ export default function FormNextDemo() {
         <Field orientation="horizontal">
           <Button type="submit" disabled={pending} form="bug-report-form">
             {pending && <Spinner />}
-            Submit
+            送信
           </Button>
         </Field>
       </CardFooter>

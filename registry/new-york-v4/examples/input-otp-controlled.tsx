@@ -29,9 +29,9 @@ export default function InputOTPControlled() {
       </InputOTP>
       <div className="text-center text-sm">
         {value === "" ? (
-          <>Enter your one-time password.</>
+          <>ワンタイムパスワードを入力してください。</>
         ) : (
-          <>You entered: {value}</>
+          <>入力した値: {value}</>
         )}
       </div>
     </div>

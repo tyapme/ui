@@ -29,11 +29,11 @@ import {
 const tasks = [
   {
     id: "push",
-    label: "Push notifications",
+    label: "プッシュ通知",
   },
   {
     id: "email",
-    label: "Email notifications",
+    label: "メール通知",
   },
 ] as const
 
@@ -60,7 +60,7 @@ export default function FormTanstackCheckbox() {
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      toast("You submitted the following values:", {
+      toast("以下の内容を送信しました：", {
         description: (
           <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
             <code>{JSON.stringify(value, null, 2)}</code>
@@ -80,8 +80,8 @@ export default function FormTanstackCheckbox() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Notifications</CardTitle>
-        <CardDescription>Manage your notification preferences.</CardDescription>
+        <CardTitle>通知</CardTitle>
+        <CardDescription>通知の設定を管理します。</CardDescription>
       </CardHeader>
       <CardContent>
         <form
@@ -100,10 +100,9 @@ export default function FormTanstackCheckbox() {
                 return (
                   <div>
                     <FieldSet>
-                      <FieldLegend variant="label">Responses</FieldLegend>
+                      <FieldLegend variant="label">返信</FieldLegend>
                       <FieldDescription>
-                        Get notified for requests that take time, like research
-                        or image generation.
+                        リサーチや画像生成など時間のかかるリクエストで通知を受け取ります。
                       </FieldDescription>
                       <FieldGroup data-slot="checkbox-group">
                         <Field
@@ -123,7 +122,7 @@ export default function FormTanstackCheckbox() {
                             htmlFor="form-tanstack-checkbox-responses"
                             className="font-normal"
                           >
-                            Push notifications
+                            プッシュ通知
                           </FieldLabel>
                         </Field>
                       </FieldGroup>
@@ -145,10 +144,9 @@ export default function FormTanstackCheckbox() {
                 return (
                   <FieldGroup>
                     <FieldSet data-invalid={isInvalid}>
-                      <FieldLegend variant="label">Tasks</FieldLegend>
+                      <FieldLegend variant="label">タスク</FieldLegend>
                       <FieldDescription>
-                        Get notified when tasks you&apos;ve created have
-                        updates.
+                        作成したタスクに更新があるときに通知を受け取ります。
                       </FieldDescription>
                       <FieldGroup data-slot="checkbox-group">
                         {tasks.map((task) => (
@@ -198,10 +196,10 @@ export default function FormTanstackCheckbox() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-tanstack-checkbox">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

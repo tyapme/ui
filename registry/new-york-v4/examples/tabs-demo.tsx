@@ -23,54 +23,52 @@ export default function TabsDemo() {
     <div className="flex w-full max-w-sm flex-col gap-6">
       <Tabs defaultValue="account">
         <TabsList>
-          <TabsTrigger value="account">Account</TabsTrigger>
-          <TabsTrigger value="password">Password</TabsTrigger>
+          <TabsTrigger value="account">アカウント</TabsTrigger>
+          <TabsTrigger value="password">パスワード</TabsTrigger>
         </TabsList>
         <TabsContent value="account">
           <Card>
             <CardHeader>
-              <CardTitle>Account</CardTitle>
+              <CardTitle>アカウント</CardTitle>
               <CardDescription>
-                Make changes to your account here. Click save when you&apos;re
-                done.
+                ここでアカウントの設定を変更できます。完了したら保存をクリックしてください。
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-6">
               <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-name">Name</Label>
-                <Input id="tabs-demo-name" defaultValue="Pedro Duarte" />
+                <Label htmlFor="tabs-demo-name">名前</Label>
+                <Input id="tabs-demo-name" defaultValue="田中太郎" />
               </div>
               <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-username">Username</Label>
-                <Input id="tabs-demo-username" defaultValue="@peduarte" />
+                <Label htmlFor="tabs-demo-username">ユーザー名</Label>
+                <Input id="tabs-demo-username" defaultValue="@tanaka" />
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Save changes</Button>
+              <Button>変更を保存</Button>
             </CardFooter>
           </Card>
         </TabsContent>
         <TabsContent value="password">
           <Card>
             <CardHeader>
-              <CardTitle>Password</CardTitle>
+              <CardTitle>パスワード</CardTitle>
               <CardDescription>
-                Change your password here. After saving, you&apos;ll be logged
-                out.
+                ここでパスワードを変更できます。保存後はログアウトされます。
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-6">
               <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-current">Current password</Label>
+                <Label htmlFor="tabs-demo-current">現在のパスワード</Label>
                 <Input id="tabs-demo-current" type="password" />
               </div>
               <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-new">New password</Label>
+                <Label htmlFor="tabs-demo-new">新しいパスワード</Label>
                 <Input id="tabs-demo-new" type="password" />
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Save password</Button>
+              <Button>パスワードを保存</Button>
             </CardFooter>
           </Card>
         </TabsContent>

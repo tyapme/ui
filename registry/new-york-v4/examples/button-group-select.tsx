@@ -16,15 +16,15 @@ import {
 const CURRENCIES = [
   {
     value: "$",
-    label: "US Dollar",
+    label: "米ドル",
   },
   {
     value: "€",
-    label: "Euro",
+    label: "ユーロ",
   },
   {
     value: "£",
-    label: "British Pound",
+    label: "英ポンド",
   },
 ]
 
@@ -48,7 +48,7 @@ export default function ButtonGroupSelect() {
         <Input placeholder="10.00" pattern="[0-9]*" />
       </ButtonGroup>
       <ButtonGroup>
-        <Button aria-label="Send" size="icon" variant="outline">
+        <Button aria-label="送信" size="icon" variant="outline">
           <ArrowRightIcon />
         </Button>
       </ButtonGroup>

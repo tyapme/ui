@@ -30,11 +30,11 @@ import {
 const tasks = [
   {
     id: "push",
-    label: "Push notifications",
+    label: "プッシュ通知",
   },
   {
     id: "email",
-    label: "Email notifications",
+    label: "メール通知",
   },
 ] as const
 
@@ -60,7 +60,7 @@ export default function FormFormischCheckbox() {
   })
 
   const handleSubmit: SubmitHandler<typeof FormSchema> = (output) => {
-    toast("You submitted the following values:", {
+    toast("以下の内容を送信しました：", {
       description: (
         <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
           <code>{JSON.stringify(output, null, 2)}</code>
@@ -79,8 +79,8 @@ export default function FormFormischCheckbox() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Notifications</CardTitle>
-        <CardDescription>Manage your notification preferences.</CardDescription>
+        <CardTitle>通知</CardTitle>
+        <CardDescription>通知の設定を管理します。</CardDescription>
       </CardHeader>
       <CardContent>
         <Form of={form} id="form-formisch-checkbox" onSubmit={handleSubmit}>
@@ -89,10 +89,9 @@ export default function FormFormischCheckbox() {
               {(field) => (
                 <div>
                   <FieldSet data-invalid={field.errors !== null}>
-                    <FieldLegend variant="label">Responses</FieldLegend>
+                    <FieldLegend variant="label">返信</FieldLegend>
                     <FieldDescription>
-                      Get notified for requests that take time, like research or
-                      image generation.
+                      リサーチや画像生成など時間のかかるリクエストで通知を受け取ります。
                     </FieldDescription>
                     <FieldGroup data-slot="checkbox-group">
                       <Field orientation="horizontal">
@@ -108,7 +107,7 @@ export default function FormFormischCheckbox() {
                           htmlFor="form-formisch-checkbox-responses"
                           className="font-normal"
                         >
-                          Push notifications
+                          プッシュ通知
                         </FieldLabel>
                       </Field>
                     </FieldGroup>
@@ -126,9 +125,9 @@ export default function FormFormischCheckbox() {
               {(field) => (
                 <FieldGroup>
                   <FieldSet data-invalid={field.errors !== null}>
-                    <FieldLegend variant="label">Tasks</FieldLegend>
+                    <FieldLegend variant="label">タスク</FieldLegend>
                     <FieldDescription>
-                      Get notified when tasks you&apos;ve created have updates.
+                      作成したタスクに更新があるときに通知を受け取ります。
                     </FieldDescription>
                     <FieldGroup data-slot="checkbox-group">
                       {tasks.map((task) => {
@@ -178,10 +177,10 @@ export default function FormFormischCheckbox() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => reset(form)}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-formisch-checkbox">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

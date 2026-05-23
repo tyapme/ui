@@ -25,7 +25,7 @@ import {
 export default function ButtonGroupDropdown() {
   return (
     <ButtonGroup>
-      <Button variant="outline">Follow</Button>
+      <Button variant="outline">フォロー</Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" className="pl-2!">
@@ -36,34 +36,34 @@ export default function ButtonGroupDropdown() {
           <DropdownMenuGroup>
             <DropdownMenuItem>
               <VolumeOffIcon />
-              Mute Conversation
+              会話をミュート
             </DropdownMenuItem>
             <DropdownMenuItem>
               <CheckIcon />
-              Mark as Read
+              既読にマーク
             </DropdownMenuItem>
             <DropdownMenuItem>
               <AlertTriangleIcon />
-              Report Conversation
+              会話を通報
             </DropdownMenuItem>
             <DropdownMenuItem>
               <UserRoundXIcon />
-              Block User
+              ユーザーをブロック
             </DropdownMenuItem>
             <DropdownMenuItem>
               <ShareIcon />
-              Share Conversation
+              会話を共有
             </DropdownMenuItem>
             <DropdownMenuItem>
               <CopyIcon />
-              Copy Conversation
+              会話をコピー
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem variant="destructive">
               <TrashIcon />
-              Delete Conversation
+              会話を削除
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>

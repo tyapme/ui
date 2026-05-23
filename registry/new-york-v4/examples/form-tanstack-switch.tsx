@@ -26,7 +26,7 @@ import { Switch } from "@/registry/new-york-v4/ui/switch"
 
 const formSchema = z.object({
   twoFactor: z.boolean().refine((val) => val === true, {
-    message: "It is highly recommended to enable two-factor authentication.",
+    message: "二要素認証の有効化を強くお勧めします。",
   }),
 })
 
@@ -39,7 +39,7 @@ export default function FormTanstackSwitch() {
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      toast("You submitted the following values:", {
+      toast("以下の内容を送信しました：", {
         description: (
           <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
             <code>{JSON.stringify(value, null, 2)}</code>
@@ -59,9 +59,9 @@ export default function FormTanstackSwitch() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Security Settings</CardTitle>
+        <CardTitle>セキュリティ設定</CardTitle>
         <CardDescription>
-          Manage your account security preferences.
+          アカウントのセキュリティ設定を管理します。
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -82,11 +82,10 @@ export default function FormTanstackSwitch() {
                   <Field orientation="horizontal" data-invalid={isInvalid}>
                     <FieldContent>
                       <FieldLabel htmlFor="form-tanstack-switch-twoFactor">
-                        Multi-factor authentication
+                        多要素認証
                       </FieldLabel>
                       <FieldDescription>
-                        Enable multi-factor authentication to secure your
-                        account.
+                        多要素認証を有効にしてアカウントを守りましょう。
                       </FieldDescription>
                       {isInvalid && (
                         <FieldError errors={field.state.meta.errors} />
@@ -109,10 +108,10 @@ export default function FormTanstackSwitch() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-tanstack-switch">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

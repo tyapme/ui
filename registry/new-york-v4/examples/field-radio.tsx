@@ -13,27 +13,27 @@ export default function FieldRadio() {
   return (
     <div className="w-full max-w-md">
       <FieldSet>
-        <FieldLabel>Subscription Plan</FieldLabel>
+        <FieldLabel>サブスクリプションプラン</FieldLabel>
         <FieldDescription>
-          Yearly and lifetime plans offer significant savings.
+          年払い・永久プランは大幅な割引があります。
         </FieldDescription>
         <RadioGroup defaultValue="monthly">
           <Field orientation="horizontal">
             <RadioGroupItem value="monthly" id="plan-monthly" />
             <FieldLabel htmlFor="plan-monthly" className="font-normal">
-              Monthly ($9.99/month)
+              月払い（¥990/月）
             </FieldLabel>
           </Field>
           <Field orientation="horizontal">
             <RadioGroupItem value="yearly" id="plan-yearly" />
             <FieldLabel htmlFor="plan-yearly" className="font-normal">
-              Yearly ($99.99/year)
+              年払い（¥9,900/年）
             </FieldLabel>
           </Field>
           <Field orientation="horizontal">
             <RadioGroupItem value="lifetime" id="plan-lifetime" />
             <FieldLabel htmlFor="plan-lifetime" className="font-normal">
-              Lifetime ($299.99)
+              永久プラン（¥29,800）
             </FieldLabel>
           </Field>
         </RadioGroup>

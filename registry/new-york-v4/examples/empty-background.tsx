@@ -18,15 +18,15 @@ export default function EmptyMuted() {
         <EmptyMedia variant="icon">
           <IconBell />
         </EmptyMedia>
-        <EmptyTitle>No Notifications</EmptyTitle>
+        <EmptyTitle>通知なし</EmptyTitle>
         <EmptyDescription>
-          You&apos;re all caught up. New notifications will appear here.
+          最新の通知はここに表示されます。
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
         <Button variant="outline" size="sm">
           <RefreshCcwIcon />
-          Refresh
+          更新
         </Button>
       </EmptyContent>
     </Empty>

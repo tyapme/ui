@@ -15,19 +15,19 @@ export default function CardDemo() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle>Login to your account</CardTitle>
+        <CardTitle>アカウントにログイン</CardTitle>
         <CardDescription>
-          Enter your email below to login to your account
+          メールアドレスを入力してログインしてください
         </CardDescription>
         <CardAction>
-          <Button variant="link">Sign Up</Button>
+          <Button variant="link">サインアップ</Button>
         </CardAction>
       </CardHeader>
       <CardContent>
         <form>
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">メールアドレス</Label>
               <Input
                 id="email"
                 type="email"
@@ -37,12 +37,12 @@ export default function CardDemo() {
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">パスワード</Label>
                 <a
                   href="#"
                   className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                 >
-                  Forgot your password?
+                  パスワードを忘れた場合
                 </a>
               </div>
               <Input id="password" type="password" required />
@@ -52,10 +52,10 @@ export default function CardDemo() {
       </CardContent>
       <CardFooter className="flex-col gap-2">
         <Button type="submit" className="w-full">
-          Login
+          ログイン
         </Button>
         <Button variant="outline" className="w-full">
-          Login with Google
+          Googleでログイン
         </Button>
       </CardFooter>
     </Card>

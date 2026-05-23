@@ -7,7 +7,7 @@ export function FieldCheckbox() {
       <Field orientation="horizontal">
         <Checkbox id="checkbox-demo" defaultChecked />
         <FieldLabel htmlFor="checkbox-demo" className="line-clamp-1">
-          I agree to the terms and conditions
+          利用規約に同意します
         </FieldLabel>
       </Field>
     </FieldLabel>

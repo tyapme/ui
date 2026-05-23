@@ -22,9 +22,9 @@ import {
 } from "@/registry/new-york-v4/ui/sidebar"
 
 const TOP_LEVEL_SECTIONS = [
-  { name: "Introduction", href: "/docs" },
+  { name: "はじめに", href: "/docs" },
   {
-    name: "Components",
+    name: "コンポーネント",
     href: "/docs/components",
   },
   {
@@ -32,15 +32,15 @@ const TOP_LEVEL_SECTIONS = [
     href: "/docs/design",
   },
   {
-    name: "Installation",
+    name: "インストール",
     href: "/docs/installation",
   },
   {
-    name: "Theming",
+    name: "テーマ",
     href: "/docs/theming",
   },
   {
-    name: "Forms",
+    name: "フォーム",
     href: "/docs/forms",
   },
 ]

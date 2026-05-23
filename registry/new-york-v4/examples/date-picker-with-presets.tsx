@@ -34,7 +34,7 @@ export default function DatePickerWithPresets() {
           )}
         >
           <CalendarIcon />
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
+          {date ? format(date, "PPP") : <span>日付を選択</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent
@@ -47,13 +47,13 @@ export default function DatePickerWithPresets() {
           }
         >
           <SelectTrigger>
-            <SelectValue placeholder="Select" />
+            <SelectValue placeholder="選択" />
           </SelectTrigger>
           <SelectContent position="popper">
-            <SelectItem value="0">Today</SelectItem>
-            <SelectItem value="1">Tomorrow</SelectItem>
-            <SelectItem value="3">In 3 days</SelectItem>
-            <SelectItem value="7">In a week</SelectItem>
+            <SelectItem value="0">今日</SelectItem>
+            <SelectItem value="1">明日</SelectItem>
+            <SelectItem value="3">3日後</SelectItem>
+            <SelectItem value="7">1週間後</SelectItem>
           </SelectContent>
         </Select>
         <div className="rounded-md border">

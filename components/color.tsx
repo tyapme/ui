@@ -34,7 +34,7 @@ export function Color({ color }: { color: Color }) {
           },
         })
         setLastCopied(color[format])
-        toast.success(`Copied ${color[format]} to clipboard.`)
+        toast.success(`${color[format]} をクリップボードにコピーしました。`)
       }}
     >
       {isCopied ? (

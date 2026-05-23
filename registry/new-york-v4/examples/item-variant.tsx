@@ -12,40 +12,40 @@ export default function ItemVariant() {
     <div className="flex flex-col gap-6">
       <Item>
         <ItemContent>
-          <ItemTitle>Default Variant</ItemTitle>
+          <ItemTitle>デフォルト</ItemTitle>
           <ItemDescription>
-            Standard styling with subtle background and borders.
+            標準的なスタイル。
           </ItemDescription>
         </ItemContent>
         <ItemActions>
           <Button variant="outline" size="sm">
-            Open
+            開く
           </Button>
         </ItemActions>
       </Item>
       <Item variant="outline">
         <ItemContent>
-          <ItemTitle>Outline Variant</ItemTitle>
+          <ItemTitle>アウトライン</ItemTitle>
           <ItemDescription>
-            Outlined style with clear borders and transparent background.
+            明確なボーダーと透明背景のアウトラインスタイル。
           </ItemDescription>
         </ItemContent>
         <ItemActions>
           <Button variant="outline" size="sm">
-            Open
+            開く
           </Button>
         </ItemActions>
       </Item>
       <Item variant="muted">
         <ItemContent>
-          <ItemTitle>Muted Variant</ItemTitle>
+          <ItemTitle>ミューテッド</ItemTitle>
           <ItemDescription>
-            Subdued appearance with muted colors for secondary content.
+            サブコンテンツ向けのシンプルなデザイン。
           </ItemDescription>
         </ItemContent>
         <ItemActions>
           <Button variant="outline" size="sm">
-            Open
+            開く
           </Button>
         </ItemActions>
       </Item>

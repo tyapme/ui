@@ -26,10 +26,10 @@ export default function ButtonGroupNested() {
         </Button>
       </ButtonGroup>
       <ButtonGroup>
-        <Button variant="outline" size="icon-sm" aria-label="Previous">
+        <Button variant="outline" size="icon-sm" aria-label="前へ">
           <ArrowLeftIcon />
         </Button>
-        <Button variant="outline" size="icon-sm" aria-label="Next">
+        <Button variant="outline" size="icon-sm" aria-label="次へ">
           <ArrowRightIcon />
         </Button>
       </ButtonGroup>

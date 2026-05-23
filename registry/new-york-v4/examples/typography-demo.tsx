@@ -2,117 +2,101 @@ export default function TypographyDemo() {
   return (
     <div>
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-balance">
-        Taxing Laughter: The Joke Tax Chronicles
+        笑いへの課税：ジョーク税年代記
       </h1>
       <p className="text-xl leading-7 text-muted-foreground [&:not(:first-child)]:mt-6">
-        Once upon a time, in a far-off land, there was a very lazy king who
-        spent all day lounging on his throne. One day, his advisors came to him
-        with a problem: the kingdom was running out of money.
+        むかしむかし、遠い国に、一日中王座でくつろぐ非常に怠け者の王がいました。ある日、側近たちが問題を持ち込みました。王国のお金が底をつきそうなのです。
       </p>
       <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
-        The King&apos;s Plan
+        王の計画
       </h2>
       <p className="leading-7 [&:not(:first-child)]:mt-6">
-        The king thought long and hard, and finally came up with{" "}
+        王は長い時間をかけて考え抜いた末、ついに{" "}
         <a
           href="#"
           className="font-medium text-primary underline underline-offset-4"
         >
-          a brilliant plan
+          妙案
         </a>
-        : he would tax the jokes in the kingdom.
+        を思いつきました。王国のジョークに課税するのです。
       </p>
       <blockquote className="mt-6 border-l-2 pl-6 italic">
-        &quot;After all,&quot; he said, &quot;everyone enjoys a good joke, so
-        it&apos;s only fair that they should pay for the privilege.&quot;
+        &quot;結局のところ&quot;と彼は言った。&quot;誰もが面白いジョークを楽しむのだから、その特権に対して代価を払うのは公平というものだ。&quot;
       </blockquote>
       <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
-        The Joke Tax
+        ジョーク税
       </h3>
       <p className="leading-7 [&:not(:first-child)]:mt-6">
-        The king&apos;s subjects were not amused. They grumbled and complained,
-        but the king was firm:
+        王の臣下たちは面白くありませんでした。不満を漏らして文句を言いましたが、王は頭として譲りませんでした。
       </p>
       <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
-        <li>1st level of puns: 5 gold coins</li>
-        <li>2nd level of jokes: 10 gold coins</li>
-        <li>3rd level of one-liners : 20 gold coins</li>
+        <li>第1段階のダジャレ：金貧5枚</li>
+        <li>第2段階のジョーク：金貧10枚</li>
+        <li>第3段階の一発ギャグ：金貧20枚</li>
       </ul>
       <p className="leading-7 [&:not(:first-child)]:mt-6">
-        As a result, people stopped telling jokes, and the kingdom fell into a
-        gloom. But there was one person who refused to let the king&apos;s
-        foolishness get him down: a court jester named Jokester.
+        その結果、人々はジョークを言わなくなり、王国は暗淦たる雰囲気に包まれました。しかし、王の愚かさに負けまいとした者が一人いました。ジョークスターという名の宮廷道化師です。
       </p>
       <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
-        Jokester&apos;s Revolt
+        ジョークスターの反乱
       </h3>
       <p className="leading-7 [&:not(:first-child)]:mt-6">
-        Jokester began sneaking into the castle in the middle of the night and
-        leaving jokes all over the place: under the king&apos;s pillow, in his
-        soup, even in the royal toilet. The king was furious, but he
-        couldn&apos;t seem to stop Jokester.
+        ジョークスターは夜中にこっそりと城に忍び込み、至る所にジョークを置いていき始めました。王の柘の下、スープの中、果ては王室のトイレにも。王は激怒しましたが、ジョークスターを止めることができませんでした。
       </p>
       <p className="leading-7 [&:not(:first-child)]:mt-6">
-        And then, one day, the people of the kingdom discovered that the jokes
-        left by Jokester were so funny that they couldn&apos;t help but laugh.
-        And once they started laughing, they couldn&apos;t stop.
+        そしてある日、王国の人々はジョークスターが残したジョークがあまりにも面白くて、笑わずにいられないことに気づきました。一度笑い始めると、もう止まりませんでした。
       </p>
       <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
-        The People&apos;s Rebellion
+        民の反乱
       </h3>
       <p className="leading-7 [&:not(:first-child)]:mt-6">
-        The people of the kingdom, feeling uplifted by the laughter, started to
-        tell jokes and puns again, and soon the entire kingdom was in on the
-        joke.
+        笑いに元気づけられた王国の人々は、再びジョークやダジャレを言い始め、やがて王国全体がその笑いの輪に加わりました。
       </p>
       <div className="my-6 w-full overflow-y-auto">
         <table className="w-full">
           <thead>
             <tr className="m-0 border-t p-0 even:bg-muted">
               <th className="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right">
-                King&apos;s Treasury
+                王の宝庫
               </th>
               <th className="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right">
-                People&apos;s happiness
+                民の幸福
               </th>
             </tr>
           </thead>
           <tbody>
             <tr className="m-0 border-t p-0 even:bg-muted">
               <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                Empty
+                空
               </td>
               <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                Overflowing
-              </td>
-            </tr>
-            <tr className="m-0 border-t p-0 even:bg-muted">
-              <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                Modest
-              </td>
-              <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                Satisfied
+                湢れている
               </td>
             </tr>
             <tr className="m-0 border-t p-0 even:bg-muted">
               <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                Full
+                わずか
               </td>
               <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                Ecstatic
+                満足
+              </td>
+            </tr>
+            <tr className="m-0 border-t p-0 even:bg-muted">
+              <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
+                満準
+              </td>
+              <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
+                陶酔
               </td>
             </tr>
           </tbody>
         </table>
       </div>
       <p className="leading-7 [&:not(:first-child)]:mt-6">
-        The king, seeing how much happier his subjects were, realized the error
-        of his ways and repealed the joke tax. Jokester was declared a hero, and
-        the kingdom lived happily ever after.
+        臣下たちがいかに幸せになったかを目の当たりにした王は、自らの過ちに気づき、ジョーク税を廃止しました。ジョークスターは英雄として称えられ、王国はその後も末長く幸せに暮らしました。
       </p>
       <p className="leading-7 [&:not(:first-child)]:mt-6">
-        The moral of the story is: never underestimate the power of a good laugh
-        and always be careful of bad ideas.
+        この物語の教訓は、笑いの力を決して侗るな、そして悪いアイデアには常に注意せよ、ということです。
       </p>
     </div>
   )

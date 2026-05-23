@@ -69,7 +69,7 @@ export function ThemeCustomizer({ className }: React.ComponentProps<"div">) {
               className="flex h-7 cursor-pointer items-center justify-center px-4 text-center text-base font-medium text-muted-foreground capitalize transition-colors hover:text-primary hover:no-underline data-[active=true]:text-primary"
               onClick={() => setActiveTheme(theme.name)}
             >
-              {theme.name === "neutral" ? "Default" : theme.name}
+              {theme.name === "neutral" ? "デフォルト" : theme.name}
             </Button>
           ))}
         </div>
@@ -77,7 +77,7 @@ export function ThemeCustomizer({ className }: React.ComponentProps<"div">) {
       </ScrollArea>
       <div className="flex items-center gap-2 lg:hidden">
         <Label htmlFor="theme-selector" className="sr-only">
-          Theme
+          テーマ
         </Label>
         <Select
           value={activeTheme === "default" ? "neutral" : activeTheme}

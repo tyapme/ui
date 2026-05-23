@@ -27,11 +27,11 @@ import { Input } from "@/registry/new-york-v4/ui/input"
 const FormSchema = v.object({
   username: v.pipe(
     v.string(),
-    v.minLength(3, "Username must be at least 3 characters."),
-    v.maxLength(10, "Username must be at most 10 characters."),
+    v.minLength(3, "ユーザー名は3文字以上で入力してください。"),
+    v.maxLength(10, "ユーザー名は10文字以内で入力してください。"),
     v.regex(
       /^[a-zA-Z0-9_]+$/,
-      "Username can only contain letters, numbers, and underscores."
+      "ユーザー名に使えるのは英数字とアンダースコアのみです。"
     )
   ),
 })
@@ -45,7 +45,7 @@ export default function FormFormischInput() {
   })
 
   const handleSubmit: SubmitHandler<typeof FormSchema> = (output) => {
-    toast("You submitted the following values:", {
+      toast("以下の内容を送信しました：", {
       description: (
         <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
           <code>{JSON.stringify(output, null, 2)}</code>
@@ -64,9 +64,9 @@ export default function FormFormischInput() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Profile Settings</CardTitle>
+        <CardTitle>プロフィール設定</CardTitle>
         <CardDescription>
-          Update your profile information below.
+          プロフィール情報を更新してください。
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -76,7 +76,7 @@ export default function FormFormischInput() {
               {(field) => (
                 <Field data-invalid={field.errors !== null}>
                   <FieldLabel htmlFor="form-formisch-input-username">
-                    Username
+                    ユーザー名
                   </FieldLabel>
                   <Input
                     {...field.props}
@@ -87,9 +87,7 @@ export default function FormFormischInput() {
                     autoComplete="username"
                   />
                   <FieldDescription>
-                    This is your public display name. Must be between 3 and 10
-                    characters. Must only contain letters, numbers, and
-                    underscores.
+                    公開表示名です〃30文字3～10文字で、英数字・アンダースコアのみ使用できます。
                   </FieldDescription>
                   {field.errors && (
                     <FieldError
@@ -105,10 +103,10 @@ export default function FormFormischInput() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => reset(form)}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-formisch-input">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

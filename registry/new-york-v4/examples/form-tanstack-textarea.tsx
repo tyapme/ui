@@ -26,8 +26,8 @@ import { Textarea } from "@/registry/new-york-v4/ui/textarea"
 const formSchema = z.object({
   about: z
     .string()
-    .min(10, "Please provide at least 10 characters.")
-    .max(200, "Please keep it under 200 characters."),
+    .min(10, "10文字以上入力してください。")
+    .max(200, "200文字以内で入力してください。"),
 })
 
 export default function FormTanstackTextarea() {
@@ -39,7 +39,7 @@ export default function FormTanstackTextarea() {
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      toast("You submitted the following values:", {
+      toast("以下の内容を送信しました：", {
         description: (
           <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
             <code>{JSON.stringify(value, null, 2)}</code>
@@ -59,9 +59,9 @@ export default function FormTanstackTextarea() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Personalization</CardTitle>
+        <CardTitle>パーソナライズ</CardTitle>
         <CardDescription>
-          Customize your experience by telling us more about yourself.
+          自分について教えていただくと、より良いエクスペリエンスを提供できます。
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -81,7 +81,7 @@ export default function FormTanstackTextarea() {
                 return (
                   <Field data-invalid={isInvalid}>
                     <FieldLabel htmlFor="form-tanstack-textarea-about">
-                      More about you
+                      自分について
                     </FieldLabel>
                     <Textarea
                       id="form-tanstack-textarea-about"
@@ -90,12 +90,11 @@ export default function FormTanstackTextarea() {
                       onBlur={field.handleBlur}
                       onChange={(e) => field.handleChange(e.target.value)}
                       aria-invalid={isInvalid}
-                      placeholder="I'm a software engineer..."
+                      placeholder="ソフトウェアエンジニアです..."
                       className="min-h-[120px]"
                     />
                     <FieldDescription>
-                      Tell us more about yourself. This will be used to help us
-                      personalize your experience.
+                      自分についてお知らせください。エクスペリエンスのパーソナライズに利用させていただきます。
                     </FieldDescription>
                     {isInvalid && (
                       <FieldError errors={field.state.meta.errors} />
@@ -110,10 +109,10 @@ export default function FormTanstackTextarea() {
       <CardFooter>
         <Field orientation="horizontal">
           <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
+            リセット
           </Button>
           <Button type="submit" form="form-tanstack-textarea">
-            Save
+            保存
           </Button>
         </Field>
       </CardFooter>

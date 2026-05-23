@@ -18,10 +18,10 @@ export function FieldChoiceCard() {
       <FieldGroup>
         <FieldSet>
           <FieldLabel htmlFor="compute-environment-p8w">
-            Compute Environment
+            コンピュート環境
           </FieldLabel>
           <FieldDescription>
-            Select the compute environment for your cluster.
+            クラスターのコンピュート環境を選択してください。
           </FieldDescription>
           <RadioGroup defaultValue="kubernetes">
             <FieldLabel htmlFor="kubernetes-r2h">
@@ -34,7 +34,7 @@ export function FieldChoiceCard() {
                 <FieldContent>
                   <FieldTitle>Kubernetes</FieldTitle>
                   <FieldDescription>
-                    Run GPU workloads on a K8s configured cluster.
+                    K8s構成のクラスターでGPUワークロードを実行します。
                   </FieldDescription>
                 </FieldContent>
               </Field>
@@ -44,12 +44,12 @@ export function FieldChoiceCard() {
                 <RadioGroupItem
                   value="vm"
                   id="vm-z4k"
-                  aria-label="Virtual Machine"
+                  aria-label="仮想マシン"
                 />
                 <FieldContent>
-                  <FieldTitle>Virtual Machine</FieldTitle>
+                  <FieldTitle>仮想マシン</FieldTitle>
                   <FieldDescription>
-                    Access a VM configured cluster to run workloads.
+                    VM構成のクラスターでワークロードを実行します。
                   </FieldDescription>
                 </FieldContent>
               </Field>

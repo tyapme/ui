@@ -15,13 +15,13 @@ export function ItemDemo() {
     <div className="flex w-full max-w-md flex-col gap-6">
       <Item variant="outline">
         <ItemContent>
-          <ItemTitle>Two-factor authentication</ItemTitle>
+          <ItemTitle>二要素認証</ItemTitle>
           <ItemDescription className="text-pretty xl:hidden 2xl:block">
-            Verify via email or phone number.
+            メールまたは電話番号で認証します。
           </ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Button size="sm">Enable</Button>
+          <Button size="sm">有効にする</Button>
         </ItemActions>
       </Item>
       <Item variant="outline" size="sm" render={<a href="#" />}>
@@ -29,7 +29,7 @@ export function ItemDemo() {
             <BadgeCheckIcon className="size-5" />
           </ItemMedia>
           <ItemContent>
-            <ItemTitle>Your profile has been verified.</ItemTitle>
+            <ItemTitle>プロフィールが認証されました。</ItemTitle>
           </ItemContent>
           <ItemActions>
             <ChevronRightIcon className="size-4" />

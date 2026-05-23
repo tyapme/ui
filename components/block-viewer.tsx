@@ -154,8 +154,8 @@ function BlockViewerToolbar({ styleName }: { styleName: Style["name"] }) {
         onValueChange={(value) => setView(value as "preview" | "code")}
       >
         <TabsList className="grid h-8! grid-cols-2 items-center rounded-lg p-1 *:data-[slot=tabs-trigger]:h-6 *:data-[slot=tabs-trigger]:rounded-sm *:data-[slot=tabs-trigger]:px-2 *:data-[slot=tabs-trigger]:text-xs">
-          <TabsTrigger value="preview">Preview</TabsTrigger>
-          <TabsTrigger value="code">Code</TabsTrigger>
+          <TabsTrigger value="preview">プレビュー</TabsTrigger>
+          <TabsTrigger value="code">コード</TabsTrigger>
         </TabsList>
       </Tabs>
       <Separator orientation="vertical" className="mx-2 h-4!" />
@@ -178,13 +178,13 @@ function BlockViewerToolbar({ styleName }: { styleName: Style["name"] }) {
             }}
             className="gap-1 *:data-[slot=toggle-group-item]:size-6! *:data-[slot=toggle-group-item]:rounded-sm!"
           >
-            <ToggleGroupItem value="100%" title="Desktop">
+            <ToggleGroupItem value="100%" title="デスクトップ">
               <Monitor />
             </ToggleGroupItem>
-            <ToggleGroupItem value="60%" title="Tablet">
+            <ToggleGroupItem value="60%" title="タブレット">
               <Tablet />
             </ToggleGroupItem>
-            <ToggleGroupItem value="30%" title="Mobile">
+            <ToggleGroupItem value="30%" title="モバイル">
               <Smartphone />
             </ToggleGroupItem>
             <Separator orientation="vertical" className="h-4!" />
@@ -193,10 +193,10 @@ function BlockViewerToolbar({ styleName }: { styleName: Style["name"] }) {
               variant="ghost"
               className="size-6 rounded-sm p-0"
               asChild
-              title="Open in New Tab"
+              title="新しいタブで開く"
             >
               <Link href={`/view/${styleName}/${item.name}`} target="_blank">
-                <span className="sr-only">Open in New Tab</span>
+                <span className="sr-only">新しいタブで開く</span>
                 <Fullscreen />
               </Link>
             </Button>
@@ -205,7 +205,7 @@ function BlockViewerToolbar({ styleName }: { styleName: Style["name"] }) {
               size="icon"
               variant="ghost"
               className="size-6 rounded-sm p-0"
-              title="Refresh Preview"
+              title="プレビューを更新"
               onClick={() => {
                 if (setIframeKey) {
                   setIframeKey((k) => k + 1)
@@ -227,7 +227,7 @@ function BlockViewerToolbar({ styleName }: { styleName: Style["name"] }) {
           }}
         >
           {isCopied ? <Check /> : <Terminal />}
-          <span>Copy install command</span>
+          <span>インストールコマンドをコピー</span>
         </Button>
       </div>
     </div>
@@ -247,6 +247,7 @@ function BlockViewerIframe({
     <iframe
       key={iframeKey}
       src={`/view/${styleName}/${item.name}`}
+      title={`${item.name} preview`}
       height={item.meta?.iframeHeight ?? 930}
       loading="lazy"
       className={cn(

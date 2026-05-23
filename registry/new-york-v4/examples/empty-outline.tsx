@@ -17,14 +17,14 @@ export default function EmptyOutline() {
         <EmptyMedia variant="icon">
           <IconCloud />
         </EmptyMedia>
-        <EmptyTitle>Cloud Storage Empty</EmptyTitle>
+        <EmptyTitle>クラウドストレージが空です</EmptyTitle>
         <EmptyDescription>
-          Upload files to your cloud storage to access them anywhere.
+          ファイルをアップロードしてどこでもアクセスできます。
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
         <Button variant="outline" size="sm">
-          Upload Files
+          ファイルをアップロード
         </Button>
       </EmptyContent>
     </Empty>

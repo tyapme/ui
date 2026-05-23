@@ -49,7 +49,7 @@ function ChartTitle({ chart }: { chart: Chart }) {
   if (chart.name.includes("chart-line")) {
     return (
       <>
-        <LineChartIcon /> Line Chart
+        <LineChartIcon /> 折れ線グラフ
       </>
     )
   }
@@ -57,7 +57,7 @@ function ChartTitle({ chart }: { chart: Chart }) {
   if (chart.name.includes("chart-bar")) {
     return (
       <>
-        <BarChartBigIcon /> Bar Chart
+        <BarChartBigIcon /> 棒グラフ
       </>
     )
   }
@@ -65,7 +65,7 @@ function ChartTitle({ chart }: { chart: Chart }) {
   if (chart.name.includes("chart-pie")) {
     return (
       <>
-        <PieChartIcon /> Pie Chart
+        <PieChartIcon /> 円グラフ
       </>
     )
   }
@@ -73,7 +73,7 @@ function ChartTitle({ chart }: { chart: Chart }) {
   if (chart.name.includes("chart-area")) {
     return (
       <>
-        <AreaChartIcon /> Area Chart
+        <AreaChartIcon /> 面グラフ
       </>
     )
   }
@@ -81,7 +81,7 @@ function ChartTitle({ chart }: { chart: Chart }) {
   if (chart.name.includes("chart-radar")) {
     return (
       <>
-        <HexagonIcon /> Radar Chart
+        <HexagonIcon /> レーダーチャート
       </>
     )
   }
@@ -89,7 +89,7 @@ function ChartTitle({ chart }: { chart: Chart }) {
   if (chart.name.includes("chart-radial")) {
     return (
       <>
-        <RadarIcon /> Radial Chart
+        <RadarIcon /> 射穿グラフ
       </>
     )
   }
@@ -98,7 +98,7 @@ function ChartTitle({ chart }: { chart: Chart }) {
     return (
       <>
         <MousePointer2Icon />
-        Tooltip
+        ツールチップ
       </>
     )
   }

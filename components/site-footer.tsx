@@ -4,34 +4,34 @@ export function SiteFooter() {
       <div className="container-wrapper px-4 xl:px-6">
         <div className="flex h-(--footer-height) items-center justify-between">
           <div className="w-full px-1 text-center text-xs leading-loose text-muted-foreground sm:text-sm">
-            Built by{" "}
+            制作:{" "}
             <a
               href="https://tyap.me"
               target="_blank"
-              rel="noreferrer"
+              rel="noreferrer noopener"
               className="font-medium underline underline-offset-4"
             >
               TYAP
             </a>{" "}
-            at{" "}
+            /{" "}
             <a
               href="https://tyap.me"
               target="_blank"
-              rel="noreferrer"
+              rel="noreferrer noopener"
               className="font-medium underline underline-offset-4"
             >
               TYAP.ME
             </a>
-            . The source code is available on{" "}
+            。ソースコードは{" "}
             <a
               href="https://github.com/tyapme/ui"
               target="_blank"
-              rel="noreferrer"
+              rel="noreferrer noopener"
               className="font-medium underline underline-offset-4"
             >
               GitHub
             </a>
-            .
+            {" "}で公開しています。
           </div>
         </div>
       </div>

@@ -6,11 +6,11 @@ import {
 export default function NativeSelectDemo() {
   return (
     <NativeSelect>
-      <NativeSelectOption value="">Select status</NativeSelectOption>
-      <NativeSelectOption value="todo">Todo</NativeSelectOption>
-      <NativeSelectOption value="in-progress">In Progress</NativeSelectOption>
-      <NativeSelectOption value="done">Done</NativeSelectOption>
-      <NativeSelectOption value="cancelled">Cancelled</NativeSelectOption>
+      <NativeSelectOption value="">ステータスを選択</NativeSelectOption>
+      <NativeSelectOption value="todo">未対応</NativeSelectOption>
+      <NativeSelectOption value="in-progress">進行中</NativeSelectOption>
+      <NativeSelectOption value="done">完了</NativeSelectOption>
+      <NativeSelectOption value="cancelled">キャンセル</NativeSelectOption>
     </NativeSelect>
   )
 }

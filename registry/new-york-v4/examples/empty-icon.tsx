@@ -21,9 +21,9 @@ export default function EmptyIcon() {
           <EmptyMedia variant="icon">
             <IconInbox />
           </EmptyMedia>
-          <EmptyTitle>No messages</EmptyTitle>
+          <EmptyTitle>メッセージなし</EmptyTitle>
           <EmptyDescription>
-            Your inbox is empty. New messages will appear here.
+            受信トレイは空です。新しいメッセージはここに表示されます。
           </EmptyDescription>
         </EmptyHeader>
       </Empty>
@@ -33,9 +33,9 @@ export default function EmptyIcon() {
           <EmptyMedia variant="icon">
             <IconStar />
           </EmptyMedia>
-          <EmptyTitle>No favorites</EmptyTitle>
+          <EmptyTitle>お気に入りなし</EmptyTitle>
           <EmptyDescription>
-            Items you mark as favorites will appear here.
+            お気に入りに登録したアイテムはここに表示されます。
           </EmptyDescription>
         </EmptyHeader>
       </Empty>
@@ -45,9 +45,9 @@ export default function EmptyIcon() {
           <EmptyMedia variant="icon">
             <IconHeart />
           </EmptyMedia>
-          <EmptyTitle>No likes yet</EmptyTitle>
+          <EmptyTitle>まだイイネなし</EmptyTitle>
           <EmptyDescription>
-            Content you like will be saved here for easy access.
+            イイネしたコンテンツはここに保存されます。
           </EmptyDescription>
         </EmptyHeader>
       </Empty>
@@ -57,9 +57,9 @@ export default function EmptyIcon() {
           <EmptyMedia variant="icon">
             <IconBookmark />
           </EmptyMedia>
-          <EmptyTitle>No bookmarks</EmptyTitle>
+          <EmptyTitle>ブックマークなし</EmptyTitle>
           <EmptyDescription>
-            Save interesting content by bookmarking it.
+            ブックマークすることでコンテンツを保存できます。
           </EmptyDescription>
         </EmptyHeader>
       </Empty>

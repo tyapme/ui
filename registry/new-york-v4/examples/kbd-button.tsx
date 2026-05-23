@@ -8,7 +8,7 @@ export default function KbdButton() {
         Accept <Kbd>⏎</Kbd>
       </Button>
       <Button variant="outline" size="sm" className="pr-2">
-        Cancel <Kbd>Esc</Kbd>
+        キャンセル <Kbd>Esc</Kbd>
       </Button>
     </div>
   )

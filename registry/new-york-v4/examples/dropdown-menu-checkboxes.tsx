@@ -25,29 +25,29 @@ export default function DropdownMenuCheckboxes() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">Open</Button>
+        <Button variant="outline">開く</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Appearance</DropdownMenuLabel>
+        <DropdownMenuLabel>表示</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
           checked={showStatusBar}
           onCheckedChange={setShowStatusBar}
         >
-          Status Bar
+          ステータスバー
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
           checked={showActivityBar}
           onCheckedChange={setShowActivityBar}
           disabled
         >
-          Activity Bar
+          アクティビティバー
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
           checked={showPanel}
           onCheckedChange={setShowPanel}
         >
-          Panel
+          パネル
         </DropdownMenuCheckboxItem>
       </DropdownMenuContent>
     </DropdownMenu>

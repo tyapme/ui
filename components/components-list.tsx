@@ -28,7 +28,7 @@ export function ComponentsList({
                 {PAGES_NEW.includes(component.url) && (
                   <span
                     className="flex size-2 rounded-full bg-blue-500"
-                    title="New"
+                    title="新着"
                   />
                 )}
               </Link>
