@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { Button } from "@/registry/bases/base/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardAction,
@@ -11,13 +11,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
-} from "@/registry/bases/base/ui/field"
+} from "@/registry/ui/field"
 import {
   Select,
   SelectContent,
@@ -25,9 +25,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/bases/base/ui/select"
-import { Slider } from "@/registry/bases/base/ui/slider"
-import { Textarea } from "@/registry/bases/base/ui/textarea"
+} from "@/registry/ui/select"
+import { Slider } from "@/registry/ui/slider"
+import { Textarea } from "@/registry/ui/textarea"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const CURRENCIES = [

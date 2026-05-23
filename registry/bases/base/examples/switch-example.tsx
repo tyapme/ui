@@ -8,9 +8,9 @@ import {
   FieldDescription,
   FieldLabel,
   FieldTitle,
-} from "@/registry/bases/base/ui/field"
-import { Label } from "@/registry/bases/base/ui/label"
-import { Switch } from "@/registry/bases/base/ui/switch"
+} from "@/registry/ui/field"
+import { Label } from "@/registry/ui/label"
+import { Switch } from "@/registry/ui/switch"
 
 export default function SwitchExample() {
   return (

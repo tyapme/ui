@@ -2,8 +2,8 @@
 
 import * as React from "react"
 
-import { Button } from "@/registry/bases/base/ui/button"
-import { Card, CardContent } from "@/registry/bases/base/ui/card"
+import { Button } from "@/registry/ui/button"
+import { Card, CardContent } from "@/registry/ui/card"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/registry/bases/base/ui/dropdown-menu"
+} from "@/registry/ui/dropdown-menu"
 import {
   Empty,
   EmptyContent,
@@ -19,38 +19,38 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/registry/bases/base/ui/empty"
+} from "@/registry/ui/empty"
 import {
   Field,
   FieldDescription,
   FieldLabel,
-} from "@/registry/bases/base/ui/field"
+} from "@/registry/ui/field"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from "@/registry/bases/base/ui/input-group"
+} from "@/registry/ui/input-group"
 import {
   Item,
   ItemActions,
   ItemContent,
   ItemDescription,
   ItemTitle,
-} from "@/registry/bases/base/ui/item"
-import { Separator } from "@/registry/bases/base/ui/separator"
-import { Spinner } from "@/registry/bases/base/ui/spinner"
+} from "@/registry/ui/item"
+import { Separator } from "@/registry/ui/separator"
+import { Spinner } from "@/registry/ui/spinner"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/registry/bases/base/ui/tabs"
+} from "@/registry/ui/tabs"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/registry/bases/base/ui/tooltip"
+} from "@/registry/ui/tooltip"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export function CodespacesCard() {

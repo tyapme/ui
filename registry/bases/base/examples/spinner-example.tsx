@@ -2,8 +2,8 @@ import {
   Example,
   ExampleWrapper,
 } from "@/registry/bases/base/components/example"
-import { Badge } from "@/registry/bases/base/ui/badge"
-import { Button } from "@/registry/bases/base/ui/button"
+import { Badge } from "@/registry/ui/badge"
+import { Button } from "@/registry/ui/button"
 import {
   Empty,
   EmptyContent,
@@ -11,14 +11,14 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/registry/bases/base/ui/empty"
-import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
+} from "@/registry/ui/empty"
+import { Field, FieldLabel } from "@/registry/ui/field"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from "@/registry/bases/base/ui/input-group"
-import { Spinner } from "@/registry/bases/base/ui/spinner"
+} from "@/registry/ui/input-group"
+import { Spinner } from "@/registry/ui/spinner"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function SpinnerExample() {

@@ -9,7 +9,7 @@ import { source } from "@/lib/source"
 import { absoluteUrl } from "@/lib/utils"
 import { DocsCopyPage } from "@/components/docs-copy-page"
 import { DocsTableOfContents } from "@/components/docs-toc"
-import { Button } from "@/registry/new-york-v4/ui/button"
+import { Button } from "@/styles/base/ui/button"
 
 export const revalidate = false
 export const dynamic = "force-static"
@@ -107,12 +107,11 @@ export default async function Page(props: {
                         variant="secondary"
                         size="icon"
                         className="extend-touch-target size-8 shadow-none md:size-7"
-                        asChild
+                        nativeButton={false}
+                        render={<Link href={neighbours.previous.url} />}
                       >
-                        <Link href={neighbours.previous.url}>
-                          <IconArrowLeft />
-                          <span className="sr-only">Previous</span>
-                        </Link>
+                        <IconArrowLeft />
+                        <span className="sr-only">Previous</span>
                       </Button>
                     )}
                     {neighbours.next && (
@@ -120,12 +119,11 @@ export default async function Page(props: {
                         variant="secondary"
                         size="icon"
                         className="extend-touch-target size-8 shadow-none md:size-7"
-                        asChild
+                        nativeButton={false}
+                        render={<Link href={neighbours.next.url} />}
                       >
-                        <Link href={neighbours.next.url}>
-                          <span className="sr-only">Next</span>
-                          <IconArrowRight />
-                        </Link>
+                        <span className="sr-only">Next</span>
+                        <IconArrowRight />
                       </Button>
                     )}
                   </div>
@@ -146,12 +144,11 @@ export default async function Page(props: {
               <Button
                 variant="secondary"
                 size="sm"
-                asChild
                 className="shadow-none"
+                nativeButton={false}
+                render={<Link href={neighbours.previous.url} />}
               >
-                <Link href={neighbours.previous.url}>
-                  <IconArrowLeft /> {neighbours.previous.name}
-                </Link>
+                <IconArrowLeft /> {neighbours.previous.name}
               </Button>
             )}
             {neighbours.next && (
@@ -159,11 +156,10 @@ export default async function Page(props: {
                 variant="secondary"
                 size="sm"
                 className="ml-auto shadow-none"
-                asChild
+                nativeButton={false}
+                render={<Link href={neighbours.next.url} />}
               >
-                <Link href={neighbours.next.url}>
-                  {neighbours.next.name} <IconArrowRight />
-                </Link>
+                {neighbours.next.name} <IconArrowRight />
               </Button>
             )}
           </div>

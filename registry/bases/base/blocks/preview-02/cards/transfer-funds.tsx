@@ -1,4 +1,4 @@
-import { Button } from "@/registry/bases/base/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardAction,
@@ -7,15 +7,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
-import { Field, FieldGroup, FieldLabel } from "@/registry/bases/base/ui/field"
+} from "@/registry/ui/card"
+import { Field, FieldGroup, FieldLabel } from "@/registry/ui/field"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
   InputGroupText,
-} from "@/registry/bases/base/ui/input-group"
-import { Item, ItemContent } from "@/registry/bases/base/ui/item"
+} from "@/registry/ui/input-group"
+import { Item, ItemContent } from "@/registry/ui/item"
 import {
   Select,
   SelectContent,
@@ -23,8 +23,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/bases/base/ui/select"
-import { Separator } from "@/registry/bases/base/ui/separator"
+} from "@/registry/ui/select"
+import { Separator } from "@/registry/ui/separator"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const FROM_ACCOUNTS = [

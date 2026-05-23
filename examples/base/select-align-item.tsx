@@ -8,8 +8,8 @@ import {
   FieldDescription,
   FieldGroup,
   FieldLabel,
-} from "@/styles/base-nova/ui/field"
-import { Label } from "@/styles/base-nova/ui/label"
+} from "@/styles/base/ui/field"
+import { Label } from "@/styles/base/ui/label"
 import {
   Select,
   SelectContent,
@@ -17,8 +17,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/styles/base-nova/ui/select"
-import { Switch } from "@/styles/base-nova/ui/switch"
+} from "@/styles/base/ui/select"
+import { Switch } from "@/styles/base/ui/switch"
 
 const items = [
   { label: "Select a fruit", value: null },

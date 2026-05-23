@@ -7,7 +7,7 @@ links:
   doc: https://vaul.emilkowal.ski/getting-started
 ---
 
-<ComponentPreview styleName="base-nova" name="drawer-demo" />
+<ComponentPreview styleName="base" name="drawer-demo" />
 
 ## について
 
@@ -18,13 +18,13 @@ Drawer は [emilkowalski](https://twitter.com/emilkowalski) による [Vaul](htt
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add drawer
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/drawer.json
 ```
 
 </TabsContent>
@@ -44,7 +44,7 @@ npm install vaul
 <ComponentSource
   name="drawer"
   title="components/ui/drawer.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -108,23 +108,23 @@ Drawer
 
 コンテンツがスクロールしてもアクションを常に表示します。
 
-<ComponentPreview styleName="base-nova" name="drawer-scrollable-content" />
+<ComponentPreview styleName="base" name="drawer-scrollable-content" />
 
 ### 方向
 
 `direction` prop でドロワーの表示方向を設定します。`top`、`right`、`bottom`、`left` が利用可能です。
 
-<ComponentPreview styleName="base-nova" name="drawer-sides" />
+<ComponentPreview styleName="base" name="drawer-sides" />
 
 ### レスポンシブダイアログ
 
 `Dialog` と `Drawer` を組み合わせてレスポンシブなダイアログを作成できます。デスクトップでは `Dialog`、モバイルでは `Drawer` が表示されます。
 
-<ComponentPreview styleName="base-nova" name="drawer-dialog" />
+<ComponentPreview styleName="base" name="drawer-dialog" />
 
 ## RTL
 
-<ComponentPreview styleName="base-nova" name="drawer-rtl" direction="rtl" />
+<ComponentPreview styleName="base" name="drawer-rtl" direction="rtl" />
 
 ## API リファレンス
 

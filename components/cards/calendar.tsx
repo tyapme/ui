@@ -1,23 +1,20 @@
 "use client"
 
-import { addDays } from "date-fns"
+import { CalendarDate } from "@internationalized/date"
 
-import { Calendar } from "@/registry/new-york-v4/ui/calendar"
-import { Card, CardContent } from "@/registry/new-york-v4/ui/card"
+import { RangeCalendar } from "@/styles/base/ui/calendar"
+import { Card, CardContent } from "@/styles/base/ui/card"
 
-const start = new Date(2025, 5, 5)
+const start = new CalendarDate(2025, 6, 5)
 
 export function CardsCalendar() {
   return (
     <Card className="hidden max-w-[260px] p-0 sm:flex">
       <CardContent className="p-0">
-        <Calendar
-          numberOfMonths={1}
-          mode="range"
-          defaultMonth={start}
-          selected={{
-            from: start,
-            to: addDays(start, 8),
+        <RangeCalendar
+          defaultValue={{
+            start,
+            end: start.add({ days: 8 }),
           }}
         />
       </CardContent>

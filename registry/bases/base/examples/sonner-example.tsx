@@ -6,7 +6,7 @@ import {
   Example,
   ExampleWrapper,
 } from "@/registry/bases/base/components/example"
-import { Button } from "@/registry/bases/base/ui/button"
+import { Button } from "@/registry/ui/button"
 
 export default function SonnerExample() {
   return (

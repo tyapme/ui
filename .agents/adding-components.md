@@ -3,7 +3,7 @@
 ## 全体の流れ
 
 ```
-registry/bases/base/ui/<name>.tsx  ← ソース（ここが正）
+registry/ui/<name>.tsx  ← ソース（ここが正）
         ↓ pnpm registry:build
 styles/<style>/ui/<name>.tsx       ← 生成物（直接編集しない）
 ```
@@ -18,23 +18,23 @@ styles/<style>/ui/<name>.tsx       ← 生成物（直接編集しない）
 
 ### 1. ソースファイルを作成
 
-`registry/bases/base/ui/<name>.tsx` を作成する。
+`registry/ui/<name>.tsx` を作成する。
 
-インポートパスは `@/registry/bases/base/ui/` を使う（`@/styles/` は使わない）。
+インポートパスは `@/registry/ui/` を使う（`@/styles/` は使わない）。
 
 ```tsx
 // ✅ 正しい
-import { Button } from "@/registry/bases/base/ui/button"
+import { Button } from "@/registry/ui/button"
 
 // ❌ 間違い（生成物へのパス）
 import { Button } from "@/styles/base-nova/ui/button"
 ```
 
-ビルド時に `@/registry/bases/base/ui/` → `@/styles/<style>/ui/` に自動変換される。
+ビルド時に `@/registry/ui/` → `@/styles/<style>/ui/` に自動変換される。
 
 ### 2. `_registry.ts` に登録
 
-`registry/bases/base/ui/_registry.ts` の `ui` 配列に追加する。
+`registry/ui/_registry.ts` の `ui` 配列に追加する。
 
 ```ts
 {
@@ -84,7 +84,7 @@ pnpm registry:build
 
 - **症状**: ローカルは動くが Vercel ビルドで `Module not found`
 - **原因**: `registry:build` の `syncDirectory` がソースにないファイルをターゲットから削除する
-- **対策**: 必ず `registry/bases/base/ui/` にソースを置いて `_registry.ts` に登録する
+- **対策**: 必ず `registry/ui/` にソースを置いて `_registry.ts` に登録する
 
 ### ❌ `_registry.ts` への登録を忘れた
 
@@ -95,8 +95,8 @@ pnpm registry:build
 
 ## チェックリスト
 
-- [ ] `registry/bases/base/ui/<name>.tsx` を作成した
-- [ ] `registry/bases/base/ui/_registry.ts` に登録した（dependencies / registryDependencies / files）
+- [ ] `registry/ui/<name>.tsx` を作成した
+- [ ] `registry/ui/_registry.ts` に登録した（dependencies / registryDependencies / files）
 - [ ] `pnpm registry:build` が成功し `styles/<style>/ui/<name>.tsx` が生成された
 - [ ] examples を作成した
 - [ ] ドキュメント（mdx）を作成した

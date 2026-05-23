@@ -9,7 +9,7 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="accordion-demo"
   align="start"
   previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
@@ -20,14 +20,14 @@ links:
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add accordion
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/accordion.json
 ```
 
 </TabsContent>
@@ -47,7 +47,7 @@ npm install @base-ui/react
 <ComponentSource
   name="accordion"
   title="components/ui/accordion.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -101,7 +101,7 @@ Accordion
 一度に1つのアイテムを表示するシンプルなアコーディオン。最初のアイテムがデフォルトで開いています。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="accordion-basic"
   align="start"
   previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
@@ -112,7 +112,7 @@ Accordion
 `multiple` プロパティで複数のアイテムを同時に開けるようにします。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="accordion-multiple"
   align="start"
   previewClassName="*:data-[slot=accordion]:max-w-sm h-[450px]"
@@ -123,7 +123,7 @@ Accordion
 `AccordionItem` の `disabled` プロパティで個別アイテムを無効化します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="accordion-disabled"
   align="start"
   previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
@@ -134,7 +134,7 @@ Accordion
 `Accordion` に `border`、`AccordionItem` に `border-b last:border-b-0` を追加してボーダーを表示します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="accordion-borders"
   align="start"
   previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
@@ -145,7 +145,7 @@ Accordion
 `Accordion` を `Card` コンポーネントで包みます。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="accordion-card"
   align="start"
   previewClassName="*:data-[slot=accordion]:max-w-sm h-[435px]"
@@ -154,7 +154,7 @@ Accordion
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="accordion-rtl"
   align="start"
   direction="rtl"

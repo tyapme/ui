@@ -2,7 +2,7 @@
 
 import { Area, AreaChart, XAxis } from "recharts"
 
-import { Badge } from "@/registry/bases/base/ui/badge"
+import { Badge } from "@/registry/ui/badge"
 import {
   Card,
   CardAction,
@@ -10,13 +10,13 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/registry/bases/base/ui/chart"
+} from "@/registry/ui/chart"
 
 const areaChartData = [
   { month: "January", desktop: 186 },

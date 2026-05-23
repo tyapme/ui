@@ -5,20 +5,20 @@ base: base
 component: true
 ---
 
-<ComponentPreview styleName="base-nova" name="date-picker-demo" />
+<ComponentPreview styleName="base" name="date-picker-demo" />
 
 ## インストール
 
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-pnpm dlx shadcn@latest add field
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/date-picker.json
 ```
 
 </TabsContent>
@@ -45,7 +45,7 @@ pnpm add react-aria-components @internationalized/date react-day-picker date-fns
 <ComponentSource
   name="date-picker"
   title="components/ui/date-picker.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -86,57 +86,53 @@ DatePicker
 
 ラベル付きの基本的な日付選択。年・月・日をセグメントで個別に編集可能。
 
-<ComponentPreview styleName="base-nova" name="date-picker-basic" />
+<ComponentPreview styleName="base" name="date-picker-basic" />
 
 ### Date Field Only
 
 `showCalendar={false}` でカレンダーポップオーバーを非表示にし、セグメント入力のみ表示。
 
-<ComponentPreview styleName="base-nova" name="date-picker-input" />
+<ComponentPreview styleName="base" name="date-picker-input" />
 
 ### Date & Time
 
 `granularity="minute"` で日時入力に拡張。時刻セグメントも自動追加される。
 
-<ComponentPreview styleName="base-nova" name="date-picker-datetime" />
+<ComponentPreview styleName="base" name="date-picker-datetime" />
 
 ### Date + Time (Separate Fields)
 
 日付と時刻を `DatePicker` + `TimeFieldInput` で分離表示。
 
-<ComponentPreview styleName="base-nova" name="date-picker-time" />
+<ComponentPreview styleName="base" name="date-picker-time" />
 
 ### Range Picker
 
 日付範囲を選択するコンポーネント。開始日・終了日それぞれセグメント入力。
 
-<ComponentPreview styleName="base-nova" name="date-picker-range" />
+<ComponentPreview styleName="base" name="date-picker-range" />
 
 ### Date of Birth
 
 ドロップダウンキャプション付きの生年月日選択。
 
-<ComponentPreview styleName="base-nova" name="date-picker-dob" />
+<ComponentPreview styleName="base" name="date-picker-dob" />
 
 ### Standalone Date Field
 
 `DateFieldInput` を単体で使用。カレンダーなしのセグメント型日付入力。
 
-<ComponentPreview styleName="base-nova" name="date-picker-field" />
+<ComponentPreview styleName="base" name="date-picker-field" />
 
 ### Natural Language
 
 `chrono-node` を使用した自然言語日付入力。
 
-<ComponentPreview styleName="base-nova" name="date-picker-natural-language" />
+<ComponentPreview styleName="base" name="date-picker-natural-language" />
 
 ## RTL
 
-<ComponentPreview
-  styleName="base-nova"
-  name="date-picker-rtl"
-  direction="rtl"
-/>
+<ComponentPreview styleName="base" name="date-picker-rtl" direction="rtl" />
 
 ## API
 

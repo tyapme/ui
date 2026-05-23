@@ -1,6 +1,8 @@
 {
     "title": "基本デザイン",
     "pages": [
+        "brand",
+        "principles",
         "index",
         "colors",
         "typography",
@@ -9,6 +11,7 @@
         "link-text",
         "spacing",
         "radius",
-        "elevation"
+        "elevation",
+        "motion"
     ]
 }

@@ -2,8 +2,8 @@
 
 import * as React from "react"
 
-import { DateFieldInput } from "@/styles/base-nova/ui/date-picker"
-import { Field, FieldLabel } from "@/styles/base-nova/ui/field"
+import { DateFieldInput } from "@/styles/base/ui/date-picker"
+import { Field, FieldLabel } from "@/styles/base/ui/field"
 
 export function DatePickerField() {
   const [date, setDate] = React.useState<Date | undefined>(undefined)

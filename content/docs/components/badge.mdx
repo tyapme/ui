@@ -5,20 +5,20 @@ base: base
 component: true
 ---
 
-<ComponentPreview styleName="base-nova" name="badge-demo" />
+<ComponentPreview styleName="base" name="badge-demo" />
 
 ## インストール
 
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add badge
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/badge.json
 ```
 
 </TabsContent>
@@ -32,7 +32,7 @@ npx shadcn@latest add badge
 <ComponentSource
   name="badge"
   title="components/ui/badge.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -59,35 +59,35 @@ import { Badge } from "@/components/ui/badge"
 
 `variant` プロパティでバッジのバリアントを変更します。
 
-<ComponentPreview styleName="base-nova" name="badge-variants" />
+<ComponentPreview styleName="base" name="badge-variants" />
 
 ### With Icon
 
 バッジの中にアイコンをレンダリングできます。`data-icon="inline-start"` で左側、`data-icon="inline-end"` で右側に配置します。
 
-<ComponentPreview styleName="base-nova" name="badge-icon" />
+<ComponentPreview styleName="base" name="badge-icon" />
 
 ### With Spinner
 
 バッジの中にスピナーをレンダリングできます。スピナーに `data-icon="inline-start"` または `data-icon="inline-end"` 属性を付けて正しい間隔を確保してください。
 
-<ComponentPreview styleName="base-nova" name="badge-spinner" />
+<ComponentPreview styleName="base" name="badge-spinner" />
 
 ### Link
 
 `render` プロパティを使ってバッジをリンクとしてレンダリングします。
 
-<ComponentPreview styleName="base-nova" name="badge-link" />
+<ComponentPreview styleName="base" name="badge-link" />
 
 ### Custom Colors
 
 `Badge` コンポーネントに `bg-green-50 dark:bg-green-800` などのカスタムクラスを追加してカラーをカスタマイズできます。
 
-<ComponentPreview styleName="base-nova" name="badge-colors" />
+<ComponentPreview styleName="base" name="badge-colors" />
 
 ## RTL
 
-<ComponentPreview styleName="base-nova" name="badge-rtl" direction="rtl" />
+<ComponentPreview styleName="base" name="badge-rtl" direction="rtl" />
 
 ## API リファレンス
 

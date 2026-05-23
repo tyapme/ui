@@ -6,10 +6,9 @@ import { fontVariables } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { LayoutProvider } from "@/hooks/use-layout"
 import { ActiveThemeProvider } from "@/components/active-theme"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import { TooltipProvider as BaseTooltipProvider } from "@/registry/bases/base/ui/tooltip"
-import { Toaster } from "@/registry/bases/base/ui/sonner"
+import { TooltipProvider as BaseTooltipProvider } from "@/registry/ui/tooltip"
+import { Toaster } from "@/registry/ui/sonner"
 
 import "@/app/globals.css"
 
@@ -101,7 +100,6 @@ export default function RootLayout({
                   <Toaster position="top-center" />
                 </BaseTooltipProvider>
               </NuqsAdapter>
-              <TailwindIndicator />
             </ActiveThemeProvider>
           </LayoutProvider>
         </ThemeProvider>

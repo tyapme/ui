@@ -6,7 +6,7 @@ component: true
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="breadcrumb-demo"
   previewClassName="p-2"
 />
@@ -16,13 +16,13 @@ component: true
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add breadcrumb
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/breadcrumb.json
 ```
 
 </TabsContent>
@@ -36,7 +36,7 @@ npx shadcn@latest add breadcrumb
 <ComponentSource
   name="breadcrumb"
   title="components/ui/breadcrumb.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -103,26 +103,26 @@ Breadcrumb
 
 ホームリンクとコンポーネントリンクを持つシンプルなパンくずリスト。
 
-<ComponentPreview styleName="base-nova" name="breadcrumb-basic" />
+<ComponentPreview styleName="base" name="breadcrumb-basic" />
 
 ### Custom separator
 
 `<BreadcrumbSeparator />` の `children` にカスタムコンポーネントを指定してセパレーターを変更します。
 
-<ComponentPreview styleName="base-nova" name="breadcrumb-separator" />
+<ComponentPreview styleName="base" name="breadcrumb-separator" />
 
 ### Dropdown
 
 `<BreadcrumbItem />` と `<DropdownMenu />` を組み合わせてパンくずリスト内にドロップダウンを作成できます。
 
-<ComponentPreview styleName="base-nova" name="breadcrumb-dropdown" />
+<ComponentPreview styleName="base" name="breadcrumb-dropdown" />
 
 ### Collapsed
 
 パンくずリストが長すぎる場合に折りたたまんだ状態を表示する `<BreadcrumbEllipsis />` コンポーネントを提供しています。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="breadcrumb-ellipsis"
   previewClassName="p-2"
 />
@@ -131,12 +131,12 @@ Breadcrumb
 
 ルーティングライブラリのカスタムリンクコンポーネントを使うには、`<BreadcrumbLink />` の `render` プロパティを使用します。
 
-<ComponentPreview styleName="base-nova" name="breadcrumb-link" />
+<ComponentPreview styleName="base" name="breadcrumb-link" />
 
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="breadcrumb-rtl"
   direction="rtl"
   previewClassName="p-2"

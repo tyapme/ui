@@ -8,8 +8,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/styles/base-nova/ui/alert-dialog"
-import { Button } from "@/styles/base-nova/ui/button"
+} from "@/styles/base/ui/alert-dialog"
+import { Button } from "@/styles/base/ui/button"
 
 export function AlertDialogSmall() {
   return (

@@ -1,11 +1,11 @@
-import { Button } from "@/styles/base-nova/ui/button"
-import { Input } from "@/styles/base-nova/ui/input"
-import { Label } from "@/styles/base-nova/ui/label"
+import { Button } from "@/styles/base/ui/button"
+import { Input } from "@/styles/base/ui/input"
+import { Label } from "@/styles/base/ui/label"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/styles/base-nova/ui/popover"
+} from "@/styles/base/ui/popover"
 
 export default function PopoverDemo() {
   return (

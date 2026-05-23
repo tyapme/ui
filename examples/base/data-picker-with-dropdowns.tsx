@@ -1,21 +1,26 @@
 "use client"
 
 import * as React from "react"
+import { getLocalTimeZone, type DateValue } from "@internationalized/date"
 import { format } from "date-fns"
 import { ChevronDownIcon } from "lucide-react"
 
-import { Button } from "@/styles/base-nova/ui/button"
-import { Calendar } from "@/styles/base-nova/ui/calendar"
-import { Field, FieldLabel } from "@/styles/base-nova/ui/field"
+import { Button } from "@/styles/base/ui/button"
+import { Calendar } from "@/styles/base/ui/calendar"
+import { Field, FieldLabel } from "@/styles/base/ui/field"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/styles/base-nova/ui/popover"
+} from "@/styles/base/ui/popover"
 
 export function DataPickerWithDropdowns() {
-  const [date, setDate] = React.useState<Date>()
+  const [date, setDate] = React.useState<DateValue | null>(null)
   const [open, setOpen] = React.useState(false)
+
+  const label = date
+    ? format(date.toDate(getLocalTimeZone()), "PPP")
+    : "Pick a date"
 
   return (
     <Field className="mx-auto w-72">
@@ -33,14 +38,14 @@ export function DataPickerWithDropdowns() {
           }
         >
           <ChevronDownIcon className="ml-auto" />
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
+          <span>{label}</span>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
           <Calendar
-            mode="single"
-            selected={date}
-            onSelect={setDate}
-            captionLayout="dropdown"
+            value={date}
+            onChange={(v) => {
+              setDate(v)
+            }}
           />
           <div className="flex gap-2 border-t p-2">
             <Button

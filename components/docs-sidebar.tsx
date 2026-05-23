@@ -19,7 +19,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/registry/new-york-v4/ui/sidebar"
+} from "@/styles/base/ui/sidebar"
 
 const TOP_LEVEL_SECTIONS = [
   { name: "はじめに", href: "/docs" },
@@ -86,25 +86,25 @@ export function DocsSidebar({
                 return (
                   <SidebarMenuItem key={name}>
                     <SidebarMenuButton
-                      asChild
+                      render={
+                        <Link href={href}>
+                          <span className="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent" />
+                          {name}
+                          {PAGES_NEW.includes(href) && (
+                            <span
+                              className="flex size-2 rounded-full bg-blue-500"
+                              title="New"
+                            />
+                          )}
+                        </Link>
+                      }
                       isActive={
                         href === "/docs"
                           ? pathname === href
                           : pathname.startsWith(href)
                       }
                       className="relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md data-[active=true]:border-accent data-[active=true]:bg-accent 3xl:fixed:w-full 3xl:fixed:max-w-48"
-                    >
-                      <Link href={href}>
-                        <span className="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent" />
-                        {name}
-                        {PAGES_NEW.includes(href) && (
-                          <span
-                            className="flex size-2 rounded-full bg-blue-500"
-                            title="New"
-                          />
-                        )}
-                      </Link>
-                    </SidebarMenuButton>
+                    />
                   </SidebarMenuItem>
                 )
               })}
@@ -138,21 +138,21 @@ export function DocsSidebar({
                       return (
                         <SidebarMenuItem key={page.url}>
                           <SidebarMenuButton
-                            asChild
+                            render={
+                              <Link href={page.url}>
+                                <span className="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent" />
+                                {page.name}
+                                {PAGES_NEW.includes(page.url) && (
+                                  <span
+                                    className="flex size-2 rounded-full bg-blue-500"
+                                    title="New"
+                                  />
+                                )}
+                              </Link>
+                            }
                             isActive={page.url === pathname}
                             className="relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md data-[active=true]:border-accent data-[active=true]:bg-accent 3xl:fixed:w-full 3xl:fixed:max-w-48"
-                          >
-                            <Link href={page.url}>
-                              <span className="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent" />
-                              {page.name}
-                              {PAGES_NEW.includes(page.url) && (
-                                <span
-                                  className="flex size-2 rounded-full bg-blue-500"
-                                  title="New"
-                                />
-                              )}
-                            </Link>
-                          </SidebarMenuButton>
+                          />
                         </SidebarMenuItem>
                       )
                     })}
@@ -182,21 +182,21 @@ export function DocsSidebar({
                       return (
                         <SidebarMenuItem key={page.url}>
                           <SidebarMenuButton
-                            asChild
+                            render={
+                              <Link href={page.url}>
+                                <span className="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent" />
+                                {page.name}
+                                {PAGES_NEW.includes(page.url) && (
+                                  <span
+                                    className="flex size-2 rounded-full bg-blue-500"
+                                    title="New"
+                                  />
+                                )}
+                              </Link>
+                            }
                             isActive={page.url === pathname}
                             className="relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md data-[active=true]:border-accent data-[active=true]:bg-accent 3xl:fixed:w-full 3xl:fixed:max-w-48"
-                          >
-                            <Link href={page.url}>
-                              <span className="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent" />
-                              {page.name}
-                              {PAGES_NEW.includes(page.url) && (
-                                <span
-                                  className="flex size-2 rounded-full bg-blue-500"
-                                  title="New"
-                                />
-                              )}
-                            </Link>
-                          </SidebarMenuButton>
+                          />
                         </SidebarMenuItem>
                       )
                     })}

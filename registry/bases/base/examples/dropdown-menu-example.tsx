@@ -10,8 +10,8 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/registry/bases/base/ui/avatar"
-import { Button } from "@/registry/bases/base/ui/button"
+} from "@/registry/ui/avatar"
+import { Button } from "@/registry/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -19,7 +19,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/bases/base/ui/dialog"
+} from "@/registry/ui/dialog"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -36,7 +36,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/registry/bases/base/ui/dropdown-menu"
+} from "@/registry/ui/dropdown-menu"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function DropdownMenuExample() {

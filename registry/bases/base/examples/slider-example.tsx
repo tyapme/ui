@@ -6,8 +6,8 @@ import {
   Example,
   ExampleWrapper,
 } from "@/registry/bases/base/components/example"
-import { Label } from "@/registry/bases/base/ui/label"
-import { Slider } from "@/registry/bases/base/ui/slider"
+import { Label } from "@/registry/ui/label"
+import { Slider } from "@/registry/ui/slider"
 
 export default function SliderExample() {
   return (

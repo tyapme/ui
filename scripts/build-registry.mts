@@ -61,7 +61,7 @@ const STYLE_COMBINATIONS = Array.from(BASES).flatMap((base) =>
   STYLES.map((style) => ({
     base,
     style,
-    name: `${base.name}-${style.name}`,
+    name: base.name,
     title: `${base.title} ${style.title}`,
   }))
 )
@@ -144,7 +144,7 @@ function normalizeRegistryFiles(item: RegistryItem): Array<{
 }
 
 function shouldGenerateRtlStyles(styleName: string) {
-  return styleName === "base-nova"
+  return styleName === "base"
 }
 
 function getTemporaryRegistryRoot(styleName: string) {
@@ -383,6 +383,10 @@ async function getCachedStyledContent({
     new RegExp(`@/registry/bases/${baseName}/`, "g"),
     `@/registry/${styleName}/`
   )
+  transformedContent = transformedContent.replace(
+    new RegExp(`@/registry/ui/`, "g"),
+    `@/registry/${styleName}/ui/`
+  )
   transformedContent = await formatGeneratedSource(
     transformedContent,
     path.join(getTemporaryRegistryRoot(styleName), filePath)
@@ -434,6 +438,7 @@ try {
   await loadTransformCache()
 
   console.log("🏗️ Building bases...")
+  await validateSourceFilesRegistered(Array.from(BASES))
   await buildBasesIndex(Array.from(BASES))
   await buildBases(Array.from(BASES))
 
@@ -532,7 +537,9 @@ export const Index: Record<string, Record<string, any>> = {`
       }
 
       const componentPath = files[0]?.path
-        ? `@/registry/bases/${base.name}/${stripFileExtension(files[0].path)}`
+        ? files[0].path.startsWith("ui/")
+          ? `@/registry/${stripFileExtension(files[0].path)}`
+          : `@/registry/bases/${base.name}/${stripFileExtension(files[0].path)}`
         : ""
 
       index += `
@@ -543,7 +550,9 @@ export const Index: Record<string, Record<string, any>> = {`
       type: "${item.type}",
       registryDependencies: ${JSON.stringify(item.registryDependencies)},
       files: [${files.map((file) => {
-        const filePath = `registry/bases/${base.name}/${file.path}`
+        const filePath = file.path.startsWith("ui/")
+          ? `registry/${file.path}`
+          : `registry/bases/${base.name}/${file.path}`
         return `{
         path: "${filePath}",
         type: "${file.type}",
@@ -611,10 +620,12 @@ async function buildBases(bases: Base[]) {
                 [
                   filePath,
                   await fs.readFile(
-                    path.join(
-                      process.cwd(),
-                      `registry/bases/${base.name}/${filePath}`
-                    ),
+                    filePath.startsWith("ui/")
+                      ? path.join(process.cwd(), `registry/${filePath}`)
+                      : path.join(
+                          process.cwd(),
+                          `registry/bases/${base.name}/${filePath}`
+                        ),
                     "utf8"
                   ),
                 ] as const
@@ -685,7 +696,7 @@ async function buildBases(bases: Base[]) {
       transformCacheHash,
       styleMap,
     }) => {
-      const styleName = `${base.name}-${style.name}`
+      const styleName = base.name
       const styleOutputDir = getTemporaryRegistryRoot(styleName)
 
       console.log(`   ✅ ${styleName}...`)
@@ -1143,7 +1154,7 @@ async function buildIndex() {
   const baseUiRegistries = await Promise.all(
     Array.from(BASES).map(async (base) => {
       const { ui } = await import(
-        `../registry/bases/${base.name}/ui/_registry.ts`
+        `../registry/ui/_registry.ts`
       )
       return { baseName: base.name, items: ui as RegistryItem[] }
     })
@@ -1217,6 +1228,62 @@ async function readDirectoryEntries(dirPath: string) {
 
     throw error
   }
+}
+
+/**
+ * Validates that every .tsx file in the base's ui/ source directory is
+ * registered in its _registry.ts. This prevents the silent-delete bug where
+ * syncDirectory removes files from styles/[style]/ui that exist in the
+ * persistent output but are absent from the generated temporary registry
+ * (because the source file was never registered).
+ */
+async function validateSourceFilesRegistered(bases: Base[]) {
+  let hasErrors = false
+
+  for (const base of bases) {
+    const { registry: baseRegistry } = await import(
+      `../registry/bases/${base.name}/registry.ts`
+    )
+    const result = registrySchema.safeParse(baseRegistry)
+    if (!result.success) continue
+
+    const registeredFilePaths = new Set(
+      result.data.items.flatMap((item) =>
+        normalizeRegistryFiles(item).map((f) => f.path)
+      )
+    )
+
+    const uiDir = path.join(process.cwd(), "registry/ui")
+    let entryNames: string[]
+    try {
+      entryNames = await fs.readdir(uiDir)
+    } catch {
+      continue
+    }
+
+    for (const name of entryNames) {
+      if (name === "_registry.ts") continue
+      if (!name.endsWith(".tsx") && !name.endsWith(".ts")) continue
+
+      const relativePath = `ui/${name}`
+      if (!registeredFilePaths.has(relativePath)) {
+        console.error(
+          `❌ [${base.name}] ${relativePath} exists in source but is not registered in _registry.ts.\n` +
+            `   Add it to registry/ui/_registry.ts or remove the file.\n` +
+            `   Without registration, syncDirectory will delete it from styles/[style]/ui on every clean build.`
+        )
+        hasErrors = true
+      }
+    }
+  }
+
+  if (hasErrors) {
+    throw new Error(
+      "Unregistered source files found. Fix the issues above before building."
+    )
+  }
+
+  console.log("   ✅ All source files are registered")
 }
 
 async function syncDirectory({

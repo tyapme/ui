@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { Button } from "@/registry/bases/base/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardAction,
@@ -10,20 +10,20 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/registry/bases/base/ui/dropdown-menu"
+} from "@/registry/ui/dropdown-menu"
 import {
   Table,
   TableBody,
   TableCell,
   TableRow,
-} from "@/registry/bases/base/ui/table"
+} from "@/registry/ui/table"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export function RecentTransactions() {

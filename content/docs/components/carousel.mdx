@@ -9,7 +9,7 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="carousel-demo"
   previewClassName="h-80 sm:h-[32rem]"
 />
@@ -23,14 +23,14 @@ links:
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add carousel
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/carousel.json
 ```
 
 </TabsContent>
@@ -50,7 +50,7 @@ npm install embla-carousel-react
 <ComponentSource
   name="carousel"
   title="components/ui/carousel.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -104,7 +104,7 @@ Carousel
 
 `<CarouselItem />` に `basis` ユーティリティクラスを使ってアイテムのサイズを設定します。
 
-<ComponentPreview styleName="base-nova" name="carousel-size" />
+<ComponentPreview styleName="base" name="carousel-size" />
 
 ```tsx showLineNumbers {4-6}
 // カルーセル幅の 33%。
@@ -132,7 +132,7 @@ Carousel
 
 `<CarouselItem />` に `pl-[VALUE]`、`<CarouselContent />` に `-ml-[VALUE]` を使ってアイテム間の間隔を設定します。
 
-<ComponentPreview styleName="base-nova" name="carousel-spacing" />
+<ComponentPreview styleName="base" name="carousel-spacing" />
 
 ```tsx showLineNumbers /-ml-4/ /pl-4/
 <Carousel>
@@ -159,7 +159,7 @@ Carousel
 `orientation` プロパティでカルーセルの方向を設定します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="carousel-orientation"
   previewClassName="h-[32rem]"
 />
@@ -198,7 +198,7 @@ Carousel
 `setApi` プロパティと state でカルーセル API のインスタンスを取得します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="carousel-api"
   previewClassName="sm:h-[32rem]"
 />
@@ -293,7 +293,7 @@ export function Example() {
 ```
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="carousel-plugin"
   previewClassName="sm:h-[32rem]"
 />
@@ -301,7 +301,7 @@ export function Example() {
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="carousel-rtl"
   direction="rtl"
   previewClassName="h-80 sm:h-[32rem]"

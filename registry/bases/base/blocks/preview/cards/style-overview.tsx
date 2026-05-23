@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { Card, CardContent } from "@/registry/bases/base/ui/card"
+import { Card, CardContent } from "@/registry/ui/card"
 import { STYLES } from "@/registry/styles"
 import { FONTS } from "@/app/(create)/lib/fonts"
 import { useDesignSystemSearchParams } from "@/app/(create)/lib/search-params"

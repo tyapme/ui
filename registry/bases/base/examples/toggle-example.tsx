@@ -2,8 +2,8 @@ import {
   Example,
   ExampleWrapper,
 } from "@/registry/bases/base/components/example"
-import { Button } from "@/registry/bases/base/ui/button"
-import { Toggle } from "@/registry/bases/base/ui/toggle"
+import { Button } from "@/registry/ui/button"
+import { Toggle } from "@/registry/ui/toggle"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function ToggleExample() {

@@ -7,11 +7,11 @@ import {
   Example,
   ExampleWrapper,
 } from "@/registry/bases/base/components/example"
-import { Button } from "@/registry/bases/base/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
   ButtonGroup,
   ButtonGroupText,
-} from "@/registry/bases/base/ui/button-group"
+} from "@/registry/ui/button-group"
 import {
   Card,
   CardContent,
@@ -19,20 +19,20 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/registry/bases/base/ui/dropdown-menu"
+} from "@/registry/ui/dropdown-menu"
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
-} from "@/registry/bases/base/ui/field"
-import { Input } from "@/registry/bases/base/ui/input"
+} from "@/registry/ui/field"
+import { Input } from "@/registry/ui/input"
 import {
   InputGroup,
   InputGroupAddon,
@@ -40,8 +40,8 @@ import {
   InputGroupInput,
   InputGroupText,
   InputGroupTextarea,
-} from "@/registry/bases/base/ui/input-group"
-import { Kbd, KbdGroup } from "@/registry/bases/base/ui/kbd"
+} from "@/registry/ui/input-group"
+import { Kbd, KbdGroup } from "@/registry/ui/kbd"
 import {
   Popover,
   PopoverContent,
@@ -49,14 +49,14 @@ import {
   PopoverHeader,
   PopoverTitle,
   PopoverTrigger,
-} from "@/registry/bases/base/ui/popover"
-import { Spinner } from "@/registry/bases/base/ui/spinner"
-import { Textarea } from "@/registry/bases/base/ui/textarea"
+} from "@/registry/ui/popover"
+import { Spinner } from "@/registry/ui/spinner"
+import { Textarea } from "@/registry/ui/textarea"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/registry/bases/base/ui/tooltip"
+} from "@/registry/ui/tooltip"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function InputGroupExample() {

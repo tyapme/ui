@@ -6,7 +6,7 @@ component: true
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="field-demo"
   previewClassName="h-[800px] p-6 md:h-[850px]"
 />
@@ -16,13 +16,13 @@ component: true
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add field
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/field.json
 ```
 
 </TabsContent>
@@ -36,7 +36,7 @@ npx shadcn@latest add field
 <ComponentSource
   name="field"
   title="components/ui/field.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -162,52 +162,52 @@ FieldSet
 
 ### Input
 
-<ComponentPreview styleName="base-nova" name="field-input" />
+<ComponentPreview styleName="base" name="field-input" />
 
 ### Textarea
 
-<ComponentPreview styleName="base-nova" name="field-textarea" />
+<ComponentPreview styleName="base" name="field-textarea" />
 
 ### Select
 
-<ComponentPreview styleName="base-nova" name="field-select" />
+<ComponentPreview styleName="base" name="field-select" />
 
 ### Slider
 
-<ComponentPreview styleName="base-nova" name="field-slider" />
+<ComponentPreview styleName="base" name="field-slider" />
 
 ### Fieldset
 
-<ComponentPreview styleName="base-nova" name="field-fieldset" />
+<ComponentPreview styleName="base" name="field-fieldset" />
 
 ### Checkbox
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="field-checkbox"
   previewClassName="h-[32rem]"
 />
 
 ### Radio
 
-<ComponentPreview styleName="base-nova" name="field-radio" />
+<ComponentPreview styleName="base" name="field-radio" />
 
 ### Switch
 
-<ComponentPreview styleName="base-nova" name="field-switch" />
+<ComponentPreview styleName="base" name="field-switch" />
 
 ### Choice Card
 
 `Field` コンポーネントを `FieldLabel` 内に包括することで、選択可能なフィールドグループを作成できます。`RadioItem`、`Checkbox`、`Switch` コンポーネントで動作します。
 
-<ComponentPreview styleName="base-nova" name="field-choice-card" />
+<ComponentPreview styleName="base" name="field-choice-card" />
 
 ### Field Group
 
 `Field` コンポーネントを `FieldGroup` で縦に並べます。`FieldSeparator` で分割線を追加できます。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="field-group"
   previewClassName="h-96"
 />
@@ -215,7 +215,7 @@ FieldSet
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="field-rtl"
   direction="rtl"
   previewClassName="h-auto p-6"
@@ -228,7 +228,7 @@ FieldSet
 - **レスポンシブフィールド:** `orientation="responsive"` を設定するとコンテナクエリ対応の自動カラムレイアウトになります。`FieldGroup` に `@container/field-group` クラスを付けるとブレークポイントで方向が切り替わります。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="field-responsive"
   previewClassName="h-[650px] p-6 md:h-[500px] md:p-10"
 />

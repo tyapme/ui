@@ -8,20 +8,20 @@ links:
   api: https://base-ui.com/react/components/dialog#api-reference
 ---
 
-<ComponentPreview styleName="base-nova" name="sheet-demo" />
+<ComponentPreview styleName="base" name="sheet-demo" />
 
 ## インストール
 
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add sheet
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/sheet.json
 ```
 
 </TabsContent>
@@ -41,7 +41,7 @@ npm install @base-ui/react
 <ComponentSource
   name="sheet"
   title="components/ui/sheet.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -99,17 +99,17 @@ Sheet
 
 `SheetContent` の `side` でシートが表示される画面の端を設定します。`top`、`right`、`bottom`、`left` が利用可能です。
 
-<ComponentPreview styleName="base-nova" name="sheet-side" />
+<ComponentPreview styleName="base" name="sheet-side" />
 
 ### 閉じるボタンなし
 
 `SheetContent` の `showCloseButton={false}` で閉じるボタンを非表示にします。
 
-<ComponentPreview styleName="base-nova" name="sheet-no-close-button" />
+<ComponentPreview styleName="base" name="sheet-no-close-button" />
 
 ## RTL
 
-<ComponentPreview styleName="base-nova" name="sheet-rtl" direction="rtl" />
+<ComponentPreview styleName="base" name="sheet-rtl" direction="rtl" />
 
 ## API リファレンス
 

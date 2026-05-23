@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { TimeFieldInput } from "@/styles/base-nova/ui/time-field"
+import { TimeFieldInput } from "@/styles/base/ui/time-field"
 
 export function TimeFieldDemo() {
   const [value, setValue] = React.useState<Date | undefined>(

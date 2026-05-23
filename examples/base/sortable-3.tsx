@@ -7,8 +7,8 @@ import {
   Sortable,
   SortableItem,
   SortableItemHandle,
-} from "@/styles/base-nova/ui/sortable"
-import { Card, CardContent } from "@/styles/base-nova/ui/card"
+} from "@/styles/base/ui/sortable"
+import { Card, CardContent } from "@/styles/base/ui/card"
 
 interface OptionValue {
   id: string

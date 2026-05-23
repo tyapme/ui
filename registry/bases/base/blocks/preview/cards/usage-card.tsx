@@ -5,7 +5,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   Item,
   ItemActions,
@@ -13,7 +13,7 @@ import {
   ItemGroup,
   ItemMedia,
   ItemTitle,
-} from "@/registry/bases/base/ui/item"
+} from "@/registry/ui/item"
 
 // Usage items with percentage and value.
 const items = [

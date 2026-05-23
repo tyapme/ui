@@ -9,7 +9,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   Item,
   ItemActions,
@@ -17,13 +17,13 @@ import {
   ItemGroup,
   ItemMedia,
   ItemTitle,
-} from "@/registry/bases/base/ui/item"
-import { Slider } from "@/registry/bases/base/ui/slider"
-import { Switch } from "@/registry/bases/base/ui/switch"
+} from "@/registry/ui/item"
+import { Slider } from "@/registry/ui/slider"
+import { Switch } from "@/registry/ui/switch"
 import {
   ToggleGroup,
   ToggleGroupItem,
-} from "@/registry/bases/base/ui/toggle-group"
+} from "@/registry/ui/toggle-group"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const SCENES = {

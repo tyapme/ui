@@ -9,12 +9,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
-import { Slider } from "@/registry/bases/base/ui/slider"
+} from "@/registry/ui/card"
+import { Slider } from "@/registry/ui/slider"
 import {
   ToggleGroup,
   ToggleGroupItem,
-} from "@/registry/bases/base/ui/toggle-group"
+} from "@/registry/ui/toggle-group"
 
 export function RollerShades() {
   const [position, setPosition] = React.useState([50])

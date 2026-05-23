@@ -1,14 +1,14 @@
 "use client"
 
-import { Button } from "@/registry/new-york-v4/ui/button"
+import { Button } from "@/styles/base/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york-v4/ui/card"
-import { Checkbox } from "@/registry/new-york-v4/ui/checkbox"
+} from "@/styles/base/ui/card"
+import { Checkbox } from "@/styles/base/ui/checkbox"
 import {
   Field,
   FieldContent,
@@ -18,13 +18,13 @@ import {
   FieldLegend,
   FieldSet,
   FieldTitle,
-} from "@/registry/new-york-v4/ui/field"
-import { Input } from "@/registry/new-york-v4/ui/input"
+} from "@/styles/base/ui/field"
+import { Input } from "@/styles/base/ui/input"
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@/registry/new-york-v4/ui/radio-group"
-import { Textarea } from "@/registry/new-york-v4/ui/textarea"
+} from "@/styles/base/ui/radio-group"
+import { Textarea } from "@/styles/base/ui/textarea"
 
 const plans = [
   {

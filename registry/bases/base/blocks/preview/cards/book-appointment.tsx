@@ -4,8 +4,8 @@ import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "@/registry/bases/base/ui/alert"
-import { Button } from "@/registry/bases/base/ui/button"
+} from "@/registry/ui/alert"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardContent,
@@ -13,12 +13,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
-import { Field, FieldGroup, FieldLabel } from "@/registry/bases/base/ui/field"
+} from "@/registry/ui/card"
+import { Field, FieldGroup, FieldLabel } from "@/registry/ui/field"
 import {
   ToggleGroup,
   ToggleGroupItem,
-} from "@/registry/bases/base/ui/toggle-group"
+} from "@/registry/ui/toggle-group"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export function BookAppointment() {

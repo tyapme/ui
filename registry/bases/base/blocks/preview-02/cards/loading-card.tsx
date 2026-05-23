@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader } from "@/registry/bases/base/ui/card"
-import { Skeleton } from "@/registry/bases/base/ui/skeleton"
+import { Card, CardContent, CardHeader } from "@/registry/ui/card"
+import { Skeleton } from "@/registry/ui/skeleton"
 
 export function LoadingCard() {
   return (

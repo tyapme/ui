@@ -3,8 +3,8 @@
 import * as React from "react"
 import { type DateValue } from "@internationalized/date"
 
-import { Calendar } from "@/styles/base-nova/ui/calendar"
-import { Card, CardContent } from "@/styles/base-nova/ui/card"
+import { Calendar } from "@/styles/base/ui/calendar"
+import { Card, CardContent } from "@/styles/base/ui/card"
 
 export function CalendarMultiple() {
   const [date, setDate] = React.useState<DateValue | null>(null)

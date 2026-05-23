@@ -12,14 +12,14 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/registry/bases/base/ui/breadcrumb"
-import { Button } from "@/registry/bases/base/ui/button"
+} from "@/registry/ui/breadcrumb"
+import { Button } from "@/registry/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/registry/bases/base/ui/dropdown-menu"
+} from "@/registry/ui/dropdown-menu"
 
 export default function BreadcrumbExample() {
   return (

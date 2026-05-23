@@ -7,8 +7,8 @@ import {
   Example,
   ExampleWrapper,
 } from "@/registry/bases/base/components/example"
-import { Badge } from "@/registry/bases/base/ui/badge"
-import { Checkbox } from "@/registry/bases/base/ui/checkbox"
+import { Badge } from "@/registry/ui/badge"
+import { Checkbox } from "@/registry/ui/checkbox"
 import {
   Field,
   FieldContent,
@@ -18,23 +18,23 @@ import {
   FieldLegend,
   FieldSet,
   FieldTitle,
-} from "@/registry/bases/base/ui/field"
-import { Input } from "@/registry/bases/base/ui/input"
+} from "@/registry/ui/field"
+import { Input } from "@/registry/ui/input"
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from "@/registry/bases/base/ui/input-otp"
+} from "@/registry/ui/input-otp"
 import {
   NativeSelect,
   NativeSelectOptGroup,
   NativeSelectOption,
-} from "@/registry/bases/base/ui/native-select"
+} from "@/registry/ui/native-select"
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@/registry/bases/base/ui/radio-group"
+} from "@/registry/ui/radio-group"
 import {
   Select,
   SelectContent,
@@ -42,10 +42,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/bases/base/ui/select"
-import { Slider } from "@/registry/bases/base/ui/slider"
-import { Switch } from "@/registry/bases/base/ui/switch"
-import { Textarea } from "@/registry/bases/base/ui/textarea"
+} from "@/registry/ui/select"
+import { Slider } from "@/registry/ui/slider"
+import { Switch } from "@/registry/ui/switch"
+import { Textarea } from "@/registry/ui/textarea"
 
 export default function FieldExample() {
   return (

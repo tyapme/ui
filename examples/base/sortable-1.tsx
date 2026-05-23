@@ -3,12 +3,12 @@
 import { useState } from "react"
 import { GripVerticalIcon, ImageIcon, FileTextIcon, VideoIcon, MusicIcon } from "lucide-react"
 
-import { Badge } from "@/styles/base-nova/ui/badge"
+import { Badge } from "@/styles/base/ui/badge"
 import {
   Sortable,
   SortableItem,
   SortableItemHandle,
-} from "@/styles/base-nova/ui/sortable"
+} from "@/styles/base/ui/sortable"
 
 interface Item {
   id: string

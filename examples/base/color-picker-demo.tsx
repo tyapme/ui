@@ -9,7 +9,7 @@ import {
   ColorPickerTrigger,
   ColorSlider,
   ColorSwatch,
-} from "@/styles/base-nova/ui/color-picker"
+} from "@/styles/base/ui/color-picker"
 
 export function ColorPickerDemo() {
   return (

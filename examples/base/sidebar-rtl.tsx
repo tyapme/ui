@@ -33,13 +33,13 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/styles/base-nova/ui-rtl/avatar"
+} from "@/styles/base/ui-rtl/avatar"
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/styles/base-nova/ui-rtl/collapsible"
-import { DirectionProvider } from "@/styles/base-nova/ui-rtl/direction"
+} from "@/styles/base/ui-rtl/collapsible"
+import { DirectionProvider } from "@/styles/base/ui-rtl/direction"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -48,7 +48,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/styles/base-nova/ui-rtl/dropdown-menu"
+} from "@/styles/base/ui-rtl/dropdown-menu"
 import {
   Sidebar,
   SidebarContent,
@@ -68,7 +68,7 @@ import {
   SidebarRail,
   SidebarTrigger,
   useSidebar,
-} from "@/styles/base-nova/ui-rtl/sidebar"
+} from "@/styles/base/ui-rtl/sidebar"
 
 const translations: Translations = {
   en: {

@@ -2,7 +2,7 @@
 
 import { toast } from "sonner"
 
-import { Button } from "@/styles/base-nova/ui/button"
+import { Button } from "@/styles/base/ui/button"
 
 export function SonnerTypes() {
   return (

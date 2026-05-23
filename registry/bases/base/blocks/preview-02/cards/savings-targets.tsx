@@ -1,4 +1,4 @@
-import { Button } from "@/registry/bases/base/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardAction,
@@ -7,31 +7,31 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
-} from "@/registry/bases/base/ui/field"
+} from "@/registry/ui/field"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
   InputGroupText,
-} from "@/registry/bases/base/ui/input-group"
+} from "@/registry/ui/input-group"
 import {
   Item,
   ItemContent,
   ItemDescription,
   ItemFooter,
   ItemGroup,
-} from "@/registry/bases/base/ui/item"
+} from "@/registry/ui/item"
 import {
   NativeSelect,
   NativeSelectOption,
-} from "@/registry/bases/base/ui/native-select"
-import { Progress } from "@/registry/bases/base/ui/progress"
+} from "@/registry/ui/native-select"
+import { Progress } from "@/registry/ui/progress"
 
 export function SavingsTargets() {
   return (

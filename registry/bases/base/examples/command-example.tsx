@@ -6,8 +6,8 @@ import {
   Example,
   ExampleWrapper,
 } from "@/registry/bases/base/components/example"
-import { Button } from "@/registry/bases/base/ui/button"
-import { Card, CardContent } from "@/registry/bases/base/ui/card"
+import { Button } from "@/registry/ui/button"
+import { Card, CardContent } from "@/registry/ui/card"
 import {
   Command,
   CommandDialog,
@@ -18,7 +18,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from "@/registry/bases/base/ui/command"
+} from "@/registry/ui/command"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function CommandExample() {

@@ -1,4 +1,4 @@
-import { Button } from "@/registry/bases/base/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardAction,
@@ -7,7 +7,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   Field,
   FieldContent,
@@ -15,7 +15,7 @@ import {
   FieldGroup,
   FieldLabel,
   FieldSeparator,
-} from "@/registry/bases/base/ui/field"
+} from "@/registry/ui/field"
 import {
   Select,
   SelectContent,
@@ -23,8 +23,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/bases/base/ui/select"
-import { Switch } from "@/registry/bases/base/ui/switch"
+} from "@/registry/ui/select"
+import { Switch } from "@/registry/ui/switch"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const CURRENCIES = [

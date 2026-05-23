@@ -1,16 +1,17 @@
 "use client"
 
 import * as React from "react"
+import { getLocalTimeZone, today, type DateValue } from "@internationalized/date"
 
-import { Badge } from "@/registry/bases/base/ui/badge"
-import { Calendar } from "@/registry/bases/base/ui/calendar"
+import { Badge } from "@/registry/ui/badge"
+import { Calendar } from "@/registry/ui/calendar"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   Item,
   ItemContent,
@@ -18,10 +19,12 @@ import {
   ItemGroup,
   ItemMedia,
   ItemTitle,
-} from "@/registry/bases/base/ui/item"
+} from "@/registry/ui/item"
 
 export function UpcomingPayments() {
-  const [date, setDate] = React.useState<Date | undefined>(new Date())
+  const [date, setDate] = React.useState<DateValue | null>(
+    today(getLocalTimeZone())
+  )
 
   return (
     <Card>
@@ -34,9 +37,8 @@ export function UpcomingPayments() {
       <CardContent className="flex flex-col gap-4">
         <Item variant="outline" className="justify-center">
           <Calendar
-            mode="single"
-            selected={date}
-            onSelect={setDate}
+            value={date}
+            onChange={setDate}
             className="w-full [--cell-size:--spacing(8)] md:[--cell-size:--spacing(10)] style-sera:md:[--cell-size:--spacing(9)]"
           />
         </Item>

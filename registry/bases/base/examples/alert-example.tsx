@@ -7,9 +7,9 @@ import {
   AlertAction,
   AlertDescription,
   AlertTitle,
-} from "@/registry/bases/base/ui/alert"
-import { Badge } from "@/registry/bases/base/ui/badge"
-import { Button } from "@/registry/bases/base/ui/button"
+} from "@/registry/ui/alert"
+import { Badge } from "@/registry/ui/badge"
+import { Button } from "@/registry/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function AlertExample() {

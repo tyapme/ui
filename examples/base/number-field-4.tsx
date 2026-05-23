@@ -5,7 +5,7 @@ import {
   NumberFieldIncrement,
   NumberFieldInput,
   NumberFieldScrubArea,
-} from "@/styles/base-nova/ui/number-field"
+} from "@/styles/base/ui/number-field"
 
 export function NumberField4() {
   return (

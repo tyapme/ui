@@ -8,20 +8,20 @@ links:
   api: https://base-ui.com/react/components/radio-group#api-reference
 ---
 
-<ComponentPreview styleName="base-nova" name="radio-group-demo" />
+<ComponentPreview styleName="base" name="radio-group-demo" />
 
 ## インストール
 
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add radio-group
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/radio-group.json
 ```
 
 </TabsContent>
@@ -41,7 +41,7 @@ npm install @base-ui/react
 <ComponentSource
   name="radio-group"
   title="components/ui/radio-group.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -88,36 +88,36 @@ RadioGroup
 
 `Field` コンポーネントを使った説明付きのラジオグループ項目。
 
-<ComponentPreview styleName="base-nova" name="radio-group-description" />
+<ComponentPreview styleName="base" name="radio-group-description" />
 
 ### Choice Card
 
 `FieldLabel` で `Field` 全体を包括してクリック可能なカード形式の選択屋を作成します。
 
-<ComponentPreview styleName="base-nova" name="radio-group-choice-card" />
+<ComponentPreview styleName="base" name="radio-group-choice-card" />
 
 ### Fieldset
 
 `FieldSet` と `FieldLegend` でラジオ項目をラベルと説明付きのグループにまとめます。
 
-<ComponentPreview styleName="base-nova" name="radio-group-fieldset" />
+<ComponentPreview styleName="base" name="radio-group-fieldset" />
 
 ### 無効
 
 `RadioGroup` の `disabled` で全項目を無効化します。
 
-<ComponentPreview styleName="base-nova" name="radio-group-disabled" />
+<ComponentPreview styleName="base" name="radio-group-disabled" />
 
 ### エラー
 
 `RadioGroupItem` の `aria-invalid` と `Field` の `data-invalid` でバリデーションエラーを表示します。
 
-<ComponentPreview styleName="base-nova" name="radio-group-invalid" />
+<ComponentPreview styleName="base" name="radio-group-invalid" />
 
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="radio-group-rtl"
   direction="rtl"
 />

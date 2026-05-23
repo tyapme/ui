@@ -13,7 +13,7 @@ import { getPagesFromFolder } from "@/lib/page-tree"
 import { type source } from "@/lib/source"
 import { cn } from "@/lib/utils"
 import { useMutationObserver } from "@/hooks/use-mutation-observer"
-import { Button } from "@/registry/new-york-v4/ui/button"
+import { Button } from "@/styles/base/ui/button"
 import {
   Command,
   CommandEmpty,
@@ -21,7 +21,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/registry/new-york-v4/ui/command"
+} from "@/styles/base/ui/command"
 import {
   Dialog,
   DialogDescription,
@@ -30,15 +30,15 @@ import {
   DialogPortal,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/new-york-v4/ui/dialog"
-import { Separator } from "@/registry/new-york-v4/ui/separator"
-import { Spinner } from "@/registry/new-york-v4/ui/spinner"
+} from "@/styles/base/ui/dialog"
+import { Separator } from "@/styles/base/ui/separator"
+import { Spinner } from "@/styles/base/ui/spinner"
 
 export function CommandMenu({
   tree,
   navItems,
   ...props
-}: React.ComponentProps<typeof Dialog> & {
+}: Omit<React.ComponentProps<typeof Dialog>, "children"> & {
   tree: typeof source.pageTree
   navItems?: { href: string; label: string }[]
 }) {
@@ -253,19 +253,20 @@ export function CommandMenu({
   }, [])
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          className={cn(
-            "relative h-8 w-full justify-start rounded-lg pl-3 font-normal text-foreground shadow-none hover:bg-muted/50 sm:pr-12 md:w-48 lg:w-40 xl:w-64 dark:bg-card"
-          )}
-          onClick={() => setOpen(true)}
-          {...props}
-        >
+    <Dialog open={open} onOpenChange={setOpen} {...props}>
+      <DialogTrigger
+        render={
+          <Button
+            variant="outline"
+            className={cn(
+              "relative h-8 w-full justify-start rounded-lg pl-3 font-normal text-foreground shadow-none hover:bg-muted/50 sm:pr-12 md:w-48 lg:w-40 xl:w-64 dark:bg-card"
+            )}
+            onClick={() => setOpen(true)}
+          />
+        }
+      >
           <span className="hidden xl:inline-flex">Search documentation...</span>
           <span className="inline-flex xl:hidden">Search...</span>
-        </Button>
       </DialogTrigger>
       <DialogContent className="rounded-xl border-none bg-clip-padding p-2 pb-11 shadow-2xl ring-4 ring-neutral-200/80 dark:bg-neutral-900 dark:ring-neutral-800">
         <DialogHeader className="sr-only">

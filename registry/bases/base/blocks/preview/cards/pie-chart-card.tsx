@@ -2,7 +2,7 @@
 
 import { Label, Pie, PieChart } from "recharts"
 
-import { Badge } from "@/registry/bases/base/ui/badge"
+import { Badge } from "@/registry/ui/badge"
 import {
   Card,
   CardAction,
@@ -11,7 +11,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   ChartContainer,
   ChartLegend,
@@ -19,8 +19,8 @@ import {
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/registry/bases/base/ui/chart"
-import { Progress } from "@/registry/bases/base/ui/progress"
+} from "@/registry/ui/chart"
+import { Progress } from "@/registry/ui/progress"
 
 const pieChartData = [
   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "files": [
+    {
+      "path": "registry/base/ui/collapsible.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Collapsible as CollapsiblePrimitive } from \"@base-ui/react/collapsible\"\n\nfunction Collapsible({ ...props }: CollapsiblePrimitive.Root.Props) {\n  return <CollapsiblePrimitive.Root data-slot=\"collapsible\" {...props} />\n}\n\nfunction CollapsibleTrigger({\n  asChild,\n  children,\n  render,\n  ...props\n}: CollapsiblePrimitive.Trigger.Props & {\n  asChild?: boolean\n  children?: React.ReactNode\n}) {\n  const resolvedRender =\n    asChild && React.isValidElement(children) ? children : render\n\n  return (\n    <CollapsiblePrimitive.Trigger\n      data-slot=\"collapsible-trigger\"\n      render={resolvedRender}\n      {...props}\n    >\n      {asChild ? undefined : children}\n    </CollapsiblePrimitive.Trigger>\n  )\n}\n\nfunction CollapsibleContent({\n  forceMount: _forceMount,\n  ...props\n}: CollapsiblePrimitive.Panel.Props & { forceMount?: boolean }) {\n  return (\n    <CollapsiblePrimitive.Panel data-slot=\"collapsible-content\" {...props} />\n  )\n}\n\nexport { Collapsible, CollapsibleTrigger, CollapsibleContent }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "links": {
+      "docs": "https://ui.shadcn.com/docs/components/base/collapsible",
+      "examples": "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/collapsible-example.tsx",
+      "api": "https://base-ui.com/react/components/collapsible.md"
+    }
+  },
+  "type": "registry:ui"
+}

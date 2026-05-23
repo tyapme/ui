@@ -6,20 +6,20 @@ base: base
 component: true
 ---
 
-<ComponentPreview styleName="base-nova" name="button-demo" />
+<ComponentPreview styleName="base" name="button-demo" />
 
 ## インストール
 
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add button
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/button.json
 ```
 
 </TabsContent>
@@ -39,7 +39,7 @@ npm install @base-ui/react
 <ComponentSource
   name="button"
   title="components/ui/button.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -83,59 +83,59 @@ Tailwind v4 ではボタンコンポーネントの `cursor: pointer` から `cu
 
 `size` プロパティでボタンのサイズを変更します。
 
-<ComponentPreview styleName="base-nova" name="button-size" />
+<ComponentPreview styleName="base" name="button-size" />
 
 ### Default
 
-<ComponentPreview styleName="base-nova" name="button-default" />
+<ComponentPreview styleName="base" name="button-default" />
 
 ### Outline
 
-<ComponentPreview styleName="base-nova" name="button-outline" />
+<ComponentPreview styleName="base" name="button-outline" />
 
 ### Secondary
 
-<ComponentPreview styleName="base-nova" name="button-secondary" />
+<ComponentPreview styleName="base" name="button-secondary" />
 
 ### Ghost
 
-<ComponentPreview styleName="base-nova" name="button-ghost" />
+<ComponentPreview styleName="base" name="button-ghost" />
 
 ### Destructive
 
-<ComponentPreview styleName="base-nova" name="button-destructive" />
+<ComponentPreview styleName="base" name="button-destructive" />
 
 ### Link
 
-<ComponentPreview styleName="base-nova" name="button-link" />
+<ComponentPreview styleName="base" name="button-link" />
 
 ### Icon
 
-<ComponentPreview styleName="base-nova" name="button-icon" />
+<ComponentPreview styleName="base" name="button-icon" />
 
 ### With Icon
 
 アイコンに `data-icon="inline-start"` または `data-icon="inline-end"` 属性を付けて正しい間隔を確保してください。
 
-<ComponentPreview styleName="base-nova" name="button-with-icon" />
+<ComponentPreview styleName="base" name="button-with-icon" />
 
 ### Rounded
 
 `rounded-full` クラスでボタンを丸くします。
 
-<ComponentPreview styleName="base-nova" name="button-rounded" />
+<ComponentPreview styleName="base" name="button-rounded" />
 
 ### Spinner
 
 リーディング状態を表示するため、`<Spinner />` コンポーネントをボタンの中に配置します。スピナーに `data-icon="inline-start"` または `data-icon="inline-end"` 属性を付けて正しい間隔を確保してください。
 
-<ComponentPreview styleName="base-nova" name="button-spinner" />
+<ComponentPreview styleName="base" name="button-spinner" />
 
 ### Button Group
 
 ボタングループを作成するには `ButtonGroup` コンポーネントを使います。詳細は [Button Group](/docs/components/base/button-group) のドキュメントを参照してください。
 
-<ComponentPreview styleName="base-nova" name="button-group-demo" />
+<ComponentPreview styleName="base" name="button-group-demo" />
 
 ### As Link
 
@@ -143,11 +143,11 @@ Tailwind v4 ではボタンコンポーネントの `cursor: pointer` から `cu
 
 **リンクには `<Button render={<a />} nativeButton={false} />` を使わないでください。** Base UI の `Button` コンポーネントは常に `role="button"` を適用するため、`<a>` 要素のセマンティックなリンクロールを上書きしてしまいます。代わりに `buttonVariants` と通常の `<a>` タグを使用してください。
 
-<ComponentPreview styleName="base-nova" name="button-render" />
+<ComponentPreview styleName="base" name="button-render" />
 
 ## RTL
 
-<ComponentPreview styleName="base-nova" name="button-rtl" direction="rtl" />
+<ComponentPreview styleName="base" name="button-rtl" direction="rtl" />
 
 ## API リファレンス
 

@@ -4,8 +4,8 @@ import * as React from "react"
 import { addDays } from "date-fns"
 import { type DateRange } from "react-day-picker"
 
-import { DateRangePicker } from "@/styles/base-nova/ui/date-picker"
-import { Field, FieldLabel } from "@/styles/base-nova/ui/field"
+import { DateRangePicker } from "@/styles/base/ui/date-picker"
+import { Field, FieldLabel } from "@/styles/base/ui/field"
 
 export function DatePickerWithRange() {
   const [date, setDate] = React.useState<DateRange | undefined>({

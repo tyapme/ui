@@ -15,20 +15,20 @@ import { InfoIcon, TriangleAlertIcon } from "lucide-react"
   を使用してください。
 </Callout>
 
-<ComponentPreview styleName="base-nova" name="native-select-demo" />
+<ComponentPreview styleName="base" name="native-select-demo" />
 
 ## インストール
 
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add native-select
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/native-select.json
 ```
 
 </TabsContent>
@@ -42,7 +42,7 @@ npx shadcn@latest add native-select
 <ComponentSource
   name="native-select"
   title="components/ui/native-select.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -107,19 +107,19 @@ NativeSelect
 
 `NativeSelectOptGroup` でオプションをカテゴリ分けします。
 
-<ComponentPreview styleName="base-nova" name="native-select-groups" />
+<ComponentPreview styleName="base" name="native-select-groups" />
 
 ### 無効
 
 `NativeSelect` に `disabled` を追加するとセレクトを無効化できます。
 
-<ComponentPreview styleName="base-nova" name="native-select-disabled" />
+<ComponentPreview styleName="base" name="native-select-disabled" />
 
 ### エラー
 
 `aria-invalid` でバリデーションエラーを表示し、`Field` に `data-invalid` を付けてスタイリングを適用します。
 
-<ComponentPreview styleName="base-nova" name="native-select-invalid" />
+<ComponentPreview styleName="base" name="native-select-invalid" />
 
 ## NativeSelect vs Select
 
@@ -129,7 +129,7 @@ NativeSelect
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="native-select-rtl"
   direction="rtl"
 />

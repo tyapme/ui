@@ -4,9 +4,9 @@ import {
   useTranslation,
   type Translations,
 } from "@/components/language-selector"
-import { Button } from "@/styles/base-nova/ui-rtl/button"
-import { Field, FieldGroup, FieldLabel } from "@/styles/base-nova/ui-rtl/field"
-import { Input } from "@/styles/base-nova/ui-rtl/input"
+import { Button } from "@/styles/base/ui-rtl/button"
+import { Field, FieldGroup, FieldLabel } from "@/styles/base/ui-rtl/field"
+import { Input } from "@/styles/base/ui-rtl/input"
 import {
   Sheet,
   SheetClose,
@@ -16,7 +16,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/styles/base-nova/ui-rtl/sheet"
+} from "@/styles/base/ui-rtl/sheet"
 
 const translations: Translations = {
   en: {

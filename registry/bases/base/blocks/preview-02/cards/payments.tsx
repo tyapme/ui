@@ -7,16 +7,16 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/registry/bases/base/ui/breadcrumb"
-import { Button } from "@/registry/bases/base/ui/button"
-import { Card, CardContent, CardHeader } from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/breadcrumb"
+import { Button } from "@/registry/ui/button"
+import { Card, CardContent, CardHeader } from "@/registry/ui/card"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/registry/bases/base/ui/dropdown-menu"
+} from "@/registry/ui/dropdown-menu"
 import {
   Item,
   ItemContent,
@@ -24,7 +24,7 @@ import {
   ItemGroup,
   ItemMedia,
   ItemTitle,
-} from "@/registry/bases/base/ui/item"
+} from "@/registry/ui/item"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export function Payments() {

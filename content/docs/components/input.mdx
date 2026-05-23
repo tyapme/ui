@@ -6,7 +6,7 @@ component: true
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-demo"
   previewClassName="*:max-w-xs"
 />
@@ -16,13 +16,13 @@ component: true
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add input
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/input.json
 ```
 
 </TabsContent>
@@ -36,7 +36,7 @@ npx shadcn@latest add input
 <ComponentSource
   name="input"
   title="components/ui/input.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -62,7 +62,7 @@ import { Input } from "@/components/ui/input"
 ### Basic
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-basic"
   previewClassName="*:max-w-xs"
 />
@@ -72,7 +72,7 @@ import { Input } from "@/components/ui/input"
 `Field`、`FieldLabel`、`FieldDescription` を使ってラベルと説明付きの入力欄を作成します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-field"
   previewClassName="*:max-w-xs"
 />
@@ -82,7 +82,7 @@ import { Input } from "@/components/ui/input"
 `FieldGroup` を使って複数の `Field` をまとめて表示し、フォームを作成します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-fieldgroup"
   previewClassName="*:max-w-xs"
 />
@@ -92,7 +92,7 @@ import { Input } from "@/components/ui/input"
 `disabled` で入力を無効化します。無効状態のスタイリングには `Field` コンポーネントに `data-disabled` 属性を追加します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-disabled"
   previewClassName="*:max-w-xs"
 />
@@ -102,7 +102,7 @@ import { Input } from "@/components/ui/input"
 `aria-invalid` で入力をエラー状態にします。エラー状態のスタイリングには `Field` コンポーネントに `data-invalid` 属性を追加します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-invalid"
   previewClassName="*:max-w-xs"
 />
@@ -112,7 +112,7 @@ import { Input } from "@/components/ui/input"
 `type="file"` でファイル入力を作成します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-file"
   previewClassName="*:max-w-xs"
 />
@@ -122,7 +122,7 @@ import { Input } from "@/components/ui/input"
 `Field` に `orientation="horizontal"` を設定すると横並びの入力欄を作成できます。`Button` と組み合わせてボタン付き検索入力欄を作れます。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-inline"
   previewClassName="*:max-w-xs"
 />
@@ -132,7 +132,7 @@ import { Input } from "@/components/ui/input"
 グリッドレイアウトを使って複数の入力欄を横に並べます。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-grid"
   previewClassName="p-6"
 />
@@ -142,7 +142,7 @@ import { Input } from "@/components/ui/input"
 必須入力項目を示すには `required` 属性を使用します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-required"
   previewClassName="*:max-w-xs"
 />
@@ -152,7 +152,7 @@ import { Input } from "@/components/ui/input"
 ラベルに `Badge` を使って推奨フィールドをハイライトします。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-badge"
   previewClassName="*:max-w-xs"
 />
@@ -162,7 +162,7 @@ import { Input } from "@/components/ui/input"
 入力内にアイコン、テキスト、ボタンを追加するには `InputGroup` コンポーネントを使用します。詳しくは [Input Group](/docs/components/input-group) を参照してください。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-input-group"
   previewClassName="*:max-w-xs"
 />
@@ -172,7 +172,7 @@ import { Input } from "@/components/ui/input"
 入力にボタンを追加するには `ButtonGroup` コンポーネントを使用します。詳しくは [Button Group](/docs/components/button-group) を参照してください。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-button-group"
   previewClassName="*:max-w-xs"
 />
@@ -182,7 +182,7 @@ import { Input } from "@/components/ui/input"
 複数の入力欄、セレクト、ボタンを含むフォームの完全な例。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-form"
   previewClassName="h-[32rem]"
 />
@@ -190,7 +190,7 @@ import { Input } from "@/components/ui/input"
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-rtl"
   direction="rtl"
   previewClassName="*:max-w-xs"

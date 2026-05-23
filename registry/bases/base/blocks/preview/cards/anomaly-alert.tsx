@@ -1,14 +1,14 @@
 "use client"
 
-import { Button } from "@/registry/bases/base/ui/button"
-import { Card, CardContent } from "@/registry/bases/base/ui/card"
+import { Button } from "@/registry/ui/button"
+import { Card, CardContent } from "@/registry/ui/card"
 import {
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyTitle,
-} from "@/registry/bases/base/ui/empty"
+} from "@/registry/ui/empty"
 
 export function AnomalyAlert() {
   return (

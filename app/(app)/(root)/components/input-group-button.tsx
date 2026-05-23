@@ -8,13 +8,13 @@ import {
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from "@/styles/base-nova/ui/input-group"
-import { Label } from "@/styles/base-nova/ui/label"
+} from "@/styles/base/ui/input-group"
+import { Label } from "@/styles/base/ui/label"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/styles/base-nova/ui/popover"
+} from "@/styles/base/ui/popover"
 
 export function InputGroupButtonExample() {
   const [isFavorite, setIsFavorite] = React.useState(false)

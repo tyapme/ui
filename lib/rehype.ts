@@ -5,6 +5,7 @@ import { u } from "unist-builder"
 import { visit } from "unist-util-visit"
 
 import { formatCode } from "@/lib/format-code"
+import { readRegistrySourceFromBuiltJson } from "@/lib/read-file"
 import { Index as StylesIndex } from "@/registry/__index__"
 import { getActiveStyle } from "@/registry/_legacy-styles"
 import { BASES } from "@/registry/bases"
@@ -71,7 +72,8 @@ interface NodeToProcess {
 
 export function rehypeComponent() {
   return async (tree: UnistTree) => {
-    const activeStyle = await getActiveStyle()
+    await getActiveStyle()
+    const defaultStyleName = "base"
     const nodesToProcess: NodeToProcess[] = []
 
     visit(tree, (node: UnistNode) => {
@@ -89,7 +91,7 @@ export function rehypeComponent() {
           | undefined
         const styleName =
           (getNodeAttributeByName(node, "styleName")?.value as string) ||
-          activeStyle.name
+          defaultStyleName
 
         if (name || srcPath) {
           nodesToProcess.push({
@@ -107,7 +109,7 @@ export function rehypeComponent() {
         const name = getNodeAttributeByName(node, "name")?.value as string
         const styleName =
           (getNodeAttributeByName(node, "styleName")?.value as string) ||
-          activeStyle.name
+          defaultStyleName
         const hideCode = isTruthyMdxAttribute(
           getNodeAttributeByName(node, "hideCode")
         )
@@ -166,7 +168,20 @@ export function rehypeComponent() {
             return
           }
 
-          const raw = fs.readFileSync(path.join(process.cwd(), src), "utf8")
+          let raw: string
+
+          try {
+            raw = fs.readFileSync(path.join(process.cwd(), src), "utf8")
+          } catch (error) {
+            const source = readRegistrySourceFromBuiltJson(src)
+
+            if (!source) {
+              return
+            }
+
+            raw = source
+          }
+
           const source = await formatCode(raw, item.styleName)
 
           item.node.children?.push(

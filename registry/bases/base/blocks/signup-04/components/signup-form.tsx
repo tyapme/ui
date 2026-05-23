@@ -1,14 +1,14 @@
 import { cn } from "@/registry/bases/base/lib/utils"
-import { Button } from "@/registry/bases/base/ui/button"
-import { Card, CardContent } from "@/registry/bases/base/ui/card"
+import { Button } from "@/registry/ui/button"
+import { Card, CardContent } from "@/registry/ui/card"
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
   FieldSeparator,
-} from "@/registry/bases/base/ui/field"
-import { Input } from "@/registry/bases/base/ui/input"
+} from "@/registry/ui/field"
+import { Input } from "@/registry/ui/input"
 
 export function SignupForm({
   className,

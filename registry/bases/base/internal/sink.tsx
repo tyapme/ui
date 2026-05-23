@@ -51,7 +51,7 @@ import TextareaExample from "@/registry/bases/base/examples/textarea-example"
 import ToggleExample from "@/registry/bases/base/examples/toggle-example"
 import ToggleGroupExample from "@/registry/bases/base/examples/toggle-group-example"
 import TooltipExample from "@/registry/bases/base/examples/tooltip-example"
-import { Toaster } from "@/registry/bases/base/ui/sonner"
+import { Toaster } from "@/registry/ui/sonner"
 
 export default function Page() {
   return (

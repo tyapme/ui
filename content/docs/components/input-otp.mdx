@@ -7,7 +7,7 @@ links:
   doc: https://input-otp.rodz.dev
 ---
 
-<ComponentPreview styleName="base-nova" name="input-otp-demo" />
+<ComponentPreview styleName="base" name="input-otp-demo" />
 
 ## について
 
@@ -18,13 +18,13 @@ Input OTP は [@guilherme_rodz](https://twitter.com/guilherme_rodz) による [i
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add input-otp
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/input-otp.json
 ```
 
 </TabsContent>
@@ -44,7 +44,7 @@ npm install input-otp
 <ComponentSource
   name="input-otp"
   title="components/ui/input-otp.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -115,7 +115,7 @@ import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp"
 </InputOTP>
 ```
 
-<ComponentPreview styleName="base-nova" name="input-otp-pattern" />
+<ComponentPreview styleName="base" name="input-otp-pattern" />
 
 ## 使用例
 
@@ -123,49 +123,49 @@ import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp"
 
 `<InputOTPSeparator />` で入力グループ間にセパレーターを追加します。
 
-<ComponentPreview styleName="base-nova" name="input-otp-separator" />
+<ComponentPreview styleName="base" name="input-otp-separator" />
 
 ### 無効
 
 `disabled` で入力を無効化します。
 
-<ComponentPreview styleName="base-nova" name="input-otp-disabled" />
+<ComponentPreview styleName="base" name="input-otp-disabled" />
 
 ### 制御
 
 `value` と `onChange` で入力値を制御します。
 
-<ComponentPreview styleName="base-nova" name="input-otp-controlled" />
+<ComponentPreview styleName="base" name="input-otp-controlled" />
 
 ### エラー
 
 スロットに `aria-invalid` を付けるとエラー状態を表示できます。
 
-<ComponentPreview styleName="base-nova" name="input-otp-invalid" />
+<ComponentPreview styleName="base" name="input-otp-invalid" />
 
 ### 4桁数入力
 
 PIN コードで一般的なパターン。`pattern={REGEXP_ONLY_DIGITS}` を使用しています。
 
-<ComponentPreview styleName="base-nova" name="input-otp-four-digits" />
+<ComponentPreview styleName="base" name="input-otp-four-digits" />
 
 ### 英数字
 
 `REGEXP_ONLY_DIGITS_AND_CHARS` で文字と数字の両方を許可します。
 
-<ComponentPreview styleName="base-nova" name="input-otp-alphanumeric" />
+<ComponentPreview styleName="base" name="input-otp-alphanumeric" />
 
 ### Form
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="input-otp-form"
   previewClassName="h-[30rem]"
 />
 
 ## RTL
 
-<ComponentPreview styleName="base-nova" name="input-otp-rtl" direction="rtl" />
+<ComponentPreview styleName="base" name="input-otp-rtl" direction="rtl" />
 
 ## API リファレンス
 

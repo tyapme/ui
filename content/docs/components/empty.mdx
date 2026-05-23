@@ -6,7 +6,7 @@ component: true
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="empty-demo"
   previewClassName="h-96 p-0"
 />
@@ -16,13 +16,13 @@ component: true
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add empty
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/empty.json
 ```
 
 </TabsContent>
@@ -36,7 +36,7 @@ npx shadcn@latest add empty
 <ComponentSource
   name="empty"
   title="components/ui/empty.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -95,7 +95,7 @@ Empty
 `border` ユーティリティクラスでアウトライン付き空ステートを作成します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="empty-outline"
   previewClassName="h-96 p-6 md:p-10"
 />
@@ -105,7 +105,7 @@ Empty
 `bg-*` や `bg-gradient-*` ユーティリティで空ステートに背景を追加します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="empty-background"
   previewClassName="h-96 p-0"
 />
@@ -115,7 +115,7 @@ Empty
 `EmptyMedia` コンポーネントで空ステートにアバターを表示します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="empty-avatar"
   previewClassName="h-96 p-0"
 />
@@ -125,7 +125,7 @@ Empty
 `EmptyMedia` コンポーネントで空ステートにアバターグループを表示します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="empty-avatar-group"
   previewClassName="h-96 p-0"
 />
@@ -135,14 +135,14 @@ Empty
 `EmptyContent` コンポーネントに `InputGroup` を追加できます。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="empty-input-group"
   previewClassName="h-96 p-0"
 />
 
 ## RTL
 
-<ComponentPreview styleName="base-nova" name="empty-rtl" direction="rtl" />
+<ComponentPreview styleName="base" name="empty-rtl" direction="rtl" />
 
 ## API リファレンス
 

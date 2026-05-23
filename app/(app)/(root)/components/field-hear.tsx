@@ -1,5 +1,5 @@
-import { Card, CardContent } from "@/styles/base-nova/ui/card"
-import { Checkbox } from "@/styles/base-nova/ui/checkbox"
+import { Card, CardContent } from "@/styles/base/ui/card"
+import { Checkbox } from "@/styles/base/ui/checkbox"
 import {
   Field,
   FieldDescription,
@@ -8,7 +8,7 @@ import {
   FieldLegend,
   FieldSet,
   FieldTitle,
-} from "@/styles/base-nova/ui/field"
+} from "@/styles/base/ui/field"
 
 const options = [
   {

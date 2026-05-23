@@ -6,8 +6,8 @@ import {
   Field,
   FieldDescription,
   FieldTitle,
-} from "@/styles/base-nova/ui/field"
-import { Slider } from "@/styles/base-nova/ui/slider"
+} from "@/styles/base/ui/field"
+import { Slider } from "@/styles/base/ui/slider"
 
 export function FieldSlider() {
   const [value, setValue] = useState([200, 800])

@@ -1,0 +1,38 @@
+---
+title: モーション
+description: アニメーションとトランジションの duration・easing トークン定義。
+---
+
+アニメーションは状態変化・フィードバック・遷移の補助としてのみ存在する。用途のないアニメーションは追加しない。
+
+## トークン
+
+| 用途 | Duration | Easing |
+| --- | --- | --- |
+| フェード・表示切替 | 150ms | ease-out |
+| スライド・展開 | 200ms | ease-out |
+| ページ遷移 | 250ms | ease-in-out |
+| スプリング（ドラッグ等） | — | spring(1, 80, 10) |
+
+## アクセシビリティ
+
+`prefers-reduced-motion` が設定されている場合はすべてのアニメーションを無効にする。
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+## 使い方ルール
+
+- アニメーションは状態変化・フィードバック・遷移の補助としてのみ使用する。
+- 装飾目的のアニメーションは禁止。
+- duration の上限は 250ms。それ以上は遅いと感じさせる。
+- スプリングアニメーションはドラッグ・物理的なインタラクションにのみ使用する。

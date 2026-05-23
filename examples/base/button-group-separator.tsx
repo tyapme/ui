@@ -1,8 +1,8 @@
-import { Button } from "@/styles/base-nova/ui/button"
+import { Button } from "@/styles/base/ui/button"
 import {
   ButtonGroup,
   ButtonGroupSeparator,
-} from "@/styles/base-nova/ui/button-group"
+} from "@/styles/base/ui/button-group"
 
 export default function ButtonGroupSeparatorDemo() {
   return (

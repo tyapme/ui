@@ -6,12 +6,12 @@ import {
   Field,
   FieldDescription,
   FieldLabel,
-} from "@/registry/bases/base/ui/field"
+} from "@/registry/ui/field"
 import {
   NativeSelect,
   NativeSelectOptGroup,
   NativeSelectOption,
-} from "@/registry/bases/base/ui/native-select"
+} from "@/registry/ui/native-select"
 
 export default function NativeSelectExample() {
   return (

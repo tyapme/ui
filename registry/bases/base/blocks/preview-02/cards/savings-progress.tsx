@@ -2,14 +2,14 @@
 
 import { Label, Pie, PieChart } from "recharts"
 
-import { Card, CardContent, CardFooter } from "@/registry/bases/base/ui/card"
+import { Card, CardContent, CardFooter } from "@/registry/ui/card"
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/registry/bases/base/ui/chart"
-import { Separator } from "@/registry/bases/base/ui/separator"
+} from "@/registry/ui/chart"
+import { Separator } from "@/registry/ui/separator"
 
 const chartData = [
   { name: "saved", value: 24000, fill: "var(--color-saved)" },

@@ -5,8 +5,8 @@ import {
   Example,
   ExampleWrapper,
 } from "@/registry/bases/base/components/example"
-import { ScrollArea, ScrollBar } from "@/registry/bases/base/ui/scroll-area"
-import { Separator } from "@/registry/bases/base/ui/separator"
+import { ScrollArea, ScrollBar } from "@/registry/ui/scroll-area"
+import { Separator } from "@/registry/ui/separator"
 
 const tags = Array.from({ length: 50 }).map(
   (_, i, a) => `v1.2.0-beta.${a.length - i}`

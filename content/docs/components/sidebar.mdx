@@ -9,7 +9,7 @@ import { ExternalLinkIcon } from "lucide-react"
 
 <figure className="flex flex-col gap-4">
   <ComponentPreview
-    styleName="base-nova"
+    styleName="base"
     name="sidebar-demo"
     type="block"
     className="w-full"
@@ -28,13 +28,13 @@ import { ExternalLinkIcon } from "lucide-react"
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add sidebar
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/sidebar.json
 ```
 
 </TabsContent>
@@ -44,7 +44,7 @@ npx shadcn@latest add sidebar
 <ComponentSource
   name="sidebar"
   title="components/ui/sidebar.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 </TabsContent>

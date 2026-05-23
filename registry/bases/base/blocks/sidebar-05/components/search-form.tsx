@@ -1,11 +1,11 @@
 "use client"
 
-import { Label } from "@/registry/bases/base/ui/label"
+import { Label } from "@/registry/ui/label"
 import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarInput,
-} from "@/registry/bases/base/ui/sidebar"
+} from "@/registry/ui/sidebar"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export function SearchForm({ ...props }: React.ComponentProps<"form">) {

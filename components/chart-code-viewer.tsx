@@ -5,7 +5,7 @@ import { useMediaQuery } from "@/hooks/use-media-query"
 import { ChartCopyButton } from "@/components/chart-copy-button"
 import { type Chart } from "@/components/chart-display"
 import { getIconForLanguageExtension } from "@/components/icons"
-import { Button } from "@/registry/new-york-v4/ui/button"
+import { Button } from "@/styles/base/ui/button"
 import {
   Drawer,
   DrawerContent,
@@ -13,7 +13,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/registry/new-york-v4/ui/drawer"
+} from "@/styles/base/ui/drawer"
 import {
   Sheet,
   SheetContent,
@@ -21,7 +21,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/registry/new-york-v4/ui/sheet"
+} from "@/styles/base/ui/sheet"
 
 export function ChartCodeViewer({
   chart,

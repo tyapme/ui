@@ -14,7 +14,7 @@ import {
   baseColorsOKLCH,
   type BaseColor,
 } from "@/registry/_legacy-base-colors"
-import { Button } from "@/registry/new-york-v4/ui/button"
+import { Button } from "@/styles/base/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -22,7 +22,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/new-york-v4/ui/dialog"
+} from "@/styles/base/ui/dialog"
 import {
   Drawer,
   DrawerContent,
@@ -30,9 +30,9 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/registry/new-york-v4/ui/drawer"
-import { Label } from "@/registry/new-york-v4/ui/label"
-import { ScrollArea, ScrollBar } from "@/registry/new-york-v4/ui/scroll-area"
+} from "@/styles/base/ui/drawer"
+import { Label } from "@/styles/base/ui/label"
+import { ScrollArea, ScrollBar } from "@/styles/base/ui/scroll-area"
 import {
   Select,
   SelectContent,
@@ -40,13 +40,13 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/new-york-v4/ui/select"
+} from "@/styles/base/ui/select"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/registry/new-york-v4/ui/tabs"
+} from "@/styles/base/ui/tabs"
 
 interface BaseColorOKLCH {
   light: Record<string, string>
@@ -81,7 +81,11 @@ export function ThemeCustomizer({ className }: React.ComponentProps<"div">) {
         </Label>
         <Select
           value={activeTheme === "default" ? "neutral" : activeTheme}
-          onValueChange={setActiveTheme}
+          onValueChange={(value) => {
+            if (value) {
+              setActiveTheme(value)
+            }
+          }}
         >
           <SelectTrigger
             id="theme-selector"

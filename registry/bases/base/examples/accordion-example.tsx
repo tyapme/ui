@@ -7,15 +7,15 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/registry/bases/base/ui/accordion"
-import { Button } from "@/registry/bases/base/ui/button"
+} from "@/registry/ui/accordion"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function AccordionExample() {

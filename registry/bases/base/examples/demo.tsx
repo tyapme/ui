@@ -12,18 +12,18 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/registry/bases/base/ui/alert-dialog"
-import { Badge } from "@/registry/bases/base/ui/badge"
-import { Button } from "@/registry/bases/base/ui/button"
-import { ButtonGroup } from "@/registry/bases/base/ui/button-group"
+} from "@/registry/ui/alert-dialog"
+import { Badge } from "@/registry/ui/badge"
+import { Button } from "@/registry/ui/button"
+import { ButtonGroup } from "@/registry/ui/button-group"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
-import { Checkbox } from "@/registry/bases/base/ui/checkbox"
+} from "@/registry/ui/card"
+import { Checkbox } from "@/registry/ui/checkbox"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,28 +32,28 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/registry/bases/base/ui/dropdown-menu"
-import { Field, FieldGroup } from "@/registry/bases/base/ui/field"
+} from "@/registry/ui/dropdown-menu"
+import { Field, FieldGroup } from "@/registry/ui/field"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
   InputGroupText,
-} from "@/registry/bases/base/ui/input-group"
+} from "@/registry/ui/input-group"
 import {
   Item,
   ItemActions,
   ItemContent,
   ItemDescription,
   ItemTitle,
-} from "@/registry/bases/base/ui/item"
+} from "@/registry/ui/item"
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@/registry/bases/base/ui/radio-group"
-import { Slider } from "@/registry/bases/base/ui/slider"
-import { Switch } from "@/registry/bases/base/ui/switch"
-import { Textarea } from "@/registry/bases/base/ui/textarea"
+} from "@/registry/ui/radio-group"
+import { Slider } from "@/registry/ui/slider"
+import { Switch } from "@/registry/ui/switch"
+import { Textarea } from "@/registry/ui/textarea"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export function Demo() {

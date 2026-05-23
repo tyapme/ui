@@ -9,7 +9,7 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="context-menu-demo"
   description="サブメニュー付きのコンテキストメニュー。"
 />
@@ -19,13 +19,13 @@ links:
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add context-menu
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/context-menu.json
 ```
 
 </TabsContent>
@@ -45,7 +45,7 @@ npm install @base-ui/react
 <ComponentSource
   name="context-menu"
   title="components/ui/context-menu.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -116,60 +116,60 @@ ContextMenu
 
 アクションをイクツか持つシンプルなコンテキストメニュー。
 
-<ComponentPreview styleName="base-nova" name="context-menu-basic" />
+<ComponentPreview styleName="base" name="context-menu-basic" />
 
 ### Submenu
 
 `ContextMenuSub` でサブアクションをネストします。
 
-<ComponentPreview styleName="base-nova" name="context-menu-submenu" />
+<ComponentPreview styleName="base" name="context-menu-submenu" />
 
 ### Shortcuts
 
 `ContextMenuShortcut` でキーボードヒントを表示します。
 
-<ComponentPreview styleName="base-nova" name="context-menu-shortcuts" />
+<ComponentPreview styleName="base" name="context-menu-shortcuts" />
 
 ### Groups
 
 関連するアクションをまとめ、ディバイダーで区切ります。
 
-<ComponentPreview styleName="base-nova" name="context-menu-groups" />
+<ComponentPreview styleName="base" name="context-menu-groups" />
 
 ### Icons
 
 アイコンとラベルを組み合わせて視覚的にわかりやすくします。
 
-<ComponentPreview styleName="base-nova" name="context-menu-icons" />
+<ComponentPreview styleName="base" name="context-menu-icons" />
 
 ### Checkboxes
 
 トグルには `ContextMenuCheckboxItem` を使います。
 
-<ComponentPreview styleName="base-nova" name="context-menu-checkboxes" />
+<ComponentPreview styleName="base" name="context-menu-checkboxes" />
 
 ### Radio
 
 排他選択には `ContextMenuRadioItem` を使います。
 
-<ComponentPreview styleName="base-nova" name="context-menu-radio" />
+<ComponentPreview styleName="base" name="context-menu-radio" />
 
 ### Destructive
 
 `variant="destructive"` でメニューアイテムを破壊的なスタイルにします。
 
-<ComponentPreview styleName="base-nova" name="context-menu-destructive" />
+<ComponentPreview styleName="base" name="context-menu-destructive" />
 
 ### Sides
 
 side と align props でサブメニューの配置を制御します。
 
-<ComponentPreview styleName="base-nova" name="context-menu-sides" />
+<ComponentPreview styleName="base" name="context-menu-sides" />
 
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="context-menu-rtl"
   direction="rtl"
 />

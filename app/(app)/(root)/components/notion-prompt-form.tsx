@@ -17,8 +17,8 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/styles/base-nova/ui/avatar"
-import { Badge } from "@/styles/base-nova/ui/badge"
+} from "@/styles/base/ui/avatar"
+import { Badge } from "@/styles/base/ui/badge"
 import {
   Command,
   CommandEmpty,
@@ -26,7 +26,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/styles/base-nova/ui/command"
+} from "@/styles/base/ui/command"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -39,25 +39,25 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/styles/base-nova/ui/dropdown-menu"
-import { Field, FieldLabel } from "@/styles/base-nova/ui/field"
+} from "@/styles/base/ui/dropdown-menu"
+import { Field, FieldLabel } from "@/styles/base/ui/field"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupTextarea,
-} from "@/styles/base-nova/ui/input-group"
+} from "@/styles/base/ui/input-group"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/styles/base-nova/ui/popover"
-import { Switch } from "@/styles/base-nova/ui/switch"
+} from "@/styles/base/ui/popover"
+import { Switch } from "@/styles/base/ui/switch"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/styles/base-nova/ui/tooltip"
+} from "@/styles/base/ui/tooltip"
 
 const SAMPLE_DATA = {
   mentionable: [

@@ -8,7 +8,7 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="command-demo"
   align="start"
   previewClassName="h-[24.5rem]"
@@ -23,13 +23,13 @@ links:
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add command
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/command.json
 ```
 
 </TabsContent>
@@ -49,7 +49,7 @@ npm install cmdk
 <ComponentSource
   name="command"
   title="components/ui/command.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -120,28 +120,28 @@ Command
 
 ダイアログ内のシンプルなコマンドメニュー。
 
-<ComponentPreview styleName="base-nova" name="command-basic" />
+<ComponentPreview styleName="base" name="command-basic" />
 
 ### Shortcuts
 
-<ComponentPreview styleName="base-nova" name="command-shortcuts" />
+<ComponentPreview styleName="base" name="command-shortcuts" />
 
 ### Groups
 
 グループ・アイコン・セパレーター付きのコマンドメニュー。
 
-<ComponentPreview styleName="base-nova" name="command-groups" />
+<ComponentPreview styleName="base" name="command-groups" />
 
 ### Scrollable
 
 複数アイテムがスクロール可能なコマンドメニュー。
 
-<ComponentPreview styleName="base-nova" name="command-scrollable" />
+<ComponentPreview styleName="base" name="command-scrollable" />
 
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="command-rtl"
   direction="rtl"
   align="start"

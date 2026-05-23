@@ -1,12 +1,12 @@
-import { Button } from "@/registry/bases/base/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardFooter,
-} from "@/registry/bases/base/ui/card"
-import { Item } from "@/registry/bases/base/ui/item"
-import { Label } from "@/registry/bases/base/ui/label"
+} from "@/registry/ui/card"
+import { Item } from "@/registry/ui/item"
+import { Label } from "@/registry/ui/label"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export function CoverArt() {

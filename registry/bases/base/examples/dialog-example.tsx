@@ -6,8 +6,8 @@ import {
   Example,
   ExampleWrapper,
 } from "@/registry/bases/base/components/example"
-import { Button } from "@/registry/bases/base/ui/button"
-import { Checkbox } from "@/registry/bases/base/ui/checkbox"
+import { Button } from "@/registry/ui/button"
+import { Checkbox } from "@/registry/ui/checkbox"
 import {
   Dialog,
   DialogClose,
@@ -17,7 +17,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/bases/base/ui/dialog"
+} from "@/registry/ui/dialog"
 import {
   Field,
   FieldContent,
@@ -27,19 +27,19 @@ import {
   FieldSeparator,
   FieldSet,
   FieldTitle,
-} from "@/registry/bases/base/ui/field"
-import { Input } from "@/registry/bases/base/ui/input"
+} from "@/registry/ui/field"
+import { Input } from "@/registry/ui/input"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from "@/registry/bases/base/ui/input-group"
-import { Kbd } from "@/registry/bases/base/ui/kbd"
+} from "@/registry/ui/input-group"
+import { Kbd } from "@/registry/ui/kbd"
 import {
   NativeSelect,
   NativeSelectOption,
-} from "@/registry/bases/base/ui/native-select"
+} from "@/registry/ui/native-select"
 import {
   Select,
   SelectContent,
@@ -48,20 +48,20 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-} from "@/registry/bases/base/ui/select"
-import { Switch } from "@/registry/bases/base/ui/switch"
+} from "@/registry/ui/select"
+import { Switch } from "@/registry/ui/switch"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/registry/bases/base/ui/tabs"
-import { Textarea } from "@/registry/bases/base/ui/textarea"
+} from "@/registry/ui/tabs"
+import { Textarea } from "@/registry/ui/textarea"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/registry/bases/base/ui/tooltip"
+} from "@/registry/ui/tooltip"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function DialogExample() {

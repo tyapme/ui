@@ -5,20 +5,20 @@ base: base
 component: true
 ---
 
-<ComponentPreview name="aspect-ratio-demo" styleName="base-nova" />
+<ComponentPreview name="aspect-ratio-demo" styleName="base" />
 
 ## インストール
 
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add aspect-ratio
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/aspect-ratio.json
 ```
 
 </TabsContent>
@@ -38,7 +38,7 @@ npm install @base-ui/react
 <ComponentSource
   name="aspect-ratio"
   title="components/ui/aspect-ratio.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -67,14 +67,14 @@ import { AspectRatio } from "@/components/ui/aspect-ratio"
 
 `ratio={1 / 1}` を使った正方形のアスペクト比コンポーネント。画像を正方形で表示するのに便利です。
 
-<ComponentPreview name="aspect-ratio-square" styleName="base-nova" />
+<ComponentPreview name="aspect-ratio-square" styleName="base" />
 
 ### Portrait
 
 `ratio={9 / 16}` を使った縦長のアスペクト比コンポーネント。画像を縦長で表示するのに便利です。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="aspect-ratio-portrait"
   previewClassName="h-96"
 />
@@ -82,7 +82,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio"
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="aspect-ratio-rtl"
   direction="rtl"
   previewClassName="h-96"

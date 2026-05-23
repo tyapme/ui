@@ -1,8 +1,8 @@
 "use client"
 
-import { Alert, AlertDescription } from "@/registry/bases/base/ui/alert"
-import { Badge } from "@/registry/bases/base/ui/badge"
-import { Button } from "@/registry/bases/base/ui/button"
+import { Alert, AlertDescription } from "@/registry/ui/alert"
+import { Badge } from "@/registry/ui/badge"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardContent,
@@ -10,14 +10,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   Item,
   ItemContent,
   ItemGroup,
   ItemMedia,
   ItemTitle,
-} from "@/registry/bases/base/ui/item"
+} from "@/registry/ui/item"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 // Agent feature descriptions.

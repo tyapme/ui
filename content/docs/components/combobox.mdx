@@ -9,7 +9,7 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="combobox-demo"
   description="フレームワーク一覧付きのコンボボックス。"
 />
@@ -19,13 +19,13 @@ links:
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add combobox
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/combobox.json
 ```
 
 </TabsContent>
@@ -44,7 +44,7 @@ npm install @base-ui/react
 <ComponentSource
   name="combobox"
   title="components/ui/combobox.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -256,66 +256,66 @@ export function ExampleComboboxMultiple() {
 
 フレームワーク一覧付きのシンプルなコンボボックス。
 
-<ComponentPreview styleName="base-nova" name="combobox-basic" />
+<ComponentPreview styleName="base" name="combobox-basic" />
 
 ### Multiple
 
 `multiple` と `ComboboxChips` を使った複数選択コンボボックス。
 
-<ComponentPreview styleName="base-nova" name="combobox-multiple" />
+<ComponentPreview styleName="base" name="combobox-multiple" />
 
 ### Clear Button
 
 `showClear` プロパティでクリアボタンを表示します。
 
-<ComponentPreview styleName="base-nova" name="combobox-clear" />
+<ComponentPreview styleName="base" name="combobox-clear" />
 
 ### Groups
 
 `ComboboxGroup` と `ComboboxSeparator` でアイテムをグループ化します。
 
-<ComponentPreview styleName="base-nova" name="combobox-groups" />
+<ComponentPreview styleName="base" name="combobox-groups" />
 
 ### Custom Items
 
 `ComboboxItem` の中にカスタムコンポーネントをレンダリングできます。
 
-<ComponentPreview styleName="base-nova" name="combobox-custom" />
+<ComponentPreview styleName="base" name="combobox-custom" />
 
 ### Invalid
 
 `aria-invalid` プロパティでコンボボックスを無効状態にします。
 
-<ComponentPreview styleName="base-nova" name="combobox-invalid" />
+<ComponentPreview styleName="base" name="combobox-invalid" />
 
 ### Disabled
 
 `disabled` プロパティでコンボボックスを無効化します。
 
-<ComponentPreview styleName="base-nova" name="combobox-disabled" />
+<ComponentPreview styleName="base" name="combobox-disabled" />
 
 ### Auto Highlight
 
 `autoHighlight` プロパティでフィルター時に最初のアイテムを自動でハイライトします。
 
-<ComponentPreview styleName="base-nova" name="combobox-auto-highlight" />
+<ComponentPreview styleName="base" name="combobox-auto-highlight" />
 
 ### Popup
 
 `render` プロパティを使ってボタンや他のコンポーネントからコンボボックスをトリガーできます。`ComboboxInput` を `ComboboxContent` 内に移動してください。
 
-<ComponentPreview styleName="base-nova" name="combobox-popup" />
+<ComponentPreview styleName="base" name="combobox-popup" />
 
 ### Input Group
 
 `ComboboxInput` 内で `InputGroupAddon` コンポーネントを使ってアドオンを追加できます。
 
-<ComponentPreview styleName="base-nova" name="combobox-input-group" />
+<ComponentPreview styleName="base" name="combobox-input-group" />
 
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="combobox-rtl"
   direction="rtl"
   align="start"

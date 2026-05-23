@@ -9,20 +9,20 @@ links:
   api: https://base-ui.com/react/components/collapsible#api-reference
 ---
 
-<ComponentPreview styleName="base-nova" name="collapsible-demo" align="start" />
+<ComponentPreview styleName="base" name="collapsible-demo" align="start" />
 
 ## インストール
 
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add collapsible
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/collapsible.json
 ```
 
 </TabsContent>
@@ -42,7 +42,7 @@ npm install @base-ui/react
 <ComponentSource
   name="collapsible"
   title="components/ui/collapsible.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -107,7 +107,7 @@ export function Example() {
 ### Basic
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="collapsible-basic"
   align="start"
 />
@@ -116,14 +116,14 @@ export function Example() {
 
 トリガーボタンで追加の設定を表示します。
 
-<ComponentPreview styleName="base-nova" name="collapsible-settings" />
+<ComponentPreview styleName="base" name="collapsible-settings" />
 
 ### File Tree
 
 ネストした Collapsible でファイルツリーを構築します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="collapsible-file-tree"
   previewClassName="h-[36rem]"
 />
@@ -131,7 +131,7 @@ export function Example() {
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="collapsible-rtl"
   direction="rtl"
   align="start"

@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { Button } from "@/registry/bases/base/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardContent,
@@ -10,15 +10,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
-import { Checkbox } from "@/registry/bases/base/ui/checkbox"
+} from "@/registry/ui/card"
+import { Checkbox } from "@/registry/ui/checkbox"
 import {
   Field,
   FieldContent,
   FieldDescription,
   FieldGroup,
   FieldLabel,
-} from "@/registry/bases/base/ui/field"
+} from "@/registry/ui/field"
 
 const NOTIFICATIONS = [
   {

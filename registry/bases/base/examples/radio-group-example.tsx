@@ -9,11 +9,11 @@ import {
   FieldLabel,
   FieldLegend,
   FieldSet,
-} from "@/registry/bases/base/ui/field"
+} from "@/registry/ui/field"
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@/registry/bases/base/ui/radio-group"
+} from "@/registry/ui/radio-group"
 
 export default function RadioGroupExample() {
   return (

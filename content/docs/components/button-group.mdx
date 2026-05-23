@@ -5,20 +5,20 @@ base: base
 component: true
 ---
 
-<ComponentPreview styleName="base-nova" name="button-group-demo" />
+<ComponentPreview styleName="base" name="button-group-demo" />
 
 ## インストール
 
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add button-group
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/button-group.json
 ```
 
 </TabsContent>
@@ -38,7 +38,7 @@ npm install @base-ui/react
 <ComponentSource
   name="button-group"
   title="components/ui/button-group.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -101,19 +101,19 @@ ButtonGroup
 
 `orientation` プロパティでボタングループのレイアウトを変更します。
 
-<ComponentPreview styleName="base-nova" name="button-group-orientation" />
+<ComponentPreview styleName="base" name="button-group-orientation" />
 
 ### Size
 
 個別ボタンの `size` プロパティでボタンのサイズを制御します。
 
-<ComponentPreview styleName="base-nova" name="button-group-size" />
+<ComponentPreview styleName="base" name="button-group-size" />
 
 ### Nested
 
 `<ButtonGroup>` をネストして、間隔付きのボタングループを作成します。
 
-<ComponentPreview styleName="base-nova" name="button-group-nested" />
+<ComponentPreview styleName="base" name="button-group-nested" />
 
 ### Separator
 
@@ -121,48 +121,48 @@ ButtonGroup
 
 `outline` バリアントのボタンにはボーダーがあるためセパレーターは不要です。その他のバリアントにはセパレーターを追加すると視覚的な階層が明確になります。
 
-<ComponentPreview styleName="base-nova" name="button-group-separator" />
+<ComponentPreview styleName="base" name="button-group-separator" />
 
 ### Split
 
 `ButtonGroupSeparator` で区切った2つのボタンでスプリットボタングループを作成します。
 
-<ComponentPreview styleName="base-nova" name="button-group-split" />
+<ComponentPreview styleName="base" name="button-group-split" />
 
 ### Input
 
 ボタンと `Input` コンポーネントを組み合わせます。
 
-<ComponentPreview styleName="base-nova" name="button-group-input" />
+<ComponentPreview styleName="base" name="button-group-input" />
 
 ### Input Group
 
 `InputGroup` コンポーネントで複雑な入力レイアウトを作成します。
 
-<ComponentPreview styleName="base-nova" name="button-group-input-group" />
+<ComponentPreview styleName="base" name="button-group-input-group" />
 
 ### Dropdown Menu
 
 `DropdownMenu` コンポーネントを使ったスプリットボタングループを作成します。
 
-<ComponentPreview styleName="base-nova" name="button-group-dropdown" />
+<ComponentPreview styleName="base" name="button-group-dropdown" />
 
 ### Select
 
 `Select` コンポーネントと組み合わせます。
 
-<ComponentPreview styleName="base-nova" name="button-group-select" />
+<ComponentPreview styleName="base" name="button-group-select" />
 
 ### Popover
 
 `Popover` コンポーネントと組み合わせます。
 
-<ComponentPreview styleName="base-nova" name="button-group-popover" />
+<ComponentPreview styleName="base" name="button-group-popover" />
 
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="button-group-rtl"
   direction="rtl"
 />

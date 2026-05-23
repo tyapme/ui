@@ -1,6 +1,6 @@
 "use client"
 
-import { Card } from "@/registry/bases/base/ui/card"
+import { Card } from "@/registry/ui/card"
 import {
   Sidebar,
   SidebarContent,
@@ -12,7 +12,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   SidebarSeparator,
-} from "@/registry/bases/base/ui/sidebar"
+} from "@/registry/ui/sidebar"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export function SidebarNav() {

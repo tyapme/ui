@@ -2,11 +2,11 @@ import {
   Example,
   ExampleWrapper,
 } from "@/registry/bases/base/components/example"
-import { Checkbox } from "@/registry/bases/base/ui/checkbox"
-import { Field } from "@/registry/bases/base/ui/field"
-import { Input } from "@/registry/bases/base/ui/input"
-import { Label } from "@/registry/bases/base/ui/label"
-import { Textarea } from "@/registry/bases/base/ui/textarea"
+import { Checkbox } from "@/registry/ui/checkbox"
+import { Field } from "@/registry/ui/field"
+import { Input } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
+import { Textarea } from "@/registry/ui/textarea"
 
 export default function LabelExample() {
   return (

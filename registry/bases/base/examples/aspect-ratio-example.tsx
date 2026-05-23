@@ -4,7 +4,7 @@ import {
   Example,
   ExampleWrapper,
 } from "@/registry/bases/base/components/example"
-import { AspectRatio } from "@/registry/bases/base/ui/aspect-ratio"
+import { AspectRatio } from "@/registry/ui/aspect-ratio"
 
 export default function AspectRatioExample() {
   return (

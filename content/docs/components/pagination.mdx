@@ -5,20 +5,20 @@ base: base
 component: true
 ---
 
-<ComponentPreview styleName="base-nova" name="pagination-demo" />
+<ComponentPreview styleName="base" name="pagination-demo" />
 
 ## インストール
 
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add pagination
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/pagination.json
 ```
 
 </TabsContent>
@@ -32,7 +32,7 @@ npx shadcn@latest add pagination
 <ComponentSource
   name="pagination"
   title="components/ui/pagination.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -107,13 +107,13 @@ Pagination
 
 Page 番号のみのシンプルなページネーション。
 
-<ComponentPreview styleName="base-nova" name="pagination-simple" />
+<ComponentPreview styleName="base" name="pagination-simple" />
 
 ### アイコンのみ
 
 ページ番号なしに前・次ボタンのみ表示します。表示件数セレクター付きのデータテーブルに適しています。
 
-<ComponentPreview styleName="base-nova" name="pagination-icons-only" />
+<ComponentPreview styleName="base" name="pagination-icons-only" />
 
 ## Next.js
 
@@ -147,7 +147,7 @@ const PaginationLink = ({...props }: ) => (
 
 ## RTL
 
-<ComponentPreview styleName="base-nova" name="pagination-rtl" direction="rtl" />
+<ComponentPreview styleName="base" name="pagination-rtl" direction="rtl" />
 
 ## 変更履歴
 

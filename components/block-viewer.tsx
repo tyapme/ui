@@ -32,18 +32,18 @@ import { cn } from "@/lib/utils"
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 import { getIconForLanguageExtension } from "@/components/icons"
 import { type Style } from "@/registry/_legacy-styles"
-import { Button } from "@/registry/new-york-v4/ui/button"
+import { Button } from "@/styles/base/ui/button"
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/registry/new-york-v4/ui/collapsible"
+} from "@/styles/base/ui/collapsible"
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/registry/new-york-v4/ui/resizable"
-import { Separator } from "@/registry/new-york-v4/ui/separator"
+} from "@/styles/base/ui/resizable"
+import { Separator } from "@/styles/base/ui/separator"
 import {
   Sidebar,
   SidebarGroup,
@@ -54,12 +54,12 @@ import {
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarProvider,
-} from "@/registry/new-york-v4/ui/sidebar"
-import { Tabs, TabsList, TabsTrigger } from "@/registry/new-york-v4/ui/tabs"
+} from "@/styles/base/ui/sidebar"
+import { Tabs, TabsList, TabsTrigger } from "@/styles/base/ui/tabs"
 import {
   ToggleGroup,
   ToggleGroupItem,
-} from "@/registry/new-york-v4/ui/toggle-group"
+} from "@/styles/base/ui/toggle-group"
 
 type BlockViewerContext = {
   item: z.infer<typeof registryItemSchema>
@@ -168,12 +168,12 @@ function BlockViewerToolbar({ styleName }: { styleName: Style["name"] }) {
       <div className="ml-auto flex items-center gap-2">
         <div className="h-8 items-center gap-1.5 rounded-md border p-[3px] shadow-none">
           <ToggleGroup
-            type="single"
-            defaultValue="100%"
+            defaultValue={["100%"]}
             onValueChange={(value) => {
+              const nextValue = Array.isArray(value) ? value[0] : value
               setView("preview")
-              if (resizablePanelRef?.current) {
-                resizablePanelRef.current.resize(value)
+              if (nextValue && resizablePanelRef?.current) {
+                resizablePanelRef.current.resize(nextValue)
               }
             }}
             className="gap-1 *:data-[slot=toggle-group-item]:size-6! *:data-[slot=toggle-group-item]:rounded-sm!"

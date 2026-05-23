@@ -9,7 +9,7 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="navigation-menu-demo"
   previewClassName="h-96"
 />
@@ -19,13 +19,13 @@ links:
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add navigation-menu
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/navigation-menu.json
 ```
 
 </TabsContent>
@@ -45,7 +45,7 @@ npm install @base-ui/react
 <ComponentSource
   name="navigation-menu"
   title="components/ui/navigation-menu.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -129,7 +129,7 @@ export function NavigationMenuDemo() {
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="navigation-menu-rtl"
   direction="rtl"
   previewClassName="h-96"

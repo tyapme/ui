@@ -15,13 +15,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/accordion.tsx",
+          path: "registry/ui/accordion.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/accordion")
+        const mod = await import("@/registry/ui/accordion")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -47,13 +47,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/alert.tsx",
+          path: "registry/ui/alert.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/alert")
+        const mod = await import("@/registry/ui/alert")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -78,13 +78,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["button"],
       files: [
         {
-          path: "registry/bases/base/ui/alert-dialog.tsx",
+          path: "registry/ui/alert-dialog.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/alert-dialog")
+        const mod = await import("@/registry/ui/alert-dialog")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -110,13 +110,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/aspect-ratio.tsx",
+          path: "registry/ui/aspect-ratio.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/aspect-ratio")
+        const mod = await import("@/registry/ui/aspect-ratio")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -141,13 +141,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/avatar.tsx",
+          path: "registry/ui/avatar.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/avatar")
+        const mod = await import("@/registry/ui/avatar")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -173,13 +173,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/badge.tsx",
+          path: "registry/ui/badge.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/badge")
+        const mod = await import("@/registry/ui/badge")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -204,13 +204,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/breadcrumb.tsx",
+          path: "registry/ui/breadcrumb.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/breadcrumb")
+        const mod = await import("@/registry/ui/breadcrumb")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -235,13 +235,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/button.tsx",
+          path: "registry/ui/button.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/button")
+        const mod = await import("@/registry/ui/button")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -266,13 +266,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["separator"],
       files: [
         {
-          path: "registry/bases/base/ui/button-group.tsx",
+          path: "registry/ui/button-group.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/button-group")
+        const mod = await import("@/registry/ui/button-group")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -297,13 +297,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["button"],
       files: [
         {
-          path: "registry/bases/base/ui/calendar.tsx",
+          path: "registry/ui/calendar.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/calendar")
+        const mod = await import("@/registry/ui/calendar")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -329,13 +329,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["button", "calendar", "popover"],
       files: [
         {
-          path: "registry/bases/base/ui/date-picker.tsx",
+          path: "registry/ui/date-picker.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/date-picker")
+        const mod = await import("@/registry/ui/date-picker")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -359,13 +359,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/card.tsx",
+          path: "registry/ui/card.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/card")
+        const mod = await import("@/registry/ui/card")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -390,13 +390,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["button"],
       files: [
         {
-          path: "registry/bases/base/ui/carousel.tsx",
+          path: "registry/ui/carousel.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/carousel")
+        const mod = await import("@/registry/ui/carousel")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -422,13 +422,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["card"],
       files: [
         {
-          path: "registry/bases/base/ui/chart.tsx",
+          path: "registry/ui/chart.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/chart")
+        const mod = await import("@/registry/ui/chart")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -453,13 +453,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/checkbox.tsx",
+          path: "registry/ui/checkbox.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/checkbox")
+        const mod = await import("@/registry/ui/checkbox")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -485,13 +485,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/collapsible.tsx",
+          path: "registry/ui/collapsible.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/collapsible")
+        const mod = await import("@/registry/ui/collapsible")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -509,6 +509,64 @@ export const Index: Record<string, Record<string, any>> = {
         },
       },
     },
+    "color-field": {
+      name: "color-field",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [
+        {
+          path: "registry/ui/color-field.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/ui/color-field")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "color-field"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          api: "https://react-spectrum.adobe.com/react-aria/ColorField.html",
+        },
+      },
+    },
+    "color-picker": {
+      name: "color-picker",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [
+        {
+          path: "registry/ui/color-picker.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/ui/color-picker")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "color-picker"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          api: "https://react-spectrum.adobe.com/react-aria/ColorPicker.html",
+        },
+      },
+    },
     combobox: {
       name: "combobox",
       title: "undefined",
@@ -517,13 +575,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["button", "input-group"],
       files: [
         {
-          path: "registry/bases/base/ui/combobox.tsx",
+          path: "registry/ui/combobox.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/combobox")
+        const mod = await import("@/registry/ui/combobox")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -549,13 +607,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["dialog", "input-group"],
       files: [
         {
-          path: "registry/bases/base/ui/command.tsx",
+          path: "registry/ui/command.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/command")
+        const mod = await import("@/registry/ui/command")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -581,13 +639,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/context-menu.tsx",
+          path: "registry/ui/context-menu.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/context-menu")
+        const mod = await import("@/registry/ui/context-menu")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -613,13 +671,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["button"],
       files: [
         {
-          path: "registry/bases/base/ui/dialog.tsx",
+          path: "registry/ui/dialog.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/dialog")
+        const mod = await import("@/registry/ui/dialog")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -645,13 +703,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/drawer.tsx",
+          path: "registry/ui/drawer.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/drawer")
+        const mod = await import("@/registry/ui/drawer")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -677,13 +735,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/dropdown-menu.tsx",
+          path: "registry/ui/dropdown-menu.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/dropdown-menu")
+        const mod = await import("@/registry/ui/dropdown-menu")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -709,13 +767,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/empty.tsx",
+          path: "registry/ui/empty.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/empty")
+        const mod = await import("@/registry/ui/empty")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -740,13 +798,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["label", "separator"],
       files: [
         {
-          path: "registry/bases/base/ui/field.tsx",
+          path: "registry/ui/field.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/field")
+        const mod = await import("@/registry/ui/field")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -771,13 +829,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/hover-card.tsx",
+          path: "registry/ui/hover-card.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/hover-card")
+        const mod = await import("@/registry/ui/hover-card")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -803,13 +861,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/input.tsx",
+          path: "registry/ui/input.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/input")
+        const mod = await import("@/registry/ui/input")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -834,13 +892,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["button", "input", "textarea"],
       files: [
         {
-          path: "registry/bases/base/ui/input-group.tsx",
+          path: "registry/ui/input-group.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/input-group")
+        const mod = await import("@/registry/ui/input-group")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -865,13 +923,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/input-otp.tsx",
+          path: "registry/ui/input-otp.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/input-otp")
+        const mod = await import("@/registry/ui/input-otp")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -897,13 +955,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["separator"],
       files: [
         {
-          path: "registry/bases/base/ui/item.tsx",
+          path: "registry/ui/item.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/item")
+        const mod = await import("@/registry/ui/item")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -928,13 +986,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/label.tsx",
+          path: "registry/ui/label.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/label")
+        const mod = await import("@/registry/ui/label")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -960,13 +1018,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["dropdown-menu"],
       files: [
         {
-          path: "registry/bases/base/ui/menubar.tsx",
+          path: "registry/ui/menubar.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/menubar")
+        const mod = await import("@/registry/ui/menubar")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -992,13 +1050,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/navigation-menu.tsx",
+          path: "registry/ui/navigation-menu.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/navigation-menu")
+        const mod = await import("@/registry/ui/navigation-menu")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1024,13 +1082,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["button"],
       files: [
         {
-          path: "registry/bases/base/ui/pagination.tsx",
+          path: "registry/ui/pagination.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/pagination")
+        const mod = await import("@/registry/ui/pagination")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1055,13 +1113,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/popover.tsx",
+          path: "registry/ui/popover.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/popover")
+        const mod = await import("@/registry/ui/popover")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1087,13 +1145,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/progress.tsx",
+          path: "registry/ui/progress.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/progress")
+        const mod = await import("@/registry/ui/progress")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1119,13 +1177,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/radio-group.tsx",
+          path: "registry/ui/radio-group.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/radio-group")
+        const mod = await import("@/registry/ui/radio-group")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1151,13 +1209,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/resizable.tsx",
+          path: "registry/ui/resizable.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/resizable")
+        const mod = await import("@/registry/ui/resizable")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1183,13 +1241,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/scroll-area.tsx",
+          path: "registry/ui/scroll-area.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/scroll-area")
+        const mod = await import("@/registry/ui/scroll-area")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1215,13 +1273,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/select.tsx",
+          path: "registry/ui/select.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/select")
+        const mod = await import("@/registry/ui/select")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1247,13 +1305,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/separator.tsx",
+          path: "registry/ui/separator.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/separator")
+        const mod = await import("@/registry/ui/separator")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1279,13 +1337,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["button"],
       files: [
         {
-          path: "registry/bases/base/ui/sheet.tsx",
+          path: "registry/ui/sheet.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/sheet")
+        const mod = await import("@/registry/ui/sheet")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1319,13 +1377,13 @@ export const Index: Record<string, Record<string, any>> = {
       ],
       files: [
         {
-          path: "registry/bases/base/ui/sidebar.tsx",
+          path: "registry/ui/sidebar.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/sidebar")
+        const mod = await import("@/registry/ui/sidebar")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1350,13 +1408,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/skeleton.tsx",
+          path: "registry/ui/skeleton.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/skeleton")
+        const mod = await import("@/registry/ui/skeleton")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1381,13 +1439,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/slider.tsx",
+          path: "registry/ui/slider.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/slider")
+        const mod = await import("@/registry/ui/slider")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1413,13 +1471,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/sonner.tsx",
+          path: "registry/ui/sonner.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/sonner")
+        const mod = await import("@/registry/ui/sonner")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1445,13 +1503,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/spinner.tsx",
+          path: "registry/ui/spinner.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/spinner")
+        const mod = await import("@/registry/ui/spinner")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1476,13 +1534,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/switch.tsx",
+          path: "registry/ui/switch.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/switch")
+        const mod = await import("@/registry/ui/switch")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1508,13 +1566,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/table.tsx",
+          path: "registry/ui/table.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/table")
+        const mod = await import("@/registry/ui/table")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1539,13 +1597,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/tabs.tsx",
+          path: "registry/ui/tabs.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/tabs")
+        const mod = await import("@/registry/ui/tabs")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1571,13 +1629,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/textarea.tsx",
+          path: "registry/ui/textarea.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/textarea")
+        const mod = await import("@/registry/ui/textarea")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1602,13 +1660,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/toggle.tsx",
+          path: "registry/ui/toggle.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/toggle")
+        const mod = await import("@/registry/ui/toggle")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1634,13 +1692,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: ["toggle"],
       files: [
         {
-          path: "registry/bases/base/ui/toggle-group.tsx",
+          path: "registry/ui/toggle-group.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/toggle-group")
+        const mod = await import("@/registry/ui/toggle-group")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1666,13 +1724,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/tooltip.tsx",
+          path: "registry/ui/tooltip.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/tooltip")
+        const mod = await import("@/registry/ui/tooltip")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1690,6 +1748,36 @@ export const Index: Record<string, Record<string, any>> = {
         },
       },
     },
+    "time-field": {
+      name: "time-field",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [
+        {
+          path: "registry/ui/time-field.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/ui/time-field")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "time-field"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          docs: "https://ui.shadcn.com/docs/components/base/time-field",
+          api: "https://react-spectrum.adobe.com/react-aria/TimeField.html",
+        },
+      },
+    },
     kbd: {
       name: "kbd",
       title: "undefined",
@@ -1698,13 +1786,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/kbd.tsx",
+          path: "registry/ui/kbd.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/kbd")
+        const mod = await import("@/registry/ui/kbd")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1729,13 +1817,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/native-select.tsx",
+          path: "registry/ui/native-select.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/native-select")
+        const mod = await import("@/registry/ui/native-select")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1760,13 +1848,13 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: undefined,
       files: [
         {
-          path: "registry/bases/base/ui/direction.tsx",
+          path: "registry/ui/direction.tsx",
           type: "registry:ui",
           target: "",
         },
       ],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/bases/base/ui/direction")
+        const mod = await import("@/registry/ui/direction")
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -1779,6 +1867,93 @@ export const Index: Record<string, Record<string, any>> = {
         links: {
           docs: "https://ui.shadcn.com/docs/components/base/direction",
           api: "https://base-ui.com/react/utils/direction-provider.md",
+        },
+      },
+    },
+    "qr-code": {
+      name: "qr-code",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [
+        {
+          path: "registry/ui/qr-code.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/ui/qr-code")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "qr-code"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: { docs: "https://ui.shadcn.com/docs/components/base/qr-code" },
+      },
+    },
+    "number-field": {
+      name: "number-field",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["label"],
+      files: [
+        {
+          path: "registry/ui/number-field.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/ui/number-field")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "number-field"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          docs: "https://ui.shadcn.com/docs/components/base/number-field",
+          api: "https://base-ui.com/react/components/number-field.md",
+        },
+      },
+    },
+    sortable: {
+      name: "sortable",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [
+        {
+          path: "registry/ui/sortable.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/ui/sortable")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "sortable"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          docs: "https://ui.shadcn.com/docs/components/base/sortable",
+          api: "https://dndkit.com",
         },
       },
     },

@@ -11,7 +11,7 @@ import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/registry/bases/base/ui/resizable"
+} from "@/registry/ui/resizable"
 
 export default function ResizableExample() {
   return (

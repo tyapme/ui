@@ -1,4 +1,4 @@
-import { Badge } from "@/registry/bases/base/ui/badge"
+import { Badge } from "@/registry/ui/badge"
 import {
   Card,
   CardContent,
@@ -6,9 +6,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
-import { Item, ItemContent } from "@/registry/bases/base/ui/item"
-import { Separator } from "@/registry/bases/base/ui/separator"
+} from "@/registry/ui/card"
+import { Item, ItemContent } from "@/registry/ui/item"
+import { Separator } from "@/registry/ui/separator"
 
 export function ClaimableBalance() {
   return (

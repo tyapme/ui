@@ -2,8 +2,8 @@
 
 import * as React from "react"
 
-import { Button } from "@/registry/bases/base/ui/button"
-import { Card, CardContent, CardFooter } from "@/registry/bases/base/ui/card"
+import { Button } from "@/registry/ui/button"
+import { Card, CardContent, CardFooter } from "@/registry/ui/card"
 import {
   Dialog,
   DialogClose,
@@ -13,9 +13,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/bases/base/ui/dialog"
-import { Field, FieldGroup, FieldLabel } from "@/registry/bases/base/ui/field"
-import { Input } from "@/registry/bases/base/ui/input"
+} from "@/registry/ui/dialog"
+import { Field, FieldGroup, FieldLabel } from "@/registry/ui/field"
+import { Input } from "@/registry/ui/input"
 import {
   Select,
   SelectContent,
@@ -23,8 +23,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/bases/base/ui/select"
-import { Textarea } from "@/registry/bases/base/ui/textarea"
+} from "@/registry/ui/select"
+import { Textarea } from "@/registry/ui/textarea"
 import { FONTS } from "@/app/(create)/lib/fonts"
 import { useDesignSystemSearchParams } from "@/app/(create)/lib/search-params"
 

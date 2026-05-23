@@ -1,3 +1,63 @@
+# docs install display and divider alignment fix plan
+
+## 目的
+
+コンポーネント docs のインストール表記が `Command / Manual` や `pnpm npm yarn bun` を本文として崩して表示している問題と、テーマ切り替え・コピー系ボタングループの区切り線位置を正す。
+
+## 変更範囲
+
+- [x] 既存 docs / UI / テスト方針を確認する。
+- [x] Context7 で `@base-ui/react` のインストール表記と composition 方針を確認する。
+- [ ] MDX の npm command code block 判定順を修正する。
+- [ ] ヘッダーのテーマ切り替え前の縦区切り線をボタンサイズに合わせる。
+- [ ] コピー用ボタングループの縦区切り線をレスポンシブ幅に依存しない配置に直す。
+- [ ] 関連ドキュメントまたは既存 docs copy の更新要否を確認し、必要範囲を更新する。
+- [ ] `pnpm lint`
+- [ ] `pnpm typecheck`
+- [ ] `pnpm build`
+- [ ] `$yki-review-gate` 通常モードでレビューする。
+
+## 分割案
+
+1. MDX レンダラーの条件分岐だけを変更して install command 表示を復旧する。
+2. 既存 Separator / ButtonGroup のパターンに合わせ、区切り線をフロー内に戻す。
+3. build とレビューゲートで回帰がないことを確認する。
+
+## 計画確認
+
+ユーザーから「ここバグってる表記」「テーマ切り替えとグルの左側の区切り線が正しい位置にない」と直接修正指示あり。AGENTS の計画記録を満たしたうえで、最小範囲で実装に進む。
+
+---
+
+# localhost:4000 error fix plan
+
+## 目的
+
+`http://localhost:4000` にアクセスしたときに出ている console / hydration / runtime error を解消し、開発環境でエラーなく主要ページを表示できる状態に戻す。
+
+## 変更範囲
+
+- [x] localhost:4000 の browser console error を再現する。
+- [x] Next.js / Base UI の関連仕様と既存 UI コンポーネントの composition API を確認する。
+- [ ] `asChild` による Base UI / Radix 系 trigger と Button の不整合を修正する。
+- [ ] `/` と `/docs` で console error が消えることを確認する。
+- [ ] `pnpm lint`
+- [ ] `pnpm typecheck`
+- [ ] `pnpm build`
+- [ ] `$yki-review-gate` 通常モードでレビューする。
+
+## 分割案
+
+1. `Button` のリンク合成を `asChild` から既存の `render` API に戻す。
+2. `DialogTrigger` など Base UI wrapper の trigger 合成を `render` API に統一する。
+3. browser console と production build で再発がないことを確認する。
+
+## 計画確認
+
+ユーザーから「アクセスするといろんなエラー出る / 全部治して / localhost4000」と直接修正指示あり。既存 AGENTS の計画記録を満たしたうえで、実装に進む。
+
+---
+
 # TYAP.ME UI cleanup plan
 
 ## 目的

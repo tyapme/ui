@@ -8,7 +8,7 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="calendar-demo"
   previewClassName="h-96"
 />
@@ -18,13 +18,13 @@ links:
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add calendar
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/calendar.json
 ```
 
 </TabsContent>
@@ -49,7 +49,7 @@ npm install react-day-picker date-fns
 <ComponentSource
   name="calendar"
   title="components/ui/calendar.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -99,7 +99,7 @@ return (
 ```
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="calendar-hijri"
   title="Persian / Hijri / Jalali Calendar"
   description="A Persian calendar."
@@ -141,7 +141,7 @@ export function CalendarWithTimezone() {
 シンプルなカレンダーコンポーネント。スタイルに `className="rounded-lg border"` を使用しています。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="calendar-basic"
   previewClassName="h-96"
 />
@@ -151,7 +151,7 @@ export function CalendarWithTimezone() {
 `mode="range"` プロパティで日付範囲選択を有効にします。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="calendar-range"
   previewClassName="h-[36rem] md:h-96"
 />
@@ -161,7 +161,7 @@ export function CalendarWithTimezone() {
 `captionLayout="dropdown"` で月・年のドロップダウンを表示します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="calendar-caption"
   previewClassName="h-96"
 />
@@ -169,7 +169,7 @@ export function CalendarWithTimezone() {
 ### Presets
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="calendar-presets"
   previewClassName="h-[650px]"
 />
@@ -177,7 +177,7 @@ export function CalendarWithTimezone() {
 ### Date and Time Picker
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="calendar-time"
   previewClassName="h-[600px]"
 />
@@ -185,7 +185,7 @@ export function CalendarWithTimezone() {
 ### Booked dates
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="calendar-booked-dates"
   previewClassName="h-96"
 />
@@ -193,7 +193,7 @@ export function CalendarWithTimezone() {
 ### Custom Cell Size
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="calendar-custom-days"
   title="Custom Cell Size"
   description="A calendar with custom cell size that's responsive."
@@ -227,7 +227,7 @@ export function CalendarWithTimezone() {
 `showWeekNumber` で週番号を表示します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="calendar-week-numbers"
   previewClassName="h-96"
 />
@@ -237,7 +237,7 @@ export function CalendarWithTimezone() {
 ペルシア / ヒジュラ / ジャラリカレンダーの有効化については [Hijri ガイド](#%E3%83%9A%E3%83%AB%E3%82%B7%E3%82%A2--%E3%83%92%E3%82%B8%E3%83%A5%E3%83%A9--%E3%82%B8%E3%83%A3%E3%83%A9%E3%83%AA%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC) も参照してください。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="calendar-rtl"
   direction="rtl"
   previewClassName="h-96"

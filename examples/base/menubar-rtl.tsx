@@ -21,7 +21,7 @@ import {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
-} from "@/styles/base-nova/ui-rtl/menubar"
+} from "@/styles/base/ui-rtl/menubar"
 
 const translations: Translations = {
   en: {

@@ -4,7 +4,7 @@ import {
   Example,
   ExampleWrapper,
 } from "@/registry/bases/base/components/example"
-import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
+import { Field, FieldLabel } from "@/registry/ui/field"
 import {
   Pagination,
   PaginationContent,
@@ -13,7 +13,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/registry/bases/base/ui/pagination"
+} from "@/registry/ui/pagination"
 import {
   Select,
   SelectContent,
@@ -21,7 +21,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/bases/base/ui/select"
+} from "@/registry/ui/select"
 
 export default function PaginationExample() {
   return (

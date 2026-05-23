@@ -6,13 +6,13 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/registry/bases/base/ui/breadcrumb"
-import { Separator } from "@/registry/bases/base/ui/separator"
+} from "@/registry/ui/breadcrumb"
+import { Separator } from "@/registry/ui/separator"
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/registry/bases/base/ui/sidebar"
+} from "@/registry/ui/sidebar"
 
 export default function Page() {
   return (

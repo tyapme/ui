@@ -9,7 +9,7 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="resizable-demo"
   previewClassName="h-80"
 />
@@ -23,13 +23,13 @@ links:
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add resizable
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/resizable.json
 ```
 
 </TabsContent>
@@ -49,7 +49,7 @@ npm install react-resizable-panels
 <ComponentSource
   name="resizable"
   title="components/ui/resizable.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -95,17 +95,17 @@ ResizablePanelGroup
 
 `orientation="vertical"` で縦方向のリサイズを有効にします。
 
-<ComponentPreview styleName="base-nova" name="resizable-vertical" />
+<ComponentPreview styleName="base" name="resizable-vertical" />
 
 ### ハンドル
 
 `ResizableHandle` の `withHandle` で観に見えるハンドルを表示します。
 
-<ComponentPreview styleName="base-nova" name="resizable-handle" />
+<ComponentPreview styleName="base" name="resizable-handle" />
 
 ## RTL
 
-<ComponentPreview styleName="base-nova" name="resizable-rtl" direction="rtl" />
+<ComponentPreview styleName="base" name="resizable-rtl" direction="rtl" />
 
 ## API リファレンス
 

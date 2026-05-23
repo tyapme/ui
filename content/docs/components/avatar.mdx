@@ -9,7 +9,7 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="avatar-demo"
   previewClassName="h-72"
 />
@@ -19,13 +19,13 @@ links:
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add avatar
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/avatar.json
 ```
 
 </TabsContent>
@@ -45,7 +45,7 @@ npm install @base-ui/react
 <ComponentSource
   name="avatar"
   title="components/ui/avatar.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -101,13 +101,13 @@ AvatarGroup
 
 画像とフォールバック付きのシンプルなアバターコンポーネント。
 
-<ComponentPreview styleName="base-nova" name="avatar-basic" />
+<ComponentPreview styleName="base" name="avatar-basic" />
 
 ### Badge
 
 `AvatarBadge` コンポーネントでアバターにバッジを追加します。バッジはデフォルトでアバターの右下に配置されます。
 
-<ComponentPreview styleName="base-nova" name="avatar-badge" />
+<ComponentPreview styleName="base" name="avatar-badge" />
 
 `className` プロパティでカスタムカラーやサイズなどのスタイルをバッジに追加できます。
 
@@ -123,42 +123,42 @@ AvatarGroup
 
 `<AvatarBadge>` の中にアイコンを使用することもできます。
 
-<ComponentPreview styleName="base-nova" name="avatar-badge-icon" />
+<ComponentPreview styleName="base" name="avatar-badge-icon" />
 
 ### Avatar Group
 
 `AvatarGroup` コンポーネントでアバターのグループを表示します。
 
-<ComponentPreview styleName="base-nova" name="avatar-group" />
+<ComponentPreview styleName="base" name="avatar-group" />
 
 ### Avatar Group Count
 
 `<AvatarGroupCount>` でグループにカウントを追加します。
 
-<ComponentPreview styleName="base-nova" name="avatar-group-count" />
+<ComponentPreview styleName="base" name="avatar-group-count" />
 
 ### Avatar Group with Icon
 
 `<AvatarGroupCount>` の中にアイコンを使用することもできます。
 
-<ComponentPreview styleName="base-nova" name="avatar-group-count-icon" />
+<ComponentPreview styleName="base" name="avatar-group-count-icon" />
 
 ### Sizes
 
 `size` プロパティでアバターのサイズを変更します。
 
-<ComponentPreview styleName="base-nova" name="avatar-size" />
+<ComponentPreview styleName="base" name="avatar-size" />
 
 ### Dropdown
 
 `Avatar` コンポーネントをドロップダウンメニューのトリガーとして使用できます。
 
-<ComponentPreview styleName="base-nova" name="avatar-dropdown" />
+<ComponentPreview styleName="base" name="avatar-dropdown" />
 
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="avatar-rtl"
   direction="rtl"
   previewClassName="h-72"

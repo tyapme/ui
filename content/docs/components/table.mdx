@@ -6,7 +6,7 @@ component: true
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="table-demo"
   previewClassName="h-[30rem]"
 />
@@ -16,13 +16,13 @@ component: true
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add table
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/table.json
 ```
 
 </TabsContent>
@@ -36,7 +36,7 @@ npx shadcn@latest add table
 <ComponentSource
   name="table"
   title="components/ui/table.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -116,13 +116,13 @@ Table
 
 `<TableFooter />` でテーブルにフッターを追加します。
 
-<ComponentPreview styleName="base-nova" name="table-footer" />
+<ComponentPreview styleName="base" name="table-footer" />
 
 ### Actions
 
 `<DropdownMenu />` を用いて各行にアクションを表示するテーブル。
 
-<ComponentPreview styleName="base-nova" name="table-actions" />
+<ComponentPreview styleName="base" name="table-actions" />
 
 ## Data Table
 
@@ -133,7 +133,7 @@ Table
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="table-rtl"
   direction="rtl"
   previewClassName="h-auto"

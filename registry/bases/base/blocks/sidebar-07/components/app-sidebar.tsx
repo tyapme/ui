@@ -12,7 +12,7 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/registry/bases/base/ui/sidebar"
+} from "@/registry/ui/sidebar"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 // This is sample data.

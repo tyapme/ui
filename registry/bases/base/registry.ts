@@ -9,7 +9,7 @@ import { examples } from "./examples/_registry"
 import { hooks } from "./hooks/_registry"
 import { internal } from "./internal/_registry"
 import { lib } from "./lib/_registry"
-import { ui } from "./ui/_registry"
+import { ui } from "../../ui/_registry"
 
 // Shared between index and style.
 const BASE_STYLE = {

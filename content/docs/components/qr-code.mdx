@@ -5,20 +5,20 @@ base: base
 component: true
 ---
 
-<ComponentPreview styleName="base-nova" name="qr-code-1" />
+<ComponentPreview styleName="base" name="qr-code-1" />
 
 ## インストール
 
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add qr-code
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/qr-code.json
 ```
 
 </TabsContent>
@@ -38,7 +38,7 @@ npm install qrcode culori
 <ComponentSource
   name="qr-code"
   title="components/ui/qr-code.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -64,14 +64,14 @@ import { QRCode } from "@/components/ui/qr-code"
 
 ### Robustness
 
-<ComponentPreview styleName="base-nova" name="qr-code-2" />
+<ComponentPreview styleName="base" name="qr-code-2" />
 
 ## Props
 
-| Prop | 型 | デフォルト | 説明 |
-|:-----|:---|:-----------|:-----|
-| `data` | `string` | — | **必須**。エンコードするテキストまたはURL |
-| `foreground` | `string` | `var(--foreground)` | 前景色。oklch CSS変数またはhex |
-| `background` | `string` | `var(--background)` | 背景色。oklch CSS変数またはhex |
-| `robustness` | `"L" \| "M" \| "Q" \| "H"` | `"M"` | エラー訂正レベル。L: 7%, M: 15%, Q: 25%, H: 30% |
-| `className` | `string` | — | 追加CSSクラス（コンテナに適用） |
+| Prop         | 型                         | デフォルト          | 説明                                            |
+| :----------- | :------------------------- | :------------------ | :---------------------------------------------- |
+| `data`       | `string`                   | —                   | **必須**。エンコードするテキストまたはURL       |
+| `foreground` | `string`                   | `var(--foreground)` | 前景色。oklch CSS変数またはhex                  |
+| `background` | `string`                   | `var(--background)` | 背景色。oklch CSS変数またはhex                  |
+| `robustness` | `"L" \| "M" \| "Q" \| "H"` | `"M"`               | エラー訂正レベル。L: 7%, M: 15%, Q: 25%, H: 30% |
+| `className`  | `string`                   | —                   | 追加CSSクラス（コンテナに適用）                 |

@@ -3,7 +3,7 @@
 import * as React from "react"
 import { type DateValue } from "@internationalized/date"
 
-import { Calendar } from "@/styles/base-nova/ui/calendar"
+import { Calendar } from "@/styles/base/ui/calendar"
 
 export default function CalendarDemo() {
   const [date, setDate] = React.useState<DateValue | null>(null)

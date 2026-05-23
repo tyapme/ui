@@ -1,4 +1,4 @@
-import { QRCode } from "@/styles/base-nova/ui/qr-code"
+import { QRCode } from "@/styles/base/ui/qr-code"
 
 export function QrCode1() {
   return (

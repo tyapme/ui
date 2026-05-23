@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { Card, CardContent } from "@/registry/bases/base/ui/card"
+import { Card, CardContent } from "@/registry/ui/card"
 import {
   Item,
   ItemActions,
@@ -8,8 +8,8 @@ import {
   ItemHeader,
   ItemSeparator,
   ItemTitle,
-} from "@/registry/bases/base/ui/item"
-import { Kbd } from "@/registry/bases/base/ui/kbd"
+} from "@/registry/ui/item"
+import { Kbd } from "@/registry/ui/kbd"
 
 const shortcuts = [
   { label: "Search", keys: ["⌘", "K"] },

@@ -5,12 +5,12 @@ import { IconCheck, IconCopy } from "@tabler/icons-react"
 
 import { trackEvent, type Event } from "@/lib/events"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/new-york-v4/ui/button"
+import { Button } from "@/styles/base/ui/button"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/registry/new-york-v4/ui/tooltip"
+} from "@/styles/base/ui/tooltip"
 
 export function ChartCopyButton({
   event,
@@ -54,7 +54,14 @@ export function ChartCopyButton({
           {...props}
         >
           <span className="sr-only">コピー</span>
-          {hasCopied ? <IconCheck /> : <IconCopy />}
+          <span className="t-icon-swap" data-state={hasCopied ? "b" : "a"}>
+            <span className="t-icon" data-icon="a">
+              <IconCopy />
+            </span>
+            <span className="t-icon" data-icon="b">
+              <IconCheck />
+            </span>
+          </span>
         </Button>
       </TooltipTrigger>
       <TooltipContent className="bg-black text-white">コードをコピー</TooltipContent>

@@ -3,21 +3,16 @@ import { NextResponse, type NextRequest } from "next/server"
 
 import { processMdxForLLMs } from "@/lib/llm"
 import { source } from "@/lib/source"
-import { getActiveStyle, type Style } from "@/registry/_legacy-styles"
 
 export const revalidate = false
 export const dynamic = "force-static"
 export const dynamicParams = true
 
-function getStyleFromSlug(_slug: string[] | undefined, fallbackStyle: string) {
-  return fallbackStyle
-}
-
 export async function GET(
   _req: NextRequest,
   { params }: { params: Promise<{ slug?: string[] }> }
 ) {
-  const [{ slug }, activeStyle] = await Promise.all([params, getActiveStyle()])
+  const { slug } = await params
 
   const page = source.getPage(slug)
 
@@ -25,11 +20,9 @@ export async function GET(
     notFound()
   }
 
-  const effectiveStyle = getStyleFromSlug(slug, activeStyle.name)
-
   const processedContent = processMdxForLLMs(
     await page.data.getText("raw"),
-    effectiveStyle as Style["name"]
+    "base"
   )
 
   return new NextResponse(processedContent, {

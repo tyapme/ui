@@ -9,15 +9,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/registry/bases/base/ui/chart"
-import { Progress } from "@/registry/bases/base/ui/progress"
-import { Separator } from "@/registry/bases/base/ui/separator"
+} from "@/registry/ui/chart"
+import { Progress } from "@/registry/ui/progress"
+import { Separator } from "@/registry/ui/separator"
 import { useDesignSystemSearchParams } from "@/app/(app)/create/lib/search-params"
 
 const chartData = [

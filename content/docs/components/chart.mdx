@@ -12,7 +12,7 @@ component: true
 </Callout>
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="chart-demo"
   className="theme-blue [&_.preview]:h-auto [&_.preview]:p-0 [&_.preview]:lg:min-h-[404px] [&_.preview>div]:w-full [&_.preview>div]:border-none [&_.preview>div]:shadow-none"
   hideCode
@@ -63,13 +63,13 @@ Recharts をラップしていません。つまり、抽象化に縛り付け�
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add chart
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/chart.json
 ```
 
 </TabsContent>
@@ -89,7 +89,7 @@ npm install recharts
 <ComponentSource
   name="chart"
   title="components/ui/chart.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>CSS ファイルに以下のカラーを追加します</Step>
@@ -177,7 +177,7 @@ Recharts コンポーネントでチャートを作成できます。
 </Callout>
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="chart-example"
   previewClassName="h-80"
 />
@@ -209,7 +209,7 @@ import { Bar, BarChart, CartesianGrid } from "recharts"
 ```
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="chart-example-grid"
   previewClassName="h-80"
 />
@@ -248,7 +248,7 @@ import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 ```
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="chart-example-axis"
   previewClassName="h-80"
 />
@@ -290,7 +290,7 @@ import { ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 ```
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="chart-example-tooltip"
   previewClassName="h-80"
 />
@@ -333,7 +333,7 @@ import { ChartLegend, ChartLegendContent } from "@/components/ui/chart"
 ```
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="chart-example-legend"
   previewClassName="h-80"
 />
@@ -469,7 +469,7 @@ const chartData = [
 
 チャートのツールチップにはラベル、名前、インジケーター、値が含まれます。これらを組み合わせてツールチップをカスタマイズできます。
 
-<ComponentPreview styleName="base-nova" name="chart-tooltip" hideCode />
+<ComponentPreview styleName="base" name="chart-tooltip" hideCode />
 
 `hideLabel`、`hideIndicator` で各要素の表示/非表示を切り替え、`indicator` でインジケーターのスタイルをカスタマイズできます。
 
@@ -591,7 +591,7 @@ const chartConfig = {
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="chart-rtl"
   direction="rtl"
   previewClassName="h-92"

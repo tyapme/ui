@@ -3,8 +3,8 @@
 import * as React from "react"
 import { IconMinus, IconPlus } from "@tabler/icons-react"
 
-import { Button } from "@/styles/base-nova/ui/button"
-import { ButtonGroup } from "@/styles/base-nova/ui/button-group"
+import { Button } from "@/styles/base/ui/button"
+import { ButtonGroup } from "@/styles/base/ui/button-group"
 import {
   Field,
   FieldContent,
@@ -15,10 +15,10 @@ import {
   FieldSeparator,
   FieldSet,
   FieldTitle,
-} from "@/styles/base-nova/ui/field"
-import { Input } from "@/styles/base-nova/ui/input"
-import { RadioGroup, RadioGroupItem } from "@/styles/base-nova/ui/radio-group"
-import { Switch } from "@/styles/base-nova/ui/switch"
+} from "@/styles/base/ui/field"
+import { Input } from "@/styles/base/ui/input"
+import { RadioGroup, RadioGroupItem } from "@/styles/base/ui/radio-group"
+import { Switch } from "@/styles/base/ui/switch"
 
 export function AppearanceSettings() {
   const [gpuCount, setGpuCount] = React.useState(8)

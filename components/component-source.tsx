@@ -41,7 +41,11 @@ export async function ComponentSource({
   }
 
   if (src) {
-    code = await readFileFromRoot(src)
+    try {
+      code = await readFileFromRoot(src)
+    } catch {
+      return null
+    }
   }
 
   if (!code) {

@@ -6,8 +6,8 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/registry/bases/base/ui/avatar"
-import { Button } from "@/registry/bases/base/ui/button"
+} from "@/registry/ui/avatar"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardAction,
@@ -15,7 +15,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   Combobox,
   ComboboxChip,
@@ -27,12 +27,12 @@ import {
   ComboboxList,
   ComboboxValue,
   useComboboxAnchor,
-} from "@/registry/bases/base/ui/combobox"
+} from "@/registry/ui/combobox"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/registry/bases/base/ui/tooltip"
+} from "@/registry/ui/tooltip"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 // Users available for assignment.

@@ -4,8 +4,8 @@ import {
   ColorField,
   ColorFieldGroup,
   ColorFieldInput,
-} from "@/styles/base-nova/ui/color-field"
-import { Label } from "@/styles/base-nova/ui/label"
+} from "@/styles/base/ui/color-field"
+import { Label } from "@/styles/base/ui/label"
 
 export function ColorFieldDemo() {
   return (

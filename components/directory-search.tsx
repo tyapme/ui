@@ -2,13 +2,13 @@
 
 import { Search, X } from "lucide-react"
 
-import { Field } from "@/styles/base-nova/ui/field"
+import { Field } from "@/styles/base/ui/field"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from "@/styles/base-nova/ui/input-group"
+} from "@/styles/base/ui/input-group"
 
 export function SearchDirectory({
   query,

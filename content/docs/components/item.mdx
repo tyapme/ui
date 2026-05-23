@@ -5,7 +5,7 @@ base: base
 component: true
 ---
 
-<ComponentPreview styleName="base-nova" name="item-demo" />
+<ComponentPreview styleName="base" name="item-demo" />
 
 `Item` コンポーネントは、ほぼあらゆるコンテンツを内包できるシンプルな flex コンテナーです。タイトル、説明、アクションを表示するために使用します。`ItemGroup` コンポーネントと組み合わせてリストを作成できます。
 
@@ -14,13 +14,13 @@ component: true
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add item
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/item.json
 ```
 
 </TabsContent>
@@ -34,7 +34,7 @@ npx shadcn@latest add item
 <ComponentSource
   name="item"
   title="components/ui/item.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -100,7 +100,7 @@ ItemGroup
 `variant` でアイテムの視覚スタイルを変更します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="item-variant"
   previewClassName="h-96"
 />
@@ -110,7 +110,7 @@ ItemGroup
 `size` でアイテムのサイズを変更します。`default`、`sm`、`xs` が利用可能です。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="item-size"
   previewClassName="h-96"
 />
@@ -121,26 +121,26 @@ ItemGroup
 
 `ItemMedia` に `variant="icon"` を使ってアイコンを表示します。
 
-<ComponentPreview styleName="base-nova" name="item-icon" />
+<ComponentPreview styleName="base" name="item-icon" />
 
 ### アバター
 
 `ItemMedia` に `variant="avatar"` を使ってアバターを表示できます。
 
-<ComponentPreview styleName="base-nova" name="item-avatar" />
+<ComponentPreview styleName="base" name="item-avatar" />
 
 ### 画像
 
 `ItemMedia` に `variant="image"` を使って画像を表示します。
 
-<ComponentPreview styleName="base-nova" name="item-image" />
+<ComponentPreview styleName="base" name="item-image" />
 
 ### グループ
 
 `ItemGroup` で関連するアイテムをまとめます。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="item-group"
   previewClassName="h-96"
 />
@@ -150,7 +150,7 @@ ItemGroup
 `ItemHeader` でアイテムコンテンツの上にヘッダーを追加します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="item-header"
   previewClassName="h-96"
 />
@@ -159,7 +159,7 @@ ItemGroup
 
 `render` でアイテムをリンクとしてレンダリングします。ホバー・フォーカス状態は anchor 要素に適用されます。
 
-<ComponentPreview styleName="base-nova" name="item-link" />
+<ComponentPreview styleName="base" name="item-link" />
 
 ```tsx showLineNumbers
 <Item render={<a href="/dashboard" />}>
@@ -175,11 +175,11 @@ ItemGroup
 
 ### Dropdown
 
-<ComponentPreview styleName="base-nova" name="item-dropdown" />
+<ComponentPreview styleName="base" name="item-dropdown" />
 
 ## RTL
 
-<ComponentPreview styleName="base-nova" name="item-rtl" direction="rtl" />
+<ComponentPreview styleName="base" name="item-rtl" direction="rtl" />
 
 ## API リファレンス
 

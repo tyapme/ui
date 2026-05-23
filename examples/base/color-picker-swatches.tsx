@@ -10,7 +10,7 @@ import {
   ColorSlider,
   ColorSwatch,
   ColorSwatchPicker,
-} from "@/styles/base-nova/ui/color-picker"
+} from "@/styles/base/ui/color-picker"
 
 const SWATCHES = [
   "#ef4444",

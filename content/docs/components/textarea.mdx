@@ -6,7 +6,7 @@ component: true
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="textarea-demo"
   previewClassName="*:max-w-xs"
 />
@@ -16,13 +16,13 @@ component: true
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add textarea
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/textarea.json
 ```
 
 </TabsContent>
@@ -36,7 +36,7 @@ npx shadcn@latest add textarea
 <ComponentSource
   name="textarea"
   title="components/ui/textarea.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -64,7 +64,7 @@ import { Textarea } from "@/components/ui/textarea"
 `Field`、`FieldLabel`、`FieldDescription` でラベルと説明付きテキストエリアを作成します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="textarea-field"
   previewClassName="*:max-w-xs"
 />
@@ -74,7 +74,7 @@ import { Textarea } from "@/components/ui/textarea"
 `disabled` でテキストエリアを無効化します。無効状態のスタイリングには `Field` に `data-disabled` を付けます。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="textarea-disabled"
   previewClassName="*:max-w-xs"
 />
@@ -84,7 +84,7 @@ import { Textarea } from "@/components/ui/textarea"
 `aria-invalid` でテキストエリアを未入力状態にします。未入力状態のスタイリングには `Field` に `data-invalid` を付けます。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="textarea-invalid"
   previewClassName="*:max-w-xs"
 />
@@ -94,11 +94,11 @@ import { Textarea } from "@/components/ui/textarea"
 `Button` と組み合わせて送信ボタン付きテキストエリアを作成します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="textarea-button"
   previewClassName="*:max-w-xs"
 />
 
 ## RTL
 
-<ComponentPreview styleName="base-nova" name="textarea-rtl" direction="rtl" />
+<ComponentPreview styleName="base" name="textarea-rtl" direction="rtl" />

@@ -1,11 +1,11 @@
 import { ChevronDownIcon } from "@/registry/icons/__lucide__"
-import { Button } from "@/styles/base-nova/ui/button"
-import { Card, CardContent } from "@/styles/base-nova/ui/card"
+import { Button } from "@/styles/base/ui/button"
+import { Card, CardContent } from "@/styles/base/ui/card"
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/styles/base-nova/ui/collapsible"
+} from "@/styles/base/ui/collapsible"
 
 export function CollapsibleBasic() {
   return (

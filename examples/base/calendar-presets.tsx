@@ -3,9 +3,9 @@
 import * as React from "react"
 import { getLocalTimeZone, today, type DateValue } from "@internationalized/date"
 
-import { Button } from "@/styles/base-nova/ui/button"
-import { Calendar } from "@/styles/base-nova/ui/calendar"
-import { Card, CardContent, CardFooter } from "@/styles/base-nova/ui/card"
+import { Button } from "@/styles/base/ui/button"
+import { Calendar } from "@/styles/base/ui/calendar"
+import { Card, CardContent, CardFooter } from "@/styles/base/ui/card"
 
 export function CalendarWithPresets() {
   const [date, setDate] = React.useState<DateValue | null>(

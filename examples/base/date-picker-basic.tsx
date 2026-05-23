@@ -2,8 +2,8 @@
 
 import * as React from "react"
 
-import { DatePicker } from "@/styles/base-nova/ui/date-picker"
-import { Field, FieldLabel } from "@/styles/base-nova/ui/field"
+import { DatePicker } from "@/styles/base/ui/date-picker"
+import { Field, FieldLabel } from "@/styles/base/ui/field"
 
 export function DatePickerSimple() {
   const [date, setDate] = React.useState<Date>()

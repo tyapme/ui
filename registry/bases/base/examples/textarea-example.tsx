@@ -6,8 +6,8 @@ import {
   Field,
   FieldDescription,
   FieldLabel,
-} from "@/registry/bases/base/ui/field"
-import { Textarea } from "@/registry/bases/base/ui/textarea"
+} from "@/registry/ui/field"
+import { Textarea } from "@/registry/ui/textarea"
 
 export default function TextareaExample() {
   return (

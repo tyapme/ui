@@ -1,12 +1,12 @@
-import { Badge } from "@/registry/bases/base/ui/badge"
+import { Badge } from "@/registry/ui/badge"
 import {
   Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
-import { Separator } from "@/registry/bases/base/ui/separator"
+} from "@/registry/ui/card"
+import { Separator } from "@/registry/ui/separator"
 
 export function AlbumCard() {
   return (

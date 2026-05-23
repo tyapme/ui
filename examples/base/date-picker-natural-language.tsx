@@ -2,39 +2,55 @@
 
 import * as React from "react"
 import { parseDate } from "chrono-node"
+import {
+  CalendarDate,
+  getLocalTimeZone,
+  type DateValue,
+} from "@internationalized/date"
 import { CalendarIcon } from "lucide-react"
 
-import { Calendar } from "@/styles/base-nova/ui/calendar"
-import { Field, FieldLabel } from "@/styles/base-nova/ui/field"
+import { Calendar } from "@/styles/base/ui/calendar"
+import { Field, FieldLabel } from "@/styles/base/ui/field"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from "@/styles/base-nova/ui/input-group"
+} from "@/styles/base/ui/input-group"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/styles/base-nova/ui/popover"
+} from "@/styles/base/ui/popover"
 
-function formatDate(date: Date | undefined) {
+function formatDate(date: DateValue | null | undefined) {
   if (!date) {
     return ""
   }
 
-  return date.toLocaleDateString("en-US", {
+  return date.toDate(getLocalTimeZone()).toLocaleDateString("en-US", {
     day: "2-digit",
     month: "long",
     year: "numeric",
   })
 }
 
+function parseDateValue(input: string): DateValue | null {
+  const parsed = parseDate(input)
+  if (!parsed) return null
+
+  return new CalendarDate(
+    parsed.getFullYear(),
+    parsed.getMonth() + 1,
+    parsed.getDate()
+  )
+}
+
 export function DatePickerNaturalLanguage() {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("In 2 days")
-  const [date, setDate] = React.useState<Date | undefined>(
-    parseDate(value) || undefined
+  const [date, setDate] = React.useState<DateValue | null>(
+    parseDateValue(value)
   )
 
   return (
@@ -47,9 +63,9 @@ export function DatePickerNaturalLanguage() {
           placeholder="Tomorrow or next week"
           onChange={(e) => {
             setValue(e.target.value)
-            const date = parseDate(e.target.value)
-            if (date) {
-              setDate(date)
+            const parsed = parseDateValue(e.target.value)
+            if (parsed) {
+              setDate(parsed)
             }
           }}
           onKeyDown={(e) => {
@@ -80,13 +96,10 @@ export function DatePickerNaturalLanguage() {
               sideOffset={8}
             >
               <Calendar
-                mode="single"
-                selected={date}
-                captionLayout="dropdown"
-                defaultMonth={date}
-                onSelect={(date) => {
-                  setDate(date)
-                  setValue(formatDate(date))
+                value={date}
+                onChange={(d) => {
+                  setDate(d)
+                  setValue(formatDate(d))
                   setOpen(false)
                 }}
               />

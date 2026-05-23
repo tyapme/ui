@@ -2,8 +2,8 @@
 
 import { Bar, BarChart } from "recharts"
 
-import { Badge } from "@/registry/bases/base/ui/badge"
-import { Button } from "@/registry/bases/base/ui/button"
+import { Badge } from "@/registry/ui/badge"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardContent,
@@ -11,11 +11,11 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   ChartContainer,
   type ChartConfig,
-} from "@/registry/bases/base/ui/chart"
+} from "@/registry/ui/chart"
 
 const sleepChartData = [
   { hour: "10pm", deep: 0, light: 30, rem: 0 },

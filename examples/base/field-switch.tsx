@@ -1,5 +1,5 @@
-import { Field, FieldLabel } from "@/styles/base-nova/ui/field"
-import { Switch } from "@/styles/base-nova/ui/switch"
+import { Field, FieldLabel } from "@/styles/base/ui/field"
+import { Switch } from "@/styles/base/ui/switch"
 
 export default function FieldSwitch() {
   return (

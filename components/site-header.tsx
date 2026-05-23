@@ -8,14 +8,14 @@ import { MainNav } from "@/components/main-nav"
 import { MobileNav } from "@/components/mobile-nav"
 import { ModeSwitcher } from "@/components/mode-switcher"
 import { SiteConfig } from "@/components/site-config"
-import { Separator } from "@/registry/new-york-v4/ui/separator"
-import { Button } from "@/styles/base-nova/ui/button"
+import { Separator } from "@/styles/base/ui/separator"
+import { Button } from "@/styles/base/ui/button"
 
 export function SiteHeader() {
   const pageTree = source.pageTree
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background">
+    <header className="sticky top-2 z-50 w-full bg-background">
       <div className="container-wrapper px-6 group-has-data-[slot=designer]/layout:max-w-none 3xl:fixed:px-0">
         <div className="flex h-(--header-height) items-center **:data-[slot=separator]:h-4! group-has-data-[slot=designer]/layout:fixed:max-w-none 3xl:fixed:container">
           <MobileNav
@@ -25,6 +25,7 @@ export function SiteHeader() {
           />
           <Button
             render={<Link href="/" />}
+            nativeButton={false}
             variant="ghost"
             size="icon"
             className="hidden size-8 lg:flex"
@@ -41,7 +42,10 @@ export function SiteHeader() {
               />
             </div>
             <SiteConfig className="hidden 3xl:flex 3xl:group-has-data-[slot=designer]/layout:hidden" />
-            <Separator orientation="vertical" />
+            <Separator
+              orientation="vertical"
+              className="mx-1 h-4 data-vertical:self-auto"
+            />
             <ModeSwitcher />
           </div>
         </div>

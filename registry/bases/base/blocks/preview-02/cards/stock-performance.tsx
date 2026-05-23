@@ -9,13 +9,13 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/registry/bases/base/ui/chart"
+} from "@/registry/ui/chart"
 import {
   Combobox,
   ComboboxContent,
@@ -23,9 +23,9 @@ import {
   ComboboxInput,
   ComboboxItem,
   ComboboxList,
-} from "@/registry/bases/base/ui/combobox"
-import { Field, FieldGroup, FieldLabel } from "@/registry/bases/base/ui/field"
-import { Separator } from "@/registry/bases/base/ui/separator"
+} from "@/registry/ui/combobox"
+import { Field, FieldGroup, FieldLabel } from "@/registry/ui/field"
+import { Separator } from "@/registry/ui/separator"
 
 const TICKERS = ["VOO", "VIG", "AAPL", "MSFT", "GOOGL", "AMZN", "TSLA"]
 

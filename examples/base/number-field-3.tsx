@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { MinusIcon, PlusIcon } from "lucide-react"
 
-import { Button } from "@/styles/base-nova/ui/button"
+import { Button } from "@/styles/base/ui/button"
 import {
   NumberField,
   NumberFieldDecrement,
@@ -11,7 +11,7 @@ import {
   NumberFieldIncrement,
   NumberFieldInput,
   NumberFieldScrubArea,
-} from "@/styles/base-nova/ui/number-field"
+} from "@/styles/base/ui/number-field"
 
 export function NumberField3() {
   const [value, setValue] = useState<number | null>(1)

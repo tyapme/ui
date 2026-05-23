@@ -6,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/styles/base-nova/ui/dropdown-menu"
+} from "@/styles/base/ui/dropdown-menu"
 import {
   InputGroup,
   InputGroupAddon,
@@ -14,13 +14,13 @@ import {
   InputGroupInput,
   InputGroupText,
   InputGroupTextarea,
-} from "@/styles/base-nova/ui/input-group"
-import { Separator } from "@/styles/base-nova/ui/separator"
+} from "@/styles/base/ui/input-group"
+import { Separator } from "@/styles/base/ui/separator"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/styles/base-nova/ui/tooltip"
+} from "@/styles/base/ui/tooltip"
 
 export function InputGroupDemo() {
   return (

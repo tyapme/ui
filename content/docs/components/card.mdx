@@ -7,7 +7,7 @@ component: true
 
 <ComponentPreview
   name="card-demo"
-  styleName="base-nova"
+  styleName="base"
   previewClassName="h-[30rem]"
 />
 
@@ -16,13 +16,13 @@ component: true
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add card
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/card.json
 ```
 
 </TabsContent>
@@ -36,7 +36,7 @@ npx shadcn@latest add card
 <ComponentSource
   name="card"
   title="components/ui/card.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -98,7 +98,7 @@ Card
 `size="sm"` プロパティでカードのサイズを小さくします。小サイズは間隔が小さくなります。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="card-small"
   previewClassName="h-96"
 />
@@ -108,7 +108,7 @@ Card
 カードヘッダーの前に画像を追加して画像付きカードを作成します。
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="card-image"
   previewClassName="h-[32rem]"
 />
@@ -116,7 +116,7 @@ Card
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="card-rtl"
   direction="rtl"
   previewClassName="h-[30rem]"

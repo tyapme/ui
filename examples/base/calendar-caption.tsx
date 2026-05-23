@@ -1,6 +1,6 @@
 "use client"
 
-import { Calendar } from "@/styles/base-nova/ui/calendar"
+import { Calendar } from "@/styles/base/ui/calendar"
 
 export function CalendarCaption() {
   return (

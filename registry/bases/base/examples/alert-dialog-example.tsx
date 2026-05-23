@@ -13,8 +13,8 @@ import {
   AlertDialogMedia,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/registry/bases/base/ui/alert-dialog"
-import { Button } from "@/registry/bases/base/ui/button"
+} from "@/registry/ui/alert-dialog"
+import { Button } from "@/registry/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -23,7 +23,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/bases/base/ui/dialog"
+} from "@/registry/ui/dialog"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function AlertDialogExample() {

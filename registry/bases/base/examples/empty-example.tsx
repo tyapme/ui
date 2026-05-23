@@ -2,7 +2,7 @@ import {
   Example,
   ExampleWrapper,
 } from "@/registry/bases/base/components/example"
-import { Button } from "@/registry/bases/base/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
   Empty,
   EmptyContent,
@@ -10,13 +10,13 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/registry/bases/base/ui/empty"
+} from "@/registry/ui/empty"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from "@/registry/bases/base/ui/input-group"
-import { Kbd } from "@/registry/bases/base/ui/kbd"
+} from "@/registry/ui/input-group"
+import { Kbd } from "@/registry/ui/kbd"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function EmptyExample() {

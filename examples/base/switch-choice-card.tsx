@@ -5,8 +5,8 @@ import {
   FieldGroup,
   FieldLabel,
   FieldTitle,
-} from "@/styles/base-nova/ui/field"
-import { Switch } from "@/styles/base-nova/ui/switch"
+} from "@/styles/base/ui/field"
+import { Switch } from "@/styles/base/ui/switch"
 
 export function SwitchChoiceCard() {
   return (

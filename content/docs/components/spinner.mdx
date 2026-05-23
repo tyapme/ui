@@ -5,20 +5,20 @@ base: base
 component: true
 ---
 
-<ComponentPreview styleName="base-nova" name="spinner-demo" />
+<ComponentPreview styleName="base" name="spinner-demo" />
 
 ## インストール
 
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add spinner
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/spinner.json
 ```
 
 </TabsContent>
@@ -32,7 +32,7 @@ npx shadcn@latest add spinner
 <ComponentSource
   name="spinner"
   title="components/ui/spinner.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -57,7 +57,7 @@ import { Spinner } from "@/components/ui/spinner"
 
 `Spinner` コンポーネントを編集することで、デフォルトのスピナーアイコンを別のアイコンに変更できます。
 
-<ComponentPreview styleName="base-nova" name="spinner-custom" />
+<ComponentPreview styleName="base" name="spinner-custom" />
 
 ```tsx showLineNumbers title="components/ui/spinner.tsx"
 import { LoaderIcon } from "lucide-react"
@@ -84,28 +84,28 @@ export { Spinner }
 
 `size-*` ユーティリティクラスでスピナーのサイズを変更できます。
 
-<ComponentPreview styleName="base-nova" name="spinner-size" />
+<ComponentPreview styleName="base" name="spinner-size" />
 
 ### Button
 
 ボタンにスピナーを追加してローディング状態を示します。開始位置には `data-icon="inline-start"` を付けてラベルの前に、終了位置には `data-icon="inline-end"` を付けてラベルの後に `<Spinner />` を配置します。
 
-<ComponentPreview styleName="base-nova" name="spinner-button" />
+<ComponentPreview styleName="base" name="spinner-button" />
 
 ### Badge
 
 バッジにスピナーを追加してローディング状態を示します。開始位置には `data-icon="inline-start"` を付けてラベルの前に、終了位置には `data-icon="inline-end"` を付けてラベルの後に `<Spinner />` を配置します。
 
-<ComponentPreview styleName="base-nova" name="spinner-badge" />
+<ComponentPreview styleName="base" name="spinner-badge" />
 
 ### Input Group
 
-<ComponentPreview styleName="base-nova" name="spinner-input-group" />
+<ComponentPreview styleName="base" name="spinner-input-group" />
 
 ### Empty
 
-<ComponentPreview styleName="base-nova" name="spinner-empty" />
+<ComponentPreview styleName="base" name="spinner-empty" />
 
 ## RTL
 
-<ComponentPreview styleName="base-nova" name="spinner-rtl" direction="rtl" />
+<ComponentPreview styleName="base" name="spinner-rtl" direction="rtl" />

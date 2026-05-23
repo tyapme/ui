@@ -7,6 +7,7 @@ import { source } from "@/lib/source"
 import { cn } from "@/lib/utils"
 import { Callout } from "@/components/callout"
 import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
+import { CodeBlockCommand } from "@/components/code-block-command"
 import { CodeTabs } from "@/components/code-tabs"
 import { ComponentPreview } from "@/components/component-preview"
 import { ComponentSource } from "@/components/component-source"
@@ -24,21 +25,21 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/registry/new-york-v4/ui/accordion"
+} from "@/styles/base/ui/accordion"
 import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "@/registry/new-york-v4/ui/alert"
-import { AspectRatio } from "@/registry/new-york-v4/ui/aspect-ratio"
-import { Button } from "@/registry/new-york-v4/ui/button"
-import { Kbd } from "@/registry/new-york-v4/ui/kbd"
+} from "@/styles/base/ui/alert"
+import { AspectRatio } from "@/styles/base/ui/aspect-ratio"
+import { Button } from "@/styles/base/ui/button"
+import { Kbd } from "@/styles/base/ui/kbd"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/registry/new-york-v4/ui/tabs"
+} from "@/styles/base/ui/tabs"
 
 // Wrapper component that passes the components folder from the server.
 function ComponentsListWrapper() {
@@ -331,6 +332,19 @@ export const mdxComponents = {
     __pnpm__?: string
     __bun__?: string
   }) => {
+    // npm command.
+    const isNpmCommand = __npm__ && __yarn__ && __pnpm__ && __bun__
+    if (isNpmCommand) {
+      return (
+        <CodeBlockCommand
+          __npm__={__npm__}
+          __yarn__={__yarn__}
+          __pnpm__={__pnpm__}
+          __bun__={__bun__}
+        />
+      )
+    }
+
     // Inline Code.
     if (typeof props.children === "string") {
       return (

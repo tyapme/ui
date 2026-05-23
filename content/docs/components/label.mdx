@@ -8,7 +8,7 @@ links:
   api: https://base-ui.com/react/components/label#api-reference
 ---
 
-<ComponentPreview styleName="base-nova" name="label-demo" />
+<ComponentPreview styleName="base" name="label-demo" />
 
 <Callout>
   フォームフィールドには、ラベル・説明・エラー処理を内包する [Field](/docs/components/base/field) コンポーネントを使用してください。
@@ -19,13 +19,13 @@ links:
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add label
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/label.json
 ```
 
 </TabsContent>
@@ -45,7 +45,7 @@ npm install @base-ui/react
 <ComponentSource
   name="label"
   title="components/ui/label.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -78,14 +78,14 @@ import { Label } from "@/components/ui/label"
 ```
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="field-demo"
   previewClassName="h-[44rem]"
 />
 
 ## RTL
 
-<ComponentPreview styleName="base-nova" name="label-rtl" direction="rtl" />
+<ComponentPreview styleName="base" name="label-rtl" direction="rtl" />
 
 ## API リファレンス
 

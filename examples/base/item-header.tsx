@@ -7,7 +7,7 @@ import {
   ItemGroup,
   ItemHeader,
   ItemTitle,
-} from "@/styles/base-nova/ui/item"
+} from "@/styles/base/ui/item"
 
 const models = [
   {

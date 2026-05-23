@@ -8,15 +8,15 @@ links:
   api: https://base-ui.com/react/components/tooltip#api-reference
 ---
 
-<ComponentPreview styleName="base-nova" name="tooltip-demo" />
+<ComponentPreview styleName="base" name="tooltip-demo" />
 
 ## インストール
 
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
@@ -25,7 +25,7 @@ links:
 <Step>以下のコマンドを実行します:</Step>
 
 ```bash
-npx shadcn@latest add tooltip
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/tooltip.json
 ```
 
 <Step>`TooltipProvider` をアプリのルートに追加します。</Step>
@@ -63,7 +63,7 @@ npm install @base-ui/react
 <ComponentSource
   name="tooltip"
   title="components/ui/tooltip.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -123,10 +123,10 @@ Tooltip
 
 ### TooltipContent
 
-| Prop       | Type      | Default | 説明                         |
-| ---------- | --------- | ------- | ---------------------------- |
-| `showArrow`| `boolean` | `true`  | 矢印の表示/非表示           |
-| `side`     | `string`  | `"top"` | ツールチップの表示位置       |
+| Prop        | Type      | Default | 説明                   |
+| ----------- | --------- | ------- | ---------------------- |
+| `showArrow` | `boolean` | `true`  | 矢印の表示/非表示      |
+| `side`      | `string`  | `"top"` | ツールチップの表示位置 |
 
 ### TooltipArrow
 
@@ -157,21 +157,21 @@ import {
 
 `side` でツールチップの表示位置を変更します。
 
-<ComponentPreview styleName="base-nova" name="tooltip-sides" />
+<ComponentPreview styleName="base" name="tooltip-sides" />
 
 ### With Keyboard Shortcut
 
-<ComponentPreview styleName="base-nova" name="tooltip-keyboard" />
+<ComponentPreview styleName="base" name="tooltip-keyboard" />
 
 ### Disabled Button
 
 無効化されたボタンを span で包括することで、その上にツールチップを表示できます。
 
-<ComponentPreview styleName="base-nova" name="tooltip-disabled" />
+<ComponentPreview styleName="base" name="tooltip-disabled" />
 
 ## RTL
 
-<ComponentPreview styleName="base-nova" name="tooltip-rtl" direction="rtl" />
+<ComponentPreview styleName="base" name="tooltip-rtl" direction="rtl" />
 
 ## API リファレンス
 

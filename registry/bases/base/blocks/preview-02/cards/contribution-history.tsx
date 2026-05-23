@@ -2,8 +2,8 @@
 
 import { Bar, BarChart, XAxis } from "recharts"
 
-import { Badge } from "@/registry/bases/base/ui/badge"
-import { Button } from "@/registry/bases/base/ui/button"
+import { Badge } from "@/registry/ui/badge"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardAction,
@@ -12,18 +12,18 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/registry/bases/base/ui/chart"
+} from "@/registry/ui/chart"
 import {
   Item,
   ItemContent,
   ItemDescription,
-} from "@/registry/bases/base/ui/item"
+} from "@/registry/ui/item"
 import { useDesignSystemSearchParams } from "@/app/(app)/create/lib/search-params"
 
 const chartData = [

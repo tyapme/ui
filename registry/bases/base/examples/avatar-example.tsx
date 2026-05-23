@@ -9,8 +9,8 @@ import {
   AvatarGroup,
   AvatarGroupCount,
   AvatarImage,
-} from "@/registry/bases/base/ui/avatar"
-import { Button } from "@/registry/bases/base/ui/button"
+} from "@/registry/ui/avatar"
+import { Button } from "@/registry/ui/button"
 import {
   Empty,
   EmptyContent,
@@ -18,7 +18,7 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/registry/bases/base/ui/empty"
+} from "@/registry/ui/empty"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function AvatarExample() {

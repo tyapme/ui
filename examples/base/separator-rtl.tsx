@@ -6,7 +6,7 @@ import {
   useTranslation,
   type Translations,
 } from "@/components/language-selector"
-import { Separator } from "@/styles/base-nova/ui-rtl/separator"
+import { Separator } from "@/styles/base/ui-rtl/separator"
 
 const translations: Translations = {
   en: {

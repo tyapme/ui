@@ -1,7 +1,7 @@
 "use client"
 
-import { Card, CardContent } from "@/registry/bases/base/ui/card"
-import { Skeleton } from "@/registry/bases/base/ui/skeleton"
+import { Card, CardContent } from "@/registry/ui/card"
+import { Skeleton } from "@/registry/ui/skeleton"
 
 export function SkeletonLoading() {
   return (

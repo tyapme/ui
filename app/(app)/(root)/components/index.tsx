@@ -1,4 +1,4 @@
-import { FieldSeparator } from "@/styles/base-nova/ui/field"
+import { FieldSeparator } from "@/styles/base/ui/field"
 
 import { AppearanceSettings } from "./appearance-settings"
 import { ButtonGroupDemo } from "./button-group-demo"

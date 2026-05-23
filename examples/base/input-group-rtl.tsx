@@ -12,7 +12,7 @@ import {
   FieldDescription,
   FieldGroup,
   FieldLabel,
-} from "@/styles/base-nova/ui-rtl/field"
+} from "@/styles/base/ui-rtl/field"
 import {
   InputGroup,
   InputGroupAddon,
@@ -20,8 +20,8 @@ import {
   InputGroupInput,
   InputGroupText,
   InputGroupTextarea,
-} from "@/styles/base-nova/ui-rtl/input-group"
-import { Spinner } from "@/styles/base-nova/ui-rtl/spinner"
+} from "@/styles/base/ui-rtl/input-group"
+import { Spinner } from "@/styles/base/ui-rtl/spinner"
 
 const translations: Translations = {
   en: {

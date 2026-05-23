@@ -8,7 +8,7 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "@/components/page-header"
-import { Button } from "@/registry/new-york-v4/ui/button"
+import { Button } from "@/styles/base/ui/button"
 
 import { RootComponents } from "./components"
 
@@ -50,11 +50,22 @@ export default function IndexPage() {
         <PageHeaderHeading className="max-w-4xl">{title}</PageHeaderHeading>
         <PageHeaderDescription>{description}</PageHeaderDescription>
         <PageActions>
-          <Button asChild size="sm" className="h-[31px] rounded-lg">
-            <Link href="/docs/components">コンポーネント</Link>
+          <Button
+            render={<Link href="/docs/components" />}
+            nativeButton={false}
+            size="sm"
+            className="h-[31px] rounded-lg"
+          >
+            コンポーネント
           </Button>
-          <Button asChild size="sm" variant="ghost" className="rounded-lg">
-            <Link href="/docs/installation">ドキュメント</Link>
+          <Button
+            render={<Link href="/docs/installation" />}
+            nativeButton={false}
+            size="sm"
+            variant="ghost"
+            className="rounded-lg"
+          >
+            ドキュメント
           </Button>
         </PageActions>
       </PageHeader>

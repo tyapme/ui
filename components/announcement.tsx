@@ -1,14 +1,16 @@
 import Link from "next/link"
 import { ArrowRightIcon } from "lucide-react"
 
-import { Badge } from "@/registry/new-york-v4/ui/badge"
+import { Badge } from "@/styles/base/ui/badge"
 
 export function Announcement() {
   return (
-    <Badge asChild variant="secondary" className="bg-muted">
-      <Link href="/docs/components">
-        TYAP.ME UI <ArrowRightIcon />
-      </Link>
+    <Badge
+      render={<Link href="/docs/components" />}
+      variant="secondary"
+      className="bg-muted"
+    >
+      TYAP.ME UI <ArrowRightIcon />
     </Badge>
   )
 }

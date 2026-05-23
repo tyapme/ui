@@ -1,4 +1,4 @@
-import { QRCode } from "@/styles/base-nova/ui/qr-code"
+import { QRCode } from "@/styles/base/ui/qr-code"
 
 const levels = ["L", "M", "Q", "H"] as const
 

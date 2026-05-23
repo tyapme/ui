@@ -10,7 +10,6 @@ import {
   getRegistryItem,
 } from "@/lib/registry"
 import { absoluteUrl } from "@/lib/utils"
-import { getStyle, legacyStyles, type Style } from "@/registry/_legacy-styles"
 
 import "@/app/legacy-themes.css"
 
@@ -21,7 +20,7 @@ export const dynamic = "force-static"
 export const dynamicParams = false
 
 const getCachedRegistryItem = React.cache(
-  async (name: string, styleName: Style["name"]) => {
+  async (name: string, styleName: string) => {
     // Try registry item first, then fallback to demo item (for examples).
     const item = await getRegistryItem(name, styleName)
     if (item) {
@@ -40,13 +39,12 @@ export async function generateMetadata({
   }>
 }): Promise<Metadata> {
   const { style: styleName, name } = await params
-  const style = getStyle(styleName)
 
-  if (!style) {
+  if (styleName !== "base") {
     return {}
   }
 
-  const item = await getCachedRegistryItem(name, style.name)
+  const item = await getCachedRegistryItem(name, styleName)
 
   if (!item) {
     return {}
@@ -62,7 +60,7 @@ export async function generateMetadata({
       title,
       description,
       type: "article",
-      url: absoluteUrl(`/view/${style.name}/${item.name}`),
+      url: absoluteUrl(`/view/${styleName}/${item.name}`),
       images: [
         {
           url: siteConfig.ogImage,
@@ -83,59 +81,22 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const { Index } = await import("@/registry/__index__")
-  // const { Index: BasesIndex } = await import("@/registry/bases/__index__")
   const { ExamplesIndex } = await import("@/examples/__index__")
   const params: Array<{ style: string; name: string }> = []
 
-  for (const style of legacyStyles) {
-    // Check if this is a base-prefixed style (e.g., base-nova).
-    const baseMatch = style.name.match(/^base-/)
-    if (baseMatch) {
-      const baseName = "base"
-
-      // Add examples from ExamplesIndex.
-      const examples = ExamplesIndex[baseName]
-      if (examples) {
-        for (const exampleName of Object.keys(examples)) {
-          if (exampleName.startsWith("sidebar-")) {
-            params.push({
-              style: style.name,
-              name: exampleName,
-            })
-          }
-        }
+  // Add sidebar examples for the base style.
+  const examples = ExamplesIndex["base"]
+  if (examples) {
+    for (const exampleName of Object.keys(examples)) {
+      if (exampleName.startsWith("sidebar-")) {
+        params.push({ style: "base", name: exampleName })
       }
-
-      // // Add UI components from BasesIndex.
-      // const baseIndex = BasesIndex[baseName]
-      // if (baseIndex) {
-      //   for (const itemName in baseIndex) {
-      //     const item = baseIndex[itemName]
-      //     if (
-      //       [
-      //         "registry:block",
-      //         "registry:component",
-      //         "registry:example",
-      //         "registry:internal",
-      //       ].includes(item.type)
-      //     ) {
-      //       params.push({
-      //         style: style.name,
-      //         name: item.name,
-      //       })
-      //     }
-      //   }
-      // }
-
-      continue
     }
+  }
 
-    // Handle legacy styles (e.g., new-york-v4).
-    if (!Index[style.name]) {
-      continue
-    }
-
-    const styleIndex = Index[style.name]
+  // Add UI components from the base style index.
+  if (Index["base"]) {
+    const styleIndex = Index["base"]
     for (const itemName in styleIndex) {
       const item = styleIndex[itemName]
       if (
@@ -146,10 +107,7 @@ export async function generateStaticParams() {
           "registry:internal",
         ].includes(item.type)
       ) {
-        params.push({
-          style: style.name,
-          name: item.name,
-        })
+        params.push({ style: "base", name: item.name })
       }
     }
   }
@@ -166,14 +124,14 @@ export default async function BlockPage({
   }>
 }) {
   const { style: styleName, name } = await params
-  const style = getStyle(styleName)
 
-  if (!style) {
+  // Only "base" style is supported.
+  if (styleName !== "base") {
     return notFound()
   }
 
-  const item = await getCachedRegistryItem(name, style.name)
-  const Component = getRegistryComponent(name, style.name)
+  const item = await getCachedRegistryItem(name, styleName)
+  const Component = getRegistryComponent(name, styleName)
 
   if (!item || !Component) {
     return notFound()

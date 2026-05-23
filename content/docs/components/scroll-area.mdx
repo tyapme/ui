@@ -9,7 +9,7 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="scroll-area-demo"
   previewClassName="h-96"
 />
@@ -19,13 +19,13 @@ links:
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add scroll-area
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/scroll-area.json
 ```
 
 </TabsContent>
@@ -45,7 +45,7 @@ npm install @base-ui/react
 <ComponentSource
   name="scroll-area"
   title="components/ui/scroll-area.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -83,12 +83,12 @@ ScrollArea
 
 `ScrollBar` に `orientation="horizontal"` を設定すると横方向スクロールが有効になります。
 
-<ComponentPreview styleName="base-nova" name="scroll-area-horizontal-demo" />
+<ComponentPreview styleName="base" name="scroll-area-horizontal-demo" />
 
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="scroll-area-rtl"
   direction="rtl"
   previewClassName="h-auto"

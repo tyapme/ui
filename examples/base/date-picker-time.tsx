@@ -2,8 +2,8 @@
 
 import * as React from "react"
 
-import { DatePicker, TimeFieldInput } from "@/styles/base-nova/ui/date-picker"
-import { Field, FieldGroup, FieldLabel } from "@/styles/base-nova/ui/field"
+import { DatePicker, TimeFieldInput } from "@/styles/base/ui/date-picker"
+import { Field, FieldGroup, FieldLabel } from "@/styles/base/ui/field"
 
 export function DatePickerTime() {
   const [date, setDate] = React.useState<Date | undefined>(undefined)
@@ -18,7 +18,6 @@ export function DatePickerTime() {
           onValueChange={setDate}
           aria-label="Date"
           className="w-40"
-          calendarProps={{ captionLayout: "dropdown" }}
         />
       </Field>
       <Field>

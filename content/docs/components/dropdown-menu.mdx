@@ -10,7 +10,7 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="dropdown-menu-demo"
   description="アイコン、ショートカット、サブメニューを含むドロップダウンメニュー。"
 />
@@ -20,13 +20,13 @@ links:
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">コマンド</TabsTrigger>
-  <TabsTrigger value="manual">手動</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add dropdown-menu
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/dropdown-menu.json
 ```
 
 </TabsContent>
@@ -46,7 +46,7 @@ npm install @base-ui/react
 <ComponentSource
   name="dropdown-menu"
   title="components/ui/dropdown-menu.tsx"
-  styleName="base-nova"
+  styleName="base"
 />
 
 <Step>import パスをプロジェクト構成に合わせて更新します。</Step>
@@ -130,72 +130,72 @@ DropdownMenu
 
 ラベルとセパレータを使った基本的なドロップダウンメニュー。
 
-<ComponentPreview styleName="base-nova" name="dropdown-menu-basic" />
+<ComponentPreview styleName="base" name="dropdown-menu-basic" />
 
 ### サブメニュー
 
 `DropdownMenuSub` でサブアクションをネストさせます。
 
-<ComponentPreview styleName="base-nova" name="dropdown-menu-submenu" />
+<ComponentPreview styleName="base" name="dropdown-menu-submenu" />
 
 ### ショートカット
 
 `DropdownMenuShortcut` でキーボードヒントを表示します。
 
-<ComponentPreview styleName="base-nova" name="dropdown-menu-shortcuts" />
+<ComponentPreview styleName="base" name="dropdown-menu-shortcuts" />
 
 ### アイコン
 
 ラベルにアイコンを組み合わせて一目でわかるメニューを作成します。
 
-<ComponentPreview styleName="base-nova" name="dropdown-menu-icons" />
+<ComponentPreview styleName="base" name="dropdown-menu-icons" />
 
 ### チェックボックス
 
 `DropdownMenuCheckboxItem` でトグル項目を作成します。
 
-<ComponentPreview styleName="base-nova" name="dropdown-menu-checkboxes" />
+<ComponentPreview styleName="base" name="dropdown-menu-checkboxes" />
 
 ### チェックボックス + アイコン
 
 チェックボックス項目にアイコンを追加します。
 
-<ComponentPreview styleName="base-nova" name="dropdown-menu-checkboxes-icons" />
+<ComponentPreview styleName="base" name="dropdown-menu-checkboxes-icons" />
 
 ### ラジオグループ
 
 `DropdownMenuRadioGroup` で排他的な選択項目を作成します。
 
-<ComponentPreview styleName="base-nova" name="dropdown-menu-radio-group" />
+<ComponentPreview styleName="base" name="dropdown-menu-radio-group" />
 
 ### ラジオ + アイコン
 
 ラジオ項目にアイコンを表示します。
 
-<ComponentPreview styleName="base-nova" name="dropdown-menu-radio-icons" />
+<ComponentPreview styleName="base" name="dropdown-menu-radio-icons" />
 
 ### 破壊的アクション
 
 元に戻せない操作には `variant="destructive"` を使用します。
 
-<ComponentPreview styleName="base-nova" name="dropdown-menu-destructive" />
+<ComponentPreview styleName="base" name="dropdown-menu-destructive" />
 
 ### アバター
 
 アバターでトリガーするアカウント切り替えドロップダウン。
 
-<ComponentPreview styleName="base-nova" name="dropdown-menu-avatar" />
+<ComponentPreview styleName="base" name="dropdown-menu-avatar" />
 
 ### 複合
 
 グループ、アイコン、サブメニューを組み合わせたよりリッチな例。
 
-<ComponentPreview styleName="base-nova" name="dropdown-menu-complex" />
+<ComponentPreview styleName="base" name="dropdown-menu-complex" />
 
 ## RTL
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="base"
   name="dropdown-menu-rtl"
   direction="rtl"
 />

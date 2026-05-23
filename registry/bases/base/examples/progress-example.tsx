@@ -13,13 +13,13 @@ import {
   ItemGroup,
   ItemMedia,
   ItemTitle,
-} from "@/registry/bases/base/ui/item"
+} from "@/registry/ui/item"
 import {
   Progress,
   ProgressLabel,
   ProgressValue,
-} from "@/registry/bases/base/ui/progress"
-import { Slider } from "@/registry/bases/base/ui/slider"
+} from "@/registry/ui/progress"
+import { Slider } from "@/registry/ui/slider"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function ProgressExample() {

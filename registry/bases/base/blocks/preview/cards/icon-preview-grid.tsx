@@ -2,7 +2,7 @@
 
 import { type IconLibraryName } from "shadcn/icons"
 
-import { Card, CardContent } from "@/registry/bases/base/ui/card"
+import { Card, CardContent } from "@/registry/ui/card"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const PREVIEW_ICONS = [

@@ -2,9 +2,9 @@ import {
   Example,
   ExampleWrapper,
 } from "@/registry/bases/base/components/example"
-import { Button } from "@/registry/bases/base/ui/button"
-import { Field, FieldGroup, FieldLabel } from "@/registry/bases/base/ui/field"
-import { Input } from "@/registry/bases/base/ui/input"
+import { Button } from "@/registry/ui/button"
+import { Field, FieldGroup, FieldLabel } from "@/registry/ui/field"
+import { Input } from "@/registry/ui/input"
 import {
   Sheet,
   SheetClose,
@@ -14,7 +14,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/registry/bases/base/ui/sheet"
+} from "@/registry/ui/sheet"
 
 export default function SheetExample() {
   return (

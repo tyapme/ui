@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { Button } from "@/registry/bases/base/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardContent,
@@ -10,7 +10,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/bases/base/ui/card"
+} from "@/registry/ui/card"
 
 const FITNESS_WEEKLY_LOAD = [
   { day: "M", load: 84 },

@@ -23,7 +23,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from "@/styles/base-nova/ui-rtl/command"
+} from "@/styles/base/ui-rtl/command"
 
 const translations: Translations = {
   en: {

@@ -12,14 +12,14 @@ import {
   useTranslation,
   type Translations,
 } from "@/components/language-selector"
-import { DirectionProvider as BaseDirectionProvider } from "@/registry/bases/base/ui/direction"
-import { Button } from "@/registry/new-york-v4/ui/button"
-import { Separator } from "@/registry/new-york-v4/ui/separator"
+import { DirectionProvider as BaseDirectionProvider } from "@/registry/ui/direction"
+import { Button } from "@/styles/base/ui/button"
+import { Separator } from "@/styles/base/ui/separator"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/styles/base-nova/ui/popover"
+} from "@/styles/base/ui/popover"
 
 export function ComponentPreviewTabs({
   className,
