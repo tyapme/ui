@@ -29,6 +29,8 @@ function ComboboxTrigger({
     <ComboboxPrimitive.Trigger
       data-slot="combobox-trigger"
       className={cn("[&_svg:not([class*='size-'])]:size-4", className)}
+      render={<span />}
+      nativeButton={false}
       {...props}
     >
       {children}
@@ -41,6 +43,7 @@ function ComboboxClear({ className, ...props }: ComboboxPrimitive.Clear.Props) {
   return (
     <ComboboxPrimitive.Clear
       data-slot="combobox-clear"
+      nativeButton
       render={<InputGroupButton variant="ghost" size="icon-xs" />}
       className={cn(className)}
       {...props}
@@ -255,6 +258,7 @@ function ComboboxChip({
       {children}
       {showRemove && (
         <ComboboxPrimitive.ChipRemove
+          nativeButton
           render={<Button variant="ghost" size="icon-xs" />}
           className="-ms-1 opacity-50 hover:opacity-100"
           data-slot="combobox-chip-remove"

@@ -1154,7 +1154,7 @@ async function buildIndex() {
   const baseUiRegistries = await Promise.all(
     Array.from(BASES).map(async (base) => {
       const { ui } = await import(
-        `../registry/ui/_registry.ts`
+        `../registry/ui/_registry`
       )
       return { baseName: base.name, items: ui as RegistryItem[] }
     })

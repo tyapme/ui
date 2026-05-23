@@ -15,23 +15,25 @@ export function SiteHeader() {
   const pageTree = source.pageTree
 
   return (
-    <header className="sticky top-2 z-50 w-full bg-background">
-      <div className="container-wrapper px-6 group-has-data-[slot=designer]/layout:max-w-none 3xl:fixed:px-0">
-        <div className="flex h-(--header-height) items-center **:data-[slot=separator]:h-4! group-has-data-[slot=designer]/layout:fixed:max-w-none 3xl:fixed:container">
+    <>
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-md">
+        <div className="container-wrapper px-6 group-has-data-[slot=designer]/layout:max-w-none 3xl:fixed:px-0">
+        <div className="flex h-(--header-height) items-center group-has-data-[slot=designer]/layout:fixed:max-w-none 3xl:fixed:container">
           <MobileNav
             tree={pageTree}
             items={siteConfig.navItems}
             className="flex lg:hidden"
           />
           <Button
-            render={<Link href="/" />}
-            nativeButton={false}
+            asChild
             variant="ghost"
             size="icon"
             className="hidden size-8 lg:flex"
           >
-            <Icons.logo className="size-5" />
-            <span className="sr-only">{siteConfig.name}</span>
+            <Link href="/">
+              <Icons.logo className="size-5" />
+              <span className="sr-only">{siteConfig.name}</span>
+            </Link>
           </Button>
           <MainNav items={siteConfig.navItems} className="hidden lg:flex" />
           <div className="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
@@ -51,5 +53,7 @@ export function SiteHeader() {
         </div>
       </div>
     </header>
-  )
+    <div className="pointer-events-none sticky top-[var(--header-height)] z-40 h-8 w-full bg-linear-to-b from-background via-background/80 to-background/50 blur-xs" />
+  </>
+)
 }

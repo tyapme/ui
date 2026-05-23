@@ -29,6 +29,8 @@ function ComboboxTrigger({
     <ComboboxPrimitive.Trigger
       data-slot="combobox-trigger"
       className={cn("cn-combobox-trigger", className)}
+      render={<span />}
+      nativeButton={false}
       {...props}
     >
       {children}
@@ -48,6 +50,7 @@ function ComboboxClear({ className, ...props }: ComboboxPrimitive.Clear.Props) {
   return (
     <ComboboxPrimitive.Clear
       data-slot="combobox-clear"
+      nativeButton
       render={<InputGroupButton variant="ghost" size="icon-xs" />}
       className={cn("cn-combobox-clear", className)}
       {...props}
@@ -268,6 +271,7 @@ function ComboboxChip({
       {children}
       {showRemove && (
         <ComboboxPrimitive.ChipRemove
+          nativeButton
           render={<Button variant="ghost" size="icon-xs" />}
           className="cn-combobox-chip-remove"
           data-slot="combobox-chip-remove"

@@ -1,51 +1,63 @@
 "use client"
 
 import * as React from "react"
-
 import { cn } from "@/lib/utils"
-import { Button } from "@/styles/base/ui/button"
 import {
   Collapsible,
-  CollapsibleContent,
   CollapsibleTrigger,
+  CollapsibleContent,
 } from "@/styles/base/ui/collapsible"
-import { Separator } from "@/styles/base/ui/separator"
+
+import { Button } from "@/styles/base/ui/button"
+
+interface CodeCollapsibleWrapperProps extends React.ComponentPropsWithoutRef<typeof Collapsible> {
+  expandButtonTitle?: string
+}
 
 export function CodeCollapsibleWrapper({
   className,
   children,
+  expandButtonTitle = "コードを表示",
   ...props
-}: React.ComponentProps<typeof Collapsible>) {
+}: CodeCollapsibleWrapperProps) {
   const [isOpened, setIsOpened] = React.useState(false)
 
   return (
     <Collapsible
       open={isOpened}
       onOpenChange={setIsOpened}
-      className={cn("group/collapsible relative md:-mx-1", className)}
+      className={cn("relative overflow-hidden my-6 rounded-xl border bg-code text-code-foreground md:-mx-1", className)}
       {...props}
     >
-      <CollapsibleTrigger asChild>
-        <div className="absolute top-1.5 right-9 z-10 flex items-center">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="h-7 rounded-md px-2 text-muted-foreground"
-          >
-            {isOpened ? "折りたたむ" : "展開"}
-          </Button>
-          <Separator orientation="vertical" className="mx-1.5 h-4!" />
-        </div>
-      </CollapsibleTrigger>
       <CollapsibleContent
         forceMount
-        className="relative mt-6 overflow-hidden data-[state=closed]:max-h-64 data-[state=closed]:[content-visibility:auto] [&>figure]:mt-0 [&>figure]:md:mx-0!"
+        className={cn(
+          "relative overflow-hidden [&_pre]:my-0 [&_pre]:max-h-none [&_pre]:pb-12",
+          !isOpened && "max-h-32"
+        )}
       >
         {children}
       </CollapsibleContent>
-      <CollapsibleTrigger className="absolute inset-x-0 -bottom-2 flex h-20 items-center justify-center rounded-b-lg bg-gradient-to-b from-code/70 to-code text-sm text-muted-foreground group-data-[state=open]/collapsible:hidden">
-        {isOpened ? "折りたたむ" : "展開"}
-      </CollapsibleTrigger>
+      <div
+        className={cn(
+          "absolute flex items-center justify-center p-2",
+          isOpened
+            ? "inset-x-0 bottom-0 h-12 bg-gradient-to-t from-code to-transparent"
+            : "inset-0 bg-gradient-to-t from-code/95 via-code/50 to-transparent"
+        )}
+      >
+        <CollapsibleTrigger asChild>
+          <Button
+            type="button"
+            size="sm"
+            variant="outline"
+            className="relative z-10 rounded-lg bg-background text-foreground shadow-none hover:bg-muted dark:bg-background dark:text-foreground dark:hover:bg-muted"
+          >
+            {isOpened ? "コードを非表示" : expandButtonTitle}
+          </Button>
+        </CollapsibleTrigger>
+      </div>
     </Collapsible>
   )
 }
+

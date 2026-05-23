@@ -43,7 +43,8 @@ export async function ComponentSource({
   if (src) {
     try {
       code = await readFileFromRoot(src)
-    } catch {
+    } catch (error) {
+      console.error(`Failed to read file from root: ${src}`, error)
       return null
     }
   }
@@ -60,7 +61,7 @@ export async function ComponentSource({
     code = code.split("\n").slice(0, maxLines).join("\n")
   }
 
-  const lang = language ?? title?.split(".").pop() ?? "tsx"
+  const lang = language ?? (title?.includes(".") ? title.split(".").pop() : undefined) ?? "tsx"
   const highlightedCode = await highlightCode(code, lang)
 
   if (!collapsible) {
@@ -100,7 +101,7 @@ function ComponentCode({
   title: string | undefined
 }) {
   return (
-    <figure data-rehype-pretty-code-figure="" className="[&>pre]:max-h-96">
+    <figure data-rehype-pretty-code-figure="" className="!mt-0 [&>pre]:max-h-96">
       {title && (
         <figcaption
           data-rehype-pretty-code-title=""
@@ -112,6 +113,7 @@ function ComponentCode({
         </figcaption>
       )}
       <CopyButton value={code} />
+      {/* highlightedCode is compiled on server-side using trusted shiki library, which is safe from XSS. */}
       <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
     </figure>
   )
