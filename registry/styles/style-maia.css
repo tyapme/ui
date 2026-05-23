@@ -1182,8 +1182,8 @@
   }
 
   /* MARK: Sonner */
-  .cn-toast {
-    @apply rounded-2xl border border-border/40 bg-popover/75 text-popover-foreground shadow-2xl backdrop-blur-2xl backdrop-saturate-150 ring-1 ring-foreground/5;
+  .cn-toast[data-sonner-toast] {
+    @apply rounded-2xl border border-border/40 bg-popover/75! text-popover-foreground! shadow-2xl backdrop-blur-2xl backdrop-saturate-150 ring-1 ring-foreground/5;
   }
 
   .cn-toast-close {

@@ -1,6 +1,6 @@
 "use client"
 
-import { toast } from "sonner"
+import { toast } from "@/registry/ui/sonner"
 
 import { Button } from "@/styles/base/ui/button"
 

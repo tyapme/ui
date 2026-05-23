@@ -5,6 +5,8 @@ import { Tooltip as TooltipPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 
+import { Toaster } from "@/registry/ui/sonner"
+
 export function ComponentPreview({ children }: { children: React.ReactNode }) {
   return (
     <TooltipPrimitive.Provider delayDuration={0}>
@@ -15,6 +17,7 @@ export function ComponentPreview({ children }: { children: React.ReactNode }) {
       >
         {children}
       </div>
+      <Toaster position="top-center" />
     </TooltipPrimitive.Provider>
   )
 }

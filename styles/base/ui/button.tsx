@@ -42,6 +42,7 @@ const buttonVariants = cva(
 type ButtonProps = ButtonPrimitive.Props &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
+    "data-slot"?: string
   }
 
 function Button({
@@ -52,6 +53,7 @@ function Button({
   size = "default",
   render,
   nativeButton,
+  "data-slot": dataSlot = "button",
   ...props
 }: ButtonProps) {
   const resolvedRender =
@@ -60,7 +62,7 @@ function Button({
 
   return (
     <ButtonPrimitive
-      data-slot="button"
+      data-slot={dataSlot}
       className={cn(buttonVariants({ variant, size, className }))}
       render={resolvedRender}
       nativeButton={resolvedNativeButton}

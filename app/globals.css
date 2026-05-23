@@ -535,12 +535,14 @@
   .t-dropdown[data-origin="bottom-center"] { transform-origin: bottom center; }
   .t-dropdown[data-origin="bottom-right"]  { transform-origin: bottom right; }
 
+  .t-dropdown[data-open],
   .t-dropdown[data-state="open"],
   .t-dropdown.is-open {
     transform: scale(1);
     opacity: 1;
     pointer-events: auto;
   }
+  .t-dropdown[data-ending-style],
   .t-dropdown[data-state="closed"],
   .t-dropdown.is-closing {
     transform: scale(var(--dropdown-closing-scale));
@@ -562,12 +564,14 @@
       opacity   var(--modal-open-dur) var(--modal-ease);
     will-change: transform, opacity;
   }
+  .t-modal[data-open],
   .t-modal[data-state="open"],
   .t-modal.is-open {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
     pointer-events: auto;
   }
+  .t-modal[data-ending-style],
   .t-modal[data-state="closed"],
   .t-modal.is-closing {
     transform: translate(-50%, -50%) scale(var(--modal-scale-close));
@@ -608,7 +612,7 @@
   [dir="rtl"] .t-panel-slide[data-side="right"] {
     transform: translateX(calc(-1 * var(--panel-translate-y)));
   }
-  .t-panel-slide[data-open="true"],
+  .t-panel-slide[data-open],
   .t-panel-slide[data-state="open"] {
     transform: translate(0, 0);
     opacity: 1;
@@ -618,6 +622,16 @@
       transform var(--panel-open-dur) var(--panel-ease),
       opacity   var(--panel-open-dur) var(--panel-ease),
       filter    var(--panel-open-dur) var(--panel-ease);
+  }
+  .t-panel-slide[data-ending-style] {
+    transform: translateY(var(--panel-translate-y));
+    opacity: 0;
+    filter: blur(var(--panel-blur));
+    pointer-events: none;
+    transition:
+      transform var(--panel-close-dur) var(--panel-ease),
+      opacity   var(--panel-close-dur) var(--panel-ease),
+      filter    var(--panel-close-dur) var(--panel-ease);
   }
 
   /* Icon swap */
@@ -644,6 +658,28 @@
     opacity: 0;
     filter: blur(var(--icon-swap-blur));
     transform: scale(var(--icon-swap-start-scale));
+  }
+
+  /* --- sonner premium glassmorphism --- */
+  .cn-toast[data-sonner-toast] {
+    border-radius: var(--radius-2xl, 1rem) !important;
+    border: 1px solid var(--border) !important;
+    background: color-mix(in oklch, var(--popover) 75%, transparent) !important;
+    color: var(--popover-foreground) !important;
+    box-shadow: var(--shadow-2xl, 0 25px 50px -12px rgb(0 0 0 / 0.25)) !important;
+    backdrop-filter: blur(24px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
+    transition: transform var(--resize-dur) var(--resize-ease) !important;
+  }
+
+  .cn-toast-close {
+    transition: transform 0.2s ease-in-out !important;
+  }
+  .cn-toast-close:hover {
+    transform: scale(1.05) !important;
+  }
+  .cn-toast-close:active {
+    transform: scale(0.95) !important;
   }
 
   /* Reduced Motion accessibility guards */
