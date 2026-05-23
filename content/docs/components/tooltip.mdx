@@ -116,7 +116,39 @@ import {
 ```text
 Tooltip
 ├── TooltipTrigger
-└── TooltipContent
+└── TooltipContent (showArrow で矢印の表示/非表示を制御)
+```
+
+## Props
+
+### TooltipContent
+
+| Prop       | Type      | Default | 説明                         |
+| ---------- | --------- | ------- | ---------------------------- |
+| `showArrow`| `boolean` | `true`  | 矢印の表示/非表示           |
+| `side`     | `string`  | `"top"` | ツールチップの表示位置       |
+
+### TooltipArrow
+
+矢印を独立したコンポーネントとして使う場合（`showArrow={false}` と組み合わせ）:
+
+```tsx showLineNumbers
+import {
+  Tooltip,
+  TooltipArrow,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+```
+
+```tsx showLineNumbers
+<Tooltip>
+  <TooltipTrigger>Hover</TooltipTrigger>
+  <TooltipContent showArrow={false}>
+    <p>Custom arrow tooltip</p>
+    <TooltipArrow />
+  </TooltipContent>
+</Tooltip>
 ```
 
 ## 使用例

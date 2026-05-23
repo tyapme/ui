@@ -1,0 +1,90 @@
+---
+title: Number Field
+description: インクリメント・デクリメントボタンとスクラブ操作を備えた数値入力コンポーネント。
+base: base
+component: true
+links:
+  api: https://base-ui.com/react/components/number-field#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="number-field-1" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add number-field
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install @base-ui/react class-variance-authority
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="number-field"
+  title="components/ui/number-field.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx
+import {
+  NumberField,
+  NumberFieldDecrement,
+  NumberFieldGroup,
+  NumberFieldIncrement,
+  NumberFieldInput,
+  NumberFieldScrubArea,
+} from "@/components/ui/number-field"
+```
+
+```tsx
+<NumberField defaultValue={0}>
+  <NumberFieldScrubArea label="Quantity" />
+  <NumberFieldGroup>
+    <NumberFieldDecrement />
+    <NumberFieldInput />
+    <NumberFieldIncrement />
+  </NumberFieldGroup>
+</NumberField>
+```
+
+## 使用例
+
+### Size
+
+<ComponentPreview styleName="base-nova" name="number-field-2" />
+
+### With Action Buttons
+
+<ComponentPreview styleName="base-nova" name="number-field-3" />
+
+### With Extended Message
+
+<ComponentPreview styleName="base-nova" name="number-field-4" />

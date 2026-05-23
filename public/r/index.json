@@ -789,7 +789,7 @@
   {
     "name": "qr-code",
     "type": "registry:ui",
-    "dependencies": ["react-qr-code"],
+    "dependencies": ["qrcode", "culori"],
     "files": [
       {
         "path": "ui/qr-code.tsx",

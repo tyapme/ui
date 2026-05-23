@@ -1,0 +1,138 @@
+---
+title: Sortable
+description: ドラッグ&ドロップによるシームレスなアイテム並び替えコンポーネント。垂直・グリッド・ネストレイアウトに対応。
+component: true
+base: base
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="sortable-1"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add sortable
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash switch
+npm install @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities @base-ui/react
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  styleName="base-nova"
+  name="sortable"
+  title="components/ui/sortable.tsx"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx
+import {
+  Sortable,
+  SortableItem,
+  SortableItemHandle,
+} from "@/components/ui/sortable"
+```
+
+```tsx
+<Sortable
+  value={items}
+  onValueChange={setItems}
+  getItemValue={(item) => item.id}
+>
+  {items.map((item) => (
+    <SortableItem key={item.id} value={item.id}>
+      <SortableItemHandle>
+        <GripVertical />
+      </SortableItemHandle>
+      {item.content}
+    </SortableItem>
+  ))}
+</Sortable>
+```
+
+## 使用例
+
+### Grid
+
+<ComponentPreview
+  styleName="base-nova"
+  name="sortable-2"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Nested
+
+<ComponentPreview
+  styleName="base-nova"
+  name="sortable-3"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+## API Reference
+
+### Sortable
+
+並び替え状態とドラッグ&ドロップコンテキストを管理するルートコンポーネント。
+
+| Prop | 型 | デフォルト | 説明 |
+|:-----|:---|:-----------|:-----|
+| `value` | `T[]` | — | **必須**。並び替える項目の配列 |
+| `onValueChange` | `(value: T[]) => void` | — | **必須**。並び替え時のコールバック |
+| `getItemValue` | `(item: T) => string` | — | **必須**。項目から一意IDを取得する関数 |
+| `strategy` | `"vertical" \| "horizontal" \| "grid"` | `"vertical"` | レイアウト戦略 |
+| `className` | `string` | — | 追加CSSクラス |
+
+---
+
+### SortableItem
+
+個々のドラッグ可能なアイテム。
+
+| Prop | 型 | デフォルト | 説明 |
+|:-----|:---|:-----------|:-----|
+| `value` | `string` | — | **必須**。アイテムの一意ID |
+| `disabled` | `boolean` | `false` | ドラッグ無効化 |
+| `className` | `string` | — | 追加CSSクラス |
+
+---
+
+### SortableItemHandle
+
+アイテムのドラッグハンドル。
+
+| Prop | 型 | デフォルト | 説明 |
+|:-----|:---|:-----------|:-----|
+| `className` | `string` | — | 追加CSSクラス |
+| `cursor` | `boolean` | `true` | カーソルスタイルの自動適用 |

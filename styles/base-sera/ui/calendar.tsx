@@ -3,10 +3,15 @@
 import * as React from "react"
 import {
   isToday as ariaIsToday,
-  CalendarDate,
   getLocalTimeZone,
+  type CalendarDate,
 } from "@internationalized/date"
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronsLeftIcon,
+  ChevronsRightIcon,
+} from "lucide-react"
 import {
   Button as AriaButton,
   Calendar as AriaCalendar,
@@ -17,6 +22,9 @@ import {
   CalendarHeaderCell as AriaCalendarHeaderCell,
   Heading as AriaHeading,
   RangeCalendar as AriaRangeCalendar,
+  CalendarStateContext,
+  RangeCalendarStateContext,
+  useLocale,
   type CalendarProps as AriaCalendarProps,
   type RangeCalendarProps as AriaRangeCalendarProps,
   type DateValue,
@@ -24,6 +32,15 @@ import {
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/styles/base-sera/ui/button"
+
+// ============================================================================
+// Internal Year Picker Context
+// ============================================================================
+
+const CalendarPickerContext = React.createContext<{
+  isYearPickerOpen: boolean
+  setIsYearPickerOpen: React.Dispatch<React.SetStateAction<boolean>>
+}>({ isYearPickerOpen: false, setIsYearPickerOpen: () => {} })
 
 // ============================================================================
 // CalendarHeader
@@ -75,8 +92,9 @@ function CalendarNavButton({
       slot={slot}
       className={cn(
         buttonVariants({ variant: "ghost", size: "icon" }),
-        "size-(--cell-size) shrink-0 p-0 opacity-50 hover:opacity-100",
+        "size-7 shrink-0 p-0 opacity-50 hover:opacity-100",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-30",
+        "transition-opacity duration-150",
         className
       )}
       {...props}
@@ -93,6 +111,8 @@ function CalendarNavButton({
 
 // ============================================================================
 // CalendarGrid
+// CSS Grid override: overrides <table> display so cells are proper grid items.
+// Enables margin-top on cells and full-column-width range band backgrounds.
 // ============================================================================
 
 function CalendarGrid({
@@ -101,7 +121,7 @@ function CalendarGrid({
 }: React.ComponentProps<typeof AriaCalendarGrid>) {
   return (
     <AriaCalendarGrid
-      className={cn("w-full border-collapse", className)}
+      className={cn("grid w-full grid-cols-7", className)}
       {...props}
     />
   )
@@ -109,6 +129,7 @@ function CalendarGrid({
 
 // ============================================================================
 // CalendarGridHeader
+// display:contents collapses <thead>/<tr> so <th> are direct grid items
 // ============================================================================
 
 function CalendarGridHeader({
@@ -117,7 +138,10 @@ function CalendarGridHeader({
   ...props
 }: React.ComponentProps<typeof AriaCalendarGridHeader>) {
   return (
-    <AriaCalendarGridHeader className={className} {...props}>
+    <AriaCalendarGridHeader
+      className={cn("contents [&>tr]:contents", className)}
+      {...props}
+    >
       {children as (day: string) => React.ReactElement}
     </AriaCalendarGridHeader>
   )
@@ -125,6 +149,8 @@ function CalendarGridHeader({
 
 // ============================================================================
 // CalendarGridBody
+// display:contents collapses <tbody>/<tr> so <td> are direct grid items.
+// First row gets mt-1 for visual separation from the weekday header.
 // ============================================================================
 
 function CalendarGridBody({
@@ -134,7 +160,10 @@ function CalendarGridBody({
 }: React.ComponentProps<typeof AriaCalendarGridBody>) {
   return (
     <AriaCalendarGridBody
-      className={cn("[&>tr]:mt-2 [&>tr>td]:p-0", className)}
+      className={cn(
+        "contents [&>tr]:contents [&>tr:first-child>td]:mt-1",
+        className
+      )}
       {...props}
     >
       {children as (date: CalendarDate) => React.ReactElement}
@@ -153,7 +182,7 @@ function CalendarHeaderCell({
   return (
     <AriaCalendarHeaderCell
       className={cn(
-        "w-(--cell-size) pb-2 text-[0.8rem] font-normal text-muted-foreground select-none",
+        "flex items-center justify-center pb-2 text-xs font-medium text-muted-foreground select-none",
         className
       )}
       {...props}
@@ -172,7 +201,7 @@ function CalendarCellIndicator({
   return (
     <span
       className={cn(
-        "absolute bottom-1 left-1/2 size-1 -translate-x-1/2 rounded-full bg-current",
+        "absolute bottom-0.5 left-1/2 size-[3px] -translate-x-1/2 rounded-full bg-current",
         className
       )}
       {...props}
@@ -182,6 +211,10 @@ function CalendarCellIndicator({
 
 // ============================================================================
 // CalendarCell
+//
+// Two-layer design (CSS Grid enables seamless range band):
+//   <td>  (AriaCalendarCell) — bg-primary/15 band fills full column width
+//   <div> (inner)            — rounded-full circle for selection/hover/today
 // ============================================================================
 
 type CalendarCellRenderProps = {
@@ -202,7 +235,27 @@ type CalendarCellProps = {
 
 function CalendarCell({ date, children, className }: CalendarCellProps) {
   return (
-    <AriaCalendarCell date={date} className="p-0 outline-none">
+    <AriaCalendarCell
+      date={date}
+      className={(rp) => {
+        const isRangeMiddle =
+          rp.isSelected && !rp.isSelectionStart && !rp.isSelectionEnd
+        const isRangeStart = rp.isSelectionStart && !rp.isSelectionEnd
+        const isRangeEnd = rp.isSelectionEnd && !rp.isSelectionStart
+        const showBand =
+          (isRangeMiddle || isRangeStart || isRangeEnd) &&
+          !rp.isOutsideVisibleRange
+
+        return cn(
+          "relative my-[2px] cursor-default p-0 outline-none",
+          showBand && "bg-primary/15",
+          isRangeStart &&
+            !rp.isOutsideVisibleRange &&
+            "rounded-l-(--cell-radius)",
+          isRangeEnd && !rp.isOutsideVisibleRange && "rounded-r-(--cell-radius)"
+        )
+      }}
+    >
       {(rp) => {
         const {
           formattedDate,
@@ -233,43 +286,39 @@ function CalendarCell({ date, children, className }: CalendarCellProps) {
         return (
           <div
             className={cn(
-              "relative flex size-(--cell-size) cursor-default items-center justify-center rounded-(--cell-radius) text-sm select-none",
-              // Focus ring
+              "relative flex aspect-square w-full items-center justify-center rounded-full text-sm font-medium select-none",
+              "transition-[transform,background-color] duration-100 active:scale-95",
               isFocusVisible &&
                 "ring-2 ring-ring ring-offset-1 ring-offset-background",
-              // Hover (only when not selected/unavailable/disabled)
-              isHovered &&
-                !isSelected &&
+              !isSelected &&
                 !isDisabled &&
                 !isOutsideVisibleRange &&
+                isHovered &&
                 "bg-accent text-accent-foreground",
-              // Today (not selected)
-              isTodayDate && !isSelected && "bg-muted text-foreground",
-              // Selected / range start / range end
+              isTodayDate && !isSelected && "font-semibold text-primary",
               isSelected &&
                 !isRangeMiddle &&
-                "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground",
-              // Range middle
-              isRangeMiddle && "rounded-none bg-primary/15 text-foreground",
-              // Range start: square right edge (only when start ≠ end)
-              isSelectionStart &&
-                !isSelectionEnd &&
-                "rounded-(--cell-radius) rounded-r-none",
-              // Range end: square left edge (only when start ≠ end)
-              isSelectionEnd &&
-                !isSelectionStart &&
-                "rounded-(--cell-radius) rounded-l-none",
-              // Unavailable
+                "bg-primary text-primary-foreground",
+              isRangeMiddle && "text-foreground",
               isUnavailable && "pointer-events-none line-through opacity-50",
-              // Disabled (but not unavailable)
               isDisabled && !isUnavailable && "pointer-events-none opacity-50",
-              // Outside visible range
               isOutsideVisibleRange &&
                 "pointer-events-none text-muted-foreground opacity-30",
               className
             )}
           >
             {content}
+            {isTodayDate && (
+              <span
+                aria-hidden
+                className={cn(
+                  "absolute bottom-[3px] left-1/2 size-[3px] -translate-x-1/2 rounded-full",
+                  isSelected && !isRangeMiddle
+                    ? "bg-primary-foreground"
+                    : "bg-primary"
+                )}
+              />
+            )}
           </div>
         )
       }}
@@ -278,25 +327,192 @@ function CalendarCell({ date, children, className }: CalendarCellProps) {
 }
 
 // ============================================================================
-// Default calendar content (used when no children prop provided)
+// CalendarYearNavButton (opt-in, not used in DefaultCalendarContent)
+// ============================================================================
+
+function CalendarYearNavButton({
+  direction,
+  className,
+  ...props
+}: { direction: "prev" | "next" } & Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  "onClick"
+>) {
+  const calState = React.useContext(CalendarStateContext)
+  const rangeState = React.useContext(RangeCalendarStateContext)
+  const state = calState ?? rangeState
+
+  function handleClick() {
+    if (!state) return
+    const next =
+      direction === "prev"
+        ? state.focusedDate.subtract({ years: 1 })
+        : state.focusedDate.add({ years: 1 })
+    state.setFocusedDate(next)
+  }
+
+  return (
+    <button
+      onClick={handleClick}
+      className={cn(
+        buttonVariants({ variant: "ghost", size: "icon" }),
+        "size-7 shrink-0 p-0 opacity-50 hover:opacity-100",
+        "disabled:pointer-events-none disabled:opacity-30",
+        className
+      )}
+      aria-label={direction === "prev" ? "前の年" : "次の年"}
+      {...props}
+    >
+      {direction === "prev" ? (
+        <ChevronsLeftIcon className="cn-rtl-flip size-4" />
+      ) : (
+        <ChevronsRightIcon className="cn-rtl-flip size-4" />
+      )}
+    </button>
+  )
+}
+
+// ============================================================================
+// CalendarYearPickerTrigger
+// Replaces CalendarHeading in DefaultCalendarContent.
+// AriaHeading is rendered sr-only for React Aria internal a11y wiring.
+// ============================================================================
+
+function CalendarYearPickerTrigger({ className }: { className?: string }) {
+  const { isYearPickerOpen, setIsYearPickerOpen } = React.useContext(
+    CalendarPickerContext
+  )
+  const calState = React.useContext(CalendarStateContext)
+  const rangeState = React.useContext(RangeCalendarStateContext)
+  const state = calState ?? rangeState
+  const { locale } = useLocale()
+
+  const title = React.useMemo(() => {
+    if (!state) return ""
+    return new Intl.DateTimeFormat(locale, {
+      month: "long",
+      year: "numeric",
+    }).format(state.focusedDate.toDate(getLocalTimeZone()))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state?.focusedDate.month, state?.focusedDate.year, locale])
+
+  return (
+    <>
+      {/* Hidden heading for React Aria internal labelling */}
+      <AriaHeading className="sr-only" />
+      {/* Visible trigger */}
+      <button
+        type="button"
+        onClick={() => setIsYearPickerOpen((o) => !o)}
+        data-open={isYearPickerOpen || undefined}
+        className={cn(
+          "flex flex-1 cursor-pointer items-center justify-center gap-1 rounded-sm",
+          "text-sm font-medium select-none",
+          "transition-colors hover:text-foreground/70",
+          "focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
+          className
+        )}
+        aria-expanded={isYearPickerOpen}
+      >
+        <span>{title}</span>
+        <ChevronRightIcon
+          className={cn(
+            "size-3 text-muted-foreground transition-transform duration-200",
+            isYearPickerOpen && "rotate-90"
+          )}
+        />
+      </button>
+    </>
+  )
+}
+
+// ============================================================================
+// CalendarYearPickerGrid
+// 3-column year grid, centered on the current focused year.
+// ============================================================================
+
+function CalendarYearPickerGrid({ className }: { className?: string }) {
+  const { setIsYearPickerOpen } = React.useContext(CalendarPickerContext)
+  const calState = React.useContext(CalendarStateContext)
+  const rangeState = React.useContext(RangeCalendarStateContext)
+  const state = calState ?? rangeState
+
+  if (!state) return null
+
+  const currentYear = state.focusedDate.year
+  const startYear = currentYear - 3
+  const years = Array.from({ length: 12 }, (_, i) => startYear + i)
+
+  function selectYear(year: number) {
+    if (!state) return
+    state.setFocusedDate(state.focusedDate.set({ year }))
+    setIsYearPickerOpen(false)
+  }
+
+  return (
+    <div
+      className={cn(
+        "animate-in duration-150 fade-in-0",
+        "grid grid-cols-3 gap-1 p-1",
+        className
+      )}
+    >
+      {years.map((year) => (
+        <button
+          key={year}
+          type="button"
+          onClick={() => selectYear(year)}
+          data-selected={year === currentYear || undefined}
+          className={cn(
+            "inline-flex h-8 items-center justify-center rounded-(--cell-radius) px-2.5 text-sm font-medium select-none",
+            "transition-colors duration-100 active:scale-95",
+            "focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
+            year === currentYear
+              ? "bg-primary text-primary-foreground"
+              : "text-foreground hover:bg-accent hover:text-accent-foreground"
+          )}
+          aria-pressed={year === currentYear}
+        >
+          {year}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+// ============================================================================
+// Default calendar content
 // ============================================================================
 
 function DefaultCalendarContent() {
+  const { isYearPickerOpen } = React.useContext(CalendarPickerContext)
+
   return (
     <>
       <CalendarHeader>
-        <CalendarNavButton slot="previous" />
-        <CalendarHeading />
-        <CalendarNavButton slot="next" />
+        <CalendarNavButton
+          slot="previous"
+          className={cn(isYearPickerOpen && "pointer-events-none opacity-0")}
+        />
+        <CalendarYearPickerTrigger />
+        <CalendarNavButton
+          slot="next"
+          className={cn(isYearPickerOpen && "pointer-events-none opacity-0")}
+        />
       </CalendarHeader>
-      <CalendarGrid>
-        <CalendarGridHeader>
-          {(day) => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
-        </CalendarGridHeader>
-        <CalendarGridBody>
-          {(date) => <CalendarCell date={date} />}
-        </CalendarGridBody>
-      </CalendarGrid>
+
+      {isYearPickerOpen ? (
+        <CalendarYearPickerGrid />
+      ) : (
+        <CalendarGrid>
+          <CalendarGridHeader>
+            {(day) => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
+          </CalendarGridHeader>
+          <CalendarGridBody>
+            {(date) => <CalendarCell date={date} />}
+          </CalendarGridBody>
+        </CalendarGrid>
+      )}
     </>
   )
 }
@@ -308,25 +524,48 @@ function DefaultCalendarContent() {
 type CalendarProps<T extends DateValue = DateValue> = AriaCalendarProps<T> & {
   className?: string
   children?: React.ReactNode
+  defaultYearPickerOpen?: boolean
+  isYearPickerOpen?: boolean
+  onYearPickerOpenChange?: (isOpen: boolean) => void
 }
 
 function CalendarRoot<T extends DateValue = DateValue>({
   className,
   children,
+  defaultYearPickerOpen = false,
+  isYearPickerOpen: controlledOpen,
+  onYearPickerOpenChange,
   ...props
 }: CalendarProps<T>) {
+  const [internalOpen, setInternalOpen] = React.useState(defaultYearPickerOpen)
+  const isYearPickerOpen = controlledOpen ?? internalOpen
+  const setIsYearPickerOpen: React.Dispatch<React.SetStateAction<boolean>> =
+    React.useCallback(
+      (value) => {
+        const next =
+          typeof value === "function" ? value(isYearPickerOpen) : value
+        setInternalOpen(next)
+        onYearPickerOpenChange?.(next)
+      },
+      [isYearPickerOpen, onYearPickerOpenChange]
+    )
+
   return (
-    <AriaCalendar
-      className={cn(
-        "p-3 [--cell-radius:var(--radius-md,calc(var(--radius)-2px))] [--cell-size:--spacing(8)]",
-        "bg-background p-3",
-        "in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
-        className
-      )}
-      {...props}
+    <CalendarPickerContext.Provider
+      value={{ isYearPickerOpen, setIsYearPickerOpen }}
     >
-      {children ?? <DefaultCalendarContent />}
-    </AriaCalendar>
+      <AriaCalendar
+        className={cn(
+          "p-3 [--cell-radius:var(--radius-md,calc(var(--radius)-2px))] [--cell-size:--spacing(8)]",
+          "bg-background p-3",
+          "in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
+          className
+        )}
+        {...props}
+      >
+        {children ?? <DefaultCalendarContent />}
+      </AriaCalendar>
+    </CalendarPickerContext.Provider>
   )
 }
 
@@ -334,6 +573,9 @@ const Calendar = Object.assign(CalendarRoot, {
   Header: CalendarHeader,
   Heading: CalendarHeading,
   NavButton: CalendarNavButton,
+  YearNavButton: CalendarYearNavButton,
+  YearPickerTrigger: CalendarYearPickerTrigger,
+  YearPickerGrid: CalendarYearPickerGrid,
   Grid: CalendarGrid,
   GridHeader: CalendarGridHeader,
   GridBody: CalendarGridBody,
@@ -350,25 +592,48 @@ type RangeCalendarComponentProps<T extends DateValue = DateValue> =
   AriaRangeCalendarProps<T> & {
     className?: string
     children?: React.ReactNode
+    defaultYearPickerOpen?: boolean
+    isYearPickerOpen?: boolean
+    onYearPickerOpenChange?: (isOpen: boolean) => void
   }
 
 function RangeCalendarRoot<T extends DateValue = DateValue>({
   className,
   children,
+  defaultYearPickerOpen = false,
+  isYearPickerOpen: controlledOpen,
+  onYearPickerOpenChange,
   ...props
 }: RangeCalendarComponentProps<T>) {
+  const [internalOpen, setInternalOpen] = React.useState(defaultYearPickerOpen)
+  const isYearPickerOpen = controlledOpen ?? internalOpen
+  const setIsYearPickerOpen: React.Dispatch<React.SetStateAction<boolean>> =
+    React.useCallback(
+      (value) => {
+        const next =
+          typeof value === "function" ? value(isYearPickerOpen) : value
+        setInternalOpen(next)
+        onYearPickerOpenChange?.(next)
+      },
+      [isYearPickerOpen, onYearPickerOpenChange]
+    )
+
   return (
-    <AriaRangeCalendar
-      className={cn(
-        "p-3 [--cell-radius:var(--radius-md,calc(var(--radius)-2px))] [--cell-size:--spacing(8)]",
-        "bg-background p-3",
-        "in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
-        className
-      )}
-      {...props}
+    <CalendarPickerContext.Provider
+      value={{ isYearPickerOpen, setIsYearPickerOpen }}
     >
-      {children ?? <DefaultCalendarContent />}
-    </AriaRangeCalendar>
+      <AriaRangeCalendar
+        className={cn(
+          "p-3 [--cell-radius:var(--radius-md,calc(var(--radius)-2px))] [--cell-size:--spacing(8)]",
+          "bg-background p-3",
+          "in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
+          className
+        )}
+        {...props}
+      >
+        {children ?? <DefaultCalendarContent />}
+      </AriaRangeCalendar>
+    </CalendarPickerContext.Provider>
   )
 }
 
@@ -376,6 +641,9 @@ const RangeCalendar = Object.assign(RangeCalendarRoot, {
   Header: CalendarHeader,
   Heading: CalendarHeading,
   NavButton: CalendarNavButton,
+  YearNavButton: CalendarYearNavButton,
+  YearPickerTrigger: CalendarYearPickerTrigger,
+  YearPickerGrid: CalendarYearPickerGrid,
   Grid: CalendarGrid,
   GridHeader: CalendarGridHeader,
   GridBody: CalendarGridBody,
@@ -390,6 +658,9 @@ export {
   CalendarHeader,
   CalendarHeading,
   CalendarNavButton,
+  CalendarYearNavButton,
+  CalendarYearPickerTrigger,
+  CalendarYearPickerGrid,
   CalendarGrid,
   CalendarGridHeader,
   CalendarGridBody,

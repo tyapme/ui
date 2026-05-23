@@ -1,0 +1,94 @@
+---
+title: Time Field
+description: セグメント型の時刻入力コンポーネント。時/分/秒を個別に操作できます。
+base: base
+component: true
+links:
+  doc: https://react-spectrum.adobe.com/react-aria/TimeField.html
+  api: https://react-spectrum.adobe.com/react-aria/TimeField.html#props
+---
+
+<ComponentPreview styleName="base-nova" name="time-field-demo" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add time-field
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install react-aria-components @internationalized/date
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="time-field"
+  title="components/ui/time-field.tsx"
+  styleName="base-nova"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import { TimeFieldInput } from "@/components/ui/time-field"
+```
+
+```tsx showLineNumbers
+<TimeFieldInput
+  value={date}
+  onValueChange={setDate}
+  aria-label="Time"
+/>
+```
+
+## Props
+
+### TimeFieldInput
+
+| Prop           | Type                             | Default    | 説明                           |
+| -------------- | -------------------------------- | ---------- | ------------------------------ |
+| `value`        | `Date \| undefined`              | —          | 現在の時刻値                   |
+| `onValueChange`| `(date: Date \| undefined) => void` | —       | 時刻変更時のコールバック       |
+| `disabled`     | `boolean`                        | `false`    | 無効化                         |
+| `granularity`  | `"hour" \| "minute" \| "second"` | `"minute"` | 表示する精度                   |
+| `id`           | `string`                         | —          | フィールドの ID                |
+| `aria-label`   | `string`                         | —          | アクセシビリティラベル         |
+
+## 構成
+
+```text
+TimeFieldInput
+└── TimeSegment (時 / 分 / 秒 のセグメント)
+```
+
+## 関連
+
+- [Date Picker](/docs/components/base/date-picker) — 日付 + 時刻のフルピッカー
+- [Calendar](/docs/components/base/calendar) — カレンダーコンポーネント
+
+## API リファレンス
+
+詳細は [React Aria TimeField](https://react-spectrum.adobe.com/react-aria/TimeField.html) ドキュメントを参照してください。

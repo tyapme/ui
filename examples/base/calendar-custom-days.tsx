@@ -1,50 +1,59 @@
 "use client"
 
 import * as React from "react"
-import { addDays } from "date-fns"
-import { type DateRange } from "react-day-picker"
+import { CalendarDate, isWeekend, type DateValue } from "@internationalized/date"
+import { type RangeValue, useLocale } from "react-aria-components"
 
-import { Calendar, CalendarDayButton } from "@/styles/base-nova/ui/calendar"
+import { RangeCalendar } from "@/styles/base-nova/ui/calendar"
 import { Card, CardContent } from "@/styles/base-nova/ui/card"
 
 export function CalendarCustomDays() {
-  const [range, setRange] = React.useState<DateRange | undefined>({
-    from: new Date(new Date().getFullYear(), 11, 8),
-    to: addDays(new Date(new Date().getFullYear(), 11, 8), 10),
+  const { locale } = useLocale()
+  const [range, setRange] = React.useState<RangeValue<DateValue> | null>({
+    start: new CalendarDate(new Date().getFullYear(), 12, 8),
+    end: new CalendarDate(new Date().getFullYear(), 12, 8).add({ days: 10 }),
   })
 
   return (
     <Card className="mx-auto w-fit p-0">
       <CardContent className="p-0">
-        <Calendar
-          mode="range"
-          defaultMonth={range?.from}
-          selected={range}
-          onSelect={setRange}
-          numberOfMonths={1}
-          captionLayout="dropdown"
+        <RangeCalendar
+          value={range}
+          onChange={setRange}
           className="[--cell-size:--spacing(10)] md:[--cell-size:--spacing(12)]"
-          formatters={{
-            formatMonthDropdown: (date) => {
-              return date.toLocaleString("default", { month: "long" })
-            },
-          }}
-          components={{
-            DayButton: ({ children, modifiers, day, ...props }) => {
-              const isWeekend =
-                day.date.getDay() === 0 || day.date.getDay() === 6
-
-              return (
-                <CalendarDayButton day={day} modifiers={modifiers} {...props}>
-                  {children}
-                  {!modifiers.outside && (
-                    <span>{isWeekend ? "$120" : "$100"}</span>
-                  )}
-                </CalendarDayButton>
-              )
-            },
-          }}
-        />
+        >
+          <RangeCalendar.Header>
+            <RangeCalendar.NavButton slot="previous" />
+            <RangeCalendar.Heading />
+            <RangeCalendar.NavButton slot="next" />
+          </RangeCalendar.Header>
+          <RangeCalendar.Grid>
+            <RangeCalendar.GridHeader>
+              {(day) => (
+                <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>
+              )}
+            </RangeCalendar.GridHeader>
+            <RangeCalendar.GridBody>
+              {(d) => {
+                const isWeekendDay = isWeekend(d, locale)
+                return (
+                  <RangeCalendar.Cell date={d}>
+                    {({ formattedDate, isOutsideMonth }) => (
+                      <>
+                        {formattedDate}
+                        {!isOutsideMonth && (
+                          <span className="text-[9px] opacity-70">
+                            {isWeekendDay ? "$120" : "$100"}
+                          </span>
+                        )}
+                      </>
+                    )}
+                  </RangeCalendar.Cell>
+                )
+              }}
+            </RangeCalendar.GridBody>
+          </RangeCalendar.Grid>
+        </RangeCalendar>
       </CardContent>
     </Card>
   )

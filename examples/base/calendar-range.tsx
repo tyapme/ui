@@ -1,25 +1,23 @@
 "use client"
 
 import * as React from "react"
-import { addDays } from "date-fns"
-import { type DateRange } from "react-day-picker"
+import { CalendarDate, type DateValue } from "@internationalized/date"
+import { type RangeValue } from "react-aria-components"
 
-import { Calendar } from "@/styles/base-nova/ui/calendar"
+import { RangeCalendar } from "@/styles/base-nova/ui/calendar"
 import { Card, CardContent } from "@/styles/base-nova/ui/card"
 
 export function CalendarRange() {
-  const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
-    from: new Date(new Date().getFullYear(), 0, 12),
-    to: addDays(new Date(new Date().getFullYear(), 0, 12), 30),
+  const [dateRange, setDateRange] = React.useState<RangeValue<DateValue> | null>({
+    start: new CalendarDate(new Date().getFullYear(), 1, 12),
+    end: new CalendarDate(new Date().getFullYear(), 1, 12).add({ days: 30 }),
   })
 
   return (
-    <Calendar
-      mode="range"
-      defaultMonth={dateRange?.from}
-      selected={dateRange}
-      onSelect={setDateRange}
-      numberOfMonths={2}
+    <RangeCalendar
+      value={dateRange}
+      onChange={setDateRange}
+      visibleDuration={{ months: 2 }}
       className="rounded-lg border"
     />
   )

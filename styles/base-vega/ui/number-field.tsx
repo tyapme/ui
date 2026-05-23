@@ -1,72 +1,108 @@
 "use client"
 
-import * as React from "react"
+import { createContext, useContext, useId, type ReactNode } from "react"
 import { NumberField as NumberFieldPrimitive } from "@base-ui/react/number-field"
+import { cva, type VariantProps } from "class-variance-authority"
 import { MinusIcon, PlusIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { Label } from "@/styles/base-vega/ui/label"
 
-function NumberField({ className, ...props }: NumberFieldPrimitive.Root.Props) {
-  return (
-    <NumberFieldPrimitive.Root
-      data-slot="number-field"
-      className={cn("flex flex-col gap-1.5", className)}
-      {...props}
-    />
-  )
-}
+const NumberFieldContext = createContext<{
+  fieldId: string
+  size: "sm" | "default" | "lg"
+} | null>(null)
 
-function NumberFieldScrubArea({
+const numberFieldGroupVariants = cva(
+  "relative flex w-full justify-between rounded-lg border border-input bg-transparent transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 focus-within:has-aria-invalid:border-destructive focus-within:has-aria-invalid:ring-destructive/20 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 dark:focus-within:has-aria-invalid:ring-destructive/40 dark:aria-invalid:ring-destructive/40 data-disabled:pointer-events-none data-disabled:opacity-50",
+  {
+    variants: {
+      size: {
+        sm: "h-7 text-sm",
+        default: "h-8 text-sm",
+        lg: "h-9 text-sm",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+    },
+  }
+)
+
+const numberFieldButtonVariants = cva(
+  "relative flex shrink-0 cursor-pointer items-center justify-center text-muted-foreground/80 transition-colors select-none hover:bg-accent hover:text-foreground disabled:pointer-events-none disabled:opacity-50 pointer-coarse:after:absolute pointer-coarse:after:size-full pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11",
+  {
+    variants: {
+      size: {
+        sm: "px-1.5 [&_svg:not([class*='size-'])]:size-3.5",
+        default: "px-2 [&_svg:not([class*='size-'])]:size-4",
+        lg: "px-2.5 [&_svg:not([class*='size-'])]:size-4",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+    },
+  }
+)
+
+const numberFieldInputVariants = cva(
+  "w-full min-w-0 flex-1 bg-transparent text-center tabular-nums outline-none",
+  {
+    variants: {
+      size: {
+        sm: "px-2 py-0.5",
+        default: "px-2.5 py-1",
+        lg: "px-2.5 py-1.5",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+    },
+  }
+)
+
+function NumberField({
+  id,
   className,
-  label,
-  children,
+  size = "default",
   ...props
-}: NumberFieldPrimitive.ScrubArea.Props & { label?: string }) {
-  const id = React.useId()
+}: NumberFieldPrimitive.Root.Props &
+  VariantProps<typeof numberFieldGroupVariants>) {
+  const generatedId = useId()
+  const fieldId = id ?? generatedId
+  const sizeValue = size ?? "default"
 
   return (
-    <NumberFieldPrimitive.ScrubArea
-      data-slot="number-field-scrub-area"
-      className={cn("cursor-ew-resize select-none", className)}
-      {...props}
-    >
-      {label && (
-        <label
-          htmlFor={id}
-          className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-        >
-          {label}
-        </label>
-      )}
-      {children}
-    </NumberFieldPrimitive.ScrubArea>
+    <NumberFieldContext.Provider value={{ fieldId, size: sizeValue }}>
+      <NumberFieldPrimitive.Root
+        className={cn("flex w-full flex-col items-start gap-2", className)}
+        data-size={sizeValue}
+        data-slot="number-field"
+        id={fieldId}
+        {...props}
+      />
+    </NumberFieldContext.Provider>
   )
 }
 
 function NumberFieldGroup({
   className,
+  size: sizeProp,
   ...props
-}: NumberFieldPrimitive.Group.Props) {
+}: NumberFieldPrimitive.Group.Props &
+  Partial<VariantProps<typeof numberFieldGroupVariants>>) {
+  const context = useContext(NumberFieldContext)
+  if (!context) {
+    throw new Error(
+      "NumberFieldGroup must be used within a NumberField component."
+    )
+  }
+  const size = sizeProp ?? context.size
+
   return (
     <NumberFieldPrimitive.Group
+      className={cn(numberFieldGroupVariants({ size }), className)}
       data-slot="number-field-group"
-      className={cn("flex items-center", className)}
-      {...props}
-    />
-  )
-}
-
-function NumberFieldInput({
-  className,
-  ...props
-}: NumberFieldPrimitive.Input.Props) {
-  return (
-    <NumberFieldPrimitive.Input
-      data-slot="number-field-input"
-      className={cn(
-        "w-full min-w-0 border-y text-center tabular-nums outline-none placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
-        className
-      )}
       {...props}
     />
   )
@@ -74,16 +110,29 @@ function NumberFieldInput({
 
 function NumberFieldDecrement({
   className,
+  size: sizeProp,
   children,
   ...props
-}: NumberFieldPrimitive.Decrement.Props) {
+}: NumberFieldPrimitive.Decrement.Props &
+  Partial<VariantProps<typeof numberFieldButtonVariants>> & {
+    children?: React.ReactNode
+  }) {
+  const context = useContext(NumberFieldContext)
+  if (!context) {
+    throw new Error(
+      "NumberFieldDecrement must be used within a NumberField component."
+    )
+  }
+  const size = sizeProp ?? context.size
+
   return (
     <NumberFieldPrimitive.Decrement
-      data-slot="number-field-decrement"
       className={cn(
-        "inline-flex items-center justify-center border outline-none select-none disabled:pointer-events-none disabled:opacity-50",
+        numberFieldButtonVariants({ size }),
+        "rounded-s-lg",
         className
       )}
+      data-slot="number-field-decrement"
       {...props}
     >
       {children ?? <MinusIcon />}
@@ -93,16 +142,29 @@ function NumberFieldDecrement({
 
 function NumberFieldIncrement({
   className,
+  size: sizeProp,
   children,
   ...props
-}: NumberFieldPrimitive.Increment.Props) {
+}: NumberFieldPrimitive.Increment.Props &
+  Partial<VariantProps<typeof numberFieldButtonVariants>> & {
+    children?: ReactNode
+  }) {
+  const context = useContext(NumberFieldContext)
+  if (!context) {
+    throw new Error(
+      "NumberFieldIncrement must be used within a NumberField component."
+    )
+  }
+  const size = sizeProp ?? context.size
+
   return (
     <NumberFieldPrimitive.Increment
-      data-slot="number-field-increment"
       className={cn(
-        "inline-flex items-center justify-center border outline-none select-none disabled:pointer-events-none disabled:opacity-50",
+        numberFieldButtonVariants({ size }),
+        "rounded-e-lg",
         className
       )}
+      data-slot="number-field-increment"
       {...props}
     >
       {children ?? <PlusIcon />}
@@ -110,11 +172,80 @@ function NumberFieldIncrement({
   )
 }
 
+function NumberFieldInput({
+  className,
+  size: sizeProp,
+  ...props
+}: NumberFieldPrimitive.Input.Props &
+  Partial<VariantProps<typeof numberFieldInputVariants>>) {
+  const context = useContext(NumberFieldContext)
+  if (!context) {
+    throw new Error(
+      "NumberFieldInput must be used within a NumberField component."
+    )
+  }
+  const size = sizeProp ?? context.size
+
+  return (
+    <NumberFieldPrimitive.Input
+      className={cn(numberFieldInputVariants({ size }), className)}
+      data-slot="number-field-input"
+      {...props}
+    />
+  )
+}
+
+function NumberFieldScrubArea({
+  className,
+  label,
+  ...props
+}: NumberFieldPrimitive.ScrubArea.Props & {
+  label: string
+}) {
+  const context = useContext(NumberFieldContext)
+  if (!context) {
+    throw new Error(
+      "NumberFieldScrubArea must be used within a NumberField component for accessibility."
+    )
+  }
+
+  return (
+    <NumberFieldPrimitive.ScrubArea
+      className={cn("flex cursor-ew-resize", className)}
+      data-slot="number-field-scrub-area"
+      {...props}
+    >
+      <Label className="cursor-ew-resize" htmlFor={context.fieldId}>
+        {label}
+      </Label>
+      <NumberFieldPrimitive.ScrubAreaCursor className="drop-shadow-[0_1px_1px_#0008] filter">
+        <CursorGrowIcon />
+      </NumberFieldPrimitive.ScrubAreaCursor>
+    </NumberFieldPrimitive.ScrubArea>
+  )
+}
+
+function CursorGrowIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg
+      fill="black"
+      height="14"
+      stroke="white"
+      viewBox="0 0 24 14"
+      width="26"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path d="M19.5 5.5L6.49737 5.51844V2L1 6.9999L6.5 12L6.49737 8.5L19.5 8.5V12L25 6.9999L19.5 2V5.5Z" />
+    </svg>
+  )
+}
+
 export {
   NumberField,
-  NumberFieldDecrement,
-  NumberFieldGroup,
-  NumberFieldIncrement,
-  NumberFieldInput,
   NumberFieldScrubArea,
+  NumberFieldDecrement,
+  NumberFieldIncrement,
+  NumberFieldGroup,
+  NumberFieldInput,
 }

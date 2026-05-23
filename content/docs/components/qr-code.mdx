@@ -1,0 +1,77 @@
+---
+title: QR Code
+description: テキストやURLをQRコードとして表示するコンポーネント。テーマカラーに自動対応。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="qr-code-1" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add qr-code
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install qrcode culori
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="qr-code"
+  title="components/ui/qr-code.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx
+import { QRCode } from "@/components/ui/qr-code"
+```
+
+```tsx
+<QRCode data="https://example.com" />
+<QRCode data="https://example.com" robustness="H" />
+```
+
+## 使用例
+
+### Robustness
+
+<ComponentPreview styleName="base-nova" name="qr-code-2" />
+
+## Props
+
+| Prop | 型 | デフォルト | 説明 |
+|:-----|:---|:-----------|:-----|
+| `data` | `string` | — | **必須**。エンコードするテキストまたはURL |
+| `foreground` | `string` | `var(--foreground)` | 前景色。oklch CSS変数またはhex |
+| `background` | `string` | `var(--background)` | 背景色。oklch CSS変数またはhex |
+| `robustness` | `"L" \| "M" \| "Q" \| "H"` | `"M"` | エラー訂正レベル。L: 7%, M: 15%, Q: 25%, H: 30% |
+| `className` | `string` | — | 追加CSSクラス（コンテナに適用） |

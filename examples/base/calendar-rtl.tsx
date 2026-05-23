@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { arSA, he } from "react-day-picker/locale"
+import { type DateValue } from "@internationalized/date"
+import { I18nProvider } from "react-aria-components"
 
 import {
   useTranslation,
@@ -24,26 +25,24 @@ const translations: Translations = {
   },
 }
 
-const locales = {
-  ar: arSA,
-  he: he,
-} as const
+const localeMap: Record<string, string> = {
+  ar: "ar-SA",
+  he: "he-IL",
+  en: "en-US",
+}
 
 export function CalendarRtl() {
   const { dir, language } = useTranslation(translations, "ar")
-  const [date, setDate] = React.useState<Date | undefined>(new Date())
+  const [date, setDate] = React.useState<DateValue | null>(null)
+  const locale = localeMap[language] ?? "en-US"
 
   return (
-    <Calendar
-      mode="single"
-      selected={date}
-      onSelect={setDate}
-      className="rounded-lg border [--cell-size:--spacing(9)]"
-      captionLayout="dropdown"
-      dir={dir}
-      locale={
-        dir === "rtl" ? locales[language as keyof typeof locales] : undefined
-      }
-    />
+    <I18nProvider locale={locale}>
+      <Calendar
+        value={date}
+        onChange={setDate}
+        className="rounded-lg border [--cell-size:--spacing(9)]"
+      />
+    </I18nProvider>
   )
 }

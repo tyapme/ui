@@ -967,97 +967,6 @@ export const ExamplesIndex: Record<string, Record<string, any>> = {
         return { default: mod.default || mod[exportName] }
       }),
     },
-    "c-number-field-1": {
-      name: "c-number-field-1",
-      filePath: "examples/base/c-number-field-1.tsx",
-      component: React.lazy(async () => {
-        const mod = await import("./base/c-number-field-1")
-        const exportName =
-          Object.keys(mod).find(
-            (key) =>
-              typeof mod[key] === "function" || typeof mod[key] === "object"
-          ) || "c-number-field-1"
-        return { default: mod.default || mod[exportName] }
-      }),
-    },
-    "c-number-field-2": {
-      name: "c-number-field-2",
-      filePath: "examples/base/c-number-field-2.tsx",
-      component: React.lazy(async () => {
-        const mod = await import("./base/c-number-field-2")
-        const exportName =
-          Object.keys(mod).find(
-            (key) =>
-              typeof mod[key] === "function" || typeof mod[key] === "object"
-          ) || "c-number-field-2"
-        return { default: mod.default || mod[exportName] }
-      }),
-    },
-    "c-number-field-3": {
-      name: "c-number-field-3",
-      filePath: "examples/base/c-number-field-3.tsx",
-      component: React.lazy(async () => {
-        const mod = await import("./base/c-number-field-3")
-        const exportName =
-          Object.keys(mod).find(
-            (key) =>
-              typeof mod[key] === "function" || typeof mod[key] === "object"
-          ) || "c-number-field-3"
-        return { default: mod.default || mod[exportName] }
-      }),
-    },
-    "c-number-field-4": {
-      name: "c-number-field-4",
-      filePath: "examples/base/c-number-field-4.tsx",
-      component: React.lazy(async () => {
-        const mod = await import("./base/c-number-field-4")
-        const exportName =
-          Object.keys(mod).find(
-            (key) =>
-              typeof mod[key] === "function" || typeof mod[key] === "object"
-          ) || "c-number-field-4"
-        return { default: mod.default || mod[exportName] }
-      }),
-    },
-    "c-sortable-1": {
-      name: "c-sortable-1",
-      filePath: "examples/base/c-sortable-1.tsx",
-      component: React.lazy(async () => {
-        const mod = await import("./base/c-sortable-1")
-        const exportName =
-          Object.keys(mod).find(
-            (key) =>
-              typeof mod[key] === "function" || typeof mod[key] === "object"
-          ) || "c-sortable-1"
-        return { default: mod.default || mod[exportName] }
-      }),
-    },
-    "c-sortable-2": {
-      name: "c-sortable-2",
-      filePath: "examples/base/c-sortable-2.tsx",
-      component: React.lazy(async () => {
-        const mod = await import("./base/c-sortable-2")
-        const exportName =
-          Object.keys(mod).find(
-            (key) =>
-              typeof mod[key] === "function" || typeof mod[key] === "object"
-          ) || "c-sortable-2"
-        return { default: mod.default || mod[exportName] }
-      }),
-    },
-    "c-sortable-3": {
-      name: "c-sortable-3",
-      filePath: "examples/base/c-sortable-3.tsx",
-      component: React.lazy(async () => {
-        const mod = await import("./base/c-sortable-3")
-        const exportName =
-          Object.keys(mod).find(
-            (key) =>
-              typeof mod[key] === "function" || typeof mod[key] === "object"
-          ) || "c-sortable-3"
-        return { default: mod.default || mod[exportName] }
-      }),
-    },
     "calendar-basic": {
       name: "calendar-basic",
       filePath: "examples/base/calendar-basic.tsx",
@@ -3957,6 +3866,58 @@ export const ExamplesIndex: Record<string, Record<string, any>> = {
         return { default: mod.default || mod[exportName] }
       }),
     },
+    "number-field-1": {
+      name: "number-field-1",
+      filePath: "examples/base/number-field-1.tsx",
+      component: React.lazy(async () => {
+        const mod = await import("./base/number-field-1")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "number-field-1"
+        return { default: mod.default || mod[exportName] }
+      }),
+    },
+    "number-field-2": {
+      name: "number-field-2",
+      filePath: "examples/base/number-field-2.tsx",
+      component: React.lazy(async () => {
+        const mod = await import("./base/number-field-2")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "number-field-2"
+        return { default: mod.default || mod[exportName] }
+      }),
+    },
+    "number-field-3": {
+      name: "number-field-3",
+      filePath: "examples/base/number-field-3.tsx",
+      component: React.lazy(async () => {
+        const mod = await import("./base/number-field-3")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "number-field-3"
+        return { default: mod.default || mod[exportName] }
+      }),
+    },
+    "number-field-4": {
+      name: "number-field-4",
+      filePath: "examples/base/number-field-4.tsx",
+      component: React.lazy(async () => {
+        const mod = await import("./base/number-field-4")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "number-field-4"
+        return { default: mod.default || mod[exportName] }
+      }),
+    },
     "outline-item-group": {
       name: "outline-item-group",
       filePath: "examples/base/outline-item-group.tsx",
@@ -4139,42 +4100,29 @@ export const ExamplesIndex: Record<string, Record<string, any>> = {
         return { default: mod.default || mod[exportName] }
       }),
     },
-    "qr-code-colors": {
-      name: "qr-code-colors",
-      filePath: "examples/base/qr-code-colors.tsx",
+    "qr-code-1": {
+      name: "qr-code-1",
+      filePath: "examples/base/qr-code-1.tsx",
       component: React.lazy(async () => {
-        const mod = await import("./base/qr-code-colors")
+        const mod = await import("./base/qr-code-1")
         const exportName =
           Object.keys(mod).find(
             (key) =>
               typeof mod[key] === "function" || typeof mod[key] === "object"
-          ) || "qr-code-colors"
+          ) || "qr-code-1"
         return { default: mod.default || mod[exportName] }
       }),
     },
-    "qr-code-demo": {
-      name: "qr-code-demo",
-      filePath: "examples/base/qr-code-demo.tsx",
+    "qr-code-2": {
+      name: "qr-code-2",
+      filePath: "examples/base/qr-code-2.tsx",
       component: React.lazy(async () => {
-        const mod = await import("./base/qr-code-demo")
+        const mod = await import("./base/qr-code-2")
         const exportName =
           Object.keys(mod).find(
             (key) =>
               typeof mod[key] === "function" || typeof mod[key] === "object"
-          ) || "qr-code-demo"
-        return { default: mod.default || mod[exportName] }
-      }),
-    },
-    "qr-code-size": {
-      name: "qr-code-size",
-      filePath: "examples/base/qr-code-size.tsx",
-      component: React.lazy(async () => {
-        const mod = await import("./base/qr-code-size")
-        const exportName =
-          Object.keys(mod).find(
-            (key) =>
-              typeof mod[key] === "function" || typeof mod[key] === "object"
-          ) || "qr-code-size"
+          ) || "qr-code-2"
         return { default: mod.default || mod[exportName] }
       }),
     },
@@ -4997,6 +4945,45 @@ export const ExamplesIndex: Record<string, Record<string, any>> = {
         return { default: mod.default || mod[exportName] }
       }),
     },
+    "sortable-1": {
+      name: "sortable-1",
+      filePath: "examples/base/sortable-1.tsx",
+      component: React.lazy(async () => {
+        const mod = await import("./base/sortable-1")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "sortable-1"
+        return { default: mod.default || mod[exportName] }
+      }),
+    },
+    "sortable-2": {
+      name: "sortable-2",
+      filePath: "examples/base/sortable-2.tsx",
+      component: React.lazy(async () => {
+        const mod = await import("./base/sortable-2")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "sortable-2"
+        return { default: mod.default || mod[exportName] }
+      }),
+    },
+    "sortable-3": {
+      name: "sortable-3",
+      filePath: "examples/base/sortable-3.tsx",
+      component: React.lazy(async () => {
+        const mod = await import("./base/sortable-3")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "sortable-3"
+        return { default: mod.default || mod[exportName] }
+      }),
+    },
     "spinner-badge": {
       name: "spinner-badge",
       filePath: "examples/base/spinner-badge.tsx",
@@ -5397,6 +5384,19 @@ export const ExamplesIndex: Record<string, Record<string, any>> = {
             (key) =>
               typeof mod[key] === "function" || typeof mod[key] === "object"
           ) || "textarea-rtl"
+        return { default: mod.default || mod[exportName] }
+      }),
+    },
+    "time-field-demo": {
+      name: "time-field-demo",
+      filePath: "examples/base/time-field-demo.tsx",
+      component: React.lazy(async () => {
+        const mod = await import("./base/time-field-demo")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "time-field-demo"
         return { default: mod.default || mod[exportName] }
       }),
     },

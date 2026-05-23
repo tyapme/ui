@@ -1073,7 +1073,7 @@
     },
     {
       "name": "qr-code",
-      "dependencies": ["react-qr-code"],
+      "dependencies": ["qrcode", "culori"],
       "files": [
         {
           "path": "registry/base-maia/ui/qr-code.tsx",
