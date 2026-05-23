@@ -68,7 +68,7 @@ export default function AppSidebar() {
                 {projects.map((project) => (
                   <SidebarMenuItem key={project.name}>
                     <SidebarMenuButton
-                      render={<a href={project.url} />}
+                      render={<a href={project.url} title={project.name} />}
                       className="group-has-[[data-state=open]]/menu-item:bg-sidebar-accent"
                     >
                       <project.icon />

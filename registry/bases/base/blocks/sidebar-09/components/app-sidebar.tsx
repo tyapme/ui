@@ -207,7 +207,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <SidebarMenuButton
                 size="lg"
                 className="md:h-8 md:p-0"
-                render={<a href="#" />}
+                render={<a href="#" title="Acme Inc" />}
               >
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                   <IconPlaceholder

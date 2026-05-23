@@ -30,7 +30,7 @@ export default function EmptyDemo() {
       </EmptyContent>
       <Button
         variant="link"
-        render={<a href="#" />}
+        render={<a href="#" title="Learn More" />}
         className="text-muted-foreground"
         size="sm"
         nativeButton={false}

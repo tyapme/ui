@@ -63,7 +63,7 @@ export function ItemRtl() {
           </Button>
         </ItemActions>
       </Item>
-      <Item variant="outline" size="sm" render={<a href="#" />} dir={dir}>
+      <Item variant="outline" size="sm" render={<a href="#" title={t.verifiedTitle} />} dir={dir}>
         <ItemMedia>
           <BadgeCheckIcon className="size-5" />
         </ItemMedia>

@@ -4,7 +4,7 @@
   "files": [
     {
       "path": "registry/new-york-v4/examples/typography-blockquote.tsx",
-      "content": "export default function TypographyBlockquote() {\n  return (\n    <blockquote className=\"mt-6 border-l-2 pl-6 italic\">\n      &quot;After all,&quot; he said, &quot;everyone enjoys a good joke, so\n      it&apos;s only fair that they should pay for the privilege.&quot;\n    </blockquote>\n  )\n}\n",
+      "content": "export default function TypographyBlockquote() {\n  return (\n    <blockquote className=\"mt-6 border-l-2 pl-6 italic\">\n      &quot;結局のところ&quot;と彼は言った。&quot;誰もが面白いジョークを楽しむのだから、その特権に対して代価を払うのは公平というものだ。&quot;\n    </blockquote>\n  )\n}\n",
       "type": "registry:example"
     }
   ],

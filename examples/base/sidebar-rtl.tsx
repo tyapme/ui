@@ -323,7 +323,7 @@ function SidebarContentInner({
         <SidebarHeader>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton size="lg" render={<a href="#" />}>
+              <SidebarMenuButton size="lg" render={<a href="#" title={t.teamName} />}>
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                   <GalleryVerticalEnd className="size-4" />
                 </div>
@@ -358,7 +358,7 @@ function SidebarContentInner({
                         {item.items?.map((subItem) => (
                           <SidebarMenuSubItem key={subItem.title}>
                             <SidebarMenuSubButton
-                              render={<a href={subItem.url} />}
+                              render={<a href={subItem.url} title={subItem.title} />}
                             >
                               <span>{subItem.title}</span>
                             </SidebarMenuSubButton>
@@ -376,7 +376,7 @@ function SidebarContentInner({
             <SidebarMenu>
               {projects.map((item) => (
                 <SidebarMenuItem key={item.name}>
-                  <SidebarMenuButton render={<a href={item.url} />}>
+                  <SidebarMenuButton render={<a href={item.url} title={item.name} />}>
                     <item.icon />
                     <span>{item.name}</span>
                   </SidebarMenuButton>

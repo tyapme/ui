@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "registry/new-york-v4/examples/native-select-disabled.tsx",
-      "content": "import {\n  NativeSelect,\n  NativeSelectOption,\n} from \"@/registry/new-york-v4/ui/native-select\"\n\nexport default function NativeSelectDisabled() {\n  return (\n    <NativeSelect disabled>\n      <NativeSelectOption value=\"\">Select priority</NativeSelectOption>\n      <NativeSelectOption value=\"low\">Low</NativeSelectOption>\n      <NativeSelectOption value=\"medium\">Medium</NativeSelectOption>\n      <NativeSelectOption value=\"high\">High</NativeSelectOption>\n      <NativeSelectOption value=\"critical\">Critical</NativeSelectOption>\n    </NativeSelect>\n  )\n}\n",
+      "content": "import {\n  NativeSelect,\n  NativeSelectOption,\n} from \"@/registry/new-york-v4/ui/native-select\"\n\nexport default function NativeSelectDisabled() {\n  return (\n    <NativeSelect disabled>\n      <NativeSelectOption value=\"\">優先度を選択</NativeSelectOption>\n      <NativeSelectOption value=\"low\">低</NativeSelectOption>\n      <NativeSelectOption value=\"medium\">中</NativeSelectOption>\n      <NativeSelectOption value=\"high\">高</NativeSelectOption>\n      <NativeSelectOption value=\"critical\">緊急</NativeSelectOption>\n    </NativeSelect>\n  )\n}\n",
       "type": "registry:example"
     }
   ],

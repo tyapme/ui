@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "registry/new-york-v4/examples/button-destructive.tsx",
-      "content": "import { Button } from \"@/registry/new-york-v4/ui/button\"\n\nexport default function ButtonDestructive() {\n  return <Button variant=\"destructive\">Destructive</Button>\n}\n",
+      "content": "import { Button } from \"@/registry/new-york-v4/ui/button\"\n\nexport default function ButtonDestructive() {\n  return <Button variant=\"destructive\">削除</Button>\n}\n",
       "type": "registry:example"
     }
   ],

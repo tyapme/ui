@@ -74,7 +74,7 @@ export function BreadcrumbRtl() {
         <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger
-              render={<button className="flex items-center gap-1" />}
+              render={<button className="flex items-center gap-1" title={t.components} />}
             >
               {t.components}
               <ChevronDownIcon data-icon="inline-end" className="size-3.5" />

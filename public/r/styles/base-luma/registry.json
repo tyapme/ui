@@ -221,6 +221,28 @@
       "type": "registry:ui"
     },
     {
+      "name": "date-picker",
+      "dependencies": [
+        "react-aria-components",
+        "@internationalized/date",
+        "react-day-picker@latest"
+      ],
+      "registryDependencies": ["button", "calendar", "popover"],
+      "files": [
+        {
+          "path": "registry/base-luma/ui/date-picker.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "links": {
+          "docs": "https://ui.shadcn.com/docs/components/base/date-picker",
+          "api": "https://react-spectrum.adobe.com/react-aria/DatePicker.html"
+        }
+      },
+      "type": "registry:ui"
+    },
+    {
       "name": "card",
       "files": [
         {

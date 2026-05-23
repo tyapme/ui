@@ -1,0 +1,9 @@
+{
+  // Disable CSS browser compatibility warnings for intentionally modern CSS features
+  // (color-mix, scrollbar-width, box-decoration-break, etc.)
+  "css.validate": false,
+
+  // Disable CSS inline style warnings in JSX/HTML
+  // Dynamic CSS custom properties (e.g. --ratio, --height, --bg) cannot be externalized
+  "html.validate.styles": false
+}

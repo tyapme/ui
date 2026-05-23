@@ -37,6 +37,7 @@ export function CoverArt() {
         <input
           id="cover-art"
           type="file"
+          aria-label="Cover Art"
           accept="image/jpeg,image/png"
           className="sr-only"
         />

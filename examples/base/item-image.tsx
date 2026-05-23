@@ -38,7 +38,7 @@ export function ItemImage() {
           <Item
             key={song.title}
             variant="outline"
-            render={<a href="#" />}
+            render={<a href="#" title={song.title} />}
             role="listitem"
           >
             <ItemMedia variant="image">

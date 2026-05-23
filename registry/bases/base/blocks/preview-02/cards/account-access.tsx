@@ -70,7 +70,7 @@ export function AccountAccess() {
           />
           Update Security
         </Button>
-        <Item variant="muted" render={<a href="#" />}>
+        <Item variant="muted" render={<a href="#" title="Danger Zone" />}>
           <ItemMedia variant="icon">
             <IconPlaceholder
               lucide="AlertCircleIcon"

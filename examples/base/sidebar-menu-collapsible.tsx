@@ -173,7 +173,7 @@ export default function AppSidebar() {
                           {item.items.map((subItem, subIndex) => (
                             <SidebarMenuSubItem key={subIndex}>
                               <SidebarMenuSubButton
-                                render={<a href={subItem.url} />}
+                                render={<a href={subItem.url} title={subItem.title} />}
                               >
                                 <span>{subItem.title}</span>
                               </SidebarMenuSubButton>

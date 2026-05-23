@@ -34,7 +34,7 @@ export function NavProjects({
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton render={<a href={item.url} />}>
+            <SidebarMenuButton render={<a href={item.url} title={item.title} />}>
               {item.icon}
               <span>{item.name}</span>
             </SidebarMenuButton>

@@ -69,7 +69,7 @@ export function Payments() {
       </CardHeader>
       <CardContent>
         <ItemGroup>
-          <Item variant="muted" render={<a href="#" />}>
+          <Item variant="muted" render={<a href="#" title="Change transfer limit" />}>
             <ItemMedia variant="icon">
               <IconPlaceholder
                 lucide="GaugeIcon"
@@ -94,7 +94,7 @@ export function Payments() {
               className="size-4 shrink-0 text-muted-foreground"
             />
           </Item>
-          <Item variant="muted" render={<a href="#" />}>
+          <Item variant="muted" render={<a href="#" title="Scheduled transfers" />}>
             <ItemMedia variant="icon">
               <IconPlaceholder
                 lucide="CalendarIcon"
@@ -119,7 +119,7 @@ export function Payments() {
               className="size-4 shrink-0 text-muted-foreground"
             />
           </Item>
-          <Item variant="muted" render={<a href="#" />}>
+          <Item variant="muted" render={<a href="#" title="Direct Debits" />}>
             <ItemMedia variant="icon">
               <IconPlaceholder
                 lucide="RepeatIcon"
@@ -144,7 +144,7 @@ export function Payments() {
               className="size-4 shrink-0 text-muted-foreground"
             />
           </Item>
-          <Item variant="muted" render={<a href="#" />}>
+          <Item variant="muted" render={<a href="#" title="Recurring card payments" />}>
             <ItemMedia variant="icon">
               <IconPlaceholder
                 lucide="RefreshCwIcon"

@@ -66,7 +66,7 @@ export default function AppSidebar() {
               <SidebarMenu>
                 {projects.map((project) => (
                   <SidebarMenuItem key={project.name}>
-                    <SidebarMenuButton render={<a href={project.url} />}>
+                    <SidebarMenuButton render={<a href={project.url} title={project.name} />}>
                       <project.icon />
                       <span>{project.name}</span>
                     </SidebarMenuButton>

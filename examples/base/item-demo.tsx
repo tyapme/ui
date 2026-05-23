@@ -26,7 +26,7 @@ export function ItemDemo() {
           </Button>
         </ItemActions>
       </Item>
-      <Item variant="outline" size="sm" render={<a href="#" />}>
+      <Item variant="outline" size="sm" render={<a href="#" title="Your profile has been verified." />}>
         <ItemMedia>
           <BadgeCheckIcon className="size-5" />
         </ItemMedia>

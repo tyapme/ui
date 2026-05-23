@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "registry/new-york-v4/examples/badge-outline.tsx",
-      "content": "import { Badge } from \"@/registry/new-york-v4/ui/badge\"\n\nexport default function BadgeOutline() {\n  return <Badge variant=\"outline\">Outline</Badge>\n}\n",
+      "content": "import { Badge } from \"@/registry/new-york-v4/ui/badge\"\n\nexport default function BadgeOutline() {\n  return <Badge variant=\"outline\">アウトライン</Badge>\n}\n",
       "type": "registry:example"
     }
   ],

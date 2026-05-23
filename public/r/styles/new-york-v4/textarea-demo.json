@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "registry/new-york-v4/examples/textarea-demo.tsx",
-      "content": "import { Textarea } from \"@/registry/new-york-v4/ui/textarea\"\n\nexport default function TextareaDemo() {\n  return <Textarea placeholder=\"Type your message here.\" />\n}\n",
+      "content": "import { Textarea } from \"@/registry/new-york-v4/ui/textarea\"\n\nexport default function TextareaDemo() {\n  return <Textarea placeholder=\"メッセージを入力してください。\" />\n}\n",
       "type": "registry:example"
     }
   ],

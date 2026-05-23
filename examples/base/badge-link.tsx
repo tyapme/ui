@@ -4,7 +4,7 @@ import { Badge } from "@/styles/base-nova/ui/badge"
 
 export function BadgeAsLink() {
   return (
-    <Badge render={<a href="#link" />}>
+    <Badge render={<a href="#link" title="Open Link" />}>
       Open Link <ArrowUpRightIcon data-icon="inline-end" />
     </Badge>
   )

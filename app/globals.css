@@ -310,6 +310,7 @@
     background: transparent;
     padding: 0;
     counter-reset: line;
+    -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
   }
 

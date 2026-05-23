@@ -23,7 +23,7 @@ export function BreadcrumbDemo() {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink render={<a href="#" />}>Home</BreadcrumbLink>
+          <BreadcrumbLink render={<a href="#" title="Home" />}>Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
@@ -45,7 +45,7 @@ export function BreadcrumbDemo() {
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink render={<a href="#" />}>Components</BreadcrumbLink>
+          <BreadcrumbLink render={<a href="#" title="Components" />}>Components</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>

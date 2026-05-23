@@ -24,7 +24,7 @@ export function ItemDemo() {
           <Button size="sm">有効にする</Button>
         </ItemActions>
       </Item>
-      <Item variant="outline" size="sm" render={<a href="#" />}>
+      <Item variant="outline" size="sm" render={<a href="#" title="プロフィールが認証されました。" />}>
           <ItemMedia>
             <BadgeCheckIcon className="size-5" />
           </ItemMedia>

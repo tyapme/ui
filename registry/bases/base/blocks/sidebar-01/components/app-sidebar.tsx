@@ -166,7 +166,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton
                       isActive={item.isActive}
-                      render={<a href={item.url} />}
+                      render={<a href={item.url} title={item.title} />}
                     >
                       {item.title}
                     </SidebarMenuButton>

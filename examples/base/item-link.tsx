@@ -11,7 +11,7 @@ import {
 export function ItemLink() {
   return (
     <div className="flex w-full max-w-md flex-col gap-4">
-      <Item render={<a href="#" />}>
+      <Item render={<a href="#" title="Visit our documentation" />}>
         <ItemContent>
           <ItemTitle>Visit our documentation</ItemTitle>
           <ItemDescription>
@@ -24,7 +24,7 @@ export function ItemLink() {
       </Item>
       <Item
         variant="outline"
-        render={<a href="#" target="_blank" rel="noopener noreferrer" />}
+        render={<a href="#" target="_blank" rel="noopener noreferrer" title="External resource" />}
       >
         <ItemContent>
           <ItemTitle>External resource</ItemTitle>

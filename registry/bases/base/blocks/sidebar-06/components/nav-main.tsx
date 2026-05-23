@@ -60,7 +60,7 @@ export function NavMain({
                   {item.items.map((item) => (
                     <DropdownMenuItem
                       key={item.title}
-                      render={<a href={item.url} />}
+                      render={<a href={item.url} title={item.title} />}
                     >
                       {item.title}
                     </DropdownMenuItem>
