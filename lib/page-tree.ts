@@ -20,29 +20,14 @@ export function getAllPagesFromFolder(folder: PageTreeFolder): PageTreePage[] {
   return pages
 }
 
-// Get the pages from a folder, handling nested base folders (radix/base).
+// Get the pages from a folder.
 export function getPagesFromFolder(
-  folder: PageTreeFolder,
-  currentBase: string
+  folder: PageTreeFolder
 ): PageTreePage[] {
-  // For the components folder, find the base subfolder.
+  // For the components folder, return direct page children.
   if (folder.$id === "components" || folder.name === "Components") {
-    for (const child of folder.children) {
-      if (child.type === "folder") {
-        // Match by $id or by name.
-        const isBase = child.$id === "base" || child.name === "Base UI"
-
-        if (currentBase === "base" && isBase) {
-          return child.children.filter(
-            (c): c is PageTreePage => c.type === "page"
-          )
-        }
-      }
-    }
-
-    // Fallback: return all pages from nested folders.
-    return getAllPagesFromFolder(folder).filter(
-      (page) => !page.url.endsWith("/components")
+    return folder.children.filter(
+      (child): child is PageTreePage => child.type === "page"
     )
   }
 
@@ -52,10 +37,9 @@ export function getPagesFromFolder(
   )
 }
 
-// Get current base from pathname.
-export function getCurrentBase(pathname: string): string {
-  const baseMatch = pathname.match(/\/docs\/components\/(base)\//)
-  return baseMatch ? baseMatch[1] : "base" // Default to base.
+// Get current base from pathname (kept for compatibility).
+export function getCurrentBase(_pathname: string): string {
+  return "base"
 }
 
 export type GroupedPages = {

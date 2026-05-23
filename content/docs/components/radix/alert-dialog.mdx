@@ -1,0 +1,185 @@
+---
+title: Alert Dialog
+description: 重要な内容をユーザーに伝え、応答を求めるモーダルダイアログ。
+featured: true
+base: radix
+component: true
+links:
+  doc: https://www.radix-ui.com/primitives/docs/components/alert-dialog
+  api: https://www.radix-ui.com/primitives/docs/components/alert-dialog#api-reference
+---
+
+<ComponentPreview
+  name="alert-dialog-demo"
+  styleName="radix-nova"
+  previewClassName="h-56"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">コマンド</TabsTrigger>
+  <TabsTrigger value="manual">手動</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add alert-dialog
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install radix-ui
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="alert-dialog"
+  title="components/ui/alert-dialog.tsx"
+  styleName="radix-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+```
+
+```tsx showLineNumbers
+<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button variant="outline">Show Dialog</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This action cannot be undone. This will permanently delete your account
+        from our servers.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction>Continue</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+```
+
+## 構成
+
+`AlertDialog` の構成:
+
+```text
+AlertDialog
+├── AlertDialogTrigger
+└── AlertDialogContent
+    ├── AlertDialogHeader
+    │   ├── AlertDialogMedia
+    │   ├── AlertDialogTitle
+    │   └── AlertDialogDescription
+    └── AlertDialogFooter
+        ├── AlertDialogCancel
+        └── AlertDialogAction
+```
+
+## 使用例
+
+### Basic
+
+タイトル、説明、キャンセル・続行ボタンを備えた基本的なアラートダイアログ。
+
+<ComponentPreview
+  name="alert-dialog-basic"
+  styleName="radix-nova"
+  previewClassName="h-56"
+/>
+
+### Small
+
+`size="sm"` でアラートダイアログを小さくします。
+
+<ComponentPreview
+  name="alert-dialog-small"
+  styleName="radix-nova"
+  previewClassName="h-56"
+/>
+
+### Media
+
+`AlertDialogMedia` でアイコンや画像などのメディア要素をアラートダイアログに追加します。
+
+<ComponentPreview
+  name="alert-dialog-media"
+  styleName="radix-nova"
+  previewClassName="h-56"
+/>
+
+### Small with Media
+
+`size="sm"` で小さくし、`AlertDialogMedia` でアイコンや画像などのメディア要素を追加します。
+
+<ComponentPreview
+  name="alert-dialog-small-media"
+  styleName="radix-nova"
+  previewClassName="h-56"
+/>
+
+### Destructive
+
+`AlertDialogAction` でアラートダイアログに破壊的なアクションボタンを追加します。
+
+<ComponentPreview
+  name="alert-dialog-destructive"
+  styleName="radix-nova"
+  previewClassName="h-56"
+/>
+
+## RTL
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="alert-dialog-rtl"
+  direction="rtl"
+  previewClassName="h-56"
+/>
+
+## API リファレンス
+
+### size
+
+`AlertDialogContent` の `size` でダイアログのサイズを制御します。以下の値を受け付けます:
+
+| プロパティ | 型 | デフォルト |
+| ------ | ------------------- | ----------- |
+| `size` | `"default" \| "sm"` | `"default"` |
+
+他のコンポーネントとその props の詳細は [Radix UI ドキュメント](https://www.radix-ui.com/primitives/docs/components/alert-dialog#api-reference) を参照してください。
