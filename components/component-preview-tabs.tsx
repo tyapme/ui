@@ -222,7 +222,7 @@ function PreviewWrapper({
         data-align={align}
         data-chromeless={chromeLessOnMobile}
         className={cn(
-          "preview relative flex h-72 w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start data-[chromeless=true]:h-auto data-[chromeless=true]:p-0",
+          "preview relative flex min-h-72 h-auto w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start data-[chromeless=true]:h-auto data-[chromeless=true]:p-0",
           previewClassName
         )}
       >
