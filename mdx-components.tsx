@@ -12,6 +12,7 @@ import { CodeTabs } from "@/components/code-tabs"
 import { ComponentPreview } from "@/components/component-preview"
 import { ComponentSource } from "@/components/component-source"
 import { ComponentsList } from "@/components/components-list"
+import { DirectoryList } from "@/components/directory-list"
 import { CopyButton } from "@/components/copy-button"
 import { DesignColorSwatches } from "@/components/design/color-swatches"
 import { DesignElevationScale } from "@/components/design/elevation-scale"
@@ -481,4 +482,5 @@ export const mdxComponents = {
   DesignRadiusScale,
   DesignElevationScale,
   DesignIconGallery,
+  DirectoryList,
 }
