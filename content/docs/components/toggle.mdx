@@ -1,6 +1,6 @@
 ---
 title: Toggle
-description: オン/オフを切り替えられる2ステートボタン。
+description: A two-state button that can be either on or off.
 base: base
 component: true
 links:
@@ -8,9 +8,9 @@ links:
   api: https://base-ui.com/react/components/toggle#api-reference
 ---
 
-<ComponentPreview styleName="base" name="toggle-demo" />
+<ComponentPreview styleName="base-nova" name="toggle-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -21,7 +21,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/toggle.json
+npx shadcn@latest add toggle
 ```
 
 </TabsContent>
@@ -30,21 +30,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/toggle.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="toggle"
   title="components/ui/toggle.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -52,7 +52,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx
 import { Toggle } from "@/components/ui/toggle"
@@ -62,32 +62,34 @@ import { Toggle } from "@/components/ui/toggle"
 <Toggle>Toggle</Toggle>
 ```
 
-## 使用例
+## Examples
 
 ### Outline
 
-`variant="outline"` でアウトラインスタイルにします。
+Use `variant="outline"` for an outline style.
 
-<ComponentPreview styleName="base" name="toggle-outline" />
+<ComponentPreview styleName="base-nova" name="toggle-outline" />
 
 ### With Text
 
-<ComponentPreview styleName="base" name="toggle-text" />
+<ComponentPreview styleName="base-nova" name="toggle-text" />
 
 ### Size
 
-`size` でトグルのサイズを変更できます。
+Use the `size` prop to change the size of the toggle.
 
-<ComponentPreview styleName="base" name="toggle-sizes" />
+<ComponentPreview styleName="base-nova" name="toggle-sizes" />
 
 ### Disabled
 
-<ComponentPreview styleName="base" name="toggle-disabled" />
+<ComponentPreview styleName="base-nova" name="toggle-disabled" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="toggle-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="toggle-rtl" direction="rtl" />
 
-詳細は [Base UI Toggle](https://base-ui.com/react/components/toggle#api-reference) ドキュメントを参照してください。
+## API Reference
+
+See the [Base UI Toggle](https://base-ui.com/react/components/toggle#api-reference) documentation.

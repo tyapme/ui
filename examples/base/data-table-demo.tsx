@@ -16,7 +16,7 @@ import {
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
 
 import { Button } from "@/styles/base/ui/button"
-import { Checkbox } from "@/styles/base/ui/checkbox"
+import { Checkbox } from "@/registry/ui/checkbox"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,

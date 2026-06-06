@@ -1,17 +1,17 @@
 ---
 title: Empty
-description: 空の状態を表示するための Empty コンポーネント。
+description: Use the Empty component to display an empty state.
 base: base
 component: true
 ---
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="empty-demo"
   previewClassName="h-96 p-0"
 />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -22,7 +22,7 @@ component: true
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/empty.json
+npx shadcn@latest add empty
 ```
 
 </TabsContent>
@@ -31,15 +31,15 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/empty.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="empty"
   title="components/ui/empty.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -47,7 +47,7 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/empty.json
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx
 import {
@@ -75,9 +75,9 @@ import {
 </Empty>
 ```
 
-## 構成
+## Composition
 
-以下の構成を使って `Empty` ステートを構築します:
+Use the following composition to build an `Empty` state:
 
 ```text
 Empty
@@ -88,67 +88,69 @@ Empty
 └── EmptyContent
 ```
 
-## 使用例
+## Examples
 
-### アウトライン
+### Outline
 
-`border` ユーティリティクラスでアウトライン付き空ステートを作成します。
+Use the `border` utility class to create an outline empty state.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="empty-outline"
   previewClassName="h-96 p-6 md:p-10"
 />
 
-### バックグラウンド
+### Background
 
-`bg-*` や `bg-gradient-*` ユーティリティで空ステートに背景を追加します。
+Use the `bg-*` and `bg-gradient-*` utilities to add a background to the empty state.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="empty-background"
   previewClassName="h-96 p-0"
 />
 
-### アバター
+### Avatar
 
-`EmptyMedia` コンポーネントで空ステートにアバターを表示します。
+Use the `EmptyMedia` component to display an avatar in the empty state.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="empty-avatar"
   previewClassName="h-96 p-0"
 />
 
-### アバターグループ
+### Avatar Group
 
-`EmptyMedia` コンポーネントで空ステートにアバターグループを表示します。
+Use the `EmptyMedia` component to display an avatar group in the empty state.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="empty-avatar-group"
   previewClassName="h-96 p-0"
 />
 
 ### InputGroup
 
-`EmptyContent` コンポーネントに `InputGroup` を追加できます。
+You can add an `InputGroup` component to the `EmptyContent` component.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="empty-input-group"
   previewClassName="h-96 p-0"
 />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="empty-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="empty-rtl" direction="rtl" />
+
+## API Reference
 
 ### Empty
 
-空ステートのメインコンポーネント。`EmptyHeader` と `EmptyContent` を包括します。
+The main component of the empty state. Wraps the `EmptyHeader` and `EmptyContent` components.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -163,7 +165,7 @@ Empty
 
 ### EmptyHeader
 
-`EmptyHeader` はエンプティメディア、タイトル、説明を包括します。
+The `EmptyHeader` component wraps the empty media, title, and description.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -179,7 +181,7 @@ Empty
 
 ### EmptyMedia
 
-`EmptyMedia` コンポーネントは空ステートのメディア（アイコンや画像など）を表示します。アバターなど他のコンポーネントを使用することもできます。
+Use the `EmptyMedia` component to display the media of the empty state such as an icon or an image. You can also use it to display other components such as an avatar.
 
 | Prop        | Type                  | Default   |
 | ----------- | --------------------- | --------- |
@@ -203,7 +205,7 @@ Empty
 
 ### EmptyTitle
 
-`EmptyTitle` コンポーネントは空ステートのタイトルを表示します。
+Use the `EmptyTitle` component to display the title of the empty state.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -215,7 +217,7 @@ Empty
 
 ### EmptyDescription
 
-`EmptyDescription` コンポーネントは空ステートの説明を表示します。
+Use the `EmptyDescription` component to display the description of the empty state.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -227,7 +229,7 @@ Empty
 
 ### EmptyContent
 
-`EmptyContent` コンポーネントは空ステートのコンテンツ（ボタン、入力欄、リンクなど）を表示します。
+Use the `EmptyContent` component to display the content of the empty state such as a button, input or a link.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |

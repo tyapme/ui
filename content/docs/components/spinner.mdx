@@ -1,13 +1,13 @@
 ---
 title: Spinner
-description: ローディング状態を表示するインジケーター。
+description: An indicator that can be used to show a loading state.
 base: base
 component: true
 ---
 
-<ComponentPreview styleName="base" name="spinner-demo" />
+<ComponentPreview styleName="base-nova" name="spinner-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -18,7 +18,7 @@ component: true
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/spinner.json
+npx shadcn@latest add spinner
 ```
 
 </TabsContent>
@@ -27,15 +27,15 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/spinner.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="spinner"
   title="components/ui/spinner.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -43,7 +43,7 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/spinner.json
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx
 import { Spinner } from "@/components/ui/spinner"
@@ -53,11 +53,11 @@ import { Spinner } from "@/components/ui/spinner"
 <Spinner />
 ```
 
-## カスタマイズ
+## Customization
 
-`Spinner` コンポーネントを編集することで、デフォルトのスピナーアイコンを別のアイコンに変更できます。
+You can replace the default spinner icon with any other icon by editing the `Spinner` component.
 
-<ComponentPreview styleName="base" name="spinner-custom" />
+<ComponentPreview styleName="base-nova" name="spinner-custom" />
 
 ```tsx showLineNumbers title="components/ui/spinner.tsx"
 import { LoaderIcon } from "lucide-react"
@@ -78,34 +78,36 @@ function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
 export { Spinner }
 ```
 
-## 使用例
+## Examples
 
 ### Size
 
-`size-*` ユーティリティクラスでスピナーのサイズを変更できます。
+Use the `size-*` utility class to change the size of the spinner.
 
-<ComponentPreview styleName="base" name="spinner-size" />
+<ComponentPreview styleName="base-nova" name="spinner-size" />
 
 ### Button
 
-ボタンにスピナーを追加してローディング状態を示します。開始位置には `data-icon="inline-start"` を付けてラベルの前に、終了位置には `data-icon="inline-end"` を付けてラベルの後に `<Spinner />` を配置します。
+Add a spinner to a button to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.
 
-<ComponentPreview styleName="base" name="spinner-button" />
+<ComponentPreview styleName="base-nova" name="spinner-button" />
 
 ### Badge
 
-バッジにスピナーを追加してローディング状態を示します。開始位置には `data-icon="inline-start"` を付けてラベルの前に、終了位置には `data-icon="inline-end"` を付けてラベルの後に `<Spinner />` を配置します。
+Add a spinner to a badge to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.
 
-<ComponentPreview styleName="base" name="spinner-badge" />
+<ComponentPreview styleName="base-nova" name="spinner-badge" />
 
 ### Input Group
 
-<ComponentPreview styleName="base" name="spinner-input-group" />
+<ComponentPreview styleName="base-nova" name="spinner-input-group" />
 
 ### Empty
 
-<ComponentPreview styleName="base" name="spinner-empty" />
+<ComponentPreview styleName="base-nova" name="spinner-empty" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="spinner-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview styleName="base-nova" name="spinner-rtl" direction="rtl" />

@@ -43,9 +43,9 @@ function DateSegment({
   return (
     <AriaDateSegment
       className={cn(
-        "inline rounded-sm px-0.5 tabular-nums caret-transparent outline-none",
+        "inline rounded-md px-0.5 tabular-nums caret-transparent outline-none",
         "data-[placeholder]:text-muted-foreground",
-        "data-[focused]:bg-accent data-[focused]:text-accent-foreground",
+        "data-[focused]:bg-foreground/15 data-[focused]:text-foreground",
         "data-[type=literal]:px-0 data-[type=literal]:text-muted-foreground",
         className
       )}
@@ -139,7 +139,7 @@ function DateFieldInput({
       className={cn("flex flex-col", className)}
     >
       <div ref={ref} className="t-input">
-        <AriaDateInput className="inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
+        <AriaDateInput className="inline-flex h-9 w-full items-center rounded-4xl border border-input bg-transparent px-4 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
           {(segment) => <DateSegment segment={segment} />}
         </AriaDateInput>
       </div>
@@ -201,7 +201,7 @@ function TimeFieldInput({
       className={cn("flex flex-col", className)}
     >
       <div ref={ref} className="t-input">
-        <AriaDateInput className="inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
+        <AriaDateInput className="inline-flex h-9 w-full items-center rounded-4xl border border-input bg-transparent px-4 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
           {(segment) => <DateSegment segment={segment} />}
         </AriaDateInput>
       </div>
@@ -294,10 +294,14 @@ function DatePicker({
         onChange={handleFieldChange}
       >
         <div ref={ref} className="t-input">
-          <AriaGroup className="inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
+          <AriaGroup className="inline-flex h-9 w-full items-center rounded-4xl border border-input bg-transparent px-4 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
             <AriaDateInput className="flex flex-1 items-center">
               {(segment) => <DateSegment segment={segment} />}
             </AriaDateInput>
+            <span
+              className="mx-2 h-4 w-px shrink-0 bg-border"
+              aria-hidden="true"
+            />
             <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger
                 render={
@@ -305,12 +309,12 @@ function DatePicker({
                     variant="ghost"
                     size="icon-xs"
                     disabled={disabled}
-                    className="-mr-1.5 shrink-0"
+                    className="-mr-2 shrink-0"
                     aria-label="カレンダーを開く"
                   />
                 }
               >
-                <CalendarIcon className="size-3.5 text-muted-foreground" />
+                <CalendarIcon className="size-4 text-muted-foreground" />
               </PopoverTrigger>
               <PopoverContent
                 className="w-auto p-0"
@@ -429,48 +433,54 @@ function DateRangePicker({
         onChange={handleAriaChange}
       >
         <div ref={ref} className="t-input">
-          <AriaGroup className="inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
+          <AriaGroup className="inline-flex h-9 w-full items-center rounded-4xl border border-input bg-transparent px-4 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
             <AriaDateInput slot="start" className="flex items-center">
               {(segment) => <DateSegment segment={segment} />}
             </AriaDateInput>
-            <span className="px-1.5 text-muted-foreground" aria-hidden="true">
+            <span className="px-1 text-muted-foreground" aria-hidden="true">
               –
             </span>
-            <AriaDateInput slot="end" className="flex items-center">
+            <AriaDateInput slot="end" className="flex flex-1 items-center">
               {(segment) => <DateSegment segment={segment} />}
             </AriaDateInput>
             {showCalendar && (
-              <Popover open={open} onOpenChange={setOpen}>
-                <PopoverTrigger
-                  render={
-                    <Button
-                      variant="ghost"
-                      size="icon-xs"
-                      disabled={disabled}
-                      className="-mr-1.5 ml-auto shrink-0"
-                      aria-label="カレンダーを開く"
-                    />
-                  }
-                >
-                  <CalendarIcon className="size-3.5 text-muted-foreground" />
-                </PopoverTrigger>
-                <PopoverContent
-                  className="w-auto p-0"
-                  align="start"
-                  sideOffset={8}
-                >
-                  <RangeCalendar
-                    value={ariaValue}
-                    onChange={handleRangeCalendarChange}
-                    visibleDuration={
-                      numberOfMonths > 1
-                        ? { months: numberOfMonths }
-                        : undefined
+              <>
+                <span
+                  className="mx-2 h-4 w-px shrink-0 bg-border"
+                  aria-hidden="true"
+                />
+                <Popover open={open} onOpenChange={setOpen}>
+                  <PopoverTrigger
+                    render={
+                      <Button
+                        variant="ghost"
+                        size="icon-xs"
+                        disabled={disabled}
+                        className="-mr-2 shrink-0"
+                        aria-label="カレンダーを開く"
+                      />
                     }
-                    {...calendarProps}
-                  />
-                </PopoverContent>
-              </Popover>
+                  >
+                    <CalendarIcon className="size-4 text-muted-foreground" />
+                  </PopoverTrigger>
+                  <PopoverContent
+                    className="w-auto p-0"
+                    align="start"
+                    sideOffset={8}
+                  >
+                    <RangeCalendar
+                      value={ariaValue}
+                      onChange={handleRangeCalendarChange}
+                      visibleDuration={
+                        numberOfMonths > 1
+                          ? { months: numberOfMonths }
+                          : undefined
+                      }
+                      {...calendarProps}
+                    />
+                  </PopoverContent>
+                </Popover>
+              </>
             )}
           </AriaGroup>
         </div>

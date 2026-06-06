@@ -1,6 +1,6 @@
 ---
 title: Tooltip
-description: 要素がキーボードフォーカスを受けるか、マウスがホバーされたときに関連情報を表示するポップアップ。
+description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
 base: base
 component: true
 links:
@@ -8,9 +8,9 @@ links:
   api: https://base-ui.com/react/components/tooltip#api-reference
 ---
 
-<ComponentPreview styleName="base" name="tooltip-demo" />
+<ComponentPreview styleName="base-nova" name="tooltip-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -22,13 +22,13 @@ links:
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下のコマンドを実行します:</Step>
+<Step>Run the following command:</Step>
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/tooltip.json
+npx shadcn@latest add tooltip
 ```
 
-<Step>`TooltipProvider` をアプリのルートに追加します。</Step>
+<Step>Add the `TooltipProvider` to the root of your app.</Step>
 
 ```tsx title="app/layout.tsx" showLineNumbers {1,7}
 import { TooltipProvider } from "@/components/ui/tooltip"
@@ -52,23 +52,23 @@ export default function RootLayout({ children }) {
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="tooltip"
   title="components/ui/tooltip.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
-<Step>`TooltipProvider` をアプリのルートに追加します。</Step>
+<Step>Add the `TooltipProvider` to the root of your app.</Step>
 
 ```tsx title="app/layout.tsx" showLineNumbers {1,7}
 import { TooltipProvider } from "@/components/ui/tooltip"
@@ -90,7 +90,7 @@ export default function RootLayout({ children }) {
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -109,70 +109,40 @@ import {
 </Tooltip>
 ```
 
-## 構成
+## Composition
 
-`Tooltip` の構成:
+Use the following composition to build a `Tooltip`:
 
 ```text
 Tooltip
 ├── TooltipTrigger
-└── TooltipContent (showArrow で矢印の表示/非表示を制御)
+└── TooltipContent
 ```
 
-## Props
-
-### TooltipContent
-
-| Prop        | Type      | Default | 説明                   |
-| ----------- | --------- | ------- | ---------------------- |
-| `showArrow` | `boolean` | `true`  | 矢印の表示/非表示      |
-| `side`      | `string`  | `"top"` | ツールチップの表示位置 |
-
-### TooltipArrow
-
-矢印を独立したコンポーネントとして使う場合（`showArrow={false}` と組み合わせ）:
-
-```tsx showLineNumbers
-import {
-  Tooltip,
-  TooltipArrow,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-```
-
-```tsx showLineNumbers
-<Tooltip>
-  <TooltipTrigger>Hover</TooltipTrigger>
-  <TooltipContent showArrow={false}>
-    <p>Custom arrow tooltip</p>
-    <TooltipArrow />
-  </TooltipContent>
-</Tooltip>
-```
-
-## 使用例
+## Examples
 
 ### Side
 
-`side` でツールチップの表示位置を変更します。
+Use the `side` prop to change the position of the tooltip.
 
-<ComponentPreview styleName="base" name="tooltip-sides" />
+<ComponentPreview styleName="base-nova" name="tooltip-sides" />
 
 ### With Keyboard Shortcut
 
-<ComponentPreview styleName="base" name="tooltip-keyboard" />
+<ComponentPreview styleName="base-nova" name="tooltip-keyboard" />
 
 ### Disabled Button
 
-無効化されたボタンを span で包括することで、その上にツールチップを表示できます。
+Show a tooltip on a disabled button by wrapping it with a span.
 
-<ComponentPreview styleName="base" name="tooltip-disabled" />
+<ComponentPreview styleName="base-nova" name="tooltip-disabled" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="tooltip-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="tooltip-rtl" direction="rtl" />
 
-詳細は [Base UI Tooltip](https://base-ui.com/react/components/tooltip#api-reference) ドキュメントを参照してください。
+## API Reference
+
+See the [Base UI Tooltip](https://base-ui.com/react/components/tooltip#api-reference) documentation.

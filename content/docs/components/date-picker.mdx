@@ -1,195 +1,103 @@
 ---
 title: Date Picker
-description: セグメント型の日付・時刻入力とカレンダーポップオーバーを組み合わせた日付選択コンポーネント。
+description: A date picker component with range and presets.
 base: base
 component: true
 ---
 
-<ComponentPreview styleName="base" name="date-picker-demo" />
+<ComponentPreview styleName="base-nova" name="date-picker-input" />
 
-## インストール
+## Installation
 
-<CodeTabs>
+The Date Picker is built using a composition of the `<Popover />` and the `<Calendar />` components.
 
-<TabsList>
-  <TabsTrigger value="cli">Command</TabsTrigger>
-  <TabsTrigger value="manual">Manual</TabsTrigger>
-</TabsList>
-<TabsContent value="cli">
+See installation instructions for the [Popover](/docs/components/popover#installation) and the [Calendar](/docs/components/calendar#installation) components.
 
-```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/date-picker.json
-```
+## Composition
 
-</TabsContent>
-
-<TabsContent value="manual">
-
-<Steps className="mb-0 pt-2">
-
-<Step>以下の依存パッケージをインストールします:</Step>
-
-```bash
-pnpm add react-aria-components @internationalized/date react-day-picker date-fns
-```
-
-<Step>以下のコンポーネントのインストールが必要です:</Step>
-
-- [Field](/docs/components/base/field)
-- [Popover](/docs/components/base/popover)
-- [Calendar](/docs/components/base/calendar)
-- [Button](/docs/components/base/button)
-
-<Step>以下のコードをプロジェクトにコピーします。</Step>
-
-<ComponentSource
-  name="date-picker"
-  title="components/ui/date-picker.tsx"
-  styleName="base"
-/>
-
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
-
-</Steps>
-
-</TabsContent>
-
-</CodeTabs>
-
-## 使い方
-
-```tsx
-import {
-  DatePicker,
-  DateRangePicker,
-  DateFieldInput,
-  TimeFieldInput,
-} from "@/components/ui/date-picker"
-```
-
-```tsx
-<DatePicker value={date} onValueChange={setDate} />
-```
-
-## 構成
+A date picker is built from `Popover` and `Calendar` (there is no `DatePicker` root component):
 
 ```text
-DatePicker
-├── DateFieldInput (セグメント型入力)
-│   └── DateSegment (年/月/日/時/分/秒)
-└── Calendar Popover (カレンダー)
+Popover
+├── PopoverTrigger
+└── PopoverContent
+    └── Calendar
 ```
 
-## 使用例
+## Examples
 
 ### Basic
 
-ラベル付きの基本的な日付選択。年・月・日をセグメントで個別に編集可能。
+A basic date picker component.
 
-<ComponentPreview styleName="base" name="date-picker-basic" />
-
-### Date Field Only
-
-`showCalendar={false}` でカレンダーポップオーバーを非表示にし、セグメント入力のみ表示。
-
-<ComponentPreview styleName="base" name="date-picker-input" />
-
-### Date & Time
-
-`granularity="minute"` で日時入力に拡張。時刻セグメントも自動追加される。
-
-<ComponentPreview styleName="base" name="date-picker-datetime" />
-
-### Date + Time (Separate Fields)
-
-日付と時刻を `DatePicker` + `TimeFieldInput` で分離表示。
-
-<ComponentPreview styleName="base" name="date-picker-time" />
+<ComponentPreview styleName="base-nova" name="date-picker-basic" />
 
 ### Range Picker
 
-日付範囲を選択するコンポーネント。開始日・終了日それぞれセグメント入力。
+A date picker component for selecting a range of dates.
 
-<ComponentPreview styleName="base" name="date-picker-range" />
+<ComponentPreview styleName="base-nova" name="date-picker-range" />
 
 ### Date of Birth
 
-ドロップダウンキャプション付きの生年月日選択。
+A date picker component for selecting a date of birth. This component includes a dropdown caption layout for date and month selection.
 
-<ComponentPreview styleName="base" name="date-picker-dob" />
+<ComponentPreview styleName="base-nova" name="date-picker-dob" />
 
-### Standalone Date Field
+### Input
 
-`DateFieldInput` を単体で使用。カレンダーなしのセグメント型日付入力。
+A date picker component with an input field for selecting a date.
 
-<ComponentPreview styleName="base" name="date-picker-field" />
+<ComponentPreview styleName="base-nova" name="date-picker-input" />
 
-### Natural Language
+### Time Picker
 
-`chrono-node` を使用した自然言語日付入力。
+A date picker component with a time input field for selecting a time.
 
-<ComponentPreview styleName="base" name="date-picker-natural-language" />
+<ComponentPreview styleName="base-nova" name="date-picker-time" />
+
+### Natural Language Picker
+
+This component uses the `chrono-node` library to parse natural language dates.
+
+<ComponentPreview styleName="base-nova" name="date-picker-natural-language" />
+
+## Internationalization
+
+The date picker reads the active locale from React Aria's `I18nProvider`. By default it falls back to the browser locale. Use `I18nProvider` to override it.
+
+### Disable i18n (force English)
+
+Wrap the picker in `<I18nProvider locale="en-US">` to always render in English regardless of the user's browser locale:
+
+```tsx
+import { I18nProvider } from "react-aria-components"
+
+<I18nProvider locale="en-US">
+  <DatePickerBasic />
+</I18nProvider>
+```
+
+### Specify a locale
+
+Pass any BCP 47 locale tag to `I18nProvider`. The calendar grid, weekday names, and formatted date string all update automatically:
+
+```tsx
+<I18nProvider locale="ja-JP">
+  <DatePickerBasic />
+</I18nProvider>
+```
+
+The formatted date string uses [date-fns](https://date-fns.org) with the matching locale. Supported locales: `en-US`, `ja-JP`, `de`, `fr`, `es`, `it`, `ko`, `zh-CN`, `zh-TW`, `pt-BR`, `ru`, `ar-SA`.
+
+<ComponentPreview styleName="base-nova" name="date-picker-i18n" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="date-picker-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API
-
-### DatePicker
-
-| Prop            | Type                                      | Default | Description                                           |
-| --------------- | ----------------------------------------- | ------- | ----------------------------------------------------- |
-| `value`         | `Date \| undefined`                       | -       | 選択された日付                                        |
-| `onValueChange` | `(date: Date \| undefined) => void`       | -       | 日付変更時のコールバック                              |
-| `showCalendar`  | `boolean`                                 | `true`  | カレンダーポップオーバーの表示/非表示                 |
-| `granularity`   | `"day" \| "hour" \| "minute" \| "second"` | `"day"` | 入力の粒度。`"hour"` 以上で時刻セグメントが追加される |
-| `disabled`      | `boolean`                                 | `false` | 無効状態                                              |
-| `calendarProps` | `CalendarProps`                           | -       | Calendar に渡す追加 props                             |
-| `className`     | `string`                                  | -       | className                                             |
-| `id`            | `string`                                  | -       | ID                                                    |
-
-### DateRangePicker
-
-| Prop             | Type                                      | Default | Description                           |
-| ---------------- | ----------------------------------------- | ------- | ------------------------------------- |
-| `value`          | `DateRange \| undefined`                  | -       | 選択された日付範囲                    |
-| `onValueChange`  | `(range: DateRange \| undefined) => void` | -       | 範囲変更時のコールバック              |
-| `showCalendar`   | `boolean`                                 | `true`  | カレンダーポップオーバーの表示/非表示 |
-| `disabled`       | `boolean`                                 | `false` | 無効状態                              |
-| `numberOfMonths` | `number`                                  | `2`     | 表示する月数                          |
-| `calendarProps`  | `CalendarProps`                           | -       | Calendar に渡す追加 props             |
-| `className`      | `string`                                  | -       | className                             |
-| `id`             | `string`                                  | -       | ID                                    |
-
-### DateFieldInput
-
-| Prop            | Type                                      | Default | Description              |
-| --------------- | ----------------------------------------- | ------- | ------------------------ |
-| `value`         | `Date \| undefined`                       | -       | 選択された日付           |
-| `onValueChange` | `(date: Date \| undefined) => void`       | -       | 日付変更時のコールバック |
-| `granularity`   | `"day" \| "hour" \| "minute" \| "second"` | `"day"` | 入力の粒度               |
-| `disabled`      | `boolean`                                 | `false` | 無効状態                 |
-| `className`     | `string`                                  | -       | className                |
-| `id`            | `string`                                  | -       | ID                       |
-
-### TimeFieldInput
-
-| Prop            | Type                                | Default    | Description              |
-| --------------- | ----------------------------------- | ---------- | ------------------------ |
-| `value`         | `Date \| undefined`                 | -          | 時刻を含む Date          |
-| `onValueChange` | `(date: Date \| undefined) => void` | -          | 時刻変更時のコールバック |
-| `granularity`   | `"hour" \| "minute" \| "second"`    | `"minute"` | 入力の粒度               |
-| `disabled`      | `boolean`                           | `false`    | 無効状態                 |
-| `className`     | `string`                            | -          | className                |
-| `id`            | `string`                            | -          | ID                       |
-
-## キーボード操作
-
-| キー        | 動作                       |
-| ----------- | -------------------------- |
-| `Tab`       | 次のセグメントに移動       |
-| `Shift+Tab` | 前のセグメントに移動       |
-| `↑` / `↓`   | セグメントの値を増減       |
-| `0-9`       | セグメントに数値を直接入力 |
-| `Backspace` | セグメントの値をクリア     |
+<ComponentPreview
+  styleName="base-nova"
+  name="date-picker-rtl"
+  direction="rtl"
+/>

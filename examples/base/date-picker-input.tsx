@@ -2,23 +2,20 @@
 
 import * as React from "react"
 
-import { DatePicker } from "@/styles/base/ui/date-picker"
 import { Field, FieldLabel } from "@/styles/base/ui/field"
+import { DatePicker } from "@/styles/base/ui/date-picker"
 
-export function DatePickerInput() {
-  const [date, setDate] = React.useState<Date | undefined>(
-    new Date("2025-06-01")
-  )
+export default function DatePickerInput() {
+  const [date, setDate] = React.useState<Date>()
 
   return (
-    <Field className="mx-auto w-48">
-      <FieldLabel htmlFor="date-required">Subscription Date</FieldLabel>
+    <Field className="w-64">
+      <FieldLabel htmlFor="date-input">Date</FieldLabel>
       <DatePicker
-        id="date-required"
+        id="date-input"
         value={date}
         onValueChange={setDate}
-        showCalendar={false}
-        aria-label="Subscription Date"
+        aria-label="Select date"
       />
     </Field>
   )

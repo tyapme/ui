@@ -7,7 +7,7 @@ import { createPortal } from "react-dom"
 
 import { PAGES_NEW } from "@/lib/docs"
 import { showMcpDocs } from "@/lib/flags"
-import { getCurrentBase, getPagesFromFolder } from "@/lib/page-tree"
+import { getGroupedPagesFromFolder, getPagesFromFolder } from "@/lib/page-tree"
 import { type source } from "@/lib/source"
 import { cn } from "@/lib/utils"
 import { Button } from "@/styles/base/ui/button"
@@ -44,8 +44,6 @@ export function MobileNav({
   const [open, setOpen] = React.useState(false)
   const [mounted, setMounted] = React.useState(false)
   const pathname = usePathname()
-  const currentBase = getCurrentBase(pathname)
-
   React.useEffect(() => {
     setMounted(true)
   }, [])
@@ -151,29 +149,31 @@ export function MobileNav({
               </div>
               <div className="flex flex-col gap-8">
                 {tree?.children?.map((group, index) => {
-                  if (group.type === "folder") {
-                    const pages = getPagesFromFolder(group)
-                    return (
-                      <div key={index} className="flex flex-col gap-4">
+                  if (group.type !== "folder") return null
+
+                  const isComponents =
+                    group.$id === "components" || group.name === "Components"
+
+                  if (isComponents) {
+                    const categoryGroups = getGroupedPagesFromFolder(group)
+                    return categoryGroups.map((cat) => (
+                      <div key={cat.category.label} className="flex flex-col gap-4">
                         <div className="text-sm font-medium text-muted-foreground">
-                          {group.name}
+                          {cat.category.label}
                         </div>
                         <div className="flex flex-col gap-3">
-                          {pages.map((item) => {
-                            if (
-                              !showMcpDocs &&
-                              item.url.includes("/mcp")
-                            ) {
+                          {cat.pages.map((item) => {
+                            if (!showMcpDocs && item.url.includes("/mcp")) {
                               return null
                             }
                             return (
                               <MobileLink
-                                key={`${item.url}-${index}`}
+                                key={item.url}
                                 href={item.url}
                                 onOpenChange={setOpen}
                                 className="flex items-center gap-2"
                               >
-                                {item.name}{" "}
+                                {item.name}
                                 {PAGES_NEW.includes(item.url) && (
                                   <span className="flex size-2 rounded-full bg-blue-500" />
                                 )}
@@ -182,8 +182,37 @@ export function MobileNav({
                           })}
                         </div>
                       </div>
-                    )
+                    ))
                   }
+
+                  const pages = getPagesFromFolder(group)
+                  return (
+                    <div key={index} className="flex flex-col gap-4">
+                      <div className="text-sm font-medium text-muted-foreground">
+                        {group.name}
+                      </div>
+                      <div className="flex flex-col gap-3">
+                        {pages.map((item) => {
+                          if (!showMcpDocs && item.url.includes("/mcp")) {
+                            return null
+                          }
+                          return (
+                            <MobileLink
+                              key={`${item.url}-${index}`}
+                              href={item.url}
+                              onOpenChange={setOpen}
+                              className="flex items-center gap-2"
+                            >
+                              {item.name}
+                              {PAGES_NEW.includes(item.url) && (
+                                <span className="flex size-2 rounded-full bg-blue-500" />
+                              )}
+                            </MobileLink>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )
                 })}
               </div>
             </div>

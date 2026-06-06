@@ -34,27 +34,27 @@ const nextConfig = {
   },
   redirects() {
     return [
+      // /docs/components index → accordion.
+      {
+        source: "/docs/components",
+        destination: "/docs/components/accordion",
+        permanent: false,
+      },
       // Form redirects to /docs/forms.
       {
         source: "/docs/components/form",
         destination: "/docs/forms",
         permanent: true,
       },
+      // Old base/ and radix/ paths → flat component URLs.
       {
-        source: "/docs/components/base/form",
-        destination: "/docs/forms",
+        source: "/docs/components/base/:name*",
+        destination: "/docs/components/:name*",
         permanent: true,
       },
-      // Old base/ prefix → flat URL (permanent redirect for SEO).
       {
-        source: "/docs/components/base/:name",
-        destination: "/docs/components/:name",
-        permanent: true,
-      },
-      // Old radix/ prefix → flat URL.
-      {
-        source: "/docs/components/radix/:name",
-        destination: "/docs/components/:name",
+        source: "/docs/components/radix/:name*",
+        destination: "/docs/components/:name*",
         permanent: true,
       },
       // Other redirects.

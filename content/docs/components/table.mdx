@@ -1,17 +1,17 @@
 ---
 title: Table
-description: レスポンシブ対応のテーブルコンポーネント。
+description: A responsive table component.
 base: base
 component: true
 ---
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="table-demo"
   previewClassName="h-[30rem]"
 />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -22,7 +22,7 @@ component: true
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/table.json
+npx shadcn@latest add table
 ```
 
 </TabsContent>
@@ -31,15 +31,15 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/table.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="table"
   title="components/ui/table.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -47,7 +47,7 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/table.json
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -83,9 +83,9 @@ import {
 </Table>
 ```
 
-## 構成
+## Composition
 
-`Table` の構成:
+Use the following composition to build a `Table`:
 
 ```text
 Table
@@ -110,30 +110,34 @@ Table
 └── TableFooter
 ```
 
-## 使用例
+## Examples
 
 ### Footer
 
-`<TableFooter />` でテーブルにフッターを追加します。
+Use the `<TableFooter />` component to add a footer to the table.
 
-<ComponentPreview styleName="base" name="table-footer" />
+<ComponentPreview styleName="base-nova" name="table-footer" />
 
 ### Actions
 
-`<DropdownMenu />` を用いて各行にアクションを表示するテーブル。
+A table showing actions for each row using a `<DropdownMenu />` component.
 
-<ComponentPreview styleName="base" name="table-actions" />
+<ComponentPreview styleName="base-nova" name="table-actions" />
 
 ## Data Table
 
-`<Table />` を使ってより複雑なデータテーブルを構築できます。[@tanstack/react-table](https://tanstack.com/table/v8) と組み合わせることで、ソート・フィルター・ページネーション付きのテーブルを作成できます。
+You can use the `<Table />` component to build more complex data tables. Combine it with [@tanstack/react-table](https://tanstack.com/table/v8) to create tables with sorting, filtering and pagination.
 
-詳細は [Data Table](/docs/components/data-table) ドキュメントを参照してください。
+See the [Data Table](/docs/components/data-table) documentation for more information.
+
+You can also see an example of a data table in the [Tasks](/examples/tasks) demo.
 
 ## RTL
 
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="table-rtl"
   direction="rtl"
   previewClassName="h-auto"

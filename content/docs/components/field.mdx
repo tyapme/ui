@@ -1,17 +1,17 @@
 ---
 title: Field
-description: ラベル、コントロール、ヘルプテキストを組み合わせてアクセシブルなフォームフィールドを構成します。
+description: Combine labels, controls, and help text to compose accessible form fields and grouped inputs.
 base: base
 component: true
 ---
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="field-demo"
   previewClassName="h-[800px] p-6 md:h-[850px]"
 />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -22,7 +22,7 @@ component: true
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/field.json
+npx shadcn@latest add field
 ```
 
 </TabsContent>
@@ -31,15 +31,15 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/field.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="field"
   title="components/ui/field.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -47,7 +47,7 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/field.json
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -87,11 +87,11 @@ import {
 </FieldSet>
 ```
 
-## 構成
+## Composition
 
 ### Field
 
-ラベル、コントロール、ヘルプテキスト、バリデーションを持つ単一フィールド。
+A single control with label, helper text, and validation.
 
 ```text
 Field
@@ -103,7 +103,7 @@ Field
 
 ### FieldGroup
 
-関連するフィールドをまとめたグループ。セクション間に分隔線が必要な場合は `FieldSeparator` を使用します。
+Related fields in one group. Use `FieldSeparator` between sections when needed.
 
 ```text
 FieldGroup
@@ -120,7 +120,7 @@ FieldGroup
 
 ### FieldSet
 
-レジェンドと説明付きの意味論的なグルーピング。連逢して `FieldGroup` を包括することが多い。
+Semantic grouping with a legend and description, usually containing a `FieldGroup`.
 
 ```text
 FieldSet
@@ -137,127 +137,129 @@ FieldSet
         └── Input / Textarea / Switch / Select
 ```
 
-## 骨格構造
+## Anatomy
 
-`Field` ファミリーはアクセシブルなフォームを構築するために設計されています。典型的なフィールドの構造:
+The `Field` family is designed for composing accessible forms. A typical field is structured as follows:
 
 ```tsx showLineNumbers
 <Field>
-  <FieldLabel htmlFor="input-id">ラベル</FieldLabel>
-  {/* Input、Select、Switch など */}
-  <FieldDescription>オプションのヒント。</FieldDescription>
-  <FieldError>バリデーションメッセージ。</FieldError>
+  <FieldLabel htmlFor="input-id">Label</FieldLabel>
+  {/* Input, Select, Switch, etc. */}
+  <FieldDescription>Optional helper text.</FieldDescription>
+  <FieldError>Validation message.</FieldError>
 </Field>
 ```
 
-- `Field` は単一フィールドのコアラッパーです。
-- `FieldContent` はラベルと説明をまとめる flex カラムです。説明がなければ不要です。
-- 関連フィールドは `FieldGroup` でまとめ、意味論的なグルーピングには `FieldLegend` 付きの `FieldSet` を使用します。
+- `Field` is the core wrapper for a single field.
+- `FieldContent` is a flex column that groups label and description. Not required if you have no description.
+- Wrap related fields with `FieldGroup`, and use `FieldSet` with `FieldLegend` for semantic grouping.
 
-## フォーム
+## Form
 
-`Field` コンポーネントと [React Hook Form](/docs/forms/react-hook-form)、[Tanstack Form](/docs/forms/tanstack-form)、[Formisch](/docs/forms/formisch) を用いたフォーム構築については [Form](/docs/forms) ドキュメントを参照してください。
+See the [Form](/docs/forms) documentation for building forms with the `Field` component and [React Hook Form](/docs/forms/react-hook-form), [Tanstack Form](/docs/forms/tanstack-form), or [Formisch](/docs/forms/formisch).
 
-## 使用例
+## Examples
 
 ### Input
 
-<ComponentPreview styleName="base" name="field-input" />
+<ComponentPreview styleName="base-nova" name="field-input" />
 
 ### Textarea
 
-<ComponentPreview styleName="base" name="field-textarea" />
+<ComponentPreview styleName="base-nova" name="field-textarea" />
 
 ### Select
 
-<ComponentPreview styleName="base" name="field-select" />
+<ComponentPreview styleName="base-nova" name="field-select" />
 
 ### Slider
 
-<ComponentPreview styleName="base" name="field-slider" />
+<ComponentPreview styleName="base-nova" name="field-slider" />
 
 ### Fieldset
 
-<ComponentPreview styleName="base" name="field-fieldset" />
+<ComponentPreview styleName="base-nova" name="field-fieldset" />
 
 ### Checkbox
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="field-checkbox"
   previewClassName="h-[32rem]"
 />
 
 ### Radio
 
-<ComponentPreview styleName="base" name="field-radio" />
+<ComponentPreview styleName="base-nova" name="field-radio" />
 
 ### Switch
 
-<ComponentPreview styleName="base" name="field-switch" />
+<ComponentPreview styleName="base-nova" name="field-switch" />
 
 ### Choice Card
 
-`Field` コンポーネントを `FieldLabel` 内に包括することで、選択可能なフィールドグループを作成できます。`RadioItem`、`Checkbox`、`Switch` コンポーネントで動作します。
+Wrap `Field` components inside `FieldLabel` to create selectable field groups. This works with `RadioItem`, `Checkbox` and `Switch` components.
 
-<ComponentPreview styleName="base" name="field-choice-card" />
+<ComponentPreview styleName="base-nova" name="field-choice-card" />
 
 ### Field Group
 
-`Field` コンポーネントを `FieldGroup` で縦に並べます。`FieldSeparator` で分割線を追加できます。
+Stack `Field` components with `FieldGroup`. Add `FieldSeparator` to divide them.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="field-group"
   previewClassName="h-96"
 />
 
 ## RTL
 
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="field-rtl"
   direction="rtl"
   previewClassName="h-auto p-6"
 />
 
-## レスポンシブレイアウト
+## Responsive Layout
 
-- **縦フィールド:** デフォルトの縦方向ファボリットでモバイルファーストレイアウトに最適。
-- **横フィールド:** `Field` に `orientation="horizontal"` を設定するとラベルとコントロールを横に並べます。説明を整列させるには `FieldContent` を使用します。
-- **レスポンシブフィールド:** `orientation="responsive"` を設定するとコンテナクエリ対応の自動カラムレイアウトになります。`FieldGroup` に `@container/field-group` クラスを付けるとブレークポイントで方向が切り替わります。
+- **Vertical fields:** Default orientation stacks label, control, and helper text—ideal for mobile-first layouts.
+- **Horizontal fields:** Set `orientation="horizontal"` on `Field` to align the label and control side-by-side. Pair with `FieldContent` to keep descriptions aligned.
+- **Responsive fields:** Set `orientation="responsive"` for automatic column layouts inside container-aware parents. Apply `@container/field-group` classes on `FieldGroup` to switch orientations at specific breakpoints.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="field-responsive"
   previewClassName="h-[650px] p-6 md:h-[500px] md:p-10"
 />
 
-## バリデーションとエラー
+## Validation and Errors
 
-- `Field` に `data-invalid` を追加するとブロック全体がエラー状態になります。
-- 支漲技術向けに入力自体に `aria-invalid` を付けます。
-- `FieldError` はコントロールの直後または `FieldContent` 内に配置してフィールドと位置を合わせます。
+- Add `data-invalid` to `Field` to switch the entire block into an error state.
+- Add `aria-invalid` on the input itself for assistive technologies.
+- Render `FieldError` immediately after the control or inside `FieldContent` to keep error messages aligned with the field.
 
 ```tsx showLineNumbers /data-invalid/ /aria-invalid/
 <Field data-invalid>
-  <FieldLabel htmlFor="email">メールアドレス</FieldLabel>
+  <FieldLabel htmlFor="email">Email</FieldLabel>
   <Input id="email" type="email" aria-invalid />
-  <FieldError>有効なメールアドレスを入力してください。</FieldError>
+  <FieldError>Enter a valid email address.</FieldError>
 </Field>
 ```
 
-## アクセシビリティ
+## Accessibility
 
-- `FieldSet` と `FieldLegend` はキーボード・支漲技術利用者向けに関連コントロールをグループ化します。
-- `Field` は `role="group"` を出力するので、ネストしたコントロールは `FieldLabel` や `FieldLegend` のラベリングを継承します。
-- `FieldSeparator` はスクリーンリーダーが明確なセクション境界を認識できるよう、最小限にとどめて使用してください。
+- `FieldSet` and `FieldLegend` keep related controls grouped for keyboard and assistive tech users.
+- `Field` outputs `role="group"` so nested controls inherit labeling from `FieldLabel` and `FieldLegend` when combined.
+- Apply `FieldSeparator` sparingly to ensure screen readers encounter clear section boundaries.
 
-## API リファレンス
+## API Reference
 
 ### FieldSet
 
-間距プリセット付きの意味論的な `fieldset` をレンダリングするコンテナー。
+Container that renders a semantic `fieldset` with spacing presets.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -272,7 +274,7 @@ FieldSet
 
 ### FieldLegend
 
-`FieldSet` のレジェンド要素。`label` バリアントに切り替えるとラベルサイズと配置に合わせられます。
+Legend element for a `FieldSet`. Switch to the `label` variant to align with label sizing.
 
 | Prop        | Type                  | Default    |
 | ----------- | --------------------- | ---------- |
@@ -283,11 +285,11 @@ FieldSet
 <FieldLegend variant="label">Notification Preferences</FieldLegend>
 ```
 
-`FieldLegend` には `legend` と `label` の 2 つのバリアントがあります。`label` バリアントはラベルのサイズと配置を適用します。ネストした `FieldSet` がある場合に便利です。
+The `FieldLegend` has two variants: `legend` and `label`. The `label` variant applies label sizing and alignment. Handy if you have nested `FieldSet`.
 
 ### FieldGroup
 
-`Field` コンポーネントを縦に並べ、レスポンシブな方向切り替えのためのコンテナクエリを有効にするレイアウトラッパー。
+Layout wrapper that stacks `Field` components and enables container queries for responsive orientations.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -302,7 +304,7 @@ FieldSet
 
 ### Field
 
-単一フィールドのコアラッパー。方向制御、無効状態のスタイリング、間距を提供します。
+The core wrapper for a single field. Provides orientation control, invalid state styling, and spacing.
 
 | Prop           | Type                                         | Default      |
 | -------------- | -------------------------------------------- | ------------ |
@@ -319,7 +321,7 @@ FieldSet
 
 ### FieldContent
 
-ラベルがコントロールの横に配置される際に、コントロールと説明をまとめる flex カラム。説明がなければ不要です。
+Flex column that groups control and descriptions when the label sits beside the control. Not required if you have no description.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -337,7 +339,7 @@ FieldSet
 
 ### FieldLabel
 
-直接の入力とネストした `Field` 子要素の両方に対応したラベル。
+Label styled for both direct inputs and nested `Field` children.
 
 | Prop        | Type      | Default |
 | ----------- | --------- | ------- |
@@ -350,7 +352,7 @@ FieldSet
 
 ### FieldTitle
 
-`FieldContent` 内でラベルスタイルのタイトルを表示します。
+Renders a title with label styling inside `FieldContent`.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -365,7 +367,7 @@ FieldSet
 
 ### FieldDescription
 
-横方向レイアウト内で長い行を自動調整するヘルプテキストスロット。
+Helper text slot that automatically balances long lines in horizontal layouts.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -377,7 +379,7 @@ FieldSet
 
 ### FieldSeparator
 
-`FieldGroup` 内のセクションを分隔する視覚的な线。オプションのインラインコンテンツを受け付けます。
+Visual divider to separate sections inside a `FieldGroup`. Accepts optional inline content.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -389,7 +391,7 @@ FieldSet
 
 ### FieldError
 
-子要素または `errors` 配列（例: `react-hook-form` から）を受け付けるアクセシブルなエラーコンテナー。
+Accessible error container that accepts children or an `errors` array (e.g., from `react-hook-form`).
 
 | Prop        | Type                                       | Default |
 | ----------- | ------------------------------------------ | ------- |
@@ -400,6 +402,6 @@ FieldSet
 <FieldError errors={errors.username} />
 ```
 
-`errors` 配列に複数のメッセージがある場合、コンポーネントは自動的にリストをレンダリングします。
+When the `errors` array contains multiple messages, the component renders a list automatically.
 
-`FieldError` は [Standard Schema](https://standardschema.dev/) を実装する任意のバリデーター（Zod、Valibot、ArkType など）が生成する issues も受け付けます。スキーマ結果の `issues` 配列を直接渡すことで、ライブラリを越えた統一エラーリストをレンダリングできます。
+`FieldError` also accepts issues produced by any validator that implements [Standard Schema](https://standardschema.dev/), including Zod, Valibot, and ArkType. Pass the `issues` array from the schema result directly to render a unified error list across libraries.

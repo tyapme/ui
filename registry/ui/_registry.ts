@@ -2,6 +2,23 @@ import { type Registry } from "shadcn/schema"
 
 export const ui: Registry["items"] = [
   {
+    name: "code-block",
+    type: "registry:ui",
+    dependencies: ["shiki", "lucide-react"],
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "ui/code-block.tsx",
+        type: "registry:ui",
+      },
+    ],
+    meta: {
+      links: {
+        docs: "https://ui.tyap.me/docs/components/code-block",
+      },
+    },
+  },
+  {
     name: "accordion",
     type: "registry:ui",
     files: [
@@ -43,6 +60,10 @@ export const ui: Registry["items"] = [
     files: [
       {
         path: "ui/alert-dialog.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/_dialog-shared.tsx",
         type: "registry:ui",
       },
     ],
@@ -156,6 +177,23 @@ export const ui: Registry["items"] = [
         docs: "https://ui.shadcn.com/docs/components/base/button-group",
         examples:
           "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/button-group-example.tsx",
+      },
+    },
+  },
+  {
+    name: "copy-button",
+    type: "registry:ui",
+    dependencies: ["class-variance-authority"],
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "ui/copy-button.tsx",
+        type: "registry:ui",
+      },
+    ],
+    meta: {
+      links: {
+        docs: "https://ui.tyap.me/docs/components/copy-button",
       },
     },
   },
@@ -391,6 +429,10 @@ export const ui: Registry["items"] = [
         path: "ui/dialog.tsx",
         type: "registry:ui",
       },
+      {
+        path: "ui/_dialog-shared.tsx",
+        type: "registry:ui",
+      },
     ],
     meta: {
       links: {
@@ -621,6 +663,17 @@ export const ui: Registry["items"] = [
         api: "https://base-ui.com/react/components/navigation-menu.md",
       },
     },
+  },
+  {
+    name: "md-parser",
+    type: "registry:ui",
+    dependencies: ["react-markdown", "remark-gfm"],
+    files: [
+      {
+        path: "ui/md-parser.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   {
     name: "pagination",

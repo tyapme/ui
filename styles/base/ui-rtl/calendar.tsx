@@ -3,6 +3,7 @@
 import * as React from "react"
 import {
   isToday as ariaIsToday,
+  getDayOfWeek,
   getLocalTimeZone,
   type CalendarDate,
 } from "@internationalized/date"
@@ -234,6 +235,8 @@ type CalendarCellProps = {
 }
 
 function CalendarCell({ date, children, className }: CalendarCellProps) {
+  const { locale } = useLocale()
+
   return (
     <AriaCalendarCell
       date={date}
@@ -246,13 +249,17 @@ function CalendarCell({ date, children, className }: CalendarCellProps) {
           (isRangeMiddle || isRangeStart || isRangeEnd) &&
           !rp.isOutsideVisibleRange
 
+        // Round left at selection start OR first cell in a row (row boundary)
+        // Round right at selection end OR last cell in a row (row boundary)
+        const colIndex = getDayOfWeek(date, locale)
+        const roundLeft = showBand && (isRangeStart || colIndex === 0)
+        const roundRight = showBand && (isRangeEnd || colIndex === 6)
+
         return cn(
           "relative flex cursor-default items-center justify-center p-0 outline-none",
           showBand && "bg-primary/15",
-          isRangeStart &&
-            !rp.isOutsideVisibleRange &&
-            "rounded-s-(--cell-radius)",
-          isRangeEnd && !rp.isOutsideVisibleRange && "rounded-e-(--cell-radius)"
+          roundLeft && "rounded-s-(--cell-radius)",
+          roundRight && "rounded-e-(--cell-radius)"
         )
       }}
     >
@@ -436,11 +443,12 @@ function CalendarYearPickerGrid({ className }: { className?: string }) {
   const calState = React.useContext(CalendarStateContext)
   const rangeState = React.useContext(RangeCalendarStateContext)
   const state = calState ?? rangeState
+  const [pageOffset, setPageOffset] = React.useState(0)
 
   if (!state) return null
 
   const currentYear = state.focusedDate.year
-  const startYear = currentYear - 3
+  const startYear = currentYear - 3 + pageOffset * 12
   const years = Array.from({ length: 12 }, (_, i) => startYear + i)
 
   function selectYear(year: number) {
@@ -449,33 +457,61 @@ function CalendarYearPickerGrid({ className }: { className?: string }) {
     setIsYearPickerOpen(false)
   }
 
+  const navBtnClass = cn(
+    buttonVariants({ variant: "ghost", size: "icon" }),
+    "size-7 shrink-0 p-0 opacity-50 transition-opacity duration-150 hover:opacity-100"
+  )
+
   return (
     <div
       className={cn(
         "animate-in duration-150 fade-in-0",
-        "grid grid-cols-3 gap-1 p-1",
+        "flex flex-col gap-1",
         className
       )}
     >
-      {years.map((year) => (
+      <div className="flex items-center justify-between px-1 pb-0.5">
         <button
-          key={year}
           type="button"
-          onClick={() => selectYear(year)}
-          data-selected={year === currentYear || undefined}
-          className={cn(
-            "inline-flex h-8 items-center justify-center rounded-(--cell-radius) px-2.5 text-sm font-medium select-none",
-            "transition-colors duration-100 active:scale-95",
-            "focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
-            year === currentYear
-              ? "bg-primary text-primary-foreground"
-              : "text-foreground hover:bg-accent hover:text-accent-foreground"
-          )}
-          aria-pressed={year === currentYear}
+          onClick={() => setPageOffset((o) => o - 1)}
+          className={navBtnClass}
+          aria-label="前の12年"
         >
-          {year}
+          <ChevronLeftIcon className="size-4 rtl:rotate-180" />
         </button>
-      ))}
+        <span className="text-xs text-muted-foreground select-none">
+          {startYear} – {startYear + 11}
+        </span>
+        <button
+          type="button"
+          onClick={() => setPageOffset((o) => o + 1)}
+          className={navBtnClass}
+          aria-label="次の12年"
+        >
+          <ChevronRightIcon className="size-4 rtl:rotate-180" />
+        </button>
+      </div>
+      <div className="grid grid-cols-3 gap-1 p-1">
+        {years.map((year) => (
+          <button
+            key={year}
+            type="button"
+            onClick={() => selectYear(year)}
+            data-selected={year === currentYear || undefined}
+            className={cn(
+              "inline-flex h-8 items-center justify-center rounded-(--cell-radius) px-2.5 text-sm font-medium select-none",
+              "transition-colors duration-100 active:scale-95",
+              "focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
+              year === currentYear
+                ? "bg-primary text-primary-foreground"
+                : "text-foreground hover:bg-accent hover:text-accent-foreground"
+            )}
+            aria-pressed={year === currentYear}
+          >
+            {year}
+          </button>
+        ))}
+      </div>
     </div>
   )
 }

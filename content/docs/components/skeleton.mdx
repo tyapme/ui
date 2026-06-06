@@ -1,13 +1,13 @@
 ---
 title: Skeleton
-description: コンテンツ読み込み中のプレースホルダーを表示します。
+description: Use to show a placeholder while content is loading.
 base: base
 component: true
 ---
 
-<ComponentPreview styleName="base" name="skeleton-demo" />
+<ComponentPreview styleName="base-nova" name="skeleton-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -18,7 +18,7 @@ component: true
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/skeleton.json
+npx shadcn@latest add skeleton
 ```
 
 </TabsContent>
@@ -27,15 +27,15 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/skeleton.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="skeleton"
   title="components/ui/skeleton.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -43,7 +43,7 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/skeleton.json
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx
 import { Skeleton } from "@/components/ui/skeleton"
@@ -53,32 +53,34 @@ import { Skeleton } from "@/components/ui/skeleton"
 <Skeleton className="h-[20px] w-[100px] rounded-full" />
 ```
 
-## 使用例
+## Examples
 
 ### Avatar
 
-<ComponentPreview styleName="base" name="skeleton-avatar" />
+<ComponentPreview styleName="base-nova" name="skeleton-avatar" />
 
 ### Card
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="skeleton-card"
   previewClassName="h-80"
 />
 
 ### Text
 
-<ComponentPreview styleName="base" name="skeleton-text" />
+<ComponentPreview styleName="base-nova" name="skeleton-text" />
 
 ### Form
 
-<ComponentPreview styleName="base" name="skeleton-form" />
+<ComponentPreview styleName="base-nova" name="skeleton-form" />
 
 ### Table
 
-<ComponentPreview styleName="base" name="skeleton-table" />
+<ComponentPreview styleName="base-nova" name="skeleton-table" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="skeleton-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview styleName="base-nova" name="skeleton-rtl" direction="rtl" />

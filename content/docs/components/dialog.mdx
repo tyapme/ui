@@ -1,6 +1,6 @@
 ---
 title: Dialog
-description: メインウィンドウや別のダイアログウィンドウの上に重なるウィンドウ。背後のコンテンツは操作不可になります。
+description: A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.
 featured: true
 base: base
 component: true
@@ -10,12 +10,12 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="dialog-demo"
-  description="プロフィール詳細を編集するダイアログ。"
+  description="A dialog for editing profile details."
 />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -26,7 +26,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/dialog.json
+npx shadcn@latest add dialog
 ```
 
 </TabsContent>
@@ -35,21 +35,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/dialog.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="dialog"
   title="components/ui/dialog.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -57,7 +57,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -85,9 +85,9 @@ import {
 </Dialog>
 ```
 
-## 構成
+## Composition
 
-`Dialog` の構成:
+Use the following composition to build a `Dialog`:
 
 ```text
 Dialog
@@ -99,36 +99,38 @@ Dialog
     └── DialogFooter
 ```
 
-## 使用例
+## Examples
 
-### カスタムクローズボタン
+### Custom Close Button
 
-デフォルトの閉じるコントロールを独自のボタンに置き換えます。
+Replace the default close control with your own button.
 
-<ComponentPreview styleName="base" name="dialog-close-button" />
+<ComponentPreview styleName="base-nova" name="dialog-close-button" />
 
-### クローズボタンなし
+### No Close Button
 
-`showCloseButton={false}` を指定すると閉じるボタンを非表示にできます。
+Use `showCloseButton={false}` to hide the close button.
 
-<ComponentPreview styleName="base" name="dialog-no-close-button" />
+<ComponentPreview styleName="base-nova" name="dialog-no-close-button" />
 
-### スティッキーフッター
+### Sticky Footer
 
-コンテンツがスクロールしてもアクションを常に表示します。
+Keep actions visible while the content scrolls.
 
-<ComponentPreview styleName="base" name="dialog-sticky-footer" />
+<ComponentPreview styleName="base-nova" name="dialog-sticky-footer" />
 
-### スクロール可能なコンテンツ
+### Scrollable Content
 
-長いコンテンツはスクロールし、ヘッダーは常に表示されます。
+Long content can scroll while the header stays in view.
 
-<ComponentPreview styleName="base" name="dialog-scrollable-content" />
+<ComponentPreview styleName="base-nova" name="dialog-scrollable-content" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="dialog-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="dialog-rtl" direction="rtl" />
 
-詳細は [Base UI](https://base-ui.com/react/components/dialog#api-reference) ドキュメントを参照してください。
+## API Reference
+
+See the [Base UI](https://base-ui.com/react/components/dialog#api-reference) documentation for more information.

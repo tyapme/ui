@@ -13,6 +13,32 @@ import {
   TabsTrigger,
 } from "@/styles/base/ui/tabs"
 
+// Base UI exposes data-starting-style (entering) and data-ending-style (leaving)
+// on keepMounted panels. We use those as CSS hooks for a clean crossfade:
+// entering panel fades from 0→1, leaving panel fades 1→0 absolutely positioned
+// so it doesn't disturb the layout while animating out.
+const CROSSFADE_CSS = `
+  [data-slot="code-block-command"] .no-scrollbar { position: relative; }
+  [data-slot="code-block-command"] .cn-tabs-content {
+    opacity: 1;
+    transform: none !important;
+    transition: opacity 160ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+    will-change: opacity;
+  }
+  [data-slot="code-block-command"] .cn-tabs-content[data-starting-style] {
+    opacity: 0;
+  }
+  [data-slot="code-block-command"] .cn-tabs-content[data-ending-style] {
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-slot="code-block-command"] .cn-tabs-content { transition: none !important; }
+  }
+`
+
 export function CodeBlockCommand({
   __npm__,
   __yarn__,
@@ -62,7 +88,9 @@ export function CodeBlockCommand({
   }, [packageManager, tabs])
 
   return (
-    <div className="overflow-x-auto">
+    <div data-slot="code-block-command" className="overflow-x-auto">
+      {/* React 19: hoisted to <head>, deduplicated across all instances */}
+      <style precedence="component" href="cn-code-block-command-crossfade">{CROSSFADE_CSS}</style>
       <Tabs
         value={packageManager}
         className="gap-0"
@@ -94,7 +122,7 @@ export function CodeBlockCommand({
         <div className="no-scrollbar overflow-x-auto">
           {Object.entries(tabs).map(([key, value]) => {
             return (
-              <TabsContent key={key} value={key} className="mt-0 px-4 py-3.5">
+              <TabsContent key={key} value={key} keepMounted className="mt-0 px-4 py-3.5">
                 <pre>
                   <code
                     className="relative font-mono text-sm leading-none"

@@ -1,19 +1,19 @@
 ---
 title: Drawer
-description: React 向けのドロワーコンポーネント。
+description: A drawer component for React.
 base: base
 component: true
 links:
   doc: https://vaul.emilkowal.ski/getting-started
 ---
 
-<ComponentPreview styleName="base" name="drawer-demo" />
+<ComponentPreview styleName="base-nova" name="drawer-demo" />
 
-## について
+## About
 
-Drawer は [emilkowalski](https://twitter.com/emilkowalski) による [Vaul](https://github.com/emilkowalski/vaul) をベースに構築されています。
+Drawer is built on top of [Vaul](https://github.com/emilkowalski/vaul) by [emilkowalski](https://twitter.com/emilkowalski).
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -24,7 +24,7 @@ Drawer は [emilkowalski](https://twitter.com/emilkowalski) による [Vaul](htt
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/drawer.json
+npx shadcn@latest add drawer
 ```
 
 </TabsContent>
@@ -33,21 +33,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/drawer.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install vaul
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="drawer"
   title="components/ui/drawer.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -55,7 +55,7 @@ npm install vaul
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -88,9 +88,9 @@ import {
 </Drawer>
 ```
 
-## 構成
+## Composition
 
-`Drawer` の構成:
+Use the following composition to build a `Drawer`:
 
 ```text
 Drawer
@@ -102,30 +102,32 @@ Drawer
     └── DrawerFooter
 ```
 
-## 使用例
+## Examples
 
-### スクロール可能なコンテンツ
+### Scrollable Content
 
-コンテンツがスクロールしてもアクションを常に表示します。
+Keep actions visible while the content scrolls.
 
-<ComponentPreview styleName="base" name="drawer-scrollable-content" />
+<ComponentPreview styleName="base-nova" name="drawer-scrollable-content" />
 
-### 方向
+### Sides
 
-`direction` prop でドロワーの表示方向を設定します。`top`、`right`、`bottom`、`left` が利用可能です。
+Use the `direction` prop to set the side of the drawer. Available options are `top`, `right`, `bottom`, and `left`.
 
-<ComponentPreview styleName="base" name="drawer-sides" />
+<ComponentPreview styleName="base-nova" name="drawer-sides" />
 
-### レスポンシブダイアログ
+### Responsive Dialog
 
-`Dialog` と `Drawer` を組み合わせてレスポンシブなダイアログを作成できます。デスクトップでは `Dialog`、モバイルでは `Drawer` が表示されます。
+You can combine the `Dialog` and `Drawer` components to create a responsive dialog. This renders a `Dialog` component on desktop and a `Drawer` on mobile.
 
-<ComponentPreview styleName="base" name="drawer-dialog" />
+<ComponentPreview styleName="base-nova" name="drawer-dialog" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="drawer-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="drawer-rtl" direction="rtl" />
 
-完全な API リファレンスは [Vaul ドキュメント](https://vaul.emilkowal.ski/getting-started) を参照してください。
+## API Reference
+
+See the [Vaul documentation](https://vaul.emilkowal.ski/getting-started) for the full API reference.

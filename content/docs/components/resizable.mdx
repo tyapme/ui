@@ -1,6 +1,6 @@
 ---
 title: Resizable
-description: キーボード操作に対応した、アクセシブルなリサイズ可能パネルグループとレイアウト。
+description: Accessible resizable panel groups and layouts with keyboard support.
 base: base
 component: true
 links:
@@ -9,16 +9,16 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="resizable-demo"
   previewClassName="h-80"
 />
 
-## について
+## About
 
-`Resizable` コンポーネントは [bvaughn](https://github.com/bvaughn) による [react-resizable-panels](https://github.com/bvaughn/react-resizable-panels) をベースに構築されています。
+The `Resizable` component is built on top of [react-resizable-panels](https://github.com/bvaughn/react-resizable-panels) by [bvaughn](https://github.com/bvaughn).
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -29,7 +29,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/resizable.json
+npx shadcn@latest add resizable
 ```
 
 </TabsContent>
@@ -38,21 +38,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/resizable.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install react-resizable-panels
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="resizable"
   title="components/ui/resizable.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -60,7 +60,7 @@ npm install react-resizable-panels
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -78,9 +78,9 @@ import {
 </ResizablePanelGroup>
 ```
 
-## 構成
+## Composition
 
-`ResizablePanelGroup` の構成:
+Use the following composition to build a `ResizablePanelGroup`:
 
 ```text
 ResizablePanelGroup
@@ -89,35 +89,37 @@ ResizablePanelGroup
 └── ResizablePanel
 ```
 
-## 使用例
+## Examples
 
-### 縦方向
+### Vertical
 
-`orientation="vertical"` で縦方向のリサイズを有効にします。
+Use `orientation="vertical"` for vertical resizing.
 
-<ComponentPreview styleName="base" name="resizable-vertical" />
+<ComponentPreview styleName="base-nova" name="resizable-vertical" />
 
-### ハンドル
+### Handle
 
-`ResizableHandle` の `withHandle` で観に見えるハンドルを表示します。
+Use the `withHandle` prop on `ResizableHandle` to show a visible handle.
 
-<ComponentPreview styleName="base" name="resizable-handle" />
+<ComponentPreview styleName="base-nova" name="resizable-handle" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="resizable-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="resizable-rtl" direction="rtl" />
 
-[react-resizable-panels](https://github.com/bvaughn/react-resizable-panels/tree/main/packages/react-resizable-panels) ドキュメントを参照してください。
+## API Reference
 
-## 変更履歴
+See the [react-resizable-panels](https://github.com/bvaughn/react-resizable-panels/tree/main/packages/react-resizable-panels) documentation.
+
+## Changelog
 
 ### 2025-02-02 `react-resizable-panels` v4
 
-`react-resizable-panels` v4 に更新されました。詳細は [v4.0.0 リリースノート](https://github.com/bvaughn/react-resizable-panels/releases/tag/4.0.0) を参照してください。
+Updated to `react-resizable-panels` v4. See the [v4.0.0 release notes](https://github.com/bvaughn/react-resizable-panels/releases/tag/4.0.0) for full details.
 
-`react-resizable-panels` のプリミティブを直接使用する場合、以下の変更点に注意してください:
+If you're using `react-resizable-panels` primitives directly, note the following changes:
 
 | v3                           | v4                      |
 | ---------------------------- | ----------------------- |
@@ -131,6 +133,6 @@ ResizablePanelGroup
 | `data-panel-group-direction` | `aria-orientation`      |
 
 <Callout>
-  shadcn/ui ラッパーコンポーネント（`ResizablePanelGroup`、`ResizablePanel`、
-  `ResizableHandle`）は変更なしで使用できます。
+  The shadcn/ui wrapper components (`ResizablePanelGroup`, `ResizablePanel`,
+  `ResizableHandle`) remain unchanged.
 </Callout>

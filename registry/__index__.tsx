@@ -80,6 +80,11 @@ export const Index: Record<string, Record<string, any>> = {
           type: "registry:ui",
           target: "",
         },
+        {
+          path: "styles/base/ui/_dialog-shared.tsx",
+          type: "registry:ui",
+          target: "",
+        },
       ],
       component: React.lazy(async () => {
         const mod = await import("@/styles/base/ui/alert-dialog")
@@ -284,6 +289,64 @@ export const Index: Record<string, Record<string, any>> = {
           docs: "https://ui.shadcn.com/docs/components/base/button-group",
           examples:
             "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/button-group-example.tsx",
+        },
+      },
+    },
+    "code-block": {
+      name: "code-block",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button"],
+      files: [
+        {
+          path: "styles/base/ui/code-block.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base/ui/code-block")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "code-block"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          docs: "https://ui.tyap.me/docs/components/code-block",
+        },
+      },
+    },
+    "copy-button": {
+      name: "copy-button",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button"],
+      files: [
+        {
+          path: "styles/base/ui/copy-button.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base/ui/copy-button")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "copy-button"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          docs: "https://ui.tyap.me/docs/components/copy-button",
         },
       },
     },
@@ -670,6 +733,11 @@ export const Index: Record<string, Record<string, any>> = {
       files: [
         {
           path: "styles/base/ui/dialog.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+        {
+          path: "styles/base/ui/_dialog-shared.tsx",
           type: "registry:ui",
           target: "",
         },

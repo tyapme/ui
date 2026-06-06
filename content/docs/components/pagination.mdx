@@ -1,13 +1,13 @@
 ---
 title: Pagination
-description: ページナビゲーション、次へ・前へリンク付きのページネーション。
+description: Pagination with page navigation, next and previous links.
 base: base
 component: true
 ---
 
-<ComponentPreview styleName="base" name="pagination-demo" />
+<ComponentPreview styleName="base-nova" name="pagination-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -18,7 +18,7 @@ component: true
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/pagination.json
+npx shadcn@latest add pagination
 ```
 
 </TabsContent>
@@ -27,15 +27,15 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/pagination.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="pagination"
   title="components/ui/pagination.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -43,7 +43,7 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/pagination.json
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -84,9 +84,9 @@ import {
 </Pagination>
 ```
 
-## 構成
+## Composition
 
-`Pagination` の構成:
+Use the following composition to build a `Pagination`:
 
 ```text
 Pagination
@@ -101,25 +101,25 @@ Pagination
         └── PaginationNext
 ```
 
-## 使用例
+## Examples
 
-### シンプル
+### Simple
 
-Page 番号のみのシンプルなページネーション。
+A simple pagination with only page numbers.
 
-<ComponentPreview styleName="base" name="pagination-simple" />
+<ComponentPreview styleName="base-nova" name="pagination-simple" />
 
-### アイコンのみ
+### Icons Only
 
-ページ番号なしに前・次ボタンのみ表示します。表示件数セレクター付きのデータテーブルに適しています。
+Use just the previous and next buttons without page numbers. This is useful for data tables with a rows per page selector.
 
-<ComponentPreview styleName="base" name="pagination-icons-only" />
+<ComponentPreview styleName="base-nova" name="pagination-icons-only" />
 
 ## Next.js
 
-デフォルトで `<PaginationLink />` は `<a />` タグをレンダリングします。
+By default the `<PaginationLink />` component will render an `<a />` tag.
 
-Next.js の `<Link />` コンポーネントを使用するには `pagination.tsx` を次のように更新してください。
+To use the Next.js `<Link />` component, make the following updates to `pagination.tsx`.
 
 ```diff showLineNumbers /typeof Link/ {1}
 + import Link from "next/link"
@@ -141,23 +141,25 @@ const PaginationLink = ({...props }: ) => (
 
 <Callout className="mt-6">
 
-**注意:** CLI が自動的に対応できるよう消済される予定です。
+**Note:** We are making updates to the cli to automatically do this for you.
 
 </Callout>
 
 ## RTL
 
-<ComponentPreview styleName="base" name="pagination-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## 変更履歴
+<ComponentPreview styleName="base-nova" name="pagination-rtl" direction="rtl" />
 
-### RTL サポート
+## Changelog
 
-前のバージョンからアップグレードする場合、`text` prop を追加するために以下の更新を適用してください:
+### RTL Support
+
+If you're upgrading from a previous version of the `Pagination` component, you'll need to apply the following updates to add the `text` prop:
 
 <Steps>
 
-<Step>`PaginationPrevious` を更新します。</Step>
+<Step>Update `PaginationPrevious`.</Step>
 
 ```diff
   function PaginationPrevious({
@@ -183,7 +185,7 @@ const PaginationLink = ({...props }: ) => (
   }
 ```
 
-<Step>`PaginationNext` を更新します。</Step>
+<Step>Update `PaginationNext`.</Step>
 
 ```diff
   function PaginationNext({

@@ -2,9 +2,13 @@
 
 import * as React from "react"
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
-import { XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import {
+  DIALOG_CONTENT_BASE_CLASSES,
+  DIALOG_OVERLAY_CLASSES,
+  DialogDragHandle,
+} from "@/styles/base/ui/_dialog-shared"
 import { Button } from "@/styles/base/ui/button"
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
@@ -20,7 +24,8 @@ function DialogTrigger({
   asChild?: boolean
   children?: React.ReactNode
 }) {
-  let resolvedRender = asChild && React.isValidElement(children) ? children : render
+  let resolvedRender =
+    asChild && React.isValidElement(children) ? children : render
   if (React.isValidElement(resolvedRender)) {
     resolvedRender = React.cloneElement(
       resolvedRender as React.ReactElement<{ "data-slot"?: string }>,
@@ -54,10 +59,7 @@ function DialogOverlay({
   return (
     <DialogPrimitive.Backdrop
       data-slot="dialog-overlay"
-      className={cn(
-        "fixed inset-0 isolate z-50 bg-black/80 duration-100 supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
-        className
-      )}
+      className={cn(DIALOG_OVERLAY_CLASSES, className)}
       {...props}
     />
   )
@@ -66,39 +68,18 @@ function DialogOverlay({
 function DialogContent({
   className,
   children,
-  showCloseButton = true,
   ...props
-}: DialogPrimitive.Popup.Props & {
-  showCloseButton?: boolean
-}) {
+}: DialogPrimitive.Popup.Props) {
   return (
     <DialogPortal>
       <DialogOverlay />
       <DialogPrimitive.Popup
         data-slot="dialog-content"
-        className={cn(
-          "t-modal fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] gap-6 rounded-4xl bg-popover p-6 text-sm text-popover-foreground ring-1 ring-foreground/5 outline-none sm:max-w-md",
-          className
-        )}
+        className={cn(DIALOG_CONTENT_BASE_CLASSES, "sm:max-w-md", className)}
         {...props}
       >
+        <DialogDragHandle />
         {children}
-        {showCloseButton && (
-          <DialogPrimitive.Close
-            data-slot="dialog-close"
-            nativeButton
-            render={
-              <Button
-                variant="ghost"
-                className="absolute top-4 right-4"
-                size="icon-sm"
-              />
-            }
-          >
-            <XIcon />
-            <span className="sr-only">Close</span>
-          </DialogPrimitive.Close>
-        )}
       </DialogPrimitive.Popup>
     </DialogPortal>
   )

@@ -1,23 +1,20 @@
 ---
 title: Native Select
-description: デザインシステムに統合された、スタイル付きのネイティブ HTML セレクト要素。
+description: A styled native HTML select element with consistent design system integration.
 base: base
 component: true
 ---
 
-import { InfoIcon, TriangleAlertIcon } from "lucide-react"
+import { InfoIcon } from "lucide-react"
 
-<Callout
-  variant="warning"
-  icon={<TriangleAlertIcon className="translate-y-[3px]!" />}
->
-  このコンポーネントは非推奨です。代わりに [Select](/docs/components/select)
-  を使用してください。
+<Callout variant="info" icon={<InfoIcon className="translate-y-[3px]!" />}>
+  For a styled select component, see the [Select](/docs/components/select)
+  component.
 </Callout>
 
-<ComponentPreview styleName="base" name="native-select-demo" />
+<ComponentPreview styleName="base-nova" name="native-select-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -28,7 +25,7 @@ import { InfoIcon, TriangleAlertIcon } from "lucide-react"
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/native-select.json
+npx shadcn@latest add native-select
 ```
 
 </TabsContent>
@@ -37,15 +34,15 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/native-select.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="native-select"
   title="components/ui/native-select.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -53,7 +50,7 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/native-select.json
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -73,11 +70,11 @@ import {
 </NativeSelect>
 ```
 
-## 構成
+## Composition
 
-### シンプル
+### Simple
 
-`NativeSelect` の直下にオプションを配置する（`NativeSelectOptGroup` なし）。
+Options placed directly under `NativeSelect` (no `NativeSelectOptGroup`).
 
 ```text
 NativeSelect
@@ -87,9 +84,9 @@ NativeSelect
 └── NativeSelectOption
 ```
 
-### グループあり
+### With groups
 
-`NativeSelectOptGroup` でオプションをカテゴリ分けします。
+Use `NativeSelectOptGroup` to organize options into categories.
 
 ```text
 NativeSelect
@@ -101,44 +98,46 @@ NativeSelect
     └── NativeSelectOption
 ```
 
-## 使用例
+## Examples
 
-### グループ
+### Groups
 
-`NativeSelectOptGroup` でオプションをカテゴリ分けします。
+Use `NativeSelectOptGroup` to organize options into categories.
 
-<ComponentPreview styleName="base" name="native-select-groups" />
+<ComponentPreview styleName="base-nova" name="native-select-groups" />
 
-### 無効
+### Disabled
 
-`NativeSelect` に `disabled` を追加するとセレクトを無効化できます。
+Add the `disabled` prop to the `NativeSelect` component to disable the select.
 
-<ComponentPreview styleName="base" name="native-select-disabled" />
+<ComponentPreview styleName="base-nova" name="native-select-disabled" />
 
-### エラー
+### Invalid
 
-`aria-invalid` でバリデーションエラーを表示し、`Field` に `data-invalid` を付けてスタイリングを適用します。
+Use `aria-invalid` to show validation errors and the `data-invalid` attribute to the `Field` component for styling.
 
-<ComponentPreview styleName="base" name="native-select-invalid" />
+<ComponentPreview styleName="base-nova" name="native-select-invalid" />
 
-## NativeSelect vs Select
+## Native Select vs Select
 
-- ネイティブブラウザの動作、パフォーマンス重視、またはモバイル最適化ドロップダウンを必要とする場合は `NativeSelect` を使用します。
-- カスタムスタイリング、アニメーション、または複雑なインタラクションを必要とする場合は `Select` を使用します。
+- Use `NativeSelect` for native browser behavior, better performance, or mobile-optimized dropdowns.
+- Use `Select` for custom styling, animations, or complex interactions.
 
 ## RTL
 
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="native-select-rtl"
   direction="rtl"
 />
 
-## API リファレンス
+## API Reference
 
 ### NativeSelect
 
-ネイティブ HTML の select 要素を包括するメインセレクトコンポーネント。
+The main select component that wraps the native HTML select element.
 
 ```tsx
 <NativeSelect>
@@ -149,7 +148,7 @@ NativeSelect
 
 ### NativeSelectOption
 
-セレクト内の個別のオプションを表します。
+Represents an individual option within the select.
 
 | Prop       | Type      | Default |
 | ---------- | --------- | ------- |
@@ -158,7 +157,7 @@ NativeSelect
 
 ### NativeSelectOptGroup
 
-関連するオプションをグループ化して整理します。
+Groups related options together for better organization.
 
 | Prop       | Type      | Default |
 | ---------- | --------- | ------- |

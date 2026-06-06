@@ -1,6 +1,6 @@
 ---
 title: Direction
-description: アプリのテキスト方向を設定するプロバイダーコンポーネント。
+description: A provider component that sets the text direction for your application.
 base: base
 component: true
 links:
@@ -8,19 +8,19 @@ links:
   api: https://base-ui.com/react/utils/direction-provider#api-reference
 ---
 
-`DirectionProvider` コンポーネントは、アプリのテキスト方向（`ltr` または `rtl`）を設定するために使用します。アラビア語・ヘブライ語・ペルシア語などの右対左言語をサポートする際に不可欠です。
+The `DirectionProvider` component is used to set the text direction (`ltr` or `rtl`) for your application. This is essential for supporting right-to-left languages like Arabic, Hebrew, and Persian.
 
-RTL モードのプレビューです。言語セレクターで言語を切り替えられます。各コンポーネントページの RTL セクションでさらなる例を確認できます。
+Here's a preview of the component in RTL mode. Use the language selector to switch the language. To see more examples, look for the RTL section on components pages.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="card-rtl"
   direction="rtl"
   previewClassName="h-auto"
   hideCode
 />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -32,7 +32,7 @@ RTL モードのプレビューです。言語セレクターで言語を切り�
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/direction.json
+npx shadcn@latest add direction
 ```
 
 </TabsContent>
@@ -41,21 +41,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/direction.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="direction"
   title="components/ui/direction.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -63,7 +63,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import { DirectionProvider } from "@/components/ui/direction"
@@ -81,7 +81,7 @@ import { DirectionProvider } from "@/components/ui/direction"
 
 ## useDirection
 
-`useDirection` フックは、アプリの現在の方向を取得するために使用します。
+The `useDirection` hook is used to get the current direction of the application.
 
 ```tsx showLineNumbers
 import { useDirection } from "@/components/ui/direction"

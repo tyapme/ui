@@ -71,7 +71,7 @@ export function EmptyRtl() {
       </EmptyContent>
       <Button
         variant="link"
-        render={<a href="#" title={t.learnMore} />}
+        render={<a href="#" />}
         className="text-muted-foreground"
         size="sm"
         nativeButton={false}

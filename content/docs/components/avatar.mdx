@@ -1,6 +1,6 @@
 ---
 title: Avatar
-description: フォールバック付きのユーザーアバター画像コンポーネント。
+description: An image element with a fallback for representing the user.
 base: base
 component: true
 links:
@@ -9,12 +9,12 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="avatar-demo"
   previewClassName="h-72"
 />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -25,7 +25,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/avatar.json
+npx shadcn@latest add avatar
 ```
 
 </TabsContent>
@@ -34,21 +34,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/avatar.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="avatar"
   title="components/ui/avatar.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -56,7 +56,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -69,9 +69,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 </Avatar>
 ```
 
-## 構成
+## Composition
 
-`Avatar` の構成:
+Use the following composition to build an `Avatar`:
 
 ```text
 Avatar
@@ -80,7 +80,7 @@ Avatar
 └── AvatarBadge
 ```
 
-`AvatarGroup` の構成:
+Use the following composition to build an `AvatarGroup`:
 
 ```text
 AvatarGroup
@@ -95,21 +95,21 @@ AvatarGroup
 └── AvatarGroupCount
 ```
 
-## 使用例
+## Examples
 
 ### Basic
 
-画像とフォールバック付きのシンプルなアバターコンポーネント。
+A basic avatar component with an image and a fallback.
 
-<ComponentPreview styleName="base" name="avatar-basic" />
+<ComponentPreview styleName="base-nova" name="avatar-basic" />
 
 ### Badge
 
-`AvatarBadge` コンポーネントでアバターにバッジを追加します。バッジはデフォルトでアバターの右下に配置されます。
+Use the `AvatarBadge` component to add a badge to the avatar. The badge is positioned at the bottom right of the avatar.
 
-<ComponentPreview styleName="base" name="avatar-badge" />
+<ComponentPreview styleName="base-nova" name="avatar-badge" />
 
-`className` プロパティでカスタムカラーやサイズなどのスタイルをバッジに追加できます。
+Use the `className` prop to add custom styles to the badge such as custom colors, sizes, etc.
 
 ```tsx showLineNumbers
 <Avatar>
@@ -121,54 +121,56 @@ AvatarGroup
 
 ### Badge with Icon
 
-`<AvatarBadge>` の中にアイコンを使用することもできます。
+You can also use an icon inside `<AvatarBadge>`.
 
-<ComponentPreview styleName="base" name="avatar-badge-icon" />
+<ComponentPreview styleName="base-nova" name="avatar-badge-icon" />
 
 ### Avatar Group
 
-`AvatarGroup` コンポーネントでアバターのグループを表示します。
+Use the `AvatarGroup` component to add a group of avatars.
 
-<ComponentPreview styleName="base" name="avatar-group" />
+<ComponentPreview styleName="base-nova" name="avatar-group" />
 
 ### Avatar Group Count
 
-`<AvatarGroupCount>` でグループにカウントを追加します。
+Use `<AvatarGroupCount>` to add a count to the group.
 
-<ComponentPreview styleName="base" name="avatar-group-count" />
+<ComponentPreview styleName="base-nova" name="avatar-group-count" />
 
 ### Avatar Group with Icon
 
-`<AvatarGroupCount>` の中にアイコンを使用することもできます。
+You can also use an icon inside `<AvatarGroupCount>`.
 
-<ComponentPreview styleName="base" name="avatar-group-count-icon" />
+<ComponentPreview styleName="base-nova" name="avatar-group-count-icon" />
 
 ### Sizes
 
-`size` プロパティでアバターのサイズを変更します。
+Use the `size` prop to change the size of the avatar.
 
-<ComponentPreview styleName="base" name="avatar-size" />
+<ComponentPreview styleName="base-nova" name="avatar-size" />
 
 ### Dropdown
 
-`Avatar` コンポーネントをドロップダウンメニューのトリガーとして使用できます。
+You can use the `Avatar` component as a trigger for a dropdown menu.
 
-<ComponentPreview styleName="base" name="avatar-dropdown" />
+<ComponentPreview styleName="base-nova" name="avatar-dropdown" />
 
 ## RTL
 
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="avatar-rtl"
   direction="rtl"
   previewClassName="h-72"
 />
 
-## API リファレンス
+## API Reference
 
 ### Avatar
 
-`Avatar` コンポーネントはアバター画像とフォールバックを包むルートコンポーネントです。
+The `Avatar` component is the root component that wraps the avatar image and fallback.
 
 | Prop        | Type                        | Default     |
 | ----------- | --------------------------- | ----------- |
@@ -177,7 +179,7 @@ AvatarGroup
 
 ### AvatarImage
 
-`AvatarImage` コンポーネントはアバター画像を表示します。Base UI Avatar Image のすべての props を受け付けます。
+The `AvatarImage` component displays the avatar image. It accepts all Base UI Avatar Image props.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -187,7 +189,7 @@ AvatarGroup
 
 ### AvatarFallback
 
-`AvatarFallback` コンポーネントは画像の読み込みに失敗した際にフォールバックを表示します。Base UI Avatar Fallback のすべての props を受け付けます。
+The `AvatarFallback` component displays a fallback when the image fails to load. It accepts all Base UI Avatar Fallback props.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -195,7 +197,7 @@ AvatarGroup
 
 ### AvatarBadge
 
-`AvatarBadge` コンポーネントはアバターにバッジインジケーターを表示します。逆に右下に配置されます。
+The `AvatarBadge` component displays a badge indicator on the avatar, typically positioned at the bottom right.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -203,7 +205,7 @@ AvatarGroup
 
 ### AvatarGroup
 
-`AvatarGroup` コンポーネントは重なりスタイルでアバターのグループを表示します。
+The `AvatarGroup` component displays a group of avatars with overlapping styling.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -211,10 +213,10 @@ AvatarGroup
 
 ### AvatarGroupCount
 
-`AvatarGroupCount` コンポーネントはアバターグループにカウント表示を追加します。残りのアバター数を表示するのに使います。
+The `AvatarGroupCount` component displays a count indicator in an avatar group, typically showing the number of additional avatars.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
 | `className` | `string` | -       |
 
-Base UI Avatar props の詳細は [Base UI ドキュメント](https://base-ui.com/react/components/avatar#api-reference) を参照してください。
+For more information about Base UI Avatar props, see the [Base UI documentation](https://base-ui.com/react/components/avatar#api-reference).

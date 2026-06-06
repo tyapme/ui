@@ -1,0 +1,169 @@
+---
+title: Code Block
+description: Fully composable code block with Shiki syntax highlighting, copy button, filename, language selector, diff, focus, and word annotations.
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="code-block-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add code-block
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install shiki @shikijs/transformers lucide-react @base-ui/react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name="code-block"
+  title="components/ui/code-block.tsx"
+  styleName="base-nova"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  CodeBlock,
+  CodeBlockActions,
+  CodeBlockCopyButton,
+  CodeBlockFilename,
+  CodeBlockHeader,
+  CodeBlockTitle,
+} from "@/components/ui/code-block"
+import { FileIcon } from "lucide-react"
+```
+
+```tsx
+<CodeBlock code={code} language="tsx">
+  <CodeBlockHeader>
+    <CodeBlockTitle>
+      <FileIcon className="size-3.5" />
+      <CodeBlockFilename>demo.tsx</CodeBlockFilename>
+    </CodeBlockTitle>
+    <CodeBlockActions>
+      <CodeBlockCopyButton />
+    </CodeBlockActions>
+  </CodeBlockHeader>
+</CodeBlock>
+```
+
+## Examples
+
+### No Header
+
+A minimal code block with no header — useful for inline snippets, shell commands, and install instructions.
+
+<ComponentPreview styleName="base-nova" name="code-block-no-header" />
+
+### Line Numbers
+
+Use the `showLineNumbers` prop to display line numbers.
+
+<ComponentPreview styleName="base-nova" name="code-block-line-numbers" />
+
+### Language Selector
+
+Use `CodeBlockLanguageSelector` to let users switch between languages. Pass the current language as `value` and update it with `onValueChange`.
+
+<ComponentPreview styleName="base-nova" name="code-block-language-selector" />
+
+### Diff
+
+Add `// [!code --]` to mark a line as removed and `// [!code ++]` to mark it as added. The annotation comment is stripped from the rendered output.
+
+<ComponentPreview styleName="base-nova" name="code-block-diff" />
+
+### Highlight
+
+Add `// [!code highlight]` to draw attention to specific lines.
+
+<ComponentPreview styleName="base-nova" name="code-block-highlight" />
+
+### Focus
+
+Add `// [!code focus]` to focus specific lines. All other lines are blurred, drawing the reader's eye to the relevant code.
+
+<ComponentPreview styleName="base-nova" name="code-block-focus" />
+
+### Word Highlight
+
+Add `// [!code word:term]` at the top of the block to highlight every occurrence of a word. You can also target specific lines with `// [!code word:term:1]`.
+
+<ComponentPreview styleName="base-nova" name="code-block-word-highlight" />
+
+### Language Detection
+
+Use `detectLanguage` to automatically infer the language from a filename extension.
+
+```tsx
+import { CodeBlock, detectLanguage } from "@/components/ui/code-block"
+
+<CodeBlock code={code} language={detectLanguage("app.tsx")}>
+  ...
+</CodeBlock>
+```
+
+Supported extensions: `ts`, `tsx`, `js`, `jsx`, `py`, `go`, `rs`, `css`, `scss`, `html`, `json`, `yaml`, `bash`, `sql`, `graphql`, `prisma`, `vue`, `svelte`, and more.
+
+## API Reference
+
+### CodeBlock
+
+| Prop                 | Type              | Default                                              |
+| -------------------- | ----------------- | ---------------------------------------------------- |
+| `code`               | `string`          | —                                                    |
+| `language`           | `BundledLanguage` | —                                                    |
+| `showLineNumbers`    | `boolean`         | `false`                                              |
+| `syntaxHighlighting` | `boolean`         | `true`                                               |
+| `themes`             | `CodeThemes`      | `{ light: "github-light", dark: "github-dark" }`     |
+| `className`          | `string`          | —                                                    |
+
+### CodeBlockCopyButton
+
+| Prop      | Type                     | Default |
+| --------- | ------------------------ | ------- |
+| `onCopy`  | `() => void`             | —       |
+| `onError` | `(error: Error) => void` | —       |
+| `timeout` | `number`                 | `2000`  |
+
+### Annotation Syntax
+
+| Notation                  | Effect                              |
+| ------------------------- | ----------------------------------- |
+| `// [!code --]`           | Mark line as removed (diff)         |
+| `// [!code ++]`           | Mark line as added (diff)           |
+| `// [!code highlight]`    | Highlight line                      |
+| `// [!code focus]`        | Focus line (blur all others)        |
+| `// [!code word:term]`    | Highlight all occurrences of a word |
+| `// [!code error]`        | Mark line as error                  |
+| `// [!code warning]`      | Mark line as warning                |

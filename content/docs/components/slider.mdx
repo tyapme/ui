@@ -1,6 +1,6 @@
 ---
 title: Slider
-description: 指定した範囲内の値をユーザーが選択できる入力コンポーネント。
+description: An input where the user selects a value from within a given range.
 base: base
 component: true
 links:
@@ -8,9 +8,9 @@ links:
   api: https://base-ui.com/react/components/slider#api-reference
 ---
 
-<ComponentPreview styleName="base" name="slider-demo" />
+<ComponentPreview styleName="base-nova" name="slider-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -21,7 +21,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/slider.json
+npx shadcn@latest add slider
 ```
 
 </TabsContent>
@@ -30,21 +30,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/slider.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="slider"
   title="components/ui/slider.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -52,7 +52,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx
 import { Slider } from "@/components/ui/slider"
@@ -62,40 +62,42 @@ import { Slider } from "@/components/ui/slider"
 <Slider defaultValue={[33]} max={100} step={1} />
 ```
 
-## 使用例
+## Examples
 
 ### Range
 
-2 つの値を持つ配列でレンジスライダーを作成できます。
+Use an array with two values for a range slider.
 
-<ComponentPreview styleName="base" name="slider-range" />
+<ComponentPreview styleName="base-nova" name="slider-range" />
 
 ### Multiple Thumbs
 
-複数の値を持つ配列で複数のサムを使用できます。
+Use an array with multiple values for multiple thumbs.
 
-<ComponentPreview styleName="base" name="slider-multiple" />
+<ComponentPreview styleName="base-nova" name="slider-multiple" />
 
 ### Vertical
 
-`orientation="vertical"` で縦向きのスライダーにします。
+Use `orientation="vertical"` for a vertical slider.
 
-<ComponentPreview styleName="base" name="slider-vertical" />
+<ComponentPreview styleName="base-nova" name="slider-vertical" />
 
 ### Controlled
 
-<ComponentPreview styleName="base" name="slider-controlled" />
+<ComponentPreview styleName="base-nova" name="slider-controlled" />
 
 ### Disabled
 
-`disabled` でスライダーを無効化します。
+Use the `disabled` prop to disable the slider.
 
-<ComponentPreview styleName="base" name="slider-disabled" />
+<ComponentPreview styleName="base-nova" name="slider-disabled" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="slider-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="slider-rtl" direction="rtl" />
 
-詳細は [Base UI Slider](https://base-ui.com/react/components/slider#api-reference) ドキュメントを参照してください。
+## API Reference
+
+See the [Base UI Slider](https://base-ui.com/react/components/slider#api-reference) documentation.

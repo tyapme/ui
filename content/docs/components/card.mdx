@@ -1,17 +1,17 @@
 ---
 title: Card
-description: ヘッダー、コンテンツ、フッターを持つカードを表示します。
+description: Displays a card with header, content, and footer.
 base: base
 component: true
 ---
 
 <ComponentPreview
   name="card-demo"
-  styleName="base"
+  styleName="base-nova"
   previewClassName="h-[30rem]"
 />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -22,7 +22,7 @@ component: true
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/card.json
+npx shadcn@latest add card
 ```
 
 </TabsContent>
@@ -31,15 +31,15 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/card.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="card"
   title="components/ui/card.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -47,7 +47,7 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/card.json
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -77,9 +77,9 @@ import {
 </Card>
 ```
 
-## 構成
+## Composition
 
-`Card` の構成:
+Use the following composition to build a `Card`:
 
 ```text
 Card
@@ -91,42 +91,44 @@ Card
 └── CardFooter
 ```
 
-## 使用例
+## Examples
 
 ### Size
 
-`size="sm"` プロパティでカードのサイズを小さくします。小サイズは間隔が小さくなります。
+Use the `size="sm"` prop to set the size of the card to small. The small size variant uses smaller spacing.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="card-small"
   previewClassName="h-96"
 />
 
 ### Image
 
-カードヘッダーの前に画像を追加して画像付きカードを作成します。
+Add an image before the card header to create a card with an image.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="card-image"
   previewClassName="h-[32rem]"
 />
 
 ## RTL
 
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="card-rtl"
   direction="rtl"
   previewClassName="h-[30rem]"
 />
 
-## API リファレンス
+## API Reference
 
 ### Card
 
-`Card` コンポーネントはカードコンテンツのルートコンテナです。
+The `Card` component is the root container for card content.
 
 | Prop        | Type                | Default     |
 | ----------- | ------------------- | ----------- |
@@ -135,7 +137,7 @@ Card
 
 ### CardHeader
 
-`CardHeader` コンポーネントはタイトル・説明・オプショナルなアクションに使用します。
+The `CardHeader` component is used for a title, description, and optional action.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -143,7 +145,7 @@ Card
 
 ### CardTitle
 
-`CardTitle` コンポーネントはカードのタイトルに使用します。
+The `CardTitle` component is used for the card title.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -151,7 +153,7 @@ Card
 
 ### CardDescription
 
-`CardDescription` コンポーネントはタイトル下の補助テキストに使用します。
+The `CardDescription` component is used for helper text under the title.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -159,7 +161,7 @@ Card
 
 ### CardAction
 
-`CardAction` コンポーネントはヘッダー左上（ボタンやバッジなど）にコンテンツを配置します。
+The `CardAction` component places content in the top-right of the header (for example, a button or a badge).
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -167,7 +169,7 @@ Card
 
 ### CardContent
 
-`CardContent` コンポーネントはカードのメインボディに使用します。
+The `CardContent` component is used for the main card body.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -175,7 +177,7 @@ Card
 
 ### CardFooter
 
-`CardFooter` コンポーネントはカード下部のアクションや補助コンテンツに使用します。
+The `CardFooter` component is used for actions and secondary content at the bottom of the card.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |

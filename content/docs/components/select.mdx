@@ -1,6 +1,6 @@
 ---
 title: Select
-description: ボタンをトリガーに、ユーザーが選択できるオプション一覧を表示します。
+description: Displays a list of options for the user to pick from—triggered by a button.
 base: base
 component: true
 featured: true
@@ -9,9 +9,9 @@ links:
   api: https://base-ui.com/react/components/select#api-reference
 ---
 
-<ComponentPreview styleName="base" name="select-demo" />
+<ComponentPreview styleName="base-nova" name="select-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -22,7 +22,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/select.json
+npx shadcn@latest add select
 ```
 
 </TabsContent>
@@ -31,21 +31,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/select.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="select"
   title="components/ui/select.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -53,7 +53,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -89,9 +89,9 @@ const items = [
 </Select>
 ```
 
-## 構成
+## Composition
 
-`Select` の構成:
+Use the following composition to build a `Select`:
 
 ```text
 Select
@@ -109,33 +109,33 @@ Select
         └── SelectItem
 ```
 
-## 使用例
+## Examples
 
-### 選択項目をトリガーに履わせる
+### Align Item With Trigger
 
-`SelectContent` の `alignItemWithTrigger` で選択項目をトリガーに履わせるかどうかを制御します。`true`（デフォルト）の場合、選択中の項目がトリガーの上に表示されます。`false` の場合、ポップアップがトリガーの端に履わされます。
+Use `alignItemWithTrigger` on `SelectContent` to control whether the selected item aligns with the trigger. When `true` (default), the popup positions so the selected item appears over the trigger. When `false`, the popup aligns to the trigger edge.
 
-<ComponentPreview styleName="base" name="select-align-item" />
+<ComponentPreview styleName="base-nova" name="select-align-item" />
 
-### グループ
+### Groups
 
-`SelectGroup`、`SelectLabel`、`SelectSeparator` で項目を整理します。
+Use `SelectGroup`, `SelectLabel`, and `SelectSeparator` to organize items.
 
-<ComponentPreview styleName="base" name="select-groups" />
+<ComponentPreview styleName="base-nova" name="select-groups" />
 
-### スクロール
+### Scrollable
 
-多数の項目を持つスクロール対応のセレクト。
+A select with many items that scrolls.
 
-<ComponentPreview styleName="base" name="select-scrollable" />
+<ComponentPreview styleName="base-nova" name="select-scrollable" />
 
 ### Disabled
 
-<ComponentPreview styleName="base" name="select-disabled" />
+<ComponentPreview styleName="base-nova" name="select-disabled" />
 
-### エラー
+### Invalid
 
-`Field` に `data-invalid`、`SelectTrigger` に `aria-invalid` を付けてエラー状態を表示します。
+Add the `data-invalid` attribute to the `Field` component and the `aria-invalid` attribute to the `SelectTrigger` component to show an error state.
 
 ```tsx showLineNumbers /data-invalid/ /aria-invalid/
 <Field data-invalid>
@@ -146,12 +146,14 @@ Select
 </Field>
 ```
 
-<ComponentPreview styleName="base" name="select-invalid" />
+<ComponentPreview styleName="base-nova" name="select-invalid" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="select-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="select-rtl" direction="rtl" />
 
-詳細は [Base UI Select](https://base-ui.com/react/components/select#api-reference) ドキュメントを参照してください。
+## API Reference
+
+See the [Base UI Select](https://base-ui.com/react/components/select#api-reference) documentation.

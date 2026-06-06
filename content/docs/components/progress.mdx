@@ -1,6 +1,6 @@
 ---
 title: Progress
-description: タスクの完了進捗を示すインジケーター。通常はプログレスバーとして表示されます。
+description: Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
 base: base
 component: true
 links:
@@ -8,9 +8,9 @@ links:
   api: https://base-ui.com/react/components/progress#api-reference
 ---
 
-<ComponentPreview styleName="base" name="progress-demo" />
+<ComponentPreview styleName="base-nova" name="progress-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -21,7 +21,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/progress.json
+npx shadcn@latest add progress
 ```
 
 </TabsContent>
@@ -30,21 +30,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/progress.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="progress"
   title="components/ui/progress.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -52,7 +52,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import { Progress } from "@/components/ui/progress"
@@ -62,11 +62,11 @@ import { Progress } from "@/components/ui/progress"
 <Progress value={33} />
 ```
 
-## 構成
+## Composition
 
-### ラベルと値の表示
+### With label and value
 
-`ProgressLabel` と `ProgressValue` でラベルと値を表示します。
+Use `ProgressLabel` and `ProgressValue` to add a label and value display.
 
 ```tsx showLineNumbers
 import {
@@ -89,24 +89,26 @@ Progress
     └── ProgressIndicator
 ```
 
-## 使用例
+## Examples
 
-### ラベル
+### Label
 
-`ProgressLabel` と `ProgressValue` でラベルと値を表示します。
+Use `ProgressLabel` and `ProgressValue` to add a label and value display.
 
-<ComponentPreview styleName="base" name="progress-label" />
+<ComponentPreview styleName="base-nova" name="progress-label" />
 
-### 制御
+### Controlled
 
-スライダーで制御できるプログレスバー。
+A progress bar that can be controlled by a slider.
 
-<ComponentPreview styleName="base" name="progress-controlled" />
+<ComponentPreview styleName="base-nova" name="progress-controlled" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="progress-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="progress-rtl" direction="rtl" />
 
-詳細は [Base UI Progress](https://base-ui.com/react/components/progress#api-reference) ドキュメントを参照してください。
+## API Reference
+
+See the [Base UI Progress](https://base-ui.com/react/components/progress#api-reference) documentation.

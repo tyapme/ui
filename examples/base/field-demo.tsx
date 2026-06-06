@@ -1,5 +1,5 @@
 import { Button } from "@/styles/base/ui/button"
-import { Checkbox } from "@/styles/base/ui/checkbox"
+import { Checkbox } from "@/registry/ui/checkbox"
 import {
   Field,
   FieldDescription,

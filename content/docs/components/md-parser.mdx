@@ -1,0 +1,69 @@
+---
+title: MD Parser
+description: Renders Markdown as styled typography components.
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="md-parser-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add md-parser
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>Install the required dependencies.</Step>
+
+```bash
+npm install react-markdown remark-gfm
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name="md-parser"
+  title="components/ui/md-parser.tsx"
+  styleName="base-nova"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { MDParser } from "@/components/ui/md-parser"
+```
+
+```tsx
+<MDParser>{markdownString}</MDParser>
+```
+
+## API Reference
+
+### MDParser
+
+| Prop        | Type     | Default | Description                     |
+| ----------- | -------- | ------- | ------------------------------- |
+| `children`  | `string` | —       | Markdown string to render       |
+| `className` | `string` | `""`    | Additional class for the wrapper |

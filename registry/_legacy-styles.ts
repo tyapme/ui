@@ -3,7 +3,7 @@ export const legacyStyles: { name: string; title: string }[] = []
 export type Style = (typeof legacyStyles)[number]
 
 export async function getActiveStyle() {
-  return null
+  return { name: "base" }
 }
 
 export function getStyle(name: string) {

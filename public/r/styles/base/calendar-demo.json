@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar-demo",
+  "title": "Calendar",
+  "registryDependencies": [
+    "calendar"
+  ],
+  "files": [
+    {
+      "path": "registry/base/examples/calendar-demo.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { CalendarDate } from \"@internationalized/date\"\nimport { type DateValue } from \"react-aria-components\"\n\nimport { Calendar } from \"@/registry/base/ui/calendar\"\n\nexport default function CalendarDemo() {\n  const [date, setDate] = React.useState<DateValue | null>(\n    new CalendarDate(\n      new Date().getFullYear(),\n      new Date().getMonth() + 1,\n      new Date().getDate()\n    )\n  )\n\n  return <Calendar value={date} onChange={setDate} />\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

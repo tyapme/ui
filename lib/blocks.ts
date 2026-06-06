@@ -4,6 +4,7 @@ import { registryItemSchema, registrySchema } from "shadcn/schema"
 import { type z } from "zod"
 
 import { registry as baseRegistry } from "@/registry/bases/base/registry"
+import { registry as radixRegistry } from "@/registry/bases/radix/registry"
 
 export async function getAllBlockIds(
   types: z.infer<typeof registryItemSchema>["type"][] = [
@@ -28,7 +29,7 @@ export async function getAllBlocks(
 
   const allBlocks = new Map<string, z.infer<typeof registryItemSchema>>()
 
-  const baseRegistries = [baseRegistry]
+  const baseRegistries = [baseRegistry, radixRegistry]
     .map((registry) => registrySchema.safeParse(registry))
     .filter((result) => result.success)
     .map((result) => result.data)

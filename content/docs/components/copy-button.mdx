@@ -1,0 +1,87 @@
+---
+title: Copy Button
+description: A button that copies text to the clipboard with an animated icon swap on success.
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="copy-button-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add copy-button
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react class-variance-authority
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name="copy-button"
+  title="components/ui/copy-button.tsx"
+  styleName="base-nova"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { CopyButton } from "@/components/ui/copy-button"
+```
+
+```tsx
+<CopyButton value="Text to copy" />
+```
+
+## Examples
+
+### Size
+
+Use the `size` prop to change the size of the button.
+
+<ComponentPreview styleName="base-nova" name="copy-button-sizes" />
+
+### Outline
+
+Use `variant="outline"` for a bordered style.
+
+<ComponentPreview styleName="base-nova" name="copy-button-outline" />
+
+## API Reference
+
+### CopyButton
+
+| Prop        | Type                              | Default     |
+| ----------- | --------------------------------- | ----------- |
+| `value`     | `string`                          | —           |
+| `size`      | `"sm" \| "default" \| "lg"`      | `"default"` |
+| `variant`   | `ButtonProps["variant"]`          | `"ghost"`   |
+| `timeout`   | `number`                          | `1800`      |
+| `onCopy`    | `(value: string) => void`         | —           |
+| `className` | `string`                          | —           |

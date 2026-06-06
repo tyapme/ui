@@ -1,6 +1,6 @@
 ---
 title: Sheet
-description: Dialog コンポーネントを拡張し、メインコンテンツを補完するコンテンツを表示します。
+description: Extends the Dialog component to display content that complements the main content of the screen.
 base: base
 component: true
 links:
@@ -8,9 +8,9 @@ links:
   api: https://base-ui.com/react/components/dialog#api-reference
 ---
 
-<ComponentPreview styleName="base" name="sheet-demo" />
+<ComponentPreview styleName="base-nova" name="sheet-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -21,7 +21,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/sheet.json
+npx shadcn@latest add sheet
 ```
 
 </TabsContent>
@@ -30,21 +30,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/sheet.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="sheet"
   title="components/ui/sheet.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -52,7 +52,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -79,9 +79,9 @@ import {
 </Sheet>
 ```
 
-## 構成
+## Composition
 
-`Sheet` の構成:
+Use the following composition to build a `Sheet`:
 
 ```text
 Sheet
@@ -93,24 +93,26 @@ Sheet
     └── SheetFooter
 ```
 
-## 使用例
+## Examples
 
-### 方向
+### Side
 
-`SheetContent` の `side` でシートが表示される画面の端を設定します。`top`、`right`、`bottom`、`left` が利用可能です。
+Use the `side` prop on `SheetContent` to set the edge of the screen where the sheet appears. Values are `top`, `right`, `bottom`, or `left`.
 
-<ComponentPreview styleName="base" name="sheet-side" />
+<ComponentPreview styleName="base-nova" name="sheet-side" />
 
-### 閉じるボタンなし
+### No Close Button
 
-`SheetContent` の `showCloseButton={false}` で閉じるボタンを非表示にします。
+Use `showCloseButton={false}` on `SheetContent` to hide the close button.
 
-<ComponentPreview styleName="base" name="sheet-no-close-button" />
+<ComponentPreview styleName="base-nova" name="sheet-no-close-button" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="sheet-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="sheet-rtl" direction="rtl" />
 
-詳細は [Base UI Dialog](https://base-ui.com/react/components/dialog#api-reference) ドキュメントを参照してください。
+## API Reference
+
+See the [Base UI Dialog](https://base-ui.com/react/components/dialog#api-reference) documentation.

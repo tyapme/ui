@@ -2,34 +2,22 @@
 
 import * as React from "react"
 
-import { DatePicker, TimeFieldInput } from "@/styles/base/ui/date-picker"
-import { Field, FieldGroup, FieldLabel } from "@/styles/base/ui/field"
+import { Field, FieldLabel } from "@/styles/base/ui/field"
+import { DatePicker } from "@/styles/base/ui/date-picker"
 
-export function DatePickerTime() {
-  const [date, setDate] = React.useState<Date | undefined>(undefined)
+export default function DatePickerTime() {
+  const [date, setDate] = React.useState<Date>()
 
   return (
-    <FieldGroup className="mx-auto max-w-xs flex-row">
-      <Field>
-        <FieldLabel htmlFor="date-picker-time">Date</FieldLabel>
-        <DatePicker
-          id="date-picker-time"
-          value={date}
-          onValueChange={setDate}
-          aria-label="Date"
-          className="w-40"
-        />
-      </Field>
-      <Field>
-        <FieldLabel htmlFor="time-picker-time">Time</FieldLabel>
-        <TimeFieldInput
-          id="time-picker-time"
-          value={date}
-          onValueChange={setDate}
-          aria-label="Time"
-          granularity="second"
-        />
-      </Field>
-    </FieldGroup>
+    <Field className="w-72">
+      <FieldLabel htmlFor="date-time">Date & time</FieldLabel>
+      <DatePicker
+        id="date-time"
+        value={date}
+        onValueChange={setDate}
+        granularity="minute"
+        aria-label="Select date and time"
+      />
+    </Field>
   )
 }

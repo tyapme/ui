@@ -9,6 +9,7 @@ import {
   designSystemConfigSchema,
   parseRegistryBaseParts,
   POINTER_CURSOR_SELECTOR,
+  PRESETS,
 } from "./config"
 
 const legacyPublicSchemaStyles = ["default", "new-york"] as const
@@ -59,7 +60,7 @@ describe("buildRegistryBase", () => {
   it("defaults chartColor to neutral when omitted", () => {
     const result = designSystemConfigSchema.parse({
       base: "base",
-      style: "maia",
+      style: "nova",
       iconLibrary: "lucide",
       theme: "neutral",
       font: "inter",
@@ -75,7 +76,7 @@ describe("buildRegistryBase", () => {
   it("defaults pointer to false when omitted", () => {
     const result = designSystemConfigSchema.parse({
       base: "base",
-      style: "maia",
+      style: "nova",
       iconLibrary: "lucide",
       theme: "neutral",
       font: "inter",
@@ -110,7 +111,7 @@ describe("buildRegistryBase", () => {
   it("defaults chartColor to the selected theme when omitted", () => {
     const result = designSystemConfigSchema.parse({
       base: "base",
-      style: "maia",
+      style: "sera",
       iconLibrary: "lucide",
       baseColor: "taupe",
       theme: "taupe",
@@ -128,20 +129,7 @@ describe("buildRegistryBase", () => {
     expect([...publicSchema.properties.style.enum].sort()).toEqual(
       [
         ...legacyPublicSchemaStyles,
-        "base-luma",
-        "base-lyra",
-        "base-maia",
-        "base-mira",
-        "base-nova",
-        "base-sera",
-        "base-vega",
-        "radix-luma",
-        "radix-lyra",
-        "radix-maia",
-        "radix-mira",
-        "radix-nova",
-        "radix-sera",
-        "radix-vega",
+        ...PRESETS.map((preset) => preset.name),
       ].sort()
     )
   })
@@ -149,7 +137,7 @@ describe("buildRegistryBase", () => {
   it("rejects chartColor values that are unavailable for the selected base color", () => {
     const result = designSystemConfigSchema.safeParse({
       base: "base",
-      style: "maia",
+      style: "nova",
       iconLibrary: "lucide",
       baseColor: "neutral",
       theme: "neutral",

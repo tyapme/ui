@@ -1,6 +1,6 @@
 ---
 title: Label
-description: コントロールに関連付けられたアクセシブルなラベルをレンダリングします。
+description: Renders an accessible label associated with controls.
 base: base
 component: true
 links:
@@ -8,13 +8,14 @@ links:
   api: https://base-ui.com/react/components/label#api-reference
 ---
 
-<ComponentPreview styleName="base" name="label-demo" />
+<ComponentPreview styleName="base-nova" name="label-demo" />
 
 <Callout>
-  フォームフィールドには、ラベル・説明・エラー処理を内包する [Field](/docs/components/base/field) コンポーネントを使用してください。
+  For form fields, use the [Field](/docs/components/field) component which
+  includes built-in label, description, and error handling.
 </Callout>
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -25,7 +26,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/label.json
+npx shadcn@latest add label
 ```
 
 </TabsContent>
@@ -34,21 +35,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/label.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="label"
   title="components/ui/label.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -56,7 +57,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx
 import { Label } from "@/components/ui/label"
@@ -66,9 +67,10 @@ import { Label } from "@/components/ui/label"
 <Label htmlFor="email">Your email address</Label>
 ```
 
-## Field 内の Label
+## Label in Field
 
-フォームフィールドには、`FieldLabel`、`FieldDescription`、`FieldError` を内包する [Field](/docs/components/base/field) コンポーネントを使用してください。
+For form fields, use the [Field](/docs/components/field) component which
+includes built-in `FieldLabel`, `FieldDescription`, and `FieldError` components.
 
 ```tsx
 <Field>
@@ -78,15 +80,17 @@ import { Label } from "@/components/ui/label"
 ```
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="field-demo"
   previewClassName="h-[44rem]"
 />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="label-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="label-rtl" direction="rtl" />
 
-詳細は [Base UI Label](https://base-ui.com/react/components/label#api-reference) ドキュメントを参照してください。
+## API Reference
+
+See the [Base UI Label](https://base-ui.com/react/components/label#api-reference) documentation for more information.

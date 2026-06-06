@@ -1,13 +1,13 @@
 ---
 title: Kbd
-description: キーボードからのテキスト入力を表示するコンポーネント。
+description: Used to display textual user input from keyboard.
 base: base
 component: true
 ---
 
-<ComponentPreview styleName="base" name="kbd-demo" />
+<ComponentPreview styleName="base-nova" name="kbd-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -18,7 +18,7 @@ component: true
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/kbd.json
+npx shadcn@latest add kbd
 ```
 
 </TabsContent>
@@ -27,15 +27,15 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/kbd.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="kbd"
   title="components/ui/kbd.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -43,7 +43,7 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/kbd.json
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx
 import { Kbd } from "@/components/ui/kbd"
@@ -53,9 +53,9 @@ import { Kbd } from "@/components/ui/kbd"
 <Kbd>Ctrl</Kbd>
 ```
 
-## 構成
+## Composition
 
-以下の構成で `Kbd` と `KbdGroup` を構築します:
+Use the following composition to build `Kbd` and `KbdGroup`:
 
 ```text
 Kbd
@@ -64,41 +64,43 @@ KbdGroup
 └── Kbd
 ```
 
-## 使用例
+## Examples
 
-### グループ
+### Group
 
-`KbdGroup` でキーをまとめて表示します。
+Use the `KbdGroup` component to group keyboard keys together.
 
-<ComponentPreview styleName="base" name="kbd-group" />
+<ComponentPreview styleName="base-nova" name="kbd-group" />
 
-### ボタン
+### Button
 
-`Button` 内に `Kbd` を使ってボタン上にキーを表示します。
+Use the `Kbd` component inside a `Button` component to display a keyboard key inside a button.
 
-<ComponentPreview styleName="base" name="kbd-button" />
+<ComponentPreview styleName="base-nova" name="kbd-button" />
 
-### ツールチップ
+### Tooltip
 
-`Tooltip` 内に `Kbd` を使ってキー付きツールチップを表示できます。
+You can use the `Kbd` component inside a `Tooltip` component to display a tooltip with a keyboard key.
 
-<ComponentPreview styleName="base" name="kbd-tooltip" />
+<ComponentPreview styleName="base-nova" name="kbd-tooltip" />
 
 ### Input Group
 
-`InputGroupAddon` 内に `Kbd` を使って入力グループ内にキーを表示できます。
+You can use the `Kbd` component inside a `InputGroupAddon` component to display a keyboard key inside an input group.
 
-<ComponentPreview styleName="base" name="kbd-input-group" />
+<ComponentPreview styleName="base-nova" name="kbd-input-group" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="kbd-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="kbd-rtl" direction="rtl" />
+
+## API Reference
 
 ### Kbd
 
-キーボードキーを表示するコンポーネント。
+Use the `Kbd` component to display a keyboard key.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -110,7 +112,7 @@ KbdGroup
 
 ### KbdGroup
 
-`Kbd` コンポーネントをグループ化するコンポーネント。
+Use the `KbdGroup` component to group `Kbd` components together.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |

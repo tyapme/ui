@@ -1,14 +1,14 @@
 ---
 title: Button
-description: ボタンまたはボタンのようなコンポーネントを表示します。
+description: Displays a button or a component that looks like a button.
 featured: true
 base: base
 component: true
 ---
 
-<ComponentPreview styleName="base" name="button-demo" />
+<ComponentPreview styleName="base-nova" name="button-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -19,7 +19,7 @@ component: true
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/button.json
+npx shadcn@latest add button
 ```
 
 </TabsContent>
@@ -28,21 +28,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/button.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="button"
   title="components/ui/button.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -50,7 +50,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx
 import { Button } from "@/components/ui/button"
@@ -62,11 +62,11 @@ import { Button } from "@/components/ui/button"
 
 ## Cursor
 
-Tailwind v4 ではボタンコンポーネントの `cursor: pointer` から `cursor: default` への[変更](https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor)が行われました。
+Tailwind v4 [switched](https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor) from `cursor: pointer` to `cursor: default` for the button component.
 
-`cursor: pointer` の振る舞いを維持したい場合は、CSS ファイルに以下のコードを追加してください:
+If you want to keep the `cursor: pointer` behavior, add the following code to your CSS file:
 
-`npx shadcn@latest init --pointer` でプロジェクト設定時にも有効化できます。
+You can also enable this during project setup with `npx shadcn@latest init --pointer`.
 
 ```css showLineNumbers title="globals.css"
 @layer base {
@@ -77,83 +77,85 @@ Tailwind v4 ではボタンコンポーネントの `cursor: pointer` から `cu
 }
 ```
 
-## 使用例
+## Examples
 
 ### Size
 
-`size` プロパティでボタンのサイズを変更します。
+Use the `size` prop to change the size of the button.
 
-<ComponentPreview styleName="base" name="button-size" />
+<ComponentPreview styleName="base-nova" name="button-size" />
 
 ### Default
 
-<ComponentPreview styleName="base" name="button-default" />
+<ComponentPreview styleName="base-nova" name="button-default" />
 
 ### Outline
 
-<ComponentPreview styleName="base" name="button-outline" />
+<ComponentPreview styleName="base-nova" name="button-outline" />
 
 ### Secondary
 
-<ComponentPreview styleName="base" name="button-secondary" />
+<ComponentPreview styleName="base-nova" name="button-secondary" />
 
 ### Ghost
 
-<ComponentPreview styleName="base" name="button-ghost" />
+<ComponentPreview styleName="base-nova" name="button-ghost" />
 
 ### Destructive
 
-<ComponentPreview styleName="base" name="button-destructive" />
+<ComponentPreview styleName="base-nova" name="button-destructive" />
 
 ### Link
 
-<ComponentPreview styleName="base" name="button-link" />
+<ComponentPreview styleName="base-nova" name="button-link" />
 
 ### Icon
 
-<ComponentPreview styleName="base" name="button-icon" />
+<ComponentPreview styleName="base-nova" name="button-icon" />
 
 ### With Icon
 
-アイコンに `data-icon="inline-start"` または `data-icon="inline-end"` 属性を付けて正しい間隔を確保してください。
+Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the icon for the correct spacing.
 
-<ComponentPreview styleName="base" name="button-with-icon" />
+<ComponentPreview styleName="base-nova" name="button-with-icon" />
 
 ### Rounded
 
-`rounded-full` クラスでボタンを丸くします。
+Use the `rounded-full` class to make the button rounded.
 
-<ComponentPreview styleName="base" name="button-rounded" />
+<ComponentPreview styleName="base-nova" name="button-rounded" />
 
 ### Spinner
 
-リーディング状態を表示するため、`<Spinner />` コンポーネントをボタンの中に配置します。スピナーに `data-icon="inline-start"` または `data-icon="inline-end"` 属性を付けて正しい間隔を確保してください。
+Render a `<Spinner />` component inside the button to show a loading state. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the spinner for the correct spacing.
 
-<ComponentPreview styleName="base" name="button-spinner" />
+<ComponentPreview styleName="base-nova" name="button-spinner" />
 
 ### Button Group
 
-ボタングループを作成するには `ButtonGroup` コンポーネントを使います。詳細は [Button Group](/docs/components/base/button-group) のドキュメントを参照してください。
+To create a button group, use the `ButtonGroup` component. See the [Button Group](/docs/components/button-group) documentation for more details.
 
-<ComponentPreview styleName="base" name="button-group-demo" />
+<ComponentPreview styleName="base-nova" name="button-group-demo" />
 
 ### As Link
 
-`buttonVariants` ヘルパーを使ってリンクをボタンのように見せることができます。
+You can use the `buttonVariants` helper to make a link look like a button.
 
-**リンクには `<Button render={<a />} nativeButton={false} />` を使わないでください。** Base UI の `Button` コンポーネントは常に `role="button"` を適用するため、`<a>` 要素のセマンティックなリンクロールを上書きしてしまいます。代わりに `buttonVariants` と通常の `<a>` タグを使用してください。
+**Do not use `<Button render={<a />} nativeButton={false} />` for links.** The Base UI `Button` component always applies `role="button"`, which overrides the semantic link role on `<a>` elements. Use `buttonVariants` with a plain `<a>` tag instead.
 
-<ComponentPreview styleName="base" name="button-render" />
+<ComponentPreview styleName="base-nova" name="button-render" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="button-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="button-rtl" direction="rtl" />
+
+## API Reference
 
 ### Button
 
-`Button` コンポーネントは `button` 要素のラッパーで、各種スタイルと機能を追加します。
+The `Button` component is a wrapper around the `button` element that adds a variety of styles and functionality.
 
 | Prop      | Type                                                                                 | Default     |
 | --------- | ------------------------------------------------------------------------------------ | ----------- |

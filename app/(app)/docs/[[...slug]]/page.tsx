@@ -6,7 +6,7 @@ import { findNeighbour } from "fumadocs-core/page-tree"
 
 import { replaceComponentsList } from "@/lib/llm"
 import { source } from "@/lib/source"
-import { absoluteUrl } from "@/lib/utils"
+import { absoluteUrl, cn } from "@/lib/utils"
 import { DocsCopyPage } from "@/components/docs-copy-page"
 import { DocsTableOfContents } from "@/components/docs-toc"
 import { Button } from "@/styles/base/ui/button"
@@ -78,6 +78,7 @@ export default async function Page(props: {
   const doc = page.data
   const MDX = doc.body
   const isChangelog = params.slug?.[0] === "changelog"
+  const isComponentsIndex = params.slug?.[0] === "components" && !params.slug?.[1]
   const neighbours = isChangelog
     ? { previous: null, next: null }
     : findNeighbour(source.pageTree, page.url)
@@ -90,7 +91,12 @@ export default async function Page(props: {
     >
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="h-(--top-spacing) shrink-0" />
-        <div className={`mx-auto flex w-full min-w-0 flex-1 flex-col gap-6 px-4 py-6 text-neutral-800 md:px-0 lg:py-8 dark:text-neutral-300 ${params.slug?.[0] === "components" && !params.slug?.[1] ? "" : "max-w-[40rem]"}`}>
+        <div
+          className={cn(
+            "mx-auto flex w-full min-w-0 flex-1 flex-col gap-6 px-4 py-6 text-neutral-800 md:px-0 lg:py-8 dark:text-neutral-300",
+            !isComponentsIndex && "max-w-[40rem]"
+          )}
+        >
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between md:items-start">
               <h1 className="scroll-m-24 text-3xl font-semibold tracking-tight sm:text-3xl">

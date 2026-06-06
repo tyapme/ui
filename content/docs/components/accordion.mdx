@@ -1,6 +1,6 @@
 ---
 title: Accordion
-description: クリックで内容を開閉できる、縦に並んだインタラクティブな見出しのセット。
+description: A vertically stacked set of interactive headings that each reveal a section of content.
 base: base
 component: true
 links:
@@ -9,13 +9,13 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="accordion-demo"
   align="start"
   previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
 />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -27,7 +27,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/accordion.json
+npx shadcn@latest add accordion
 ```
 
 </TabsContent>
@@ -36,21 +36,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/accordion.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="accordion"
   title="components/ui/accordion.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -58,7 +58,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -80,9 +80,9 @@ import {
 </Accordion>
 ```
 
-## 構成
+## Composition
 
-`Accordion` の構成:
+Use the following composition to build an `Accordion`:
 
 ```text
 Accordion
@@ -94,14 +94,14 @@ Accordion
     └── AccordionContent
 ```
 
-## 使用例
+## Examples
 
 ### Basic
 
-一度に1つのアイテムを表示するシンプルなアコーディオン。最初のアイテムがデフォルトで開いています。
+A basic accordion that shows one item at a time. The first item is open by default.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="accordion-basic"
   align="start"
   previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
@@ -109,10 +109,10 @@ Accordion
 
 ### Multiple
 
-`multiple` プロパティで複数のアイテムを同時に開けるようにします。
+Use the `multiple` prop to allow multiple items to be open at the same time.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="accordion-multiple"
   align="start"
   previewClassName="*:data-[slot=accordion]:max-w-sm h-[450px]"
@@ -120,10 +120,10 @@ Accordion
 
 ### Disabled
 
-`AccordionItem` の `disabled` プロパティで個別アイテムを無効化します。
+Use the `disabled` prop on `AccordionItem` to disable individual items.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="accordion-disabled"
   align="start"
   previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
@@ -131,10 +131,10 @@ Accordion
 
 ### Borders
 
-`Accordion` に `border`、`AccordionItem` に `border-b last:border-b-0` を追加してボーダーを表示します。
+Add `border` to the `Accordion` and `border-b last:border-b-0` to the `AccordionItem` to add borders to the items.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="accordion-borders"
   align="start"
   previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
@@ -142,10 +142,10 @@ Accordion
 
 ### Card
 
-`Accordion` を `Card` コンポーネントで包みます。
+Wrap the `Accordion` in a `Card` component.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="accordion-card"
   align="start"
   previewClassName="*:data-[slot=accordion]:max-w-sm h-[435px]"
@@ -153,13 +153,15 @@ Accordion
 
 ## RTL
 
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="accordion-rtl"
   align="start"
   direction="rtl"
 />
 
-## API リファレンス
+## API Reference
 
-詳細は [Base UI](https://base-ui.com/react/components/accordion#api-reference) のドキュメントを参照してください。
+See the [Base UI](https://base-ui.com/react/components/accordion#api-reference) documentation for more information.

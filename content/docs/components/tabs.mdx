@@ -1,6 +1,6 @@
 ---
 title: Tabs
-description: タブパネルと呼ばれる、一度に1つずつ表示されるコンテンツセクションのセット。
+description: A set of layered sections of content—known as tab panels—that are displayed one at a time.
 base: base
 component: true
 links:
@@ -9,12 +9,12 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="tabs-demo"
   previewClassName="h-96"
 />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -25,7 +25,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/tabs.json
+npx shadcn@latest add tabs
 ```
 
 </TabsContent>
@@ -34,21 +34,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/tabs.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="tabs"
   title="components/ui/tabs.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -56,7 +56,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -73,9 +73,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 </Tabs>
 ```
 
-## 構成
+## Composition
 
-以下の構成で `Tabs` を構築します:
+Use the following composition to build `Tabs`:
 
 ```text
 Tabs
@@ -86,32 +86,34 @@ Tabs
 └── TabsContent
 ```
 
-## 使用例
+## Examples
 
 ### Line
 
-`TabsList` に `variant="line"` でラインスタイルにします。
+Use the `variant="line"` prop on `TabsList` for a line style.
 
-<ComponentPreview styleName="base" name="tabs-line" />
+<ComponentPreview styleName="base-nova" name="tabs-line" />
 
 ### Vertical
 
-`orientation="vertical"` で縦向きのタブにします。
+Use `orientation="vertical"` for vertical tabs.
 
-<ComponentPreview styleName="base" name="tabs-vertical" />
+<ComponentPreview styleName="base-nova" name="tabs-vertical" />
 
 ### Disabled
 
-<ComponentPreview styleName="base" name="tabs-disabled" />
+<ComponentPreview styleName="base-nova" name="tabs-disabled" />
 
 ### Icons
 
-<ComponentPreview styleName="base" name="tabs-icons" />
+<ComponentPreview styleName="base-nova" name="tabs-icons" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="tabs-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="tabs-rtl" direction="rtl" />
 
-詳細は [Base UI Tabs](https://base-ui.com/react/components/tabs#api-reference) ドキュメントを参照してください。
+## API Reference
+
+See the [Base UI Tabs](https://base-ui.com/react/components/tabs#api-reference) documentation.

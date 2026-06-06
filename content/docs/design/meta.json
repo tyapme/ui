@@ -1,10 +1,6 @@
 {
     "title": "基本デザイン",
     "pages": [
-        "brand",
-        "principles",
-        "index",
-        "colors",
         "typography",
         "icons",
         "layout",

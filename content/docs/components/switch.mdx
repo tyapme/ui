@@ -1,6 +1,6 @@
 ---
 title: Switch
-description: オン/オフを切り替えられるコントロール。
+description: A control that allows the user to toggle between checked and not checked.
 base: base
 component: true
 links:
@@ -8,9 +8,9 @@ links:
   api: https://base-ui.com/react/components/switch#api-reference
 ---
 
-<ComponentPreview styleName="base" name="switch-demo" />
+<ComponentPreview styleName="base-nova" name="switch-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -21,7 +21,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/switch.json
+npx shadcn@latest add switch
 ```
 
 </TabsContent>
@@ -30,21 +30,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/switch.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="switch"
   title="components/ui/switch.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -52,7 +52,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx
 import { Switch } from "@/components/ui/switch"
@@ -62,40 +62,42 @@ import { Switch } from "@/components/ui/switch"
 <Switch />
 ```
 
-## 使用例
+## Examples
 
 ### Description
 
-<ComponentPreview styleName="base" name="switch-description" />
+<ComponentPreview styleName="base-nova" name="switch-description" />
 
 ### Choice Card
 
-`FieldLabel` が `Field` 全体を包括するカードスタイルの選択。クリック可能なカードパターン。
+Card-style selection where `FieldLabel` wraps the entire `Field` for a clickable card pattern.
 
-<ComponentPreview styleName="base" name="switch-choice-card" />
+<ComponentPreview styleName="base-nova" name="switch-choice-card" />
 
 ### Disabled
 
-`Switch` に `disabled` を付けて無効化します。スタイリングには `Field` に `data-disabled` を付けます。
+Add the `disabled` prop to the `Switch` component to disable the switch. Add the `data-disabled` prop to the `Field` component for styling.
 
-<ComponentPreview styleName="base" name="switch-disabled" />
+<ComponentPreview styleName="base-nova" name="switch-disabled" />
 
 ### Invalid
 
-`Switch` に `aria-invalid` を付けて未入力状態を示します。スタイリングには `Field` に `data-invalid` を付けます。
+Add the `aria-invalid` prop to the `Switch` component to indicate an invalid state. Add the `data-invalid` prop to the `Field` component for styling.
 
-<ComponentPreview styleName="base" name="switch-invalid" />
+<ComponentPreview styleName="base-nova" name="switch-invalid" />
 
 ### Size
 
-`size` でスイッチのサイズを変更できます。
+Use the `size` prop to change the size of the switch.
 
-<ComponentPreview styleName="base" name="switch-sizes" />
+<ComponentPreview styleName="base-nova" name="switch-sizes" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="switch-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="switch-rtl" direction="rtl" />
 
-詳細は [Base UI Switch](https://base-ui.com/react/components/switch#api-reference) ドキュメントを参照してください。
+## API Reference
+
+See the [Base UI Switch](https://base-ui.com/react/components/switch#api-reference) documentation.

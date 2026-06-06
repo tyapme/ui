@@ -1,17 +1,17 @@
 ---
 title: Breadcrumb
-description: リンクの階層でカレントリソースへのパスを表示します。
+description: Displays the path to the current resource using a hierarchy of links.
 base: base
 component: true
 ---
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="breadcrumb-demo"
   previewClassName="p-2"
 />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -22,7 +22,7 @@ component: true
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/breadcrumb.json
+npx shadcn@latest add breadcrumb
 ```
 
 </TabsContent>
@@ -31,15 +31,15 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/breadcrumb.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="breadcrumb"
   title="components/ui/breadcrumb.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -47,7 +47,7 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/breadcrumb.json
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -80,9 +80,9 @@ import {
 </Breadcrumb>
 ```
 
-## 構成
+## Composition
 
-`Breadcrumb` の構成:
+Use the following composition to build a `Breadcrumb`:
 
 ```text
 Breadcrumb
@@ -97,56 +97,58 @@ Breadcrumb
         └── BreadcrumbPage
 ```
 
-## 使用例
+## Examples
 
 ### Basic
 
-ホームリンクとコンポーネントリンクを持つシンプルなパンくずリスト。
+A basic breadcrumb with a home link and a components link.
 
-<ComponentPreview styleName="base" name="breadcrumb-basic" />
+<ComponentPreview styleName="base-nova" name="breadcrumb-basic" />
 
 ### Custom separator
 
-`<BreadcrumbSeparator />` の `children` にカスタムコンポーネントを指定してセパレーターを変更します。
+Use a custom component as `children` for `<BreadcrumbSeparator />` to create a custom separator.
 
-<ComponentPreview styleName="base" name="breadcrumb-separator" />
+<ComponentPreview styleName="base-nova" name="breadcrumb-separator" />
 
 ### Dropdown
 
-`<BreadcrumbItem />` と `<DropdownMenu />` を組み合わせてパンくずリスト内にドロップダウンを作成できます。
+You can compose `<BreadcrumbItem />` with a `<DropdownMenu />` to create a dropdown in the breadcrumb.
 
-<ComponentPreview styleName="base" name="breadcrumb-dropdown" />
+<ComponentPreview styleName="base-nova" name="breadcrumb-dropdown" />
 
 ### Collapsed
 
-パンくずリストが長すぎる場合に折りたたまんだ状態を表示する `<BreadcrumbEllipsis />` コンポーネントを提供しています。
+We provide a `<BreadcrumbEllipsis />` component to show a collapsed state when the breadcrumb is too long.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="breadcrumb-ellipsis"
   previewClassName="p-2"
 />
 
 ### Link component
 
-ルーティングライブラリのカスタムリンクコンポーネントを使うには、`<BreadcrumbLink />` の `render` プロパティを使用します。
+To use a custom link component from your routing library, you can use the `render` prop on `<BreadcrumbLink />`.
 
-<ComponentPreview styleName="base" name="breadcrumb-link" />
+<ComponentPreview styleName="base-nova" name="breadcrumb-link" />
 
 ## RTL
 
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="breadcrumb-rtl"
   direction="rtl"
   previewClassName="p-2"
 />
 
-## API リファレンス
+## API Reference
 
 ### Breadcrumb
 
-`Breadcrumb` コンポーネントはすべてのパンくずリスト要素を包むルートナビゲーション要素です。
+The `Breadcrumb` component is the root navigation element that wraps all breadcrumb components.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -154,7 +156,7 @@ Breadcrumb
 
 ### BreadcrumbList
 
-`BreadcrumbList` コンポーネントはパンくずリストアイテムの順序付きリストを表示します。
+The `BreadcrumbList` component displays the ordered list of breadcrumb items.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -162,7 +164,7 @@ Breadcrumb
 
 ### BreadcrumbItem
 
-`BreadcrumbItem` コンポーネントは個別のパンくずリストアイテムを包みます。
+The `BreadcrumbItem` component wraps individual breadcrumb items.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -170,7 +172,7 @@ Breadcrumb
 
 ### BreadcrumbLink
 
-`BreadcrumbLink` コンポーネントはパンくずリスト内のクリック可能なリンクを表示します。
+The `BreadcrumbLink` component displays a clickable link in the breadcrumb.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -178,7 +180,7 @@ Breadcrumb
 
 ### BreadcrumbPage
 
-`BreadcrumbPage` コンポーネントはパンくずリストの現在のページ（クリック不可）を表示します。
+The `BreadcrumbPage` component displays the current page in the breadcrumb (non-clickable).
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |
@@ -186,7 +188,7 @@ Breadcrumb
 
 ### BreadcrumbSeparator
 
-`BreadcrumbSeparator` コンポーネントはパンくずリストアイテム間のセパレーターを表示します。カスタムな children を渡すとデフォルトのセパレーターアイコンを上書きできます。
+The `BreadcrumbSeparator` component displays a separator between breadcrumb items. You can pass custom children to override the default separator icon.
 
 | Prop        | Type              | Default |
 | ----------- | ----------------- | ------- |
@@ -195,7 +197,7 @@ Breadcrumb
 
 ### BreadcrumbEllipsis
 
-`BreadcrumbEllipsis` コンポーネントは折りたたまれたパンくずリストアイテムのエリプシス表示を可能にします。
+The `BreadcrumbEllipsis` component displays an ellipsis indicator for collapsed breadcrumb items.
 
 | Prop        | Type     | Default |
 | ----------- | -------- | ------- |

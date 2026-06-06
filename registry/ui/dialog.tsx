@@ -5,7 +5,11 @@ import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 
 import { cn } from "@/registry/bases/base/lib/utils"
 import { Button } from "@/registry/ui/button"
-import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
+import {
+  DIALOG_OVERLAY_CLASSES,
+  DIALOG_CONTENT_BASE_CLASSES,
+  DialogDragHandle,
+} from "@/registry/ui/_dialog-shared"
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />
@@ -54,7 +58,7 @@ function DialogOverlay({
   return (
     <DialogPrimitive.Backdrop
       data-slot="dialog-overlay"
-      className={cn("cn-dialog-overlay fixed inset-0 isolate z-50", className)}
+      className={cn(DIALOG_OVERLAY_CLASSES, className)}
       {...props}
     />
   )
@@ -63,45 +67,22 @@ function DialogOverlay({
 function DialogContent({
   className,
   children,
-  showCloseButton = true,
   ...props
-}: DialogPrimitive.Popup.Props & {
-  showCloseButton?: boolean
-}) {
+}: DialogPrimitive.Popup.Props) {
   return (
     <DialogPortal>
       <DialogOverlay />
       <DialogPrimitive.Popup
         data-slot="dialog-content"
         className={cn(
-          "t-modal cn-dialog-content fixed top-1/2 left-1/2 z-50 w-full outline-none",
+          DIALOG_CONTENT_BASE_CLASSES,
+          "sm:max-w-md",
           className
         )}
         {...props}
       >
+        <DialogDragHandle />
         {children}
-        {showCloseButton && (
-          <DialogPrimitive.Close
-            data-slot="dialog-close"
-            nativeButton
-            render={
-              <Button
-                variant="ghost"
-                className="cn-dialog-close"
-                size="icon-sm"
-              />
-            }
-          >
-            <IconPlaceholder
-              lucide="XIcon"
-              tabler="IconX"
-              hugeicons="Cancel01Icon"
-              phosphor="XIcon"
-              remixicon="RiCloseLine"
-            />
-            <span className="sr-only">Close</span>
-          </DialogPrimitive.Close>
-        )}
       </DialogPrimitive.Popup>
     </DialogPortal>
   )

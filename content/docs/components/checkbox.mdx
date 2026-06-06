@@ -1,6 +1,6 @@
 ---
 title: Checkbox
-description: チェック状態とそれ以外を切り替えるコントロール。
+description: A control that allows the user to toggle between checked and not checked.
 base: base
 component: true
 links:
@@ -9,12 +9,12 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="checkbox-demo"
   previewClassName="h-80"
 />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -25,7 +25,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/checkbox.json
+npx shadcn@latest add checkbox
 ```
 
 </TabsContent>
@@ -34,21 +34,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/checkbox.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="checkbox"
   title="components/ui/checkbox.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -56,7 +56,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx
 import { Checkbox } from "@/components/ui/checkbox"
@@ -66,9 +66,10 @@ import { Checkbox } from "@/components/ui/checkbox"
 <Checkbox />
 ```
 
-## チェック状態
+## Checked State
 
-革制されないチェックボックスには `defaultChecked` を、状態を制御する場合は `checked` と `onCheckedChange` を使用します。
+Use `defaultChecked` for uncontrolled checkboxes, or `checked` and
+`onCheckedChange` to control the state.
 
 ```tsx showLineNumbers
 import * as React from "react"
@@ -80,55 +81,58 @@ export function Example() {
 }
 ```
 
-## 無効状態
+## Invalid State
 
-チェックボックスに `aria-invalid`、フィールドラッパーに `data-invalid` を設定して無効スタイルを表示します。
+Set `aria-invalid` on the checkbox and `data-invalid` on the field wrapper to
+show the invalid styles.
 
-<ComponentPreview styleName="base" name="checkbox-invalid" />
+<ComponentPreview styleName="base-nova" name="checkbox-invalid" />
 
-## 使用例
+## Examples
 
 ### Basic
 
-`Field` と `FieldLabel` と組み合わせて正しいレイアウトとラベリングを実現します。
+Pair the checkbox with `Field` and `FieldLabel` for proper layout and labeling.
 
-<ComponentPreview styleName="base" name="checkbox-basic" />
+<ComponentPreview styleName="base-nova" name="checkbox-basic" />
 
 ### Description
 
-`FieldContent` と `FieldDescription` で補助テキストを追加します。
+Use `FieldContent` and `FieldDescription` for helper text.
 
-<ComponentPreview styleName="base" name="checkbox-description" />
+<ComponentPreview styleName="base-nova" name="checkbox-description" />
 
 ### Disabled
 
-`disabled` プロパティで法動を禁止し、`<Field>` コンポーネントに `data-disabled` 属性を追加して無効スタイルを適用します。
+Use the `disabled` prop to prevent interaction and add the `data-disabled` attribute to the `<Field>` component for disabled styles.
 
-<ComponentPreview styleName="base" name="checkbox-disabled" />
+<ComponentPreview styleName="base-nova" name="checkbox-disabled" />
 
 ### Group
 
-複数のフィールドを使ってチェックボックスリストを作成します。
+Use multiple fields to create a checkbox list.
 
-<ComponentPreview styleName="base" name="checkbox-group" />
+<ComponentPreview styleName="base-nova" name="checkbox-group" />
 
 ### Table
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="checkbox-table"
   previewClassName="p-4 md:p-8"
 />
 
 ## RTL
 
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="checkbox-rtl"
   direction="rtl"
   previewClassName="h-80"
 />
 
-## API リファレンス
+## API Reference
 
-詳細は [Base UI](https://base-ui.com/react/components/checkbox#api-reference) のドキュメントを参照してください。
+See the [Base UI](https://base-ui.com/react/components/checkbox#api-reference) documentation for more information.

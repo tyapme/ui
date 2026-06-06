@@ -1,6 +1,6 @@
 ---
 title: Collapsible
-description: パネルを展開・折りたたみできるインタラクティブなコンポーネント。
+description: An interactive component which expands/collapses a panel.
 base: base
 component: true
 featured: true
@@ -9,9 +9,9 @@ links:
   api: https://base-ui.com/react/components/collapsible#api-reference
 ---
 
-<ComponentPreview styleName="base" name="collapsible-demo" align="start" />
+<ComponentPreview styleName="base-nova" name="collapsible-demo" align="start" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -22,7 +22,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/collapsible.json
+npx shadcn@latest add collapsible
 ```
 
 </TabsContent>
@@ -31,21 +31,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/collapsible.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="collapsible"
   title="components/ui/collapsible.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -53,7 +53,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -73,9 +73,9 @@ import {
 </Collapsible>
 ```
 
-## 構成
+## Composition
 
-`Collapsible` の構成:
+Use the following composition to build a `Collapsible`:
 
 ```text
 Collapsible
@@ -83,9 +83,9 @@ Collapsible
 └── CollapsibleContent
 ```
 
-## 制御状態
+## Controlled State
 
-`open` と `onOpenChange` props で開閉状態を制御します。
+Use the `open` and `onOpenChange` props to control the state.
 
 ```tsx showLineNumbers
 import * as React from "react"
@@ -102,41 +102,43 @@ export function Example() {
 }
 ```
 
-## 使用例
+## Examples
 
 ### Basic
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="collapsible-basic"
   align="start"
 />
 
 ### Settings Panel
 
-トリガーボタンで追加の設定を表示します。
+Use a trigger button to reveal additional settings.
 
-<ComponentPreview styleName="base" name="collapsible-settings" />
+<ComponentPreview styleName="base-nova" name="collapsible-settings" />
 
 ### File Tree
 
-ネストした Collapsible でファイルツリーを構築します。
+Use nested collapsibles to build a file tree.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="collapsible-file-tree"
   previewClassName="h-[36rem]"
 />
 
 ## RTL
 
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="collapsible-rtl"
   direction="rtl"
   align="start"
 />
 
-## API リファレンス
+## API Reference
 
-詳細は [Base UI](https://base-ui.com/react/components/collapsible#api-reference) のドキュメントを参照してください。
+See the [Base UI](https://base-ui.com/react/components/collapsible#api-reference) documentation for more information.

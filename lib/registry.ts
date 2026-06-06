@@ -20,7 +20,7 @@ const registryCache = new LRUCache<string, any>({
 
 function getBaseForStyle(styleName: string) {
   for (const base of BASES) {
-    if (styleName === base.name || styleName.startsWith(`${base.name}-`)) {
+    if (styleName.startsWith(`${base.name}-`)) {
       return base.name
     }
   }

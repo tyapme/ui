@@ -77,6 +77,7 @@ export function CopyButton({
   tooltip?: string
 }) {
   const [hasCopied, setHasCopied] = React.useState(false)
+  const [isPressing, setIsPressing] = React.useState(false)
 
   React.useEffect(() => {
     if (hasCopied) {
@@ -96,7 +97,8 @@ export function CopyButton({
         className
       )}
       onClick={async () => {
-        const hasCopied = await copyToClipboardWithMeta(
+        if (isPressing || hasCopied) return
+        const copied = await copyToClipboardWithMeta(
           value,
           event
             ? {
@@ -108,14 +110,22 @@ export function CopyButton({
             : undefined
         )
 
-        if (hasCopied) {
-          setHasCopied(true)
+        if (copied) {
+          setIsPressing(true)
         }
       }}
       {...props}
     >
       <span className="sr-only">コピー</span>
-      <span className="t-icon-swap" data-state={hasCopied ? "b" : "a"}>
+      <span
+        className="t-icon-swap"
+        data-state={hasCopied ? "b" : "a"}
+        data-pressing={isPressing ? "true" : undefined}
+        onAnimationEnd={() => {
+          setIsPressing(false)
+          setHasCopied(true)
+        }}
+      >
         <span className="t-icon" data-icon="a">
           <IconCopy />
         </span>

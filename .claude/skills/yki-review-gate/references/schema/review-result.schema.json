@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "reviewer_id",
+    "reviewer_name",
+    "score",
+    "pass",
+    "scope_summary",
+    "summary",
+    "category_scores",
+    "blocking_findings",
+    "required_fixes",
+    "required_tests",
+    "residual_risks",
+    "notes"
+  ],
+  "properties": {
+    "reviewer_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewer_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "pass": {
+      "type": "boolean"
+    },
+    "scope_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category_scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rules_compliance",
+        "architecture",
+        "bugs_edge_cases",
+        "security",
+        "maintainability_operations",
+        "ui_accessibility"
+      ],
+      "properties": {
+        "rules_compliance": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "architecture": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "bugs_edge_cases": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "security": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "maintainability_operations": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "ui_accessibility": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "blocking_findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "severity",
+          "detail"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          },
+          "detail": {
+            "type": "string",
+            "minLength": 1
+          },
+          "file": {
+            "type": "string"
+          },
+          "start_line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "end_line": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "required_fixes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "required_tests": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "residual_risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

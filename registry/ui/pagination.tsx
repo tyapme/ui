@@ -4,18 +4,39 @@ import { cn } from "@/registry/bases/base/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
+/* Active page fades in when it first appears (e.g. on navigation) */
+const ACTIVE_CSS = `
+[data-slot="pagination-link"][data-active="true"] {
+  transition:
+    background-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@starting-style {
+  [data-slot="pagination-link"][data-active="true"] {
+    background-color: transparent;
+    color: inherit;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="pagination-link"][data-active="true"] { transition: none !important; }
+}
+`
+
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
-    <nav
-      role="navigation"
-      aria-label="pagination"
-      data-slot="pagination"
-      className={cn(
-        "cn-pagination mx-auto flex w-full justify-center",
-        className
-      )}
-      {...props}
-    />
+    <>
+      <style href="pagination-active" precedence="component">{ACTIVE_CSS}</style>
+      <nav
+        role="navigation"
+        aria-label="pagination"
+        data-slot="pagination"
+        className={cn(
+          "cn-pagination mx-auto flex w-full justify-center",
+          className
+        )}
+        {...props}
+      />
+    </>
   )
 }
 
@@ -26,7 +47,7 @@ function PaginationContent({
   return (
     <ul
       data-slot="pagination-content"
-      className={cn("cn-pagination-content flex items-center", className)}
+      className={cn("cn-pagination-content flex items-center gap-1", className)}
       {...props}
     />
   )
@@ -49,9 +70,9 @@ function PaginationLink({
 }: PaginationLinkProps) {
   return (
     <Button
-      variant={isActive ? "outline" : "ghost"}
+      variant="ghost"
       size={size}
-      className={cn("cn-pagination-link", className)}
+      className={cn("cn-pagination-link", isActive && "bg-muted! font-medium", className)}
       nativeButton={false}
       render={
         <a
@@ -67,13 +88,13 @@ function PaginationLink({
 
 function PaginationPrevious({
   className,
-  text = "Previous",
+  text: _text = "Previous",
   ...props
 }: React.ComponentProps<typeof PaginationLink> & { text?: string }) {
   return (
     <PaginationLink
       aria-label="Go to previous page"
-      size="default"
+      size="icon"
       className={cn("cn-pagination-previous", className)}
       {...props}
     >
@@ -83,36 +104,30 @@ function PaginationPrevious({
         hugeicons="ArrowLeft01Icon"
         phosphor="CaretLeftIcon"
         remixicon="RiArrowLeftSLine"
-        data-icon="inline-start"
         className="cn-rtl-flip"
       />
-      <span className="cn-pagination-previous-text hidden sm:block">
-        {text}
-      </span>
     </PaginationLink>
   )
 }
 
 function PaginationNext({
   className,
-  text = "Next",
+  text: _text = "Next",
   ...props
 }: React.ComponentProps<typeof PaginationLink> & { text?: string }) {
   return (
     <PaginationLink
       aria-label="Go to next page"
-      size="default"
+      size="icon"
       className={cn("cn-pagination-next", className)}
       {...props}
     >
-      <span className="cn-pagination-next-text hidden sm:block">{text}</span>
       <IconPlaceholder
         lucide="ChevronRightIcon"
         tabler="IconChevronRight"
         hugeicons="ArrowRight01Icon"
         phosphor="CaretRightIcon"
         remixicon="RiArrowRightSLine"
-        data-icon="inline-end"
         className="cn-rtl-flip"
       />
     </PaginationLink>
@@ -128,7 +143,7 @@ function PaginationEllipsis({
       aria-hidden
       data-slot="pagination-ellipsis"
       className={cn(
-        "cn-pagination-ellipsis flex items-center justify-center",
+        "cn-pagination-ellipsis text-muted-foreground flex size-9 items-center justify-center",
         className
       )}
       {...props}

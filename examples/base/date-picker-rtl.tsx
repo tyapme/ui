@@ -1,94 +1,59 @@
 "use client"
 
 import * as React from "react"
-import { getLocalTimeZone, type DateValue } from "@internationalized/date"
+import { type DateValue, getLocalTimeZone } from "@internationalized/date"
 import { format } from "date-fns"
-import { arSA, he } from "date-fns/locale"
-import { ChevronDownIcon } from "lucide-react"
-import { I18nProvider } from "react-aria-components"
+import { CalendarIcon } from "lucide-react"
+import { I18nProvider, useLocale } from "react-aria-components"
 
-import {
-  useTranslation,
-  type Translations,
-} from "@/components/language-selector"
-import { Button } from "@/styles/base/ui-rtl/button"
-import { Calendar } from "@/styles/base/ui-rtl/calendar"
+import { getDateFnsLocale } from "@/lib/date-locale"
+import { Button } from "@/styles/base/ui/button"
+import { Calendar } from "@/styles/base/ui/calendar"
+import { Field, FieldLabel } from "@/styles/base/ui/field"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/styles/base/ui-rtl/popover"
+} from "@/styles/base/ui/popover"
 
-const translations: Translations = {
-  en: {
-    dir: "ltr",
-    values: {
-      placeholder: "Pick a date",
-    },
-  },
-  ar: {
-    dir: "rtl",
-    values: {
-      placeholder: "اختر تاريخًا",
-    },
-  },
-  he: {
-    dir: "rtl",
-    values: {
-      placeholder: "בחר תאריך",
-    },
-  },
-}
-
-const dateFnsLocales = {
-  ar: arSA,
-  he: he,
-} as const
-
-const localeMap: Record<string, string> = {
-  ar: "ar-SA",
-  he: "he-IL",
-  en: "en-US",
-}
-
-export function DatePickerRtl() {
-  const { dir, t, language } = useTranslation(translations, "ar")
+function DatePickerArabic() {
   const [date, setDate] = React.useState<DateValue | null>(null)
-
-  const dateFnsLocale =
-    dir === "rtl"
-      ? dateFnsLocales[language as keyof typeof dateFnsLocales]
-      : undefined
-
-  const locale = localeMap[language] ?? "en-US"
-
-  const label = date
-    ? format(date.toDate(getLocalTimeZone()), "PPP", { locale: dateFnsLocale })
-    : t.placeholder
+  const { locale } = useLocale()
 
   return (
-    <I18nProvider locale={locale}>
+    <Field className="w-64">
+      <FieldLabel>التاريخ</FieldLabel>
       <Popover>
         <PopoverTrigger
           render={
             <Button
-              variant={"outline"}
-              data-empty={!date}
-              className="w-[212px] justify-between text-left font-normal data-[empty=true]:text-muted-foreground"
-              dir={dir}
+              variant="outline"
+              className="justify-start font-normal data-[empty=true]:text-muted-foreground"
+              data-empty={!date || undefined}
             />
           }
         >
-          <span>{label}</span>
-          <ChevronDownIcon data-icon="inline-end" />
+          <CalendarIcon data-icon="inline-start" />
+          {date
+            ? format(date.toDate(getLocalTimeZone()), "PPP", {
+                locale: getDateFnsLocale(locale),
+              })
+            : "اختر تاريخًا"}
         </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start" dir={dir}>
-          <Calendar
-            value={date}
-            onChange={setDate}
-          />
+        <PopoverContent className="w-auto p-0" align="start">
+          <Calendar value={date} onChange={setDate} />
         </PopoverContent>
       </Popover>
+    </Field>
+  )
+}
+
+export default function DatePickerRtl() {
+  return (
+    <I18nProvider locale="ar-SA">
+      <div dir="rtl">
+        <DatePickerArabic />
+      </div>
     </I18nProvider>
   )
 }

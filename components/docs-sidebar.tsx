@@ -29,7 +29,7 @@ const TOP_LEVEL_SECTIONS = [
   },
   {
     name: "基本デザイン",
-    href: "/docs/design",
+    href: "/docs/design/typography",
   },
   {
     name: "インストール",

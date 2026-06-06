@@ -82,6 +82,11 @@ export const Index: Record<string, Record<string, any>> = {
           type: "registry:ui",
           target: "",
         },
+        {
+          path: "registry/ui/_dialog-shared.tsx",
+          type: "registry:ui",
+          target: "",
+        },
       ],
       component: React.lazy(async () => {
         const mod = await import("@/registry/ui/alert-dialog")
@@ -286,6 +291,35 @@ export const Index: Record<string, Record<string, any>> = {
           docs: "https://ui.shadcn.com/docs/components/base/button-group",
           examples:
             "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/button-group-example.tsx",
+        },
+      },
+    },
+    "copy-button": {
+      name: "copy-button",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button"],
+      files: [
+        {
+          path: "registry/ui/copy-button.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/ui/copy-button")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "copy-button"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          docs: "https://ui.tyap.me/docs/components/copy-button",
         },
       },
     },
@@ -672,6 +706,11 @@ export const Index: Record<string, Record<string, any>> = {
       files: [
         {
           path: "registry/ui/dialog.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+        {
+          path: "registry/ui/_dialog-shared.tsx",
           type: "registry:ui",
           target: "",
         },
@@ -2196,6 +2235,31 @@ export const Index: Record<string, Record<string, any>> = {
             (key) =>
               typeof mod[key] === "function" || typeof mod[key] === "object"
           ) || "button-group-example"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "calendar-demo": {
+      name: "calendar-demo",
+      title: "Calendar",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["calendar"],
+      files: [
+        {
+          path: "registry/bases/base/examples/calendar-demo.tsx",
+          type: "registry:example",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/bases/base/examples/calendar-demo")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "calendar-demo"
         return { default: mod.default || mod[exportName] }
       }),
       categories: undefined,

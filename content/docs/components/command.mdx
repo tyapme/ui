@@ -1,6 +1,6 @@
 ---
 title: Command
-description: 検索とクイックアクションのためのコマンドメニュー。
+description: Command menu for search and quick actions.
 base: base
 component: true
 links:
@@ -8,7 +8,7 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="command-demo"
   align="start"
   previewClassName="h-[24.5rem]"
@@ -16,9 +16,9 @@ links:
 
 ## About
 
-`<Command />` コンポーネントは [Dip](https://www.dip.org/) による [`cmdk`](https://github.com/dip/cmdk) コンポーネントを使用しています。
+The `<Command />` component uses the [`cmdk`](https://github.com/dip/cmdk) component by [Dip](https://www.dip.org/).
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -29,7 +29,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/command.json
+npx shadcn@latest add command
 ```
 
 </TabsContent>
@@ -38,21 +38,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/command.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install cmdk
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="command"
   title="components/ui/command.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -60,7 +60,7 @@ npm install cmdk
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -96,9 +96,9 @@ import {
 </Command>
 ```
 
-## 構成
+## Composition
 
-`Command` の構成:
+Use the following composition to build a `Command`:
 
 ```text
 Command
@@ -114,40 +114,42 @@ Command
         └── CommandItem
 ```
 
-## 使用例
+## Examples
 
 ### Basic
 
-ダイアログ内のシンプルなコマンドメニュー。
+A simple command menu in a dialog.
 
-<ComponentPreview styleName="base" name="command-basic" />
+<ComponentPreview styleName="base-nova" name="command-basic" />
 
 ### Shortcuts
 
-<ComponentPreview styleName="base" name="command-shortcuts" />
+<ComponentPreview styleName="base-nova" name="command-shortcuts" />
 
 ### Groups
 
-グループ・アイコン・セパレーター付きのコマンドメニュー。
+A command menu with groups, icons and separators.
 
-<ComponentPreview styleName="base" name="command-groups" />
+<ComponentPreview styleName="base-nova" name="command-groups" />
 
 ### Scrollable
 
-複数アイテムがスクロール可能なコマンドメニュー。
+Scrollable command menu with multiple items.
 
-<ComponentPreview styleName="base" name="command-scrollable" />
+<ComponentPreview styleName="base-nova" name="command-scrollable" />
 
 ## RTL
 
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="command-rtl"
   direction="rtl"
   align="start"
   previewClassName="h-[24.5rem]"
 />
 
-## API リファレンス
+## API Reference
 
-詳細は [cmdk](https://github.com/dip/cmdk) のドキュメントを参照してください。
+See the [cmdk](https://github.com/dip/cmdk) documentation for more information.

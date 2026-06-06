@@ -16,7 +16,7 @@ export function DialogNoCloseButton() {
       <DialogTrigger render={<Button variant="outline" />}>
         No Close Button
       </DialogTrigger>
-      <DialogContent showCloseButton={false}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>No Close Button</DialogTitle>
           <DialogDescription>

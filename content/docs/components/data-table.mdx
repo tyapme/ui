@@ -1,6 +1,6 @@
 ---
 title: Data Table
-description: TanStack Table を使った高機能なテーブルとデータグリッド。
+description: Powerful table and datagrids built using TanStack Table.
 base: base
 component: true
 links:
@@ -8,32 +8,32 @@ links:
 ---
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="data-table-demo"
   align="start"
   previewClassName="items-start h-auto px-4 md:px-8"
   hideCode
 />
 
-## はじめに
+## Introduction
 
-私がこれまで作ってきたデータテーブル・データグリッドはすべて営別でした。ソート・フィルタリングの要件も異なり、データソースも様々です。
+Every data table or datagrid I've created has been unique. They all behave differently, have specific sorting and filtering requirements, and work with different data sources.
 
-これらすべてを単一のコンポーネントによくまとめる意味はありません。そうすると、[headless UI](https://tanstack.com/table/v8/docs/introduction#what-is-headless-ui) が提供する柔軟性が失われてしまいます。
+It doesn't make sense to combine all of these variations into a single component. If we do that, we'll lose the flexibility that [headless UI](https://tanstack.com/table/v8/docs/introduction#what-is-headless-ui) provides.
 
-そのため、data-table コンポーネントとして提供するのではなく、自分で実装するためのガイドを用意しました。
+So instead of a data-table component, I thought it would be more helpful to provide a guide on how to build your own.
 
-基本の `<Table />` コンポーネントから始め、複雑なデータテーブルをスクラッチから構築します。
+We'll start with the basic `<Table />` component and build a complex data table from scratch.
 
 <Callout className="mt-4">
 
-**ヒント:** 同じテーブルをアプリの複数箇所で使用する場合は、常に再利用可能なコンポーネントに抽出することができます。
+**Tip:** If you find yourself using the same table in multiple places in your app, you can always extract it into a reusable component.
 
 </Callout>
 
-## 目次
+## Table of Contents
 
-このガイドでは [TanStack Table](https://tanstack.com/table) と `<Table />` コンポーネントを使ってカスタムなデータテーブルを構築する方法を説明します。以下のトピックを山います:
+This guide will show you how to use [TanStack Table](https://tanstack.com/table) and the `<Table />` component to build your own custom data table. We'll cover the following topics:
 
 - [Basic Table](#basic-table)
 - [Row Actions](#row-actions)
@@ -44,23 +44,23 @@ links:
 - [Row Selection](#row-selection)
 - [Reusable Components](#reusable-components)
 
-## インストール
+## Installation
 
-1. `<Table />` コンポーネントをプロジェクトに追加します:
+1. Add the `<Table />` component to your project:
 
 ```bash
 npx shadcn@latest add table
 ```
 
-2. `tanstack/react-table` ドライバを追加します:
+2. Add `tanstack/react-table` dependency:
 
 ```bash
 npm install @tanstack/react-table
 ```
 
-## 前提条件
+## Prerequisites
 
-最近の支払い一覧を表示するテーブルを作成します。データの構造は次のとおりです:
+We are going to build a table to show recent payments. Here's what our data looks like:
 
 ```tsx showLineNumbers
 type Payment = {
@@ -87,9 +87,9 @@ export const payments: Payment[] = [
 ]
 ```
 
-## プロジェクト構成
+## Project Structure
 
-以下のファイル構造を作成します:
+Start by creating the following file structure:
 
 ```txt
 app
@@ -99,21 +99,21 @@ app
     └── page.tsx
 ```
 
-Next.js の例ですが、他の React フレームワークでも動作します。
+I'm using a Next.js example here but this works for any other React framework.
 
-- `columns.tsx`（クライアントコンポーネント）には列定義を記述します。
-- `data-table.tsx`（クライアントコンポーネント）には `<DataTable />` コンポーネントを記述します。
-- `page.tsx`（サーバーコンポーネント）でデータを取得してテーブルをレンダリングします。
+- `columns.tsx` (client component) will contain our column definitions.
+- `data-table.tsx` (client component) will contain our `<DataTable />` component.
+- `page.tsx` (server component) is where we'll fetch data and render our table.
 
-## 基本テーブル
+## Basic Table
 
-まず基本的なテーブルを作成します。
+Let's start by building a basic table.
 
 <Steps className="mb-0 pt-2">
 
-### 列定義
+### Column Definitions
 
-まず列を定義します。
+First, we'll define our columns.
 
 ```tsx showLineNumbers title="app/payments/columns.tsx" {3,14-27}
 "use client"
@@ -147,13 +147,15 @@ export const columns: ColumnDef<Payment>[] = [
 
 <Callout className="mt-4">
 
-**注意:** 列はテーブルの外見の中核を定義する場所です。表示データ、フォーマット、ソート、フィルタリングを定義します。
+**Note:** Columns are where you define the core of what your table
+will look like. They define the data that will be displayed, how it will be
+formatted, sorted and filtered.
 
 </Callout>
 
-### `<DataTable />` コンポーネント
+### `<DataTable />` component
 
-次に `<DataTable />` コンポーネントを作成してテーブルをレンダリングします。
+Next, we'll create a `<DataTable />` component to render our table.
 
 ```tsx showLineNumbers title="app/payments/data-table.tsx"
 "use client"
@@ -240,22 +242,22 @@ export function DataTable<TData, TValue>({
 
 <Callout>
 
-**ヒント**: `<DataTable />` を複数箇所で使用する場合は `components/ui/data-table.tsx` に抽出すると再利用できます。
+**Tip**: If you find yourself using `<DataTable />` in multiple places, this is the component you could make reusable by extracting it to `components/ui/data-table.tsx`.
 
 `<DataTable columns={columns} data={data} />`
 
 </Callout>
 
-### テーブルのレンダリング
+### Render the table
 
-最後にページコンポーネントでテーブルをレンダリングします。
+Finally, we'll render our table in our page component.
 
 ```tsx showLineNumbers title="app/payments/page.tsx" {22}
 import { columns, Payment } from "./columns"
 import { DataTable } from "./data-table"
 
 async function getData(): Promise<Payment[]> {
-  // API からデータを取得する。
+  // Fetch data from your API here.
   return [
     {
       id: "728ed52f",
@@ -280,15 +282,15 @@ export default async function DemoPage() {
 
 </Steps>
 
-## セルフォーマット
+## Cell Formatting
 
-金額セルをドル表示にフォーマットし、右寄せにします。
+Let's format the amount cell to display the dollar amount. We'll also align the cell to the right.
 
 <Steps className="mb-0 pt-2">
 
-### 列定義の更新
+### Update columns definition
 
-`amount` の `header` と `cell` 定義を次のように更新します:
+Update the `header` and `cell` definitions for amount as follows:
 
 ```tsx showLineNumbers title="app/payments/columns.tsx" {4-15}
 export const columns: ColumnDef<Payment>[] = [
@@ -308,19 +310,19 @@ export const columns: ColumnDef<Payment>[] = [
 ]
 ```
 
-同じアプローチで他のセルやヘッダーもフォーマットできます。
+You can use the same approach to format other cells and headers.
 
 </Steps>
 
-## 行アクション
+## Row Actions
 
-`<DropdownMenu />` コンポーネントを使って行アクションを追加します。
+Let's add row actions to our table. We'll use a `<DropdownMenu />` component for this.
 
 <Steps className="mb-0 pt-2">
 
-### 列定義の更新
+### Update columns definition
 
-`actions` 列を追加するように列定義を更新します。`actions` セルは `<DropdownMenu />` コンポーネントを返します。
+Update our columns definition to add a new `actions` column. The `actions` cell returns a `<DropdownMenu />` component.
 
 ```tsx showLineNumbers title="app/payments/columns.tsx" {4,6-14,18-45}
 "use client"
@@ -372,17 +374,17 @@ export const columns: ColumnDef<Payment>[] = [
 ]
 ```
 
-`cell` 関数内で `row.original` を使って行データにアクセスできます。例えば `id` を使って API への DELETE 呼び出しなどを実装できます。
+You can access the row data using `row.original` in the `cell` function. Use this to handle actions for your row eg. use the `id` to make a DELETE call to your API.
 
 </Steps>
 
-## ページネーション
+## Pagination
 
-テーブルにページネーションを追加します。
+Next, we'll add pagination to our table.
 
 <Steps className="mb-0 pt-2">
 
-### `<DataTable>` の更新
+### Update `<DataTable>`
 
 ```tsx showLineNumbers title="app/payments/data-table.tsx" {5,17}
 import {
@@ -408,11 +410,11 @@ export function DataTable<TData, TValue>({
 }
 ```
 
-行は自動的に 10 件ごとのページに分割されます。ページサイズのカスタマイズや手動ページネーションの実装については [pagination docs](https://tanstack.com/table/v8/docs/api/features/pagination) を参照してください。
+This will automatically paginate your rows into pages of 10. See the [pagination docs](https://tanstack.com/table/v8/docs/api/features/pagination) for more information on customizing page size and implementing manual pagination.
 
-### ページネーションコントロールの追加
+### Add pagination controls
 
-`<Button />` コンポーネントと `table.previousPage()`、`table.nextPage()` API メソッドでページネーションコントロールを追加できます。
+We can add pagination controls to our table using the `<Button />` component and the `table.previousPage()`, `table.nextPage()` API methods.
 
 ```tsx showLineNumbers title="app/payments/data-table.tsx" {1,15,21-39}
 import { Button } from "@/components/ui/button"
@@ -458,17 +460,17 @@ export function DataTable<TData, TValue>({
 }
 ```
 
-より高機能なページネーションコンポーネントについては、[Reusable Components](#reusable-components) セクションを参照してください。
+See [Reusable Components](#reusable-components) section for a more advanced pagination component.
 
 </Steps>
 
-## ソート
+## Sorting
 
-Email 列をソート可能にします。
+Let's make the email column sortable.
 
 <Steps className="mb-0 pt-2">
 
-### `<DataTable>` の更新
+### Update `<DataTable>`
 
 ```tsx showLineNumbers title="app/payments/data-table.tsx" {3,6,10,18,25-29}
 "use client"
@@ -512,9 +514,9 @@ export function DataTable<TData, TValue>({
 }
 ```
 
-### ヘッダーセルをソート可能にする
+### Make header cell sortable
 
-`email` ヘッダーセルにソートコントロールを追加します。
+We can now update the `email` header cell to add sorting controls.
 
 ```tsx showLineNumbers title="app/payments/columns.tsx" {4,9-19}
 "use client"
@@ -540,17 +542,17 @@ export const columns: ColumnDef<Payment>[] = [
 ]
 ```
 
-ヘッダーセルをクリックすると自動的にテーブルが昇順・降順にソートされます。
+This will automatically sort the table (asc and desc) when the user toggles on the header cell.
 
 </Steps>
 
-## フィルタリング
+## Filtering
 
-Email をフィルタリングする検索入力欄を追加します。
+Let's add a search input to filter emails in our table.
 
 <Steps className="mb-0 pt-2">
 
-### `<DataTable>` の更新
+### Update `<DataTable>`
 
 ```tsx showLineNumbers title="app/payments/data-table.tsx" {6,10,17,24-26,35-36,39,45-54}
 "use client"
@@ -615,17 +617,17 @@ export function DataTable<TData, TValue>({
 }
 ```
 
-`email` 列のフィルタリングが有効になりました。他の列にもフィルターを追加できます。フィルターのカスタマイズについては [filtering docs](https://tanstack.com/table/v8/docs/guide/filters) を参照してください。
+Filtering is now enabled for the `email` column. You can add filters to other columns as well. See the [filtering docs](https://tanstack.com/table/v8/docs/guide/filters) for more information on customizing filters.
 
 </Steps>
 
-## 列表示
+## Visibility
 
-`@tanstack/react-table` の visibility API を使って列の表示切り替えを簡単に追加できます。
+Adding column visibility is fairly simple using `@tanstack/react-table` visibility API.
 
 <Steps className="mb-0 pt-2">
 
-### `<DataTable>` の更新
+### Update `<DataTable>`
 
 ```tsx showLineNumbers title="app/payments/data-table.tsx" {8,18-23,33-34,45,49,64-91}
 "use client"
@@ -728,17 +730,17 @@ export function DataTable<TData, TValue>({
 }
 ```
 
-列の表示切り替えに使用できるドロップダウンメニューが追加されました。
+This adds a dropdown menu that you can use to toggle column visibility.
 
 </Steps>
 
-## 行選択
+## Row Selection
 
-テーブルに行選択機能を追加します。
+Next, we're going to add row selection to our table.
 
 <Steps className="mb-0 pt-2">
 
-### 列定義の更新
+### Update column definitions
 
 ```tsx showLineNumbers title="app/payments/columns.tsx" {6,9-27}
 "use client"
@@ -774,7 +776,7 @@ export const columns: ColumnDef<Payment>[] = [
 ]
 ```
 
-### `<DataTable>` の更新
+### Update `<DataTable>`
 
 ```tsx showLineNumbers title="app/payments/data-table.tsx" {11,23,28}
 export function DataTable<TData, TValue>({
@@ -818,11 +820,11 @@ export function DataTable<TData, TValue>({
 }
 ```
 
-各行にチェックボックスと、全行を選択するヘッダーのチェックボックスが追加されます。
+This adds a checkbox to each row and a checkbox in the header to select all rows.
 
-### 選択行数の表示
+### Show selected rows
 
-`table.getFilteredSelectedRowModel()` API で選択行数を表示できます。
+You can show the number of selected rows using the `table.getFilteredSelectedRowModel()` API.
 
 ```tsx
 <div className="flex-1 text-sm text-muted-foreground">
@@ -833,10 +835,62 @@ export function DataTable<TData, TValue>({
 
 </Steps>
 
+## Reusable Components
+
+Here are some components you can use to build your data tables. This is from the [Tasks](/examples/tasks) demo.
+
+### Column header
+
+Make any column header sortable and hideable.
+
+<ComponentSource
+  src="/app/(app)/examples/tasks/components/data-table-column-header.tsx"
+  title="components/data-table-column-header.tsx"
+/>
+
+```tsx showLineNumbers {5}
+export const columns = [
+  {
+    accessorKey: "email",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Email" />
+    ),
+  },
+]
+```
+
+### Pagination
+
+Add pagination controls to your table including page size and selection count.
+
+<ComponentSource
+  src="/app/(app)/examples/tasks/components/data-table-pagination.tsx"
+  styleName="radix-nova"
+/>
+
+```tsx
+<DataTablePagination table={table} />
+```
+
+### Column toggle
+
+A component to toggle column visibility.
+
+<ComponentSource
+  src="/app/(app)/examples/tasks/components/data-table-view-options.tsx"
+  styleName="radix-nova"
+/>
+
+```tsx
+<DataTableViewOptions table={table} />
+```
+
 ## RTL
 
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="data-table-rtl"
   direction="rtl"
   previewClassName="items-start h-auto px-4 md:px-8"

@@ -1,13 +1,13 @@
 ---
 title: Aspect Ratio
-description: 指定したアスペクト比でコンテンツを表示します。
+description: Displays content within a desired ratio.
 base: base
 component: true
 ---
 
-<ComponentPreview name="aspect-ratio-demo" styleName="base" />
+<ComponentPreview name="aspect-ratio-demo" styleName="base-nova" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -18,7 +18,7 @@ component: true
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/aspect-ratio.json
+npx shadcn@latest add aspect-ratio
 ```
 
 </TabsContent>
@@ -27,21 +27,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/aspect-ratio.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="aspect-ratio"
   title="components/ui/aspect-ratio.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -49,7 +49,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import { AspectRatio } from "@/components/ui/aspect-ratio"
@@ -61,42 +61,44 @@ import { AspectRatio } from "@/components/ui/aspect-ratio"
 </AspectRatio>
 ```
 
-## 使用例
+## Examples
 
 ### Square
 
-`ratio={1 / 1}` を使った正方形のアスペクト比コンポーネント。画像を正方形で表示するのに便利です。
+A square aspect ratio component using the `ratio={1 / 1}` prop. This is useful for displaying images in a square format.
 
-<ComponentPreview name="aspect-ratio-square" styleName="base" />
+<ComponentPreview name="aspect-ratio-square" styleName="base-nova" />
 
 ### Portrait
 
-`ratio={9 / 16}` を使った縦長のアスペクト比コンポーネント。画像を縦長で表示するのに便利です。
+A portrait aspect ratio component using the `ratio={9 / 16}` prop. This is useful for displaying images in a portrait format.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="aspect-ratio-portrait"
   previewClassName="h-96"
 />
 
 ## RTL
 
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="aspect-ratio-rtl"
   direction="rtl"
   previewClassName="h-96"
 />
 
-## API リファレンス
+## API Reference
 
 ### AspectRatio
 
-`AspectRatio` コンポーネントは指定したアスペクト比でコンテンツを表示します。
+The `AspectRatio` component displays content within a desired ratio.
 
 | Prop        | Type     | Default | Required |
 | ----------- | -------- | ------- | -------- |
 | `ratio`     | `number` | -       | Yes      |
 | `className` | `string` | -       | No       |
 
-詳細は [Base UI ドキュメント](https://base-ui.com/react/components/aspect-ratio#api-reference) を参照してください。
+For more information, see the [Base UI documentation](https://base-ui.com/react/components/aspect-ratio#api-reference).

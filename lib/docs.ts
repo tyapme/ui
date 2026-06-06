@@ -1,107 +1,100 @@
-export const PAGES_NEW: string[] = []
+export const PAGES_NEW = ["/create", "/docs/registry/github", "/docs/changelog"]
 
-export const PAGES_UPDATED: string[] = []
+export const PAGES_UPDATED = ["/docs/components/button"]
 
-export type ComponentCategory = {
-    label: string
-    slugs: string[]
-}
+// Pages that should NOT show the "old" badge (already updated).
+export const COMPONENT_BADGE_EXCLUDE = new Set([
+  "/docs/components/tabs",
+  "/docs/components/button",
+  "/docs/components/badge",
+  "/docs/components/input",
+  "/docs/components/avatar",
+  "/docs/components/dialog",
+])
 
-export const COMPONENT_CATEGORIES: ComponentCategory[] = [
-    {
-        label: "入力",
-        slugs: [
-            "button",
-            "button-group",
-            "input",
-            "input-group",
-            "input-otp",
-            "textarea",
-            "select",
-            "native-select",
-            "combobox",
-            "checkbox",
-            "radio-group",
-            "switch",
-            "toggle",
-            "toggle-group",
-            "slider",
-            "calendar",
-            "date-picker",
-            "time-field",
-            "number-field",
-            "color-field",
-            "color-picker",
-            "field",
-            "label",
-            "form",
-        ],
-    },
-    {
-        label: "通知",
-        slugs: [
-            "alert",
-            "alert-dialog",
-            "sonner",
-            "toast",
-            "progress",
-            "spinner",
-            "skeleton",
-        ],
-    },
-    {
-        label: "オーバーレイ",
-        slugs: [
-            "dialog",
-            "drawer",
-            "sheet",
-            "popover",
-            "hover-card",
-            "tooltip",
-        ],
-    },
-    {
-        label: "ナビゲーション",
-        slugs: [
-            "navigation-menu",
-            "sidebar",
-            "menubar",
-            "breadcrumb",
-            "tabs",
-            "pagination",
-            "command",
-            "context-menu",
-            "dropdown-menu",
-        ],
-    },
-    {
-        label: "表示",
-        slugs: [
-            "badge",
-            "avatar",
-            "card",
-            "carousel",
-            "table",
-            "data-table",
-            "chart",
-            "accordion",
-            "collapsible",
-            "kbd",
-            "typography",
-            "empty",
-            "item",
-            "qr-code",
-            "sortable",
-        ],
-    },
-    {
-        label: "レイアウト",
-        slugs: [
-            "aspect-ratio",
-            "resizable",
-            "scroll-area",
-            "separator",
-            "direction",
-        ],
-    },
+// Category definitions for the components sidebar.
+// Pages within each category are sorted alphabetically in the sidebar.
+export const COMPONENT_CATEGORIES: { label: string; slugs: string[] }[] = [
+  {
+    label: "入力",
+    slugs: [
+      "button",
+      "button-group",
+      "calendar",
+      "checkbox",
+      "combobox",
+      "date-picker",
+      "field",
+      "form",
+      "input",
+      "input-group",
+      "input-otp",
+      "native-select",
+      "radio-group",
+      "select",
+      "slider",
+      "switch",
+      "textarea",
+      "toggle",
+      "toggle-group",
+    ],
+  },
+  {
+    label: "通知",
+    slugs: ["alert", "alert-dialog", "sonner", "toast"],
+  },
+  {
+    label: "ナビゲーション",
+    slugs: [
+      "breadcrumb",
+      "context-menu",
+      "dropdown-menu",
+      "hover-card",
+      "menubar",
+      "navigation-menu",
+      "pagination",
+    ],
+  },
+  {
+    label: "オーバーレイ",
+    slugs: ["dialog", "drawer", "popover", "sheet", "tooltip"],
+  },
+  {
+    label: "レイアウト",
+    slugs: [
+      "accordion",
+      "aspect-ratio",
+      "card",
+      "carousel",
+      "collapsible",
+      "resizable",
+      "scroll-area",
+      "separator",
+      "sidebar",
+      "tabs",
+    ],
+  },
+  {
+    label: "表示",
+    slugs: [
+      "avatar",
+      "badge",
+      "chart",
+      "data-table",
+      "empty",
+      "item",
+      "kbd",
+      "label",
+      "progress",
+      "skeleton",
+      "spinner",
+      "table",
+      "typography",
+    ],
+  },
+  {
+    label: "その他",
+    slugs: ["command", "direction"],
+  },
 ]
+

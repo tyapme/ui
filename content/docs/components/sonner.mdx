@@ -1,19 +1,19 @@
 ---
 title: Sonner
-description: React 向けのオピニオネイテッドなトーストコンポーネント。
+description: An opinionated toast component for React.
 base: base
 component: true
 links:
   doc: https://sonner.emilkowal.ski
 ---
 
-<ComponentPreview styleName="base" name="sonner-demo" />
+<ComponentPreview styleName="base-nova" name="sonner-demo" />
 
 ## About
 
-Sonner は [emilkowalski](https://twitter.com/emilkowalski) によって開発・メンテナンスされています。
+Sonner is built and maintained by [emilkowalski](https://twitter.com/emilkowalski).
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -25,13 +25,13 @@ Sonner は [emilkowalski](https://twitter.com/emilkowalski) によって開発�
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下のコマンドを実行します:</Step>
+<Step>Run the following command:</Step>
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/sonner.json
+npx shadcn@latest add sonner
 ```
 
-<Step>Toaster コンポーネントを追加します。</Step>
+<Step>Add the Toaster component.</Step>
 
 ```tsx title="app/layout.tsx" {1,9} showLineNumbers
 import { Toaster } from "@/components/ui/sonner"
@@ -57,21 +57,21 @@ export default function RootLayout({ children }) {
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install sonner next-themes
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="sonner"
   title="components/ui/sonner.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>Toaster コンポーネントを追加します。</Step>
+<Step>Add the Toaster component.</Step>
 
 ```tsx showLineNumbers title="app/layout.tsx" {1,8}
 import { Toaster } from "@/components/ui/sonner"
@@ -95,7 +95,7 @@ export default function RootLayout({ children }) {
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx
 import { toast } from "sonner"
@@ -105,22 +105,22 @@ import { toast } from "sonner"
 toast("Event has been created.")
 ```
 
-## 使用例
+## Examples
 
 ### Types
 
-<ComponentPreview styleName="base" name="sonner-types" />
+<ComponentPreview styleName="base-nova" name="sonner-types" />
 
 ### Description
 
-<ComponentPreview styleName="base" name="sonner-description" />
+<ComponentPreview styleName="base-nova" name="sonner-description" />
 
 ### Position
 
-`position` でトーストの表示位置を変更します。
+Use the `position` prop to change the position of the toast.
 
-<ComponentPreview styleName="base" name="sonner-position" />
+<ComponentPreview styleName="base-nova" name="sonner-position" />
 
-## API リファレンス
+## API Reference
 
-詳細は [Sonner API Reference](https://sonner.emilkowal.ski/getting-started) を参照してください。
+See the [Sonner API Reference](https://sonner.emilkowal.ski/getting-started) for more information.

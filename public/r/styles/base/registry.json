@@ -92,6 +92,10 @@
         {
           "path": "registry/base/ui/alert-dialog.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/ui/_dialog-shared.tsx",
+          "type": "registry:ui"
         }
       ],
       "meta": {
@@ -418,6 +422,10 @@
       "files": [
         {
           "path": "registry/base/ui/dialog.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/ui/_dialog-shared.tsx",
           "type": "registry:ui"
         }
       ],
@@ -1242,6 +1250,18 @@
       "files": [
         {
           "path": "registry/base/examples/button-group-example.tsx",
+          "type": "registry:example"
+        }
+      ],
+      "type": "registry:example"
+    },
+    {
+      "name": "calendar-demo",
+      "title": "Calendar",
+      "registryDependencies": ["calendar"],
+      "files": [
+        {
+          "path": "registry/base/examples/calendar-demo.tsx",
           "type": "registry:example"
         }
       ],

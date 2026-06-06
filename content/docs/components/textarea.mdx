@@ -1,17 +1,17 @@
 ---
 title: Textarea
-description: フォーム用テキストエリアまたはテキストエリアのようなコンポーネントを表示します。
+description: Displays a form textarea or a component that looks like a textarea.
 base: base
 component: true
 ---
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="textarea-demo"
   previewClassName="*:max-w-xs"
 />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -22,7 +22,7 @@ component: true
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/textarea.json
+npx shadcn@latest add textarea
 ```
 
 </TabsContent>
@@ -31,15 +31,15 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/textarea.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="textarea"
   title="components/ui/textarea.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -47,7 +47,7 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/textarea.json
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx
 import { Textarea } from "@/components/ui/textarea"
@@ -57,48 +57,50 @@ import { Textarea } from "@/components/ui/textarea"
 <Textarea />
 ```
 
-## 使用例
+## Examples
 
 ### Field
 
-`Field`、`FieldLabel`、`FieldDescription` でラベルと説明付きテキストエリアを作成します。
+Use `Field`, `FieldLabel`, and `FieldDescription` to create a textarea with a label and description.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="textarea-field"
   previewClassName="*:max-w-xs"
 />
 
 ### Disabled
 
-`disabled` でテキストエリアを無効化します。無効状態のスタイリングには `Field` に `data-disabled` を付けます。
+Use the `disabled` prop to disable the textarea. To style the disabled state, add the `data-disabled` attribute to the `Field` component.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="textarea-disabled"
   previewClassName="*:max-w-xs"
 />
 
 ### Invalid
 
-`aria-invalid` でテキストエリアを未入力状態にします。未入力状態のスタイリングには `Field` に `data-invalid` を付けます。
+Use the `aria-invalid` prop to mark the textarea as invalid. To style the invalid state, add the `data-invalid` attribute to the `Field` component.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="textarea-invalid"
   previewClassName="*:max-w-xs"
 />
 
 ### Button
 
-`Button` と組み合わせて送信ボタン付きテキストエリアを作成します。
+Pair with `Button` to create a textarea with a submit button.
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="textarea-button"
   previewClassName="*:max-w-xs"
 />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="textarea-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview styleName="base-nova" name="textarea-rtl" direction="rtl" />

@@ -1,6 +1,6 @@
 ---
 title: Radio Group
-description: 同時に1つしか選択できないラジオボタンのセット。
+description: A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
 base: base
 component: true
 links:
@@ -8,9 +8,9 @@ links:
   api: https://base-ui.com/react/components/radio-group#api-reference
 ---
 
-<ComponentPreview styleName="base" name="radio-group-demo" />
+<ComponentPreview styleName="base-nova" name="radio-group-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -21,7 +21,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/radio-group.json
+npx shadcn@latest add radio-group
 ```
 
 </TabsContent>
@@ -30,21 +30,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/radio-group.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="radio-group"
   title="components/ui/radio-group.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -52,7 +52,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import { Label } from "@/components/ui/label"
@@ -72,9 +72,9 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 </RadioGroup>
 ```
 
-## 構成
+## Composition
 
-`RadioGroup` の構成:
+Use the following composition to build a `RadioGroup`:
 
 ```text
 RadioGroup
@@ -82,46 +82,48 @@ RadioGroup
 └── RadioGroupItem
 ```
 
-## 使用例
+## Examples
 
-### 説明
+### Description
 
-`Field` コンポーネントを使った説明付きのラジオグループ項目。
+Radio group items with a description using the `Field` component.
 
-<ComponentPreview styleName="base" name="radio-group-description" />
+<ComponentPreview styleName="base-nova" name="radio-group-description" />
 
 ### Choice Card
 
-`FieldLabel` で `Field` 全体を包括してクリック可能なカード形式の選択屋を作成します。
+Use `FieldLabel` to wrap the entire `Field` for a clickable card-style selection.
 
-<ComponentPreview styleName="base" name="radio-group-choice-card" />
+<ComponentPreview styleName="base-nova" name="radio-group-choice-card" />
 
 ### Fieldset
 
-`FieldSet` と `FieldLegend` でラジオ項目をラベルと説明付きのグループにまとめます。
+Use `FieldSet` and `FieldLegend` to group radio items with a label and description.
 
-<ComponentPreview styleName="base" name="radio-group-fieldset" />
+<ComponentPreview styleName="base-nova" name="radio-group-fieldset" />
 
-### 無効
+### Disabled
 
-`RadioGroup` の `disabled` で全項目を無効化します。
+Use the `disabled` prop on `RadioGroup` to disable all items.
 
-<ComponentPreview styleName="base" name="radio-group-disabled" />
+<ComponentPreview styleName="base-nova" name="radio-group-disabled" />
 
-### エラー
+### Invalid
 
-`RadioGroupItem` の `aria-invalid` と `Field` の `data-invalid` でバリデーションエラーを表示します。
+Use `aria-invalid` on `RadioGroupItem` and `data-invalid` on `Field` to show validation errors.
 
-<ComponentPreview styleName="base" name="radio-group-invalid" />
+<ComponentPreview styleName="base-nova" name="radio-group-invalid" />
 
 ## RTL
 
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
+
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="radio-group-rtl"
   direction="rtl"
 />
 
-## API リファレンス
+## API Reference
 
-詳細は [Base UI Radio Group](https://base-ui.com/react/components/radio-group#api-reference) ドキュメントを参照してください。
+See the [Base UI Radio Group](https://base-ui.com/react/components/radio-group#api-reference) documentation.

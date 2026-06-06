@@ -1,5 +1,5 @@
+import { COMPONENT_CATEGORIES } from "@/lib/docs"
 import type { source } from "@/lib/source"
-import { COMPONENT_CATEGORIES, type ComponentCategory } from "@/lib/docs"
 
 export type PageTreeNode = (typeof source.pageTree)["children"][number]
 export type PageTreeFolder = Extract<PageTreeNode, { type: "folder" }>
@@ -20,66 +20,66 @@ export function getAllPagesFromFolder(folder: PageTreeFolder): PageTreePage[] {
   return pages
 }
 
-// Get the pages from a folder.
-export function getPagesFromFolder(
-  folder: PageTreeFolder
-): PageTreePage[] {
-  // For the components folder, return direct page children.
-  if (folder.$id === "components" || folder.name === "Components") {
-    return folder.children.filter(
-      (child): child is PageTreePage => child.type === "page"
-    )
-  }
-
-  // For other folders, return direct page children.
+// Get the pages from the components folder (flat structure).
+export function getPagesFromFolder(folder: PageTreeFolder): PageTreePage[] {
+  // Return direct page children of the components folder.
   return folder.children.filter(
     (child): child is PageTreePage => child.type === "page"
   )
 }
 
-// Get current base from pathname (kept for compatibility).
-export function getCurrentBase(_pathname: string): string {
-  return "base"
-}
-
-export type GroupedPages = {
-  category: ComponentCategory
-  pages: PageTreePage[]
-}
-
-// Group pages by COMPONENT_CATEGORIES. Pages not listed in any category go into a fallback group.
+// Get pages grouped by COMPONENT_CATEGORIES from the components folder.
 export function getGroupedPagesFromFolder(
   folder: PageTreeFolder
-): GroupedPages[] {
-  const allPages = getPagesFromFolder(folder)
-  const pagesBySlug = new Map(
-    allPages.map((p) => {
-      const slug = p.url.split("/").pop() ?? ""
-      return [slug, p]
-    })
+): { category: { label: string }; pages: PageTreePage[] }[] {
+  const allPages = folder.children.filter(
+    (c): c is PageTreePage => c.type === "page"
   )
 
-  const groups: GroupedPages[] = COMPONENT_CATEGORIES.map((category) => ({
-    category,
-    pages: category.slugs.flatMap((slug) => {
-      const page = pagesBySlug.get(slug)
-      return page ? [page] : []
-    }),
-  })).filter((g) => g.pages.length > 0)
+  const groups: { category: { label: string }; pages: PageTreePage[] }[] = []
 
-  // Collect any pages not in a category.
-  const categorizedSlugs = new Set(
-    COMPONENT_CATEGORIES.flatMap((c) => c.slugs)
-  )
-  const uncategorized = allPages.filter((p) => {
-    const slug = p.url.split("/").pop() ?? ""
-    return !categorizedSlugs.has(slug)
-  })
+  const pageBySlug = new Map<string, PageTreePage>()
+  for (const page of allPages) {
+    const slug = page.url.split("/").pop() ?? ""
+    pageBySlug.set(slug, page)
+  }
+
+  const seen = new Set<string>()
+  for (const { label, slugs } of COMPONENT_CATEGORIES) {
+    const pages = slugs
+      .map((slug) => pageBySlug.get(slug))
+      .filter((p): p is PageTreePage => p !== undefined)
+      .sort((a, b) => String(a.name).localeCompare(String(b.name)))
+    if (pages.length > 0) {
+      groups.push({ category: { label }, pages })
+      for (const p of pages) seen.add(p.url)
+    }
+  }
+
+  // Any pages not covered by the category map → append as "その他".
+  const uncategorized = allPages
+    .filter((p) => !seen.has(p.url))
+    .sort((a, b) => String(a.name).localeCompare(String(b.name)))
   if (uncategorized.length > 0) {
-    groups.push({
-      category: { label: "その他", slugs: [] },
-      pages: uncategorized,
-    })
+    const existing = groups.find((g) => g.category.label === "その他")
+    if (existing) {
+      existing.pages.push(...uncategorized)
+      existing.pages.sort((a, b) =>
+        String(a.name).localeCompare(String(b.name))
+      )
+    } else {
+      groups.push({ category: { label: "その他" }, pages: uncategorized })
+    }
+  }
+
+  // Final fallback: one group with all pages.
+  if (groups.length === 0) {
+    const pages = getAllPagesFromFolder(folder).sort((a, b) =>
+      String(a.name).localeCompare(String(b.name))
+    )
+    if (pages.length > 0) {
+      groups.push({ category: { label: String(folder.name ?? "") }, pages })
+    }
   }
 
   return groups

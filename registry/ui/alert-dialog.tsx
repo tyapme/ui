@@ -5,6 +5,11 @@ import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog
 
 import { cn } from "@/registry/bases/base/lib/utils"
 import { Button } from "@/registry/ui/button"
+import {
+  DIALOG_OVERLAY_CLASSES,
+  DIALOG_CONTENT_BASE_CLASSES,
+  DialogDragHandle,
+} from "@/registry/ui/_dialog-shared"
 
 function AlertDialog({ ...props }: AlertDialogPrimitive.Root.Props) {
   return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />
@@ -29,10 +34,7 @@ function AlertDialogOverlay({
   return (
     <AlertDialogPrimitive.Backdrop
       data-slot="alert-dialog-overlay"
-      className={cn(
-        "cn-alert-dialog-overlay fixed inset-0 isolate z-50",
-        className
-      )}
+      className={cn(DIALOG_OVERLAY_CLASSES, className)}
       {...props}
     />
   )
@@ -41,6 +43,7 @@ function AlertDialogOverlay({
 function AlertDialogContent({
   className,
   size = "default",
+  children,
   ...props
 }: AlertDialogPrimitive.Popup.Props & {
   size?: "default" | "sm"
@@ -52,11 +55,15 @@ function AlertDialogContent({
         data-slot="alert-dialog-content"
         data-size={size}
         className={cn(
-          "t-modal cn-alert-dialog-content group/alert-dialog-content fixed top-1/2 left-1/2 z-50 grid w-full outline-none",
+          DIALOG_CONTENT_BASE_CLASSES,
+          "data-[size=default]:sm:max-w-md data-[size=sm]:sm:max-w-xs",
           className
         )}
         {...props}
-      />
+      >
+        <DialogDragHandle />
+        {children}
+      </AlertDialogPrimitive.Popup>
     </AlertDialogPortal>
   )
 }
@@ -68,7 +75,11 @@ function AlertDialogHeader({
   return (
     <div
       data-slot="alert-dialog-header"
-      className={cn("cn-alert-dialog-header", className)}
+      className={cn(
+        "cn-alert-dialog-header",
+        "sm:group-data-[size=default]/alert-dialog-content:has-data-[slot=alert-dialog-media]:grid-cols-[auto_1fr]",
+        className
+      )}
       {...props}
     />
   )
@@ -123,7 +134,11 @@ function AlertDialogDescription({
   return (
     <AlertDialogPrimitive.Description
       data-slot="alert-dialog-description"
-      className={cn("cn-alert-dialog-description", className)}
+      className={cn(
+        "cn-alert-dialog-description",
+        "sm:group-data-[size=default]/alert-dialog-content:group-has-data-[slot=alert-dialog-media]/alert-dialog-content:col-start-2",
+        className
+      )}
       {...props}
     />
   )

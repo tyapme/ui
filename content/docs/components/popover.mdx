@@ -1,6 +1,6 @@
 ---
 title: Popover
-description: ボタンをトリガーに、ポータル内にリッチコンテンツを表示します。
+description: Displays rich content in a portal, triggered by a button.
 base: base
 component: true
 links:
@@ -8,9 +8,9 @@ links:
   api: https://base-ui.com/react/components/popover#api-reference
 ---
 
-<ComponentPreview styleName="base" name="popover-demo" />
+<ComponentPreview styleName="base-nova" name="popover-demo" />
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -21,7 +21,7 @@ links:
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/popover.json
+npx shadcn@latest add popover
 ```
 
 </TabsContent>
@@ -30,21 +30,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/popover.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @base-ui/react
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="popover"
   title="components/ui/popover.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -52,7 +52,7 @@ npm install @base-ui/react
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -79,9 +79,9 @@ import {
 </Popover>
 ```
 
-## 構成
+## Composition
 
-`Popover` の構成:
+Use the following composition to build a `Popover`:
 
 ```text
 Popover
@@ -89,30 +89,32 @@ Popover
 └── PopoverContent
 ```
 
-## 使用例
+## Examples
 
-### 基本
+### Basic
 
-ヘッダー、タイトル、説明を持つシンプルなポピーバー。
+A simple popover with a header, title, and description.
 
-<ComponentPreview styleName="base" name="popover-basic" />
+<ComponentPreview styleName="base-nova" name="popover-basic" />
 
-### 配置
+### Align
 
-`PopoverContent` の `align` で水平方向の位置を制御します。
+Use the `align` prop on `PopoverContent` to control the horizontal alignment.
 
-<ComponentPreview styleName="base" name="popover-alignments" />
+<ComponentPreview styleName="base-nova" name="popover-alignments" />
 
-### フォーム付き
+### With Form
 
-フォームフィールドを含むポピーバー。
+A popover with form fields inside.
 
-<ComponentPreview styleName="base" name="popover-form" />
+<ComponentPreview styleName="base-nova" name="popover-form" />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="popover-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="popover-rtl" direction="rtl" />
 
-詳細は [Base UI Popover](https://base-ui.com/react/components/popover#api-reference) ドキュメントを参照してください。
+## API Reference
+
+See the [Base UI Popover](https://base-ui.com/react/components/popover#api-reference) documentation.

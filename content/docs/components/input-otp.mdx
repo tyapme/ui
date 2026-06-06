@@ -1,19 +1,19 @@
 ---
 title: Input OTP
-description: コピー&ペースト機能付きのアクセシブルなワンタイムパスワードコンポーネント。
+description: Accessible one-time password component with copy-paste functionality.
 base: base
 component: true
 links:
   doc: https://input-otp.rodz.dev
 ---
 
-<ComponentPreview styleName="base" name="input-otp-demo" />
+<ComponentPreview styleName="base-nova" name="input-otp-demo" />
 
-## について
+## About
 
-Input OTP は [@guilherme_rodz](https://twitter.com/guilherme_rodz) による [input-otp](https://github.com/guilhermerodz/input-otp) をベースに構築されています。
+Input OTP is built on top of [input-otp](https://github.com/guilhermerodz/input-otp) by [@guilherme_rodz](https://twitter.com/guilherme_rodz).
 
-## インストール
+## Installation
 
 <CodeTabs>
 
@@ -24,7 +24,7 @@ Input OTP は [@guilherme_rodz](https://twitter.com/guilherme_rodz) による [i
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add https://ui.tyap.me/r/styles/base/input-otp.json
+npx shadcn@latest add input-otp
 ```
 
 </TabsContent>
@@ -33,21 +33,21 @@ npx shadcn@latest add https://ui.tyap.me/r/styles/base/input-otp.json
 
 <Steps className="mb-0 pt-2">
 
-<Step>以下の依存パッケージをインストールします:</Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install input-otp
 ```
 
-<Step>以下のコードをプロジェクトにコピーします。</Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource
   name="input-otp"
   title="components/ui/input-otp.tsx"
-  styleName="base"
+  styleName="base-nova"
 />
 
-<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -55,7 +55,7 @@ npm install input-otp
 
 </CodeTabs>
 
-## 使い方
+## Usage
 
 ```tsx showLineNumbers
 import {
@@ -82,9 +82,9 @@ import {
 </InputOTP>
 ```
 
-## 構成
+## Composition
 
-`InputOTP` の構成:
+Use the following composition to build an `InputOTP`:
 
 ```text
 InputOTP
@@ -103,9 +103,9 @@ InputOTP
     └── InputOTPSlot
 ```
 
-## パターン
+## Pattern
 
-`pattern` で OTP 入力のカスタムパターンを定義できます。
+Use the `pattern` prop to define a custom pattern for the OTP input.
 
 ```tsx showLineNumbers {1,5}
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp"
@@ -115,58 +115,60 @@ import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp"
 </InputOTP>
 ```
 
-<ComponentPreview styleName="base" name="input-otp-pattern" />
+<ComponentPreview styleName="base-nova" name="input-otp-pattern" />
 
-## 使用例
+## Examples
 
-### セパレーター
+### Separator
 
-`<InputOTPSeparator />` で入力グループ間にセパレーターを追加します。
+Use the `<InputOTPSeparator />` component to add a separator between input groups.
 
-<ComponentPreview styleName="base" name="input-otp-separator" />
+<ComponentPreview styleName="base-nova" name="input-otp-separator" />
 
-### 無効
+### Disabled
 
-`disabled` で入力を無効化します。
+Use the `disabled` prop to disable the input.
 
-<ComponentPreview styleName="base" name="input-otp-disabled" />
+<ComponentPreview styleName="base-nova" name="input-otp-disabled" />
 
-### 制御
+### Controlled
 
-`value` と `onChange` で入力値を制御します。
+Use the `value` and `onChange` props to control the input value.
 
-<ComponentPreview styleName="base" name="input-otp-controlled" />
+<ComponentPreview styleName="base-nova" name="input-otp-controlled" />
 
-### エラー
+### Invalid
 
-スロットに `aria-invalid` を付けるとエラー状態を表示できます。
+Use `aria-invalid` on the slots to show an error state.
 
-<ComponentPreview styleName="base" name="input-otp-invalid" />
+<ComponentPreview styleName="base-nova" name="input-otp-invalid" />
 
-### 4桁数入力
+### Four Digits
 
-PIN コードで一般的なパターン。`pattern={REGEXP_ONLY_DIGITS}` を使用しています。
+A common pattern for PIN codes. This uses the `pattern={REGEXP_ONLY_DIGITS}` prop.
 
-<ComponentPreview styleName="base" name="input-otp-four-digits" />
+<ComponentPreview styleName="base-nova" name="input-otp-four-digits" />
 
-### 英数字
+### Alphanumeric
 
-`REGEXP_ONLY_DIGITS_AND_CHARS` で文字と数字の両方を許可します。
+Use `REGEXP_ONLY_DIGITS_AND_CHARS` to accept both letters and numbers.
 
-<ComponentPreview styleName="base" name="input-otp-alphanumeric" />
+<ComponentPreview styleName="base-nova" name="input-otp-alphanumeric" />
 
 ### Form
 
 <ComponentPreview
-  styleName="base"
+  styleName="base-nova"
   name="input-otp-form"
   previewClassName="h-[30rem]"
 />
 
 ## RTL
 
-<ComponentPreview styleName="base" name="input-otp-rtl" direction="rtl" />
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).
 
-## API リファレンス
+<ComponentPreview styleName="base-nova" name="input-otp-rtl" direction="rtl" />
 
-詳細は [input-otp](https://input-otp.rodz.dev) ドキュメントを参照してください。
+## API Reference
+
+See the [input-otp](https://input-otp.rodz.dev) documentation for more information.

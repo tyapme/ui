@@ -3,17 +3,31 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/registry/bases/base/lib/utils"
 
-const alertVariants = cva("cn-alert group/alert relative w-full", {
-  variants: {
-    variant: {
-      default: "cn-alert-variant-default",
-      destructive: "cn-alert-variant-destructive",
+const alertVariants = cva(
+  [
+    "group/alert relative w-full grid gap-y-1.5 rounded-2xl border px-5 py-4 text-left text-sm",
+    "has-data-[slot=alert-action]:relative has-data-[slot=alert-action]:pr-20",
+    "has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-3.5",
+    "*:[svg]:row-span-2 *:[svg]:self-start *:[svg]:mt-0.5 *:[svg]:text-current",
+    "*:[svg:not([class*='size-'])]:size-[18px]",
+  ],
+  {
+    variants: {
+      variant: {
+        default: "bg-card text-card-foreground",
+        destructive: [
+          "bg-destructive/5 dark:bg-destructive/10 border-destructive/20",
+          "text-destructive",
+          "*:data-[slot=alert-description]:text-destructive/80",
+          "*:[svg]:text-current",
+        ],
+      },
     },
-  },
-  defaultVariants: {
-    variant: "default",
-  },
-})
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+)
 
 function Alert({
   className,
@@ -35,7 +49,8 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="alert-title"
       className={cn(
-        "cn-alert-title [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground",
+        "font-semibold leading-snug group-has-[>svg]/alert:col-start-2",
+        "[&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground",
         className
       )}
       {...props}
@@ -51,7 +66,11 @@ function AlertDescription({
     <div
       data-slot="alert-description"
       className={cn(
-        "cn-alert-description [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground",
+        "text-muted-foreground text-sm text-balance md:text-pretty",
+        "group-has-[>svg]/alert:col-start-2",
+        "[&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground",
+        "[&_p:not(:last-child)]:mb-4",
+        "[&_ul]:mt-1.5 [&_li]:mt-0.5",
         className
       )}
       {...props}
@@ -63,7 +82,7 @@ function AlertAction({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-action"
-      className={cn("cn-alert-action", className)}
+      className={cn("absolute top-4 right-4", className)}
       {...props}
     />
   )

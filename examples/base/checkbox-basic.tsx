@@ -1,4 +1,4 @@
-import { Checkbox } from "@/styles/base/ui/checkbox"
+import { Checkbox } from "@/registry/ui/checkbox"
 import { Field, FieldGroup, FieldLabel } from "@/styles/base/ui/field"
 
 export function CheckboxBasic() {

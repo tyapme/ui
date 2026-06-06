@@ -312,7 +312,7 @@ function NavMain({
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton render={<a href={subItem.url} title={subItem.title} />}>
+                      <SidebarMenuSubButton render={<a href={subItem.url} />}>
                         <span>{subItem.title}</span>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
@@ -344,7 +344,7 @@ function NavProjects({
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton render={<a href={item.url} title={item.name} />}>
+            <SidebarMenuButton render={<a href={item.url} />}>
               <item.icon />
               <span>{item.name}</span>
             </SidebarMenuButton>
