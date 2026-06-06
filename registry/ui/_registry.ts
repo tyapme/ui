@@ -673,6 +673,10 @@ export const ui: Registry["items"] = [
         path: "ui/md-parser.tsx",
         type: "registry:ui",
       },
+      {
+        path: "ui/md-parser-code-block.tsx",
+        type: "registry:ui",
+      },
     ],
   },
   {
