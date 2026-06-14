@@ -173,8 +173,13 @@ const transformers: V0Transformer[] = [
   transformFont as V0Transformer,
 ]
 
+// The project ships a single house style, built and served under the base name
+// (`base`). Component classes are baked per-style at build time, and `base` is
+// the only style the build emits; theme/color is layered separately via
+// baseColor + cssVars. So v0 export resolves to the base name rather than a
+// `base-<style>` path, which would otherwise point at stale per-style output.
 function getStyle(designSystemConfig: DesignSystemConfig) {
-  return `${designSystemConfig.base}-${designSystemConfig.style}`
+  return designSystemConfig.base
 }
 
 export async function buildV0Payload(designSystemConfig: DesignSystemConfig) {
