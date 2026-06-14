@@ -3,8 +3,8 @@
 import * as React from "react"
 import { OTPInput, OTPInputContext } from "input-otp"
 
-import { cn } from "@/registry/bases/base/lib/utils"
 import { useShakeOnInvalid } from "@/hooks/use-shake-on-invalid"
+import { cn } from "@/registry/bases/base/lib/utils"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 function InputOTP({

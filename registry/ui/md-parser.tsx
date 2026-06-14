@@ -1,32 +1,105 @@
+import * as React from "react"
 import { Fragment, jsx, jsxs } from "react/jsx-runtime"
+import {
+  transformerNotationDiff,
+  transformerNotationErrorLevel,
+  transformerNotationFocus,
+  transformerNotationHighlight,
+  transformerNotationWordHighlight,
+} from "@shikijs/transformers"
 import { toJsxRuntime } from "hast-util-to-jsx-runtime"
-import { toString as hastToString } from "hast-util-to-string"
+import rehypePrettyCode from "rehype-pretty-code"
 import remarkGfm from "remark-gfm"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
-import rehypePrettyCode from "rehype-pretty-code"
+import type { ShikiTransformer } from "shiki"
 import { unified } from "unified"
 import { visit } from "unist-util-visit"
 
 import { cn } from "@/registry/bases/base/lib/utils"
 import { MDCodeBlock } from "@/registry/ui/md-parser-code-block"
 
+// Mirror the Shiki notation transformers used by the standalone CodeBlock so
+// ```diff / [!code highlight] / [!code focus] annotations render identically.
+const CODE_TRANSFORMERS: ShikiTransformer[] = [
+  transformerNotationDiff({ matchAlgorithm: "v3" }),
+  transformerNotationHighlight({ matchAlgorithm: "v3" }),
+  transformerNotationWordHighlight({ matchAlgorithm: "v3" }),
+  transformerNotationFocus({ matchAlgorithm: "v3" }),
+  transformerNotationErrorLevel({ matchAlgorithm: "v3" }),
+]
+import {
+  TypographyA,
+  TypographyBlockquote,
+  TypographyEM,
+  TypographyH1,
+  TypographyH2,
+  TypographyH3,
+  TypographyH4,
+  TypographyHR,
+  TypographyInlineCode,
+  TypographyOL,
+  TypographyP,
+  TypographyStrong,
+  TypographyTable,
+  TypographyTD,
+  TypographyTH,
+  TypographyTR,
+  TypographyUL,
+} from "@/registry/ui/typography"
+
 interface MDParserProps {
   children: string
   className?: string
 }
 
-// Capture raw code text onto <pre data-raw="..."> before pretty-code transforms it
-function captureRaw() {
+type RuntimeOptions = Parameters<typeof toJsxRuntime>[1]
+type MarkdownElementProps = {
+  children?: React.ReactNode
+  href?: string
+  "data-language"?: string
+  "data-raw"?: string
+  "data-rehype-pretty-code-figure"?: unknown
+  [key: string]: unknown
+}
+
+type MarkdownElementComponent = (props: MarkdownElementProps) => React.ReactNode
+
+type HastElement = {
+  type: string
+  tagName?: string
+  children?: unknown[]
+  properties?: Record<string, unknown>
+}
+
+const isHastElement = (node: unknown): node is HastElement =>
+  typeof node === "object" &&
+  node !== null &&
+  "type" in node &&
+  (node as { type: unknown }).type === "element"
+
+const toComponentProps = <TProps extends object>(
+  props: Omit<MarkdownElementProps, "children">
+) => props as TProps
+
+function addLanguageToFigure() {
   return (tree: Parameters<typeof visit>[0]) => {
-    visit(tree, "element", (node: any) => {
-      if (node.tagName === "pre") {
-        const code = node.children?.find(
-          (c: any) => c.type === "element" && c.tagName === "code"
+    visit(tree, "element", (node) => {
+      const element = node as HastElement
+      if (
+        element.tagName === "figure" &&
+        element.properties?.["data-rehype-pretty-code-figure"] !== undefined
+      ) {
+        const pre = element.children?.find(
+          (child): child is HastElement =>
+            isHastElement(child) && child.tagName === "pre"
         )
-        if (code) {
-          node.properties = node.properties ?? {}
-          node.properties["data-raw"] = hastToString(code)
+        const code = pre?.children?.find(
+          (child): child is HastElement =>
+            isHastElement(child) && child.tagName === "code"
+        )
+        if (code?.properties?.["data-language"]) {
+          element.properties["data-language"] = code.properties["data-language"]
         }
       }
     })
@@ -38,141 +111,171 @@ async function MDParser({ children, className }: MDParserProps) {
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
-    .use(captureRaw)
     .use(rehypePrettyCode, {
       theme: { dark: "github-dark", light: "github-light" },
       keepBackground: false,
+      transformers: CODE_TRANSFORMERS,
     })
+    .use(addLanguageToFigure)
 
   const mdast = processor.parse(children)
   const hast = await processor.run(mdast)
 
   const content = toJsxRuntime(hast, {
+    development: false,
     Fragment,
-    jsx: jsx as any,
-    jsxs: jsxs as any,
+    jsx: jsx as RuntimeOptions["jsx"],
+    jsxs: jsxs as RuntimeOptions["jsxs"],
     components: {
-      h1: ({ children: c, ...p }: any) => (
-        <h1
-          className="scroll-m-20 text-4xl font-extrabold tracking-tight text-balance"
-          {...p}
-        >
-          {c}
-        </h1>
-      ),
-      h2: ({ children: c, ...p }: any) => (
-        <h2
-          className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0"
-          {...p}
-        >
-          {c}
-        </h2>
-      ),
-      h3: ({ children: c, ...p }: any) => (
-        <h3
-          className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight"
-          {...p}
-        >
-          {c}
-        </h3>
-      ),
-      h4: ({ children: c, ...p }: any) => (
-        <h4
-          className="mt-8 scroll-m-20 text-xl font-semibold tracking-tight"
-          {...p}
-        >
-          {c}
-        </h4>
-      ),
-      p: ({ children: c, ...p }: any) => (
-        <p className="leading-7 [&:not(:first-child)]:mt-6" {...p}>
-          {c}
-        </p>
-      ),
-      blockquote: ({ children: c, ...p }: any) => (
-        <blockquote className="mt-6 border-l-2 pl-6 italic" {...p}>
-          {c}
-        </blockquote>
-      ),
-      ul: ({ children: c, ...p }: any) => (
-        <ul className="my-6 ml-6 list-disc [&>li]:mt-2" {...p}>
-          {c}
-        </ul>
-      ),
-      ol: ({ children: c, ...p }: any) => (
-        <ol className="my-6 ml-6 list-decimal [&>li]:mt-2" {...p}>
-          {c}
-        </ol>
-      ),
-      a: ({ href, children: c, ...p }: any) => (
-        <a
-          href={href}
-          className="font-medium text-primary underline underline-offset-4"
-          {...p}
-        >
-          {c}
-        </a>
-      ),
-      table: ({ children: c, ...p }: any) => (
-        <div className="my-6 w-full overflow-y-auto">
-          <table className="w-full" {...p}>
-            {c}
-          </table>
-        </div>
-      ),
-      tr: ({ children: c, ...p }: any) => (
-        <tr className="m-0 border-t p-0 even:bg-muted" {...p}>
-          {c}
-        </tr>
-      ),
-      th: ({ children: c, ...p }: any) => (
-        <th
-          className="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right"
-          {...p}
-        >
-          {c}
-        </th>
-      ),
-      td: ({ children: c, ...p }: any) => (
-        <td
-          className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
-          {...p}
-        >
-          {c}
-        </td>
-      ),
-      hr: (p: any) => <hr className="my-4 md:my-8" {...p} />,
-      strong: ({ children: c, ...p }: any) => (
-        <strong className="font-semibold" {...p}>
-          {c}
-        </strong>
-      ),
-      em: ({ children: c, ...p }: any) => (
-        <em className="italic" {...p}>
-          {c}
-        </em>
-      ),
-      code: ({ children: c, ...p }: any) => {
-        // Inline code — no language class from pretty-code
-        if (!p["data-language"]) {
+      figure: ({
+        children: c,
+        "data-rehype-pretty-code-figure": isFigure,
+        "data-raw": raw,
+        "data-language": lang,
+        ...p
+      }: MarkdownElementProps) => {
+        if (isFigure !== undefined) {
           return (
-            <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
+            <MDCodeBlock raw={raw ?? ""} language={lang}>
               {c}
-            </code>
+            </MDCodeBlock>
           )
         }
         return (
-          <code {...p}>
+          <figure {...toComponentProps<React.ComponentProps<"figure">>(p)}>
+            {c}
+          </figure>
+        )
+      },
+      h1: ({ children: c, ...p }: MarkdownElementProps) => (
+        <TypographyH1
+          {...toComponentProps<React.ComponentProps<typeof TypographyH1>>(p)}
+        >
+          {c}
+        </TypographyH1>
+      ),
+      h2: ({ children: c, ...p }: MarkdownElementProps) => (
+        <TypographyH2
+          {...toComponentProps<React.ComponentProps<typeof TypographyH2>>(p)}
+        >
+          {c}
+        </TypographyH2>
+      ),
+      h3: ({ children: c, ...p }: MarkdownElementProps) => (
+        <TypographyH3
+          {...toComponentProps<React.ComponentProps<typeof TypographyH3>>(p)}
+        >
+          {c}
+        </TypographyH3>
+      ),
+      h4: ({ children: c, ...p }: MarkdownElementProps) => (
+        <TypographyH4
+          {...toComponentProps<React.ComponentProps<typeof TypographyH4>>(p)}
+        >
+          {c}
+        </TypographyH4>
+      ),
+      p: ({ children: c, ...p }: MarkdownElementProps) => (
+        <TypographyP
+          {...toComponentProps<React.ComponentProps<typeof TypographyP>>(p)}
+        >
+          {c}
+        </TypographyP>
+      ),
+      blockquote: ({ children: c, ...p }: MarkdownElementProps) => (
+        <TypographyBlockquote
+          {...toComponentProps<
+            React.ComponentProps<typeof TypographyBlockquote>
+          >(p)}
+        >
+          {c}
+        </TypographyBlockquote>
+      ),
+      ul: ({ children: c, ...p }: MarkdownElementProps) => (
+        <TypographyUL
+          {...toComponentProps<React.ComponentProps<typeof TypographyUL>>(p)}
+        >
+          {c}
+        </TypographyUL>
+      ),
+      ol: ({ children: c, ...p }: MarkdownElementProps) => (
+        <TypographyOL
+          {...toComponentProps<React.ComponentProps<typeof TypographyOL>>(p)}
+        >
+          {c}
+        </TypographyOL>
+      ),
+      a: ({ href, children: c, ...p }: MarkdownElementProps) => (
+        <TypographyA
+          href={href}
+          {...toComponentProps<React.ComponentProps<typeof TypographyA>>(p)}
+        >
+          {c}
+        </TypographyA>
+      ),
+      table: ({ children: c, ...p }: MarkdownElementProps) => (
+        <TypographyTable
+          {...toComponentProps<React.ComponentProps<typeof TypographyTable>>(p)}
+        >
+          {c}
+        </TypographyTable>
+      ),
+      tr: ({ children: c, ...p }: MarkdownElementProps) => (
+        <TypographyTR
+          {...toComponentProps<React.ComponentProps<typeof TypographyTR>>(p)}
+        >
+          {c}
+        </TypographyTR>
+      ),
+      th: ({ children: c, ...p }: MarkdownElementProps) => (
+        <TypographyTH
+          {...toComponentProps<React.ComponentProps<typeof TypographyTH>>(p)}
+        >
+          {c}
+        </TypographyTH>
+      ),
+      td: ({ children: c, ...p }: MarkdownElementProps) => (
+        <TypographyTD
+          {...toComponentProps<React.ComponentProps<typeof TypographyTD>>(p)}
+        >
+          {c}
+        </TypographyTD>
+      ),
+      hr: (p: MarkdownElementProps) => (
+        <TypographyHR
+          {...toComponentProps<React.ComponentProps<typeof TypographyHR>>(p)}
+        />
+      ),
+      strong: ({ children: c, ...p }: MarkdownElementProps) => (
+        <TypographyStrong
+          {...toComponentProps<React.ComponentProps<typeof TypographyStrong>>(
+            p
+          )}
+        >
+          {c}
+        </TypographyStrong>
+      ),
+      em: ({ children: c, ...p }: MarkdownElementProps) => (
+        <TypographyEM
+          {...toComponentProps<React.ComponentProps<typeof TypographyEM>>(p)}
+        >
+          {c}
+        </TypographyEM>
+      ),
+      code: ({ children: c, ...p }: MarkdownElementProps) => {
+        if (!p["data-language"]) {
+          return <TypographyInlineCode>{c}</TypographyInlineCode>
+        }
+        return (
+          <code {...toComponentProps<React.ComponentProps<"code">>(p)}>
             {c}
           </code>
         )
       },
-      pre: ({ children: c, "data-raw": raw, "data-language": lang, ...p }: any) => (
-        <MDCodeBlock raw={raw ?? ""} language={lang}>
-          <pre {...p}>{c}</pre>
-        </MDCodeBlock>
-      ),
-    },
+    } satisfies Record<
+      string,
+      MarkdownElementComponent
+    > as RuntimeOptions["components"],
   })
 
   return <div className={cn("", className)}>{content}</div>

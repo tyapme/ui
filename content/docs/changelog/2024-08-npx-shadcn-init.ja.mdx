@@ -1,0 +1,45 @@
+---
+title: 2024年8月 - npx shadcn init
+description: 主要な React フレームワークすべてに対応した CLI の完全な書き直し。
+date: 2024-08-31
+---
+
+新しい CLI が利用可能になりました。多くの新機能と改善を含む完全な書き直しです。`npx shadcn add` を使用して、コンポーネント、テーマ、hooks、utils などをインストールできるようになりました。
+
+これはあなたや LLM がアクセスして使用できるコードの配布に向けた大きな一歩です。
+
+1. まず、CLI がすぐに使える形で主要な React フレームワークすべてに対応しました。Next.js、Remix、Vite、Laravel に対応しています。新しいアプリへの init 時には、既存の Tailwind ファイルを上書きせずに更新します。
+2. コンポーネントが独自の依存関係を持つようになりました。例えば accordion は Tailwind キーフレームを定義できます。プロジェクトに追加する際、`tailwind.config.ts` ファイルが適宜更新されます。
+3. URL を使用してリモートコンポーネントをインストールすることもできます。`npx shadcn add https://acme.com/registry/navbar.json`
+4. init コマンドも改善しました。フレームワークを検出し、1 つのコマンドで新しい Next.js アプリを init することさえできます。`npx shadcn init`
+5. 独自のコンポーネントレジストリを配布するための新しいスキーマを作成しました。URL のサポートがあるため、プライベートコンポーネントの配布にも使用できます。
+6. その他、エラーハンドリングの改善やモノレポのサポートなどのアップデートもあります。
+
+新しい CLI を今日から試してみてください。
+
+```bash
+npx shadcn init sidebar-01 login-01
+```
+
+### プロジェクトの更新
+
+新しい CLI を使用するために既存プロジェクトを更新するには、`components.json` ファイルに **components**、**utils**、**ui**、**lib**、**hooks** のインポートエイリアスを追加してください。
+
+```json showLineNumbers {7-13} title="components.json"
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "tailwind": {
+    // ...
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  }
+}
+```
+
+`~` など別のインポートエイリアスプレフィックスを使用している場合は、`@` をそのプレフィックスに置き換えてください。

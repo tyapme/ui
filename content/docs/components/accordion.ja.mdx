@@ -1,0 +1,128 @@
+---
+title: Accordion
+description: インタラクティブな見出しを縦に積み重ね、それぞれがコンテンツのセクションを展開するコンポーネント。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/accordion
+  api: https://base-ui.com/react/components/accordion#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="accordion-demo"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
+/>
+
+## インストール
+
+<ComponentInstall name="accordion" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+```
+
+```tsx showLineNumbers
+<Accordion defaultValue={["item-1"]}>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>
+      Yes. It adheres to the WAI-ARIA design pattern.
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## 構成
+
+`Accordion` の構成:
+
+```text
+Accordion
+├── AccordionItem
+│   ├── AccordionTrigger
+│   └── AccordionContent
+└── AccordionItem
+    ├── AccordionTrigger
+    └── AccordionContent
+```
+
+## 使用例
+
+### ベーシック
+
+最初のアイテムがデフォルトで開いた状態の、一度に1つのアイテムを表示する基本的なアコーディオン。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="accordion-basic"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
+/>
+
+### 複数展開
+
+`multiple` プロパティを使用すると、複数のアイテムを同時に開くことができます。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="accordion-multiple"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[450px]"
+/>
+
+### 無効化
+
+`AccordionItem` に `disabled` プロパティを使用して、個々のアイテムを無効化します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="accordion-disabled"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
+/>
+
+### ボーダー
+
+`Accordion` に `border` を、`AccordionItem` に `border-b last:border-b-0` を追加してアイテムにボーダーを付けます。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="accordion-borders"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"
+/>
+
+### カード
+
+`Accordion` を `Card` コンポーネントでラップします。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="accordion-card"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[435px]"
+/>
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="accordion-rtl"
+  align="start"
+  direction="rtl"
+/>
+
+## API リファレンス
+
+詳細については [Base UI](https://base-ui.com/react/components/accordion#api-reference) のドキュメントを参照してください。

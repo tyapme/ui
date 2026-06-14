@@ -3,7 +3,14 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { CopyButton } from "@/styles/base/ui/copy-button"
+import {
+  CodeBlockActions,
+  CodeBlockContainer,
+  CodeBlockCopyButton,
+  CodeBlockHeader,
+  CodeBlockProvider,
+  CodeBlockTitle,
+} from "@/styles/base/ui/code-block"
 
 interface MDCodeBlockProps {
   raw: string
@@ -14,33 +21,30 @@ interface MDCodeBlockProps {
 
 function MDCodeBlock({ raw, language, className, children }: MDCodeBlockProps) {
   return (
-    <div
-      className={cn(
-        "group relative my-6 overflow-hidden rounded-lg border bg-[#0d1117]",
-        className
-      )}
-    >
-      {language && (
-        <div className="flex items-center justify-between border-b border-white/10 px-4 py-2">
-          <span className="font-mono text-xs text-white/40">{language}</span>
-          <CopyButton
-            value={raw}
-            size="sm"
-            className="text-white/40 hover:text-white/80"
-          />
+    <CodeBlockProvider code={raw}>
+      <CodeBlockContainer
+        language={language ?? "text"}
+        className={cn("my-6", className)}
+      >
+        {language ? (
+          <CodeBlockHeader>
+            <CodeBlockTitle>
+              <span className="font-mono text-xs">{language}</span>
+            </CodeBlockTitle>
+            <CodeBlockActions>
+              <CodeBlockCopyButton />
+            </CodeBlockActions>
+          </CodeBlockHeader>
+        ) : (
+          <div className="absolute top-2 right-2 z-10 opacity-0 backdrop-blur-md transition-opacity group-hover:opacity-100">
+            <CodeBlockCopyButton />
+          </div>
+        )}
+        <div className="fd-code fd-code-animate relative max-h-[600px] overflow-auto text-sm [&_pre]:py-3.5">
+          {children}
         </div>
-      )}
-      {!language && (
-        <div className="absolute top-2 right-2 opacity-0 transition-opacity group-hover:opacity-100">
-          <CopyButton
-            value={raw}
-            size="sm"
-            className="text-white/40 hover:text-white/80"
-          />
-        </div>
-      )}
-      <div className="overflow-x-auto px-4 py-4 text-sm">{children}</div>
-    </div>
+      </CodeBlockContainer>
+    </CodeBlockProvider>
   )
 }
 

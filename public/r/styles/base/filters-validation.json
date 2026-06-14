@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "filters-validation",
+  "title": "Filters — Validation",
+  "registryDependencies": [
+    "filters",
+    "example"
+  ],
+  "files": [
+    {
+      "path": "registry/base/examples/filters-validation.tsx",
+      "content": "\"use client\"\n\nimport { useState } from \"react\"\nimport { MailIcon } from \"lucide-react\"\n\nimport { Example, ExampleWrapper } from \"@/registry/base/components/example\"\nimport {\n  createFilter,\n  Filters,\n  type Filter,\n  type FilterFieldConfig,\n} from \"@/registry/base/ui/filters\"\n\nconst fields: FilterFieldConfig[] = [\n  {\n    key: \"email\",\n    label: \"Email\",\n    type: \"text\",\n    icon: <MailIcon className=\"size-4\" />,\n    placeholder: \"Enter email...\",\n    pattern: \"^[^\\\\s@]+@[^\\\\s@]+\\\\.[^\\\\s@]+$\",\n    validation: (value: unknown) => {\n      const str = String(value)\n      const valid = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(str)\n      return { valid, message: valid ? \"\" : \"Invalid email format\" }\n    },\n  },\n  {\n    key: \"url\",\n    label: \"URL\",\n    type: \"text\",\n    placeholder: \"Enter URL...\",\n    pattern: \"^https?://.*\",\n    validation: (value: unknown) => {\n      const str = String(value)\n      const valid = /^https?:\\/\\//.test(str)\n      return {\n        valid,\n        message: valid ? \"\" : \"Must start with http:// or https://\",\n      }\n    },\n  },\n]\n\nexport default function FiltersValidationExample() {\n  const [filters, setFilters] = useState<Filter[]>([\n    createFilter(\"email\", \"contains\", [\"\"]),\n  ])\n\n  return (\n    <ExampleWrapper>\n      <Example className=\"items-start p-4\">\n        <Filters filters={filters} fields={fields} onChange={setFilters} />\n      </Example>\n    </ExampleWrapper>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

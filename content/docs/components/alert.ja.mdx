@@ -1,0 +1,139 @@
+---
+title: Alert
+description: ユーザーの注意を促すコールアウトを表示するコンポーネント。
+base: base
+component: true
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-demo"
+  previewClassName="h-auto sm:h-72 p-6"
+/>
+
+## インストール
+
+<ComponentInstall name="alert" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Alert,
+  AlertAction,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
+```
+
+```tsx showLineNumbers
+<Alert>
+  <InfoIcon />
+  <AlertTitle>Heads up!</AlertTitle>
+  <AlertDescription>
+    You can add components and dependencies to your app using the cli.
+  </AlertDescription>
+  <AlertAction>
+    <Button variant="outline">Enable</Button>
+  </AlertAction>
+</Alert>
+```
+
+## 構成
+
+`Alert` の構成:
+
+```text
+Alert
+├── Icon
+├── AlertTitle
+├── AlertDescription
+└── AlertAction
+```
+
+## 使用例
+
+### ベーシック
+
+アイコン、タイトル、説明文を持つ基本的なアラート。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-basic"
+  previewClassName="h-auto sm:h-72 p-6"
+/>
+
+### 破壊的
+
+`variant="destructive"` を使用して破壊的なアラートを作成します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-destructive"
+  previewClassName="h-auto sm:h-72 p-6"
+/>
+
+### アクション
+
+`AlertAction` を使用してアラートにボタンやその他のアクション要素を追加します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-action"
+  previewClassName="h-auto sm:h-72 p-6"
+/>
+
+### カスタムカラー
+
+`Alert` コンポーネントに `bg-amber-50 dark:bg-amber-950` などのカスタムクラスを追加して、アラートの色をカスタマイズできます。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-colors"
+  previewClassName="h-auto sm:h-72 p-6"
+/>
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-rtl"
+  direction="rtl"
+  previewClassName="h-auto sm:h-72 p-6"
+/>
+
+## API リファレンス
+
+### Alert
+
+`Alert` コンポーネントはユーザーの注意を促すコールアウトを表示します。
+
+| Prop      | Type                         | Default     |
+| --------- | ---------------------------- | ----------- |
+| `variant` | `"default" \| "destructive"` | `"default"` |
+
+### AlertTitle
+
+`AlertTitle` コンポーネントはアラートのタイトルを表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### AlertDescription
+
+`AlertDescription` コンポーネントはアラートの説明やコンテンツを表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### AlertAction
+
+`AlertAction` コンポーネントはアラートの右上に絶対配置されたアクション要素（ボタンなど）を表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |

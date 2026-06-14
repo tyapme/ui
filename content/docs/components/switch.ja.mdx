@@ -1,0 +1,65 @@
+---
+title: Switch
+description: チェック済みとチェックなしを切り替えられるコントロール。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/switch
+  api: https://base-ui.com/react/components/switch#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="switch-demo" />
+
+## インストール
+
+<ComponentInstall name="switch" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import { Switch } from "@/components/ui/switch"
+```
+
+```tsx
+<Switch />
+```
+
+## 例
+
+### 説明付き
+
+<ComponentPreview styleName="base-nova" name="switch-description" />
+
+### チョイスカード
+
+`FieldLabel` でフィールド全体をラップし、クリック可能なカードパターンを実現するカードスタイルの選択肢。
+
+<ComponentPreview styleName="base-nova" name="switch-choice-card" />
+
+### 無効
+
+`Switch` コンポーネントに `disabled` プロップを追加してスイッチを無効化します。スタイリングのために `Field` コンポーネントに `data-disabled` プロップを追加します。
+
+<ComponentPreview styleName="base-nova" name="switch-disabled" />
+
+### 無効入力
+
+無効な状態を示すために `Switch` コンポーネントに `aria-invalid` プロップを追加します。スタイリングのために `Field` コンポーネントに `data-invalid` プロップを追加します。
+
+<ComponentPreview styleName="base-nova" name="switch-invalid" />
+
+### サイズ
+
+`size` プロップを使ってスイッチのサイズを変更します。
+
+<ComponentPreview styleName="base-nova" name="switch-sizes" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="switch-rtl" direction="rtl" />
+
+## API リファレンス
+
+[Base UI Switch](https://base-ui.com/react/components/switch#api-reference) ドキュメントを参照してください。

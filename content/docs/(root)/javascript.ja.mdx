@@ -1,0 +1,44 @@
+---
+title: JavaScript
+description: shadcn/ui を JavaScript で使う方法
+---
+
+このプロジェクトとコンポーネントは TypeScript で記述されています。プロジェクトでも TypeScript の使用を推奨します。
+
+ただし、JavaScript 版のコンポーネントも提供しています。JavaScript 版は [CLI](/docs/cli) から利用できます。
+
+TypeScript を使わない場合は、`components.json` ファイルの `tsx` フラグを使います。
+
+```json {4} title="components.json" showLineNumbers
+{
+  "style": "new-york",
+  "rsc": false,
+  "tsx": false,
+  "tailwind": {
+    "config": "",
+    "css": "src/app/globals.css",
+    "baseColor": "zinc",
+    "cssVariables": true
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  }
+}
+```
+
+インポートエイリアスを設定するには、次の `jsconfig.json` を使います：
+
+```json {4} title="jsconfig.json" showLineNumbers
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
+}
+```

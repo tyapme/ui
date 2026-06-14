@@ -1,0 +1,131 @@
+---
+title: Code Block
+description: Shiki シンタックスハイライト、コピーボタン、ファイル名、言語セレクター、diff、フォーカス、ワードアノテーションを備えた完全にコンポーザブルなコードブロック。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="code-block-demo" />
+
+## インストール
+
+<ComponentInstall name="code-block" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import {
+  CodeBlock,
+  CodeBlockActions,
+  CodeBlockCopyButton,
+  CodeBlockFilename,
+  CodeBlockHeader,
+  CodeBlockTitle,
+} from "@/components/ui/code-block"
+import { FileIcon } from "lucide-react"
+```
+
+```tsx
+<CodeBlock code={code} language="tsx">
+  <CodeBlockHeader>
+    <CodeBlockTitle>
+      <FileIcon className="size-3.5" />
+      <CodeBlockFilename>demo.tsx</CodeBlockFilename>
+    </CodeBlockTitle>
+    <CodeBlockActions>
+      <CodeBlockCopyButton />
+    </CodeBlockActions>
+  </CodeBlockHeader>
+</CodeBlock>
+```
+
+## 例
+
+### ヘッダーなし
+
+ヘッダーのないシンプルなコードブロック — インラインスニペット、シェルコマンド、インストール手順に便利です。
+
+<ComponentPreview styleName="base-nova" name="code-block-no-header" />
+
+### 行番号
+
+`showLineNumbers` プロパティを使用して行番号を表示します。
+
+<ComponentPreview styleName="base-nova" name="code-block-line-numbers" />
+
+### 言語セレクター
+
+`CodeBlockLanguageSelector` を使用してユーザーが言語を切り替えられるようにします。`value` に現在の言語を渡し、`onValueChange` で更新します。
+
+<ComponentPreview styleName="base-nova" name="code-block-language-selector" />
+
+### Diff
+
+`// [!code --]` を追加して削除された行を、`// [!code ++]` を追加して追加された行をマークします。アノテーションコメントはレンダリングされた出力から除去されます。
+
+<ComponentPreview styleName="base-nova" name="code-block-diff" />
+
+### ハイライト
+
+`// [!code highlight]` を追加して特定の行に注目させます。
+
+<ComponentPreview styleName="base-nova" name="code-block-highlight" />
+
+### フォーカス
+
+`// [!code focus]` を追加して特定の行にフォーカスします。他のすべての行はぼかされ、読者の視線を関連コードに向けます。
+
+<ComponentPreview styleName="base-nova" name="code-block-focus" />
+
+### ワードハイライト
+
+ブロックの先頭に `// [!code word:term]` を追加して、単語のすべての出現箇所をハイライトします。`// [!code word:term:1]` で特定の行をターゲットにすることもできます。
+
+<ComponentPreview styleName="base-nova" name="code-block-word-highlight" />
+
+### 言語検出
+
+`detectLanguage` を使用してファイル名の拡張子から言語を自動推定します。
+
+```tsx
+import { CodeBlock, detectLanguage } from "@/components/ui/code-block"
+
+<CodeBlock code={code} language={detectLanguage("app.tsx")}>
+  ...
+</CodeBlock>
+```
+
+サポートされている拡張子: `ts`、`tsx`、`js`、`jsx`、`py`、`go`、`rs`、`css`、`scss`、`html`、`json`、`yaml`、`bash`、`sql`、`graphql`、`prisma`、`vue`、`svelte` など。
+
+## API リファレンス
+
+### CodeBlock
+
+| プロパティ           | 型                | デフォルト                                           |
+| -------------------- | ----------------- | ---------------------------------------------------- |
+| `code`               | `string`          | —                                                    |
+| `language`           | `BundledLanguage` | —                                                    |
+| `showLineNumbers`    | `boolean`         | `false`                                              |
+| `syntaxHighlighting` | `boolean`         | `true`                                               |
+| `themes`             | `CodeThemes`      | `{ light: "github-light", dark: "github-dark" }`     |
+| `className`          | `string`          | —                                                    |
+
+### CodeBlockCopyButton
+
+| プロパティ  | 型                       | デフォルト |
+| --------- | ------------------------ | ------- |
+| `onCopy`  | `() => void`             | —       |
+| `onError` | `(error: Error) => void` | —       |
+| `timeout` | `number`                 | `2000`  |
+
+### アノテーション構文
+
+| 記法                      | 効果                                    |
+| ------------------------- | --------------------------------------- |
+| `// [!code --]`           | 削除された行としてマーク（diff）          |
+| `// [!code ++]`           | 追加された行としてマーク（diff）          |
+| `// [!code highlight]`    | 行をハイライト                           |
+| `// [!code focus]`        | 行にフォーカス（他の行をぼかす）          |
+| `// [!code word:term]`    | 単語のすべての出現箇所をハイライト        |
+| `// [!code error]`        | 行をエラーとしてマーク                   |
+| `// [!code warning]`      | 行を警告としてマーク                     |

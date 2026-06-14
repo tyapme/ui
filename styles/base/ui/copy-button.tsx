@@ -9,9 +9,9 @@ import { Button } from "@/styles/base/ui/button"
 const copyButtonVariants = cva("", {
   variants: {
     size: {
-      sm:      "size-8",
+      sm: "size-8",
       default: "size-9",
-      lg:      "size-10",
+      lg: "size-10",
     },
   },
   defaultVariants: {
@@ -20,9 +20,9 @@ const copyButtonVariants = cva("", {
 })
 
 const iconSizeMap = {
-  sm:      "size-3.5",
+  sm: "size-3.5",
   default: "size-4",
-  lg:      "size-[18px]",
+  lg: "size-[18px]",
 } as const
 
 type CopyButtonProps = Omit<

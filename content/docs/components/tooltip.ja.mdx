@@ -1,0 +1,72 @@
+---
+title: Tooltip
+description: 要素がキーボードフォーカスを受け取るか、マウスがホバーしたときに要素に関連する情報を表示するポップアップ。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/tooltip
+  api: https://base-ui.com/react/components/tooltip#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="tooltip-demo" />
+
+## インストール
+
+<ComponentInstall name="tooltip" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+```
+
+```tsx showLineNumbers
+<Tooltip>
+  <TooltipTrigger>Hover</TooltipTrigger>
+  <TooltipContent>
+    <p>Add to library</p>
+  </TooltipContent>
+</Tooltip>
+```
+
+## コンポジション
+
+`Tooltip` を構築するには以下のコンポジションを使用します:
+
+```text
+Tooltip
+├── TooltipTrigger
+└── TooltipContent
+```
+
+## 例
+
+### 位置
+
+`side` プロップを使ってツールチップの位置を変更します。
+
+<ComponentPreview styleName="base-nova" name="tooltip-sides" />
+
+### キーボードショートカット付き
+
+<ComponentPreview styleName="base-nova" name="tooltip-keyboard" />
+
+### 無効ボタン
+
+span でラップして無効ボタンにツールチップを表示します。
+
+<ComponentPreview styleName="base-nova" name="tooltip-disabled" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="tooltip-rtl" direction="rtl" />
+
+## API リファレンス
+
+[Base UI Tooltip](https://base-ui.com/react/components/tooltip#api-reference) ドキュメントを参照してください。

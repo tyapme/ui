@@ -8,7 +8,7 @@ import {
 } from "@tabler/icons-react"
 import { ArrowUpIcon, Search } from "lucide-react"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -62,9 +62,7 @@ const translations = {
 }
 
 export function InputGroupDemo() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
 
   return (
     <div dir={t.dir} className="grid w-full max-w-sm gap-6">

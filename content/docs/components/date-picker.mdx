@@ -62,36 +62,6 @@ This component uses the `chrono-node` library to parse natural language dates.
 
 <ComponentPreview styleName="base-nova" name="date-picker-natural-language" />
 
-## Internationalization
-
-The date picker reads the active locale from React Aria's `I18nProvider`. By default it falls back to the browser locale. Use `I18nProvider` to override it.
-
-### Disable i18n (force English)
-
-Wrap the picker in `<I18nProvider locale="en-US">` to always render in English regardless of the user's browser locale:
-
-```tsx
-import { I18nProvider } from "react-aria-components"
-
-<I18nProvider locale="en-US">
-  <DatePickerBasic />
-</I18nProvider>
-```
-
-### Specify a locale
-
-Pass any BCP 47 locale tag to `I18nProvider`. The calendar grid, weekday names, and formatted date string all update automatically:
-
-```tsx
-<I18nProvider locale="ja-JP">
-  <DatePickerBasic />
-</I18nProvider>
-```
-
-The formatted date string uses [date-fns](https://date-fns.org) with the matching locale. Supported locales: `en-US`, `ja-JP`, `de`, `fr`, `es`, `it`, `ko`, `zh-CN`, `zh-TW`, `pt-BR`, `ru`, `ar-SA`.
-
-<ComponentPreview styleName="base-nova" name="date-picker-i18n" />
-
 ## RTL
 
 To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).

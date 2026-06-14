@@ -4,12 +4,12 @@ import * as React from "react"
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog"
 
 import { cn } from "@/registry/bases/base/lib/utils"
-import { Button } from "@/registry/ui/button"
 import {
-  DIALOG_OVERLAY_CLASSES,
   DIALOG_CONTENT_BASE_CLASSES,
+  DIALOG_OVERLAY_CLASSES,
   DialogDragHandle,
 } from "@/registry/ui/_dialog-shared"
+import { Button } from "@/registry/ui/button"
 
 function AlertDialog({ ...props }: AlertDialogPrimitive.Root.Props) {
   return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />
@@ -169,7 +169,9 @@ function AlertDialogCancel({
       data-slot="alert-dialog-cancel"
       className={cn("cn-alert-dialog-cancel", className)}
       nativeButton
-      render={<Button data-slot="alert-dialog-cancel" variant={variant} size={size} />}
+      render={
+        <Button data-slot="alert-dialog-cancel" variant={variant} size={size} />
+      }
       {...props}
     />
   )

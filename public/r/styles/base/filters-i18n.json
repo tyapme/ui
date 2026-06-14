@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "filters-i18n",
+  "title": "Filters — i18n",
+  "registryDependencies": [
+    "filters",
+    "example"
+  ],
+  "files": [
+    {
+      "path": "registry/base/examples/filters-i18n.tsx",
+      "content": "\"use client\"\n\nimport { useState } from \"react\"\n\nimport { Example, ExampleWrapper } from \"@/registry/base/components/example\"\nimport {\n  createFilter,\n  Filters,\n  type Filter,\n  type FilterFieldConfig,\n} from \"@/registry/base/ui/filters\"\n\nconst fields: FilterFieldConfig[] = [\n  {\n    key: \"status\",\n    label: \"ステータス\",\n    type: \"multiselect\",\n    options: [\n      { value: \"todo\", label: \"未着手\" },\n      { value: \"in_progress\", label: \"進行中\" },\n      { value: \"done\", label: \"完了\" },\n    ],\n  },\n  {\n    key: \"priority\",\n    label: \"優先度\",\n    type: \"multiselect\",\n    options: [\n      { value: \"high\", label: \"高\" },\n      { value: \"medium\", label: \"中\" },\n      { value: \"low\", label: \"低\" },\n    ],\n  },\n]\n\nconst i18n = {\n  addFilter: \"フィルター追加\",\n  searchFields: \"フィルター検索...\",\n  noFieldsFound: \"フィルターが見つかりません。\",\n  noResultsFound: \"結果がありません。\",\n  select: \"選択...\",\n  selectedCount: \"件選択\",\n  operators: {\n    isAnyOf: \"いずれか\",\n    isNotAnyOf: \"いずれでもない\",\n    includesAll: \"すべて含む\",\n    excludesAll: \"すべて除く\",\n    empty: \"空\",\n    notEmpty: \"空でない\",\n    is: \"が\",\n    isNot: \"でない\",\n    contains: \"を含む\",\n    notContains: \"を含まない\",\n    startsWith: \"で始まる\",\n    endsWith: \"で終わる\",\n    isExactly: \"と完全一致\",\n    before: \"より前\",\n    after: \"より後\",\n    between: \"の間\",\n    notBetween: \"の間以外\",\n    equals: \"等しい\",\n    notEquals: \"等しくない\",\n    greaterThan: \"より大きい\",\n    lessThan: \"より小さい\",\n    overlaps: \"重なる\",\n    includes: \"含む\",\n    excludes: \"除く\",\n    includesAllOf: \"すべて含む\",\n    includesAnyOf: \"いずれか含む\",\n  },\n}\n\nexport default function FiltersI18nExample() {\n  const [filters, setFilters] = useState<Filter[]>([\n    createFilter(\"status\", \"is_any_of\", [\"in_progress\"]),\n  ])\n\n  return (\n    <ExampleWrapper>\n      <Example className=\"items-start p-4\">\n        <Filters\n          filters={filters}\n          fields={fields}\n          onChange={setFilters}\n          i18n={i18n}\n        />\n      </Example>\n    </ExampleWrapper>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

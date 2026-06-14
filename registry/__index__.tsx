@@ -5,6 +5,33 @@ import * as React from "react"
 
 export const Index: Record<string, Record<string, any>> = {
   base: {
+    "code-block": {
+      name: "code-block",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button"],
+      files: [
+        {
+          path: "styles/base/ui/code-block.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base/ui/code-block")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "code-block"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: { docs: "https://ui.tyap.me/docs/components/code-block" },
+      },
+    },
     accordion: {
       name: "accordion",
       title: "undefined",
@@ -292,35 +319,6 @@ export const Index: Record<string, Record<string, any>> = {
         },
       },
     },
-    "code-block": {
-      name: "code-block",
-      title: "undefined",
-      description: "",
-      type: "registry:ui",
-      registryDependencies: ["button"],
-      files: [
-        {
-          path: "styles/base/ui/code-block.tsx",
-          type: "registry:ui",
-          target: "",
-        },
-      ],
-      component: React.lazy(async () => {
-        const mod = await import("@/styles/base/ui/code-block")
-        const exportName =
-          Object.keys(mod).find(
-            (key) =>
-              typeof mod[key] === "function" || typeof mod[key] === "object"
-          ) || "code-block"
-        return { default: mod.default || mod[exportName] }
-      }),
-      categories: undefined,
-      meta: {
-        links: {
-          docs: "https://ui.tyap.me/docs/components/code-block",
-        },
-      },
-    },
     "copy-button": {
       name: "copy-button",
       title: "undefined",
@@ -345,9 +343,7 @@ export const Index: Record<string, Record<string, any>> = {
       }),
       categories: undefined,
       meta: {
-        links: {
-          docs: "https://ui.tyap.me/docs/components/copy-button",
-        },
+        links: { docs: "https://ui.tyap.me/docs/components/copy-button" },
       },
     },
     calendar: {
@@ -409,6 +405,35 @@ export const Index: Record<string, Record<string, any>> = {
         links: {
           docs: "https://ui.shadcn.com/docs/components/base/date-picker",
           api: "https://react-spectrum.adobe.com/react-aria/DatePicker.html",
+        },
+      },
+    },
+    "time-picker": {
+      name: "time-picker",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button", "popover", "scroll-mask"],
+      files: [
+        {
+          path: "styles/base/ui/time-picker.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base/ui/time-picker")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "time-picker"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: {
+          api: "https://react-spectrum.adobe.com/react-aria/TimeField.html",
         },
       },
     },
@@ -633,7 +658,7 @@ export const Index: Record<string, Record<string, any>> = {
       title: "undefined",
       description: "",
       type: "registry:ui",
-      registryDependencies: ["button", "input-group"],
+      registryDependencies: ["button", "input-group", "scroll-mask"],
       files: [
         {
           path: "styles/base/ui/combobox.tsx",
@@ -665,7 +690,7 @@ export const Index: Record<string, Record<string, any>> = {
       title: "undefined",
       description: "",
       type: "registry:ui",
-      registryDependencies: ["dialog", "input-group"],
+      registryDependencies: ["dialog", "input-group", "scroll-mask"],
       files: [
         {
           path: "styles/base/ui/command.tsx",
@@ -886,6 +911,65 @@ export const Index: Record<string, Record<string, any>> = {
             "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/field-example.tsx",
         },
       },
+    },
+    filters: {
+      name: "filters",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: [
+        "button",
+        "button-group",
+        "dropdown-menu",
+        "input",
+        "input-group",
+        "kbd",
+        "scroll-area",
+        "tooltip",
+      ],
+      files: [
+        {
+          path: "styles/base/ui/filters.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base/ui/filters")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "filters"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    kanban: {
+      name: "kanban",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [
+        {
+          path: "styles/base/ui/kanban.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base/ui/kanban")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "kanban"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
     },
     "hover-card": {
       name: "hover-card",
@@ -1140,6 +1224,36 @@ export const Index: Record<string, Record<string, any>> = {
         },
       },
     },
+    "md-parser": {
+      name: "md-parser",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [
+        {
+          path: "styles/base/ui/md-parser.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+        {
+          path: "styles/base/ui/md-parser-code-block.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base/ui/md-parser")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "md-parser"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
     pagination: {
       name: "pagination",
       title: "undefined",
@@ -1170,6 +1284,31 @@ export const Index: Record<string, Record<string, any>> = {
             "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/pagination-example.tsx",
         },
       },
+    },
+    "phone-input": {
+      name: "phone-input",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button", "combobox", "input", "scroll-area"],
+      files: [
+        {
+          path: "styles/base/ui/phone-input.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base/ui/phone-input")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "phone-input"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
     },
     popover: {
       name: "popover",
@@ -1331,6 +1470,33 @@ export const Index: Record<string, Record<string, any>> = {
         },
       },
     },
+    "scroll-mask": {
+      name: "scroll-mask",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [
+        {
+          path: "styles/base/ui/scroll-mask.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base/ui/scroll-mask")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "scroll-mask"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: { docs: "https://ui.tyap.me/docs/components/scroll-mask" },
+      },
+    },
     select: {
       name: "select",
       title: "undefined",
@@ -1435,6 +1601,7 @@ export const Index: Record<string, Record<string, any>> = {
       registryDependencies: [
         "button",
         "input",
+        "scroll-mask",
         "separator",
         "sheet",
         "skeleton",
@@ -1875,37 +2042,6 @@ export const Index: Record<string, Record<string, any>> = {
         },
       },
     },
-    "native-select": {
-      name: "native-select",
-      title: "undefined",
-      description: "",
-      type: "registry:ui",
-      registryDependencies: undefined,
-      files: [
-        {
-          path: "styles/base/ui/native-select.tsx",
-          type: "registry:ui",
-          target: "",
-        },
-      ],
-      component: React.lazy(async () => {
-        const mod = await import("@/styles/base/ui/native-select")
-        const exportName =
-          Object.keys(mod).find(
-            (key) =>
-              typeof mod[key] === "function" || typeof mod[key] === "object"
-          ) || "native-select"
-        return { default: mod.default || mod[exportName] }
-      }),
-      categories: undefined,
-      meta: {
-        links: {
-          docs: "https://ui.shadcn.com/docs/components/base/native-select",
-          examples:
-            "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/native-select-example.tsx",
-        },
-      },
-    },
     direction: {
       name: "direction",
       title: "undefined",
@@ -1959,9 +2095,32 @@ export const Index: Record<string, Record<string, any>> = {
         return { default: mod.default || mod[exportName] }
       }),
       categories: undefined,
-      meta: {
-        links: { docs: "https://ui.shadcn.com/docs/components/base/qr-code" },
-      },
+      meta: undefined,
+    },
+    "bars-spinner": {
+      name: "bars-spinner",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [
+        {
+          path: "styles/base/ui/bars-spinner.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base/ui/bars-spinner")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "bars-spinner"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
     },
     "number-field": {
       name: "number-field",
@@ -2021,6 +2180,33 @@ export const Index: Record<string, Record<string, any>> = {
           docs: "https://ui.shadcn.com/docs/components/base/sortable",
           api: "https://dndkit.com",
         },
+      },
+    },
+    typography: {
+      name: "typography",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [
+        {
+          path: "styles/base/ui/typography.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/styles/base/ui/typography")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || "typography"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: {
+        links: { docs: "https://ui.tyap.me/docs/components/typography" },
       },
     },
   },

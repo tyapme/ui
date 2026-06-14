@@ -1,0 +1,177 @@
+---
+title: Kanban
+description: 列をまたいでアイテムをドラッグ＆ドロップで整理できる、カスタマイズ可能なかんばんコンポーネント。
+component: true
+base: base
+---
+
+カードを列内で並べ替えたり、列をまたいで移動したり、列そのものを並べ替えたりできるドラッグ＆ドロップ対応のかんばんです。[@dnd-kit](https://dndkit.com) を基盤にしつつ、Base UI の `useRender` パターンで構築しているため、各パーツは `render` prop で任意の要素に差し替えられます。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="kanban-demo"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+## インストール
+
+<ComponentInstall name="kanban" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import {
+  Kanban,
+  KanbanBoard,
+  KanbanColumn,
+  KanbanColumnContent,
+  KanbanColumnHandle,
+  KanbanItem,
+  KanbanItemHandle,
+  KanbanOverlay,
+} from "@/components/ui/kanban"
+```
+
+```tsx
+<Kanban
+  value={columns}
+  onValueChange={setColumns}
+  getItemValue={(item) => item.id}
+>
+  <KanbanBoard>
+    {Object.entries(columns).map(([id, items]) => (
+      <KanbanColumn key={id} value={id}>
+        <KanbanColumnHandle>
+          <h3>{id}</h3>
+        </KanbanColumnHandle>
+        <KanbanColumnContent value={id}>
+          {items.map((item) => (
+            <KanbanItem key={item.id} value={item.id}>
+              <KanbanItemHandle>{item.content}</KanbanItemHandle>
+            </KanbanItem>
+          ))}
+        </KanbanColumnContent>
+      </KanbanColumn>
+    ))}
+  </KanbanBoard>
+  <KanbanOverlay>
+    <div className="bg-muted size-full rounded-md" />
+  </KanbanOverlay>
+</Kanban>
+```
+
+`value` は「列ID → アイテム配列」のレコードです。ドラッグ操作の結果は `onValueChange` で新しいレコードとして返されます。列内・列間の並べ替え、そして列自体の並べ替えはすべてコンポーネントが面倒を見ます。
+
+## 例
+
+### 列の並べ替え + オーバーレイ
+
+`KanbanColumnHandle` を置くと列ごと並べ替えられます。`KanbanOverlay` に関数を渡すと、ドラッグ中のゴースト要素を「列かアイテムか」で出し分けられます。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="kanban-overlay"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+## API リファレンス
+
+### Kanban
+
+かんばんのコンテキストを提供し、列とアイテムの状態を管理するルートコンポーネントです。
+
+| Prop            | Type                                   | Default | Description                                                          |
+| :-------------- | :------------------------------------- | :------ | :------------------------------------------------------------------- |
+| `value`         | `Record<string, T[]>`                  | -       | `必須`。列とそのアイテムの現在の状態。                               |
+| `onValueChange` | `(value: Record<string, T[]>) => void` | -       | `必須`。列内・列間でアイテムが移動したときに呼ばれます。             |
+| `getItemValue`  | `(item: T) => string`                  | -       | `必須`。アイテムの一意な識別子を返す関数。                           |
+| `onMove`        | `(event: KanbanMoveEvent) => void`     | -       | 指定すると内部での再配置を行わず、アイテムの配置を呼び出し側に委ねます。 |
+| `modifiers`     | `Modifiers`                            | -       | dnd-kit の modifier を渡します。                                     |
+| `render`        | `useRender.RenderProp`                 | -       | ルート要素を任意の要素／コンポーネントに差し替えます。               |
+| `className`     | `string`                               | -       | コンテナの追加クラス。                                               |
+
+---
+
+### KanbanBoard
+
+列を横並びにするコンテナです。
+
+| Prop        | Type                   | Default | Description                              |
+| :---------- | :--------------------- | :------ | :--------------------------------------- |
+| `render`    | `useRender.RenderProp` | -       | ボード要素を差し替えます。               |
+| `className` | `string`               | -       | ボードの追加クラス。                     |
+
+---
+
+### KanbanColumn
+
+ボード内の個々の列です。
+
+| Prop        | Type                   | Default | Description                          |
+| :---------- | :--------------------- | :------ | :----------------------------------- |
+| `value`     | `string`               | -       | `必須`。列の一意な識別子。           |
+| `disabled`  | `boolean`              | `false` | 列のドラッグを無効化します。         |
+| `render`    | `useRender.RenderProp` | -       | 列要素を差し替えます。               |
+| `className` | `string`               | -       | 列の追加クラス。                     |
+
+---
+
+### KanbanColumnHandle
+
+列のドラッグハンドルです（列を並べ替え可能にする場合に使用）。
+
+| Prop        | Type                   | Default | Description                                    |
+| :---------- | :--------------------- | :------ | :--------------------------------------------- |
+| `cursor`    | `boolean`              | `true`  | ドラッグ用カーソル（grab/grabbing）を付与します。 |
+| `render`    | `useRender.RenderProp` | -       | ハンドル要素を差し替えます。                   |
+| `className` | `string`               | -       | ハンドルの追加クラス。                         |
+
+---
+
+### KanbanColumnContent
+
+列内でアイテムを縦に並べる領域です。
+
+| Prop        | Type                   | Default | Description                                  |
+| :---------- | :--------------------- | :------ | :------------------------------------------- |
+| `value`     | `string`               | -       | `必須`。この領域が属する列の識別子。         |
+| `render`    | `useRender.RenderProp` | -       | コンテンツ要素を差し替えます。               |
+| `className` | `string`               | -       | コンテンツ領域の追加クラス。                 |
+
+---
+
+### KanbanItem
+
+列内のドラッグ可能なアイテムです。
+
+| Prop        | Type                   | Default | Description                          |
+| :---------- | :--------------------- | :------ | :----------------------------------- |
+| `value`     | `string`               | -       | `必須`。アイテムの一意な識別子。     |
+| `disabled`  | `boolean`              | `false` | アイテムのドラッグを無効化します。   |
+| `render`    | `useRender.RenderProp` | -       | アイテム要素を差し替えます。         |
+| `className` | `string`               | -       | アイテムの追加クラス。               |
+
+---
+
+### KanbanItemHandle
+
+個々のアイテムのドラッグハンドルです。
+
+| Prop        | Type                   | Default | Description                                    |
+| :---------- | :--------------------- | :------ | :--------------------------------------------- |
+| `cursor`    | `boolean`              | `true`  | ドラッグ用カーソル（grab/grabbing）を付与します。 |
+| `render`    | `useRender.RenderProp` | -       | ハンドル要素を差し替えます。                   |
+| `className` | `string`               | -       | ハンドルの追加クラス。                         |
+
+---
+
+### KanbanOverlay
+
+ドラッグ中に表示されるゴースト要素です。`children` に関数を渡すと、ドラッグ対象（`value` と `variant`）に応じて表示内容を切り替えられます。
+
+| Prop        | Type                                                                          | Default | Description                  |
+| :---------- | :---------------------------------------------------------------------------- | :------ | :--------------------------- |
+| `children`  | `ReactNode \| (({ value, variant }) => ReactNode)`                            | -       | オーバーレイの表示内容。     |
+| `className` | `string`                                                                      | -       | オーバーレイの追加クラス。   |

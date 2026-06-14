@@ -1,0 +1,58 @@
+---
+title: Time Picker
+description: 時刻を選択・入力するピッカーコンポーネント。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="time-picker-demo" />
+
+## Installation
+
+The Time Picker is built using a composition of the `<Popover />` and the React Aria `<TimeField />` primitive.
+
+See installation instructions for the [Popover](/docs/components/popover#installation) component.
+
+## Usage
+
+```tsx
+import { TimePicker } from "@/components/ui/time-picker"
+```
+
+```tsx
+const [time, setTime] = React.useState<Date>()
+
+return <TimePicker value={time} onValueChange={setTime} />
+```
+
+## Examples
+
+### Basic
+
+A time picker with an editable segmented input and a dropdown for selecting hours and minutes.
+
+<ComponentPreview styleName="base-nova" name="time-picker-demo" />
+
+### Input
+
+A bare segmented input without the dropdown. Set `showDropdown={false}`.
+
+<ComponentPreview styleName="base-nova" name="time-picker-input" />
+
+### 12-hour
+
+A 12-hour time picker with an AM/PM column. Set `hourCycle={12}`.
+
+<ComponentPreview styleName="base-nova" name="time-picker-12h" />
+
+### Seconds
+
+A time picker with second precision. Set `granularity="second"`.
+
+<ComponentPreview styleName="base-nova" name="time-picker-seconds" />
+
+### Internationalization
+
+Wrap the picker in an `I18nProvider` to format the time for the active locale. RTL locales are mirrored automatically.
+
+<ComponentPreview styleName="base-nova" name="time-picker-i18n" />

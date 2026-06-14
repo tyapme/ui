@@ -1,0 +1,153 @@
+---
+title: 2026年3月 - shadcn/cli v4
+description: より高機能で使いやすく。あなたとコーディングエージェントのために構築。Skills、presets、dry run、新テンプレート、monorepo など。
+date: 2026-03-06
+---
+
+shadcn/cli のバージョン 4 をリリースします。より高機能で使いやすく。あなたとコーディングエージェントのために構築しました。すべての新機能をご紹介します。
+
+## shadcn/skills
+
+shadcn/skills は、コーディングエージェントがコンポーネントや registry を正しく扱うために必要なコンテキストを提供します。Radix と Base UI の両 primitive、更新された API、コンポーネントパターン、registry ワークフローをカバーしています。skill は shadcn CLI の使い方、いつ呼び出すか、どのフラグを渡すかも把握しています。エージェントのミスが減り、あなたのデザインシステムに実際に合ったコードが生成されます。
+
+エージェントに次のようなことを依頼できます：
+
+- 「新しい vite monorepo を作成して」
+- 「tailark からヒーローを探して、ホームページに追加し、react-bits のアニメーションでテキストをアニメーションして」
+- 「@clerk のサインインページをインストール・設定して」
+
+```bash
+npx skills add shadcn/ui
+```
+
+## --preset の紹介
+
+preset はデザインシステムの設定全体を短いコードにまとめたものです。カラー、テーマ、アイコンライブラリ、フォント、radius。1 つの文字列にすべてが含まれています。
+
+[shadcn/create](/create) で preset をビルドし、ライブプレビューで確認して、準備ができたらコードを取得しましょう。
+
+```bash
+npx shadcn@latest init --preset a1Dg5eFl
+```
+
+カスタム設定からプロジェクトをスキャフォールドしたり、チームと共有したり、registry に公開したりするのに使えます。プロンプトに組み込んでエージェントの出発点を指定することもできます。Claude、Codex、v0、Replit で使えます。preset をどこへでも持って行きましょう。
+
+## preset の切り替え
+
+新しいアプリを作るとき、気に入るものを見つけるまで何度か試すことがあります。そのため、preset の切り替えをとても簡単にしました。アプリで `init --preset` を実行すると、CLI がコンポーネントも含めて設定をすべて再構成します。
+
+```bash
+npx shadcn@latest init --preset ad3qkJ7
+```
+
+## Skills + Presets
+
+エージェントは preset の使い方を知っています。プロジェクトをスキャフォールドし、デザインシステムを切り替え、新しいものを試せます。
+
+- 「--preset adtk27v を使って新しい next アプリを作って」
+- 「--preset adtk27v を試してみよう」
+
+## 新しい shadcn/create
+
+カスタム preset のビルドを支援するために [shadcn/create](/create) を再構築しました。preset をプレビューするための UI コンポーネントライブラリを追加しました。ビルドを始める前に、カラー、フォント、radius が実際のコンポーネントにどう適用されるか確認できます。
+
+## 新しい --dry-run、--diff、--view フラグ
+
+registry がプロジェクトに追加するものを、実際に書き込む前に確認できます。自分でペイロードを確認するか、コーディングエージェントに渡してダブルチェックできます。
+
+```bash
+npx shadcn@latest add button --dry-run
+npx shadcn@latest add button --diff
+npx shadcn@latest add button --view
+```
+
+## primitive の更新
+
+`--diff` フラグを使って registry の更新を確認できます。または、エージェントに「@shadcn から更新を確認してローカルの変更とマージして」と依頼することもできます。
+
+```bash
+npx shadcn@latest add button --diff
+```
+
+## shadcn init --template
+
+`shadcn init` が Next.js、Vite、Laravel、React Router、Astro、TanStack Start の完全なプロジェクトテンプレートをスキャフォールドするようになりました。Next.js と Vite ではダークモードも含まれています。
+
+```bash
+npx shadcn@latest init
+
+Select a template › - Use arrow-keys. Return to submit.
+❯ Next.js
+  Vite
+  TanStack Start
+  React Router
+  Astro
+  Laravel
+```
+
+monorepo をセットアップするには `--monorepo` を使います。
+
+```bash
+npx shadcn@latest init -t next --monorepo
+```
+
+## shadcn init --base
+
+primitive を選択できます。`--base` を使って Radix または Base UI でプロジェクトを始められます。
+
+```bash
+npx shadcn@latest init --base radix
+```
+
+## shadcn info
+
+`info` コマンドが全体像を表示するようになりました：フレームワーク、バージョン、CSS 変数、インストール済みコンポーネント、そして各コンポーネントのドキュメントとサンプルへのリンク。コーディングエージェントがプロジェクトを把握するのに最適です。
+
+```bash
+npx shadcn@latest info
+```
+
+## shadcn docs
+
+CLI から任意の UI コンポーネントのドキュメント、コード、サンプルを取得できます。コーディングエージェントが primitive を正しく使うためのコンテキストを提供します。
+
+```bash
+npx shadcn@latest docs combobox
+
+combobox
+  - docs      https://ui.shadcn.com/docs/components/radix/combobox
+  - examples  https://ui.shadcn.com/code/apps/v4/registry/bases/radix/examples/combobox-example.tsx
+  - api       https://base-ui.com/react/components/combobox
+```
+
+## registry:base と registry:font
+
+Registry が `registry:base` を使ってデザインシステム全体を単一のペイロードとして配布できるようになりました。コンポーネント、依存関係、CSS 変数、フォント、設定。1 回のインストールですべてセットアップされます。
+
+フォントがファーストクラスの registry タイプになりました。コンポーネントをインストールするのと同じ方法でインストール・設定できます。
+
+```json title="font-inter.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "font-inter",
+  "type": "registry:font",
+  "font": {
+    "family": "'Inter Variable', sans-serif",
+    "provider": "google",
+    "import": "Inter",
+    "variable": "--font-sans",
+    "subsets": ["latin"]
+  }
+}
+```
+
+```bash
+npx shadcn@latest add font-inter
+```
+
+## リンク
+
+- [shadcn/skills](/skills)
+- [shadcn/create](/create)
+- [shadcn/cli](/cli)
+- [shadcn/registry](/docs/registry)

@@ -1,0 +1,1044 @@
+---
+title: 使用例
+description: "レジストリアイテムの使用例: スタイル、コンポーネント、CSS変数など。"
+---
+
+## registry:style
+
+### shadcn/ui を拡張するカスタムスタイル
+
+以下のレジストリアイテムは、shadcn/ui を拡張するカスタムスタイルです。`npx shadcn init` を実行すると、次のことが行われます:
+
+- `@tabler/icons-react` を依存関係としてインストールします。
+- `login-01` ブロックと `calendar` コンポーネントをプロジェクトに追加します。
+- リモートレジストリから `editor` を追加します。
+- `font-sans` 変数を `Inter, sans-serif` に設定します。
+- ライトモードとダークモードに `brand` カラーをインストールします。
+
+```json title="example-style.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "example-style",
+  "type": "registry:style",
+  "dependencies": ["@tabler/icons-react"],
+  "registryDependencies": [
+    "login-01",
+    "calendar",
+    "https://example.com/r/editor.json"
+  ],
+  "cssVars": {
+    "theme": {
+      "font-sans": "Inter, sans-serif"
+    },
+    "light": {
+      "brand": "20 14.3% 4.1%"
+    },
+    "dark": {
+      "brand": "20 14.3% 4.1%"
+    }
+  }
+}
+```
+
+### ゼロから作るカスタムスタイル
+
+以下のレジストリアイテムは、shadcn/ui を拡張しないカスタムスタイルです。`extends: none` フィールドを参照してください。
+
+カスタムコンポーネント、CSS変数、依存関係などを使って新しいスタイルをゼロから作成するのに使用できます。
+
+`npx shadcn add` を実行すると、次のことが行われます:
+
+- `tailwind-merge` と `clsx` を依存関係としてインストールします。
+- shadcn/ui レジストリから `utils` レジストリアイテムを追加します。
+- リモートレジストリから `button`、`input`、`label`、`select` コンポーネントを追加します。
+- 新しいCSS変数 `main`、`bg`、`border`、`text`、`ring` をインストールします。
+
+```json title="example-style.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "extends": "none",
+  "name": "new-style",
+  "type": "registry:style",
+  "dependencies": ["tailwind-merge", "clsx"],
+  "registryDependencies": [
+    "utils",
+    "https://example.com/r/button.json",
+    "https://example.com/r/input.json",
+    "https://example.com/r/label.json",
+    "https://example.com/r/select.json"
+  ],
+  "cssVars": {
+    "theme": {
+      "font-sans": "Inter, sans-serif"
+    },
+    "light": {
+      "main": "#88aaee",
+      "bg": "#dfe5f2",
+      "border": "#000",
+      "text": "#000",
+      "ring": "#000"
+    },
+    "dark": {
+      "main": "#88aaee",
+      "bg": "#272933",
+      "border": "#000",
+      "text": "#e6e6e6",
+      "ring": "#fff"
+    }
+  }
+}
+```
+
+## registry:theme
+
+### カスタムテーマ
+
+```json title="example-theme.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-theme",
+  "type": "registry:theme",
+  "cssVars": {
+    "light": {
+      "background": "oklch(1 0 0)",
+      "foreground": "oklch(0.141 0.005 285.823)",
+      "primary": "oklch(0.546 0.245 262.881)",
+      "primary-foreground": "oklch(0.97 0.014 254.604)",
+      "ring": "oklch(0.746 0.16 232.661)",
+      "sidebar-primary": "oklch(0.546 0.245 262.881)",
+      "sidebar-primary-foreground": "oklch(0.97 0.014 254.604)",
+      "sidebar-ring": "oklch(0.746 0.16 232.661)"
+    },
+    "dark": {
+      "background": "oklch(1 0 0)",
+      "foreground": "oklch(0.141 0.005 285.823)",
+      "primary": "oklch(0.707 0.165 254.624)",
+      "primary-foreground": "oklch(0.97 0.014 254.604)",
+      "ring": "oklch(0.707 0.165 254.624)",
+      "sidebar-primary": "oklch(0.707 0.165 254.624)",
+      "sidebar-primary-foreground": "oklch(0.97 0.014 254.604)",
+      "sidebar-ring": "oklch(0.707 0.165 254.624)"
+    }
+  }
+}
+```
+
+### カスタムカラー
+
+以下のスタイルは shadcn/ui のデフォルトで初期化し、カスタムの `brand` カラーを追加します。
+
+```json title="example-style.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-style",
+  "type": "registry:style",
+  "cssVars": {
+    "light": {
+      "brand": "oklch(0.99 0.00 0)"
+    },
+    "dark": {
+      "brand": "oklch(0.14 0.00 286)"
+    }
+  }
+}
+```
+
+## registry:block
+
+### カスタムブロック
+
+このブロックは shadcn/ui レジストリから `login-01` ブロックをインストールします。
+
+```json title="login-01.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "login-01",
+  "type": "registry:block",
+  "description": "A simple login form.",
+  "registryDependencies": ["button", "card", "input", "label"],
+  "files": [
+    {
+      "path": "blocks/login-01/page.tsx",
+      "content": "import { LoginForm } ...",
+      "type": "registry:page",
+      "target": "app/login/page.tsx"
+    },
+    {
+      "path": "blocks/login-01/components/login-form.tsx",
+      "content": "...",
+      "type": "registry:component"
+    }
+  ]
+}
+```
+
+### ブロックをインストールしてプリミティブを上書きする
+
+shadcn/ui レジストリからブロックをインストールし、カスタムのプリミティブで上書きすることができます。
+
+`npx shadcn add` を実行すると、次のことが行われます:
+
+- shadcn/ui レジストリから `login-01` ブロックを追加します。
+- リモートレジストリのものを使って `button`、`input`、`label` プリミティブを上書きします。
+
+```json title="example-style.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-login",
+  "type": "registry:block",
+  "registryDependencies": [
+    "login-01",
+    "https://example.com/r/button.json",
+    "https://example.com/r/input.json",
+    "https://example.com/r/label.json"
+  ]
+}
+```
+
+## registry:ui
+
+### UIコンポーネント
+
+`registry:ui` アイテムは再利用可能なUIコンポーネントです。依存関係、レジストリ依存関係、CSS変数を持つことができます。
+
+```json title="button.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "dependencies": ["radix-ui"],
+  "files": [
+    {
+      "path": "ui/button.tsx",
+      "content": "...",
+      "type": "registry:ui"
+    }
+  ]
+}
+```
+
+### CSS変数付きUIコンポーネント
+
+```json title="sidebar.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar",
+  "type": "registry:ui",
+  "dependencies": ["radix-ui"],
+  "registryDependencies": ["button", "separator", "sheet", "tooltip"],
+  "files": [
+    {
+      "path": "ui/sidebar.tsx",
+      "content": "...",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "sidebar-background": "oklch(0.985 0 0)",
+      "sidebar-foreground": "oklch(0.141 0.005 285.823)",
+      "sidebar-border": "oklch(0.92 0.004 286.32)"
+    },
+    "dark": {
+      "sidebar-background": "oklch(0.141 0.005 285.823)",
+      "sidebar-foreground": "oklch(0.985 0 0)",
+      "sidebar-border": "oklch(0.274 0.006 286.033)"
+    }
+  }
+}
+```
+
+## registry:lib
+
+### ユーティリティライブラリ
+
+`registry:lib` アイテムはユーティリティライブラリです。ヘルパー関数、定数、その他のコンポーネント以外のコードを共有するのに使用します。
+
+```json title="utils.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "utils",
+  "type": "registry:lib",
+  "dependencies": ["clsx", "tailwind-merge"],
+  "files": [
+    {
+      "path": "lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from \"clsx\"\nimport { twMerge } from \"tailwind-merge\"\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}",
+      "type": "registry:lib"
+    }
+  ]
+}
+```
+
+## registry:hook
+
+### カスタムフック
+
+`registry:hook` アイテムはカスタムReactフックです。
+
+```json title="use-mobile.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-mobile",
+  "type": "registry:hook",
+  "files": [
+    {
+      "path": "hooks/use-mobile.ts",
+      "content": "...",
+      "type": "registry:hook"
+    }
+  ]
+}
+```
+
+### 依存関係付きフック
+
+```json title="use-debounce.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-debounce",
+  "type": "registry:hook",
+  "dependencies": ["react"],
+  "files": [
+    {
+      "path": "hooks/use-debounce.ts",
+      "content": "...",
+      "type": "registry:hook"
+    }
+  ]
+}
+```
+
+## ターゲットプレースホルダー
+
+レジストリアイテムがユーザーの設定済みshadcnディレクトリにファイルをインストールする必要がある場合は、`files[].target` プレースホルダーを使用します。利用可能なプレースホルダーは `@components/`、`@ui/`、`@lib/`、`@hooks/` です。
+
+プレースホルダーは `components.json` から解決されるため、同じレジストリアイテムが `@/`、カスタムTypeScriptエイリアス、パッケージインポート、ワークスペースパッケージエクスポートを使用するプロジェクトでも動作します。
+
+プレースホルダーの後の文字列はそのまま保持されます。例えば、`@ui/ai/prompt-input.tsx` はユーザーの設定済み `ui` ディレクトリの `ai/prompt-input.tsx` にインストールされます。
+
+```json title="alias-child.json" showLineNumbers {9,15,21}
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alias-child",
+  "type": "registry:item",
+  "files": [
+    {
+      "path": "registry/new-york/alias/target-alias-button.tsx",
+      "type": "registry:ui",
+      "target": "@ui/target-alias-button.tsx",
+      "content": "..."
+    },
+    {
+      "path": "registry/new-york/alias/target-alias-helper.ts",
+      "type": "registry:lib",
+      "target": "@lib/target-alias-helper.ts",
+      "content": "..."
+    },
+    {
+      "path": "registry/new-york/alias/prompt-input.tsx",
+      "type": "registry:ui",
+      "target": "@ui/ai/prompt-input.tsx",
+      "content": "..."
+    }
+  ]
+}
+```
+
+レジストリ依存関係でもターゲットプレースホルダーを使用できます。以下の例では、子アイテムがUIコンポーネントとヘルパーをインストールし、親アイテムがアプリコンポーネントとフックをインストールします。
+
+```json title="alias-parent.json" showLineNumbers {7,13}
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alias-parent",
+  "type": "registry:item",
+  "registryDependencies": ["https://example.com/r/alias-child.json"],
+  "files": [
+    {
+      "path": "registry/new-york/alias/target-alias-panel.tsx",
+      "type": "registry:component",
+      "target": "@components/target-alias-panel.tsx",
+      "content": "..."
+    },
+    {
+      "path": "registry/new-york/alias/use-target-alias.ts",
+      "type": "registry:hook",
+      "target": "@hooks/use-target-alias.ts",
+      "content": "..."
+    }
+  ]
+}
+```
+
+`target` はファイルの書き込み先を制御します。ファイルの `type` と異なる場合でも同様です。
+
+```json title="type-mismatch.json" showLineNumbers {9}
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-mismatch",
+  "type": "registry:item",
+  "files": [
+    {
+      "path": "registry/new-york/example/format-date.ts",
+      "type": "registry:ui",
+      "target": "@lib/format-date.ts",
+      "content": "..."
+    }
+  ]
+}
+```
+
+## registry:font
+
+### カスタムフォント
+
+`registry:font` アイテムはGoogle Fontをインストールします。`font` フィールドは必須で、フォントファミリー、プロバイダー、インポート名、CSS変数を設定します。
+
+```json title="font-inter.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "font-inter",
+  "type": "registry:font",
+  "font": {
+    "family": "'Inter Variable', sans-serif",
+    "provider": "google",
+    "import": "Inter",
+    "variable": "--font-sans",
+    "subsets": ["latin"],
+    "dependency": "@fontsource-variable/inter"
+  }
+}
+```
+
+### 等幅フォント
+
+```json title="font-jetbrains-mono.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "font-jetbrains-mono",
+  "type": "registry:font",
+  "font": {
+    "family": "'JetBrains Mono Variable', monospace",
+    "provider": "google",
+    "import": "JetBrains_Mono",
+    "variable": "--font-mono",
+    "weight": ["400", "500", "600", "700"],
+    "subsets": ["latin"],
+    "dependency": "@fontsource-variable/jetbrains-mono"
+  }
+}
+```
+
+### セリフフォント
+
+```json title="font-lora.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "font-lora",
+  "type": "registry:font",
+  "font": {
+    "family": "'Lora Variable', serif",
+    "provider": "google",
+    "import": "Lora",
+    "variable": "--font-serif",
+    "subsets": ["latin"],
+    "dependency": "@fontsource-variable/lora"
+  }
+}
+```
+
+### カスタムセレクター付きフォント
+
+`selector` フィールドを使用すると、`html` 全体に適用するのではなく、特定のCSSセレクターにフォントを適用できます。見出しフォントやその他のターゲットを絞ったフォント適用に便利です。
+
+```json title="font-playfair-display.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "font-playfair-display",
+  "type": "registry:font",
+  "font": {
+    "family": "'Playfair Display Variable', serif",
+    "provider": "google",
+    "import": "Playfair_Display",
+    "variable": "--font-heading",
+    "subsets": ["latin"],
+    "selector": "h1, h2, h3, h4, h5, h6",
+    "dependency": "@fontsource-variable/playfair-display"
+  }
+}
+```
+
+`selector` が設定されている場合、フォントユーティリティクラス（例: `font-heading`）は `<html>` 要素に追加されるのではなく、`@layer base` 内の指定したセレクターに CSS `@apply` を通じて適用されます。CSS変数は引き続き `<html>` に注入されるため、グローバルに利用可能です。
+
+## registry:base
+
+### カスタムベース
+
+`registry:base` アイテムは完全なデザインシステムのベースです。プロジェクトの依存関係、CSS変数、設定の完全なセットを定義します。`config` フィールドは `registry:base` アイテムに固有のものです。
+
+`config` フィールドは以下のプロパティを受け付けます（すべてオプション）:
+
+| プロパティ           | 型                                                                           | 説明                                                                |
+| -------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `style`              | `string`                                                                     | ベースのスタイル名。                                                |
+| `iconLibrary`        | `string`                                                                     | 使用するアイコンライブラリ（例: `lucide`）。                        |
+| `rsc`                | `boolean`                                                                    | React Server Componentsを有効にするかどうか。デフォルトは `false`。 |
+| `tsx`                | `boolean`                                                                    | TypeScriptを使用するかどうか。デフォルトは `true`。                 |
+| `rtl`                | `boolean`                                                                    | 右から左へのサポートを有効にするかどうか。デフォルトは `false`。    |
+| `menuColor`          | `"default" \| "inverted" \| "default-translucent" \| "inverted-translucent"` | メニューのカラースキーム。デフォルトは `"default"`。                |
+| `menuAccent`         | `"subtle" \| "bold"`                                                         | メニューのアクセントスタイル。デフォルトは `"subtle"`。             |
+| `tailwind.baseColor` | `string`                                                                     | ベースカラー名（例: `neutral`、`slate`、`zinc`）。                  |
+| `tailwind.css`       | `string`                                                                     | Tailwind CSSファイルへのパス。                                      |
+| `tailwind.prefix`    | `string`                                                                     | すべてのTailwindクラスに追加するプレフィックス。                    |
+| `aliases.components` | `string`                                                                     | コンポーネントのインポートエイリアス。                              |
+| `aliases.utils`      | `string`                                                                     | ユーティリティのインポートエイリアス。                              |
+| `aliases.ui`         | `string`                                                                     | UIコンポーネントのインポートエイリアス。                            |
+| `aliases.lib`        | `string`                                                                     | libのインポートエイリアス。                                         |
+| `aliases.hooks`      | `string`                                                                     | フックのインポートエイリアス。                                      |
+| `registries`         | `Record<string, string \| object>`                                           | カスタムレジストリURL。キーは `@` で始まる必要があります。          |
+
+```json title="custom-base.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-base",
+  "type": "registry:base",
+  "config": {
+    "style": "custom-base",
+    "iconLibrary": "lucide",
+    "tailwind": {
+      "baseColor": "neutral"
+    }
+  },
+  "dependencies": [
+    "class-variance-authority",
+    "tw-animate-css",
+    "lucide-react"
+  ],
+  "registryDependencies": ["utils", "font-inter"],
+  "cssVars": {
+    "light": {
+      "background": "oklch(1 0 0)",
+      "foreground": "oklch(0.141 0.005 285.823)",
+      "primary": "oklch(0.21 0.006 285.885)",
+      "primary-foreground": "oklch(0.985 0 0)"
+    },
+    "dark": {
+      "background": "oklch(0.141 0.005 285.823)",
+      "foreground": "oklch(0.985 0 0)",
+      "primary": "oklch(0.985 0 0)",
+      "primary-foreground": "oklch(0.21 0.006 285.885)"
+    }
+  },
+  "css": {
+    "@import \"tw-animate-css\"": {},
+    "@layer base": {
+      "*": {
+        "@apply border-border outline-ring/50": {}
+      },
+      "body": {
+        "@apply bg-background text-foreground": {}
+      }
+    }
+  }
+}
+```
+
+### ゼロから作るベース
+
+`extends: none` を使用して、shadcn/ui のデフォルトを拡張しないベースを作成します。
+
+```json title="custom-base.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "my-design-system",
+  "extends": "none",
+  "type": "registry:base",
+  "config": {
+    "style": "my-design-system",
+    "iconLibrary": "lucide",
+    "tailwind": {
+      "baseColor": "slate"
+    }
+  },
+  "dependencies": ["tailwind-merge", "clsx", "tw-animate-css", "lucide-react"],
+  "registryDependencies": ["utils", "font-geist"],
+  "cssVars": {
+    "light": {
+      "background": "oklch(1 0 0)",
+      "foreground": "oklch(0.141 0.005 285.823)"
+    },
+    "dark": {
+      "background": "oklch(0.141 0.005 285.823)",
+      "foreground": "oklch(0.985 0 0)"
+    }
+  }
+}
+```
+
+## 共通フィールド
+
+### 作者
+
+レジストリアイテムに帰属情報を追加するには `author` フィールドを使用します。
+
+```json title="example-item.json" showLineNumbers {5}
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-component",
+  "type": "registry:ui",
+  "author": "shadcn",
+  "files": [
+    {
+      "path": "ui/custom-component.tsx",
+      "content": "...",
+      "type": "registry:ui"
+    }
+  ]
+}
+```
+
+### 開発依存関係
+
+パッケージを開発依存関係としてインストールするには `devDependencies` フィールドを使用します。
+
+```json title="example-item.json" showLineNumbers {5}
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-item",
+  "type": "registry:item",
+  "devDependencies": ["@types/mdx"],
+  "files": [
+    {
+      "path": "lib/mdx.ts",
+      "content": "...",
+      "type": "registry:lib"
+    }
+  ]
+}
+```
+
+### メタデータ
+
+レジストリアイテムに任意のメタデータを付加するには `meta` フィールドを使用します。ツールやスクリプトが利用できるカスタムデータを保存するのに使用できます。
+
+```json title="example-item.json" showLineNumbers {5-8}
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-component",
+  "type": "registry:ui",
+  "meta": {
+    "category": "forms",
+    "version": "2.0.0"
+  },
+  "files": [
+    {
+      "path": "ui/custom-component.tsx",
+      "content": "...",
+      "type": "registry:ui"
+    }
+  ]
+}
+```
+
+## CSS変数
+
+### カスタムテーマ変数
+
+カスタムテーマ変数を `theme` オブジェクトに追加します。
+
+```json title="example-theme.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-theme",
+  "type": "registry:theme",
+  "cssVars": {
+    "theme": {
+      "font-heading": "Inter, sans-serif",
+      "shadow-card": "0 0 0 1px rgba(0, 0, 0, 0.1)"
+    }
+  }
+}
+```
+
+### Tailwind CSS変数の上書き
+
+```json title="example-theme.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-theme",
+  "type": "registry:theme",
+  "cssVars": {
+    "theme": {
+      "spacing": "0.2rem",
+      "breakpoint-sm": "640px",
+      "breakpoint-md": "768px",
+      "breakpoint-lg": "1024px",
+      "breakpoint-xl": "1280px",
+      "breakpoint-2xl": "1536px"
+    }
+  }
+}
+```
+
+## カスタムCSSの追加
+
+### ベーススタイル
+
+```json title="example-base.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-style",
+  "type": "registry:style",
+  "css": {
+    "@layer base": {
+      "h1": {
+        "font-size": "var(--text-2xl)"
+      },
+      "h2": {
+        "font-size": "var(--text-xl)"
+      }
+    }
+  }
+}
+```
+
+### コンポーネント
+
+```json title="example-card.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-card",
+  "type": "registry:component",
+  "css": {
+    "@layer components": {
+      "card": {
+        "background-color": "var(--color-white)",
+        "border-radius": "var(--rounded-lg)",
+        "padding": "var(--spacing-6)",
+        "box-shadow": "var(--shadow-xl)"
+      }
+    }
+  }
+}
+```
+
+## カスタムユーティリティの追加
+
+### シンプルなユーティリティ
+
+```json title="example-component.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-component",
+  "type": "registry:component",
+  "css": {
+    "@utility content-auto": {
+      "content-visibility": "auto"
+    }
+  }
+}
+```
+
+### 複雑なユーティリティ
+
+```json title="example-utility.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-component",
+  "type": "registry:component",
+  "css": {
+    "@utility scrollbar-hidden": {
+      "scrollbar-hidden": {
+        "&::-webkit-scrollbar": {
+          "display": "none"
+        }
+      }
+    }
+  }
+}
+```
+
+### 関数型ユーティリティ
+
+```json title="example-functional.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-component",
+  "type": "registry:component",
+  "css": {
+    "@utility tab-*": {
+      "tab-size": "var(--tab-size-*)"
+    }
+  }
+}
+```
+
+## CSSインポートの追加
+
+`@import` を使用してレジストリアイテムにCSSインポートを追加します。インポートはCSSファイルの先頭に配置されます。
+
+### 基本的なインポート
+
+```json title="example-import.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-import",
+  "type": "registry:component",
+  "css": {
+    "@import \"tailwindcss\"": {},
+    "@import \"./styles/base.css\"": {}
+  }
+}
+```
+
+### url() 構文を使ったインポート
+
+```json title="example-url-import.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "font-import",
+  "type": "registry:item",
+  "css": {
+    "@import url(\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap\")": {},
+    "@import url('./local-styles.css')": {}
+  }
+}
+```
+
+### メディアクエリ付きインポート
+
+```json title="example-media-import.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "responsive-import",
+  "type": "registry:item",
+  "css": {
+    "@import \"print-styles.css\" print": {},
+    "@import url(\"mobile.css\") screen and (max-width: 768px)": {}
+  }
+}
+```
+
+## カスタムプラグインの追加
+
+`@plugin` を使用してレジストリアイテムにTailwindプラグインを追加します。プラグインはインポートの後、その他のコンテンツの前に自動的に配置されます。
+
+**重要:** npmパッケージのプラグインを使用する場合は、`dependencies` 配列にも追加する必要があります。
+
+### 基本的なプラグインの使用
+
+```json title="example-plugin.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-plugin",
+  "type": "registry:item",
+  "css": {
+    "@plugin \"@tailwindcss/typography\"": {},
+    "@plugin \"foo\"": {}
+  }
+}
+```
+
+### npm依存関係付きプラグイン
+
+`@tailwindcss/typography` などのnpmパッケージのプラグインを使用する場合は、dependenciesに含めてください。
+
+```json title="example-typography.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "typography-component",
+  "type": "registry:item",
+  "dependencies": ["@tailwindcss/typography"],
+  "css": {
+    "@plugin \"@tailwindcss/typography\"": {},
+    "@layer components": {
+      ".prose": {
+        "max-width": "65ch"
+      }
+    }
+  }
+}
+```
+
+### スコープ付きおよびファイルベースのプラグイン
+
+```json title="example-scoped-plugin.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scoped-plugins",
+  "type": "registry:component",
+  "css": {
+    "@plugin \"@headlessui/tailwindcss\"": {},
+    "@plugin \"tailwindcss/plugin\"": {},
+    "@plugin \"./custom-plugin.js\"": {}
+  }
+}
+```
+
+### 自動順序付けによる複数プラグイン
+
+複数のプラグインを追加すると、自動的にグループ化されて重複が除去されます。
+
+```json title="example-multiple-plugins.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "multiple-plugins",
+  "type": "registry:item",
+  "dependencies": [
+    "@tailwindcss/typography",
+    "@tailwindcss/forms",
+    "tw-animate-css"
+  ],
+  "css": {
+    "@plugin \"@tailwindcss/typography\"": {},
+    "@plugin \"@tailwindcss/forms\"": {},
+    "@plugin \"tw-animate-css\"": {}
+  }
+}
+```
+
+## インポートとプラグインの組み合わせ
+
+`@import` と `@plugin` の両方のディレクティブを使用する場合、インポートが最初に配置され、次にプラグイン、その後にその他のCSSコンテンツが続きます。
+
+```json title="example-combined.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combined-example",
+  "type": "registry:item",
+  "dependencies": ["@tailwindcss/typography", "tw-animate-css"],
+  "css": {
+    "@import \"tailwindcss\"": {},
+    "@import url(\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap\")": {},
+    "@plugin \"@tailwindcss/typography\"": {},
+    "@plugin \"tw-animate-css\"": {},
+    "@layer base": {
+      "body": {
+        "font-family": "Inter, sans-serif"
+      }
+    },
+    "@utility content-auto": {
+      "content-visibility": "auto"
+    }
+  }
+}
+```
+
+## カスタムアニメーションの追加
+
+注意: アニメーションを使用するには、cssの `@keyframes` と cssVarsの `theme` の両方を定義する必要があります。
+
+```json title="example-component.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-component",
+  "type": "registry:component",
+  "cssVars": {
+    "theme": {
+      "--animate-wiggle": "wiggle 1s ease-in-out infinite"
+    }
+  },
+  "css": {
+    "@keyframes wiggle": {
+      "0%, 100%": {
+        "transform": "rotate(-3deg)"
+      },
+      "50%": {
+        "transform": "rotate(3deg)"
+      }
+    }
+  }
+}
+```
+
+## 環境変数の追加
+
+`envVars` フィールドを使用して環境変数を追加できます。
+
+```json title="example-item.json" showLineNumbers {5-9}
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "custom-item",
+  "type": "registry:item",
+  "envVars": {
+    "NEXT_PUBLIC_APP_URL": "http://localhost:4000",
+    "DATABASE_URL": "postgresql://postgres:postgres@localhost:5432/postgres",
+    "OPENAI_API_KEY": ""
+  }
+}
+```
+
+環境変数は `.env.local` または `.env` ファイルに追加されます。既存の変数は上書きされません。
+
+<Callout>
+
+**重要:** `envVars` は開発用またはサンプルの変数を追加するために使用してください。本番用の変数には使用しないでください。
+
+</Callout>
+
+## ユニバーサルアイテム
+
+`2.9.0` 以降では、フレームワーク検出や components.json なしにインストールできるユニバーサルアイテムを作成できます。
+
+アイテムをユニバーサル（フレームワーク非依存）にするには、アイテム内のすべてのファイルに明示的なターゲットが必要です。
+
+以下は _python_ 用のカスタムCursorルールをインストールするレジストリアイテムの例です:
+
+```json title=".cursor/rules/custom-python.mdc" showLineNumbers {9}
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "python-rules",
+  "type": "registry:item",
+  "files": [
+    {
+      "path": "/path/to/your/registry/default/custom-python.mdc",
+      "type": "registry:file",
+      "target": "~/.cursor/rules/custom-python.mdc",
+      "content": "..."
+    }
+  ]
+}
+```
+
+カスタムESLint設定をインストールする別の例です:
+
+```json title=".eslintrc.json" showLineNumbers {9}
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "my-eslint-config",
+  "type": "registry:item",
+  "files": [
+    {
+      "path": "/path/to/your/registry/default/custom-eslint.json",
+      "type": "registry:file",
+      "target": "~/.eslintrc.json",
+      "content": "..."
+    }
+  ]
+}
+```
+
+複数のファイルをインストールするユニバーサルアイテムも作成できます:
+
+```json title="my-custom-starter-template.json" showLineNumbers {9}
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "my-custom-starter-template",
+  "type": "registry:item",
+  "dependencies": ["better-auth"],
+  "files": [
+    {
+      "path": "/path/to/file-01.json",
+      "type": "registry:file",
+      "target": "~/file-01.json",
+      "content": "..."
+    },
+    {
+      "path": "/path/to/file-02.vue",
+      "type": "registry:file",
+      "target": "~/pages/file-02.vue",
+      "content": "..."
+    }
+  ]
+}
+```

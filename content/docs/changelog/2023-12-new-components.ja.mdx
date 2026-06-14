@@ -1,0 +1,68 @@
+---
+title: 2023年12月 - 新しいコンポーネント
+description: Carousel、Drawer、Pagination、Resizable、Sonner、CLI のアップデート。
+date: 2023-12-22
+---
+
+shadcn/ui に新しいコンポーネントを追加し、CLI に多くの改善を加えました。
+
+新機能の概要：
+
+- [**Carousel**](#carousel) - モーション、スワイプジェスチャー、キーボードサポートを備えたカルーセルコンポーネント。
+- [**Drawer**](#drawer) - モバイルで素晴らしく見えるドロワーコンポーネント。
+- [**Pagination**](#pagination) - ページナビゲーション、前へ・次へボタンを備えたページネーションコンポーネント。
+- [**Resizable**](#resizable) - リサイズ可能なパネルグループとレイアウトを構築するためのコンポーネント。
+- [**Sonner**](#sonner) - 最後のトーストコンポーネント。
+- [**CLI のアップデート**](#cli-updates) - カスタム **Tailwind プレフィックス** と `tailwind.config.ts` のサポート。
+
+### Carousel
+
+モーション、スワイプジェスチャー、キーボードサポートを備えたフル機能のカルーセルコンポーネントを追加しました。[Embla Carousel](https://www.embla-carousel.com) を基盤として構築されています。
+
+無限ループ、自動再生、縦方向などのサポートがあります。
+
+<ComponentPreview name="carousel-demo" />
+
+### Drawer
+
+ドロワーコンポーネントです。[emilkowalski](https://twitter.com/emilkowalski) による [Vaul](https://github.com/emilkowalski/vaul) を基盤として構築されています。
+
+モバイルで以下のドロワーを開いてみてください。素晴らしい見た目です！
+
+<ComponentPreview name="drawer-demo" />
+
+### Pagination
+
+ページナビゲーション、前へ・次へボタンを備えたページネーションコンポーネントを追加しました。シンプルで柔軟性があり、フレームワークの `<Link />` コンポーネントと連携して動作します。
+
+<ComponentPreview name="pagination-demo" />
+
+### Resizable
+
+この `<Resizable />` コンポーネントでリサイズ可能なパネルグループとレイアウトを構築できます。
+
+<ComponentPreview name="resizable-demo-with-handle" />
+
+`<Resizable />` は [bvaughn](https://github.com/bvaughn) による [react-resizable-panels](https://github.com/bvaughn/react-resizable-panels) を使用して構築されています。マウス、タッチ、キーボードをサポートしています。
+
+### Sonner
+
+[emilkowalski](https://twitter.com/emilkowalski) によるもう一つの作品です。最後のトーストコンポーネント。Sonner が shadcn/ui で利用可能になりました。
+
+<ComponentPreview name="sonner-demo" />
+
+### CLI のアップデート
+
+これは最もリクエストの多かった機能の一つです。カスタム Tailwind プレフィックスを設定できるようになり、CLI はコンポーネントを追加する際にユーティリティクラスに自動的にプレフィックスを付けます。
+
+これにより、Docusaurus、Nextra などの既存プロジェクトに shadcn/ui コンポーネントを簡単に追加できます。既存のデザインシステムと競合せずにドロップインできます。
+
+```tsx /tw-/
+<AlertDialog className="tw-grid tw-gap-4 tw-border tw-bg-background tw-shadow-lg" />
+```
+
+`cn`、`cva`、CSS 変数と連携して動作します。
+
+CLI は `tailwind.config.ts` も検出でき、TypeScript バージョンの設定を自動的に追加します。
+
+以上です。良いホリデーを。

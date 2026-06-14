@@ -1,0 +1,65 @@
+---
+title: Slider
+description: 指定された範囲内からユーザーが値を選択する入力。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/slider
+  api: https://base-ui.com/react/components/slider#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="slider-demo" />
+
+## インストール
+
+<ComponentInstall name="slider" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import { Slider } from "@/components/ui/slider"
+```
+
+```tsx
+<Slider defaultValue={[33]} max={100} step={1} />
+```
+
+## 例
+
+### 範囲
+
+2 つの値を持つ配列を使ってレンジスライダーを作成します。
+
+<ComponentPreview styleName="base-nova" name="slider-range" />
+
+### 複数サム
+
+複数の値を持つ配列を使って複数のサムを作成します。
+
+<ComponentPreview styleName="base-nova" name="slider-multiple" />
+
+### 垂直
+
+垂直スライダーには `orientation="vertical"` を使用します。
+
+<ComponentPreview styleName="base-nova" name="slider-vertical" />
+
+### 制御あり
+
+<ComponentPreview styleName="base-nova" name="slider-controlled" />
+
+### 無効
+
+スライダーを無効化するには `disabled` プロップを使用します。
+
+<ComponentPreview styleName="base-nova" name="slider-disabled" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="slider-rtl" direction="rtl" />
+
+## API リファレンス
+
+[Base UI Slider](https://base-ui.com/react/components/slider#api-reference) ドキュメントを参照してください。

@@ -1,0 +1,56 @@
+---
+title: Label
+description: コントロールに関連付けられたアクセシブルなラベルをレンダリングします。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/label
+  api: https://base-ui.com/react/components/label#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="label-demo" />
+
+<Callout>
+  フォームフィールドには、ラベル、説明、エラー処理が組み込まれた [Field](/docs/components/field) コンポーネントを使用してください。
+</Callout>
+
+## インストール
+
+<ComponentInstall name="label" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import { Label } from "@/components/ui/label"
+```
+
+```tsx
+<Label htmlFor="email">Your email address</Label>
+```
+
+## Field 内の Label
+
+フォームフィールドには、`FieldLabel`、`FieldDescription`、`FieldError` コンポーネントが組み込まれた [Field](/docs/components/field) コンポーネントを使用してください。
+
+```tsx
+<Field>
+  <FieldLabel htmlFor="email">Your email address</FieldLabel>
+  <Input id="email" />
+</Field>
+```
+
+<ComponentPreview
+  styleName="base-nova"
+  name="field-demo"
+  previewClassName="h-[44rem]"
+/>
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="label-rtl" direction="rtl" />
+
+## API リファレンス
+
+詳細については [Base UI Label](https://base-ui.com/react/components/label#api-reference) のドキュメントを参照してください。

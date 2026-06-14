@@ -1,0 +1,117 @@
+---
+title: Command
+description: 検索とクイックアクションのためのコマンドメニュー。
+base: base
+component: true
+links:
+  doc: https://github.com/dip/cmdk
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="command-demo"
+  align="start"
+  previewClassName="h-[24.5rem]"
+/>
+
+## について
+
+`<Command />` コンポーネントは [Dip](https://www.dip.org/) による [`cmdk`](https://github.com/dip/cmdk) コンポーネントを使用しています。
+
+## インストール
+
+<ComponentInstall name="command" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "@/components/ui/command"
+```
+
+```tsx showLineNumbers
+<Command className="max-w-sm rounded-lg border">
+  <CommandInput placeholder="Type a command or search..." />
+  <CommandList>
+    <CommandEmpty>No results found.</CommandEmpty>
+    <CommandGroup heading="Suggestions">
+      <CommandItem>Calendar</CommandItem>
+      <CommandItem>Search Emoji</CommandItem>
+      <CommandItem>Calculator</CommandItem>
+    </CommandGroup>
+    <CommandSeparator />
+    <CommandGroup heading="Settings">
+      <CommandItem>Profile</CommandItem>
+      <CommandItem>Billing</CommandItem>
+      <CommandItem>Settings</CommandItem>
+    </CommandGroup>
+  </CommandList>
+</Command>
+```
+
+## 構成
+
+`Command` を構築するには以下の構成を使用します:
+
+```text
+Command
+├── CommandInput
+└── CommandList
+    ├── CommandEmpty
+    ├── CommandGroup
+    │   ├── CommandItem
+    │   └── CommandItem
+    ├── CommandSeparator
+    └── CommandGroup
+        ├── CommandItem
+        └── CommandItem
+```
+
+## 例
+
+### 基本
+
+ダイアログ内のシンプルなコマンドメニュー。
+
+<ComponentPreview styleName="base-nova" name="command-basic" />
+
+### ショートカット
+
+<ComponentPreview styleName="base-nova" name="command-shortcuts" />
+
+### グループ
+
+グループ、アイコン、セパレーターを持つコマンドメニュー。
+
+<ComponentPreview styleName="base-nova" name="command-groups" />
+
+### スクロール可能
+
+複数のアイテムを持つスクロール可能なコマンドメニュー。
+
+<ComponentPreview styleName="base-nova" name="command-scrollable" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl) を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="command-rtl"
+  direction="rtl"
+  align="start"
+  previewClassName="h-[24.5rem]"
+/>
+
+## API リファレンス
+
+詳細については [cmdk](https://github.com/dip/cmdk) のドキュメントを参照してください。

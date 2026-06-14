@@ -116,6 +116,16 @@
     }
   },
   {
+    "name": "bars-spinner",
+    "type": "registry:ui",
+    "files": [
+      {
+        "path": "ui/bars-spinner.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  {
     "name": "breadcrumb",
     "type": "registry:ui",
     "files": [
@@ -270,6 +280,25 @@
     }
   },
   {
+    "name": "code-block",
+    "type": "registry:ui",
+    "dependencies": ["shiki", "lucide-react"],
+    "registryDependencies": ["button"],
+    "files": [
+      {
+        "path": "ui/code-block.tsx",
+        "type": "registry:ui"
+      }
+    ],
+    "meta": {
+      "links": {
+        "base": {
+          "docs": "https://ui.tyap.me/docs/components/code-block"
+        }
+      }
+    }
+  },
+  {
     "name": "collapsible",
     "type": "registry:ui",
     "files": [
@@ -327,7 +356,7 @@
   {
     "name": "combobox",
     "type": "registry:ui",
-    "registryDependencies": ["button", "input-group"],
+    "registryDependencies": ["button", "input-group", "scroll-mask"],
     "dependencies": ["@base-ui/react"],
     "files": [
       {
@@ -349,7 +378,7 @@
     "name": "command",
     "type": "registry:ui",
     "dependencies": ["cmdk"],
-    "registryDependencies": ["dialog", "input-group"],
+    "registryDependencies": ["dialog", "input-group", "scroll-mask"],
     "files": [
       {
         "path": "ui/command.tsx",
@@ -381,6 +410,25 @@
           "docs": "https://ui.shadcn.com/docs/components/base/context-menu",
           "examples": "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/context-menu-example.tsx",
           "api": "https://base-ui.com/react/components/context-menu.md"
+        }
+      }
+    }
+  },
+  {
+    "name": "copy-button",
+    "type": "registry:ui",
+    "dependencies": ["class-variance-authority"],
+    "registryDependencies": ["button"],
+    "files": [
+      {
+        "path": "ui/copy-button.tsx",
+        "type": "registry:ui"
+      }
+    ],
+    "meta": {
+      "links": {
+        "base": {
+          "docs": "https://ui.tyap.me/docs/components/copy-button"
         }
       }
     }
@@ -525,6 +573,27 @@
     }
   },
   {
+    "name": "filters",
+    "type": "registry:ui",
+    "dependencies": ["class-variance-authority"],
+    "registryDependencies": [
+      "button",
+      "button-group",
+      "dropdown-menu",
+      "input",
+      "input-group",
+      "kbd",
+      "scroll-area",
+      "tooltip"
+    ],
+    "files": [
+      {
+        "path": "ui/filters.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  {
     "name": "form",
     "type": "registry:ui"
   },
@@ -624,6 +693,21 @@
     }
   },
   {
+    "name": "kanban",
+    "type": "registry:ui",
+    "dependencies": [
+      "@dnd-kit/core",
+      "@dnd-kit/sortable",
+      "@dnd-kit/utilities"
+    ],
+    "files": [
+      {
+        "path": "ui/kanban.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  {
     "name": "kbd",
     "type": "registry:ui",
     "files": [
@@ -661,6 +745,21 @@
     }
   },
   {
+    "name": "md-parser",
+    "type": "registry:ui",
+    "dependencies": ["react-markdown", "remark-gfm"],
+    "files": [
+      {
+        "path": "ui/md-parser.tsx",
+        "type": "registry:ui"
+      },
+      {
+        "path": "ui/md-parser-code-block.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  {
     "name": "menubar",
     "type": "registry:ui",
     "registryDependencies": ["dropdown-menu"],
@@ -676,24 +775,6 @@
           "docs": "https://ui.shadcn.com/docs/components/base/menubar",
           "examples": "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/menubar-example.tsx",
           "api": "https://base-ui.com/react/components/menubar.md"
-        }
-      }
-    }
-  },
-  {
-    "name": "native-select",
-    "type": "registry:ui",
-    "files": [
-      {
-        "path": "ui/native-select.tsx",
-        "type": "registry:ui"
-      }
-    ],
-    "meta": {
-      "links": {
-        "base": {
-          "docs": "https://ui.shadcn.com/docs/components/base/native-select",
-          "examples": "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/native-select-example.tsx"
         }
       }
     }
@@ -757,6 +838,18 @@
     }
   },
   {
+    "name": "phone-input",
+    "type": "registry:ui",
+    "dependencies": ["react-phone-number-input"],
+    "registryDependencies": ["button", "combobox", "input", "scroll-area"],
+    "files": [
+      {
+        "path": "ui/phone-input.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  {
     "name": "popover",
     "type": "registry:ui",
     "files": [
@@ -797,20 +890,13 @@
   {
     "name": "qr-code",
     "type": "registry:ui",
-    "dependencies": ["qrcode", "culori"],
+    "dependencies": ["qrcode"],
     "files": [
       {
         "path": "ui/qr-code.tsx",
         "type": "registry:ui"
       }
-    ],
-    "meta": {
-      "links": {
-        "base": {
-          "docs": "https://ui.shadcn.com/docs/components/base/qr-code"
-        }
-      }
-    }
+    ]
   },
   {
     "name": "radio-group",
@@ -866,6 +952,23 @@
           "docs": "https://ui.shadcn.com/docs/components/base/scroll-area",
           "examples": "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/scroll-area-example.tsx",
           "api": "https://base-ui.com/react/components/scroll-area.md"
+        }
+      }
+    }
+  },
+  {
+    "name": "scroll-mask",
+    "type": "registry:ui",
+    "files": [
+      {
+        "path": "ui/scroll-mask.tsx",
+        "type": "registry:ui"
+      }
+    ],
+    "meta": {
+      "links": {
+        "base": {
+          "docs": "https://ui.tyap.me/docs/components/scroll-mask"
         }
       }
     }
@@ -934,6 +1037,7 @@
     "registryDependencies": [
       "button",
       "input",
+      "scroll-mask",
       "separator",
       "sheet",
       "skeleton",
@@ -1148,6 +1252,25 @@
     }
   },
   {
+    "name": "time-picker",
+    "type": "registry:ui",
+    "dependencies": ["react-aria-components", "@internationalized/date"],
+    "registryDependencies": ["button", "popover", "scroll-mask"],
+    "files": [
+      {
+        "path": "ui/time-picker.tsx",
+        "type": "registry:ui"
+      }
+    ],
+    "meta": {
+      "links": {
+        "base": {
+          "api": "https://react-spectrum.adobe.com/react-aria/TimeField.html"
+        }
+      }
+    }
+  },
+  {
     "name": "toggle",
     "type": "registry:ui",
     "files": [
@@ -1202,6 +1325,23 @@
           "docs": "https://ui.shadcn.com/docs/components/base/tooltip",
           "examples": "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/tooltip-example.tsx",
           "api": "https://base-ui.com/react/components/tooltip.md"
+        }
+      }
+    }
+  },
+  {
+    "name": "typography",
+    "type": "registry:ui",
+    "files": [
+      {
+        "path": "ui/typography.tsx",
+        "type": "registry:ui"
+      }
+    ],
+    "meta": {
+      "links": {
+        "base": {
+          "docs": "https://ui.tyap.me/docs/components/typography"
         }
       }
     }

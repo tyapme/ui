@@ -2,13 +2,11 @@
 
 import * as React from "react"
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox"
-
 import { CheckIcon } from "lucide-react"
 
 import { useShakeOnInvalid } from "@/hooks/use-shake-on-invalid"
 import { cn } from "@/registry/bases/base/lib/utils"
 
-// React 19 hoists <style precedence href> to <head> and deduplicates across instances.
 const CHECKBOX_ANIMATION_CSS = `
   .cn-checkbox {
     transition:
@@ -40,7 +38,9 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
   useShakeOnInvalid(ref)
   return (
     <>
-      <style precedence="component" href="cn-checkbox-transitions">{CHECKBOX_ANIMATION_CSS}</style>
+      <style precedence="component" href="cn-checkbox-transitions">
+        {CHECKBOX_ANIMATION_CSS}
+      </style>
       <CheckboxPrimitive.Root
         ref={ref}
         data-slot="checkbox"

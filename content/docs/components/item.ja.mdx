@@ -1,0 +1,266 @@
+---
+title: Item
+description: メディア、タイトル、説明、アクションを含むコンテンツを表示する汎用コンポーネント。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="item-demo" />
+
+`Item` コンポーネントは、ほぼあらゆる種類のコンテンツを収容できるシンプルなフレックスコンテナです。タイトル、説明、アクションを表示するために使用します。`ItemGroup` コンポーネントと組み合わせてアイテムのリストを作成できます。
+
+## インストール
+
+<ComponentInstall name="item" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/ui/item"
+```
+
+```tsx showLineNumbers
+<Item>
+  <ItemMedia variant="icon">
+    <Icon />
+  </ItemMedia>
+  <ItemContent>
+    <ItemTitle>Title</ItemTitle>
+    <ItemDescription>Description</ItemDescription>
+  </ItemContent>
+  <ItemActions>
+    <Button>Action</Button>
+  </ItemActions>
+</Item>
+```
+
+## 構成
+
+`Item` を構築するには以下の構成を使用します:
+
+```text
+ItemGroup
+└── Item
+    ├── ItemHeader
+    ├── ItemMedia
+    ├── ItemContent
+    │   ├── ItemTitle
+    │   └── ItemDescription
+    ├── ItemActions
+    └── ItemFooter
+```
+
+## Item と Field の違い
+
+チェックボックス、入力、ラジオ、セレクトなどのフォーム入力を表示する必要がある場合は `Field` を使用します。
+
+タイトル、説明、アクションなどのコンテンツのみを表示する場合は `Item` を使用します。
+
+## バリアント
+
+`variant` プロパティを使用してアイテムの見た目を変更します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="item-variant"
+  previewClassName="h-96"
+/>
+
+## サイズ
+
+`size` プロパティを使用してアイテムのサイズを変更します。利用可能なサイズは `default`、`sm`、`xs` です。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="item-size"
+  previewClassName="h-96"
+/>
+
+## 例
+
+### アイコン
+
+`variant="icon"` を持つ `ItemMedia` を使用してアイコンを表示します。
+
+<ComponentPreview styleName="base-nova" name="item-icon" />
+
+### アバター
+
+`variant="avatar"` を持つ `ItemMedia` を使用してアバターを表示できます。
+
+<ComponentPreview styleName="base-nova" name="item-avatar" />
+
+### 画像
+
+`variant="image"` を持つ `ItemMedia` を使用して画像を表示します。
+
+<ComponentPreview styleName="base-nova" name="item-image" />
+
+### グループ
+
+`ItemGroup` を使用して関連するアイテムをまとめます。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="item-group"
+  previewClassName="h-96"
+/>
+
+### ヘッダー
+
+`ItemHeader` を使用してアイテムコンテンツの上にヘッダーを追加します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="item-header"
+  previewClassName="h-96"
+/>
+
+### リンク
+
+`render` プロパティを使用してアイテムをリンクとしてレンダリングします。ホバーおよびフォーカス状態はアンカー要素に適用されます。
+
+<ComponentPreview styleName="base-nova" name="item-link" />
+
+```tsx showLineNumbers
+<Item render={<a href="/dashboard" />}>
+  <ItemMedia variant="icon">
+    <HomeIcon />
+  </ItemMedia>
+  <ItemContent>
+    <ItemTitle>Dashboard</ItemTitle>
+    <ItemDescription>Overview of your account and activity.</ItemDescription>
+  </ItemContent>
+</Item>
+```
+
+### ドロップダウン
+
+<ComponentPreview styleName="base-nova" name="item-dropdown" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="item-rtl" direction="rtl" />
+
+## API リファレンス
+
+### Item
+
+メディア、タイトル、説明、アクションを持つコンテンツを表示するメインコンポーネント。
+
+| Prop      | Type                                | Default     |
+| --------- | ----------------------------------- | ----------- |
+| `variant` | `"default" \| "outline" \| "muted"` | `"default"` |
+| `size`    | `"default" \| "sm" \| "xs"`         | `"default"` |
+| `render`  | `React.ReactElement`                |             |
+
+### ItemGroup
+
+一貫したスタイリングで関連するアイテムをグループ化するコンテナ。
+
+```tsx
+<ItemGroup>
+  <Item />
+  <Item />
+</ItemGroup>
+```
+
+### ItemSeparator
+
+グループ内のアイテム間のセパレーター。
+
+```tsx
+<ItemGroup>
+  <Item />
+  <ItemSeparator />
+  <Item />
+</ItemGroup>
+```
+
+### ItemMedia
+
+アイコン、画像、アバターなどのメディアコンテンツを表示するために `ItemMedia` を使用します。
+
+| Prop      | Type                             | Default     |
+| --------- | -------------------------------- | ----------- |
+| `variant` | `"default" \| "icon" \| "image"` | `"default"` |
+
+```tsx
+<ItemMedia variant="icon">
+  <Icon />
+</ItemMedia>
+```
+
+```tsx
+<ItemMedia variant="image">
+  <img src="..." alt="..." />
+</ItemMedia>
+```
+
+### ItemContent
+
+アイテムのタイトルと説明をラップします。
+
+```tsx
+<ItemContent>
+  <ItemTitle>Title</ItemTitle>
+  <ItemDescription>Description</ItemDescription>
+</ItemContent>
+```
+
+### ItemTitle
+
+アイテムのタイトルを表示します。
+
+```tsx
+<ItemTitle>Item Title</ItemTitle>
+```
+
+### ItemDescription
+
+アイテムの説明を表示します。
+
+```tsx
+<ItemDescription>Item description</ItemDescription>
+```
+
+### ItemActions
+
+操作ボタンや他のインタラクティブな要素のコンテナ。
+
+```tsx
+<ItemActions>
+  <Button>Action</Button>
+</ItemActions>
+```
+
+### ItemHeader
+
+アイテムコンテンツの上にヘッダーを表示します。
+
+```tsx
+<Item>
+  <ItemHeader>Header</ItemHeader>
+  <ItemContent>...</ItemContent>
+</Item>
+```
+
+### ItemFooter
+
+アイテムコンテンツの下にフッターを表示します。
+
+```tsx
+<Item>
+  <ItemContent>...</ItemContent>
+  <ItemFooter>Footer</ItemFooter>
+</Item>
+```

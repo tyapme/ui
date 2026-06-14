@@ -2,8 +2,8 @@
 
 import { type ColumnDef } from "@tanstack/react-table"
 
-import { Badge } from "@/registry/new-york-v4/ui/badge"
-import { Checkbox } from "@/registry/new-york-v4/ui/checkbox"
+import { Badge } from "@/styles/base/ui/badge"
+import { Checkbox } from "@/styles/base/ui/checkbox"
 
 import { labels, priorities, statuses } from "../data/data"
 import { type Task } from "../data/schema"
@@ -15,10 +15,8 @@ export const columns: ColumnDef<Task>[] = [
     id: "select",
     header: ({ table }) => (
       <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
+        checked={table.getIsAllPageRowsSelected()}
+        indeterminate={table.getIsSomePageRowsSelected()}
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
         className="translate-y-[2px]"

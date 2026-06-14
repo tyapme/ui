@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "filters-small",
+  "title": "Filters — Small",
+  "registryDependencies": [
+    "filters",
+    "example"
+  ],
+  "files": [
+    {
+      "path": "registry/base/examples/filters-small.tsx",
+      "content": "\"use client\"\n\nimport { useState } from \"react\"\n\nimport { Example, ExampleWrapper } from \"@/registry/base/components/example\"\nimport {\n  createFilter,\n  Filters,\n  type Filter,\n  type FilterFieldConfig,\n} from \"@/registry/base/ui/filters\"\n\nconst fields: FilterFieldConfig[] = [\n  {\n    key: \"status\",\n    label: \"Status\",\n    type: \"multiselect\",\n    options: [\n      { value: \"open\", label: \"Open\" },\n      { value: \"closed\", label: \"Closed\" },\n      { value: \"in_review\", label: \"In Review\" },\n    ],\n  },\n  {\n    key: \"label\",\n    label: \"Label\",\n    type: \"multiselect\",\n    options: [\n      { value: \"bug\", label: \"Bug\" },\n      { value: \"feature\", label: \"Feature\" },\n      { value: \"docs\", label: \"Docs\" },\n    ],\n  },\n]\n\nexport default function FiltersSmallExample() {\n  const [filters, setFilters] = useState<Filter[]>([\n    createFilter(\"status\", \"is_any_of\", [\"open\"]),\n  ])\n\n  return (\n    <ExampleWrapper>\n      <Example className=\"items-start p-4\">\n        <Filters\n          size=\"sm\"\n          filters={filters}\n          fields={fields}\n          onChange={setFilters}\n        />\n      </Example>\n    </ExampleWrapper>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -63,6 +63,20 @@ export function useLanguageContext() {
   return context
 }
 
+type RtlLanguage = "ar" | "he"
+
+/**
+ * Like useTranslation, but for components that only support RTL languages (ar/he).
+ * Centralizes the `language === "he" ? "he" : "ar"` guard so components don't repeat it.
+ */
+export function useRtlTranslation<T extends { dir: Direction }>(
+  translations: Record<RtlLanguage, T>
+): T & { lang: RtlLanguage } {
+  const context = useLanguageContext()
+  const lang: RtlLanguage = context?.language === "he" ? "he" : "ar"
+  return { ...translations[lang], lang }
+}
+
 export function useTranslation<T extends Record<string, string>>(
   translations: Translations<T>,
   defaultLanguage: Language = "ar"

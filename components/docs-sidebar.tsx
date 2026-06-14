@@ -3,13 +3,18 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-import { PAGES_NEW } from "@/lib/docs"
+import {
+  DOCS_TOP_LEVEL_SECTIONS,
+  isDocsPageVisible,
+  isDocsSectionVisible,
+  PAGES_NEW,
+} from "@/lib/docs"
 import { showMcpDocs } from "@/lib/flags"
 import {
   getGroupedPagesFromFolder,
   getPagesFromFolder,
+  type PageTreeRoot,
 } from "@/lib/page-tree"
-import type { source } from "@/lib/source"
 import {
   Sidebar,
   SidebarContent,
@@ -21,47 +26,12 @@ import {
   SidebarMenuItem,
 } from "@/styles/base/ui/sidebar"
 
-const TOP_LEVEL_SECTIONS = [
-  { name: "はじめに", href: "/docs" },
-  {
-    name: "コンポーネント",
-    href: "/docs/components",
-  },
-  {
-    name: "基本デザイン",
-    href: "/docs/design/typography",
-  },
-  {
-    name: "インストール",
-    href: "/docs/installation",
-  },
-  {
-    name: "テーマ",
-    href: "/docs/theming",
-  },
-  {
-    name: "フォーム",
-    href: "/docs/forms",
-  },
-]
-const EXCLUDED_SECTIONS = ["installation", "dark-mode"]
-const EXCLUDED_PAGES = [
-  "/docs",
-  "/docs/cli",
-  "/docs/javascript",
-  "/docs/legacy",
-  "/docs/llms.txt",
-  "/docs/mcp",
-  "/docs/monorepo",
-  "/docs/new",
-  "/docs/package-imports",
-  "/docs/skills",
-]
-
 export function DocsSidebar({
   tree,
   ...props
-}: React.ComponentProps<typeof Sidebar> & { tree: typeof source.pageTree }) {
+}: React.ComponentProps<typeof Sidebar> & {
+  tree: PageTreeRoot
+}) {
   const pathname = usePathname()
   return (
     <Sidebar
@@ -70,7 +40,6 @@ export function DocsSidebar({
       {...props}
     >
       <div className="h-9" />
-      <div className="absolute top-8 z-10 h-8 w-(--sidebar-menu-width) shrink-0 bg-linear-to-b from-background via-background/80 to-background/50 blur-xs" />
       <SidebarContent className="mx-auto no-scrollbar w-(--sidebar-menu-width) overflow-x-hidden px-2">
         <SidebarGroup className="pt-6">
           <SidebarGroupLabel className="font-medium text-muted-foreground">
@@ -78,7 +47,7 @@ export function DocsSidebar({
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {TOP_LEVEL_SECTIONS.map(({ name, href }) => {
+              {DOCS_TOP_LEVEL_SECTIONS.map(({ name, href }) => {
                 if (!showMcpDocs && href.includes("/mcp")) {
                   return null
                 }
@@ -111,7 +80,7 @@ export function DocsSidebar({
           </SidebarGroupContent>
         </SidebarGroup>
         {tree.children.map((item) => {
-          if (EXCLUDED_SECTIONS.includes(item.$id ?? "")) {
+          if (!isDocsSectionVisible(item.$id)) {
             return null
           }
 
@@ -131,7 +100,7 @@ export function DocsSidebar({
                       if (!showMcpDocs && page.url.includes("/mcp")) {
                         return null
                       }
-                      if (EXCLUDED_PAGES.includes(page.url)) {
+                      if (!isDocsPageVisible(page.url)) {
                         return null
                       }
                       return (
@@ -174,7 +143,7 @@ export function DocsSidebar({
                         return null
                       }
 
-                      if (EXCLUDED_PAGES.includes(page.url)) {
+                      if (!isDocsPageVisible(page.url)) {
                         return null
                       }
 
@@ -205,7 +174,6 @@ export function DocsSidebar({
             </SidebarGroup>
           )
         })}
-        <div className="sticky -bottom-1 z-10 h-8 shrink-0 bg-linear-to-t from-background via-background/80 to-background/50 blur-xs" />
       </SidebarContent>
     </Sidebar>
   )

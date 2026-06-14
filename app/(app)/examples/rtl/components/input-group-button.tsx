@@ -3,7 +3,7 @@
 import * as React from "react"
 import { IconInfoCircle, IconStar } from "@tabler/icons-react"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import {
   InputGroup,
   InputGroupAddon,
@@ -39,9 +39,7 @@ const translations = {
 }
 
 export function InputGroupButtonExample() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
   const [isFavorite, setIsFavorite] = React.useState(false)
 
   return (
@@ -68,7 +66,7 @@ export function InputGroupButtonExample() {
               align="end"
               alignOffset={10}
               className="flex flex-col gap-1 rounded-xl text-sm"
-              data-lang={lang}
+              data-lang={t.lang}
               dir={t.dir}
             >
               <p className="font-medium">{t.priceInfo}</p>

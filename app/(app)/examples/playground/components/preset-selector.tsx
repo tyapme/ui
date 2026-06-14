@@ -2,10 +2,10 @@
 
 import * as React from "react"
 import { Check, ChevronsUpDown } from "lucide-react"
-import type { Popover as PopoverPrimitive } from "radix-ui"
+import type { Popover as PopoverPrimitive } from "@base-ui/react/popover"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/new-york-v4/ui/button"
+import { Button } from "@/styles/base/ui/button"
 import {
   Command,
   CommandEmpty,
@@ -14,12 +14,12 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/registry/new-york-v4/ui/command"
+} from "@/styles/base/ui/command"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/registry/new-york-v4/ui/popover"
+} from "@/styles/base/ui/popover"
 
 import { type Preset } from "../data/presets"
 

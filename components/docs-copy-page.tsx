@@ -21,7 +21,7 @@ import { Separator } from "@/styles/base/ui/separator"
 
 function getPromptUrl(baseURL: string, url: string) {
   return `${baseURL}?q=${encodeURIComponent(
-    `I'm looking at this TYAP.ME UI documentation: ${url}.
+    `I'm looking at this Ketyap UI documentation: ${url}.
 Help me understand how to use it. Be ready to explain concepts, give examples, or help debug based on it.
   `
   )}`

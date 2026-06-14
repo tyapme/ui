@@ -1,0 +1,125 @@
+---
+title: Button
+description: ボタン、またはボタンのように見えるコンポーネントを表示します。
+featured: true
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="button-demo" />
+
+## インストール
+
+<ComponentInstall name="button" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import { Button } from "@/components/ui/button"
+```
+
+```tsx
+<Button variant="outline">Button</Button>
+```
+
+## カーソル
+
+Tailwind v4 では、ボタンコンポーネントのカーソルが `cursor: pointer` から `cursor: default` に[変更](https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor)されました。
+
+`cursor: pointer` の挙動を維持したい場合は、CSS ファイルに以下のコードを追加してください：
+
+`npx shadcn@latest init --pointer` で初期化時に有効にすることもできます。
+
+```css showLineNumbers title="globals.css"
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+```
+
+## 例
+
+### サイズ
+
+`size` プロップでボタンのサイズを変更します。
+
+<ComponentPreview styleName="base-nova" name="button-size" />
+
+### デフォルト
+
+<ComponentPreview styleName="base-nova" name="button-default" />
+
+### アウトライン
+
+<ComponentPreview styleName="base-nova" name="button-outline" />
+
+### セカンダリ
+
+<ComponentPreview styleName="base-nova" name="button-secondary" />
+
+### ゴースト
+
+<ComponentPreview styleName="base-nova" name="button-ghost" />
+
+### デストラクティブ
+
+<ComponentPreview styleName="base-nova" name="button-destructive" />
+
+### リンク
+
+<ComponentPreview styleName="base-nova" name="button-link" />
+
+### アイコン
+
+<ComponentPreview styleName="base-nova" name="button-icon" />
+
+### アイコン付き
+
+アイコンの適切なスペーシングのため、`data-icon="inline-start"` または `data-icon="inline-end"` 属性を必ず付与してください。
+
+<ComponentPreview styleName="base-nova" name="button-with-icon" />
+
+### 角丸
+
+`rounded-full` クラスを使ってボタンを丸くします。
+
+<ComponentPreview styleName="base-nova" name="button-rounded" />
+
+### スピナー
+
+読み込み状態を示すには、ボタン内に `<Spinner />` コンポーネントをレンダリングします。スペーシングのため、`data-icon="inline-start"` または `data-icon="inline-end"` 属性を必ず付与してください。
+
+<ComponentPreview styleName="base-nova" name="button-spinner" />
+
+### ボタングループ
+
+ボタングループを作成するには `ButtonGroup` コンポーネントを使用します。詳細は [Button Group](/ja/docs/components/button-group) のドキュメントを参照してください。
+
+<ComponentPreview styleName="base-nova" name="button-group-demo" />
+
+### リンクとして使う
+
+`buttonVariants` ヘルパーを使うと、リンクをボタンのように見せることができます。
+
+**リンクには `<Button render={<a />} nativeButton={false} />` を使用しないでください。** Base UI の `Button` コンポーネントは常に `role="button"` を適用するため、`<a>` 要素のセマンティックなリンクロールが上書きされます。代わりに `buttonVariants` をプレーンな `<a>` タグとともに使用してください。
+
+<ComponentPreview styleName="base-nova" name="button-render" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/ja/docs/rtl) を参照してください。
+
+<ComponentPreview styleName="base-nova" name="button-rtl" direction="rtl" />
+
+## API リファレンス
+
+### Button
+
+`Button` コンポーネントは、さまざまなスタイルと機能を追加した `button` 要素のラッパーです。
+
+| プロップ   | 型                                                                                    | デフォルト  |
+| --------- | ------------------------------------------------------------------------------------- | ----------- |
+| `variant` | `"default" \| "outline" \| "ghost" \| "destructive" \| "secondary" \| "link"`        | `"default"` |
+| `size`    | `"default" \| "xs" \| "sm" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"` | `"default"` |

@@ -1,0 +1,76 @@
+---
+title: Progress
+description: タスクの完了進捗を示すインジケーター（通常はプログレスバーとして表示）。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/progress
+  api: https://base-ui.com/react/components/progress#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="progress-demo" />
+
+## インストール
+
+<ComponentInstall name="progress" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import { Progress } from "@/components/ui/progress"
+```
+
+```tsx showLineNumbers
+<Progress value={33} />
+```
+
+## コンポジション
+
+### ラベルと値付き
+
+`ProgressLabel` と `ProgressValue` を使ってラベルと値の表示を追加します。
+
+```tsx showLineNumbers
+import {
+  Progress,
+  ProgressLabel,
+  ProgressValue,
+} from "@/components/ui/progress"
+
+;<Progress value={56} className="w-full max-w-sm">
+  <ProgressLabel>Upload progress</ProgressLabel>
+  <ProgressValue />
+</Progress>
+```
+
+```text
+Progress
+├── ProgressLabel
+├── ProgressValue
+└── ProgressTrack
+    └── ProgressIndicator
+```
+
+## 例
+
+### ラベル
+
+`ProgressLabel` と `ProgressValue` を使ってラベルと値の表示を追加します。
+
+<ComponentPreview styleName="base-nova" name="progress-label" />
+
+### 制御あり
+
+スライダーで制御できるプログレスバー。
+
+<ComponentPreview styleName="base-nova" name="progress-controlled" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="progress-rtl" direction="rtl" />
+
+## API リファレンス
+
+[Base UI Progress](https://base-ui.com/react/components/progress#api-reference) ドキュメントを参照してください。

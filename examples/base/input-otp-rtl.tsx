@@ -42,7 +42,7 @@ export function InputOTPRtl() {
       <FieldLabel htmlFor="input-otp-rtl">{t.verificationCode}</FieldLabel>
       <InputOTP
         maxLength={6}
-        defaultValue="123456"
+        value="123456"
         dir={dir}
         id="input-otp-rtl"
       >

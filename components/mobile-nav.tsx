@@ -3,54 +3,33 @@
 import * as React from "react"
 import Link, { type LinkProps } from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { createPortal } from "react-dom"
 
-import { PAGES_NEW } from "@/lib/docs"
+import {
+  DOCS_TOP_LEVEL_SECTIONS,
+  isDocsPageVisible,
+  isDocsSectionVisible,
+  PAGES_NEW,
+} from "@/lib/docs"
 import { showMcpDocs } from "@/lib/flags"
-import { getGroupedPagesFromFolder, getPagesFromFolder } from "@/lib/page-tree"
-import { type source } from "@/lib/source"
+import {
+  getGroupedPagesFromFolder,
+  getPagesFromFolder,
+  type PageTreeRoot,
+} from "@/lib/page-tree"
 import { cn } from "@/lib/utils"
 import { Button } from "@/styles/base/ui/button"
-
-const TOP_LEVEL_SECTIONS = [
-  { name: "はじめに", href: "/docs" },
-  {
-    name: "コンポーネント",
-    href: "/docs/components",
-  },
-  {
-    name: "インストール",
-    href: "/docs/installation",
-  },
-  {
-    name: "テーマ",
-    href: "/docs/theming",
-  },
-  {
-    name: "フォーム",
-    href: "/docs/forms",
-  },
-]
 
 export function MobileNav({
   tree,
   items,
   className,
 }: {
-  tree: typeof source.pageTree
+  tree: PageTreeRoot
   items: { href: string; label: string }[]
   className?: string
 }) {
   const [open, setOpen] = React.useState(false)
-  const [mounted, setMounted] = React.useState(false)
   const pathname = usePathname()
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  React.useEffect(() => {
-    setOpen(false)
-  }, [pathname])
 
   React.useEffect(() => {
     if (open) {
@@ -95,130 +74,129 @@ export function MobileNav({
         </span>
       </Button>
 
-      {mounted &&
-        createPortal(
-          <div
-            className={cn(
-              "no-scrollbar fixed inset-x-0 bottom-0 z-50 overflow-y-auto bg-background transition-[top,opacity] duration-150",
-              open
-                ? "top-[var(--header-height)] opacity-100"
-                : "pointer-events-none top-[var(--header-height)] opacity-0"
-            )}
-            style={{ top: "var(--header-height)" }}
-            aria-hidden={!open}
-          >
-            <div className="flex flex-col gap-12 overflow-auto px-6 py-6">
-              <div className="flex flex-col gap-4">
-                <div className="flex flex-col gap-3">
-                  <MobileLink href="/" onOpenChange={setOpen}>
-                    Home
-                  </MobileLink>
-                  {items.map((item, index) => (
-                    <MobileLink
-                      key={index}
-                      href={item.href}
-                      onOpenChange={setOpen}
-                    >
-                      {item.label}
-                    </MobileLink>
-                  ))}
-                </div>
-              </div>
-              <div className="flex flex-col gap-4">
-                <div className="text-sm font-medium text-muted-foreground">
-                  Sections
-                </div>
-                <div className="flex flex-col gap-3">
-                  {TOP_LEVEL_SECTIONS.map(({ name, href }) => {
-                    if (!showMcpDocs && href.includes("/mcp")) {
-                      return null
-                    }
-                    return (
-                      <MobileLink key={name} href={href} onOpenChange={setOpen}>
-                        {name}
-                        {PAGES_NEW.includes(href) && (
-                          <span
-                            className="flex size-2 rounded-full bg-blue-500"
-                            title="New"
-                          />
-                        )}
-                      </MobileLink>
-                    )
-                  })}
-                </div>
-              </div>
-              <div className="flex flex-col gap-8">
-                {tree?.children?.map((group, index) => {
-                  if (group.type !== "folder") return null
-
-                  const isComponents =
-                    group.$id === "components" || group.name === "Components"
-
-                  if (isComponents) {
-                    const categoryGroups = getGroupedPagesFromFolder(group)
-                    return categoryGroups.map((cat) => (
-                      <div key={cat.category.label} className="flex flex-col gap-4">
-                        <div className="text-sm font-medium text-muted-foreground">
-                          {cat.category.label}
-                        </div>
-                        <div className="flex flex-col gap-3">
-                          {cat.pages.map((item) => {
-                            if (!showMcpDocs && item.url.includes("/mcp")) {
-                              return null
-                            }
-                            return (
-                              <MobileLink
-                                key={item.url}
-                                href={item.url}
-                                onOpenChange={setOpen}
-                                className="flex items-center gap-2"
-                              >
-                                {item.name}
-                                {PAGES_NEW.includes(item.url) && (
-                                  <span className="flex size-2 rounded-full bg-blue-500" />
-                                )}
-                              </MobileLink>
-                            )
-                          })}
-                        </div>
-                      </div>
-                    ))
-                  }
-
-                  const pages = getPagesFromFolder(group)
-                  return (
-                    <div key={index} className="flex flex-col gap-4">
-                      <div className="text-sm font-medium text-muted-foreground">
-                        {group.name}
-                      </div>
-                      <div className="flex flex-col gap-3">
-                        {pages.map((item) => {
-                          if (!showMcpDocs && item.url.includes("/mcp")) {
-                            return null
-                          }
-                          return (
-                            <MobileLink
-                              key={`${item.url}-${index}`}
-                              href={item.url}
-                              onOpenChange={setOpen}
-                              className="flex items-center gap-2"
-                            >
-                              {item.name}
-                              {PAGES_NEW.includes(item.url) && (
-                                <span className="flex size-2 rounded-full bg-blue-500" />
-                              )}
-                            </MobileLink>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          </div>,
-          document.body
+      <div
+        className={cn(
+          "fixed inset-x-0 bottom-0 z-50 no-scrollbar overflow-y-auto bg-background transition-[top,opacity] duration-150",
+          open
+            ? "top-[var(--header-height)] opacity-100"
+            : "pointer-events-none top-[var(--header-height)] opacity-0"
         )}
+        style={{ top: "var(--header-height)" }}
+        aria-hidden={!open}
+      >
+        <div className="flex flex-col gap-12 overflow-auto px-6 py-6">
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
+              <MobileLink href="/" onOpenChange={setOpen}>
+                Home
+              </MobileLink>
+              {items.map((item, index) => (
+                <MobileLink key={index} href={item.href} onOpenChange={setOpen}>
+                  {item.label}
+                </MobileLink>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div className="text-sm font-medium text-muted-foreground">
+              Sections
+            </div>
+            <div className="flex flex-col gap-3">
+              {DOCS_TOP_LEVEL_SECTIONS.map(({ name, href }) => {
+                if (!showMcpDocs && href.includes("/mcp")) {
+                  return null
+                }
+                return (
+                  <MobileLink key={name} href={href} onOpenChange={setOpen}>
+                    {name}
+                    {PAGES_NEW.includes(href) && (
+                      <span
+                        className="flex size-2 rounded-full bg-blue-500"
+                        title="New"
+                      />
+                    )}
+                  </MobileLink>
+                )
+              })}
+            </div>
+          </div>
+          <div className="flex flex-col gap-8">
+            {tree?.children?.map((group, index) => {
+              if (group.type !== "folder") return null
+              if (!isDocsSectionVisible(group.$id)) return null
+
+              const isComponents =
+                group.$id === "components" || group.name === "Components"
+
+              if (isComponents) {
+                const categoryGroups = getGroupedPagesFromFolder(group)
+                return categoryGroups.map((cat) => (
+                  <div key={cat.category.label} className="flex flex-col gap-4">
+                    <div className="text-sm font-medium text-muted-foreground">
+                      {cat.category.label}
+                    </div>
+                    <div className="flex flex-col gap-3">
+                      {cat.pages.map((item) => {
+                        if (!showMcpDocs && item.url.includes("/mcp")) {
+                          return null
+                        }
+                        if (!isDocsPageVisible(item.url)) {
+                          return null
+                        }
+                        return (
+                          <MobileLink
+                            key={item.url}
+                            href={item.url}
+                            onOpenChange={setOpen}
+                            className="flex items-center gap-2"
+                          >
+                            {item.name}
+                            {PAGES_NEW.includes(item.url) && (
+                              <span className="flex size-2 rounded-full bg-blue-500" />
+                            )}
+                          </MobileLink>
+                        )
+                      })}
+                    </div>
+                  </div>
+                ))
+              }
+
+              const pages = getPagesFromFolder(group)
+              return (
+                <div key={index} className="flex flex-col gap-4">
+                  <div className="text-sm font-medium text-muted-foreground">
+                    {group.name}
+                  </div>
+                  <div className="flex flex-col gap-3">
+                    {pages.map((item) => {
+                      if (!showMcpDocs && item.url.includes("/mcp")) {
+                        return null
+                      }
+                      if (!isDocsPageVisible(item.url)) {
+                        return null
+                      }
+                      return (
+                        <MobileLink
+                          key={`${item.url}-${index}`}
+                          href={item.url}
+                          onOpenChange={setOpen}
+                          className="flex items-center gap-2"
+                        >
+                          {item.name}
+                          {PAGES_NEW.includes(item.url) && (
+                            <span className="flex size-2 rounded-full bg-blue-500" />
+                          )}
+                        </MobileLink>
+                      )
+                    })}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
     </>
   )
 }

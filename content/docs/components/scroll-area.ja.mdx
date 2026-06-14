@@ -1,0 +1,63 @@
+---
+title: Scroll Area
+description: カスタムなクロスブラウザスタイリングのためにネイティブスクロール機能を拡張します。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/scroll-area
+  api: https://base-ui.com/react/components/scroll-area#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="scroll-area-demo"
+  previewClassName="h-96"
+/>
+
+## インストール
+
+<ComponentInstall name="scroll-area" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+```
+
+```tsx showLineNumbers
+<ScrollArea className="h-[200px] w-[350px] rounded-md border p-4">
+  Your scrollable content here.
+</ScrollArea>
+```
+
+## コンポジション
+
+`ScrollArea` を構築するには以下のコンポジションを使用します:
+
+```text
+ScrollArea
+└── ScrollBar
+```
+
+## 例
+
+### 水平
+
+水平スクロールには `orientation="horizontal"` を付けた `ScrollBar` を使用します。
+
+<ComponentPreview styleName="base-nova" name="scroll-area-horizontal-demo" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="scroll-area-rtl"
+  direction="rtl"
+  previewClassName="h-auto"
+/>
+
+## API リファレンス
+
+[Base UI Scroll Area](https://base-ui.com/react/components/scroll-area#api-reference) ドキュメントを参照してください。

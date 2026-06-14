@@ -19,7 +19,7 @@ import {
   type RangeValue,
   type TimeValue as AriaTimeValue,
 } from "react-aria-components"
-import { cn } from "@/lib/utils"
+import { cn } from "@/registry/bases/base/lib/utils"
 import { useShakeOnInvalid } from "@/hooks/use-shake-on-invalid"
 import { Button } from "@/registry/bases/base/ui/button"
 import { Calendar, RangeCalendar } from "@/registry/bases/base/ui/calendar"

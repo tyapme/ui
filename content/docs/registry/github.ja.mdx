@@ -1,0 +1,589 @@
+---
+title: GitHubレジストリ
+description: 公開GitHubリポジトリをレジストリとして使用する。
+---
+
+**任意の公開GitHubリポジトリをレジストリに変換できます。**
+
+リポジトリのルートに `registry.json` ファイルを追加し、共有したいファイルを記述すれば、ユーザーは `shadcn` CLIでインストールできます。
+
+```bash
+npx shadcn@latest add <username>/<repo>/<item>
+```
+
+レジストリサーバーのセットアップや生成されたJSONファイルの公開は不要です。**GitHubリポジトリ自体がソースレジストリになります。**
+
+## 何でも配布できる
+
+レジストリアイテムは**コンポーネントやReactコードに限定されません。** リポジトリ内の任意のファイルを含めることができます: ソースファイル、設定、ドキュメント、テンプレート、ワークフロー、ルール、プロジェクト規約など。
+
+<div className="not-prose my-6 overflow-hidden rounded-lg border text-sm">
+  <div className="hidden grid-cols-[220px_1fr] border-b bg-muted/50 px-4 py-3 font-medium md:grid">
+    <div>Use case</div>
+    <div>Example files</div>
+  </div>
+  {[
+    ["Components", "components/date-picker.tsx", "components/data-table.tsx"],
+    [
+      "Helpers and utilities",
+      "lib/format-date.ts",
+      "lib/cn.ts",
+      "hooks/use-copy.ts",
+    ],
+    [
+      "Design system packages",
+      "tokens/colors.json",
+      "styles/theme.css",
+      "components/*",
+    ],
+    [
+      "Feature kits",
+      "app/(auth)/*",
+      "lib/auth.ts",
+      "components/login-form.tsx",
+    ],
+    ["Agent workflows", "AGENTS.md", ".cursor/rules/*", ".claude/commands/*"],
+    [
+      "Project conventions",
+      ".editorconfig",
+      "biome.json",
+      "docs/conventions.md",
+    ],
+    [
+      "Codemods and migration kits",
+      "codemods/*",
+      "scripts/migrate.ts",
+      "docs/migration.md",
+    ],
+    ["Testing setup", "vitest.config.ts", "test/setup.ts", "docs/testing.md"],
+    [
+      "CI and release workflows",
+      ".github/workflows/ci.yml",
+      ".github/workflows/release.yml",
+    ],
+    [
+      "Project automation",
+      "scripts/release.ts",
+      "scripts/checks.ts",
+      "docs/automation.md",
+    ],
+    [
+      "Issue and pull request templates",
+      ".github/ISSUE_TEMPLATE/*",
+      ".github/pull_request_template.md",
+    ],
+    ["MCP configuration", ".mcp.json", ".cursor/mcp.json"],
+  ].map(([label, ...files]) => (
+    <div
+      className="grid gap-2 border-b px-4 py-3 last:border-b-0 md:grid-cols-[220px_1fr]"
+      key={label}
+    >
+      <div className="font-medium">{label}</div>
+      <div className="flex min-w-0 flex-wrap gap-1.5">
+        {files.map((file) => (
+          <code key={file}>{file}</code>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+## GitHubを使うべき場合
+
+以下の場合にGitHubレジストリを使用します:
+
+- 公開GitHubリポジトリに再利用可能なコードがすでにある場合。
+- ユーザーに `owner/repo/item` 形式で直接インストールしてもらいたい場合。
+- 同じリポジトリから設定ファイル、ルール、ドキュメント、テンプレート、ユーティリティ、その他のファイルを配布したい場合。
+- プライベートリポジトリアクセスやカスタムリクエスト認証が不要な場合。
+
+## 要件
+
+GitHubレジストリは以下の条件を満たす必要があります:
+
+- `github.com` の公開リポジトリであること。
+- リポジトリルートに `registry.json` ファイルがあること。
+- 有効な `registry.json` および `registry-item.json` スキーマを使用していること。
+- リポジトリ内に存在するソースファイルを参照していること。
+
+プライベートリポジトリとGitHub Enterpriseホストは、GitHubアドレスでは現在サポートされていません。プライベートまたは認証が必要なレジストリには、[認証](/docs/registry/authentication)付きの[ネームスペース](/docs/registry/namespace)を使用してください。
+
+## ステップ1: registry.json を追加する
+
+既存の公開リポジトリがあるとします:
+
+```txt
+.
+├── ...
+├── .editorconfig
+├── AGENTS.md
+└── docs
+    └── conventions.md
+```
+
+リポジトリのルートに `registry.json` を追加します。
+
+```txt
+.
+├── ...
+├── registry.json
+├── .editorconfig
+├── AGENTS.md
+└── docs
+    └── conventions.md
+```
+
+配布したいアイテムを定義します。
+
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme-toolkit",
+  "homepage": "https://github.com/acme/toolkit",
+  "items": [
+    {
+      "name": "project-conventions",
+      "type": "registry:item",
+      "title": "Project Conventions",
+      "description": "Shared project conventions, editor settings and agent instructions.",
+      "files": [
+        {
+          "path": "AGENTS.md",
+          "type": "registry:file",
+          "target": "~/AGENTS.md"
+        },
+        {
+          "path": ".editorconfig",
+          "type": "registry:file",
+          "target": "~/.editorconfig"
+        },
+        {
+          "path": "docs/conventions.md",
+          "type": "registry:file",
+          "target": "~/docs/conventions.md"
+        }
+      ]
+    }
+  ]
+}
+```
+
+ファイルをコミットしてプッシュします。
+
+```bash
+git add registry.json
+```
+
+```bash
+git commit -m "add registry"
+```
+
+```bash
+git push
+```
+
+これでユーザーはGitHubからアイテムをインストールできます。
+
+```bash
+npx shadcn@latest add acme/toolkit/project-conventions
+```
+
+## ステップ2: 任意のファイルを配布する
+
+レジストリアイテムは1つまたは複数のファイルをインストールできます。`files` 配列を使用して一緒に属するファイルを宣言します。
+
+例えば、テストセットアップではVitestの設定、セットアップファイル、短いチームガイドをインストールできます。
+
+```txt
+registry.json
+config
+└── vitest.config.ts
+docs
+└── testing.md
+test
+└── setup.ts
+```
+
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme-toolkit",
+  "homepage": "https://github.com/acme/toolkit",
+  "items": [
+    {
+      "name": "vitest-setup",
+      "type": "registry:item",
+      "title": "Vitest Setup",
+      "description": "A Vitest setup with project defaults and docs.",
+      "files": [
+        {
+          "path": "config/vitest.config.ts",
+          "type": "registry:file",
+          "target": "~/vitest.config.ts"
+        },
+        {
+          "path": "test/setup.ts",
+          "type": "registry:file",
+          "target": "~/test/setup.ts"
+        },
+        {
+          "path": "docs/testing.md",
+          "type": "registry:file",
+          "target": "~/docs/testing.md"
+        }
+      ]
+    }
+  ]
+}
+```
+
+インストール方法は同じです。
+
+```bash
+npx shadcn@latest add acme/toolkit/vitest-setup
+```
+
+ファイルをユーザーのプロジェクト内の特定の場所に書き込む必要がある場合は `target` を使用します。
+
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme-toolkit",
+  "homepage": "https://github.com/acme/toolkit",
+  "items": [
+    {
+      "name": "editorconfig",
+      "type": "registry:file",
+      "files": [
+        {
+          "path": "config/.editorconfig",
+          "type": "registry:file",
+          "target": "~/.editorconfig"
+        }
+      ]
+    }
+  ]
+}
+```
+
+```bash
+npx shadcn@latest add acme/toolkit/editorconfig
+```
+
+## ステップ3: レジストリを検証する
+
+レジストリを共有する前に、CLIから検証します。
+
+```bash
+npx shadcn@latest registry validate acme/toolkit
+```
+
+このコマンドはルートの `registry.json` を読み込み、インクルードを解決し、レジストリアイテムを検証して、参照ファイルが存在するか確認します。
+
+ブランチ、タグ、コミットSHAでも検証できます。
+
+```bash
+npx shadcn@latest registry validate acme/toolkit#v1.0.0
+```
+
+## ステップ4: アイテムの一覧表示と検索
+
+`list` を使用してリポジトリレジストリ内のすべてのアイテムを表示します。
+
+```bash
+npx shadcn@latest list acme/toolkit
+```
+
+`search` を使用してカタログをフィルタリングします。
+
+```bash
+npx shadcn@latest search acme/toolkit --query conventions
+```
+
+`view` を使用して1つのアイテムのペイロードを検査します。
+
+```bash
+npx shadcn@latest view acme/toolkit/project-conventions
+```
+
+## include を使って整理する
+
+大規模なリポジトリでは、アイテム定義をそれが説明するソースファイルの近くに置きます。
+
+```txt
+registry.json
+config
+├── prettier.config.mjs
+└── registry.json
+rules
+├── agent.md
+└── registry.json
+```
+
+ルートの `registry.json` はネストされたレジストリファイルをインクルードできます。
+
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme-toolkit",
+  "homepage": "https://github.com/acme/toolkit",
+  "include": ["config/registry.json", "rules/registry.json"]
+}
+```
+
+インクルードされたレジストリファイルはそのディレクトリのアイテムを宣言します。
+
+```json title="rules/registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "agent-rules",
+      "type": "registry:file",
+      "files": [
+        {
+          "path": "agent.md",
+          "type": "registry:file",
+          "target": "~/AGENTS.md"
+        }
+      ]
+    }
+  ]
+}
+```
+
+`include` を使用する場合、ファイルパスはアイテムを宣言する `registry.json` ファイルからの相対パスになります。
+
+```bash
+npx shadcn@latest add acme/toolkit/project-conventions
+```
+
+## レジストリ依存関係
+
+1つのレジストリアイテムが別のレジストリアイテムに依存する場合は `registryDependencies` を使用します。
+
+### 同一リポジトリの依存関係
+
+同じGitHubリポジトリ内の依存関係には、完全なGitHubアイテムアドレスを使用します。
+
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme-toolkit",
+  "homepage": "https://github.com/acme/toolkit",
+  "items": [
+    {
+      "name": "project-setup",
+      "type": "registry:item",
+      "registryDependencies": [
+        "acme/toolkit/agent-rules",
+        "acme/toolkit/prettier-config",
+        "acme/toolkit/tsconfig"
+      ],
+      "files": [
+        {
+          "path": "docs/project-setup.md",
+          "type": "registry:file",
+          "target": "~/docs/project-setup.md"
+        }
+      ]
+    }
+  ]
+}
+```
+
+ドキュメントアイテムは同じリポジトリのテンプレートアイテムに依存できます。
+
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme-toolkit",
+  "homepage": "https://github.com/acme/toolkit",
+  "items": [
+    {
+      "name": "contributing-guide",
+      "type": "registry:item",
+      "registryDependencies": ["acme/toolkit/readme-template"],
+      "files": [
+        {
+          "path": "docs/contributing.md",
+          "type": "registry:file",
+          "target": "~/docs/contributing.md"
+        }
+      ]
+    }
+  ]
+}
+```
+
+CIセットアップは、ユーザーが個別にインストールできる同じフォーマットおよびテストのデフォルトに依存できます。
+
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme-toolkit",
+  "homepage": "https://github.com/acme/toolkit",
+  "items": [
+    {
+      "name": "ci-setup",
+      "type": "registry:item",
+      "registryDependencies": [
+        "acme/toolkit/prettier-config",
+        "acme/toolkit/vitest-setup"
+      ],
+      "files": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "type": "registry:file",
+          "target": "~/.github/workflows/ci.yml"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### 外部レジストリの依存関係
+
+アイテムは外部レジストリに依存することもできます。依存関係を所有するレジストリの完全なアイテムアドレスを使用します。
+
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme-toolkit",
+  "homepage": "https://github.com/acme/toolkit",
+  "items": [
+    {
+      "name": "workspace-setup",
+      "type": "registry:item",
+      "registryDependencies": [
+        "@acme/tsconfig",
+        "contoso/devtools/prettier-config"
+      ],
+      "files": [
+        {
+          "path": "docs/workspace.md",
+          "type": "registry:file",
+          "target": "~/docs/workspace.md"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### 依存関係のref
+
+refは依存関係をまたいで継承されません。依存関係をピン留めする必要がある場合は、その依存関係自体にrefを含めてください。
+
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme-toolkit",
+  "homepage": "https://github.com/acme/toolkit",
+  "items": [
+    {
+      "name": "project-setup",
+      "type": "registry:item",
+      "registryDependencies": [
+        "acme/toolkit/agent-rules#v1.0.0",
+        "acme/toolkit/tsconfig#c0ffee254729296a45d6691db565cf707a3fef5d"
+      ],
+      "files": [
+        {
+          "path": "docs/project-setup.md",
+          "type": "registry:file",
+          "target": "~/docs/project-setup.md"
+        }
+      ]
+    }
+  ]
+}
+```
+
+## 便利なコマンド
+
+GitHubレジストリ内のすべてのアイテムを一覧表示します。
+
+```bash
+npx shadcn@latest list acme/toolkit
+```
+
+GitHubレジストリを検索します。
+
+```bash
+npx shadcn@latest search acme/toolkit -q conventions
+```
+
+GitHubレジストリを検証します。
+
+```bash
+npx shadcn@latest registry validate acme/toolkit
+```
+
+GitHubレジストリからアイテムをインストールします。
+
+```bash
+npx shadcn@latest add acme/toolkit/project-conventions
+```
+
+GitHubレジストリからアイテムを表示します。
+
+```bash
+npx shadcn@latest view acme/toolkit/project-conventions
+```
+
+レジストリアイテム名に `/` が含まれるアイテムをインストールします。
+
+```bash
+npx shadcn@latest add acme/toolkit/rules/agent
+```
+
+<Callout>
+  GitHubアイテムアドレスでは、最初の2つのパスセグメントがGitHubのオーナーとリポジトリです。残りのセグメントはファイルパスではなくレジストリアイテム名です。`.json` で終わるアドレスはファイルパスとして扱われます。
+</Callout>
+
+タグからインストールします。
+
+```bash
+npx shadcn@latest add acme/toolkit/project-conventions#v1.0.0
+```
+
+完全なコミットSHAからインストールします。
+
+```bash
+npx shadcn@latest add acme/toolkit/project-conventions#c0ffee254729296a45d6691db565cf707a3fef5d
+```
+
+## ref
+
+`#ref` を使用してブランチ、タグ、コミットSHAからインストールします。
+
+```bash
+npx shadcn@latest add acme/toolkit/project-conventions#main
+```
+
+refにはスラッシュを含めることができます。
+
+```bash
+npx shadcn@latest add acme/toolkit/project-conventions#feature/conventions
+```
+
+refが指定されない場合、CLIはリポジトリのデフォルトブランチを使用します。
+
+CLIはGitを使用してブランチ、タグ、短いrefをコミットSHAに解決してからファイルを読み込みます。40文字の完全なコミットSHAは直接使用され、Gitは不要です。
+
+## インストール前の確認
+
+GitHubレジストリアイテムは公開リポジトリからコードとプロジェクトファイルをインストールします。GitHubアイテムアドレスはサードパーティのコード依存関係と同様に扱ってください。
+
+管理していないソースからインストールする前に:
+
+- リポジトリとルートの `registry.json` を確認してください。
+- アイテムの定義、特に `files`、`target`、`dependencies`、`devDependencies`、`registryDependencies`、`envVars` を確認してください。
+- 外部レジストリの依存関係を確認してください。他のレジストリからファイルをインストールする可能性があります。
+- 公開されたインストールコマンドにはピン留めされたrefを使用することをお勧めします。40文字の完全なコミットSHAが最も再現性の高いオプションです。
+- `shadcn view acme/toolkit/project-conventions` を使用して、インストール前に解決済みのアイテムペイロードを確認します。
+- アイテムの確認に助けが必要な場合は、`shadcn view` の出力をエージェントやレビューツールにパイプします。
+- `shadcn add acme/toolkit/project-conventions --dry-run` を使用して、ファイルを書き込まずにインストールをプレビューします。
+- `--diff` または `--view` を `shadcn add` と一緒に使用して、適用前にファイルの変更内容やファイルの内容を確認します。

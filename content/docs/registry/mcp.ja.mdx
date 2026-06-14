@@ -1,0 +1,157 @@
+---
+title: MCPサーバー
+description: レジストリ開発者向けのMCPサポート
+---
+
+[shadcn MCPサーバー](/docs/mcp)は、shadcn互換のレジストリであれば追加設定なしで動作します。レジストリのMCPサポートを有効にするために特別な作業は必要ありません。
+
+---
+
+## 前提条件
+
+MCPサーバーはレジストリインデックスをリクエストすることで動作します。レジストリのルートに `registry` という名前のレジストリアイテムファイルがあることを確認してください。
+
+例えば、レジストリが `https://acme.com/r/[name].json` でホストされている場合、`https://acme.com/r/registry.json` またはJSON拡張子を使用する場合は `https://acme.com/r/registry` にファイルがある必要があります。
+
+このファイルは [レジストリスキーマ](/docs/registry/registry-json) に準拠した有効なJSONファイルでなければなりません。
+
+---
+
+## MCPの設定
+
+レジストリのコンシューマーに対して、`components.json` ファイルでレジストリを設定し、shadcn MCPサーバーをインストールするよう依頼してください:
+
+<Tabs defaultValue="claude">
+  <TabsList>
+    <TabsTrigger value="claude">Claude Code</TabsTrigger>
+    <TabsTrigger value="cursor">Cursor</TabsTrigger>
+    <TabsTrigger value="vscode">VS Code</TabsTrigger>
+    <TabsTrigger value="codex">Codex</TabsTrigger>
+    <TabsTrigger value="opencode">OpenCode</TabsTrigger>
+  </TabsList>
+  <TabsContent value="claude" className="mt-4">
+    `components.json` ファイルで**レジストリを設定します**:
+
+    ```json title="components.json" showLineNumbers
+    {
+      "registries": {
+        "@acme": "https://acme.com/r/{name}.json"
+      }
+    }
+    ```
+
+    プロジェクトで**以下のコマンドを実行します**:
+
+    ```bash
+    npx shadcn@latest mcp init --client claude
+    ```
+
+    **Claude Codeを再起動**して、以下のプロンプトを試してください:
+       - acmeレジストリのコンポーネントを表示して
+       - acmeレジストリのアイテムを使ってランディングページを作成して
+
+    **注意:** Claude Codeで `/mcp` コマンドを使用してMCPサーバーをデバッグできます。
+
+  </TabsContent>
+
+  <TabsContent value="cursor" className="mt-4">
+    `components.json` ファイルで**レジストリを設定します**:
+
+    ```json title="components.json" showLineNumbers
+    {
+      "registries": {
+        "@acme": "https://acme.com/r/{name}.json"
+      }
+    }
+    ```
+    プロジェクトで**以下のコマンドを実行します**:
+       ```bash
+       npx shadcn@latest mcp init --client cursor
+       ```
+
+    **Cursor設定**を開き、shadcnの**MCPサーバーを有効にします**。その後、以下のプロンプトを試してください:
+       - acmeレジストリのコンポーネントを表示して
+       - acmeレジストリのアイテムを使ってランディングページを作成して
+
+  </TabsContent>
+
+  <TabsContent value="vscode" className="mt-4">
+    `components.json` ファイルで**レジストリを設定します**:
+
+    ```json title="components.json" showLineNumbers
+    {
+      "registries": {
+        "@acme": "https://acme.com/r/{name}.json"
+      }
+    }
+    ```
+    プロジェクトで**以下のコマンドを実行します**:
+       ```bash
+       npx shadcn@latest mcp init --client vscode
+       ```
+
+    `.vscode/mcp.json` を開き、shadcnサーバーの横にある**Start**をクリックします。その後、GitHub Copilotで以下のプロンプトを試してください:
+       - acmeレジストリのコンポーネントを表示して
+       - acmeレジストリのアイテムを使ってランディングページを作成して
+
+  </TabsContent>
+
+  <TabsContent value="codex" className="mt-4">
+    `components.json` ファイルで**レジストリを設定します**:
+
+    ```json title="components.json" showLineNumbers
+    {
+      "registries": {
+        "@acme": "https://acme.com/r/{name}.json"
+      }
+    }
+    ```
+
+    `~/.codex/config.toml` に**以下の設定を追加します**:
+       ```toml
+       [mcp_servers.shadcn]
+       command = "npx"
+       args = ["shadcn@latest", "mcp"]
+       ```
+
+    **Codexを再起動**して、以下のプロンプトを試してください:
+       - acmeレジストリのコンポーネントを表示して
+       - acmeレジストリのアイテムを使ってランディングページを作成して
+
+  </TabsContent>
+
+  <TabsContent value="opencode" className="mt-4">
+    `components.json` ファイルで**レジストリを設定します**:
+
+    ```json title="components.json" showLineNumbers
+    {
+      "registries": {
+        "@acme": "https://acme.com/r/{name}.json"
+      }
+    }
+    ```
+
+    プロジェクトで**以下のコマンドを実行します**:
+       ```bash
+       npx shadcn@latest mcp init --client opencode
+       ```
+
+    **OpenCodeを再起動**して、以下のプロンプトを試してください:
+       - acmeレジストリのコンポーネントを表示して
+       - acmeレジストリのアイテムを使ってランディングページを作成して
+
+  </TabsContent>
+</Tabs>
+
+MCPサーバーの詳細については [MCPドキュメント](/docs/mcp) をご覧ください。
+
+---
+
+## ベストプラクティス
+
+MCP互換レジストリのベストプラクティスを以下に示します:
+
+1. **明確な説明**: AIアシスタントがレジストリアイテムの用途と使い方を理解できるよう、簡潔で有益な説明を追加してください。
+2. **適切な依存関係**: MCPが自動的にインストールできるよう、すべての `dependencies` を正確に記載してください。
+3. **レジストリ依存関係**: アイテム間の関係を示すために `registryDependencies` を使用してください。
+4. **一貫した命名**: コンポーネント名にはケバブケースを使用し、レジストリ全体で一貫性を保ってください。

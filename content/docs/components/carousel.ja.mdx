@@ -1,0 +1,296 @@
+---
+title: Carousel
+description: Embla を使用したモーションとスワイプ機能を備えたカルーセル。
+base: base
+component: true
+links:
+  doc: https://www.embla-carousel.com/get-started/react
+  api: https://www.embla-carousel.com/api
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="carousel-demo"
+  previewClassName="h-80 sm:h-[32rem]"
+/>
+
+## について
+
+カルーセルコンポーネントは [Embla Carousel](https://www.embla-carousel.com/) ライブラリを使用して構築されています。
+
+## インストール
+
+<ComponentInstall name="carousel" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+```
+
+```tsx showLineNumbers
+<Carousel>
+  <CarouselContent>
+    <CarouselItem>...</CarouselItem>
+    <CarouselItem>...</CarouselItem>
+    <CarouselItem>...</CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
+```
+
+## 構成
+
+`Carousel` を構築するには以下の構成を使用します:
+
+```text
+Carousel
+├── CarouselContent
+│   ├── CarouselItem
+│   └── CarouselItem
+├── CarouselPrevious
+└── CarouselNext
+```
+
+## 例
+
+### サイズ
+
+アイテムのサイズを設定するには、`<CarouselItem />` に `basis` ユーティリティクラスを使用します。
+
+<ComponentPreview styleName="base-nova" name="carousel-size" />
+
+```tsx showLineNumbers {4-6}
+// カルーセル幅の 33%
+<Carousel>
+  <CarouselContent>
+    <CarouselItem className="basis-1/3">...</CarouselItem>
+    <CarouselItem className="basis-1/3">...</CarouselItem>
+    <CarouselItem className="basis-1/3">...</CarouselItem>
+  </CarouselContent>
+</Carousel>
+```
+
+```tsx showLineNumbers {4-6}
+// 小画面で 50%、大画面で 33%
+<Carousel>
+  <CarouselContent>
+    <CarouselItem className="md:basis-1/2 lg:basis-1/3">...</CarouselItem>
+    <CarouselItem className="md:basis-1/2 lg:basis-1/3">...</CarouselItem>
+    <CarouselItem className="md:basis-1/2 lg:basis-1/3">...</CarouselItem>
+  </CarouselContent>
+</Carousel>
+```
+
+### スペーシング
+
+アイテム間のスペーシングを設定するには、`<CarouselItem />` に `pl-[VALUE]` ユーティリティを、`<CarouselContent />` に負の `-ml-[VALUE]` を使用します。
+
+<ComponentPreview styleName="base-nova" name="carousel-spacing" />
+
+```tsx showLineNumbers /-ml-4/ /pl-4/
+<Carousel>
+  <CarouselContent className="-ml-4">
+    <CarouselItem className="pl-4">...</CarouselItem>
+    <CarouselItem className="pl-4">...</CarouselItem>
+    <CarouselItem className="pl-4">...</CarouselItem>
+  </CarouselContent>
+</Carousel>
+```
+
+```tsx showLineNumbers /-ml-2/ /pl-2/ /md:-ml-4/ /md:pl-4/
+<Carousel>
+  <CarouselContent className="-ml-2 md:-ml-4">
+    <CarouselItem className="pl-2 md:pl-4">...</CarouselItem>
+    <CarouselItem className="pl-2 md:pl-4">...</CarouselItem>
+    <CarouselItem className="pl-2 md:pl-4">...</CarouselItem>
+  </CarouselContent>
+</Carousel>
+```
+
+### 向き
+
+`orientation` プロパティを使用してカルーセルの向きを設定します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="carousel-orientation"
+  previewClassName="h-[32rem]"
+/>
+
+```tsx showLineNumbers /vertical | horizontal/
+<Carousel orientation="vertical | horizontal">
+  <CarouselContent>
+    <CarouselItem>...</CarouselItem>
+    <CarouselItem>...</CarouselItem>
+    <CarouselItem>...</CarouselItem>
+  </CarouselContent>
+</Carousel>
+```
+
+## オプション
+
+`opts` プロパティを使用してカルーセルにオプションを渡せます。詳細は [Embla Carousel ドキュメント](https://www.embla-carousel.com/api/options/) を参照してください。
+
+```tsx showLineNumbers {2-5}
+<Carousel
+  opts={{
+    align: "start",
+    loop: true,
+  }}
+>
+  <CarouselContent>
+    <CarouselItem>...</CarouselItem>
+    <CarouselItem>...</CarouselItem>
+    <CarouselItem>...</CarouselItem>
+  </CarouselContent>
+</Carousel>
+```
+
+## API
+
+ステートと `setApi` プロパティを使用してカルーセル API のインスタンスを取得します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="carousel-api"
+  previewClassName="sm:h-[32rem]"
+/>
+
+```tsx showLineNumbers {1,4,22}
+import { type CarouselApi } from "@/components/ui/carousel"
+
+export function Example() {
+  const [api, setApi] = React.useState<CarouselApi>()
+  const [current, setCurrent] = React.useState(0)
+  const [count, setCount] = React.useState(0)
+
+  React.useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap() + 1)
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+
+  return (
+    <Carousel setApi={setApi}>
+      <CarouselContent>
+        <CarouselItem>...</CarouselItem>
+        <CarouselItem>...</CarouselItem>
+        <CarouselItem>...</CarouselItem>
+      </CarouselContent>
+    </Carousel>
+  )
+}
+```
+
+## イベント
+
+`setApi` から取得した API インスタンスを使ってイベントをリッスンできます。
+
+```tsx showLineNumbers {1,4-14,16}
+import { type CarouselApi } from "@/components/ui/carousel"
+
+export function Example() {
+  const [api, setApi] = React.useState<CarouselApi>()
+
+  React.useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    api.on("select", () => {
+      // 選択時に何かを行う
+    })
+  }, [api])
+
+  return (
+    <Carousel setApi={setApi}>
+      <CarouselContent>
+        <CarouselItem>...</CarouselItem>
+        <CarouselItem>...</CarouselItem>
+        <CarouselItem>...</CarouselItem>
+      </CarouselContent>
+    </Carousel>
+  )
+}
+```
+
+イベントの使用方法については [Embla Carousel ドキュメント](https://www.embla-carousel.com/api/events/) を参照してください。
+
+## プラグイン
+
+`plugins` プロパティを使用してカルーセルにプラグインを追加できます。
+
+```ts showLineNumbers {1,6-10}
+import Autoplay from "embla-carousel-autoplay"
+
+export function Example() {
+  return (
+    <Carousel
+      plugins={[
+        Autoplay({
+          delay: 2000,
+        }),
+      ]}
+    >
+      // ...
+    </Carousel>
+  )
+}
+```
+
+<ComponentPreview
+  styleName="base-nova"
+  name="carousel-plugin"
+  previewClassName="sm:h-[32rem]"
+/>
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl) を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="carousel-rtl"
+  direction="rtl"
+  previewClassName="h-80 sm:h-[32rem]"
+/>
+
+RTL 言語向けにカルーセルをローカライズする場合、`opts` プロパティの `direction` オプションをテキストの方向に合わせて設定する必要があります。これにより、カルーセルが正しい方向にスクロールします。
+
+```tsx showLineNumbers {2-5}
+<Carousel
+  dir={dir}
+  opts={{
+    direction: dir,
+  }}
+>
+  <CarouselContent>
+    <CarouselItem>...</CarouselItem>
+    <CarouselItem>...</CarouselItem>
+    <CarouselItem>...</CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious className="rtl:rotate-180" />
+  <CarouselNext className="rtl:rotate-180" />
+</Carousel>
+```
+
+`direction` オプションは `"ltr"` または `"rtl"` を受け取り、`dir` プロパティの値と一致させる必要があります。また、ナビゲーションボタンが正しい方向を向くよう、`rtl:rotate-180` クラスで回転させることも推奨します。
+
+## API リファレンス
+
+プロパティとプラグインの詳細については [Embla Carousel ドキュメント](https://www.embla-carousel.com/api/) を参照してください。

@@ -2,7 +2,7 @@
 
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import { Button } from "@/styles/base/ui-rtl/button"
 import { ButtonGroup } from "@/styles/base/ui-rtl/button-group"
 
@@ -26,9 +26,7 @@ function formatNumber(value: number, locale: string) {
 }
 
 export function ButtonGroupNested() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
 
   return (
     <ButtonGroup dir={t.dir}>

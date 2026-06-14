@@ -13,11 +13,6 @@ import { Toaster as Sonner, toast, type ToasterProps } from "sonner"
 
 import { cn } from "@/lib/utils"
 
-// ============================================================================
-// Toaster — sonner の Provider（ルートに1つ配置）
-// ============================================================================
-
-// Type-differentiated icon badge: 28×28 rounded container with tinted bg
 function IconBadge({
   children,
   className,
@@ -76,13 +71,12 @@ const Toaster = ({ ...props }: ToasterProps) => {
           "--normal-bg": "var(--popover)",
           "--normal-text": "var(--popover-foreground)",
           "--normal-border": "var(--border)",
-          // Use 2xl radius to match the maia rounded-2xl aesthetic
+
           "--border-radius": "var(--radius-2xl)",
-          // Nudge icon badge left slightly into the padding zone
+
           "--toast-icon-margin-start": "-2px",
           "--toast-icon-margin-end": "6px",
-          // Float the close button outside the top-right corner (RTL-style positioning)
-          // — avoids any overlap with the in-flow action button
+
           "--toast-close-button-start": "auto",
           "--toast-close-button-end": "0",
           "--toast-close-button-transform": "translate(35%, -35%)",
@@ -91,7 +85,6 @@ const Toaster = ({ ...props }: ToasterProps) => {
       closeButton
       toastOptions={{
         classNames: {
-          // Expand [data-icon] beyond sonner's 16px default to fit the badge
           toast: "rounded-2xl group/toast [&_[data-icon]]:!size-7",
           title: "!text-sm !font-semibold",
           description: "!text-[0.8rem] !leading-snug !text-muted-foreground",
@@ -99,8 +92,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
             "!bg-primary !text-primary-foreground !text-xs !font-medium !rounded-4xl !h-7 !px-3 !py-0",
           cancelButton:
             "!bg-muted !text-muted-foreground !text-xs !font-medium !rounded-4xl !h-7 !px-3 !py-0 hover:!bg-muted/80",
-          // Ghost icon button — matches Dialog/Sheet close button (variant="ghost" size="icon-sm")
-          // Positioned outside the toast corner via CSS vars so it never collides with action buttons
+
           closeButton:
             "!size-7 !rounded-4xl !bg-background !border !border-border/30 !shadow-none !text-muted-foreground hover:!bg-muted hover:!text-foreground opacity-0 group-hover/toast:opacity-100 !transition-all !duration-150 [&_svg]:!size-3.5 !p-0",
         },

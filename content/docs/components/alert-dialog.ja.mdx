@@ -1,0 +1,149 @@
+---
+title: Alert Dialog
+description: 重要なコンテンツでユーザーの操作を中断し、応答を求めるモーダルダイアログ。
+featured: true
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/alert-dialog
+  api: https://base-ui.com/react/components/alert-dialog#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-dialog-demo"
+  previewClassName="h-56"
+/>
+
+## インストール
+
+<ComponentInstall name="alert-dialog" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+```
+
+```tsx showLineNumbers
+<AlertDialog>
+  <AlertDialogTrigger render={<Button variant="outline" />}>
+    Show Dialog
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This action cannot be undone. This will permanently delete your account
+        from our servers.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction>Continue</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+```
+
+## 構成
+
+`AlertDialog` の構成:
+
+```text
+AlertDialog
+├── AlertDialogTrigger
+└── AlertDialogContent
+    ├── AlertDialogHeader
+    │   ├── AlertDialogMedia
+    │   ├── AlertDialogTitle
+    │   └── AlertDialogDescription
+    └── AlertDialogFooter
+        ├── AlertDialogCancel
+        └── AlertDialogAction
+```
+
+## 使用例
+
+### ベーシック
+
+タイトル、説明文、キャンセルボタンと続行ボタンを持つ基本的なアラートダイアログ。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-dialog-basic"
+  previewClassName="h-56"
+/>
+
+### スモール
+
+`size="sm"` プロパティを使用してアラートダイアログを小さくします。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-dialog-small"
+  previewClassName="h-56"
+/>
+
+### メディア
+
+`AlertDialogMedia` コンポーネントを使用して、アイコンや画像などのメディア要素をアラートダイアログに追加します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-dialog-media"
+  previewClassName="h-56"
+/>
+
+### スモール + メディア
+
+`size="sm"` プロパティでダイアログを小さくしつつ、`AlertDialogMedia` コンポーネントでアイコンや画像などのメディア要素を追加します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-dialog-small-media"
+  previewClassName="h-56"
+/>
+
+### 破壊的
+
+`AlertDialogAction` コンポーネントを使用して、破壊的なアクションボタンをアラートダイアログに追加します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-dialog-destructive"
+  previewClassName="h-56"
+/>
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-dialog-rtl"
+  direction="rtl"
+  previewClassName="h-56"
+/>
+
+## API リファレンス
+
+### size
+
+`AlertDialogContent` コンポーネントの `size` プロパティを使用してアラートダイアログのサイズを制御します。以下の値を受け付けます:
+
+| Prop   | Type                | Default     |
+| ------ | ------------------- | ----------- |
+| `size` | `"default" \| "sm"` | `"default"` |
+
+他のコンポーネントとそのプロパティについては、[Base UI ドキュメント](https://base-ui.com/react/components/alert-dialog#api-reference)を参照してください。

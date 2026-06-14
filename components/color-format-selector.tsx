@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { getColorFormat, type Color } from "@/lib/colors"
+import { getColorFormat, type Color, type ColorFormat } from "@/lib/colors"
 import { cn } from "@/lib/utils"
 import { useColors } from "@/hooks/use-colors"
 import {
@@ -32,7 +32,7 @@ export function ColorFormatSelector({
       value={format}
       onValueChange={(value) => {
         if (value) {
-          setFormat(value)
+          setFormat(value as ColorFormat)
         }
       }}
     >

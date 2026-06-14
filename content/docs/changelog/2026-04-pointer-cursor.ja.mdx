@@ -1,0 +1,24 @@
+---
+title: 2026年4月 - ポインターカーソル
+description: プロジェクトセットアップ時にボタンのカーソルポインター動作を追加。
+date: 2026-04-25
+---
+
+プロジェクトを初期化する際に、ボタンに `cursor: pointer` を有効化できるようになりました。
+
+```bash
+npx shadcn@latest init --pointer
+```
+
+これにより、グローバル CSS ファイルに以下の CSS が追加されます：
+
+```css title="globals.css"
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+```
+
+`--pointer` オプションは preset コードには含まれません。`--rtl` と同様に、プロジェクトセットアップのオプションとして適用されます。

@@ -1,0 +1,108 @@
+---
+title: Gatsby
+description: Gatsby 向けに shadcn/ui をインストールして設定する。
+---
+
+<Callout className="mb-6 border-blue-600 bg-blue-50 dark:border-blue-900 dark:bg-blue-950 [&_code]:bg-blue-100 dark:[&_code]:bg-blue-900">
+  **注意:** このガイドは Tailwind CSS v3 を使用した Gatsby 向けです。新規プロジェクトには、Tailwind CSS v4 をサポートする他のフレームワークを推奨します。
+</Callout>
+
+<Steps>
+
+### プロジェクトを作成する
+
+`create-gatsby` を使って新しい Gatsby プロジェクトを作成します：
+
+```bash
+npm init gatsby
+```
+
+### TypeScript と Tailwind CSS を使うよう Gatsby プロジェクトを設定する
+
+いくつかの質問に答えてプロジェクトを設定します：
+
+```txt showLineNumbers
+✔ What would you like to call your site?
+· your-app-name
+✔ What would you like to name the folder where your site will be created?
+· your-app-name
+✔ Will you be using JavaScript or TypeScript?
+· TypeScript
+✔ Will you be using a CMS?
+· Choose whatever you want
+✔ Would you like to install a styling system?
+· Tailwind CSS
+✔ Would you like to install additional features with other plugins?
+· Choose whatever you want
+✔ Shall we do this? (Y/n) · Yes
+```
+
+### tsconfig.json ファイルを編集する
+
+パスを解決するために `tsconfig.json` に以下のコードを追加します：
+
+```ts {4-9} showLineNumbers
+{
+  "compilerOptions": {
+    // ...
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+    // ...
+  }
+}
+```
+
+### gatsby-node.ts ファイルを作成する
+
+プロジェクトのルートに `gatsby-node.ts` ファイルがなければ作成し、以下のコードを追加してパスを解決できるようにします：
+
+```ts
+import * as path from "path"
+
+export const onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        "@/components": path.resolve(__dirname, "src/components"),
+        "@/lib/utils": path.resolve(__dirname, "src/lib/utils"),
+      },
+    },
+  })
+}
+```
+
+### CLI を実行する
+
+`shadcn` init コマンドでプロジェクトをセットアップします：
+
+```bash
+npx shadcn@latest init
+```
+
+### 完了
+
+これでプロジェクトにコンポーネントを追加できます。
+
+```bash
+npx shadcn@latest add button
+```
+
+上のコマンドで `Button` コンポーネントが追加されます。次のようにインポートできます：
+
+```tsx {1,6} showLineNumbers
+import { Button } from "@/components/ui/button"
+
+export default function Home() {
+  return (
+    <div>
+      <Button>Click me</Button>
+    </div>
+  )
+}
+```
+
+</Steps>

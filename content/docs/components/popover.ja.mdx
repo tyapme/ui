@@ -1,0 +1,82 @@
+---
+title: Popover
+description: ボタンによってトリガーされ、ポータルにリッチなコンテンツを表示します。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/popover
+  api: https://base-ui.com/react/components/popover#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="popover-demo" />
+
+## インストール
+
+<ComponentInstall name="popover" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+```
+
+```tsx showLineNumbers
+<Popover>
+  <PopoverTrigger render={<Button variant="outline" />}>
+    Open Popover
+  </PopoverTrigger>
+  <PopoverContent>
+    <PopoverHeader>
+      <PopoverTitle>Title</PopoverTitle>
+      <PopoverDescription>Description text here.</PopoverDescription>
+    </PopoverHeader>
+  </PopoverContent>
+</Popover>
+```
+
+## コンポジション
+
+`Popover` を構築するには以下のコンポジションを使用します:
+
+```text
+Popover
+├── PopoverTrigger
+└── PopoverContent
+```
+
+## 例
+
+### ベーシック
+
+ヘッダー、タイトル、説明を含むシンプルなポップオーバー。
+
+<ComponentPreview styleName="base-nova" name="popover-basic" />
+
+### 配置
+
+`PopoverContent` の `align` プロップを使って水平方向の配置を制御します。
+
+<ComponentPreview styleName="base-nova" name="popover-alignments" />
+
+### フォーム付き
+
+フォームフィールドを含むポップオーバー。
+
+<ComponentPreview styleName="base-nova" name="popover-form" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="popover-rtl" direction="rtl" />
+
+## API リファレンス
+
+[Base UI Popover](https://base-ui.com/react/components/popover#api-reference) ドキュメントを参照してください。

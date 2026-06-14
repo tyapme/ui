@@ -3,7 +3,7 @@
 import * as React from "react"
 import { AudioLinesIcon, PlusIcon } from "lucide-react"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import { Button } from "@/styles/base/ui-rtl/button"
 import { ButtonGroup } from "@/styles/base/ui-rtl/button-group"
 import {
@@ -36,9 +36,7 @@ const translations = {
 }
 
 export function ButtonGroupInputGroup() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
   const [voiceEnabled, setVoiceEnabled] = React.useState(false)
 
   return (

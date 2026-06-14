@@ -6,10 +6,6 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/registry/bases/base/lib/utils"
 
-// ─── Animation CSS (transitions-dev: page-side-by-side) ──────────────
-// Co-located with the component because the selectors reference data-direction,
-// an attribute set by this component's React logic.
-// React 19 hoists <style precedence href> to <head> and deduplicates across instances.
 const TABS_ANIMATION_CSS = `
 .cn-tabs-content {
   transition:
@@ -36,18 +32,20 @@ const TABS_ANIMATION_CSS = `
 }
 `
 
-// ─── Direction context ────────────────────────────────────────────────
 type TabsCtxValue = {
   direction: "forward" | "backward" | null
   registerTab: (value: string) => () => void
 }
+
+type TabsValueChange = NonNullable<TabsPrimitive.Root.Props["onValueChange"]>
+type TabsValue = Parameters<TabsValueChange>[0]
+type TabsChangeDetails = Parameters<TabsValueChange>[1]
 
 const TabsCtx = React.createContext<TabsCtxValue>({
   direction: null,
   registerTab: () => () => {},
 })
 
-// ─── Tabs ─────────────────────────────────────────────────────────────
 function Tabs({
   className,
   orientation = "horizontal",
@@ -72,42 +70,48 @@ function Tabs({
   }, [])
 
   const handleValueChange = React.useCallback(
-    (newValue: string | null) => {
+    (newValue: TabsValue | null, eventDetails: TabsChangeDetails) => {
       if (newValue == null) return
       const prev = prevValueRef.current
-      if (prev != null && prev !== newValue) {
+      const nextValue = String(newValue)
+      if (prev != null && prev !== nextValue) {
         const order = tabOrderRef.current
         const prevIdx = order.indexOf(prev)
-        const nextIdx = order.indexOf(newValue)
+        const nextIdx = order.indexOf(nextValue)
         if (prevIdx !== -1 && nextIdx !== -1) {
           setDirection(nextIdx > prevIdx ? "forward" : "backward")
         }
       }
-      prevValueRef.current = newValue
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ;(onValueChange as any)?.(newValue)
+      prevValueRef.current = nextValue
+
+      onValueChange?.(newValue, eventDetails)
     },
     [onValueChange]
   )
 
   return (
     <TabsCtx.Provider value={{ direction, registerTab }}>
-      {/* React 19: hoisted to <head>, deduplicated by href across all Tabs instances */}
-      <style precedence="component" href="cn-tabs-animation">{TABS_ANIMATION_CSS}</style>
+      <style precedence="component" href="cn-tabs-animation">
+        {TABS_ANIMATION_CSS}
+      </style>
       <TabsPrimitive.Root
         data-slot="tabs"
         data-orientation={orientation}
         defaultValue={defaultValue}
         value={valueProp}
-        onValueChange={handleValueChange as TabsPrimitive.Root.Props["onValueChange"]}
-        className={cn("cn-tabs group/tabs flex data-horizontal:flex-col", className)}
+        onValueChange={
+          handleValueChange as TabsPrimitive.Root.Props["onValueChange"]
+        }
+        className={cn(
+          "cn-tabs group/tabs flex data-horizontal:flex-col",
+          className
+        )}
         {...props}
       />
     </TabsCtx.Provider>
   )
 }
 
-// ─── TabsList ──────────────────────────────────────────────────────────
 const tabsListVariants = cva(
   "cn-tabs-list group/tabs-list inline-flex w-fit items-center justify-center group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col",
   {
@@ -138,12 +142,7 @@ function TabsList({
   )
 }
 
-// ─── TabsTrigger ───────────────────────────────────────────────────────
-function TabsTrigger({
-  className,
-  value,
-  ...props
-}: TabsPrimitive.Tab.Props) {
+function TabsTrigger({ className, value, ...props }: TabsPrimitive.Tab.Props) {
   const { registerTab } = React.useContext(TabsCtx)
 
   React.useLayoutEffect(() => {
@@ -156,16 +155,15 @@ function TabsTrigger({
       data-slot="tabs-trigger"
       value={value}
       className={cn(
-        // Base layout + snappy transitions + press feedback
-        "cn-tabs-trigger relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center whitespace-nowrap transition-all duration-150 active:scale-[0.97] group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
-        // Default variant inactive
+        "cn-tabs-trigger relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center whitespace-nowrap transition-all duration-150 group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:outline-none active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+
         "text-foreground/40 hover:text-foreground/70 dark:text-foreground/35 dark:hover:text-foreground/65",
-        // Default variant active — bold inversion
+
         "data-active:bg-foreground data-active:text-background data-active:hover:text-background",
-        // Line variant — text-only active
-        "group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:bg-transparent group-data-[variant=line]/tabs-list:data-active:text-foreground group-data-[variant=line]/tabs-list:text-foreground/45 group-data-[variant=line]/tabs-list:hover:text-foreground group-data-[variant=line]/tabs-list:data-active:font-medium",
-        // Line indicator: grows from center (scale-x 0→1) + fades
-        "after:absolute after:rounded-full after:bg-foreground after:origin-center after:scale-x-0 after:opacity-0 after:transition-[opacity,transform] after:duration-200 group-data-horizontal/tabs:after:inset-x-1 group-data-horizontal/tabs:after:bottom-[-4px] group-data-horizontal/tabs:after:h-[3px] group-data-vertical/tabs:after:inset-y-1 group-data-vertical/tabs:after:-right-1 group-data-vertical/tabs:after:w-[3px] group-data-[variant=line]/tabs-list:data-active:after:scale-x-100 group-data-[variant=line]/tabs-list:data-active:after:opacity-100",
+
+        "group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:text-foreground/45 group-data-[variant=line]/tabs-list:hover:text-foreground group-data-[variant=line]/tabs-list:data-active:bg-transparent group-data-[variant=line]/tabs-list:data-active:font-medium group-data-[variant=line]/tabs-list:data-active:text-foreground",
+
+        "after:absolute after:origin-center after:scale-x-0 after:rounded-full after:bg-foreground after:opacity-0 after:transition-[opacity,transform] after:duration-200 group-data-horizontal/tabs:after:inset-x-1 group-data-horizontal/tabs:after:bottom-[-4px] group-data-horizontal/tabs:after:h-[3px] group-data-vertical/tabs:after:inset-y-1 group-data-vertical/tabs:after:-right-1 group-data-vertical/tabs:after:w-[3px] group-data-[variant=line]/tabs-list:data-active:after:scale-x-100 group-data-[variant=line]/tabs-list:data-active:after:opacity-100",
         className
       )}
       {...props}
@@ -173,7 +171,6 @@ function TabsTrigger({
   )
 }
 
-// ─── TabsContent ───────────────────────────────────────────────────────
 function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {
   const { direction } = React.useContext(TabsCtx)
 
@@ -181,7 +178,10 @@ function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {
     <TabsPrimitive.Panel
       data-slot="tabs-content"
       data-direction={direction ?? undefined}
-      className={cn("cn-tabs-content flex-1 outline-none &[hidden]:!hidden", className)}
+      className={cn(
+        "cn-tabs-content &[hidden]:!hidden flex-1 outline-none",
+        className
+      )}
       {...props}
     />
   )

@@ -3,8 +3,8 @@ import Link from "next/link"
 
 import { siteConfig } from "@/lib/config"
 import { Icons } from "@/components/icons"
-import { Button } from "@/registry/new-york-v4/ui/button"
-import { Skeleton } from "@/registry/new-york-v4/ui/skeleton"
+import { Button } from "@/styles/base/ui/button"
+import { Skeleton } from "@/styles/base/ui/skeleton"
 
 export function GitHubLink() {
   return (
@@ -20,19 +20,5 @@ export function GitHubLink() {
 }
 
 export async function StarsCount() {
-  const data = await fetch("https://api.github.com/repos/shadcn-ui/ui", {
-    next: { revalidate: 86400 },
-  })
-  const json = await data.json()
-
-  const formattedCount =
-    json.stargazers_count >= 1000
-      ? `${Math.round(json.stargazers_count / 1000)}k`
-      : json.stargazers_count?.toLocaleString()
-
-  return (
-    <span className="w-fit text-xs text-muted-foreground tabular-nums">
-      {formattedCount}
-    </span>
-  )
+  return <span className="w-fit text-xs text-muted-foreground">GitHub</span>
 }

@@ -4,6 +4,7 @@ import {
   LanguageProvider,
   LanguageSelector,
   useLanguageContext,
+  useRtlTranslation,
 } from "@/components/language-selector"
 import { DirectionProvider } from "@/styles/base/ui-rtl/direction"
 import { FieldSeparator } from "@/styles/base/ui-rtl/field"
@@ -25,8 +26,14 @@ import { NotionPromptForm } from "./notion-prompt-form"
 import { SpinnerBadge } from "./spinner-badge"
 import { SpinnerEmpty } from "./spinner-empty"
 
+const sectionLabels = {
+  ar: { dir: "rtl" as const, appearanceSettings: "إعدادات المظهر" },
+  he: { dir: "rtl" as const, appearanceSettings: "הגדרות מראה" },
+}
+
 function RtlComponentsContent() {
   const context = useLanguageContext()
+  const { appearanceSettings } = useRtlTranslation(sectionLabels)
 
   if (!context) {
     return null
@@ -61,7 +68,7 @@ function RtlComponentsContent() {
         <InputGroupButtonExample />
         <ItemDemo />
         <FieldSeparator className="my-4">
-          {language === "he" ? "הגדרות מראה" : "إعدادات المظهر"}
+          {appearanceSettings}
         </FieldSeparator>
         <AppearanceSettings />
       </div>

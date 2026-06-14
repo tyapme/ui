@@ -10,12 +10,8 @@ import {
   type TimeValue as AriaTimeValue,
 } from "react-aria-components"
 
-import { cn } from "@/registry/bases/base/lib/utils"
 import { useShakeOnInvalid } from "@/hooks/use-shake-on-invalid"
-
-// ============================================================================
-// TimeSegment — 個別の時刻セグメント（時/分/秒）
-// ============================================================================
+import { cn } from "@/registry/bases/base/lib/utils"
 
 function TimeSegment({
   className,
@@ -35,10 +31,6 @@ function TimeSegment({
     />
   )
 }
-
-// ============================================================================
-// TimeFieldInput — セグメント型時刻入力
-// ============================================================================
 
 interface TimeFieldInputProps {
   value?: Date
@@ -93,7 +85,7 @@ function TimeFieldInput({
       <div ref={ref} className="t-input">
         <AriaDateInput
           data-slot="time-field-input"
-          className="inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs outline-none transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40"
+          className="inline-flex h-8 w-full items-center rounded-lg border border-input bg-transparent px-3 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40"
         >
           {(segment) => <TimeSegment segment={segment} />}
         </AriaDateInput>

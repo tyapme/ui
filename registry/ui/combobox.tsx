@@ -6,6 +6,7 @@ import { Combobox as ComboboxPrimitive } from "@base-ui/react"
 import { useShakeOnInvalid } from "@/hooks/use-shake-on-invalid"
 import { cn } from "@/registry/bases/base/lib/utils"
 import { Button } from "@/registry/ui/button"
+import { ScrollMask } from "@/registry/ui/scroll-mask"
 import {
   InputGroup,
   InputGroupAddon,
@@ -23,14 +24,17 @@ function ComboboxValue({ ...props }: ComboboxPrimitive.Value.Props) {
 function ComboboxTrigger({
   className,
   children,
+  render: renderProp,
+  nativeButton,
   ...props
 }: ComboboxPrimitive.Trigger.Props) {
+  const hasCustomRender = renderProp !== undefined
   return (
     <ComboboxPrimitive.Trigger
       data-slot="combobox-trigger"
       className={cn("cn-combobox-trigger", className)}
-      render={<span />}
-      nativeButton={false}
+      render={hasCustomRender ? renderProp : <span />}
+      nativeButton={nativeButton ?? (hasCustomRender ? true : false)}
       {...props}
     >
       {children}
@@ -81,7 +85,10 @@ function ComboboxInput({
   const ref = React.useRef<HTMLDivElement>(null)
   useShakeOnInvalid(ref)
   return (
-    <InputGroup ref={ref} className={cn("cn-combobox-input t-input w-auto", className)}>
+    <InputGroup
+      ref={ref}
+      className={cn("cn-combobox-input t-input w-auto", className)}
+    >
       <ComboboxPrimitive.Input
         render={<InputGroupInput disabled={disabled} />}
         {...props}
@@ -143,13 +150,17 @@ function ComboboxContent({
 
 function ComboboxList({ className, ...props }: ComboboxPrimitive.List.Props) {
   return (
-    <ComboboxPrimitive.List
-      data-slot="combobox-list"
-      className={cn(
-        "cn-combobox-list overflow-y-auto overscroll-contain",
-        className
-      )}
-      {...props}
+    <ScrollMask
+      render={
+        <ComboboxPrimitive.List
+          data-slot="combobox-list"
+          className={cn(
+            "cn-combobox-list overflow-y-auto overscroll-contain",
+            className
+          )}
+          {...props}
+        />
+      }
     />
   )
 }

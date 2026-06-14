@@ -25,10 +25,6 @@ import {
 
 import { cn } from "@/lib/utils"
 
-// ---------------------------------------------------------------------------
-// ColorPicker
-// ---------------------------------------------------------------------------
-
 function ColorPicker({
   children,
   className,
@@ -114,10 +110,6 @@ function ColorPickerContent({
   )
 }
 
-// ---------------------------------------------------------------------------
-// ColorArea
-// ---------------------------------------------------------------------------
-
 function ColorArea({ className, children, ...props }: ColorAreaProps) {
   return (
     <ColorAreaPrimitive
@@ -148,10 +140,6 @@ function ColorAreaThumb({ className, ...props }: ColorThumbProps) {
 }
 
 ColorArea.Thumb = ColorAreaThumb
-
-// ---------------------------------------------------------------------------
-// ColorSlider
-// ---------------------------------------------------------------------------
 
 function ColorSlider({ className, children, ...props }: ColorSliderProps) {
   return (
@@ -208,10 +196,6 @@ ColorSlider.Track = ColorSliderTrack
 ColorSlider.Thumb = ColorSliderThumb
 ColorSlider.Output = ColorSliderOutput
 
-// ---------------------------------------------------------------------------
-// ColorSwatch
-// ---------------------------------------------------------------------------
-
 function ColorSwatch({ className, ...props }: ColorSwatchProps) {
   return (
     <ColorSwatchPrimitive
@@ -225,10 +209,6 @@ function ColorSwatch({ className, ...props }: ColorSwatchProps) {
     />
   )
 }
-
-// ---------------------------------------------------------------------------
-// ColorSwatchPicker
-// ---------------------------------------------------------------------------
 
 function ColorSwatchPicker({
   className,

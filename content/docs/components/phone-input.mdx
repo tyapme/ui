@@ -1,0 +1,150 @@
+---
+title: Phone Input
+description: 国選択とバリデーションを備えた電話番号入力コンポーネント。
+component: true
+base: base
+links:
+  api: https://gitlab.com/catamphetamine/react-phone-number-input
+---
+
+[react-phone-number-input](https://gitlab.com/catamphetamine/react-phone-number-input) を利用して構築した、国セレクター付きの電話番号入力です。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="phone-input-demo"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/phone-input.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install react-phone-number-input
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="phone-input"
+  title="components/ui/phone-input.tsx"
+  styleName="base-nova"
+/>
+
+<Step>import パスをプロジェクト構成に合わせて更新します。</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx
+import { PhoneInput } from "@/components/ui/phone-input"
+```
+
+```tsx
+const [value, setValue] = useState("")
+
+return (
+  <PhoneInput
+    placeholder="Enter phone number"
+    defaultCountry="US"
+    value={value}
+    onChange={setValue}
+  />
+)
+```
+
+`value` は E.164 形式（例: `+14155552671`）の文字列です。
+
+## サンプル
+
+### サイズ
+
+`variant` で `"sm"` / `"default"` / `"lg"` を切り替えられます。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="phone-input-sizes"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+### 多言語対応
+
+国名は `labels`（`react-phone-number-input/locale/*.json`）で、検索プレースホルダーや「該当なし」表示は `messages` でローカライズできます。アラビア語では `dir="rtl"` でレイアウトが反転します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="phone-input-i18n"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+```tsx
+import labels from "react-phone-number-input/locale/ja.json"
+
+<PhoneInput
+  labels={labels}
+  defaultCountry="JP"
+  placeholder="電話番号を入力"
+  messages={{ searchPlaceholder: "国を検索…", noResults: "該当する国がありません。" }}
+  value={value}
+  onChange={setValue}
+/>
+```
+
+## API リファレンス
+
+### PhoneInput
+
+電話番号を入力し、国を選択するためのメインコンポーネント。
+
+| Prop             | Type                          | Default     | Description                                            |
+| :--------------- | :---------------------------- | :---------- | :----------------------------------------------------- |
+| `value`          | `string`                      | -           | 現在の電話番号（E.164 形式）。                         |
+| `onChange`       | `(value: string) => void`     | -           | 値が変化したときに呼ばれるコールバック。               |
+| `variant`        | `"sm" \| "default" \| "lg"`   | `"default"` | 入力と国セレクターの縦サイズ。                         |
+| `defaultCountry` | `Country`                     | -           | 値が未指定のときに選択される国。                       |
+| `placeholder`    | `string`                      | -           | 電話番号入力のプレースホルダー。                       |
+| `messages`       | `Partial<PhoneInputMessages>` | -           | 国セレクターの UI 文言（検索・該当なし）。             |
+| `popupClassName` | `string`                      | -           | 国選択ドロップダウンへの追加クラス。                   |
+| `disabled`       | `boolean`                     | `false`     | 入力と国セレクターを無効化するか。                     |
+| `className`      | `string`                      | -           | ルートコンテナへの追加クラス。                         |
+
+---
+
+### PhoneInputMessages
+
+国セレクターのローカライズ文言。
+
+| Property            | Type     | Description                          |
+| :------------------ | :------- | :----------------------------------- |
+| `searchPlaceholder` | `string` | 国検索ボックスのプレースホルダー。   |
+| `noResults`         | `string` | 検索結果が無いときの表示。           |
+
+---
+
+### External Props
+
+このコンポーネントは [react-phone-number-input](https://gitlab.com/catamphetamine/react-phone-number-input#props) のすべての props も受け付けます（`labels` による国名のローカライズなど）。

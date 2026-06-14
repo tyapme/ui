@@ -1,0 +1,206 @@
+---
+title: 2025年8月 - shadcn CLI 3.0 と MCP サーバー
+description: 名前空間付きレジストリ、高度な認証、新しいコマンド、完全に書き直されたレジストリエンジン。
+date: 2025-08-27
+---
+
+名前空間付きレジストリ、高度な認証、新しいコマンド、完全に書き直されたレジストリエンジンを備えた shadcn CLI 3.0 をリリースしました。
+
+### 新機能
+
+- [名前空間付きレジストリ](#namespaced-registries) - `@registry/name` 形式でコンポーネントをインストール。
+- [プライベートレジストリ](#private-registries) - 高度な認証でレジストリを保護。
+- [検索と発見](#search--discovery) - インストール前にコードを探して確認する新しいコマンド。
+- [MCP サーバー](#mcp-server) - すべてのレジストリ向け MCP サーバー。
+- [すべてが高速化](#faster-everything) - 完全に書き直されたレジストリ解決。
+- [エラーハンドリングの改善](#improved-error-handling) - ユーザーと LLM 向けのより良いエラーメッセージ。
+- [アップグレードガイド](#upgrade-guide) - 既存ユーザー向けの移行メモ。
+
+### 名前空間付きレジストリ
+
+3.0 の最大の変更点は名前空間付きレジストリです。`@registry/name` 形式を使用して、コミュニティレジストリ、会社のプライベートレジストリ、または内部レジストリからコンポーネントをインストールできるようになりました。
+
+これにより、チームやプロジェクト間でコードを配布しやすくなります。
+
+`components.json` でレジストリを設定します：
+
+```json title="components.json"
+{
+  "registries": {
+    "@acme": "https://acme.com/r/{name}.json",
+    "@internal": {
+      "url": "https://registry.company.com/{name}",
+      "headers": {
+        "Authorization": "Bearer ${REGISTRY_TOKEN}"
+      }
+    }
+  }
+}
+```
+
+次に `@registry/name` 形式でコンポーネントをインストールします：
+
+```bash
+npx shadcn add @acme/button @internal/auth-system
+```
+
+完全に分散型です。中央のレジストラーはありません。任意の名前空間を作成し、チームにとって意味のある方法でコンポーネントを整理できます。
+
+```json title="components.json" showLineNumbers
+{
+  "registries": {
+    "@design": "https://registry.company.com/create/{name}.json",
+    "@engineering": "https://registry.company.com/eng/{name}.json",
+    "@marketing": "https://registry.company.com/marketing/{name}.json"
+  }
+}
+```
+
+コンポーネントは異なるレジストリのリソースに依存することさえできます。すべてが自動的に解決され、正しいソースからインストールされます。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "name": "dashboard",
+  "type": "registry:block",
+  "registryDependencies": [
+    "@shadcn/card", // デフォルトレジストリから
+    "@v0/chart", // v0 レジストリから
+    "@acme/data-table", // acme レジストリから
+    "@lib/data-fetcher", // ユーティリティライブラリ
+    "@ai/analytics-prompt" // AI プロンプトリソース
+  ]
+}
+```
+
+### プライベートレジストリ
+
+コンポーネントをプライベートに保つ必要がありますか？対応しています。トークン、API キー、またはカスタムヘッダーで認証を設定できます：
+
+```json title="components.json"
+{
+  "registries": {
+    "@private": {
+      "url": "https://registry.company.com/{name}.json",
+      "headers": {
+        "Authorization": "Bearer ${REGISTRY_TOKEN}"
+      }
+    }
+  }
+}
+```
+
+プライベートコンポーネントはプライベートのまま保たれます。独自の UI ライブラリを持つエンタープライズチームに最適です。
+
+basic 認証、Bearer トークン、API キークエリパラメータ、カスタムヘッダーなど、主要な認証方法すべてをサポートしています。
+
+詳細は[認証ドキュメント](/docs/registry/authentication)をご覧ください。
+
+### 検索と発見
+
+3 つの新しいコマンドで必要なものを正確に見つけやすくなりました：
+
+1. インストール前にレジストリのアイテムを確認する
+
+```bash
+npx shadcn view @acme/auth-system
+```
+
+2. レジストリのアイテムを検索する
+
+```bash
+npx shadcn search @tweakcn -q "dark"
+```
+
+3. レジストリのすべてのアイテムを一覧表示する
+
+```bash
+npx shadcn list @acme
+```
+
+インストール前にコンポーネントをプレビューする。複数のレジストリを横断検索する。コードとすべての依存関係を事前に確認する。
+
+### MCP サーバー
+
+<Image
+  src="/images/mcp.jpeg"
+  width="1432"
+  height="1050"
+  alt="MCP Server"
+  className="mt-6 w-full overflow-hidden rounded-lg border"
+/>
+
+4 月に MCP サーバーの最初のバージョンを[発表](https://x.com/shadcn/status/1917597228513853603)しました。それ以来、学んだすべてを活かして、より良い MCP サーバーを構築しました。
+
+新しい点：
+
+- すべてのレジストリで動作。ゼロ設定
+- お気に入りの MCP クライアントへの追加が 1 コマンドで可能
+- 基礎となるツールを改善
+- CLI とレジストリとのより良い統合
+- 同じプロジェクト内での複数レジストリのサポート
+
+プロジェクトに MCP サーバーを追加する：
+
+```bash
+npx shadcn@latest mcp init
+```
+
+詳細は[ドキュメント](/docs/mcp)をご覧ください。
+
+### すべてが高速化
+
+レジストリ解決エンジンをゼロから完全に書き直しました。より速く、よりスマートで、最も複雑な依存関係ツリーにも対応します。
+
+- 依存関係の解決が最大 3 倍高速化
+- よりスマートなファイルの重複排除とマージ
+- モノレポのサポートが標準で向上
+- レジストリ作者向けに `build` コマンドを更新
+
+### エラーハンドリングの改善
+
+レジストリ開発者が問題発生時にユーザー（および LLM）をガイドするカスタムエラーメッセージを提供できるようになりました。CLI は一般的な問題に対して分かりやすく実行可能なエラーを表示します：
+
+```txt
+Unknown registry "@acme". Make sure it is defined in components.json as follows:
+{
+  "registries": {
+    "@acme": "[URL_TO_REGISTRY]"
+  }
+}
+```
+
+環境変数が不足している場合、CLI は必要なものを正確に教えてくれます：
+
+```txt
+Registry "@private" requires the following environment variables:
+  • REGISTRY_TOKEN
+
+Set the required environment variables in your .env or .env.local file.
+```
+
+レジストリ作者はレスポンスにカスタムエラーメッセージを提供して、ユーザーや AI エージェントが問題を素早く理解して修正できるようにすることができます。
+
+```txt
+Error:
+You are not authorized to access the item at http://example.com/r/component.
+
+Message:
+[Unauthorized] Your API key has expired. Renew it at https://example.com/api/renew-key.
+```
+
+### アップグレードガイド
+
+最も良い点は、ユーザーへの破壊的変更がないことです。既存の `components.json` はまったく同じように動作します。インストール済みのコンポーネントもすべてまったく同じように動作します。
+
+開発者向けには、プログラム API を直接使用している場合、いくつかの関数が非推奨になり、より良いものに置き換えられました：
+
+- `fetchRegistry` → `getRegistry`
+- `resolveRegistryTree` → `resolveRegistryItems`
+- スキーマが `shadcn/registry` から `shadcn/schema` パッケージに移動
+
+```diff
+- import { registryItemSchema } from "shadcn/registry"
++ import { registryItemSchema } from "shadcn/schema"
+```
+
+以上です。本当に。それ以外はそのまま動作します。

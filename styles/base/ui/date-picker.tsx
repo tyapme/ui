@@ -26,15 +26,10 @@ import {
   PopoverTrigger,
 } from "@/styles/base/ui/popover"
 
-// ローカル型定義 (react-day-picker 非依存)
 type DateRange = {
   from: Date | undefined
   to?: Date | undefined
 }
-
-// ============================================================================
-// DateSegment — 個別の日付セグメント（年/月/日）
-// ============================================================================
 
 function DateSegment({
   className,
@@ -53,10 +48,6 @@ function DateSegment({
     />
   )
 }
-
-// ============================================================================
-// DateFieldInput — セグメント型日付入力
-// ============================================================================
 
 type Granularity = "day" | "hour" | "minute" | "second"
 
@@ -147,10 +138,6 @@ function DateFieldInput({
   )
 }
 
-// ============================================================================
-// TimeFieldInput — セグメント型時刻入力
-// ============================================================================
-
 interface TimeFieldInputProps {
   value?: Date
   onValueChange?: (date: Date | undefined) => void
@@ -208,10 +195,6 @@ function TimeFieldInput({
     </AriaTimeField>
   )
 }
-
-// ============================================================================
-// DatePicker — セグメント入力 + カレンダーポップオーバー
-// ============================================================================
 
 interface DatePickerProps {
   value?: Date
@@ -335,10 +318,6 @@ function DatePicker({
     </div>
   )
 }
-
-// ============================================================================
-// DateRangePicker — セグメント入力 (start - end) + カレンダー
-// ============================================================================
 
 interface DateRangePickerProps {
   value?: DateRange

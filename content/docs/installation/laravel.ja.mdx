@@ -1,0 +1,150 @@
+---
+title: Laravel
+description: Laravel 向けに shadcn/ui をインストールして設定する。
+---
+
+shadcn CLI は新しい Laravel アプリをスキャフォールドしません。まず React スターターキットで Laravel アプリを作成してから、shadcn/ui の設定方法を選んでください。
+
+<Steps>
+
+### プロジェクトを作成する
+
+Laravel インストーラーで新しい Laravel アプリを作成します：
+
+```bash
+laravel new my-app
+```
+
+React と Inertia が設定済みの Laravel アプリがある場合はこのステップをスキップしてください。
+
+プロンプトで **React** スターターキットを選択してください。詳細は公式の [Laravel フロントエンドドキュメント](https://laravel.com/docs/12.x/frontend) を参照してください。
+
+次にプロジェクトディレクトリに移動します：
+
+```bash
+cd my-app
+```
+
+</Steps>
+
+<div className="mt-10 grid gap-4 sm:grid-cols-2 sm:gap-6">
+  <LinkedCard
+    href="#configure-with-create"
+    className="items-start gap-1 p-6 text-sm md:p-6"
+  >
+    <div className="font-medium">shadcn/create を使う</div>
+    <div className="leading-relaxed text-muted-foreground">
+      プリセットをビジュアルで作成し、Laravel の init コマンドを生成します。
+    </div>
+  </LinkedCard>
+  <LinkedCard
+    href="#configure-with-cli"
+    className="items-start gap-1 p-6 text-sm md:p-6"
+  >
+    <div className="font-medium">CLI を使う</div>
+    <div className="leading-relaxed text-muted-foreground">
+      ターミナルから Laravel アプリに shadcn/ui を直接設定します。
+    </div>
+  </LinkedCard>
+</div>
+
+<div id="configure-with-create" className="scroll-mt-24" />
+## shadcn/create を使う
+
+<Steps>
+
+### プリセットを作成する
+
+[shadcn/create](/create?template=laravel) を開き、プリセットをビジュアルで作成します。スタイル、カラー、フォント、アイコンなどを選択してください。
+
+<Button asChild size="sm">
+  <Link
+    href="/create?template=laravel"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mt-6 no-underline!"
+  >
+    shadcn/create を開く
+  </Link>
+</Button>
+
+### コマンドを実行する
+
+`Create Project` をクリックし、パッケージマネージャーを選んで、生成されたコマンドをコピーします。
+
+生成されるコマンドはこのようになります：
+
+```bash
+npx shadcn@latest init --preset [CODE] --template laravel
+```
+
+Laravel アプリのルートからコマンドを実行してください。
+
+`components.json` とコンポーネントを上書きするか聞かれたら `Yes` を選んでください。
+
+### コンポーネントを追加する
+
+`Switch` コンポーネントをプロジェクトに追加します：
+
+```bash
+npx shadcn@latest add switch
+```
+
+上のコマンドで `Switch` コンポーネントが `resources/js/components/ui/switch.tsx` に追加されます。次のようにインポートできます：
+
+```tsx title="resources/js/pages/index.tsx" showLineNumbers {1,6}
+import { Switch } from "@/components/ui/switch"
+
+const MyPage = () => {
+  return (
+    <div>
+      <Switch />
+    </div>
+  )
+}
+
+export default MyPage
+```
+
+</Steps>
+
+<div id="configure-with-cli" className="scroll-mt-24" />
+## CLI を使う
+
+<Steps>
+
+### CLI を実行する
+
+Laravel アプリのルートから `shadcn` init コマンドを実行します：
+
+```bash
+npx shadcn@latest init
+```
+
+`components.json` とコンポーネントを上書きするか聞かれたら `Yes` を選んでください。
+
+### コンポーネントを追加する
+
+`Switch` コンポーネントをプロジェクトに追加します：
+
+```bash
+npx shadcn@latest add switch
+```
+
+上のコマンドで `Switch` コンポーネントが `resources/js/components/ui/switch.tsx` に追加されます。次のようにインポートできます：
+
+```tsx title="resources/js/pages/index.tsx" showLineNumbers {1,6}
+import { Switch } from "@/components/ui/switch"
+
+const MyPage = () => {
+  return (
+    <div>
+      <Switch />
+    </div>
+  )
+}
+
+export default MyPage
+```
+
+</Steps>

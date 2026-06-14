@@ -7,7 +7,6 @@ import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group"
 import { useShakeOnInvalid } from "@/hooks/use-shake-on-invalid"
 import { cn } from "@/registry/bases/base/lib/utils"
 
-// React 19 hoists <style precedence href> to <head> and deduplicates across instances.
 const RADIO_ANIMATION_CSS = `
   .cn-radio-group-item {
     transition:
@@ -61,6 +60,12 @@ type RadioGroupCtxValue = {
   clearValue: () => void
 }
 
+type RadioGroupValueChange = NonNullable<
+  RadioGroupPrimitive.Props["onValueChange"]
+>
+type RadioGroupValue = Parameters<RadioGroupValueChange>[0]
+type RadioGroupChangeDetails = Parameters<RadioGroupValueChange>[1]
+
 const RadioGroupCtx = React.createContext<RadioGroupCtxValue>({
   groupValue: undefined,
   clearValue: () => {},
@@ -74,12 +79,17 @@ function RadioGroup({
   ...props
 }: RadioGroupPrimitive.Props) {
   const isControlled = valueProp !== undefined
-  const [internalValue, setInternalValue] = React.useState<string | undefined>(defaultValue)
+  const [internalValue, setInternalValue] = React.useState<string | undefined>(
+    defaultValue
+  )
   const groupValue = isControlled ? valueProp : internalValue
 
-  const handleValueChange = (val: string) => {
+  const handleValueChange = (
+    val: RadioGroupValue,
+    eventDetails: RadioGroupChangeDetails
+  ) => {
     if (!isControlled) setInternalValue(val)
-    onValueChange?.(val)
+    onValueChange?.(val, eventDetails)
   }
 
   const clearValue = React.useCallback(() => {
@@ -88,7 +98,9 @@ function RadioGroup({
 
   return (
     <RadioGroupCtx.Provider value={{ groupValue, clearValue }}>
-      <style precedence="component" href="cn-radio-group-transitions">{RADIO_ANIMATION_CSS}</style>
+      <style precedence="component" href="cn-radio-group-transitions">
+        {RADIO_ANIMATION_CSS}
+      </style>
       <RadioGroupPrimitive
         data-slot="radio-group"
         value={groupValue ?? ""}
@@ -106,16 +118,16 @@ function RadioGroupItem({
   className,
   ...props
 }: RadioPrimitive.Root.Props) {
-  const ref = React.useRef<HTMLButtonElement>(null)
+  const ref = React.useRef<HTMLSpanElement>(null)
   const { groupValue, clearValue } = React.useContext(RadioGroupCtx)
   useShakeOnInvalid(ref)
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick: RadioPrimitive.Root.Props["onClick"] = (e) => {
     if (value !== undefined && value === groupValue) {
       clearValue()
       e.preventDefault()
     }
-    onClick?.(e as React.MouseEvent<HTMLButtonElement>)
+    onClick?.(e)
   }
 
   return (

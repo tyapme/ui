@@ -12,9 +12,9 @@ import { Button } from "@/styles/base/ui/button"
 
 import { RootComponents } from "./components"
 
-const title = "TYAP.ME UI"
+const title = "Ketyap UI"
 const description =
-  "TYAP.ME のプロダクト画面を一貫した見た目と操作感で組み立てるための UI コンポーネント集。"
+  "A personal UI component library for building consistent Ketyap product interfaces."
 
 export const dynamic = "force-static"
 export const revalidate = false
@@ -56,7 +56,7 @@ export default function IndexPage() {
             size="sm"
             className="h-[31px] rounded-lg"
           >
-            コンポーネント
+            Components
           </Button>
           <Button
             render={<Link href="/docs/installation" />}
@@ -65,7 +65,7 @@ export default function IndexPage() {
             variant="ghost"
             className="rounded-lg"
           >
-            ドキュメント
+            Documentation
           </Button>
         </PageActions>
       </PageHeader>
@@ -73,18 +73,18 @@ export default function IndexPage() {
         <div className="container overflow-hidden">
           <section className="-mx-4 w-[160vw] overflow-hidden rounded-lg border border-border/50 md:hidden md:w-[150vw]">
             <Image
-              src="/r/styles/new-york-v4/dashboard-01-light.png"
+              src="/r/styles/base/dashboard-01-light.png"
               width={1400}
               height={875}
-              alt="ダッシュボード"
+              alt="Dashboard"
               className="block dark:hidden"
               priority
             />
             <Image
-              src="/r/styles/new-york-v4/dashboard-01-dark.png"
+              src="/r/styles/base/dashboard-01-dark.png"
               width={1400}
               height={875}
-              alt="ダッシュボード"
+              alt="Dashboard"
               className="hidden dark:block"
               priority
             />

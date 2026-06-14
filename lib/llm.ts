@@ -1,7 +1,12 @@
 import fs from "fs"
 import { ExamplesIndex } from "@/examples/__index__"
 
-import { getPagesFromFolder, type PageTreeFolder } from "@/lib/page-tree"
+import { i18n } from "@/lib/i18n"
+import {
+  getPagesFromFolder,
+  getPageTreeRoot,
+  type PageTreeFolder,
+} from "@/lib/page-tree"
 import { source } from "@/lib/source"
 import { absoluteUrl } from "@/lib/utils"
 import { Index as StylesIndex } from "@/registry/__index__"
@@ -38,9 +43,9 @@ function getRegistryEntry(name: string, styleName: string) {
 }
 
 export function replaceComponentsList(content: string) {
-  const componentsFolder = source.pageTree.children.find(
-    (page) => page.$id === "components"
-  )
+  const componentsFolder = getPageTreeRoot(
+    source.getPageTree(i18n.defaultLanguage)
+  ).children.find((page) => page.$id === "components")
   const list =
     componentsFolder?.type === "folder"
       ? getPagesFromFolder(componentsFolder as PageTreeFolder)

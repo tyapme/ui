@@ -8,8 +8,8 @@ import {
   type InputProps,
 } from "react-aria-components"
 
-import { cn } from "@/registry/bases/base/lib/utils"
 import { useShakeOnInvalid } from "@/hooks/use-shake-on-invalid"
+import { cn } from "@/registry/bases/base/lib/utils"
 
 function ColorField({ className, ...props }: ColorFieldProps) {
   return (
@@ -21,10 +21,7 @@ function ColorField({ className, ...props }: ColorFieldProps) {
   )
 }
 
-function ColorFieldGroup({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+function ColorFieldGroup({ className, ...props }: React.ComponentProps<"div">) {
   const ref = React.useRef<HTMLDivElement>(null)
   useShakeOnInvalid(ref)
   return (

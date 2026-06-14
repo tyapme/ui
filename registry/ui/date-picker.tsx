@@ -1,11 +1,7 @@
 "use client"
 
 import * as React from "react"
-import {
-  CalendarDate,
-  CalendarDateTime,
-  Time,
-} from "@internationalized/date"
+import { CalendarDate, CalendarDateTime, Time } from "@internationalized/date"
 import { CalendarIcon } from "lucide-react"
 import {
   DateField as AriaDateField,
@@ -16,28 +12,20 @@ import {
   TimeField as AriaTimeField,
   type DateSegmentProps as AriaDateSegmentProps,
   type DateValue as AriaDateValue,
-  type RangeValue,
   type TimeValue as AriaTimeValue,
+  type RangeValue,
 } from "react-aria-components"
-import { cn } from "@/lib/utils"
+
+import { cn } from "@/registry/bases/base/lib/utils"
 import { useShakeOnInvalid } from "@/hooks/use-shake-on-invalid"
 import { Button } from "@/registry/ui/button"
 import { Calendar, RangeCalendar } from "@/registry/ui/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/registry/ui/popover"
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
-// ローカル型定義 (react-day-picker 非依存)
 type DateRange = {
   from: Date | undefined
   to?: Date | undefined
 }
-
-// ============================================================================
-// DateSegment — 個別の日付セグメント（年/月/日）
-// ============================================================================
 
 function DateSegment({
   className,
@@ -56,10 +44,6 @@ function DateSegment({
     />
   )
 }
-
-// ============================================================================
-// DateFieldInput — セグメント型日付入力
-// ============================================================================
 
 type Granularity = "day" | "hour" | "minute" | "second"
 
@@ -142,17 +126,13 @@ function DateFieldInput({
       className={cn("flex flex-col", className)}
     >
       <div ref={ref} className="t-input">
-        <AriaDateInput className="inline-flex h-9 w-full items-center rounded-4xl border border-input bg-transparent px-4 text-sm shadow-xs outline-none transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
+        <AriaDateInput className="inline-flex h-9 w-full items-center rounded-4xl border border-input bg-transparent px-4 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
           {(segment) => <DateSegment segment={segment} />}
         </AriaDateInput>
       </div>
     </AriaDateField>
   )
 }
-
-// ============================================================================
-// TimeFieldInput — セグメント型時刻入力
-// ============================================================================
 
 interface TimeFieldInputProps {
   value?: Date
@@ -204,17 +184,13 @@ function TimeFieldInput({
       className={cn("flex flex-col", className)}
     >
       <div ref={ref} className="t-input">
-        <AriaDateInput className="inline-flex h-9 w-full items-center rounded-4xl border border-input bg-transparent px-4 text-sm shadow-xs outline-none transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
+        <AriaDateInput className="inline-flex h-9 w-full items-center rounded-4xl border border-input bg-transparent px-4 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
           {(segment) => <DateSegment segment={segment} />}
         </AriaDateInput>
       </div>
     </AriaTimeField>
   )
 }
-
-// ============================================================================
-// DatePicker — セグメント入力 + カレンダーポップオーバー
-// ============================================================================
 
 interface DatePickerProps {
   value?: Date
@@ -297,11 +273,14 @@ function DatePicker({
         onChange={handleFieldChange}
       >
         <div ref={ref} className="t-input">
-          <AriaGroup className="inline-flex h-9 w-full items-center rounded-4xl border border-input bg-transparent px-4 text-sm shadow-xs outline-none transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
+          <AriaGroup className="inline-flex h-9 w-full items-center rounded-4xl border border-input bg-transparent px-4 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
             <AriaDateInput className="flex flex-1 items-center">
               {(segment) => <DateSegment segment={segment} />}
             </AriaDateInput>
-            <span className="mx-2 h-4 w-px shrink-0 bg-border" aria-hidden="true" />
+            <span
+              className="mx-2 h-4 w-px shrink-0 bg-border"
+              aria-hidden="true"
+            />
             <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger
                 render={
@@ -316,7 +295,11 @@ function DatePicker({
               >
                 <CalendarIcon className="size-4 text-muted-foreground" />
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start" sideOffset={8}>
+              <PopoverContent
+                className="w-auto p-0"
+                align="start"
+                sideOffset={8}
+              >
                 <Calendar
                   value={ariaValue}
                   onChange={handleCalendarChange}
@@ -331,10 +314,6 @@ function DatePicker({
     </div>
   )
 }
-
-// ============================================================================
-// DateRangePicker — セグメント入力 (start - end) + カレンダー
-// ============================================================================
 
 interface DateRangePickerProps {
   value?: DateRange
@@ -368,9 +347,7 @@ function DateRangePicker({
   useShakeOnInvalid(ref)
   const [open, setOpen] = React.useState(false)
 
-  const ariaValue = React.useMemo(():
-    | RangeValue<AriaDateValue>
-    | undefined => {
+  const ariaValue = React.useMemo((): RangeValue<AriaDateValue> | undefined => {
     if (!value?.from) return undefined
     const start = new CalendarDate(
       value.from.getFullYear(),
@@ -387,9 +364,7 @@ function DateRangePicker({
     return { start, end }
   }, [value])
 
-  function handleAriaChange(
-    rangeValue: RangeValue<AriaDateValue> | null
-  ) {
+  function handleAriaChange(rangeValue: RangeValue<AriaDateValue> | null) {
     if (!rangeValue) {
       onValueChange?.(undefined)
       return
@@ -433,17 +408,22 @@ function DateRangePicker({
         onChange={handleAriaChange}
       >
         <div ref={ref} className="t-input">
-          <AriaGroup className="inline-flex h-9 w-full items-center rounded-4xl border border-input bg-transparent px-4 text-sm shadow-xs outline-none transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
+          <AriaGroup className="inline-flex h-9 w-full items-center rounded-4xl border border-input bg-transparent px-4 text-sm shadow-xs transition-colors outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-3 data-[invalid]:ring-destructive/20 dark:bg-input/30 dark:data-[invalid]:ring-destructive/40">
             <AriaDateInput slot="start" className="flex items-center">
               {(segment) => <DateSegment segment={segment} />}
             </AriaDateInput>
-            <span className="px-1 text-muted-foreground" aria-hidden="true">–</span>
+            <span className="px-1 text-muted-foreground" aria-hidden="true">
+              –
+            </span>
             <AriaDateInput slot="end" className="flex flex-1 items-center">
               {(segment) => <DateSegment segment={segment} />}
             </AriaDateInput>
             {showCalendar && (
               <>
-                <span className="mx-2 h-4 w-px shrink-0 bg-border" aria-hidden="true" />
+                <span
+                  className="mx-2 h-4 w-px shrink-0 bg-border"
+                  aria-hidden="true"
+                />
                 <Popover open={open} onOpenChange={setOpen}>
                   <PopoverTrigger
                     render={
@@ -466,7 +446,11 @@ function DateRangePicker({
                     <RangeCalendar
                       value={ariaValue}
                       onChange={handleRangeCalendarChange}
-                      visibleDuration={numberOfMonths > 1 ? { months: numberOfMonths } : undefined}
+                      visibleDuration={
+                        numberOfMonths > 1
+                          ? { months: numberOfMonths }
+                          : undefined
+                      }
                       {...calendarProps}
                     />
                   </PopoverContent>

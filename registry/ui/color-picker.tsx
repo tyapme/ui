@@ -1,13 +1,14 @@
 "use client"
 
 import * as React from "react"
+import { Popover as BasePopover } from "@base-ui/react/popover"
 import {
   ColorArea as ColorAreaPrimitive,
   ColorPicker as ColorPickerPrimitive,
   ColorSlider as ColorSliderPrimitive,
-  ColorSwatch as ColorSwatchPrimitive,
-  ColorSwatchPicker as ColorSwatchPickerPrimitive,
   ColorSwatchPickerItem,
+  ColorSwatchPicker as ColorSwatchPickerPrimitive,
+  ColorSwatch as ColorSwatchPrimitive,
   ColorThumb,
   SliderOutput,
   SliderTrack,
@@ -21,13 +22,8 @@ import {
   type SliderOutputProps,
   type SliderTrackProps,
 } from "react-aria-components"
-import { Popover as BasePopover } from "@base-ui/react/popover"
 
 import { cn } from "@/registry/bases/base/lib/utils"
-
-// ---------------------------------------------------------------------------
-// ColorPicker
-// ---------------------------------------------------------------------------
 
 function ColorPicker({
   children,
@@ -40,7 +36,10 @@ function ColorPicker({
   return (
     <ColorPickerPrimitive data-slot="color-picker" {...props}>
       <BasePopover.Root>
-        <div data-slot="color-picker-inner" className={cn("inline-flex", className)}>
+        <div
+          data-slot="color-picker-inner"
+          className={cn("inline-flex", className)}
+        >
           {children}
         </div>
       </BasePopover.Root>
@@ -97,7 +96,7 @@ function ColorPickerContent({
         <BasePopover.Popup
           data-slot="color-picker-content"
           className={cn(
-            "flex w-64 flex-col gap-3 rounded-md border bg-popover p-3 text-popover-foreground shadow-md outline-hidden origin-(--transform-origin)",
+            "flex w-64 origin-(--transform-origin) flex-col gap-3 rounded-md border bg-popover p-3 text-popover-foreground shadow-md outline-hidden",
             "data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95",
             "data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95",
             className
@@ -110,10 +109,6 @@ function ColorPickerContent({
     </BasePopover.Portal>
   )
 }
-
-// ---------------------------------------------------------------------------
-// ColorArea
-// ---------------------------------------------------------------------------
 
 function ColorArea({ className, children, ...props }: ColorAreaProps) {
   return (
@@ -145,10 +140,6 @@ function ColorAreaThumb({ className, ...props }: ColorThumbProps) {
 }
 
 ColorArea.Thumb = ColorAreaThumb
-
-// ---------------------------------------------------------------------------
-// ColorSlider
-// ---------------------------------------------------------------------------
 
 function ColorSlider({ className, children, ...props }: ColorSliderProps) {
   return (
@@ -205,10 +196,6 @@ ColorSlider.Track = ColorSliderTrack
 ColorSlider.Thumb = ColorSliderThumb
 ColorSlider.Output = ColorSliderOutput
 
-// ---------------------------------------------------------------------------
-// ColorSwatch
-// ---------------------------------------------------------------------------
-
 function ColorSwatch({ className, ...props }: ColorSwatchProps) {
   return (
     <ColorSwatchPrimitive
@@ -223,11 +210,11 @@ function ColorSwatch({ className, ...props }: ColorSwatchProps) {
   )
 }
 
-// ---------------------------------------------------------------------------
-// ColorSwatchPicker
-// ---------------------------------------------------------------------------
-
-function ColorSwatchPicker({ className, children, ...props }: ColorSwatchPickerProps) {
+function ColorSwatchPicker({
+  className,
+  children,
+  ...props
+}: ColorSwatchPickerProps) {
   return (
     <ColorSwatchPickerPrimitive
       data-slot="color-swatch-picker"
@@ -248,7 +235,7 @@ function ColorSwatchPickerItemComp({
     <ColorSwatchPickerItem
       data-slot="color-swatch-picker-item"
       className={cn(
-        "relative cursor-pointer rounded-sm outline-none ring-ring/50 transition-[color,box-shadow]",
+        "relative cursor-pointer rounded-sm ring-ring/50 transition-[color,box-shadow] outline-none",
         "data-[selected]:ring-2 data-[selected]:ring-ring data-[selected]:ring-offset-1",
         "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
         "disabled:pointer-events-none disabled:opacity-50",
@@ -261,7 +248,10 @@ function ColorSwatchPickerItemComp({
   )
 }
 
-function ColorSwatchPickerSwatchComp({ className, ...props }: ColorSwatchProps) {
+function ColorSwatchPickerSwatchComp({
+  className,
+  ...props
+}: ColorSwatchProps) {
   return (
     <ColorSwatchPrimitive
       data-slot="color-swatch-picker-swatch"

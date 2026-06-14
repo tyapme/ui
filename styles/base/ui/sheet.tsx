@@ -47,7 +47,7 @@ function SheetOverlay({ className, ...props }: SheetPrimitive.Backdrop.Props) {
     <SheetPrimitive.Backdrop
       data-slot="sheet-overlay"
       className={cn(
-        "fixed inset-0 z-50 bg-white/5 backdrop-blur-2xl backdrop-saturate-150 transition-opacity duration-200 data-starting-style:opacity-0 data-ending-style:opacity-0 data-ending-style:duration-100 motion-reduce:transition-none",
+        "fixed inset-0 z-50 bg-white/5 backdrop-blur-md backdrop-saturate-125 transition-opacity duration-200 data-ending-style:opacity-0 data-ending-style:duration-100 data-starting-style:opacity-0 motion-reduce:transition-none",
         className
       )}
       {...props}
@@ -59,7 +59,7 @@ function SheetContent({
   className,
   children,
   side = "right",
-  showCloseButton = true,
+  showCloseButton = false,
   ...props
 }: SheetPrimitive.Popup.Props & {
   side?: "top" | "right" | "bottom" | "left"

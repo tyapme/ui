@@ -1,0 +1,106 @@
+---
+title: "i18n"
+description: "コンポーネントを多言語・国際化対応にするためのパターンと、組み込みのローカライズ機能。"
+---
+
+このライブラリのコンポーネントは国際化（i18n）を前提に設計されています。ローカライズの方法は大きく2通りです。
+
+1. **テキストを props / children として渡す** — ほとんどのコンポーネントは表示文言を内部にハードコードせず、利用側から受け取ります。翻訳した文字列を渡すだけでローカライズできます。
+2. **組み込みの i18n 設定を使う** — `Filters` のように多数の文言を持つコンポーネントは、ラベルや演算子をまとめて差し替えられる `i18n` 設定を備えています。
+
+RTL（右から左）言語については [RTL のドキュメント](/docs/rtl) も参照してください。アラビア語・ヘブライ語などは `dir="rtl"` を付けるだけでレイアウトが反転します。
+
+## 対応コンポーネント
+
+| コンポーネント | ローカライズ方法 | 主な対象文言 |
+| :-- | :-- | :-- |
+| [Filters](/docs/components/filters) | `i18n` prop（`FilterI18nConfig`） | 追加ボタン・検索・演算子・プレースホルダー・空状態・「N件選択」 |
+| [Pagination](/docs/components/pagination) | `text` / `aria-label` props | 前へ/次へ・読み上げラベル・ページ表示 |
+| [Phone Input](/docs/components/phone-input) | `labels` / `messages` props | 国名・検索プレースホルダー・該当なし表示 |
+| その他（Button・Field・Empty など） | children / props | 任意のラベル・本文 |
+
+下のデモはすべて同じ実装パターンで、約10言語（英語・日本語・中文・한국어・Español・Français・Deutsch・Português・Русский・العربية）を切り替えられます。
+
+## Filters
+
+`Filters` は `i18n` に `FilterI18nConfig` の一部を渡すことで、UI 文言と演算子を丸ごと翻訳できます。フィールドのラベルや選択肢は `fields` 側で翻訳した文字列を渡します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="i18n-filters"
+  align="start"
+  className="**:[.preview]:h-auto"
+/>
+
+```tsx
+const i18n: Partial<FilterI18nConfig> = {
+  addFilter: t.filter,
+  searchFields: t.search,
+  noResultsFound: t.noResults,
+  operators: {
+    is: t.op.is,
+    isAnyOf: t.op.isAnyOf,
+    // ...
+  } as FilterI18nConfig["operators"],
+}
+
+return <Filters filters={filters} fields={fields} onChange={setFilters} i18n={i18n} />
+```
+
+## Pagination
+
+`Pagination` は表示するページ番号やラベルを利用側で組み立てます。前へ/次への読み上げラベルは `aria-label` で、件数表示などの文言は翻訳テキストで差し替えます。数値は `Intl.NumberFormat(locale)` でロケールに合わせて整形でき、アラビア語ではアラビア数字（٠١٢…）になります。
+
+<ComponentPreview styleName="base-nova" name="i18n-pagination" align="start" />
+
+## Phone Input
+
+国名は `labels`（`react-phone-number-input/locale/*.json`）、検索や「該当なし」の文言は `messages` でローカライズします。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="phone-input-i18n"
+  align="start"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+## 実装パターン
+
+デモはいずれも「言語の state ＋ 翻訳マップ ＋ 言語セレクター」というシンプルな構成です。コンポーネント側を変更する必要はありません。
+
+```tsx
+const LANGUAGES = [
+  { value: "en", label: "English", dir: "ltr" },
+  { value: "ja", label: "日本語", dir: "ltr" },
+  { value: "ar", label: "العربية", dir: "rtl" },
+  // ...
+] as const
+
+const T = {
+  en: { filter: "Filter", /* ... */ },
+  ja: { filter: "フィルター", /* ... */ },
+  // ...
+}
+
+function Example() {
+  const [lang, setLang] = React.useState("en")
+  const current = LANGUAGES.find((l) => l.value === lang)!
+  const t = T[lang]
+
+  return (
+    <div dir={current.dir}>
+      {/* 翻訳した t を props / i18n に渡す */}
+    </div>
+  )
+}
+```
+
+<Callout className="mt-6">
+
+言語が `en` / `ar` / `he` の範囲で良い場合は、ライブラリ同梱の `useTranslation`・`LanguageSelector`（`components/language-selector.tsx`）ヘルパーがそのまま使えます。対応言語を増やす場合は上記のように自前の翻訳マップを用意してください。
+
+</Callout>
+
+## RTL（右から左）
+
+アラビア語やヘブライ語に切り替えると、上のデモはレイアウトが右起点に反転します。これはコンテナに `dir="rtl"` を付けているためで、コンポーネントの論理プロパティ（`ps-*` / `pe-*` など）が自動的に対応します。詳しくは [RTL のドキュメント](/docs/rtl) を参照してください。

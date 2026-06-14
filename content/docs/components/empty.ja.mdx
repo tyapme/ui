@@ -1,0 +1,210 @@
+---
+title: Empty
+description: 空の状態を表示するために Empty コンポーネントを使用します。
+base: base
+component: true
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="empty-demo"
+  previewClassName="h-96 p-0"
+/>
+
+## インストール
+
+<ComponentInstall name="empty" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty"
+```
+
+```tsx
+<Empty>
+  <EmptyHeader>
+    <EmptyMedia variant="icon">
+      <Icon />
+    </EmptyMedia>
+    <EmptyTitle>No data</EmptyTitle>
+    <EmptyDescription>No data found</EmptyDescription>
+  </EmptyHeader>
+  <EmptyContent>
+    <Button>Add data</Button>
+  </EmptyContent>
+</Empty>
+```
+
+## 構成
+
+`Empty` 状態を構築するには以下の構成を使用します:
+
+```text
+Empty
+├── EmptyHeader
+│   ├── EmptyMedia
+│   ├── EmptyTitle
+│   └── EmptyDescription
+└── EmptyContent
+```
+
+## 例
+
+### アウトライン
+
+`border` ユーティリティクラスを使用してアウトライン付きの空の状態を作成します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="empty-outline"
+  previewClassName="h-96 p-6 md:p-10"
+/>
+
+### 背景
+
+`bg-*` および `bg-gradient-*` ユーティリティを使用して空の状態に背景を追加します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="empty-background"
+  previewClassName="h-96 p-0"
+/>
+
+### アバター
+
+`EmptyMedia` コンポーネントを使用して空の状態にアバターを表示します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="empty-avatar"
+  previewClassName="h-96 p-0"
+/>
+
+### アバターグループ
+
+`EmptyMedia` コンポーネントを使用して空の状態にアバターグループを表示します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="empty-avatar-group"
+  previewClassName="h-96 p-0"
+/>
+
+### InputGroup
+
+`EmptyContent` コンポーネントに `InputGroup` コンポーネントを追加できます。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="empty-input-group"
+  previewClassName="h-96 p-0"
+/>
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="empty-rtl" direction="rtl" />
+
+## API リファレンス
+
+### Empty
+
+空の状態のメインコンポーネント。`EmptyHeader` と `EmptyContent` コンポーネントをラップします。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<Empty>
+  <EmptyHeader />
+  <EmptyContent />
+</Empty>
+```
+
+### EmptyHeader
+
+`EmptyHeader` コンポーネントは、空のメディア、タイトル、説明をラップします。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<EmptyHeader>
+  <EmptyMedia />
+  <EmptyTitle />
+  <EmptyDescription />
+</EmptyHeader>
+```
+
+### EmptyMedia
+
+`EmptyMedia` コンポーネントを使用して、アイコンや画像などのメディアを表示します。アバターなどの他のコンポーネントを表示することもできます。
+
+| Prop        | Type                  | Default   |
+| ----------- | --------------------- | --------- |
+| `variant`   | `"default" \| "icon"` | `default` |
+| `className` | `string`              |           |
+
+```tsx
+<EmptyMedia variant="icon">
+  <Icon />
+</EmptyMedia>
+```
+
+```tsx
+<EmptyMedia>
+  <Avatar>
+    <AvatarImage src="..." />
+    <AvatarFallback>CN</AvatarFallback>
+  </Avatar>
+</EmptyMedia>
+```
+
+### EmptyTitle
+
+`EmptyTitle` コンポーネントを使用して空の状態のタイトルを表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<EmptyTitle>No data</EmptyTitle>
+```
+
+### EmptyDescription
+
+`EmptyDescription` コンポーネントを使用して空の状態の説明を表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<EmptyDescription>You do not have any notifications.</EmptyDescription>
+```
+
+### EmptyContent
+
+`EmptyContent` コンポーネントを使用して、ボタン、入力、リンクなどのコンテンツを表示します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<EmptyContent>
+  <Button>Add Project</Button>
+</EmptyContent>
+```

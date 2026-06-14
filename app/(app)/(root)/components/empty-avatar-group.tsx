@@ -23,7 +23,7 @@ export function EmptyAvatarGroup() {
         <EmptyMedia>
           <AvatarGroup className="grayscale">
             <Avatar>
-              <AvatarImage src="/avatars/01.png" alt="TYAP.ME member" />
+              <AvatarImage src="/avatars/01.png" alt="Ketyap member" />
               <AvatarFallback>TM</AvatarFallback>
             </Avatar>
             <Avatar>

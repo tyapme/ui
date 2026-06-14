@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import {
   Field,
   FieldDescription,
@@ -34,9 +34,7 @@ function formatNumber(value: number, locale: string) {
 }
 
 export function FieldSlider() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
   const [value, setValue] = useState([200, 800])
 
   return (

@@ -1,12 +1,12 @@
 "use client"
 
 import * as React from "react"
+import type { Popover as PopoverPrimitive } from "@base-ui/react/popover"
 import { Check, ChevronsUpDown } from "lucide-react"
-import type { Popover as PopoverPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 import { useMutationObserver } from "@/hooks/use-mutation-observer"
-import { Button } from "@/registry/new-york-v4/ui/button"
+import { Button } from "@/styles/base/ui/button"
 import {
   Command,
   CommandEmpty,
@@ -14,23 +14,24 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/registry/new-york-v4/ui/command"
+} from "@/styles/base/ui/command"
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/registry/new-york-v4/ui/hover-card"
-import { Label } from "@/registry/new-york-v4/ui/label"
+} from "@/styles/base/ui/hover-card"
+import { Label } from "@/styles/base/ui/label"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/registry/new-york-v4/ui/popover"
+} from "@/styles/base/ui/popover"
 
 import { type Model, type ModelType } from "../data/models"
 
-interface ModelSelectorProps
-  extends React.ComponentProps<typeof PopoverPrimitive.Root> {
+interface ModelSelectorProps extends React.ComponentProps<
+  typeof PopoverPrimitive.Root
+> {
   types: readonly ModelType[]
   models: Model[]
 }
@@ -42,9 +43,9 @@ export function ModelSelector({ models, types, ...props }: ModelSelectorProps) {
 
   return (
     <div className="grid gap-3">
-      <HoverCard openDelay={200}>
-        <HoverCardTrigger asChild>
-          <Label htmlFor="model">Model</Label>
+      <HoverCard>
+        <HoverCardTrigger render={<Label htmlFor="model" />}>
+          Model
         </HoverCardTrigger>
         <HoverCardContent
           align="start"
@@ -73,7 +74,6 @@ export function ModelSelector({ models, types, ...props }: ModelSelectorProps) {
             <HoverCardContent
               side="left"
               align="start"
-              forceMount
               className="min-h-[280px]"
             >
               <div className="grid gap-2">

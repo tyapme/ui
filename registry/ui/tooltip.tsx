@@ -103,4 +103,10 @@ function TooltipContent({
   )
 }
 
-export { Tooltip, TooltipArrow, TooltipContent, TooltipProvider, TooltipTrigger }
+export {
+  Tooltip,
+  TooltipArrow,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+}

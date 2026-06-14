@@ -1,40 +1,144 @@
 import { cn } from "@/lib/utils"
 
 const typeScale = [
-    { label: "H1", size: "text-4xl", weight: "font-bold", tracking: "tracking-tight", sample: "見出し1 — Heading 1", meta: "2.25rem / 36px / Bold" },
-    { label: "H2", size: "text-3xl", weight: "font-semibold", tracking: "tracking-tight", sample: "見出し2 — Heading 2", meta: "1.875rem / 30px / Semibold" },
-    { label: "H3", size: "text-2xl", weight: "font-semibold", tracking: "tracking-tight", sample: "見出し3 — Heading 3", meta: "1.5rem / 24px / Semibold" },
-    { label: "H4", size: "text-xl", weight: "font-medium", tracking: "", sample: "見出し4 — Heading 4", meta: "1.25rem / 20px / Medium" },
-    { label: "Body LG", size: "text-base", weight: "font-normal", tracking: "", sample: "本文（大）— ユーザー体験を支えるテキスト", meta: "1rem / 16px / Regular" },
-    { label: "Body", size: "text-sm", weight: "font-normal", tracking: "", sample: "本文 — 一貫性のある読みやすいテキストです", meta: "0.875rem / 14px / Regular" },
-    { label: "Caption", size: "text-xs", weight: "font-normal", tracking: "", sample: "キャプション — 補足説明テキスト", meta: "0.75rem / 12px / Regular" },
-    { label: "Code", size: "text-sm", weight: "font-medium font-mono", tracking: "", sample: "const value = 'code text'", meta: "0.875rem / 14px / Mono" },
+  {
+    label: "H1",
+    size: "text-4xl",
+    weight: "font-bold",
+    tracking: "tracking-tight",
+    sample: "Heading 1",
+    sizeLabel: "36px",
+    weightLabel: "700 Bold",
+  },
+  {
+    label: "H2",
+    size: "text-3xl",
+    weight: "font-semibold",
+    tracking: "tracking-tight",
+    sample: "Heading 2",
+    sizeLabel: "30px",
+    weightLabel: "600 Semibold",
+  },
+  {
+    label: "H3",
+    size: "text-2xl",
+    weight: "font-semibold",
+    tracking: "tracking-tight",
+    sample: "Heading 3",
+    sizeLabel: "24px",
+    weightLabel: "600 Semibold",
+  },
+  {
+    label: "H4",
+    size: "text-xl",
+    weight: "font-medium",
+    tracking: "",
+    sample: "Heading 4",
+    sizeLabel: "20px",
+    weightLabel: "500 Medium",
+  },
+  {
+    label: "Body LG",
+    size: "text-base",
+    weight: "font-normal",
+    tracking: "",
+    sample: "Large body text for product experiences",
+    sizeLabel: "16px",
+    weightLabel: "400 Regular",
+  },
+  {
+    label: "Body",
+    size: "text-sm",
+    weight: "font-normal",
+    tracking: "",
+    sample: "Readable body text with consistent rhythm",
+    sizeLabel: "14px",
+    weightLabel: "400 Regular",
+  },
+  {
+    label: "Caption",
+    size: "text-xs",
+    weight: "font-normal",
+    tracking: "",
+    sample: "Caption text for supporting details",
+    sizeLabel: "12px",
+    weightLabel: "400 Regular",
+  },
+  {
+    label: "Code",
+    size: "text-sm",
+    weight: "font-medium font-mono",
+    tracking: "",
+    sample: "const value = 'code text'",
+    sizeLabel: "14px",
+    weightLabel: "500 Mono",
+  },
 ]
 
-export function DesignTypographyScale() {
-    return (
-        <div className="not-prose rounded-xl border border-border overflow-hidden divide-y divide-border">
-            {typeScale.map((item) => (
-                <div
-                    key={item.label}
-                    className="flex items-baseline gap-4 px-5 py-4 hover:bg-muted/40 transition-colors"
-                >
-                    <div className="w-20 shrink-0">
-                        <span className="text-xs font-medium text-muted-foreground">{item.label}</span>
-                        <p className="font-mono text-[10px] text-muted-foreground/60 mt-0.5">{item.meta}</p>
-                    </div>
-                    <p
-                        className={cn(
-                            "flex-1 text-foreground leading-snug",
-                            item.size,
-                            item.weight,
-                            item.tracking
-                        )}
-                    >
-                        {item.sample}
-                    </p>
-                </div>
-            ))}
+interface DesignTypographyScaleProps {
+  animate?: boolean
+}
+
+export function DesignTypographyScale({
+  animate = true,
+}: DesignTypographyScaleProps) {
+  return (
+    <div className="not-prose divide-y divide-border overflow-hidden rounded-2xl border border-border">
+      {typeScale.map((item, i) => (
+        <div
+          key={item.label}
+          className={cn(
+            animate && "typo-scale-row",
+            "group relative flex items-center gap-5 px-6 py-5",
+            "bg-background hover:bg-muted/50",
+            "transition-colors duration-200 ease-out"
+          )}
+          style={animate ? { animationDelay: `${i * 48}ms` } : undefined}
+        >
+          {/* Label pill — left anchor */}
+          <div className="w-[4.5rem] shrink-0 self-start pt-1">
+            <span
+              className={cn(
+                "inline-flex items-center justify-center rounded-md px-2 py-0.5",
+                "bg-muted text-muted-foreground",
+                "font-mono text-[10px] font-medium tracking-wide",
+                "transition-colors duration-200",
+                "group-hover:bg-foreground/8 group-hover:text-foreground"
+              )}
+            >
+              {item.label}
+            </span>
+          </div>
+
+          {/* Sample text — the specimen */}
+          <p
+            className={cn(
+              "flex-1 leading-snug text-foreground",
+              item.size,
+              item.weight,
+              item.tracking
+            )}
+          >
+            {item.sample}
+          </p>
+
+          {/* Spec info — right, dims at rest, reveals on hover */}
+          <div
+            className={cn(
+              "hidden shrink-0 flex-col items-end gap-0.5 sm:flex",
+              "opacity-25 group-hover:opacity-100",
+              "transition-opacity duration-250 ease-out"
+            )}
+          >
+            <span className="font-mono text-[11px] font-medium text-foreground tabular-nums">
+              {item.sizeLabel}
+            </span>
+            <span className="font-mono text-[10px] text-muted-foreground">
+              {item.weightLabel}
+            </span>
+          </div>
         </div>
-    )
+      ))}
+    </div>
+  )
 }

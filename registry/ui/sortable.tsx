@@ -5,33 +5,33 @@ import {
   Children,
   cloneElement,
   createContext,
-  type CSSProperties,
   isValidElement,
-  type ReactNode,
   useCallback,
   useContext,
   useLayoutEffect,
   useMemo,
   useState,
+  type CSSProperties,
+  type ReactNode,
 } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 import {
   defaultDropAnimationSideEffects,
   DndContext,
-  type DragEndEvent,
   DragOverlay,
-  type DragStartEvent,
-  type DropAnimation,
   KeyboardSensor,
   MeasuringStrategy,
-  type Modifiers,
   MouseSensor,
   TouchSensor,
-  type UniqueIdentifier,
   useSensor,
   useSensors,
+  type DragEndEvent,
   type DraggableSyntheticListeners,
+  type DragStartEvent,
+  type DropAnimation,
+  type Modifiers,
+  type UniqueIdentifier,
 } from "@dnd-kit/core"
 import {
   arrayMove,
@@ -48,7 +48,6 @@ import { createPortal } from "react-dom"
 
 import { cn } from "@/registry/bases/base/lib/utils"
 
-// Sortable Item Context
 const SortableItemContext = createContext<{
   listeners: DraggableSyntheticListeners | undefined
   isDragging?: boolean
@@ -87,12 +86,22 @@ const dropAnimationConfig: DropAnimation = {
   }),
 }
 
-// Multipurpose Sortable Component
-export interface SortableRootProps<T>
-  extends Omit<
-    useRender.ComponentProps<"div">,
-    "onDragStart" | "onDragEnd" | "children"
-  > {
+const subscribeClient = () => () => {}
+const getClientSnapshot = () => true
+const getServerSnapshot = () => false
+
+function useIsClient() {
+  return React.useSyncExternalStore(
+    subscribeClient,
+    getClientSnapshot,
+    getServerSnapshot
+  )
+}
+
+export interface SortableRootProps<T> extends Omit<
+  useRender.ComponentProps<"div">,
+  "onDragStart" | "onDragEnd" | "children"
+> {
   value: T[]
   onValueChange: (value: T[]) => void
   getItemValue: (item: T) => string
@@ -123,9 +132,7 @@ function Sortable<T>({
   ...props
 }: SortableRootProps<T>) {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
-  const [mounted, setMounted] = useState(false)
-
-  useLayoutEffect(() => setMounted(true), [])
+  const mounted = useIsClient()
 
   const sensors = useSensors(
     useSensor(MouseSensor, {
@@ -209,7 +216,6 @@ function Sortable<T>({
     children,
   }
 
-  // Find the active child for the overlay
   const overlayContent = useMemo(() => {
     if (!activeId) return null
     let result: ReactNode = null
@@ -319,7 +325,7 @@ function SortableItem({
         style,
         ...attributes,
         className: cn(
-          isSortableDragging && "opacity-50 z-50",
+          isSortableDragging && "z-50 opacity-50",
           disabled && "opacity-50",
           className
         ),
@@ -345,8 +351,7 @@ function SortableItem({
   )
 }
 
-export interface SortableItemHandleProps
-  extends useRender.ComponentProps<"div"> {
+export interface SortableItemHandleProps extends useRender.ComponentProps<"div"> {
   cursor?: boolean
 }
 
@@ -377,8 +382,10 @@ function SortableItemHandle({
   })
 }
 
-export interface SortableOverlayProps
-  extends Omit<React.ComponentProps<typeof DragOverlay>, "children"> {
+export interface SortableOverlayProps extends Omit<
+  React.ComponentProps<typeof DragOverlay>,
+  "children"
+> {
   children?: ReactNode | ((params: { value: UniqueIdentifier }) => ReactNode)
 }
 
@@ -388,9 +395,7 @@ function SortableOverlay({
   ...props
 }: SortableOverlayProps) {
   const { activeId, modifiers } = useContext(SortableInternalContext)
-  const [mounted, setMounted] = useState(false)
-
-  useLayoutEffect(() => setMounted(true), [])
+  const mounted = useIsClient()
 
   const content =
     activeId && children

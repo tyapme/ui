@@ -1,0 +1,98 @@
+---
+title: Dialog
+description: プライマリウィンドウまたは別のダイアログウィンドウの上に重なるウィンドウで、背面のコンテンツを操作不能にします。
+featured: true
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/dialog
+  api: https://base-ui.com/react/components/dialog#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="dialog-demo"
+  description="プロフィール詳細を編集するダイアログ。"
+/>
+
+## インストール
+
+<ComponentInstall name="dialog" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+```
+
+```tsx showLineNumbers
+<Dialog>
+  <DialogTrigger>Open</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Are you absolutely sure?</DialogTitle>
+      <DialogDescription>
+        This action cannot be undone. This will permanently delete your account
+        and remove your data from our servers.
+      </DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+```
+
+## 構成
+
+`Dialog` を構築するには以下の構成を使用します:
+
+```text
+Dialog
+├── DialogTrigger
+└── DialogContent
+    ├── DialogHeader
+    │   ├── DialogTitle
+    │   └── DialogDescription
+    └── DialogFooter
+```
+
+## 例
+
+### カスタム閉じるボタン
+
+デフォルトの閉じるコントロールを独自のボタンに置き換えます。
+
+<ComponentPreview styleName="base-nova" name="dialog-close-button" />
+
+### 閉じるボタンなし
+
+`showCloseButton={false}` を使用して閉じるボタンを非表示にします。
+
+<ComponentPreview styleName="base-nova" name="dialog-no-close-button" />
+
+### スティッキーフッター
+
+コンテンツがスクロールしても操作ボタンを常に表示します。
+
+<ComponentPreview styleName="base-nova" name="dialog-sticky-footer" />
+
+### スクロール可能なコンテンツ
+
+長いコンテンツはヘッダーを表示したままスクロールできます。
+
+<ComponentPreview styleName="base-nova" name="dialog-scrollable-content" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="dialog-rtl" direction="rtl" />
+
+## API リファレンス
+
+詳細については [Base UI](https://base-ui.com/react/components/dialog#api-reference) のドキュメントを参照してください。

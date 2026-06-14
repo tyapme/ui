@@ -1,0 +1,152 @@
+---
+title: Card
+description: ヘッダー、コンテンツ、フッターを持つカードを表示します。
+base: base
+component: true
+---
+
+<ComponentPreview
+  name="card-demo"
+  styleName="base-nova"
+  previewClassName="h-[30rem]"
+/>
+
+## インストール
+
+<ComponentInstall name="card" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+```
+
+```tsx showLineNumbers
+<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Card Description</CardDescription>
+    <CardAction>Card Action</CardAction>
+  </CardHeader>
+  <CardContent>
+    <p>Card Content</p>
+  </CardContent>
+  <CardFooter>
+    <p>Card Footer</p>
+  </CardFooter>
+</Card>
+```
+
+## 構成
+
+`Card` を構築するには以下の構成を使用します:
+
+```text
+Card
+├── CardHeader
+│   ├── CardTitle
+│   ├── CardDescription
+│   └── CardAction
+├── CardContent
+└── CardFooter
+```
+
+## 例
+
+### サイズ
+
+`size="sm"` プロパティを使用してカードのサイズを小さくします。小サイズのバリアントはより小さいスペーシングを使用します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="card-small"
+  previewClassName="h-96"
+/>
+
+### 画像
+
+カードヘッダーの前に画像を追加して、画像付きカードを作成します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="card-image"
+  previewClassName="h-[32rem]"
+/>
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl) を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="card-rtl"
+  direction="rtl"
+  previewClassName="h-[30rem]"
+/>
+
+## API リファレンス
+
+### Card
+
+`Card` コンポーネントはカードコンテンツのルートコンテナです。
+
+| プロパティ    | 型                  | デフォルト  |
+| ----------- | ------------------- | ----------- |
+| `size`      | `"default" \| "sm"` | `"default"` |
+| `className` | `string`            | -           |
+
+### CardHeader
+
+`CardHeader` コンポーネントはタイトル、説明、オプションのアクションに使用されます。
+
+| プロパティ    | 型       | デフォルト |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### CardTitle
+
+`CardTitle` コンポーネントはカードのタイトルに使用されます。
+
+| プロパティ    | 型       | デフォルト |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### CardDescription
+
+`CardDescription` コンポーネントはタイトルの下のヘルパーテキストに使用されます。
+
+| プロパティ    | 型       | デフォルト |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### CardAction
+
+`CardAction` コンポーネントはヘッダーの右上にコンテンツ（例: ボタンやバッジ）を配置します。
+
+| プロパティ    | 型       | デフォルト |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### CardContent
+
+`CardContent` コンポーネントはカードの本文に使用されます。
+
+| プロパティ    | 型       | デフォルト |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### CardFooter
+
+`CardFooter` コンポーネントはカード下部のアクションやセカンダリコンテンツに使用されます。
+
+| プロパティ    | 型       | デフォルト |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |

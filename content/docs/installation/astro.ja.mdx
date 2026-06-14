@@ -1,0 +1,252 @@
+---
+title: Astro
+description: Astro 向けに shadcn/ui をインストールして設定する。
+---
+
+開始点に合ったセットアップを選んでください。
+
+<div className="mt-6 grid gap-4 sm:grid-cols-3 sm:gap-6">
+  <LinkedCard
+    href="#scaffold-with-create"
+    className="items-start gap-1 p-6 text-sm md:p-6"
+  >
+    <div className="font-medium">shadcn/create を使う</div>
+    <div className="leading-relaxed text-muted-foreground">
+      プリセットを作成し、Astro プロジェクトのコマンドを生成します。
+    </div>
+  </LinkedCard>
+  <LinkedCard
+    href="#scaffold-with-cli"
+    className="items-start gap-1 p-6 text-sm md:p-6"
+  >
+    <div className="font-medium">CLI を使う</div>
+    <div className="leading-relaxed text-muted-foreground">
+      ターミナルから新しい Astro プロジェクトを直接スキャフォールドします。
+    </div>
+  </LinkedCard>
+  <LinkedCard
+    href="#existing-astro-project"
+    className="items-start gap-1 p-6 text-sm md:p-6"
+  >
+    <div className="font-medium">既存プロジェクト</div>
+    <div className="leading-relaxed text-muted-foreground">
+      既存の Astro プロジェクトに shadcn/ui を手動で設定します。
+    </div>
+  </LinkedCard>
+</div>
+
+<div id="scaffold-with-create" className="scroll-mt-24" />
+## shadcn/create を使う
+
+<Steps>
+
+### プリセットを作成する
+
+[shadcn/create](/create?template=astro) を開き、プリセットをビジュアルで作成します。スタイル、カラー、フォント、アイコンなどを選択してください。
+
+<Button asChild size="sm">
+  <Link
+    href="/create?template=astro"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mt-6 no-underline!"
+  >
+    shadcn/create を開く
+  </Link>
+</Button>
+
+### プロジェクトを作成する
+
+`Create Project` をクリックし、パッケージマネージャーを選んで、生成されたコマンドをコピーします。
+
+生成されるコマンドはこのようになります：
+
+```bash
+npx shadcn@latest init --preset [CODE] --template astro
+```
+
+`--base`、`--monorepo`、`--rtl` など選択したオプションが含まれます。
+
+### コンポーネントを追加する
+
+`Card` コンポーネントをプロジェクトに追加します：
+
+```bash
+npx shadcn@latest add card
+```
+
+モノレポを作成した場合は `apps/web` からコマンドを実行するか、リポジトリルートからワークスペースを指定します：
+
+```bash
+npx shadcn@latest add card -c apps/web
+```
+
+上のコマンドで `Card` コンポーネントが追加されます。次のようにインポートできます：
+
+```astro title="src/pages/index.astro" showLineNumbers
+---
+import Layout from "@/layouts/main.astro"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+---
+
+<Layout>
+  <Card className="max-w-sm">
+    <CardHeader>
+      <CardTitle>Project Overview</CardTitle>
+      <CardDescription>
+        Track progress and recent activity for your Astro app.
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      Your design system is ready. Start building your next component.
+    </CardContent>
+  </Card>
+</Layout>
+```
+
+モノレポを作成した場合は `apps/web/src/pages/index.astro` を更新し、`@workspace/ui/components/card` からインポートしてください。モノレポのレイアウト `apps/web/src/layouts/main.astro` はすでに `@workspace/ui/globals.css` をインポートしています。
+
+</Steps>
+
+<div id="scaffold-with-cli" className="scroll-mt-24" />
+## CLI を使う
+
+<Steps>
+
+### プロジェクトを作成する
+
+`init` コマンドで新しい Astro プロジェクトをスキャフォールドします。プロンプトに従って、ベース、プリセット、モノレポなどを設定してください。
+
+```bash
+npx shadcn@latest init -t astro
+```
+
+**モノレポの場合は `--monorepo` フラグを使用します：**
+
+```bash
+npx shadcn@latest init -t astro --monorepo
+```
+
+### コンポーネントを追加する
+
+`Card` コンポーネントをプロジェクトに追加します：
+
+```bash
+npx shadcn@latest add card
+```
+
+モノレポを作成した場合は `apps/web` からコマンドを実行するか、リポジトリルートからワークスペースを指定します：
+
+```bash
+npx shadcn@latest add card -c apps/web
+```
+
+上のコマンドで `Card` コンポーネントが追加されます。次のようにインポートできます：
+
+```astro title="src/pages/index.astro" showLineNumbers
+---
+import Layout from "@/layouts/main.astro"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+---
+
+<Layout>
+  <Card className="max-w-sm">
+    <CardHeader>
+      <CardTitle>Project Overview</CardTitle>
+      <CardDescription>
+        Track progress and recent activity for your Astro app.
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      Your design system is ready. Start building your next component.
+    </CardContent>
+  </Card>
+</Layout>
+```
+
+モノレポを作成した場合は `apps/web/src/pages/index.astro` を更新し、`@workspace/ui/components/card` からインポートしてください。モノレポのレイアウト `apps/web/src/layouts/main.astro` はすでに `@workspace/ui/globals.css` をインポートしています。
+
+</Steps>
+
+<div id="existing-astro-project" className="scroll-mt-24" />
+## 既存プロジェクト
+
+<Steps>
+
+### プロジェクトを作成する
+
+新しい Astro プロジェクトが必要な場合はまず作成します。不要な場合はこのステップをスキップしてください。
+
+```bash
+npm create astro@latest astro-app -- --template with-tailwindcss --install --add react --git
+```
+
+このコマンドで Tailwind CSS と React インテグレーションがセットアップされます。古いまたはカスタムの Astro アプリに shadcn/ui を追加する場合は、両方が設定済みであることを確認してから続けてください。
+
+Tailwind スターターはグローバルスタイルシートを `src/layouts/main.astro` から読み込みます。このレイアウトをそのままにするか、ページが `@/styles/global.css` をインポートするようにしてください。
+
+### tsconfig.json ファイルを編集する
+
+プロジェクトにすでに `@/*` エイリアスが設定されている場合はこのステップをスキップしてください。
+
+パスを解決するために `tsconfig.json` に以下のコードを追加します：
+
+```ts title="tsconfig.json" {4-9} showLineNumbers
+{
+  "compilerOptions": {
+    // ...
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+    // ...
+  }
+}
+```
+
+### CLI を実行する
+
+`shadcn` init コマンドでプロジェクトをセットアップします：
+
+```bash
+npx shadcn@latest init
+```
+
+### コンポーネントを追加する
+
+これでプロジェクトにコンポーネントを追加できます。
+
+```bash
+npx shadcn@latest add button
+```
+
+上のコマンドで `Button` コンポーネントが追加されます。次のようにインポートできます：
+
+```astro title="src/pages/index.astro" showLineNumbers
+---
+import Layout from "@/layouts/main.astro"
+import { Button } from "@/components/ui/button"
+---
+
+<Layout>
+  <div class="grid h-screen place-items-center content-center">
+    <Button>Button</Button>
+  </div>
+</Layout>
+```
+
+</Steps>

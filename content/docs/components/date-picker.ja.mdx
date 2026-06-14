@@ -1,0 +1,73 @@
+---
+title: Date Picker
+description: 範囲選択とプリセット機能を持つデートピッカーコンポーネント。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="date-picker-input" />
+
+## インストール
+
+Date Picker は `<Popover />` と `<Calendar />` コンポーネントを組み合わせて構築されています。
+
+[Popover](/docs/components/popover#installation) と [Calendar](/docs/components/calendar#installation) コンポーネントのインストール手順を参照してください。
+
+## 構成
+
+デートピッカーは `Popover` と `Calendar` から構築されます（`DatePicker` ルートコンポーネントはありません）:
+
+```text
+Popover
+├── PopoverTrigger
+└── PopoverContent
+    └── Calendar
+```
+
+## 例
+
+### 基本
+
+基本的なデートピッカーコンポーネント。
+
+<ComponentPreview styleName="base-nova" name="date-picker-basic" />
+
+### 範囲ピッカー
+
+日付範囲を選択するためのデートピッカーコンポーネント。
+
+<ComponentPreview styleName="base-nova" name="date-picker-range" />
+
+### 生年月日
+
+生年月日を選択するためのデートピッカーコンポーネント。日付と月の選択にドロップダウンのキャプションレイアウトが含まれています。
+
+<ComponentPreview styleName="base-nova" name="date-picker-dob" />
+
+### 入力フィールド付き
+
+日付を選択するための入力フィールド付きデートピッカーコンポーネント。
+
+<ComponentPreview styleName="base-nova" name="date-picker-input" />
+
+### 時刻ピッカー
+
+時刻を選択するための時刻入力フィールド付きデートピッカーコンポーネント。
+
+<ComponentPreview styleName="base-nova" name="date-picker-time" />
+
+### 自然言語ピッカー
+
+このコンポーネントは `chrono-node` ライブラリを使って自然言語の日付を解析します。
+
+<ComponentPreview styleName="base-nova" name="date-picker-natural-language" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl) を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="date-picker-rtl"
+  direction="rtl"
+/>

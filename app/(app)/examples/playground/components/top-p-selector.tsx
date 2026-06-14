@@ -1,15 +1,15 @@
 "use client"
 
 import * as React from "react"
-import type { Slider as SliderPrimitive } from "radix-ui"
+import type { Slider as SliderPrimitive } from "@base-ui/react/slider"
 
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/registry/new-york-v4/ui/hover-card"
-import { Label } from "@/registry/new-york-v4/ui/label"
-import { Slider } from "@/registry/new-york-v4/ui/slider"
+} from "@/styles/base/ui/hover-card"
+import { Label } from "@/styles/base/ui/label"
+import { Slider } from "@/styles/base/ui/slider"
 
 interface TopPSelectorProps {
   defaultValue: React.ComponentProps<
@@ -22,24 +22,22 @@ export function TopPSelector({ defaultValue }: TopPSelectorProps) {
 
   return (
     <div className="grid gap-2 pt-2">
-      <HoverCard openDelay={200}>
-        <HoverCardTrigger asChild>
-          <div className="grid gap-4">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="top-p">Top P</Label>
-              <span className="w-12 rounded-md border border-transparent px-2 py-0.5 text-right text-sm text-muted-foreground hover:border-border">
-                {value}
-              </span>
-            </div>
-            <Slider
-              id="top-p"
-              max={1}
-              defaultValue={value}
-              step={0.1}
-              onValueChange={setValue}
-              aria-label="Top P"
-            />
+      <HoverCard>
+        <HoverCardTrigger render={<div className="grid gap-4" />}>
+          <div className="flex items-center justify-between">
+            <Label htmlFor="top-p">Top P</Label>
+            <span className="w-12 rounded-md border border-transparent px-2 py-0.5 text-right text-sm text-muted-foreground hover:border-border">
+              {value}
+            </span>
           </div>
+          <Slider
+            id="top-p"
+            max={1}
+            defaultValue={value}
+            step={0.1}
+            onValueChange={setValue}
+            aria-label="Top P"
+          />
         </HoverCardTrigger>
         <HoverCardContent
           align="start"

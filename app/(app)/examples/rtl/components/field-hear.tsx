@@ -1,6 +1,6 @@
 "use client"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import { Card, CardContent } from "@/styles/base/ui-rtl/card"
 import { Checkbox } from "@/styles/base/ui-rtl/checkbox"
 import {
@@ -35,9 +35,7 @@ const translations = {
 }
 
 export function FieldHear() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
 
   const options = [
     { label: t.socialMedia, value: "social-media" },

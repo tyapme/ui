@@ -19,11 +19,14 @@ import {
 const LOCALES = [
   { value: "en-US", label: "English" },
   { value: "ja-JP", label: "日本語" },
-  { value: "de", label: "Deutsch" },
-  { value: "fr", label: "Français" },
-  { value: "ko", label: "한국어" },
-  { value: "zh-CN", label: "中文" },
-  { value: "ar-SA", label: "العربية", dir: "rtl" as const },
+  { value: "zh-CN", label: "中文（简体）" },
+  { value: "ko-KR", label: "한국어" },
+  { value: "es-ES", label: "Español" },
+  { value: "fr-FR", label: "Français" },
+  { value: "de-DE", label: "Deutsch" },
+  { value: "pt-BR", label: "Português" },
+  { value: "ru-RU", label: "Русский" },
+  { value: "ar-EG", label: "العربية", dir: "rtl" as const },
 ]
 
 function DatePickerLocale() {

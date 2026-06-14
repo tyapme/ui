@@ -11,10 +11,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/registry/ui/dialog"
-import {
-  InputGroup,
-  InputGroupAddon,
-} from "@/registry/ui/input-group"
+import { InputGroup, InputGroupAddon } from "@/registry/ui/input-group"
+import { ScrollMask } from "@/registry/ui/scroll-mask"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 function Command({
@@ -98,12 +96,16 @@ function CommandList({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.List>) {
   return (
-    <CommandPrimitive.List
-      data-slot="command-list"
-      className={cn(
-        "cn-command-list overflow-x-hidden overflow-y-auto",
-        className
-      )}
+    <ScrollMask
+      render={
+        <CommandPrimitive.List
+          data-slot="command-list"
+          className={cn(
+            "cn-command-list overflow-x-hidden overflow-y-auto",
+            className
+          )}
+        />
+      }
       {...props}
     />
   )

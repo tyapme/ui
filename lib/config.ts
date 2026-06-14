@@ -1,12 +1,11 @@
 export const siteConfig = {
-  name: "shadcn/ui",
-  url: "https://ui.shadcn.com",
-  ogImage: "https://ui.shadcn.com/og.jpg",
+  name: "Ketyap UI",
+  url: "https://ui.tyap.me",
+  ogImage: "https://ui.tyap.me/opengraph-image.png",
   description:
-    "A set of beautifully designed components that you can customize, extend, and build on. Start here then make it your own. Open Source. Open Code.",
+    "A personal UI component library for building consistent Ketyap product interfaces.",
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn-ui/ui",
+    github: "https://github.com/yki/ui.tyap.me",
   },
   navItems: [
     {
@@ -14,28 +13,16 @@ export const siteConfig = {
       label: "Home",
     },
     {
-      href: "/docs/installation",
+      href: "/docs",
       label: "Docs",
     },
     {
-      href: "/docs/components",
+      href: "/docs/components/accordion",
       label: "Components",
     },
     {
-      href: "/blocks",
-      label: "Blocks",
-    },
-    {
-      href: "/charts/area",
-      label: "Charts",
-    },
-    {
-      href: "/docs/directory",
-      label: "Directory",
-    },
-    {
-      href: "/create",
-      label: "Create",
+      href: "/docs/design/typography",
+      label: "Design",
     },
   ],
 }

@@ -13,7 +13,7 @@ import {
   Trash2Icon,
 } from "lucide-react"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import { Button } from "@/styles/base/ui-rtl/button"
 import { ButtonGroup } from "@/styles/base/ui-rtl/button-group"
 import {
@@ -67,9 +67,7 @@ const translations = {
 }
 
 export function ButtonGroupDemo() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
   const [label, setLabel] = React.useState("personal")
 
   return (
@@ -107,7 +105,7 @@ export function ButtonGroupDemo() {
             <DropdownMenuContent
               align="start"
               dir={t.dir}
-              data-lang={lang}
+              data-lang={t.lang}
               className="w-44"
             >
               <DropdownMenuGroup>
@@ -143,7 +141,7 @@ export function ButtonGroupDemo() {
                     <DropdownMenuSubContent
                       side="left"
                       dir={t.dir}
-                      data-lang={lang}
+                      data-lang={t.lang}
                     >
                       <DropdownMenuRadioGroup
                         value={label}

@@ -1,11 +1,13 @@
 {
   "root": true,
   "pages": [
-    "components",
     "(root)",
+    "components",
     "design",
     "forms",
     "installation",
-    "dark-mode"
+    "dark-mode",
+    "rtl",
+    "i18n"
   ]
 }

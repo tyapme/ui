@@ -1,0 +1,91 @@
+---
+title: Radio Group
+description: ラジオボタンとして知られる、一度に 1 つしか選択できないチェック可能なボタンのセット。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/radio-group
+  api: https://base-ui.com/react/components/radio-group#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="radio-group-demo" />
+
+## インストール
+
+<ComponentInstall name="radio-group" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+```
+
+```tsx showLineNumbers
+<RadioGroup defaultValue="option-one">
+  <div className="flex items-center gap-3">
+    <RadioGroupItem value="option-one" id="option-one" />
+    <Label htmlFor="option-one">Option One</Label>
+  </div>
+  <div className="flex items-center gap-3">
+    <RadioGroupItem value="option-two" id="option-two" />
+    <Label htmlFor="option-two">Option Two</Label>
+  </div>
+</RadioGroup>
+```
+
+## コンポジション
+
+`RadioGroup` を構築するには以下のコンポジションを使用します:
+
+```text
+RadioGroup
+├── RadioGroupItem
+└── RadioGroupItem
+```
+
+## 例
+
+### 説明付き
+
+`Field` コンポーネントを使った説明付きのラジオグループアイテム。
+
+<ComponentPreview styleName="base-nova" name="radio-group-description" />
+
+### チョイスカード
+
+`FieldLabel` でフィールド全体をラップし、クリック可能なカードスタイルの選択肢を実現します。
+
+<ComponentPreview styleName="base-nova" name="radio-group-choice-card" />
+
+### フィールドセット
+
+`FieldSet` と `FieldLegend` を使ってラベルと説明付きのラジオアイテムをグループ化します。
+
+<ComponentPreview styleName="base-nova" name="radio-group-fieldset" />
+
+### 無効
+
+`RadioGroup` の `disabled` プロップを使ってすべてのアイテムを無効化します。
+
+<ComponentPreview styleName="base-nova" name="radio-group-disabled" />
+
+### 無効入力
+
+`RadioGroupItem` に `aria-invalid` を、`Field` に `data-invalid` を使ってバリデーションエラーを表示します。
+
+<ComponentPreview styleName="base-nova" name="radio-group-invalid" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="radio-group-rtl"
+  direction="rtl"
+/>
+
+## API リファレンス
+
+[Base UI Radio Group](https://base-ui.com/react/components/radio-group#api-reference) ドキュメントを参照してください。

@@ -53,6 +53,23 @@
       "type": "registry:style"
     },
     {
+      "name": "code-block",
+      "dependencies": ["shiki", "lucide-react"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/base/ui/code-block.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "links": {
+          "docs": "https://ui.tyap.me/docs/components/code-block"
+        }
+      },
+      "type": "registry:ui"
+    },
+    {
       "name": "accordion",
       "files": [
         {
@@ -206,6 +223,23 @@
       "type": "registry:ui"
     },
     {
+      "name": "copy-button",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/base/ui/copy-button.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "links": {
+          "docs": "https://ui.tyap.me/docs/components/copy-button"
+        }
+      },
+      "type": "registry:ui"
+    },
+    {
       "name": "calendar",
       "dependencies": ["react-aria-components", "@internationalized/date"],
       "registryDependencies": ["button"],
@@ -238,6 +272,23 @@
         "links": {
           "docs": "https://ui.shadcn.com/docs/components/base/date-picker",
           "api": "https://react-spectrum.adobe.com/react-aria/DatePicker.html"
+        }
+      },
+      "type": "registry:ui"
+    },
+    {
+      "name": "time-picker",
+      "dependencies": ["react-aria-components", "@internationalized/date"],
+      "registryDependencies": ["button", "popover", "scroll-mask"],
+      "files": [
+        {
+          "path": "registry/base/ui/time-picker.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "links": {
+          "api": "https://react-spectrum.adobe.com/react-aria/TimeField.html"
         }
       },
       "type": "registry:ui"
@@ -364,7 +415,7 @@
     {
       "name": "combobox",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["button", "input-group"],
+      "registryDependencies": ["button", "input-group", "scroll-mask"],
       "files": [
         {
           "path": "registry/base/ui/combobox.tsx",
@@ -383,7 +434,7 @@
     {
       "name": "command",
       "dependencies": ["cmdk"],
-      "registryDependencies": ["dialog", "input-group"],
+      "registryDependencies": ["dialog", "input-group", "scroll-mask"],
       "files": [
         {
           "path": "registry/base/ui/command.tsx",
@@ -504,6 +555,42 @@
           "examples": "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/field-example.tsx"
         }
       },
+      "type": "registry:ui"
+    },
+    {
+      "name": "filters",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu",
+        "input",
+        "input-group",
+        "kbd",
+        "scroll-area",
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/base/ui/filters.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "kanban",
+      "dependencies": [
+        "@dnd-kit/core",
+        "@dnd-kit/sortable",
+        "@dnd-kit/utilities"
+      ],
+      "files": [
+        {
+          "path": "registry/base/ui/kanban.tsx",
+          "type": "registry:ui"
+        }
+      ],
       "type": "registry:ui"
     },
     {
@@ -648,6 +735,21 @@
       "type": "registry:ui"
     },
     {
+      "name": "md-parser",
+      "dependencies": ["react-markdown", "remark-gfm"],
+      "files": [
+        {
+          "path": "registry/base/ui/md-parser.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/ui/md-parser-code-block.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
       "name": "pagination",
       "registryDependencies": ["button"],
       "files": [
@@ -662,6 +764,18 @@
           "examples": "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/pagination-example.tsx"
         }
       },
+      "type": "registry:ui"
+    },
+    {
+      "name": "phone-input",
+      "dependencies": ["react-phone-number-input"],
+      "registryDependencies": ["button", "combobox", "input", "scroll-area"],
+      "files": [
+        {
+          "path": "registry/base/ui/phone-input.tsx",
+          "type": "registry:ui"
+        }
+      ],
       "type": "registry:ui"
     },
     {
@@ -751,6 +865,21 @@
       "type": "registry:ui"
     },
     {
+      "name": "scroll-mask",
+      "files": [
+        {
+          "path": "registry/base/ui/scroll-mask.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "links": {
+          "docs": "https://ui.tyap.me/docs/components/scroll-mask"
+        }
+      },
+      "type": "registry:ui"
+    },
+    {
       "name": "select",
       "files": [
         {
@@ -807,6 +936,7 @@
       "registryDependencies": [
         "button",
         "input",
+        "scroll-mask",
         "separator",
         "sheet",
         "skeleton",
@@ -1047,22 +1177,6 @@
       "type": "registry:ui"
     },
     {
-      "name": "native-select",
-      "files": [
-        {
-          "path": "registry/base/ui/native-select.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "meta": {
-        "links": {
-          "docs": "https://ui.shadcn.com/docs/components/base/native-select",
-          "examples": "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/native-select-example.tsx"
-        }
-      },
-      "type": "registry:ui"
-    },
-    {
       "name": "direction",
       "dependencies": ["@base-ui/react"],
       "files": [
@@ -1081,18 +1195,23 @@
     },
     {
       "name": "qr-code",
-      "dependencies": ["qrcode", "culori"],
+      "dependencies": ["qrcode"],
       "files": [
         {
           "path": "registry/base/ui/qr-code.tsx",
           "type": "registry:ui"
         }
       ],
-      "meta": {
-        "links": {
-          "docs": "https://ui.shadcn.com/docs/components/base/qr-code"
+      "type": "registry:ui"
+    },
+    {
+      "name": "bars-spinner",
+      "files": [
+        {
+          "path": "registry/base/ui/bars-spinner.tsx",
+          "type": "registry:ui"
         }
-      },
+      ],
       "type": "registry:ui"
     },
     {
@@ -1131,6 +1250,21 @@
         "links": {
           "docs": "https://ui.shadcn.com/docs/components/base/sortable",
           "api": "https://dndkit.com"
+        }
+      },
+      "type": "registry:ui"
+    },
+    {
+      "name": "typography",
+      "files": [
+        {
+          "path": "registry/base/ui/typography.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "links": {
+          "docs": "https://ui.tyap.me/docs/components/typography"
         }
       },
       "type": "registry:ui"
@@ -1421,7 +1555,6 @@
         "input",
         "input-group",
         "kbd",
-        "native-select",
         "select",
         "switch",
         "tabs",
@@ -1468,6 +1601,78 @@
       "type": "registry:example"
     },
     {
+      "name": "filters-demo",
+      "title": "Filters",
+      "registryDependencies": ["filters", "example"],
+      "files": [
+        {
+          "path": "registry/base/examples/filters-demo.tsx",
+          "type": "registry:example"
+        }
+      ],
+      "type": "registry:example"
+    },
+    {
+      "name": "filters-validation",
+      "title": "Filters — Validation",
+      "registryDependencies": ["filters", "example"],
+      "files": [
+        {
+          "path": "registry/base/examples/filters-validation.tsx",
+          "type": "registry:example"
+        }
+      ],
+      "type": "registry:example"
+    },
+    {
+      "name": "filters-trigger",
+      "title": "Filters — Trigger Button",
+      "registryDependencies": ["filters", "button", "example"],
+      "files": [
+        {
+          "path": "registry/base/examples/filters-trigger.tsx",
+          "type": "registry:example"
+        }
+      ],
+      "type": "registry:example"
+    },
+    {
+      "name": "filters-small",
+      "title": "Filters — Small",
+      "registryDependencies": ["filters", "example"],
+      "files": [
+        {
+          "path": "registry/base/examples/filters-small.tsx",
+          "type": "registry:example"
+        }
+      ],
+      "type": "registry:example"
+    },
+    {
+      "name": "filters-large",
+      "title": "Filters — Large",
+      "registryDependencies": ["filters", "example"],
+      "files": [
+        {
+          "path": "registry/base/examples/filters-large.tsx",
+          "type": "registry:example"
+        }
+      ],
+      "type": "registry:example"
+    },
+    {
+      "name": "filters-i18n",
+      "title": "Filters — i18n",
+      "registryDependencies": ["filters", "example"],
+      "files": [
+        {
+          "path": "registry/base/examples/filters-i18n.tsx",
+          "type": "registry:example"
+        }
+      ],
+      "type": "registry:example"
+    },
+    {
       "name": "empty-example",
       "title": "Empty",
       "registryDependencies": [
@@ -1494,7 +1699,6 @@
         "field",
         "input",
         "input-otp",
-        "native-select",
         "radio-group",
         "select",
         "slider",
@@ -1525,14 +1729,7 @@
     {
       "name": "input-example",
       "title": "Input",
-      "registryDependencies": [
-        "button",
-        "field",
-        "input",
-        "native-select",
-        "select",
-        "example"
-      ],
+      "registryDependencies": ["button", "field", "input", "select", "example"],
       "files": [
         {
           "path": "registry/base/examples/input-example.tsx",
@@ -1649,7 +1846,7 @@
     {
       "name": "native-select-example",
       "title": "Native Select",
-      "registryDependencies": ["field", "native-select", "example"],
+      "registryDependencies": ["field", "select", "example"],
       "files": [
         {
           "path": "registry/base/examples/native-select-example.tsx",
@@ -1769,7 +1966,6 @@
         "field",
         "input",
         "item",
-        "native-select",
         "select",
         "example"
       ],
@@ -2157,7 +2353,6 @@
         "input-group",
         "item",
         "label",
-        "native-select",
         "progress",
         "radio-group",
         "select",

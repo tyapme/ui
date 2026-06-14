@@ -201,6 +201,26 @@ export const ui: Registry["items"] = [
     },
   },
   {
+    name: "time-picker",
+    type: "registry:ui",
+    dependencies: [
+      "react-aria-components",
+      "@internationalized/date",
+    ],
+    registryDependencies: ["button", "popover"],
+    files: [
+      {
+        path: "ui/time-picker.tsx",
+        type: "registry:ui",
+      },
+    ],
+    meta: {
+      links: {
+        api: "https://react-spectrum.adobe.com/react-aria/TimeField.html",
+      },
+    },
+  },
+  {
     name: "card",
     type: "registry:ui",
     files: [
@@ -1055,23 +1075,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         docs: "https://ui.shadcn.com/docs/components/base/kbd",
         examples:
           "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/kbd-example.tsx",
-      },
-    },
-  },
-  {
-    name: "native-select",
-    type: "registry:ui",
-    files: [
-      {
-        path: "ui/native-select.tsx",
-        type: "registry:ui",
-      },
-    ],
-    meta: {
-      links: {
-        docs: "https://ui.shadcn.com/docs/components/base/native-select",
-        examples:
-          "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/native-select-example.tsx",
       },
     },
   },

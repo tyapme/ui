@@ -1,0 +1,97 @@
+---
+title: Next.js
+description: RTL サポートを有効にした新しい Next.js プロジェクトを作成する。
+---
+
+<Callout className="mb-6 border-emerald-600 bg-emerald-100 dark:border-emerald-400 dark:bg-emerald-900">
+
+**新しいプロジェクトを始める場合は、** [shadcn/create](/create?template=next&base=base&rtl=true) を使うと、カスタムテーマ・Base UI または Radix・アイコンライブラリが設定済みの Next.js アプリを作成できます。
+
+</Callout>
+
+<Steps>
+
+### プロジェクトを作成
+
+`--rtl` フラグと `next` テンプレートを使って新しいプロジェクトを作成します。
+
+**[shadcn/create](/create?template=next&base=base&rtl=true) でプロジェクトを作成済みの場合は、このステップをスキップできます。**
+
+```bash
+npx shadcn@latest create --template next --rtl
+```
+
+これにより、`rtl: true` フラグを持つ `components.json` ファイルが作成されます。
+
+```json title="components.json" showLineNumbers {4}
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "base-nova",
+  "rtl": true
+}
+```
+
+### DirectionProvider を追加
+
+アプリケーションを `DirectionProvider` コンポーネントで `direction="rtl"` プロパティを指定してラップします。
+
+次に、`html` タグに `dir="rtl"` と `lang="ar"` 属性を追加します。`lang="ar"` は対象言語に合わせて変更してください。
+
+```tsx title="app/layout.tsx" showLineNumbers {1,9-13}
+import { DirectionProvider } from "@/components/ui/direction"
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="ar" dir="rtl">
+      <body>
+        <DirectionProvider direction="rtl">{children}</DirectionProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+### フォントを追加
+
+最良の RTL 体験のために、対象言語を適切にサポートするフォントの使用をお勧めします。[Noto](https://fonts.google.com/noto) はこの目的に適したフォントファミリーで、Inter や Geist とも相性が良いです。
+
+```tsx title="app/layout.tsx" showLineNumbers {1,5-8,16}
+import { Noto_Sans_Arabic } from "next/font/google"
+
+import { DirectionProvider } from "@/components/ui/direction"
+
+const fontSans = Noto_Sans_Arabic({
+  subsets: ["arabic"],
+  variable: "--font-sans",
+})
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="ar" dir="rtl" className={fontSans.variable}>
+      <body>
+        <DirectionProvider direction="rtl">{children}</DirectionProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+ヘブライ語などの他の言語には `Noto_Sans_Hebrew` フォントを使用できます。
+
+### コンポーネントを追加
+
+プロジェクトにコンポーネントを追加する準備ができました。RTL サポートの対応は CLI が自動的に行います。
+
+```bash
+npx shadcn@latest add item
+```
+
+</Steps>

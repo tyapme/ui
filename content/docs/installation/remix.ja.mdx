@@ -1,0 +1,52 @@
+---
+title: Remix
+description: Remix 向けに shadcn/ui をインストールして設定する。
+---
+
+<Callout>
+
+**注意:** このガイドは Remix 向けです。React Router については [React Router](/docs/installation/react-router) ガイドを参照してください。
+
+</Callout>
+
+<Steps>
+
+### プロジェクトを作成する
+
+`create-remix` で新しい Remix プロジェクトを作成します：
+
+```bash
+npx create-remix@latest my-app
+```
+
+### CLI を実行する
+
+`shadcn` init コマンドでプロジェクトをセットアップします：
+
+```bash
+npx shadcn@latest init
+```
+
+### 完了
+
+これでプロジェクトにコンポーネントを追加できます。
+
+```bash
+npx shadcn@latest add button
+```
+
+上のコマンドで `Button` コンポーネントが追加されます。次のようにインポートできます：
+
+```tsx {1,6} showLineNumbers title="app/routes/index.tsx"
+import { Button } from "~/components/ui/button"
+
+export default function Home() {
+  return (
+    <div>
+      <Button>Click me</Button>
+    </div>
+  )
+}
+```
+
+</Steps>

@@ -8,10 +8,14 @@ import {
   FieldLabel,
 } from "@/registry/ui/field"
 import {
-  NativeSelect,
-  NativeSelectOptGroup,
-  NativeSelectOption,
-} from "@/registry/ui/native-select"
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/registry/ui/select"
 
 export default function NativeSelectExample() {
   return (
@@ -29,16 +33,20 @@ export default function NativeSelectExample() {
 function NativeSelectBasic() {
   return (
     <Example title="Basic">
-      <NativeSelect>
-        <NativeSelectOption value="">Select a fruit</NativeSelectOption>
-        <NativeSelectOption value="apple">Apple</NativeSelectOption>
-        <NativeSelectOption value="banana">Banana</NativeSelectOption>
-        <NativeSelectOption value="blueberry">Blueberry</NativeSelectOption>
-        <NativeSelectOption value="grapes" disabled>
-          Grapes
-        </NativeSelectOption>
-        <NativeSelectOption value="pineapple">Pineapple</NativeSelectOption>
-      </NativeSelect>
+      <Select kind="native">
+        <SelectTrigger>
+          <SelectValue placeholder="Select a fruit" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="banana">Banana</SelectItem>
+          <SelectItem value="blueberry">Blueberry</SelectItem>
+          <SelectItem value="grapes" disabled>
+            Grapes
+          </SelectItem>
+          <SelectItem value="pineapple">Pineapple</SelectItem>
+        </SelectContent>
+      </Select>
     </Example>
   )
 }
@@ -46,19 +54,25 @@ function NativeSelectBasic() {
 function NativeSelectWithGroups() {
   return (
     <Example title="With Groups">
-      <NativeSelect>
-        <NativeSelectOption value="">Select a food</NativeSelectOption>
-        <NativeSelectOptGroup label="Fruits">
-          <NativeSelectOption value="apple">Apple</NativeSelectOption>
-          <NativeSelectOption value="banana">Banana</NativeSelectOption>
-          <NativeSelectOption value="blueberry">Blueberry</NativeSelectOption>
-        </NativeSelectOptGroup>
-        <NativeSelectOptGroup label="Vegetables">
-          <NativeSelectOption value="carrot">Carrot</NativeSelectOption>
-          <NativeSelectOption value="broccoli">Broccoli</NativeSelectOption>
-          <NativeSelectOption value="spinach">Spinach</NativeSelectOption>
-        </NativeSelectOptGroup>
-      </NativeSelect>
+      <Select kind="native">
+        <SelectTrigger>
+          <SelectValue placeholder="Select a food" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Fruits</SelectLabel>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value="blueberry">Blueberry</SelectItem>
+          </SelectGroup>
+          <SelectGroup>
+            <SelectLabel>Vegetables</SelectLabel>
+            <SelectItem value="carrot">Carrot</SelectItem>
+            <SelectItem value="broccoli">Broccoli</SelectItem>
+            <SelectItem value="spinach">Spinach</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
     </Example>
   )
 }
@@ -67,18 +81,26 @@ function NativeSelectSizes() {
   return (
     <Example title="Sizes">
       <div className="flex flex-col gap-4">
-        <NativeSelect size="sm">
-          <NativeSelectOption value="">Select a fruit</NativeSelectOption>
-          <NativeSelectOption value="apple">Apple</NativeSelectOption>
-          <NativeSelectOption value="banana">Banana</NativeSelectOption>
-          <NativeSelectOption value="blueberry">Blueberry</NativeSelectOption>
-        </NativeSelect>
-        <NativeSelect size="default">
-          <NativeSelectOption value="">Select a fruit</NativeSelectOption>
-          <NativeSelectOption value="apple">Apple</NativeSelectOption>
-          <NativeSelectOption value="banana">Banana</NativeSelectOption>
-          <NativeSelectOption value="blueberry">Blueberry</NativeSelectOption>
-        </NativeSelect>
+        <Select kind="native">
+          <SelectTrigger size="sm">
+            <SelectValue placeholder="Select a fruit" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value="blueberry">Blueberry</SelectItem>
+          </SelectContent>
+        </Select>
+        <Select kind="native">
+          <SelectTrigger size="default">
+            <SelectValue placeholder="Select a fruit" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value="blueberry">Blueberry</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
     </Example>
   )
@@ -89,13 +111,17 @@ function NativeSelectWithField() {
     <Example title="With Field">
       <Field>
         <FieldLabel htmlFor="native-select-country">Country</FieldLabel>
-        <NativeSelect id="native-select-country">
-          <NativeSelectOption value="">Select a country</NativeSelectOption>
-          <NativeSelectOption value="us">United States</NativeSelectOption>
-          <NativeSelectOption value="uk">United Kingdom</NativeSelectOption>
-          <NativeSelectOption value="ca">Canada</NativeSelectOption>
-          <NativeSelectOption value="au">Australia</NativeSelectOption>
-        </NativeSelect>
+        <Select kind="native">
+          <SelectTrigger id="native-select-country">
+            <SelectValue placeholder="Select a country" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="us">United States</SelectItem>
+            <SelectItem value="uk">United Kingdom</SelectItem>
+            <SelectItem value="ca">Canada</SelectItem>
+            <SelectItem value="au">Australia</SelectItem>
+          </SelectContent>
+        </Select>
         <FieldDescription>Select your country of residence.</FieldDescription>
       </Field>
     </Example>
@@ -105,12 +131,16 @@ function NativeSelectWithField() {
 function NativeSelectDisabled() {
   return (
     <Example title="Disabled">
-      <NativeSelect disabled>
-        <NativeSelectOption value="">Disabled</NativeSelectOption>
-        <NativeSelectOption value="apple">Apple</NativeSelectOption>
-        <NativeSelectOption value="banana">Banana</NativeSelectOption>
-        <NativeSelectOption value="blueberry">Blueberry</NativeSelectOption>
-      </NativeSelect>
+      <Select kind="native" disabled>
+        <SelectTrigger>
+          <SelectValue placeholder="Disabled" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="banana">Banana</SelectItem>
+          <SelectItem value="blueberry">Blueberry</SelectItem>
+        </SelectContent>
+      </Select>
     </Example>
   )
 }
@@ -118,12 +148,16 @@ function NativeSelectDisabled() {
 function NativeSelectInvalid() {
   return (
     <Example title="Invalid">
-      <NativeSelect aria-invalid="true">
-        <NativeSelectOption value="">Error state</NativeSelectOption>
-        <NativeSelectOption value="apple">Apple</NativeSelectOption>
-        <NativeSelectOption value="banana">Banana</NativeSelectOption>
-        <NativeSelectOption value="blueberry">Blueberry</NativeSelectOption>
-      </NativeSelect>
+      <Select kind="native">
+        <SelectTrigger aria-invalid="true">
+          <SelectValue placeholder="Error state" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="banana">Banana</SelectItem>
+          <SelectItem value="blueberry">Blueberry</SelectItem>
+        </SelectContent>
+      </Select>
     </Example>
   )
 }

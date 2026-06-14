@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "filters-trigger",
+  "title": "Filters — Trigger Button",
+  "registryDependencies": [
+    "filters",
+    "button",
+    "example"
+  ],
+  "files": [
+    {
+      "path": "registry/base/examples/filters-trigger.tsx",
+      "content": "\"use client\"\n\nimport { useState } from \"react\"\nimport { ListFilterIcon } from \"lucide-react\"\n\nimport { Example, ExampleWrapper } from \"@/registry/base/components/example\"\nimport { Button } from \"@/registry/base/ui/button\"\nimport {\n  createFilter,\n  Filters,\n  type Filter,\n  type FilterFieldConfig,\n} from \"@/registry/base/ui/filters\"\n\nconst fields: FilterFieldConfig[] = [\n  {\n    key: \"status\",\n    label: \"Status\",\n    type: \"multiselect\",\n    options: [\n      { value: \"active\", label: \"Active\" },\n      { value: \"inactive\", label: \"Inactive\" },\n      { value: \"pending\", label: \"Pending\" },\n    ],\n  },\n  {\n    key: \"role\",\n    label: \"Role\",\n    type: \"select\",\n    options: [\n      { value: \"admin\", label: \"Admin\" },\n      { value: \"member\", label: \"Member\" },\n      { value: \"viewer\", label: \"Viewer\" },\n    ],\n  },\n]\n\nexport default function FiltersTriggerExample() {\n  const [filters, setFilters] = useState<Filter[]>([])\n\n  return (\n    <ExampleWrapper>\n      <Example className=\"items-start gap-4 p-4\">\n        <Filters\n          filters={filters}\n          fields={fields}\n          onChange={setFilters}\n          trigger={\n            <Button variant=\"outline\" size=\"sm\">\n              <ListFilterIcon />\n              {filters.length > 0\n                ? `${filters.length} filter${filters.length > 1 ? \"s\" : \"\"}`\n                : \"Filters\"}\n            </Button>\n          }\n        />\n      </Example>\n    </ExampleWrapper>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

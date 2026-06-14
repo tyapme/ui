@@ -1,0 +1,157 @@
+---
+title: Context Menu
+description: 右クリックでトリガーされるアクションメニューを表示します。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/context-menu
+  api: https://base-ui.com/react/components/context-menu#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="context-menu-demo"
+  description="A context menu with sub menu items."
+/>
+
+## インストール
+
+<ComponentInstall name="context-menu" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "@/components/ui/context-menu"
+```
+
+```tsx showLineNumbers
+<ContextMenu>
+  <ContextMenuTrigger>右クリックしてください</ContextMenuTrigger>
+  <ContextMenuContent>
+    <ContextMenuItem>Profile</ContextMenuItem>
+    <ContextMenuItem>Billing</ContextMenuItem>
+    <ContextMenuItem>Team</ContextMenuItem>
+    <ContextMenuItem>Subscription</ContextMenuItem>
+  </ContextMenuContent>
+</ContextMenu>
+```
+
+## 構成
+
+`ContextMenu` を構築するには以下の構成を使用します:
+
+```text
+ContextMenu
+├── ContextMenuTrigger
+└── ContextMenuContent
+    ├── ContextMenuGroup
+    │   ├── ContextMenuLabel
+    │   ├── ContextMenuItem
+    │   └── ContextMenuItem
+    ├── ContextMenuSeparator
+    ├── ContextMenuGroup
+    │   ├── ContextMenuLabel
+    │   ├── ContextMenuCheckboxItem
+    │   └── ContextMenuCheckboxItem
+    ├── ContextMenuSeparator
+    ├── ContextMenuGroup
+    │   ├── ContextMenuLabel
+    │   └── ContextMenuRadioGroup
+    │       ├── ContextMenuRadioItem
+    │       └── ContextMenuRadioItem
+    └── ContextMenuSub
+        ├── ContextMenuSubTrigger
+        └── ContextMenuSubContent
+            └── ContextMenuGroup
+                ├── ContextMenuItem
+                └── ContextMenuItem
+```
+
+## 例
+
+### 基本
+
+いくつかのアクションを持つシンプルなコンテキストメニュー。
+
+<ComponentPreview styleName="base-nova" name="context-menu-basic" />
+
+### サブメニュー
+
+`ContextMenuSub` を使ってセカンダリアクションをネストします。
+
+<ComponentPreview styleName="base-nova" name="context-menu-submenu" />
+
+### ショートカット
+
+`ContextMenuShortcut` を追加してキーボードヒントを表示します。
+
+<ComponentPreview styleName="base-nova" name="context-menu-shortcuts" />
+
+### グループ
+
+関連するアクションをグループ化し、区切り線で分けます。
+
+<ComponentPreview styleName="base-nova" name="context-menu-groups" />
+
+### アイコン
+
+アイコンとラベルを組み合わせて素早くスキャンできるようにします。
+
+<ComponentPreview styleName="base-nova" name="context-menu-icons" />
+
+### チェックボックス
+
+トグルには `ContextMenuCheckboxItem` を使用します。
+
+<ComponentPreview styleName="base-nova" name="context-menu-checkboxes" />
+
+### ラジオ
+
+排他的な選択には `ContextMenuRadioItem` を使用します。
+
+<ComponentPreview styleName="base-nova" name="context-menu-radio" />
+
+### 破壊的
+
+メニューアイテムを破壊的なスタイルにするには `variant="destructive"` を使用します。
+
+<ComponentPreview styleName="base-nova" name="context-menu-destructive" />
+
+### 配置
+
+side と align プロパティでサブメニューの配置を制御します。
+
+<ComponentPreview styleName="base-nova" name="context-menu-sides" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl) を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="context-menu-rtl"
+  direction="rtl"
+/>
+
+`side="inline-end"` を使用してトリガーの論理的な右側にメニューを配置します。
+
+```tsx showLineNumbers
+<ContextMenu>
+  <ContextMenuTrigger>右クリックしてください</ContextMenuTrigger>
+  <ContextMenuContent side="inline-end">
+    <ContextMenuItem>Profile</ContextMenuItem>
+    <ContextMenuItem>Billing</ContextMenuItem>
+    <ContextMenuItem>Team</ContextMenuItem>
+    <ContextMenuItem>Subscription</ContextMenuItem>
+  </ContextMenuContent>
+</ContextMenu>
+```
+
+## API リファレンス
+
+詳細については [Base UI](https://base-ui.com/react/components/context-menu#api-reference) のドキュメントを参照してください。

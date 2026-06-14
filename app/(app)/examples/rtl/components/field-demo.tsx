@@ -1,6 +1,6 @@
 "use client"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import { Button } from "@/styles/base/ui-rtl/button"
 import { Checkbox } from "@/styles/base/ui-rtl/checkbox"
 import {
@@ -95,9 +95,7 @@ function getYears(locale: string) {
 }
 
 export function FieldDemo() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
   const months = getMonths(t.locale)
   const years = getYears(t.locale)
   const cardPlaceholder = formatCardNumber(t.locale)
@@ -143,7 +141,7 @@ export function FieldDemo() {
                     <SelectTrigger id="rtl-exp-month">
                       <SelectValue placeholder="MM" />
                     </SelectTrigger>
-                    <SelectContent data-lang={lang} dir={t.dir}>
+                    <SelectContent data-lang={t.lang} dir={t.dir}>
                       <SelectGroup>
                         {months.map((item) => (
                           <SelectItem key={item.value} value={item.value}>
@@ -160,7 +158,7 @@ export function FieldDemo() {
                     <SelectTrigger id="rtl-exp-year">
                       <SelectValue placeholder="YYYY" />
                     </SelectTrigger>
-                    <SelectContent data-lang={lang} dir={t.dir}>
+                    <SelectContent data-lang={t.lang} dir={t.dir}>
                       <SelectGroup>
                         {years.map((item) => (
                           <SelectItem key={item.value} value={item.value}>

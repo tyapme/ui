@@ -1,0 +1,175 @@
+---
+title: Filters
+description: 複数のフィルタータイプ、演算子、視覚的インジケーターを持つ包括的なフィルタリングシステム。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="filters-demo" align="start" />
+
+## インストール
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/filters.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>以下の依存パッケージをインストールします:</Step>
+
+```bash
+npm install class-variance-authority
+```
+
+<Step>以下のコードをプロジェクトにコピーします。</Step>
+
+<ComponentSource
+  name="filters"
+  title="components/ui/filters.tsx"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## 使い方
+
+```tsx
+import {
+  createFilter,
+  Filters,
+  type Filter,
+  type FilterFieldConfig,
+} from "@/components/ui/filters"
+```
+
+```tsx
+const [filters, setFilters] = useState<Filter[]>([
+  createFilter("status", "is_any_of", ["todo", "in_progress"]),
+])
+
+const fields: FilterFieldConfig[] = [
+  {
+    key: "status",
+    label: "Status",
+    type: "multiselect",
+    options: [
+      { value: "todo", label: "Todo" },
+      { value: "in_progress", label: "In Progress" },
+      { value: "done", label: "Done" },
+    ],
+  },
+]
+
+return <Filters filters={filters} fields={fields} onChange={setFilters} />
+```
+
+## サンプル
+
+### バリデーション
+
+`pattern` または `validation` を指定すると、テキスト入力に検証ルールを追加できます。
+
+<ComponentPreview styleName="base-nova" name="filters-validation" align="start" />
+
+### トリガーボタン
+
+`trigger` で「フィルター追加」メニューを開く要素を差し替えられます。
+
+<ComponentPreview styleName="base-nova" name="filters-trigger" align="start" />
+
+### Small サイズ
+
+<ComponentPreview styleName="base-nova" name="filters-small" align="start" />
+
+### Large サイズ
+
+<ComponentPreview styleName="base-nova" name="filters-large" align="start" />
+
+### 多言語対応
+
+`i18n` でラベルや演算子をローカライズできます。
+
+<ComponentPreview styleName="base-nova" name="filters-i18n" align="start" />
+
+## API リファレンス
+
+### Filters
+
+アクティブなフィルターの集合を表示・管理するメインコンポーネント。
+
+| Prop                 | Type                             | Default     | Description                                            |
+| :------------------- | :------------------------------- | :---------- | :---------------------------------------------------- |
+| `filters`            | `Filter<T>[]`                    | -           | `Required`. アクティブなフィルターの配列。            |
+| `fields`             | `FilterFieldsConfig<T>`          | -           | `Required`. 利用可能なフィールドの定義。              |
+| `onChange`           | `(filters: Filter<T>[]) => void` | -           | `Required`. 追加・更新・削除時に呼ばれるコールバック。 |
+| `size`               | `"sm" \| "default" \| "lg"`      | `"default"` | フィルター項目とコントロールのサイズ。                |
+| `radius`             | `"default" \| "full"`            | `"default"` | フィルター項目の角丸。                                |
+| `trigger`            | `ReactNode`                      | -           | 「フィルター追加」メニューを開くカスタム要素。        |
+| `showSearchInput`    | `boolean`                        | `true`      | 追加メニューに検索入力を表示するか。                  |
+| `allowMultiple`      | `boolean`                        | `true`      | 同じフィールドに複数のフィルターを許可するか。        |
+| `enableShortcut`     | `boolean`                        | `false`     | メニューを開くショートカットを有効にするか。          |
+| `shortcutKey`        | `string`                         | `"f"`       | ショートカットに使うキー。                            |
+| `i18n`               | `Partial<FilterI18nConfig>`      | -           | ラベルや演算子のローカライズ設定。                    |
+| `className`          | `string`                         | -           | コンテナへの追加クラス。                              |
+| `menuPopupClassName` | `string`                         | -           | ドロップダウンメニューへの追加クラス。                |
+
+---
+
+### FilterFieldConfig
+
+フィルター可能な個々のフィールドの定義。
+
+| Property              | Type                                                             | Description                              |
+| :-------------------- | :--------------------------------------------------------------- | :--------------------------------------- |
+| `key`                 | `string`                                                         | `Required`. フィールドの一意な識別子。   |
+| `label`               | `string`                                                         | `Required`. フィールドの表示名。         |
+| `type`                | `"text" \| "select" \| "multiselect" \| "custom" \| "separator"` | 入力タイプ。                             |
+| `icon`                | `ReactNode`                                                      | ラベル横に表示するアイコン。             |
+| `options`             | `FilterOption<T>[]`                                              | `select` / `multiselect` の選択肢。      |
+| `operators`           | `FilterOperator[]`                                               | このフィールド専用の演算子。             |
+| `defaultOperator`     | `string`                                                         | フィルター追加時の既定の演算子。         |
+| `placeholder`         | `string`                                                         | テキスト入力のプレースホルダー。         |
+| `searchable`          | `boolean`                                                        | 選択肢を検索可能にするか。               |
+| `maxSelections`       | `number`                                                         | `multiselect` で選択できる最大数。       |
+| `pattern`             | `string`                                                         | テキスト入力検証用の正規表現。           |
+| `validation`          | `(value) => boolean \| object`                                   | カスタム検証関数。                       |
+| `customRenderer`      | `(props) => ReactNode`                                           | 値セレクターのカスタムレンダラー。       |
+| `customValueRenderer` | `(values, options) => ReactNode`                                 | アクティブな値表示のカスタムレンダラー。 |
+| `className`           | `string`                                                         | フィールドへの追加クラス。               |
+
+---
+
+### Filter
+
+アクティブなフィルターオブジェクトの構造。
+
+| Property   | Type     | Description                            |
+| :--------- | :------- | :------------------------------------- |
+| `id`       | `string` | フィルターインスタンスの一意な識別子。 |
+| `field`    | `string` | 対応するフィールドの `key`。           |
+| `operator` | `string` | 選択中の演算子(例: "is", "contains")。 |
+| `values`   | `T[]`    | 現在の値。                             |
+
+---
+
+### Helpers
+
+| Function            | Signature                                             | Description                            |
+| :------------------ | :---------------------------------------------------- | :------------------------------------- |
+| `createFilter`      | `(field, operator?, values?) => Filter`               | 一意な ID 付きのフィルターを生成する。 |
+| `createFilterGroup` | `(id, label, fields, initialFilters?) => FilterGroup` | フィルターグループ定義を生成する。     |

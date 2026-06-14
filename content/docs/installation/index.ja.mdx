@@ -1,0 +1,49 @@
+---
+title: インストール
+description: Ketyap UI を使うための基本設定。
+---
+
+Ketyap UI は Next.js App Router、TypeScript、Tailwind CSS、registry ベースのコンポーネントを前提にしています。
+
+新しい画面やコンポーネントを追加する前に、`components.json`、`tsconfig.json`、`app/globals.css` の設定が既存プロジェクトと揃っていることを確認してください。
+
+## コンポーネント基盤
+
+Ketyap UI は **Base UI (`@base-ui/react`)** のみを使用します。Radix UI のサポートは終了しています。
+
+すべてのコンポーネントは `@/styles/base/ui/` または `@/registry/ui/` からインポートしてください。
+
+```ts
+// ✅ 正しい
+import { Button } from "@/styles/base/ui/button"
+import { TooltipProvider } from "@/registry/ui/tooltip"
+```
+
+## 基本設定
+
+```json title="components.json"
+{
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "@/components",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks",
+    "utils": "@/lib/utils"
+  }
+}
+```
+
+## 実装前に確認すること
+
+- UI は既存コンポーネントから使う。
+- 色、余白、radius、shadow は token を経由する。
+- 新しいパターンが必要な場合は、ページ側ではなく共通コンポーネントまたは docs を先に更新する。
+- 変更後は lint、typecheck、build を実行する。

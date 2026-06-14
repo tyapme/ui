@@ -2,7 +2,7 @@
 
 import { BadgeCheckIcon, ChevronRightIcon } from "lucide-react"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import { Button } from "@/styles/base/ui-rtl/button"
 import {
   Item,
@@ -31,9 +31,7 @@ const translations = {
 }
 
 export function ItemDemo() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
 
   return (
     <div dir={t.dir} className="flex w-full max-w-md flex-col gap-6">

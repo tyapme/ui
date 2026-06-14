@@ -1,0 +1,168 @@
+---
+title: Input
+description: フォームやユーザーデータ入力向けのテキスト入力コンポーネント。組み込みのスタイリングとアクセシビリティ機能を備えています。
+base: base
+component: true
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-demo"
+  previewClassName="*:max-w-xs"
+/>
+
+## インストール
+
+<ComponentInstall name="input" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import { Input } from "@/components/ui/input"
+```
+
+```tsx
+<Input />
+```
+
+## 例
+
+### 基本
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-basic"
+  previewClassName="*:max-w-xs"
+/>
+
+### フィールド
+
+`Field`、`FieldLabel`、`FieldDescription` を使用して、ラベルと説明を持つ入力を作成します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-field"
+  previewClassName="*:max-w-xs"
+/>
+
+### フィールドグループ
+
+`FieldGroup` を使用して複数の `Field` ブロックを表示し、フォームを構築します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-fieldgroup"
+  previewClassName="*:max-w-xs"
+/>
+
+### 無効
+
+`disabled` プロパティを使用して入力を無効にします。無効状態にスタイルを適用するには、`Field` コンポーネントに `data-disabled` 属性を追加します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-disabled"
+  previewClassName="*:max-w-xs"
+/>
+
+### 無効な入力
+
+`aria-invalid` プロパティを使用して入力を無効としてマークします。無効状態にスタイルを適用するには、`Field` コンポーネントに `data-invalid` 属性を追加します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-invalid"
+  previewClassName="*:max-w-xs"
+/>
+
+### ファイル
+
+`type="file"` プロパティを使用してファイル入力を作成します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-file"
+  previewClassName="*:max-w-xs"
+/>
+
+### インライン
+
+`Field` に `orientation="horizontal"` を設定してインライン入力を作成します。
+`Button` と組み合わせてボタン付きの検索入力を作成できます。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-inline"
+  previewClassName="*:max-w-xs"
+/>
+
+### グリッド
+
+グリッドレイアウトを使用して複数の入力を横並びに配置します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-grid"
+  previewClassName="p-6"
+/>
+
+### 必須
+
+`required` 属性を使用して必須入力を示します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-required"
+  previewClassName="*:max-w-xs"
+/>
+
+### バッジ
+
+ラベルに `Badge` を使用して推奨フィールドをハイライトします。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-badge"
+  previewClassName="*:max-w-xs"
+/>
+
+### Input グループ
+
+入力内にアイコン、テキスト、ボタンを追加するには `InputGroup` コンポーネントを使用します。詳細な例については [Input Group](/docs/components/input-group) コンポーネントを参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-input-group"
+  previewClassName="*:max-w-xs"
+/>
+
+### ボタングループ
+
+入力にボタンを追加するには `ButtonGroup` コンポーネントを使用します。詳細な例については [Button Group](/docs/components/button-group) コンポーネントを参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-button-group"
+  previewClassName="*:max-w-xs"
+/>
+
+### フォーム
+
+複数の入力、セレクト、ボタンを含む完全なフォームの例。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-form"
+  previewClassName="h-[32rem]"
+/>
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-rtl"
+  direction="rtl"
+  previewClassName="*:max-w-xs"
+/>

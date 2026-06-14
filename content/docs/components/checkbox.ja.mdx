@@ -1,0 +1,98 @@
+---
+title: Checkbox
+description: チェック済みとチェックなしの状態をトグルできるコントロール。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/checkbox
+  api: https://base-ui.com/react/components/checkbox#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="checkbox-demo"
+  previewClassName="h-80"
+/>
+
+## インストール
+
+<ComponentInstall name="checkbox" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import { Checkbox } from "@/components/ui/checkbox"
+```
+
+```tsx
+<Checkbox />
+```
+
+## チェック状態
+
+非制御のチェックボックスには `defaultChecked` を、状態を制御するには `checked` と `onCheckedChange` を使用します。
+
+```tsx showLineNumbers
+import * as React from "react"
+
+export function Example() {
+  const [checked, setChecked] = React.useState(false)
+
+  return <Checkbox checked={checked} onCheckedChange={setChecked} />
+}
+```
+
+## 無効状態
+
+チェックボックスに `aria-invalid` を設定し、フィールドのラッパーに `data-invalid` を設定して無効スタイルを表示します。
+
+<ComponentPreview styleName="base-nova" name="checkbox-invalid" />
+
+## 例
+
+### 基本
+
+適切なレイアウトとラベルのため、チェックボックスを `Field` と `FieldLabel` と組み合わせて使用します。
+
+<ComponentPreview styleName="base-nova" name="checkbox-basic" />
+
+### 説明
+
+ヘルパーテキストには `FieldContent` と `FieldDescription` を使用します。
+
+<ComponentPreview styleName="base-nova" name="checkbox-description" />
+
+### 無効
+
+`disabled` プロパティを使用してインタラクションを防ぎ、`<Field>` コンポーネントに `data-disabled` 属性を追加して無効スタイルを適用します。
+
+<ComponentPreview styleName="base-nova" name="checkbox-disabled" />
+
+### グループ
+
+複数のフィールドを使用してチェックボックスのリストを作成します。
+
+<ComponentPreview styleName="base-nova" name="checkbox-group" />
+
+### テーブル
+
+<ComponentPreview
+  styleName="base-nova"
+  name="checkbox-table"
+  previewClassName="p-4 md:p-8"
+/>
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl) を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="checkbox-rtl"
+  direction="rtl"
+  previewClassName="h-80"
+/>
+
+## API リファレンス
+
+詳細については [Base UI](https://base-ui.com/react/components/checkbox#api-reference) のドキュメントを参照してください。

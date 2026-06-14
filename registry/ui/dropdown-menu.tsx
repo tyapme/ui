@@ -104,9 +104,9 @@ function DropdownMenuItem({
   ...props
 }: MenuPrimitive.Item.Props &
   AsChildProps & {
-  inset?: boolean
-  variant?: "default" | "destructive"
-}) {
+    inset?: boolean
+    variant?: "default" | "destructive"
+  }) {
   const resolvedRender =
     asChild && React.isValidElement(children) ? children : render
 

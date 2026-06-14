@@ -1,0 +1,99 @@
+---
+title: Toggle Group
+description: オンまたはオフにトグルできる 2 状態ボタンのセット。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/toggle-group
+  api: https://base-ui.com/react/components/toggle-group#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="toggle-group-demo" />
+
+## インストール
+
+<ComponentInstall name="toggle-group" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+```
+
+```tsx
+<ToggleGroup type="single">
+  <ToggleGroupItem value="a">A</ToggleGroupItem>
+  <ToggleGroupItem value="b">B</ToggleGroupItem>
+  <ToggleGroupItem value="c">C</ToggleGroupItem>
+</ToggleGroup>
+```
+
+## コンポジション
+
+`ToggleGroup` を構築するには以下のコンポジションを使用します:
+
+```text
+ToggleGroup
+├── ToggleGroupItem
+└── ToggleGroupItem
+```
+
+## 例
+
+### アウトライン
+
+アウトラインスタイルには `variant="outline"` を使用します。
+
+<ComponentPreview styleName="base-nova" name="toggle-group-outline" />
+
+### サイズ
+
+`size` プロップを使ってトグルグループのサイズを変更します。
+
+<ComponentPreview styleName="base-nova" name="toggle-group-sizes" />
+
+### 間隔
+
+`spacing` を使ってトグルグループアイテム間に間隔を追加します。
+
+<ComponentPreview styleName="base-nova" name="toggle-group-spacing" />
+
+### 垂直
+
+垂直トグルグループには `orientation="vertical"` を使用します。
+
+<ComponentPreview styleName="base-nova" name="toggle-group-vertical" />
+
+### 無効
+
+<ComponentPreview styleName="base-nova" name="toggle-group-disabled" />
+
+### カスタム
+
+カスタムトグルグループの例。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="toggle-group-font-weight-selector"
+  previewClassName="*:data-[slot=field]:max-w-xs"
+/>
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="toggle-group-rtl"
+  direction="rtl"
+/>
+
+## API リファレンス
+
+[Base UI Toggle Group](https://base-ui.com/react/components/toggle-group#api-reference) ドキュメントを参照してください。
+
+## 変更履歴
+
+### 2026-05-17 デフォルト間隔
+
+デフォルトの `spacing` を `0` から `2` に変更し、トグルグループがデフォルトでアイテム間にスペースを持ってレンダリングされるようにしました。連結したアイテムには `spacing={0}` を使用します。

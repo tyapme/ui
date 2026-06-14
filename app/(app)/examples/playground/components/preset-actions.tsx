@@ -12,8 +12,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/registry/new-york-v4/ui/alert-dialog"
-import { Button } from "@/registry/new-york-v4/ui/button"
+} from "@/styles/base/ui/alert-dialog"
+import { Button } from "@/styles/base/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -22,16 +22,16 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/registry/new-york-v4/ui/dialog"
+} from "@/styles/base/ui/dialog"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/registry/new-york-v4/ui/dropdown-menu"
-import { Label } from "@/registry/new-york-v4/ui/label"
-import { Switch } from "@/registry/new-york-v4/ui/switch"
+} from "@/styles/base/ui/dropdown-menu"
+import { Label } from "@/styles/base/ui/label"
+import { Switch } from "@/styles/base/ui/switch"
 
 export function PresetActions() {
   const [open, setIsOpen] = React.useState(false)
@@ -87,9 +87,7 @@ export function PresetActions() {
             </div>
           </div>
           <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="secondary">Close</Button>
-            </DialogClose>
+            <DialogClose render={<Button variant="secondary">Close</Button>} />
           </DialogFooter>
         </DialogContent>
       </Dialog>

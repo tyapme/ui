@@ -4,8 +4,6 @@
     "index",
     "[Installation](/docs/installation)",
     "components-json",
-    "theming",
-    "[Dark Mode](/docs/dark-mode)",
-    "!new"
+    "theming"
   ]
 }

@@ -1,0 +1,167 @@
+---
+title: registry.json
+description: 独自のコンポーネントレジストリを運用するためのスキーマ。
+---
+
+`registry.json` スキーマはカスタムコンポーネントレジストリを定義するために使用します。
+
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "shadcn",
+  "homepage": "https://ui.shadcn.com",
+  "items": [
+    {
+      "name": "hello-world",
+      "type": "registry:block",
+      "title": "Hello World",
+      "description": "A simple hello world component.",
+      "registryDependencies": [
+        "button",
+        "@acme/input-form",
+        "https://example.com/r/foo"
+      ],
+      "dependencies": ["is-even@3.0.0", "motion"],
+      "files": [
+        {
+          "path": "registry/default/hello-world/hello-world.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
+```
+
+`include` を使用して、複数の `registry.json` ファイルにまたがって大規模なレジストリを整理することもできます。
+
+{/* prettier-ignore */}
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme",
+  "homepage": "https://acme.com",
+  "include": [
+    "components/ui/registry.json",
+    "hooks/registry.json"
+  ]
+}
+```
+
+公開GitHubリポジトリは同じソースレジストリ形式を使用します。CLIはルートの `registry.json` を読み込み、`include` を解決し、リポジトリからファイルをインストールします。詳細については [GitHubレジストリ](/docs/registry/github) のドキュメントをご覧ください。
+
+## 定義
+
+`registry.json` のJSONスキーマは[こちら](https://ui.shadcn.com/schema/registry.json)でご覧いただけます。
+
+### $schema
+
+`$schema` プロパティは `registry.json` ファイルのスキーマを指定するために使用します。
+
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json"
+}
+```
+
+### name
+
+`name` プロパティはレジストリの名前を指定するために使用します。データ属性やその他のメタデータに使用されます。
+
+```json title="registry.json" showLineNumbers
+{
+  "name": "acme"
+}
+```
+
+### homepage
+
+レジストリのホームページです。データ属性やその他のメタデータに使用されます。
+
+```json title="registry.json" showLineNumbers
+{
+  "homepage": "https://acme.com"
+}
+```
+
+### include
+
+`include` プロパティは他の `registry.json` ファイルからレジストリを構成するために使用します。
+
+{/* prettier-ignore */}
+```json title="registry.json" showLineNumbers
+{
+  "include": [
+    "components/ui/registry.json",
+    "hooks/registry.json"
+  ]
+}
+```
+
+各インクルードパスは明示的な `registry.json` ファイルへの相対パスでなければなりません。フォルダの省略形はサポートされていません。
+
+{/* prettier-ignore */}
+```json title="registry.json" showLineNumbers
+{
+  "include": [
+    "components/ui/registry.json"
+  ]
+}
+```
+
+インクルードされた `registry.json` ファイルは `name` と `homepage` を省略できます。これらのフィールドはルートの `registry.json` にのみ必須です。
+
+```json title="components/ui/registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}
+```
+
+`shadcn build` がインクルードを解決する際、アイテムのファイルパスはそのアイテムを宣言する `registry.json` ファイルからの相対パスで読み込まれます。生成されたレジストリ出力はフラット化され、`include` は含まれません。
+
+レジストリアイテム名は、インクルードされたすべてのファイルを含む解決済みレジストリ全体で一意でなければなりません。
+
+### items
+
+レジストリ内の `items` です。各アイテムは [registry-itemスキーマ仕様](https://ui.shadcn.com/schema/registry-item.json) を実装する必要があります。
+
+```json title="registry.json" showLineNumbers
+{
+  "items": [
+    {
+      "name": "hello-world",
+      "type": "registry:block",
+      "title": "Hello World",
+      "description": "A simple hello world component.",
+      "registryDependencies": [
+        "button",
+        "@acme/input-form",
+        "https://example.com/r/foo"
+      ],
+      "dependencies": ["is-even@3.0.0", "motion"],
+      "files": [
+        {
+          "path": "registry/default/hello-world/hello-world.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
+```
+
+ルートの `registry.json` は `items` または `include` のどちらかを少なくとも1つ定義する必要があります。`items` が省略された場合、デフォルトで空の配列になります。
+
+詳細については [registry-itemスキーマドキュメント](/docs/registry/registry-item-json) をご覧ください。

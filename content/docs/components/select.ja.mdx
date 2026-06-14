@@ -1,0 +1,121 @@
+---
+title: Select
+description: ボタンによってトリガーされる、ユーザーが選択できるオプションのリストを表示します。
+base: base
+component: true
+featured: true
+links:
+  doc: https://base-ui.com/react/components/select
+  api: https://base-ui.com/react/components/select#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="select-demo" />
+
+## インストール
+
+<ComponentInstall name="select" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+```
+
+```tsx showLineNumbers
+const items = [
+  { label: "Light", value: "light" },
+  { label: "Dark", value: "dark" },
+  { label: "System", value: "system" },
+]
+
+<Select items={items}>
+  <SelectTrigger className="w-[180px]">
+    <SelectValue placeholder="Theme" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectGroup>
+      {items.map((item) => (
+        <SelectItem key={item.value} value={item.value}>
+          {item.label}
+        </SelectItem>
+      ))}
+    </SelectGroup>
+  </SelectContent>
+</Select>
+```
+
+## コンポジション
+
+`Select` を構築するには以下のコンポジションを使用します:
+
+```text
+Select
+├── SelectTrigger
+│   └── SelectValue
+└── SelectContent
+    ├── SelectGroup
+    │   ├── SelectLabel
+    │   ├── SelectItem
+    │   └── SelectItem
+    ├── SelectSeparator
+    └── SelectGroup
+        ├── SelectLabel
+        ├── SelectItem
+        └── SelectItem
+```
+
+## 例
+
+### トリガーとアイテムの位置合わせ
+
+`SelectContent` の `alignItemWithTrigger` を使って、選択されたアイテムをトリガーに合わせるかどうかを制御します。`true`（デフォルト）の場合、選択されたアイテムがトリガーの上に表示されるようにポップアップを配置します。`false` の場合、ポップアップはトリガーの端に配置されます。
+
+<ComponentPreview styleName="base-nova" name="select-align-item" />
+
+### グループ
+
+`SelectGroup`、`SelectLabel`、`SelectSeparator` を使ってアイテムを整理します。
+
+<ComponentPreview styleName="base-nova" name="select-groups" />
+
+### スクロール可能
+
+多くのアイテムを持つスクロール可能なセレクト。
+
+<ComponentPreview styleName="base-nova" name="select-scrollable" />
+
+### 無効
+
+<ComponentPreview styleName="base-nova" name="select-disabled" />
+
+### 無効入力
+
+エラー状態を表示するには `Field` コンポーネントに `data-invalid` 属性を、`SelectTrigger` コンポーネントに `aria-invalid` 属性を追加します。
+
+```tsx showLineNumbers /data-invalid/ /aria-invalid/
+<Field data-invalid>
+  <FieldLabel>Fruit</FieldLabel>
+  <SelectTrigger aria-invalid>
+    <SelectValue />
+  </SelectTrigger>
+</Field>
+```
+
+<ComponentPreview styleName="base-nova" name="select-invalid" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="select-rtl" direction="rtl" />
+
+## API リファレンス
+
+[Base UI Select](https://base-ui.com/react/components/select#api-reference) ドキュメントを参照してください。

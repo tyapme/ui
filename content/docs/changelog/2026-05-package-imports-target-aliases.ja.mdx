@@ -1,0 +1,57 @@
+---
+title: 2026年5月 - パッケージインポートとターゲットエイリアス
+description: package.json imports とポータブルな registry ターゲットエイリアスで shadcn/ui を設定。
+date: 2026-05-05
+---
+
+`shadcn@4.7.0` で `files.target` のパッケージインポートとエイリアスのサポートを追加しました。
+
+## パッケージインポート
+
+`shadcn` CLI が、コンポーネントのインストール、インポートの書き換え、サードパーティ registry の解決に `package.json#imports` をサポートするようになりました。`tsconfig.json` の `compilerOptions.paths` だけに頼ることなく、`package.json` のプライベートな `#...` インポートエイリアスを使えます。
+
+```json title="package.json" showLineNumbers
+{
+  "imports": {
+    "#components/*": "./src/components/*.tsx",
+    "#lib/*": "./src/lib/*.ts",
+    "#hooks/*": "./src/hooks/*.ts"
+  }
+}
+```
+
+`components.json` でも同じルートを使います：
+
+```json title="components.json" showLineNumbers
+{
+  "aliases": {
+    "components": "#components",
+    "ui": "#components/ui",
+    "lib": "#lib",
+    "hooks": "#hooks",
+    "utils": "#lib/utils"
+  }
+}
+```
+
+アプリローカルのファイルがパッケージインポートを使い、共有 UI ファイルがワークスペースパッケージのエクスポートからインポートされる monorepo でも動作します。
+
+詳細は [パッケージインポートガイド](/docs/package-imports) を参照してください。
+
+## ターゲットエイリアス
+
+Registry アイテムが `files[].target` でターゲットエイリアスを使って、ユーザーの設定済み shadcn ディレクトリ以下にファイルをインストールできるようになりました。例えば、以下の registry アイテムは `prompt-input.tsx` ファイルを `ui/ai` ディレクトリ以下にインストールします。
+
+```json title="example.json" showLineNumbers
+{
+  "files": [
+    {
+      "path": "registry/default/ai/prompt-input.tsx",
+      "type": "registry:ui",
+      "target": "@ui/ai/prompt-input.tsx"
+    }
+  ]
+}
+```
+
+詳細は [registry サンプル](/docs/registry/examples#target-placeholders) を参照してください。

@@ -1,0 +1,82 @@
+---
+title: 2026年1月 - RTL サポート
+description: shadcn CLI が物理的な CSS クラスを論理的な同等クラスに自動変換することで、RTL（右から左）レイアウトをサポートするようになりました。
+date: 2026-01-28
+---
+
+shadcn/ui が右から左（RTL）レイアウトをファーストクラスでサポートするようになりました。アラビア語、ヘブライ語、ペルシャ語などの言語向けにコンポーネントが自動的に適応します。
+
+**これは [shadcn/ui コンポーネント](/docs/components) だけでなく、shadcn registry で配布されるすべてのコンポーネントに適用されます。**
+
+<ComponentPreview
+  styleName="base-nova"
+  name="alert-rtl"
+  direction="rtl"
+  previewClassName="h-auto sm:h-72 p-6"
+/>
+
+### RTL へのアプローチ
+
+従来、RTL をサポートするコンポーネントライブラリは論理クラスを最初から組み込んでいます。そのため、LTR レイアウト専用のプロジェクトでも `ms-4` や `start-2` といったクラスを使う必要がありました。
+
+私たちは別のアプローチを取りました。shadcn CLI がインストール時にクラスを変換するため、実際に必要な場合にのみ論理クラスを使えます。RTL をビルドしていない場合は `ml-4` や `left-2` といった馴染みのあるクラスを使えます。RTL を有効化すると、CLI が変換を処理します。
+
+**RTL は必要になるまで覚えなくて大丈夫です。**
+
+### 仕組み
+
+`components.json` に `rtl: true` を設定してコンポーネントを追加すると、CLI が `ml-4` や `text-left` などの物理的な CSS クラスを `ms-4` や `text-start` などの論理的な同等クラスに自動変換します。
+
+- `left-*`、`right-*` などの物理的な位置指定クラスは `start-*`、`end-*` になります。
+- `ml-*`、`pr-*` などの margin・padding クラスは `ms-*`、`pe-*` になります。
+- `text-left` などのテキスト配置クラスは `text-start` になります。
+- 方向性プロパティは論理値を使うよう更新されます。
+- 対応アイコンは `rtl:rotate-180` を使って自動的に反転されます。
+- `slide-in-from-left` などのアニメーションは `slide-in-from-start` になります。
+
+### すべてのコンポーネントに RTL サンプルを追加
+
+すべてのコンポーネントに RTL サンプルを追加しました。各[コンポーネントページ](/docs/components)でライブプレビューとコードを確認できます。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="card-rtl"
+  direction="rtl"
+  previewClassName="h-auto"
+/>
+
+### CLI の更新
+
+**新規プロジェクト**：`init` または `create` に `--rtl` フラグを付けて RTL を最初から有効化します。
+
+```bash
+npx shadcn@latest init --rtl
+```
+
+```bash
+npx shadcn@latest create --rtl
+```
+
+**既存プロジェクト**：`migrate rtl` コマンドでコンポーネントを移行します。
+
+```bash
+npx shadcn@latest migrate rtl
+```
+
+これにより `ui` ディレクトリ内のすべてのコンポーネントが論理クラスを使うよう変換されます。特定のパスや glob パターンを渡すこともできます。
+
+## 試してみる
+
+以下のリンクから v0 で RTL サポートを有効にした Next.js プロジェクトを開けます。
+
+[![Open in v0](https://v0.app/chat-static/button.svg)](https://v0.app/chat/api/open?url=https://github.com/shadcn-ui/next-template-rtl)
+
+### リンク
+
+- [RTL ドキュメント](/docs/rtl)
+- [フォントの推奨設定](/docs/rtl#font-recommendations)
+- [アニメーション](/docs/rtl#animations)
+- [既存コンポーネントの移行](/docs/rtl#migrating-existing-components)
+- [Next.js セットアップ](/docs/rtl/next)
+- [Vite セットアップ](/docs/rtl/vite)
+- [TanStack Start セットアップ](/docs/rtl/start)

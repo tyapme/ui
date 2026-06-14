@@ -19,14 +19,14 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL!),
   description: siteConfig.description,
-  keywords: ["TYAP.ME UI", "Next.js", "React", "Tailwind CSS", "Components"],
+  keywords: ["Ketyap UI", "Next.js", "React", "Tailwind CSS", "Components"],
   authors: [
     {
-      name: "TYAP.ME",
+      name: "Ketyap",
       url: siteConfig.url,
     },
   ],
-  creator: "TYAP.ME",
+  creator: "Ketyap",
   openGraph: {
     type: "website",
     locale: "en_US",

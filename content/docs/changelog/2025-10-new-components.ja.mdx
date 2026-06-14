@@ -1,0 +1,397 @@
+---
+title: 2025年10月 - 新コンポーネント
+description: Spinner、Kbd、Button Group、Input Group、Field、Item、Empty コンポーネント。
+date: 2025-10-03
+---
+
+今回のコンポーネント群は、毎日の開発で何度も作り直している地味なものに注目し、実際に使えるコンポーネントに仕上げました。
+
+**これらのコンポーネントは Radix、Base UI、React Aria など、あらゆるコンポーネントライブラリで動作します。プロジェクトにコピー＆ペーストするだけで使えます。**
+
+- [Spinner](#spinner): ローディング状態を示すインジケーター。
+- [Kbd](#kbd): キーボードのキーやキーグループを表示する。
+- [Button Group](#button-group): アクションや分割ボタン用のボタングループ。
+- [Input Group](#input-group): アイコン、ボタン、ラベルなどを付加した Input。
+- [Field](#field): 1 つのコンポーネントでフォームのすべてを担う。
+- [Item](#item): アイテムリスト、カードなどを表示する。
+- [Empty](#empty): 空の状態を表示するのに使う。
+
+### Spinner
+
+まずは簡単なものから：**Spinner** と **Kbd** です。どちらも基本的なコンポーネントで、何をするかは皆さんご存知の通りです。
+
+Spinner を表示するには次のようにします：
+
+```tsx
+import { Spinner } from "@/components/ui/spinner"
+```
+
+```tsx
+<Spinner />
+```
+
+表示例：
+
+<ComponentPreview
+  name="spinner-basic"
+
+/>
+
+ボタン内での表示例：
+
+<ComponentPreview
+  name="spinner-button"
+
+/>
+
+コードを編集して独自の Spinner に差し替えることもできます。
+
+<ComponentPreview
+  name="spinner-custom"
+
+/>
+
+### Kbd
+
+Kbd はキーボードのキーを表示するコンポーネントです。
+
+```tsx
+import { Kbd, KbdGroup } from "@/components/ui/kbd"
+```
+
+```tsx
+<Kbd>Ctrl</Kbd>
+```
+
+`KbdGroup` を使うとキーボードのキーをグループ化できます。
+
+```tsx showLineNumbers
+<KbdGroup>
+  <Kbd>Ctrl</Kbd>
+  <Kbd>B</Kbd>
+</KbdGroup>
+```
+
+<ComponentPreview
+  name="kbd-demo"
+
+/>
+
+ボタン、ツールチップ、Input Group などに追加できます。
+
+### Button Group
+
+多くのリクエストをいただいた Button Group です。関連するボタンを一貫したスタイルでまとめるコンテナです。アクショングループや分割ボタンなどに最適です。
+
+<ComponentPreview
+  name="button-group-demo"
+
+/>
+
+コード例：
+
+```tsx
+import { ButtonGroup } from "@/components/ui/button-group"
+```
+
+```tsx showLineNumbers
+<ButtonGroup>
+  <Button>Button 1</Button>
+  <Button>Button 2</Button>
+</ButtonGroup>
+```
+
+Button Group をネストすることで、スペース付きのより複雑なレイアウトを作成できます。
+
+```tsx showLineNumbers
+<ButtonGroup>
+  <ButtonGroup>
+    <Button>Button 1</Button>
+    <Button>Button 2</Button>
+  </ButtonGroup>
+  <ButtonGroup>
+    <Button>Button 3</Button>
+    <Button>Button 4</Button>
+  </ButtonGroup>
+</ButtonGroup>
+```
+
+`ButtonGroupSeparator` を使うと分割ボタンが作れます。クラシックなドロップダウンパターンです。
+
+<ComponentPreview
+  name="button-group-dropdown"
+
+/>
+
+Input にプレフィックスやサフィックスのボタン・テキストを追加するのにも使えます。
+
+<ComponentPreview
+  name="button-group-select"
+
+/>
+
+```tsx showLineNumbers
+<ButtonGroup>
+  <ButtonGroupText>Prefix</ButtonGroupText>
+  <Input placeholder="Type something here..." />
+  <Button>Button</Button>
+</ButtonGroup>
+```
+
+### Input Group
+
+Input Group を使うと、Input にアイコン、ボタンなどを追加できます。Input の周りにいつも必要な小さなパーツをまとめたものです。
+
+```tsx
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group"
+```
+
+```tsx showLineNumbers
+<InputGroup>
+  <InputGroupInput placeholder="Search..." />
+  <InputGroupAddon>
+    <SearchIcon />
+  </InputGroupAddon>
+</InputGroup>
+```
+
+アイコン付きのプレビュー：
+
+<ComponentPreview
+  name="input-group-icon"
+  className="[&_.preview]:h-[300px] [&_pre]:h-[300px]!"
+/>
+
+ボタンを追加することもできます。
+
+<ComponentPreview
+  name="input-group-button"
+  className="[&_.preview]:h-[300px] [&_pre]:h-[300px]!"
+/>
+
+テキスト、ラベル、ツールチップなど……
+
+<ComponentPreview
+  name="input-group-text"
+  className="[&_.preview]:h-[350px] [&_pre]:h-[350px]!"
+/>
+
+textarea にも対応しているので、多くのコントロールを持つ複雑なコンポーネントや、またもう一つのプロンプトフォームも構築できます。
+
+<ComponentPreview
+  name="input-group-textarea"
+  className="[&_.preview]:h-[450px] [&_pre]:h-[450px]!"
+/>
+
+Spinner との組み合わせもかっこいいです：
+
+<ComponentPreview
+  name="input-group-spinner"
+  className="[&_.preview]:h-[350px] [&_pre]:h-[350px]!"
+/>
+
+### Field
+
+**Field** を紹介します。非常に複雑なフォームを構築するためのコンポーネントです。この抽象化は美しい。
+
+完成するまで時間がかかりましたが、Server Actions、React Hook Form、TanStack Form、自前のフォームライブラリなど、あらゆるフォームライブラリと連携できるようにしました。
+
+```tsx
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+} from "@/components/ui/field"
+```
+
+Input 付きの基本的な Field：
+
+```tsx showLineNumbers
+<Field>
+  <FieldLabel htmlFor="username">Username</FieldLabel>
+  <Input id="username" placeholder="Max Leiter" />
+  <FieldDescription>
+    Choose a unique username for your account.
+  </FieldDescription>
+</Field>
+```
+
+<ComponentPreview
+  name="field-input"
+  className="[&_.preview]:h-[350px] [&_pre]:h-[350px]!"
+/>
+
+あらゆるフォームコントロールに対応しています。Input、textarea、select、checkbox、radio、switch、slider など何でも使えます。フルサンプル：
+
+<ComponentPreview
+  name="field-demo"
+  className="[&_.preview]:h-[850px] [&_pre]:h-[850px]!"
+/>
+
+checkbox フィールドの例：
+
+<ComponentPreview
+  name="field-checkbox"
+  className="[&_.preview]:h-[500px] [&_pre]:h-[500px]!"
+/>
+
+`FieldGroup` と `FieldSet` を使うと Field をグループ化できます。複数セクションのフォームに最適です。
+
+```tsx showLineNumbers
+<FieldSet>
+  <FieldLegend />
+  <FieldGroup>
+    <Field />
+    <Field />
+  </FieldGroup>
+</FieldSet>
+```
+
+<ComponentPreview
+  name="field-fieldset"
+  className="[&_.preview]:h-[500px] [&_pre]:h-[500px]!"
+/>
+
+レスポンシブ対応も簡単です。`orientation="responsive"` を設定するとコンテナの幅に応じて縦・横レイアウトを切り替えます。以上です。
+
+<ComponentPreview
+  name="field-responsive"
+  className="[&_.preview]:h-[600px] [&_pre]:h-[600px]!"
+/>
+
+さらに、`FieldLabel` で Field をラップすると選択可能なフィールドグループが作れます。とても簡単で、見た目もすばらしい。
+
+<ComponentPreview
+  name="field-choice-card"
+  className="[&_.preview]:h-[600px] [&_pre]:h-[600px]!"
+/>
+
+### Item
+
+これはほぼあらゆるコンテンツを収められるシンプルな flex コンテナです。
+
+何度も自分で作ってきたので、コンポーネント化することにしました。今では常に使っています。アイテムリスト、カードなどの表示に活用しています。
+
+```tsx
+import {
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/ui/item"
+```
+
+基本的な Item：
+
+```tsx showLineNumbers
+<Item>
+  <ItemMedia variant="icon">
+    <HomeIcon />
+  </ItemMedia>
+  <ItemContent>
+    <ItemTitle>Dashboard</ItemTitle>
+    <ItemDescription>Overview of your account and activity.</ItemDescription>
+  </ItemContent>
+</Item>
+```
+
+<ComponentPreview
+  name="item-demo"
+  className="[&_.preview]:h-[300px] [&_.preview]:p-4 [&_pre]:h-[300px]!"
+/>
+
+アイコン、アバター、画像を追加できます。
+
+<ComponentPreview
+  name="item-icon"
+  className="[&_.preview]:h-[300px] [&_.preview]:p-4 [&_pre]:h-[300px]!"
+/>
+
+<ComponentPreview
+  name="item-avatar"
+  className="[&_.preview]:h-[300px] [&_.preview]:p-4 [&_pre]:h-[300px]!"
+/>
+
+`ItemGroup` を使ったアイテムリストの表示例：
+
+<ComponentPreview
+  name="item-group"
+  className="[&_.preview]:h-[500px] [&_.preview]:p-4 [&_pre]:h-[500px]!"
+/>
+
+リンクとして使いたい場合は `asChild` プロパティを使います：
+
+```tsx showLineNumbers
+<Item asChild>
+  <a href="/dashboard">
+    <ItemMedia variant="icon">
+      <HomeIcon />
+    </ItemMedia>
+    <ItemContent>
+      <ItemTitle>Dashboard</ItemTitle>
+      <ItemDescription>Overview of your account and activity.</ItemDescription>
+    </ItemContent>
+  </a>
+</Item>
+```
+
+<ComponentPreview
+  name="item-link"
+  className="[&_.preview]:h-[400px] [&_.preview]:p-4 [&_pre]:h-[400px]!"
+/>
+
+### Empty
+
+最後は **Empty** です。アプリの空の状態を表示するために使います。
+
+```tsx
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty"
+```
+
+使い方：
+
+```tsx showLineNumbers
+<Empty>
+  <EmptyMedia variant="icon">
+    <InboxIcon />
+  </EmptyMedia>
+  <EmptyTitle>No messages</EmptyTitle>
+  <EmptyDescription>You don't have any messages yet.</EmptyDescription>
+  <EmptyContent>
+    <Button>Send a message</Button>
+  </EmptyContent>
+</Empty>
+```
+
+<ComponentPreview
+  name="empty-demo"
+  className="[&_.preview]:h-[400px] [&_.preview]:p-4 [&_pre]:h-[400px]!"
+/>
+
+アバターと組み合わせることもできます：
+
+<ComponentPreview
+  name="empty-avatar"
+  className="[&_.preview]:h-[400px] [&_pre]:h-[400px]!"
+/>
+
+検索結果やメール購読などに Input Group と組み合わせることもできます：
+
+<ComponentPreview
+  name="empty-input-group"
+  className="[&_.preview]:h-[450px] [&_pre]:h-[450px]!"
+/>
+
+以上です。7 つの新コンポーネント。あらゆるライブラリで動作し、すぐにプロジェクトで使えます。

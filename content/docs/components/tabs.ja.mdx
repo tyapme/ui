@@ -1,0 +1,81 @@
+---
+title: Tabs
+description: タブパネルとして知られる、一度に 1 つ表示されるコンテンツのレイヤー化されたセクションのセット。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/tabs
+  api: https://base-ui.com/react/components/tabs#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="tabs-demo"
+  previewClassName="h-96"
+/>
+
+## インストール
+
+<ComponentInstall name="tabs" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+```
+
+```tsx showLineNumbers
+<Tabs defaultValue="account" className="w-[400px]">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">Make changes to your account here.</TabsContent>
+  <TabsContent value="password">Change your password here.</TabsContent>
+</Tabs>
+```
+
+## コンポジション
+
+`Tabs` を構築するには以下のコンポジションを使用します:
+
+```text
+Tabs
+├── TabsList
+│   ├── TabsTrigger
+│   └── TabsTrigger
+├── TabsContent
+└── TabsContent
+```
+
+## 例
+
+### ライン
+
+ライン スタイルには `TabsList` に `variant="line"` プロップを使用します。
+
+<ComponentPreview styleName="base-nova" name="tabs-line" />
+
+### 垂直
+
+垂直タブには `orientation="vertical"` を使用します。
+
+<ComponentPreview styleName="base-nova" name="tabs-vertical" />
+
+### 無効
+
+<ComponentPreview styleName="base-nova" name="tabs-disabled" />
+
+### アイコン
+
+<ComponentPreview styleName="base-nova" name="tabs-icons" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="tabs-rtl" direction="rtl" />
+
+## API リファレンス
+
+[Base UI Tabs](https://base-ui.com/react/components/tabs#api-reference) ドキュメントを参照してください。

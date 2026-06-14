@@ -6,29 +6,28 @@ import { Switch as SwitchPrimitive } from "@base-ui/react/switch"
 import { cn } from "@/lib/utils"
 import { useShakeOnInvalid } from "@/hooks/use-shake-on-invalid"
 
-// React 19 hoists <style precedence href> to <head> and deduplicates across instances.
 const SWITCH_MOTION_CSS = `
-  [data-slot="switch"] {
+  .cn-switch {
     transition:
       background-color 200ms cubic-bezier(0.22, 1, 0.36, 1),
       border-color     200ms cubic-bezier(0.22, 1, 0.36, 1),
       box-shadow       220ms cubic-bezier(0.22, 1, 0.36, 1);
   }
-  [data-slot="switch"] [data-slot="switch-thumb"] {
+  .cn-switch .cn-switch-thumb {
     transition:
       transform 650ms cubic-bezier(0.34, 1.45, 0.64, 1),
       scale     180ms ease-out;
     will-change: transform;
   }
-  [data-slot="switch"]:not([data-disabled]):active [data-slot="switch-thumb"] {
+  .cn-switch:not([data-disabled]):active .cn-switch-thumb {
     scale: 1.25 0.875;
     transition-property: transform, scale;
     transition-duration: 650ms, 80ms;
     transition-timing-function: cubic-bezier(0.34, 1.45, 0.64, 1), ease-out;
   }
   @media (prefers-reduced-motion: reduce) {
-    [data-slot="switch"] { transition: none !important; }
-    [data-slot="switch"] [data-slot="switch-thumb"] { transition: none !important; }
+    .cn-switch { transition: none !important; }
+    .cn-switch .cn-switch-thumb { transition: none !important; }
   }
 `
 
@@ -43,7 +42,9 @@ function Switch({
   useShakeOnInvalid(ref)
   return (
     <>
-      <style precedence="component" href="switch-motion">{SWITCH_MOTION_CSS}</style>
+      <style precedence="component" href="cn-switch-motion">
+        {SWITCH_MOTION_CSS}
+      </style>
       <SwitchPrimitive.Root
         ref={ref}
         data-slot="switch"

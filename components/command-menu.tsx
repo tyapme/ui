@@ -2,15 +2,15 @@
 
 import * as React from "react"
 import { useRouter } from "next/navigation"
+import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 import { IconArrowRight } from "@tabler/icons-react"
 import { useDocsSearch } from "fumadocs-core/search/client"
 import { CornerDownLeftIcon, SearchIcon } from "lucide-react"
-import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 
+import { isDocsPageVisible, isDocsSectionVisible } from "@/lib/docs"
 import { trackEvent } from "@/lib/events"
 import { showMcpDocs } from "@/lib/flags"
-import { getPagesFromFolder } from "@/lib/page-tree"
-import { type source } from "@/lib/source"
+import { getPagesFromFolder, type PageTreeRoot } from "@/lib/page-tree"
 import { cn } from "@/lib/utils"
 import { useMutationObserver } from "@/hooks/use-mutation-observer"
 import { Button } from "@/styles/base/ui/button"
@@ -39,12 +39,11 @@ export function CommandMenu({
   navItems,
   ...props
 }: Omit<React.ComponentProps<typeof Dialog>, "children"> & {
-  tree: typeof source.pageTree
+  tree: PageTreeRoot
   navItems?: { href: string; label: string }[]
 }) {
   const router = useRouter()
   const [open, setOpen] = React.useState(false)
-  const [renderDelayedGroups, setRenderDelayedGroups] = React.useState(false)
   const [selectedType, setSelectedType] = React.useState<
     "page" | "component" | null
   >(null)
@@ -93,20 +92,6 @@ export function CommandMenu({
 
   // Cleanup timeout on unmount.
   React.useEffect(() => {
-    if (open) {
-      const frame = requestAnimationFrame(() => {
-        setRenderDelayedGroups(true)
-      })
-
-      return () => {
-        cancelAnimationFrame(frame)
-      }
-    }
-
-    setRenderDelayedGroups(false)
-  }, [open])
-
-  React.useEffect(() => {
     return () => {
       if (searchTimeoutRef.current) {
         clearTimeout(searchTimeoutRef.current)
@@ -153,7 +138,7 @@ export function CommandMenu({
 
     return (
       <CommandGroup
-        heading="ページ"
+        heading="Pages"
         className="p-0! **:[[cmdk-group-heading]]:scroll-mt-16 **:[[cmdk-group-heading]]:p-3! **:[[cmdk-group-heading]]:pb-1!"
       >
         {navItems.map((item) => (
@@ -182,13 +167,16 @@ export function CommandMenu({
       if (group.type !== "folder") {
         return null
       }
+      if (!isDocsSectionVisible(group.$id)) {
+        return null
+      }
 
       const pages = getPagesFromFolder(group).filter((item) => {
         if (!showMcpDocs && item.url.includes("/mcp")) {
           return false
         }
 
-        return true
+        return isDocsPageVisible(item.url)
       })
 
       if (pages.length === 0) {
@@ -245,7 +233,6 @@ export function CommandMenu({
         e.preventDefault()
         setOpen((open) => !open)
       }
-
     }
 
     document.addEventListener("keydown", down)
@@ -261,7 +248,7 @@ export function CommandMenu({
             size="icon"
             className={cn(
               "extend-touch-target size-8",
-              "md:w-48 md:justify-start md:rounded-lg md:pl-3 md:pr-12 md:font-normal md:hover:bg-muted/50 md:dark:bg-card lg:w-40 xl:w-64"
+              "md:w-48 md:justify-start md:rounded-lg md:pr-12 md:pl-3 md:font-normal md:hover:bg-muted/50 lg:w-40 xl:w-64 md:dark:bg-card"
             )}
             onClick={() => setOpen(true)}
           />
@@ -273,8 +260,10 @@ export function CommandMenu({
       </DialogTrigger>
       <DialogContent className="rounded-xl border-none bg-clip-padding p-2 pb-11 shadow-2xl ring-4 ring-neutral-200/80 dark:bg-neutral-900 dark:ring-neutral-800">
         <DialogHeader className="sr-only">
-          <DialogTitle>ドキュメントを検索...</DialogTitle>
-          <DialogDescription>コマンドを検索して実行できます。</DialogDescription>
+          <DialogTitle>Search documentation...</DialogTitle>
+          <DialogDescription>
+            Search for pages and components.
+          </DialogDescription>
         </DialogHeader>
         <Command
           className="rounded-none bg-transparent **:data-[slot=command-input]:h-9! **:data-[slot=command-input]:py-0 **:data-[slot=command-input-wrapper]:h-9! **:data-[slot=command-input-wrapper]:pb-1"
@@ -282,7 +271,7 @@ export function CommandMenu({
         >
           <div className="relative">
             <CommandInput
-              placeholder="ドキュメントを検索..."
+              placeholder="Search documentation..."
               onValueChange={handleSearchChange}
             />
             {query.isLoading && (
@@ -291,14 +280,13 @@ export function CommandMenu({
               </div>
             )}
           </div>
-          {/* input 下のぼかし */}
-          <div className="pointer-events-none relative z-10 -mb-4 h-4 shrink-0 bg-gradient-to-b from-background to-transparent dark:from-neutral-900" />
+          {/* 上下のぼかしは CommandList(ScrollMask 内包)が自動でマスクする */}
           <CommandList className="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-8">
             <CommandEmpty className="py-12 text-center text-sm text-muted-foreground">
-              {query.isLoading ? "検索中..." : "結果が見つかりませんでした。"}
+              {query.isLoading ? "Searching..." : "No results found."}
             </CommandEmpty>
             {navItemsSection}
-            {renderDelayedGroups ? (
+            {open ? (
               <>
                 {pageGroupsSection}
                 <SearchResults
@@ -309,8 +297,6 @@ export function CommandMenu({
               </>
             ) : null}
           </CommandList>
-          {/* リスト下のぼかし（フッターバーの直上） */}
-          <div className="pointer-events-none relative z-10 -mt-8 h-8 shrink-0 bg-gradient-to-t from-background to-transparent dark:from-neutral-900" />
         </Command>
         <div className="absolute inset-x-0 bottom-0 z-20 flex h-10 items-center gap-2 rounded-b-xl border-t border-t-neutral-100 bg-neutral-50 px-4 text-xs font-medium text-muted-foreground dark:border-t-neutral-700 dark:bg-neutral-800">
           <div className="flex items-center gap-2">
@@ -318,7 +304,7 @@ export function CommandMenu({
               <CornerDownLeftIcon />
             </CommandMenuKbd>{" "}
             {selectedType === "page" || selectedType === "component"
-              ? "ページへ移動"
+              ? "Open page"
               : null}
           </div>
           {copyPayload && (
@@ -428,7 +414,7 @@ function SearchResults({
   return (
     <CommandGroup
       className="px-0! **:[[cmdk-group-heading]]:scroll-mt-16 **:[[cmdk-group-heading]]:p-3! **:[[cmdk-group-heading]]:pb-1!"
-      heading="検索結果"
+      heading="Search results"
     >
       {uniqueResults.map((item) => {
         return (

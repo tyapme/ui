@@ -1,0 +1,68 @@
+---
+title: Spinner
+description: 時差アニメーション付きの 12 バー円形ローディングインジケーター。
+base: base
+component: true
+---
+
+12 本のバーが円形に配置され、それぞれが順番にフェードインしてリングを周回するようにハイライトが見えます。アニメーションは SVG 内のスコープ付き CSS キーフレームであり、グローバルスタイルや追加の依存関係はありません。色はデフォルトで `currentColor` なので、`text-*` クラスと周囲のテーマが自動的に適用されます。
+
+<ComponentPreview styleName="base-nova" name="spinner-demo" />
+
+## インストール
+
+<ComponentInstall name="spinner" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import { Spinner } from "@/components/ui/spinner"
+```
+
+```tsx
+<Spinner />
+<Spinner size={24} />
+<Spinner size={16} color="rgba(255,255,255,0.65)" />
+```
+
+## 例
+
+### サイズ
+
+`size` をピクセルで指定するか、`size-*` Tailwind クラスでオーバーライドします。
+
+<ComponentPreview styleName="base-nova" name="spinner-size" />
+
+### ボタン
+
+開始位置には `data-icon="inline-start"` を付けて `<Spinner />` をラベルの前に、終了位置には `data-icon="inline-end"` を付けてラベルの後に配置します。
+
+<ComponentPreview styleName="base-nova" name="spinner-button" />
+
+### バッジ
+
+<ComponentPreview styleName="base-nova" name="spinner-badge" />
+
+### 入力グループ
+
+<ComponentPreview styleName="base-nova" name="spinner-input-group" />
+
+### 空
+
+<ComponentPreview styleName="base-nova" name="spinner-empty" />
+
+## Props
+
+`<svg>` の属性に加えて、以下を受け取ります:
+
+| Prop        | Type     | Default          | Description                        |
+| :---------- | :------- | :--------------- | :--------------------------------- |
+| `size`      | `number` | `16`             | スピナーのサイズ（ピクセル）。     |
+| `color`     | `string` | `"currentColor"` | スピナーバーの色。                 |
+| `className` | `string` | -                | 追加の CSS クラス。                |
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="spinner-rtl" direction="rtl" />

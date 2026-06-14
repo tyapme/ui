@@ -2,7 +2,7 @@
 
 import { BotIcon, ChevronDownIcon } from "lucide-react"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import { Button } from "@/styles/base/ui-rtl/button"
 import { ButtonGroup } from "@/styles/base/ui-rtl/button-group"
 import {
@@ -37,9 +37,7 @@ const translations = {
 }
 
 export function ButtonGroupPopover() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
 
   return (
     <ButtonGroup dir={t.dir}>
@@ -61,7 +59,7 @@ export function ButtonGroupPopover() {
         <PopoverContent
           align="start"
           dir={t.dir}
-          data-lang={lang}
+          data-lang={t.lang}
           className="p-0"
         >
           <div className="px-4 py-3">

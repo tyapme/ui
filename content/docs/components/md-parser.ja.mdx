@@ -1,0 +1,97 @@
+---
+title: MD Parser
+description: Markdown をスタイル付きタイポグラフィコンポーネントとシンタックスハイライト付きコードブロックとしてレンダリングします。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="md-parser-demo" />
+
+## インストール
+
+<ComponentInstall name="md-parser" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import { MDParser } from "@/components/ui/md-parser"
+```
+
+```tsx
+<MDParser>{markdownString}</MDParser>
+```
+
+## コンポーネント
+
+MD Parser は、単独でも使用できる 2 つの独立したコンポーネントファミリーを組み合わせています。
+
+### Typography
+
+`typography` コンポーネントは、一貫したタイポグラフィスタイルを持つセマンティックな HTML 要素ラッパーをエクスポートします。これらは `MDParser` が Markdown のすべてのテキスト要素をレンダリングするために内部的に使用されます。
+
+```tsx
+import {
+  TypographyH1,
+  TypographyH2,
+  TypographyH3,
+  TypographyH4,
+  TypographyP,
+  TypographyLead,
+  TypographyLarge,
+  TypographySmall,
+  TypographyMuted,
+  TypographyBlockquote,
+  TypographyUL,
+  TypographyOL,
+  TypographyInlineCode,
+  TypographyA,
+  TypographyTable,
+  TypographyTR,
+  TypographyTH,
+  TypographyTD,
+  TypographyHR,
+  TypographyStrong,
+  TypographyEM,
+} from "@/components/ui/typography"
+```
+
+すべての Typography コンポーネントは、ベーススタイルに加えてカスタマイズするための `className` プロパティを受け取ります。
+
+```tsx
+<TypographyH1>The Joke Tax Chronicles</TypographyH1>
+<TypographyLead>
+  A story about a king who taxed jokes.
+</TypographyLead>
+<TypographyP>
+  Use <TypographyInlineCode>inline code</TypographyInlineCode> within prose.
+</TypographyP>
+```
+
+### CodeBlock (MD Parser Code Block)
+
+`md-parser-code-block` コンポーネントは、rehype-pretty-code からのシンタックスハイライト済み `<pre>` 出力を、言語ラベルとアニメーション付きコピーボタンを含むデザインシステムの `CodeBlock` シェルでラップします。
+
+```tsx
+import { MDCodeBlock } from "@/components/ui/md-parser-code-block"
+```
+
+```tsx
+<MDCodeBlock raw={codeString} language="tsx">
+  {/* pre element from rehype-pretty-code */}
+</MDCodeBlock>
+```
+
+| Prop       | Type              | Default | Description                              |
+| ---------- | ----------------- | ------- | ---------------------------------------- |
+| `raw`      | `string`          | —       | コピーボタンが使用するプレーンテキストコード |
+| `language` | `string`          | —       | ヘッダーに表示される言語ラベル           |
+| `children` | `React.ReactNode` | —       | ハイライト済みの `<pre>` 要素            |
+
+## API リファレンス
+
+### MDParser
+
+| Prop        | Type     | Default | Description                          |
+| ----------- | -------- | ------- | ------------------------------------ |
+| `children`  | `string` | —       | レンダリングする Markdown 文字列     |
+| `className` | `string` | `""`    | ラッパーへの追加クラス               |

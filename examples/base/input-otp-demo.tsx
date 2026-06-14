@@ -6,7 +6,7 @@ import {
 
 export function InputOTPDemo() {
   return (
-    <InputOTP maxLength={6} defaultValue="123456">
+    <InputOTP maxLength={6} value="123456">
       <InputOTPGroup>
         <InputOTPSlot index={0} />
         <InputOTPSlot index={1} />

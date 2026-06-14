@@ -1,0 +1,38 @@
+---
+title: 2026年2月 - 統合 Radix UI パッケージ
+description: new-york スタイルが統合された radix-ui パッケージを使用するようになりました。
+date: 2026-02-02
+---
+
+`new-york` スタイルが、個別の `@radix-ui/react-*` パッケージの代わりに統合された `radix-ui` パッケージを使用するようになりました。
+
+### 変更内容
+
+`new-york` スタイルを使用してコンポーネントを追加すると、個別パッケージではなく `radix-ui` からインポートされるようになります：
+
+```diff title="components/ui/dialog.tsx"
+- import * as DialogPrimitive from "@radix-ui/react-dialog"
++ import { Dialog as DialogPrimitive } from "radix-ui"
+```
+
+これにより、複数の `@radix-ui/react-*` パッケージの代わりに `radix-ui` 1 つに統合され、`package.json` がすっきりします。
+
+### 既存プロジェクトの移行
+
+`new-york` スタイルを使用している既存プロジェクトは、migrate コマンドで新しい `radix-ui` パッケージに移行できます：
+
+```bash
+npx shadcn@latest migrate radix
+```
+
+これにより UI コンポーネントのすべてのインポートが更新され、依存関係に `radix-ui` が追加されます。
+
+`ui` ディレクトリ以外のコンポーネントを移行するには、`path` 引数を使います：
+
+```bash
+npx shadcn@latest migrate radix src/components/custom
+```
+
+完了したら、`package.json` から不要になった `@radix-ui/react-*` パッケージを削除できます。
+
+詳細は [migrate radix ドキュメント](/docs/cli#migrate-radix) を参照してください。

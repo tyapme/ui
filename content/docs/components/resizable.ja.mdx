@@ -1,0 +1,99 @@
+---
+title: Resizable
+description: キーボードサポートを備えた、アクセシブルなリサイズ可能なパネルグループとレイアウト。
+base: base
+component: true
+links:
+  doc: https://github.com/bvaughn/react-resizable-panels
+  api: https://github.com/bvaughn/react-resizable-panels/tree/main/packages/react-resizable-panels
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="resizable-demo"
+  previewClassName="h-80"
+/>
+
+## 概要
+
+`Resizable` コンポーネントは [bvaughn](https://github.com/bvaughn) による [react-resizable-panels](https://github.com/bvaughn/react-resizable-panels) の上に構築されています。
+
+## インストール
+
+<ComponentInstall name="resizable" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable"
+```
+
+```tsx showLineNumbers
+<ResizablePanelGroup orientation="horizontal">
+  <ResizablePanel>One</ResizablePanel>
+  <ResizableHandle />
+  <ResizablePanel>Two</ResizablePanel>
+</ResizablePanelGroup>
+```
+
+## コンポジション
+
+`ResizablePanelGroup` を構築するには以下のコンポジションを使用します:
+
+```text
+ResizablePanelGroup
+├── ResizablePanel
+├── ResizableHandle
+└── ResizablePanel
+```
+
+## 例
+
+### 垂直
+
+垂直方向のリサイズには `orientation="vertical"` を使用します。
+
+<ComponentPreview styleName="base-nova" name="resizable-vertical" />
+
+### ハンドル
+
+`ResizableHandle` に `withHandle` プロップを使って視覚的なハンドルを表示します。
+
+<ComponentPreview styleName="base-nova" name="resizable-handle" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="resizable-rtl" direction="rtl" />
+
+## API リファレンス
+
+[react-resizable-panels](https://github.com/bvaughn/react-resizable-panels/tree/main/packages/react-resizable-panels) ドキュメントを参照してください。
+
+## 変更履歴
+
+### 2025-02-02 `react-resizable-panels` v4
+
+`react-resizable-panels` v4 に更新しました。詳細は [v4.0.0 リリースノート](https://github.com/bvaughn/react-resizable-panels/releases/tag/4.0.0)を参照してください。
+
+`react-resizable-panels` のプリミティブを直接使用している場合は、以下の変更点に注意してください:
+
+| v3                           | v4                      |
+| ---------------------------- | ----------------------- |
+| `PanelGroup`                 | `Group`                 |
+| `PanelResizeHandle`          | `Separator`             |
+| `direction` prop             | `orientation` prop      |
+| `defaultSize={50}`           | `defaultSize="50%"`     |
+| `onLayout`                   | `onLayoutChange`        |
+| `ImperativePanelHandle`      | `PanelImperativeHandle` |
+| `ref` prop on Panel          | `panelRef` prop         |
+| `data-panel-group-direction` | `aria-orientation`      |
+
+<Callout>
+  shadcn/ui のラッパーコンポーネント（`ResizablePanelGroup`、`ResizablePanel`、`ResizableHandle`）は変更ありません。
+</Callout>

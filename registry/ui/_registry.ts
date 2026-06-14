@@ -220,10 +220,7 @@ export const ui: Registry["items"] = [
   {
     name: "date-picker",
     type: "registry:ui",
-    dependencies: [
-      "react-aria-components",
-      "@internationalized/date",
-    ],
+    dependencies: ["react-aria-components", "@internationalized/date"],
     registryDependencies: ["button", "calendar", "popover"],
     files: [
       {
@@ -235,6 +232,23 @@ export const ui: Registry["items"] = [
       links: {
         docs: "https://ui.shadcn.com/docs/components/base/date-picker",
         api: "https://react-spectrum.adobe.com/react-aria/DatePicker.html",
+      },
+    },
+  },
+  {
+    name: "time-picker",
+    type: "registry:ui",
+    dependencies: ["react-aria-components", "@internationalized/date"],
+    registryDependencies: ["button", "popover", "scroll-mask"],
+    files: [
+      {
+        path: "ui/time-picker.tsx",
+        type: "registry:ui",
+      },
+    ],
+    meta: {
+      links: {
+        api: "https://react-spectrum.adobe.com/react-aria/TimeField.html",
       },
     },
   },
@@ -365,7 +379,7 @@ export const ui: Registry["items"] = [
   {
     name: "combobox",
     type: "registry:ui",
-    registryDependencies: ["button", "input-group"],
+    registryDependencies: ["button", "input-group", "scroll-mask"],
     dependencies: ["@base-ui/react"],
     files: [
       {
@@ -386,7 +400,7 @@ export const ui: Registry["items"] = [
     name: "command",
     type: "registry:ui",
     dependencies: ["cmdk"],
-    registryDependencies: ["dialog", "input-group"],
+    registryDependencies: ["dialog", "input-group", "scroll-mask"],
     files: [
       {
         path: "ui/command.tsx",
@@ -514,6 +528,42 @@ export const ui: Registry["items"] = [
           "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/field-example.tsx",
       },
     },
+  },
+  {
+    name: "filters",
+    type: "registry:ui",
+    dependencies: ["class-variance-authority"],
+    registryDependencies: [
+      "button",
+      "button-group",
+      "dropdown-menu",
+      "input",
+      "input-group",
+      "kbd",
+      "scroll-area",
+      "tooltip",
+    ],
+    files: [
+      {
+        path: "ui/filters.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "kanban",
+    type: "registry:ui",
+    dependencies: [
+      "@dnd-kit/core",
+      "@dnd-kit/sortable",
+      "@dnd-kit/utilities",
+    ],
+    files: [
+      {
+        path: "ui/kanban.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   {
     name: "form",
@@ -698,6 +748,18 @@ export const ui: Registry["items"] = [
     },
   },
   {
+    name: "phone-input",
+    type: "registry:ui",
+    dependencies: ["react-phone-number-input"],
+    registryDependencies: ["button", "combobox", "input", "scroll-area"],
+    files: [
+      {
+        path: "ui/phone-input.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
     name: "popover",
     type: "registry:ui",
     files: [
@@ -789,6 +851,21 @@ export const ui: Registry["items"] = [
     },
   },
   {
+    name: "scroll-mask",
+    type: "registry:ui",
+    files: [
+      {
+        path: "ui/scroll-mask.tsx",
+        type: "registry:ui",
+      },
+    ],
+    meta: {
+      links: {
+        docs: "https://ui.tyap.me/docs/components/scroll-mask",
+      },
+    },
+  },
+  {
     name: "select",
     type: "registry:ui",
     files: [
@@ -849,6 +926,7 @@ export const ui: Registry["items"] = [
     registryDependencies: [
       "button",
       "input",
+      "scroll-mask",
       "separator",
       "sheet",
       "skeleton",
@@ -1116,23 +1194,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     },
   },
   {
-    name: "native-select",
-    type: "registry:ui",
-    files: [
-      {
-        path: "ui/native-select.tsx",
-        type: "registry:ui",
-      },
-    ],
-    meta: {
-      links: {
-        docs: "https://ui.shadcn.com/docs/components/base/native-select",
-        examples:
-          "https://ui.shadcn.com/code/apps/v4/registry/bases/base/examples/native-select-example.tsx",
-      },
-    },
-  },
-  {
     name: "direction",
     type: "registry:ui",
     dependencies: ["@base-ui/react"],
@@ -1152,18 +1213,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   {
     name: "qr-code",
     type: "registry:ui",
-    dependencies: ["qrcode", "culori"],
+    dependencies: ["qrcode"],
     files: [
       {
         path: "ui/qr-code.tsx",
         type: "registry:ui",
       },
     ],
-    meta: {
-      links: {
-        docs: "https://ui.shadcn.com/docs/components/base/qr-code",
+  },
+  {
+    name: "bars-spinner",
+    type: "registry:ui",
+    files: [
+      {
+        path: "ui/bars-spinner.tsx",
+        type: "registry:ui",
       },
-    },
+    ],
   },
   {
     name: "number-field",
@@ -1202,6 +1268,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       links: {
         docs: "https://ui.shadcn.com/docs/components/base/sortable",
         api: "https://dndkit.com",
+      },
+    },
+  },
+  {
+    name: "typography",
+    type: "registry:ui",
+    files: [
+      {
+        path: "ui/typography.tsx",
+        type: "registry:ui",
+      },
+    ],
+    meta: {
+      links: {
+        docs: "https://ui.tyap.me/docs/components/typography",
       },
     },
   },

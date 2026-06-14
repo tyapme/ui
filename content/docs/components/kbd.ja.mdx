@@ -1,0 +1,94 @@
+---
+title: Kbd
+description: キーボードからのテキスト入力を表示するために使用します。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="kbd-demo" />
+
+## インストール
+
+<ComponentInstall name="kbd" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import { Kbd } from "@/components/ui/kbd"
+```
+
+```tsx
+<Kbd>Ctrl</Kbd>
+```
+
+## 構成
+
+`Kbd` と `KbdGroup` を構築するには以下の構成を使用します:
+
+```text
+Kbd
+KbdGroup
+├── Kbd
+└── Kbd
+```
+
+## 例
+
+### グループ
+
+`KbdGroup` コンポーネントを使用してキーボードキーをまとめます。
+
+<ComponentPreview styleName="base-nova" name="kbd-group" />
+
+### ボタン
+
+`Button` コンポーネント内で `Kbd` コンポーネントを使用して、ボタン内にキーボードキーを表示します。
+
+<ComponentPreview styleName="base-nova" name="kbd-button" />
+
+### ツールチップ
+
+`Tooltip` コンポーネント内で `Kbd` コンポーネントを使用して、キーボードキーを含むツールチップを表示できます。
+
+<ComponentPreview styleName="base-nova" name="kbd-tooltip" />
+
+### 入力グループ
+
+`InputGroupAddon` コンポーネント内で `Kbd` コンポーネントを使用して、入力グループ内にキーボードキーを表示できます。
+
+<ComponentPreview styleName="base-nova" name="kbd-input-group" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="kbd-rtl" direction="rtl" />
+
+## API リファレンス
+
+### Kbd
+
+キーボードキーを表示するために `Kbd` コンポーネントを使用します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | ``      |
+
+```tsx
+<Kbd>Ctrl</Kbd>
+```
+
+### KbdGroup
+
+`Kbd` コンポーネントをグループ化するために `KbdGroup` コンポーネントを使用します。
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | ``      |
+
+```tsx
+<KbdGroup>
+  <Kbd>Ctrl</Kbd>
+  <Kbd>B</Kbd>
+</KbdGroup>
+```

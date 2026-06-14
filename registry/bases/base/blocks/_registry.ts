@@ -63,7 +63,6 @@ export const blocks: Registry["items"] = [
       "input-group",
       "item",
       "label",
-      "native-select",
       "progress",
       "radio-group",
       "select",

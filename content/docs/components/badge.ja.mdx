@@ -1,0 +1,71 @@
+---
+title: Badge
+description: バッジ、またはバッジのように見えるコンポーネントを表示します。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="badge-demo" />
+
+## インストール
+
+<ComponentInstall name="badge" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import { Badge } from "@/components/ui/badge"
+```
+
+```tsx
+<Badge variant="default | outline | secondary | destructive">Badge</Badge>
+```
+
+## 使用例
+
+### バリアント
+
+`variant` プロパティを使用してバッジのバリアントを変更します。
+
+<ComponentPreview styleName="base-nova" name="badge-variants" />
+
+### アイコン付き
+
+バッジの内部にアイコンをレンダリングできます。`data-icon="inline-start"` で左側に、`data-icon="inline-end"` で右側にアイコンを表示します。
+
+<ComponentPreview styleName="base-nova" name="badge-icon" />
+
+### スピナー付き
+
+バッジの内部にスピナーをレンダリングできます。スピナーには `data-icon="inline-start"` または `data-icon="inline-end"` プロパティを追加してください。
+
+<ComponentPreview styleName="base-nova" name="badge-spinner" />
+
+### リンク
+
+`render` プロパティを使用してバッジをリンクとしてレンダリングします。
+
+<ComponentPreview styleName="base-nova" name="badge-link" />
+
+### カスタムカラー
+
+`Badge` コンポーネントに `bg-green-50 dark:bg-green-800` などのカスタムクラスを追加してバッジの色をカスタマイズできます。
+
+<ComponentPreview styleName="base-nova" name="badge-colors" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="badge-rtl" direction="rtl" />
+
+## API リファレンス
+
+### Badge
+
+`Badge` コンポーネントはバッジ、またはバッジのように見えるコンポーネントを表示します。
+
+| Prop        | Type                                                                          | Default     |
+| ----------- | ----------------------------------------------------------------------------- | ----------- |
+| `variant`   | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link"` | `"default"` |
+| `className` | `string`                                                                      | -           |

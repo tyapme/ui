@@ -1,11 +1,11 @@
 "use client"
 
-import { createContext, type ReactNode, useContext, useId, useRef } from "react"
+import { createContext, useContext, useId, useRef, type ReactNode } from "react"
 import { NumberField as NumberFieldPrimitive } from "@base-ui/react/number-field"
 import { cva, type VariantProps } from "class-variance-authority"
 
-import { cn } from "@/registry/bases/base/lib/utils"
 import { useShakeOnInvalid } from "@/hooks/use-shake-on-invalid"
+import { cn } from "@/registry/bases/base/lib/utils"
 import { Label } from "@/registry/ui/label"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
@@ -15,7 +15,7 @@ const NumberFieldContext = createContext<{
 } | null>(null)
 
 const numberFieldGroupVariants = cva(
-  "cn-number-field-group t-input relative flex w-full justify-between border border-input data-disabled:pointer-events-none data-disabled:opacity-50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive focus-within:has-aria-invalid:border-destructive focus-within:has-aria-invalid:ring-destructive/20 dark:focus-within:has-aria-invalid:ring-destructive/40 rounded-lg bg-transparent dark:bg-input/30 transition-colors focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-3",
+  "cn-number-field-group t-input relative flex w-full justify-between rounded-lg border border-input bg-transparent transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 focus-within:has-aria-invalid:border-destructive focus-within:has-aria-invalid:ring-destructive/20 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 dark:focus-within:has-aria-invalid:ring-destructive/40 dark:aria-invalid:ring-destructive/40 data-disabled:pointer-events-none data-disabled:opacity-50",
   {
     variants: {
       size: {
@@ -31,7 +31,7 @@ const numberFieldGroupVariants = cva(
 )
 
 const numberFieldButtonVariants = cva(
-  "cn-number-field-button relative flex shrink-0 cursor-pointer items-center justify-center transition-colors select-none text-muted-foreground/80 hover:text-foreground disabled:pointer-events-none disabled:opacity-50 pointer-coarse:after:absolute pointer-coarse:after:size-full pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11 hover:bg-accent",
+  "cn-number-field-button relative flex shrink-0 cursor-pointer items-center justify-center text-muted-foreground/80 transition-colors select-none hover:bg-accent hover:text-foreground disabled:pointer-events-none disabled:opacity-50 pointer-coarse:after:absolute pointer-coarse:after:size-full pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11",
   {
     variants: {
       size: {

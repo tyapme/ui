@@ -75,7 +75,7 @@ function AvatarGroup() {
         className="t-avatar hidden sm:flex"
         onMouseEnter={() => setShifts(0, "in")}
       >
-        <AvatarImage src="/avatars/01.png" alt="TYAP.ME member" />
+        <AvatarImage src="/avatars/01.png" alt="Ketyap member" />
         <AvatarFallback>TM</AvatarFallback>
       </Avatar>
       <Avatar

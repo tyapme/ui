@@ -48,7 +48,6 @@ import { createPortal } from "react-dom"
 
 import { cn } from "@/lib/utils"
 
-// Sortable Item Context
 const SortableItemContext = createContext<{
   listeners: DraggableSyntheticListeners | undefined
   isDragging?: boolean
@@ -87,7 +86,18 @@ const dropAnimationConfig: DropAnimation = {
   }),
 }
 
-// Multipurpose Sortable Component
+const subscribeClient = () => () => {}
+const getClientSnapshot = () => true
+const getServerSnapshot = () => false
+
+function useIsClient() {
+  return React.useSyncExternalStore(
+    subscribeClient,
+    getClientSnapshot,
+    getServerSnapshot
+  )
+}
+
 export interface SortableRootProps<T> extends Omit<
   useRender.ComponentProps<"div">,
   "onDragStart" | "onDragEnd" | "children"
@@ -122,9 +132,7 @@ function Sortable<T>({
   ...props
 }: SortableRootProps<T>) {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
-  const [mounted, setMounted] = useState(false)
-
-  useLayoutEffect(() => setMounted(true), [])
+  const mounted = useIsClient()
 
   const sensors = useSensors(
     useSensor(MouseSensor, {
@@ -208,7 +216,6 @@ function Sortable<T>({
     children,
   }
 
-  // Find the active child for the overlay
   const overlayContent = useMemo(() => {
     if (!activeId) return null
     let result: ReactNode = null
@@ -388,9 +395,7 @@ function SortableOverlay({
   ...props
 }: SortableOverlayProps) {
   const { activeId, modifiers } = useContext(SortableInternalContext)
-  const [mounted, setMounted] = useState(false)
-
-  useLayoutEffect(() => setMounted(true), [])
+  const mounted = useIsClient()
 
   const content =
     activeId && children

@@ -1,0 +1,58 @@
+---
+title: Time Picker
+description: 時刻を選択・入力するピッカーコンポーネント。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="time-picker-demo" />
+
+## インストール
+
+Time Picker は `<Popover />` と React Aria の `<TimeField />` プリミティブのコンポジションで構築されています。
+
+[Popover](/docs/components/popover#installation) コンポーネントのインストール手順を参照してください。
+
+## 使い方
+
+```tsx
+import { TimePicker } from "@/components/ui/time-picker"
+```
+
+```tsx
+const [time, setTime] = React.useState<Date>()
+
+return <TimePicker value={time} onValueChange={setTime} />
+```
+
+## 例
+
+### ベーシック
+
+編集可能なセグメント入力と時間・分を選択するドロップダウンを備えたタイムピッカー。
+
+<ComponentPreview styleName="base-nova" name="time-picker-demo" />
+
+### 入力のみ
+
+ドロップダウンなしの単純なセグメント入力。`showDropdown={false}` を設定します。
+
+<ComponentPreview styleName="base-nova" name="time-picker-input" />
+
+### 12 時間制
+
+AM/PM 列を持つ 12 時間制タイムピッカー。`hourCycle={12}` を設定します。
+
+<ComponentPreview styleName="base-nova" name="time-picker-12h" />
+
+### 秒
+
+秒精度のタイムピッカー。`granularity="second"` を設定します。
+
+<ComponentPreview styleName="base-nova" name="time-picker-seconds" />
+
+### 国際化
+
+アクティブなロケールに合わせて時刻をフォーマットするには `I18nProvider` でピッカーをラップします。RTL ロケールは自動的にミラーリングされます。
+
+<ComponentPreview styleName="base-nova" name="time-picker-i18n" />

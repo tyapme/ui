@@ -13,6 +13,7 @@ import {
   DialogTitle,
 } from "@/styles/base/ui/dialog"
 import { InputGroup, InputGroupAddon } from "@/styles/base/ui/input-group"
+import { ScrollMask } from "@/styles/base/ui/scroll-mask"
 
 function Command({
   className,
@@ -88,12 +89,16 @@ function CommandList({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.List>) {
   return (
-    <CommandPrimitive.List
-      data-slot="command-list"
-      className={cn(
-        "no-scrollbar max-h-72 scroll-py-1 overflow-x-hidden overflow-y-auto outline-none",
-        className
-      )}
+    <ScrollMask
+      render={
+        <CommandPrimitive.List
+          data-slot="command-list"
+          className={cn(
+            "no-scrollbar max-h-72 scroll-py-1 overflow-x-hidden overflow-y-auto outline-none",
+            className
+          )}
+        />
+      }
       {...props}
     />
   )

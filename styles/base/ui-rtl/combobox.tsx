@@ -13,6 +13,7 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "@/styles/base/ui-rtl/input-group"
+import { ScrollMask } from "@/styles/base/ui-rtl/scroll-mask"
 
 const Combobox = ComboboxPrimitive.Root
 
@@ -23,14 +24,17 @@ function ComboboxValue({ ...props }: ComboboxPrimitive.Value.Props) {
 function ComboboxTrigger({
   className,
   children,
+  render: renderProp,
+  nativeButton,
   ...props
 }: ComboboxPrimitive.Trigger.Props) {
+  const hasCustomRender = renderProp !== undefined
   return (
     <ComboboxPrimitive.Trigger
       data-slot="combobox-trigger"
       className={cn("[&_svg:not([class*='size-'])]:size-4", className)}
-      render={<span />}
-      nativeButton={false}
+      render={hasCustomRender ? renderProp : <span />}
+      nativeButton={nativeButton ?? (hasCustomRender ? true : false)}
       {...props}
     >
       {children}
@@ -129,13 +133,17 @@ function ComboboxContent({
 
 function ComboboxList({ className, ...props }: ComboboxPrimitive.List.Props) {
   return (
-    <ComboboxPrimitive.List
-      data-slot="combobox-list"
-      className={cn(
-        "no-scrollbar max-h-[min(calc(--spacing(72)---spacing(9)),calc(var(--available-height)---spacing(9)))] scroll-py-1 overflow-y-auto overscroll-contain p-1 data-empty:p-0",
-        className
-      )}
-      {...props}
+    <ScrollMask
+      render={
+        <ComboboxPrimitive.List
+          data-slot="combobox-list"
+          className={cn(
+            "no-scrollbar max-h-[min(calc(--spacing(72)---spacing(9)),calc(var(--available-height)---spacing(9)))] scroll-py-1 overflow-y-auto overscroll-contain p-1 data-empty:p-0",
+            className
+          )}
+          {...props}
+        />
+      }
     />
   )
 }

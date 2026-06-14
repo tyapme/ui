@@ -17,9 +17,12 @@ import {
 } from "@/registry/ui/field"
 import { Input } from "@/registry/ui/input"
 import {
-  NativeSelect,
-  NativeSelectOption,
-} from "@/registry/ui/native-select"
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/registry/ui/select"
 import { Textarea } from "@/registry/ui/textarea"
 
 export function GithubProfile() {
@@ -42,14 +45,15 @@ export function GithubProfile() {
             </Field>
             <Field>
               <FieldLabel htmlFor="email">Public Email</FieldLabel>
-              <NativeSelect id="email">
-                <NativeSelectOption value="m@shadcn.com">
-                  m@shadcn.com
-                </NativeSelectOption>
-                <NativeSelectOption value="m@gmail.com">
-                  m@gmail.com
-                </NativeSelectOption>
-              </NativeSelect>
+              <Select kind="native">
+                <SelectTrigger id="email">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="m@shadcn.com">m@shadcn.com</SelectItem>
+                  <SelectItem value="m@gmail.com">m@gmail.com</SelectItem>
+                </SelectContent>
+              </Select>
               <FieldDescription>
                 You can manage verified email addresses in your{" "}
                 <a href="#email-settings">email settings</a>.

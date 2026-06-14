@@ -6,7 +6,6 @@ import { Switch as SwitchPrimitive } from "@base-ui/react/switch"
 import { useShakeOnInvalid } from "@/hooks/use-shake-on-invalid"
 import { cn } from "@/registry/bases/base/lib/utils"
 
-// React 19 hoists <style precedence href> to <head> and deduplicates across instances.
 const SWITCH_MOTION_CSS = `
   .cn-switch {
     transition:
@@ -43,7 +42,9 @@ function Switch({
   useShakeOnInvalid(ref)
   return (
     <>
-      <style precedence="component" href="cn-switch-motion">{SWITCH_MOTION_CSS}</style>
+      <style precedence="component" href="cn-switch-motion">
+        {SWITCH_MOTION_CSS}
+      </style>
       <SwitchPrimitive.Root
         ref={ref}
         data-slot="switch"

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bars-spinner",
+  "files": [
+    {
+      "path": "registry/base/ui/bars-spinner.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/registry/base/lib/utils\"\n\nexport interface BarsSpinnerProps extends React.ComponentProps<\"svg\"> {\n  /** The size of the spinner in pixels. */\n  size?: number\n  /** The color of the spinner bars. */\n  color?: string\n}\n\nconst BAR_COUNT = 12\nconst DURATION = 1.2 // seconds for one full revolution\n\nfunction BarsSpinner({\n  size = 20,\n  color = \"currentColor\",\n  className,\n  ...props\n}: BarsSpinnerProps) {\n  return (\n    <svg\n      role=\"status\"\n      aria-label=\"Loading\"\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      className={cn(\"shrink-0\", className)}\n      {...props}\n    >\n      <style>\n        {\"@keyframes bars-spinner-fade{0%{opacity:1}100%{opacity:0.15}}\"}\n      </style>\n      {Array.from({ length: BAR_COUNT }, (_, i) => (\n        <rect\n          key={i}\n          x=\"11\"\n          y=\"2\"\n          width=\"2\"\n          height=\"5.5\"\n          rx=\"1\"\n          fill={color}\n          transform={`rotate(${i * (360 / BAR_COUNT)} 12 12)`}\n          style={{\n            // Negative, staggered delays so one bar is always at full opacity,\n            // producing the illusion of a highlight travelling around the ring.\n            animation: `bars-spinner-fade ${DURATION}s linear ${\n              (i / BAR_COUNT) * DURATION - DURATION\n            }s infinite`,\n          }}\n        />\n      ))}\n    </svg>\n  )\n}\n\nexport { BarsSpinner }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

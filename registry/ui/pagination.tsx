@@ -4,7 +4,6 @@ import { cn } from "@/registry/bases/base/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
-/* Active page fades in when it first appears (e.g. on navigation) */
 const ACTIVE_CSS = `
 [data-slot="pagination-link"][data-active="true"] {
   transition:
@@ -25,7 +24,9 @@ const ACTIVE_CSS = `
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
     <>
-      <style href="pagination-active" precedence="component">{ACTIVE_CSS}</style>
+      <style href="pagination-active" precedence="component">
+        {ACTIVE_CSS}
+      </style>
       <nav
         role="navigation"
         aria-label="pagination"
@@ -72,7 +73,11 @@ function PaginationLink({
     <Button
       variant="ghost"
       size={size}
-      className={cn("cn-pagination-link", isActive && "bg-muted! font-medium", className)}
+      className={cn(
+        "cn-pagination-link",
+        isActive && "bg-muted! font-medium",
+        className
+      )}
       nativeButton={false}
       render={
         <a
@@ -143,7 +148,7 @@ function PaginationEllipsis({
       aria-hidden
       data-slot="pagination-ellipsis"
       className={cn(
-        "cn-pagination-ellipsis text-muted-foreground flex size-9 items-center justify-center",
+        "cn-pagination-ellipsis flex size-9 items-center justify-center text-muted-foreground",
         className
       )}
       {...props}

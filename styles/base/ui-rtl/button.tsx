@@ -12,7 +12,7 @@ const buttonVariants = cva(
     "transition-[color,background-color,border-color,box-shadow,opacity,transform]",
     "duration-150 ease-out",
     "outline-none select-none",
-    // Press: dims + 1px push down (translate doesn't affect neighbours, unlike scale)
+
     "active:not-aria-[haspopup]:translate-y-px active:not-aria-[haspopup]:opacity-75",
     "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
     "aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20",

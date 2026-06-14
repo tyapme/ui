@@ -1,0 +1,93 @@
+---
+title: 2026年4月 - shadcn preset
+description: shadcn CLI から preset コードをデコード、共有、開く、解決する。
+date: 2026-04-28
+---
+
+preset コードを操作するための `shadcn preset` コマンドを追加しました。
+
+## preset のデコード
+
+preset コードをデコードして内容を確認できます：
+
+```bash
+npx shadcn@latest preset decode b5owWMfJ8l
+```
+
+```txt
+Preset
+  code         b5owWMfJ8l
+  version      b
+  style        mira
+  baseColor    mauve
+  theme        mauve
+  chartColor   amber
+  iconLibrary  hugeicons
+  font         inter
+  fontHeading  oxanium
+  radius       large
+  menuAccent   subtle
+  menuColor    inverted-translucent
+  url          https://ui.shadcn.com/create?preset=b5owWMfJ8l
+```
+
+## プロジェクトから解決する
+
+既存プロジェクトで `preset resolve` を使うと、現在の設定に対応する preset を確認できます。
+
+```bash
+npx shadcn@latest preset resolve
+```
+
+```txt
+Preset
+  code         b5Kc6P0Vc
+  version      b
+  style        luma
+  baseColor    olive
+  theme        lime
+  chartColor   sky
+  iconLibrary  hugeicons
+  font         geist
+  fontHeading  inherit
+  radius       default
+  menuAccent   subtle
+  menuColor    default
+  url          https://ui.shadcn.com/create?preset=b5Kc6P0Vc
+```
+
+monorepo でも動作します：
+
+```bash
+npx shadcn@latest preset resolve -c apps/web
+```
+
+## 共有または開く
+
+共有可能なリンクが必要な場合は `preset url` を使います：
+
+```bash
+npx shadcn@latest preset url b5owWMfJ8l
+```
+
+```txt
+https://ui.shadcn.com/create?preset=b5owWMfJ8l
+```
+
+shadcn/create でカスタマイズするために preset を開くには `preset open` を使います：
+
+```bash
+npx shadcn@latest preset open b5owWMfJ8l
+```
+
+```txt
+Opening https://ui.shadcn.com/create?preset=b5owWMfJ8l in your browser.
+```
+
+これにより、コードを手動でデコードしたり URL を構築したりせずに、preset を簡単に確認・共有・コーディングエージェントへの引き渡しができます。
+
+<Button asChild size="sm">
+  <Link href="/create" className="mt-6 no-underline!">
+    Try a Preset
+  </Link>
+</Button>

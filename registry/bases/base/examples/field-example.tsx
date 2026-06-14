@@ -27,11 +27,6 @@ import {
   InputOTPSlot,
 } from "@/registry/ui/input-otp"
 import {
-  NativeSelect,
-  NativeSelectOptGroup,
-  NativeSelectOption,
-} from "@/registry/ui/native-select"
-import {
   RadioGroup,
   RadioGroupItem,
 } from "@/registry/ui/radio-group"
@@ -40,6 +35,7 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/registry/ui/select"
@@ -345,23 +341,29 @@ function NativeSelectFields() {
           <FieldLabel htmlFor="native-select-basic">
             Basic Native Select
           </FieldLabel>
-          <NativeSelect id="native-select-basic">
-            <NativeSelectOption value="">Choose an option</NativeSelectOption>
-            <NativeSelectOption value="option1">Option 1</NativeSelectOption>
-            <NativeSelectOption value="option2">Option 2</NativeSelectOption>
-            <NativeSelectOption value="option3">Option 3</NativeSelectOption>
-          </NativeSelect>
+          <Select kind="native">
+            <SelectTrigger id="native-select-basic">
+              <SelectValue placeholder="Choose an option" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="option1">Option 1</SelectItem>
+              <SelectItem value="option2">Option 2</SelectItem>
+              <SelectItem value="option3">Option 3</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field>
           <FieldLabel htmlFor="native-select-country">Country</FieldLabel>
-          <NativeSelect id="native-select-country">
-            <NativeSelectOption value="">
-              Select your country
-            </NativeSelectOption>
-            <NativeSelectOption value="us">United States</NativeSelectOption>
-            <NativeSelectOption value="uk">United Kingdom</NativeSelectOption>
-            <NativeSelectOption value="ca">Canada</NativeSelectOption>
-          </NativeSelect>
+          <Select kind="native">
+            <SelectTrigger id="native-select-country">
+              <SelectValue placeholder="Select your country" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="us">United States</SelectItem>
+              <SelectItem value="uk">United Kingdom</SelectItem>
+              <SelectItem value="ca">Canada</SelectItem>
+            </SelectContent>
+          </Select>
           <FieldDescription>
             Select the country where you currently reside.
           </FieldDescription>
@@ -371,30 +373,40 @@ function NativeSelectFields() {
           <FieldDescription>
             Choose your local timezone for accurate scheduling.
           </FieldDescription>
-          <NativeSelect id="native-select-timezone">
-            <NativeSelectOption value="">Select timezone</NativeSelectOption>
-            <NativeSelectOption value="utc">UTC</NativeSelectOption>
-            <NativeSelectOption value="est">Eastern Time</NativeSelectOption>
-            <NativeSelectOption value="pst">Pacific Time</NativeSelectOption>
-          </NativeSelect>
+          <Select kind="native">
+            <SelectTrigger id="native-select-timezone">
+              <SelectValue placeholder="Select timezone" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="utc">UTC</SelectItem>
+              <SelectItem value="est">Eastern Time</SelectItem>
+              <SelectItem value="pst">Pacific Time</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field>
           <FieldLabel htmlFor="native-select-grouped">
             Grouped Options
           </FieldLabel>
-          <NativeSelect id="native-select-grouped">
-            <NativeSelectOption value="">Select a region</NativeSelectOption>
-            <NativeSelectOptGroup label="North America">
-              <NativeSelectOption value="us">United States</NativeSelectOption>
-              <NativeSelectOption value="ca">Canada</NativeSelectOption>
-              <NativeSelectOption value="mx">Mexico</NativeSelectOption>
-            </NativeSelectOptGroup>
-            <NativeSelectOptGroup label="Europe">
-              <NativeSelectOption value="uk">United Kingdom</NativeSelectOption>
-              <NativeSelectOption value="fr">France</NativeSelectOption>
-              <NativeSelectOption value="de">Germany</NativeSelectOption>
-            </NativeSelectOptGroup>
-          </NativeSelect>
+          <Select kind="native">
+            <SelectTrigger id="native-select-grouped">
+              <SelectValue placeholder="Select a region" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>North America</SelectLabel>
+                <SelectItem value="us">United States</SelectItem>
+                <SelectItem value="ca">Canada</SelectItem>
+                <SelectItem value="mx">Mexico</SelectItem>
+              </SelectGroup>
+              <SelectGroup>
+                <SelectLabel>Europe</SelectLabel>
+                <SelectItem value="uk">United Kingdom</SelectItem>
+                <SelectItem value="fr">France</SelectItem>
+                <SelectItem value="de">Germany</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
           <FieldDescription>
             Native select with grouped options using optgroup.
           </FieldDescription>
@@ -403,14 +415,16 @@ function NativeSelectFields() {
           <FieldLabel htmlFor="native-select-invalid">
             Invalid Native Select
           </FieldLabel>
-          <NativeSelect id="native-select-invalid" aria-invalid>
-            <NativeSelectOption value="">
-              This field has an error
-            </NativeSelectOption>
-            <NativeSelectOption value="option1">Option 1</NativeSelectOption>
-            <NativeSelectOption value="option2">Option 2</NativeSelectOption>
-            <NativeSelectOption value="option3">Option 3</NativeSelectOption>
-          </NativeSelect>
+          <Select kind="native">
+            <SelectTrigger id="native-select-invalid" aria-invalid>
+              <SelectValue placeholder="This field has an error" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="option1">Option 1</SelectItem>
+              <SelectItem value="option2">Option 2</SelectItem>
+              <SelectItem value="option3">Option 3</SelectItem>
+            </SelectContent>
+          </Select>
           <FieldDescription>
             This field contains validation errors.
           </FieldDescription>
@@ -419,12 +433,16 @@ function NativeSelectFields() {
           <FieldLabel htmlFor="native-select-disabled-field">
             Disabled Field
           </FieldLabel>
-          <NativeSelect id="native-select-disabled-field" disabled>
-            <NativeSelectOption value="">Cannot select</NativeSelectOption>
-            <NativeSelectOption value="option1">Option 1</NativeSelectOption>
-            <NativeSelectOption value="option2">Option 2</NativeSelectOption>
-            <NativeSelectOption value="option3">Option 3</NativeSelectOption>
-          </NativeSelect>
+          <Select kind="native" disabled>
+            <SelectTrigger id="native-select-disabled-field">
+              <SelectValue placeholder="Cannot select" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="option1">Option 1</SelectItem>
+              <SelectItem value="option2">Option 2</SelectItem>
+              <SelectItem value="option3">Option 3</SelectItem>
+            </SelectContent>
+          </Select>
           <FieldDescription>This field is currently disabled.</FieldDescription>
         </Field>
       </FieldGroup>
@@ -999,12 +1017,16 @@ function HorizontalFields() {
             <FieldLabel htmlFor="horizontal-native-select">Country</FieldLabel>
             <FieldDescription>Select your country.</FieldDescription>
           </FieldContent>
-          <NativeSelect id="horizontal-native-select">
-            <NativeSelectOption value="">Select a country</NativeSelectOption>
-            <NativeSelectOption value="us">United States</NativeSelectOption>
-            <NativeSelectOption value="uk">United Kingdom</NativeSelectOption>
-            <NativeSelectOption value="ca">Canada</NativeSelectOption>
-          </NativeSelect>
+          <Select kind="native">
+            <SelectTrigger id="horizontal-native-select">
+              <SelectValue placeholder="Select a country" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="us">United States</SelectItem>
+              <SelectItem value="uk">United Kingdom</SelectItem>
+              <SelectItem value="ca">Canada</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field orientation="horizontal">
           <FieldContent>

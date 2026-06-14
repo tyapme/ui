@@ -27,11 +27,14 @@ import {
   ItemFooter,
   ItemGroup,
 } from "@/registry/ui/item"
-import {
-  NativeSelect,
-  NativeSelectOption,
-} from "@/registry/ui/native-select"
 import { Progress } from "@/registry/ui/progress"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/registry/ui/select"
 
 export function SavingsTargets() {
   return (
@@ -111,15 +114,16 @@ export function SavingsTargets() {
             </Field>
             <Field>
               <FieldLabel htmlFor="invest-type">Order Type</FieldLabel>
-              <NativeSelect id="invest-type" defaultValue="market">
-                <NativeSelectOption value="market">
-                  Market Order
-                </NativeSelectOption>
-                <NativeSelectOption value="limit">
-                  Limit Order
-                </NativeSelectOption>
-                <NativeSelectOption value="stop">Stop Order</NativeSelectOption>
-              </NativeSelect>
+              <Select kind="native" defaultValue="market">
+                <SelectTrigger id="invest-type">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="market">Market Order</SelectItem>
+                  <SelectItem value="limit">Limit Order</SelectItem>
+                  <SelectItem value="stop">Stop Order</SelectItem>
+                </SelectContent>
+              </Select>
               <FieldDescription>
                 Market orders execute at the current price.
               </FieldDescription>

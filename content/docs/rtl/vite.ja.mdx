@@ -1,0 +1,107 @@
+---
+title: Vite
+description: RTL サポートを有効にした新しい Vite プロジェクトを作成する。
+---
+
+<Callout className="mb-6 border-emerald-600 bg-emerald-100 dark:border-emerald-400 dark:bg-emerald-900">
+
+**新しいプロジェクトを始める場合は、** [shadcn/create](/create?template=vite&base=base&rtl=true) を使うと、カスタムテーマ・Base UI または Radix・アイコンライブラリが設定済みの Vite アプリを作成できます。
+
+</Callout>
+
+<Steps>
+
+### プロジェクトを作成
+
+`--rtl` フラグと `vite` テンプレートを使って新しいプロジェクトを作成します。
+
+**[shadcn/create](/create?template=vite&base=base&rtl=true) でプロジェクトを作成済みの場合は、このステップをスキップできます。**
+
+```bash
+npx shadcn@latest create --template vite --rtl
+```
+
+これにより、`rtl: true` フラグを持つ `components.json` ファイルが作成されます。
+
+```json title="components.json" showLineNumbers {4}
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "base-nova",
+  "rtl": true
+}
+```
+
+### DirectionProvider を追加
+
+`index.html` の `html` タグに `dir="rtl"` と `lang="ar"` 属性を追加します。`lang="ar"` は対象言語に合わせて変更してください。
+
+```html title="index.html" showLineNumbers {2}
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+```
+
+次に、`main.tsx` でアプリを `DirectionProvider` コンポーネントで `direction="rtl"` プロパティを指定してラップします。
+
+```tsx title="src/main.tsx" showLineNumbers {4,12-13}
+import { StrictMode } from "react"
+import { createRoot } from "react-dom/client"
+
+import { DirectionProvider } from "@/components/ui/direction"
+
+import App from "./App"
+
+import "./index.css"
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <DirectionProvider direction="rtl">
+      <App />
+    </DirectionProvider>
+  </StrictMode>
+)
+```
+
+### フォントを追加
+
+最良の RTL 体験のために、対象言語を適切にサポートするフォントの使用をお勧めします。[Noto](https://fonts.google.com/noto) はこの目的に適したフォントファミリーで、Inter や Geist とも相性が良いです。
+
+[Fontsource](https://fontsource.org/fonts/noto-sans-arabic) を使ってフォントをインストールします。
+
+```bash
+npm install @fontsource-variable/noto-sans-arabic
+```
+
+`index.css` にフォントをインポートします。
+
+```css title="src/index.css" showLineNumbers {4,7}
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/noto-sans-arabic";
+
+@theme inline {
+  --font-sans: "Noto Sans Arabic Variable", sans-serif;
+}
+```
+
+ヘブライ語などの他の言語には `@fontsource-variable/noto-sans-hebrew` を使用できます。
+
+### コンポーネントを追加
+
+プロジェクトにコンポーネントを追加する準備ができました。RTL サポートの対応は CLI が自動的に行います。
+
+```bash
+npx shadcn@latest add item
+```
+
+</Steps>

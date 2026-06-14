@@ -73,7 +73,7 @@ const SAMPLE_DATA = {
     { type: "page", title: "分析レポート", image: "📈" },
     {
       type: "user",
-      title: "TYAP.ME",
+      title: "Ketyap",
       image: "/avatars/01.png",
       workspace: "プロダクト",
     },
@@ -330,7 +330,7 @@ export function NotionPromptForm() {
                         <AvatarImage src="/avatars/01.png" />
                         <AvatarFallback>TM</AvatarFallback>
                       </Avatar>
-                      TYAP.ME
+                      Ketyap
                     </DropdownMenuSubTrigger>
                     <DropdownMenuSubContent className="w-72 p-0 [--radius:1rem]">
                       <Command>

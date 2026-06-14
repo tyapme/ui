@@ -3,7 +3,7 @@
 import * as React from "react"
 import { IconMinus, IconPlus } from "@tabler/icons-react"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import { Button } from "@/styles/base/ui-rtl/button"
 import { ButtonGroup } from "@/styles/base/ui-rtl/button-group"
 import {
@@ -60,9 +60,7 @@ const translations = {
 }
 
 export function AppearanceSettings() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
   const [gpuCount, setGpuCount] = React.useState(8)
 
   const handleGpuAdjustment = React.useCallback((adjustment: number) => {

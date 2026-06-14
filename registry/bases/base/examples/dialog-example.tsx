@@ -37,10 +37,6 @@ import {
 } from "@/registry/ui/input-group"
 import { Kbd } from "@/registry/ui/kbd"
 import {
-  NativeSelect,
-  NativeSelectOption,
-} from "@/registry/ui/native-select"
-import {
   Select,
   SelectContent,
   SelectGroup,
@@ -291,20 +287,21 @@ function DialogChatSettings() {
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col gap-4">
-            <NativeSelect
+            <Select
+              kind="native"
               value={tab}
-              onChange={(e) => setTab(e.target.value)}
-              className="w-full md:hidden"
+              onValueChange={(value) => setTab(value ?? "")}
             >
-              <NativeSelectOption value="general">General</NativeSelectOption>
-              <NativeSelectOption value="notifications">
-                Notifications
-              </NativeSelectOption>
-              <NativeSelectOption value="personalization">
-                Personalization
-              </NativeSelectOption>
-              <NativeSelectOption value="security">Security</NativeSelectOption>
-            </NativeSelect>
+              <SelectTrigger className="w-full md:hidden">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="general">General</SelectItem>
+                <SelectItem value="notifications">Notifications</SelectItem>
+                <SelectItem value="personalization">Personalization</SelectItem>
+                <SelectItem value="security">Security</SelectItem>
+              </SelectContent>
+            </Select>
             <Tabs value={tab} onValueChange={setTab}>
               <TabsList className="hidden w-full md:flex">
                 <TabsTrigger value="general">General</TabsTrigger>

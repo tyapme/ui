@@ -1,0 +1,107 @@
+---
+title: Hover Card
+description: 視覚的にアクセスできるユーザーがリンク先のコンテンツをプレビューするためのコンポーネント。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/hover-card
+  api: https://base-ui.com/react/components/hover-card#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="hover-card-demo"
+  previewClassName="h-80"
+/>
+
+## インストール
+
+<ComponentInstall name="hover-card" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
+```
+
+```tsx showLineNumbers
+<HoverCard>
+  <HoverCardTrigger>Hover</HoverCardTrigger>
+  <HoverCardContent>
+    The React Framework – created and maintained by @vercel.
+  </HoverCardContent>
+</HoverCard>
+```
+
+## 構成
+
+`HoverCard` を構築するには以下の構成を使用します:
+
+```text
+HoverCard
+├── HoverCardTrigger
+└── HoverCardContent
+```
+
+## トリガーの遅延
+
+トリガーの `delay` と `closeDelay` を使用して、カードが開閉するタイミングを制御します。
+
+```tsx showLineNumbers
+<HoverCard>
+  <HoverCardTrigger delay={100} closeDelay={200}>
+    Hover
+  </HoverCardTrigger>
+  <HoverCardContent>Content</HoverCardContent>
+</HoverCard>
+```
+
+## 配置
+
+`HoverCardContent` の `side` および `align` プロパティを使用して配置を制御します。
+
+```tsx showLineNumbers
+<HoverCard>
+  <HoverCardTrigger>Hover</HoverCardTrigger>
+  <HoverCardContent side="top" align="start">
+    Content
+  </HoverCardContent>
+</HoverCard>
+```
+
+## 例
+
+### 基本
+
+<ComponentPreview
+  styleName="base-nova"
+  name="hover-card-demo"
+  previewClassName="h-80"
+/>
+
+### 表示位置
+
+<ComponentPreview
+  styleName="base-nova"
+  name="hover-card-sides"
+  previewClassName="h-[22rem]"
+/>
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="hover-card-rtl"
+  direction="rtl"
+  previewClassName="h-80"
+/>
+
+## API リファレンス
+
+詳細については [Base UI](https://base-ui.com/react/components/hover-card#api-reference) のドキュメントを参照してください。

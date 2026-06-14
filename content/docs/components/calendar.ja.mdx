@@ -1,0 +1,362 @@
+---
+title: Calendar
+description: ユーザーが日付または日付範囲を選択できるカレンダーコンポーネント。
+base: base
+component: true
+links:
+  doc: https://react-day-picker.js.org
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-demo"
+  previewClassName="h-96"
+/>
+
+## インストール
+
+<ComponentInstall name="calendar" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import { Calendar } from "@/components/ui/calendar"
+```
+
+```tsx showLineNumbers
+const [date, setDate] = React.useState<Date | undefined>(new Date())
+
+return (
+  <Calendar
+    mode="single"
+    selected={date}
+    onSelect={setDate}
+    className="rounded-lg border"
+  />
+)
+```
+
+詳細については [React DayPicker](https://react-day-picker.js.org) のドキュメントを参照してください。
+
+## について
+
+`Calendar` コンポーネントは [React DayPicker](https://react-day-picker.js.org) をベースに構築されています。
+
+## Date Picker
+
+`<Calendar>` コンポーネントを使ってデートピッカーを構築できます。詳細は [Date Picker](/docs/components/date-picker) ページを参照してください。
+
+## ペルシャ暦 / ヒジュラ暦 / ジャラリ暦
+
+ペルシャ暦を使用するには、`components/ui/calendar.tsx` を編集し、`react-day-picker` を `react-day-picker/persian` に置き換えます。
+
+```diff
+- import { DayPicker } from "react-day-picker"
++ import { DayPicker } from "react-day-picker/persian"
+```
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-hijri"
+  title="Persian / Hijri / Jalali Calendar"
+  description="A Persian calendar."
+  previewClassName="h-[400px]"
+/>
+
+## 選択された日付（タイムゾーン付き）
+
+Calendar コンポーネントは `timeZone` プロパティを受け取り、ユーザーのローカルタイムゾーンで日付を表示・選択できます。
+
+```tsx showLineNumbers
+export function CalendarWithTimezone() {
+  const [date, setDate] = React.useState<Date | undefined>(undefined)
+  const [timeZone, setTimeZone] = React.useState<string | undefined>(undefined)
+
+  React.useEffect(() => {
+    setTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone)
+  }, [])
+
+  return (
+    <Calendar
+      mode="single"
+      selected={date}
+      onSelect={setDate}
+      timeZone={timeZone}
+    />
+  )
+}
+```
+
+**注意:** 選択した日付にずれが生じる場合（例: 20日を選択すると19日がハイライトされる）、`timeZone` プロパティがユーザーのローカルタイムゾーンに設定されていることを確認してください。
+
+**なぜクライアントサイドなのか?** タイムゾーンはサーバーサイドレンダリングとの互換性を確保するため、`useEffect` 内で `Intl.DateTimeFormat().resolvedOptions().timeZone` を使って検出されます。レンダリング中にタイムゾーンを検出すると、サーバーとクライアントが異なるタイムゾーンにある場合にハイドレーションの不一致が生じます。
+
+## 例
+
+### 基本
+
+基本的なカレンダーコンポーネント。`className="rounded-lg border"` でカレンダーをスタイリングしています。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-basic"
+  previewClassName="h-96"
+/>
+
+### 範囲カレンダー
+
+`mode="range"` プロパティを使用して範囲選択を有効にします。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-range"
+  previewClassName="h-[36rem] md:h-96"
+/>
+
+### 月・年セレクター
+
+`captionLayout="dropdown"` を使用して月と年のドロップダウンを表示します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-caption"
+  previewClassName="h-96"
+/>
+
+### プリセット
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-presets"
+  previewClassName="h-[650px]"
+/>
+
+### 日時ピッカー
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-time"
+  previewClassName="h-[600px]"
+/>
+
+### 予約済み日付
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-booked-dates"
+  previewClassName="h-96"
+/>
+
+### カスタムセルサイズ
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-custom-days"
+  title="Custom Cell Size"
+  description="A calendar with custom cell size that's responsive."
+  className="**:[.preview]:h-[560px]"
+/>
+
+`--cell-size` CSS 変数を使用してカレンダーセルのサイズをカスタマイズできます。ブレークポイント固有の値を使ってレスポンシブにすることも可能です:
+
+```tsx showLineNumbers
+<Calendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+  className="rounded-lg border [--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]"
+/>
+```
+
+または固定値を使用する場合:
+
+```tsx showLineNumbers
+<Calendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+  className="rounded-lg border [--cell-size:2.75rem] md:[--cell-size:3rem]"
+/>
+```
+
+### 週番号
+
+`showWeekNumber` を使用して週番号を表示します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-week-numbers"
+  previewClassName="h-96"
+/>
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl) を参照してください。
+
+ペルシャ暦 / ヒジュラ暦 / ジャラリ暦の有効化については [Hijri ガイド](#ペルシャ暦--ヒジュラ暦--ジャラリ暦) も参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="calendar-rtl"
+  direction="rtl"
+  previewClassName="h-96"
+/>
+
+RTL を使用する場合、`react-day-picker/locale` からロケールをインポートし、Calendar コンポーネントに `locale` と `dir` プロパティの両方を渡してください:
+
+```tsx showLineNumbers
+import { arSA } from "react-day-picker/locale"
+
+;<Calendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+  locale={arSA}
+  dir="rtl"
+/>
+```
+
+## API リファレンス
+
+`Calendar` コンポーネントの詳細については [React DayPicker](https://react-day-picker.js.org) のドキュメントを参照してください。
+
+## 変更履歴
+
+### RTL サポート
+
+以前のバージョンの `Calendar` コンポーネントからアップグレードする場合、ロケールサポートを追加するために以下の変更を適用する必要があります:
+
+<Steps>
+
+<Step>`Locale` 型をインポートします。</Step>
+
+`react-day-picker` のインポートに `Locale` を追加します:
+
+```diff
+  import {
+    DayPicker,
+    getDefaultClassNames,
+    type DayButton,
++   type Locale,
+  } from "react-day-picker"
+```
+
+<Step>Calendar コンポーネントに `locale` プロパティを追加します。</Step>
+
+コンポーネントのプロパティに `locale` を追加します:
+
+```diff
+  function Calendar({
+    className,
+    classNames,
+    showOutsideDays = true,
+    captionLayout = "label",
+    buttonVariant = "ghost",
++   locale,
+    formatters,
+    components,
+    ...props
+  }: React.ComponentProps<typeof DayPicker> & {
+    buttonVariant?: React.ComponentProps<typeof Button>["variant"]
+  }) {
+```
+
+<Step>DayPicker に `locale` を渡します。</Step>
+
+`DayPicker` コンポーネントに `locale` プロパティを渡します:
+
+```diff
+    <DayPicker
+      showOutsideDays={showOutsideDays}
+      className={cn(...)}
+      captionLayout={captionLayout}
++     locale={locale}
+      formatters={{
+        formatMonthDropdown: (date) =>
+-         date.toLocaleString("default", { month: "short" }),
++         date.toLocaleString(locale?.code, { month: "short" }),
+        ...formatters,
+      }}
+```
+
+<Step>CalendarDayButton がロケールを受け取るよう更新します。</Step>
+
+`CalendarDayButton` コンポーネントのシグネチャを更新し、`locale` を渡します:
+
+```diff
+  function CalendarDayButton({
+    className,
+    day,
+    modifiers,
++   locale,
+    ...props
+- }: React.ComponentProps<typeof DayButton>) {
++ }: React.ComponentProps<typeof DayButton> & { locale?: Partial<Locale> }) {
+```
+
+<Step>CalendarDayButton の日付フォーマットを更新します。</Step>
+
+日付フォーマットで `locale?.code` を使用します:
+
+```diff
+    <Button
+      variant="ghost"
+      size="icon"
+-     data-day={day.date.toLocaleDateString()}
++     data-day={day.date.toLocaleDateString(locale?.code)}
+      ...
+    />
+```
+
+<Step>DayButton コンポーネントに locale を渡します。</Step>
+
+`DayButton` コンポーネントの使用箇所を更新して `locale` プロパティを渡します:
+
+```diff
+      components={{
+        ...
+-       DayButton: CalendarDayButton,
++       DayButton: ({ ...props }) => (
++         <CalendarDayButton locale={locale} {...props} />
++       ),
+        ...
+      }}
+```
+
+<Step>RTL 対応の CSS クラスを更新します。</Step>
+
+RTL サポートを向上させるため、方向クラスを論理プロパティに置き換えます:
+
+```diff
+  // In the day classNames:
+- [&:last-child[data-selected=true]_button]:rounded-r-(--cell-radius)
++ [&:last-child[data-selected=true]_button]:rounded-e-(--cell-radius)
+- [&:nth-child(2)[data-selected=true]_button]:rounded-l-(--cell-radius)
++ [&:nth-child(2)[data-selected=true]_button]:rounded-s-(--cell-radius)
+- [&:first-child[data-selected=true]_button]:rounded-l-(--cell-radius)
++ [&:first-child[data-selected=true]_button]:rounded-s-(--cell-radius)
+
+  // In range_start classNames:
+- rounded-l-(--cell-radius) ... after:right-0
++ rounded-s-(--cell-radius) ... after:end-0
+
+  // In range_end classNames:
+- rounded-r-(--cell-radius) ... after:left-0
++ rounded-e-(--cell-radius) ... after:start-0
+
+  // In CalendarDayButton className:
+- data-[range-end=true]:rounded-r-(--cell-radius)
++ data-[range-end=true]:rounded-e-(--cell-radius)
+- data-[range-start=true]:rounded-l-(--cell-radius)
++ data-[range-start=true]:rounded-s-(--cell-radius)
+```
+
+</Steps>
+
+これらの変更を適用後、`locale` プロパティを使ってロケール固有のフォーマットを提供できます:
+
+```tsx
+import { enUS } from "react-day-picker/locale"
+
+;<Calendar mode="single" selected={date} onSelect={setDate} locale={enUS} />
+```

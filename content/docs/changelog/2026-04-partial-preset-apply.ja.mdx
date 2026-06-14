@@ -1,0 +1,35 @@
+---
+title: 2026年4月 - 部分 Preset 適用
+description: 既存のコンポーネントを保持したまま、preset からテーマまたはフォントだけを適用。
+date: 2026-04-22
+---
+
+preset を選択的に適用できるようになりました。
+
+誰かが preset を共有してくれたとき、すでに自分のコンポーネントがあるけれど、テーマやフォントが気に入った場合に、その部分だけを適用できます。
+
+コンポーネントはそのままで、欲しい部分だけを適用しましょう。
+
+```bash
+# preset 全体を適用する。
+npx shadcn@latest apply --preset b2D0vQ7G4
+
+# テーマだけを適用する。
+npx shadcn@latest apply --preset b2D0vQ7G4 --only theme
+
+# フォントだけを適用する。
+npx shadcn@latest apply --preset b2D0vQ7G4 --only font
+
+# テーマとフォントを適用する。
+npx shadcn@latest apply --preset b2D0vQ7G4 --only theme,font
+```
+
+デフォルトの動作は変わりません。`shadcn apply --preset <preset>` を実行すると、引き続き preset 全体が適用されます。
+
+部分 preset 適用は現在 `theme` と `font` をサポートしています。
+
+<Button asChild size="sm">
+  <Link href="/create" className="mt-6 no-underline!">
+    Try a Preset
+  </Link>
+</Button>

@@ -8,7 +8,6 @@ import {
 import { cn } from "@/lib/utils"
 import { Button } from "@/styles/base/ui/button"
 
-/* Active page fades in when it first appears (e.g. on navigation) */
 const ACTIVE_CSS = `
 [data-slot="pagination-link"][data-active="true"] {
   transition:
@@ -29,7 +28,9 @@ const ACTIVE_CSS = `
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
     <>
-      <style href="pagination-active" precedence="component">{ACTIVE_CSS}</style>
+      <style href="pagination-active" precedence="component">
+        {ACTIVE_CSS}
+      </style>
       <nav
         role="navigation"
         aria-label="pagination"
@@ -96,7 +97,7 @@ function PaginationPrevious({
     <PaginationLink
       aria-label="Go to previous page"
       size="icon"
-      className={cn(className)}
+      className={cn("pl-2!", className)}
       {...props}
     >
       <ChevronLeftIcon className="cn-rtl-flip" />
@@ -113,7 +114,7 @@ function PaginationNext({
     <PaginationLink
       aria-label="Go to next page"
       size="icon"
-      className={cn(className)}
+      className={cn("pr-2!", className)}
       {...props}
     >
       <ChevronRightIcon className="cn-rtl-flip" />
@@ -130,7 +131,7 @@ function PaginationEllipsis({
       aria-hidden
       data-slot="pagination-ellipsis"
       className={cn(
-        "text-muted-foreground flex size-9 items-center justify-center [&_svg:not([class*='size-'])]:size-4",
+        "flex size-9 items-center justify-center text-muted-foreground [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

@@ -2,7 +2,7 @@
 
 import { PlusIcon } from "lucide-react"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import {
   Avatar,
   AvatarFallback,
@@ -35,9 +35,7 @@ const translations = {
 }
 
 export function EmptyAvatarGroup() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
 
   return (
     <Empty className="flex-none border py-10" dir={t.dir}>

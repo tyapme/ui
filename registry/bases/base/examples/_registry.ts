@@ -288,7 +288,6 @@ export const examples: Registry["items"] = [
       "input",
       "input-group",
       "kbd",
-      "native-select",
       "select",
       "switch",
       "tabs",
@@ -334,6 +333,78 @@ export const examples: Registry["items"] = [
     ],
   },
   {
+    name: "filters-demo",
+    title: "Filters",
+    type: "registry:example",
+    registryDependencies: ["filters", "example"],
+    files: [
+      {
+        path: "examples/filters-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "filters-validation",
+    title: "Filters — Validation",
+    type: "registry:example",
+    registryDependencies: ["filters", "example"],
+    files: [
+      {
+        path: "examples/filters-validation.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "filters-trigger",
+    title: "Filters — Trigger Button",
+    type: "registry:example",
+    registryDependencies: ["filters", "button", "example"],
+    files: [
+      {
+        path: "examples/filters-trigger.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "filters-small",
+    title: "Filters — Small",
+    type: "registry:example",
+    registryDependencies: ["filters", "example"],
+    files: [
+      {
+        path: "examples/filters-small.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "filters-large",
+    title: "Filters — Large",
+    type: "registry:example",
+    registryDependencies: ["filters", "example"],
+    files: [
+      {
+        path: "examples/filters-large.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "filters-i18n",
+    title: "Filters — i18n",
+    type: "registry:example",
+    registryDependencies: ["filters", "example"],
+    files: [
+      {
+        path: "examples/filters-i18n.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
     name: "empty-example",
     title: "Empty",
     type: "registry:example",
@@ -355,7 +426,6 @@ export const examples: Registry["items"] = [
       "field",
       "input",
       "input-otp",
-      "native-select",
       "radio-group",
       "select",
       "slider",
@@ -386,14 +456,7 @@ export const examples: Registry["items"] = [
     name: "input-example",
     title: "Input",
     type: "registry:example",
-    registryDependencies: [
-      "button",
-      "field",
-      "input",
-      "native-select",
-      "select",
-      "example",
-    ],
+    registryDependencies: ["button", "field", "input", "select", "example"],
     files: [
       {
         path: "examples/input-example.tsx",
@@ -504,7 +567,7 @@ export const examples: Registry["items"] = [
     name: "native-select-example",
     title: "Native Select",
     type: "registry:example",
-    registryDependencies: ["field", "native-select", "example"],
+    registryDependencies: ["field", "select", "example"],
     files: [
       {
         path: "examples/native-select-example.tsx",
@@ -613,7 +676,6 @@ export const examples: Registry["items"] = [
       "field",
       "input",
       "item",
-      "native-select",
       "select",
       "example",
     ],

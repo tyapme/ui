@@ -11,10 +11,6 @@ import {
 } from "@/registry/ui/field"
 import { Input } from "@/registry/ui/input"
 import {
-  NativeSelect,
-  NativeSelectOption,
-} from "@/registry/ui/native-select"
-import {
   Select,
   SelectContent,
   SelectGroup,
@@ -196,11 +192,16 @@ function InputWithNativeSelect() {
     <Example title="With Native Select">
       <div className="flex w-full gap-2">
         <Input type="tel" placeholder="(555) 123-4567" className="flex-1" />
-        <NativeSelect defaultValue="+1">
-          <NativeSelectOption value="+1">+1</NativeSelectOption>
-          <NativeSelectOption value="+44">+44</NativeSelectOption>
-          <NativeSelectOption value="+46">+46</NativeSelectOption>
-        </NativeSelect>
+        <Select kind="native" defaultValue="+1">
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="+1">+1</SelectItem>
+            <SelectItem value="+44">+44</SelectItem>
+            <SelectItem value="+46">+46</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
     </Example>
   )

@@ -13,10 +13,6 @@ import {
 import { cn } from "@/lib/utils"
 import { useShakeOnInvalid } from "@/hooks/use-shake-on-invalid"
 
-// ============================================================================
-// TimeSegment — 個別の時刻セグメント（時/分/秒）
-// ============================================================================
-
 function TimeSegment({
   className,
   ...props
@@ -35,10 +31,6 @@ function TimeSegment({
     />
   )
 }
-
-// ============================================================================
-// TimeFieldInput — セグメント型時刻入力
-// ============================================================================
 
 interface TimeFieldInputProps {
   value?: Date

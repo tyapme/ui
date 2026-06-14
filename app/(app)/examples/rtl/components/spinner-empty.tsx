@@ -1,6 +1,6 @@
 "use client"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import { Button } from "@/styles/base/ui-rtl/button"
 import {
   Empty,
@@ -28,9 +28,7 @@ const translations = {
 }
 
 export function SpinnerEmpty() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
 
   return (
     <Empty className="w-full border md:p-6" dir={t.dir}>

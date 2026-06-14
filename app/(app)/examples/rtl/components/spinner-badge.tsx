@@ -1,6 +1,6 @@
 "use client"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import { Badge } from "@/styles/base/ui-rtl/badge"
 import { Spinner } from "@/styles/base/ui-rtl/spinner"
 
@@ -20,9 +20,7 @@ const translations = {
 }
 
 export function SpinnerBadge() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
 
   return (
     <div dir={t.dir} className="flex items-center gap-2">

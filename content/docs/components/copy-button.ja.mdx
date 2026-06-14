@@ -1,0 +1,49 @@
+---
+title: Copy Button
+description: 成功時にアイコンがアニメーションで切り替わるクリップボードコピーボタン。
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="copy-button-demo" />
+
+## インストール
+
+<ComponentInstall name="copy-button" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import { CopyButton } from "@/components/ui/copy-button"
+```
+
+```tsx
+<CopyButton value="Text to copy" />
+```
+
+## 例
+
+### サイズ
+
+`size` プロパティを使ってボタンのサイズを変更します。
+
+<ComponentPreview styleName="base-nova" name="copy-button-sizes" />
+
+### アウトライン
+
+ボーダー付きスタイルには `variant="outline"` を使用します。
+
+<ComponentPreview styleName="base-nova" name="copy-button-outline" />
+
+## API リファレンス
+
+### CopyButton
+
+| プロパティ    | 型                              | デフォルト  |
+| ----------- | --------------------------------- | ----------- |
+| `value`     | `string`                          | —           |
+| `size`      | `"sm" \| "default" \| "lg"`      | `"default"` |
+| `variant`   | `ButtonProps["variant"]`          | `"ghost"`   |
+| `timeout`   | `number`                          | `1800`      |
+| `onCopy`    | `(value: string) => void`         | —           |
+| `className` | `string`                          | —           |

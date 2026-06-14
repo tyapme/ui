@@ -36,7 +36,7 @@ export function getDateFromFile(slugs: string[]) {
 // Gets all changelog pages sorted by date descending.
 export function getChangelogPages() {
   return source
-    .getPages()
+    .getPages("en")
     .filter((page) => page.slugs[0] === "changelog" && page.slugs.length > 1)
     .map((page) => ({
       ...page,

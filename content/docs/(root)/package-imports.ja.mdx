@@ -1,0 +1,222 @@
+---
+title: パッケージインポート
+description: package.json のインポートで shadcn/ui を設定する方法。
+---
+
+`shadcn` CLI は、コンポーネントのインストール、インポートの書き換え、サードパーティレジストリの解決に [パッケージインポート](https://nodejs.org/api/packages.html#imports) をサポートしています。
+
+パッケージインポートを使うと、`tsconfig.json` の `compilerOptions.paths` の代わりに `package.json` のプライベート `#...` インポート alias を使用できます。
+
+## 例
+
+`package.json` で `imports` を設定します：
+
+```json title="package.json" showLineNumbers
+{
+  "imports": {
+    "#components/*": "./src/components/*.tsx",
+    "#lib/*": "./src/lib/*.ts",
+    "#hooks/*": "./src/hooks/*.ts"
+  }
+}
+```
+
+`#...` 指定子を使って生成されたコンポーネントをインポートします：
+
+```tsx
+import { Button } from "#components/ui/button"
+import { cn } from "#lib/utils"
+```
+
+<Callout className="mt-6">
+  パッケージインポート指定子は `#` で始める必要があります。TypeScript 5 以降で `moduleResolution: "bundler"` と `resolvePackageJsonImports: true` を使用してください。
+</Callout>
+
+## アプリ
+
+コンポーネントを同じワークスペースにインストールする Next.js、Vite、TanStack Start アプリの場合。
+
+<Steps>
+
+### `package.json` を設定する
+
+shadcn/ui のインストール先に対するインポートを追加します。
+
+```json title="package.json" showLineNumbers
+{
+  "imports": {
+    "#components/*": "./src/components/*.tsx",
+    "#lib/*": "./src/lib/*.ts",
+    "#hooks/*": "./src/hooks/*.ts"
+  }
+}
+```
+
+アプリが `src` ディレクトリを使用しない場合は、対象から `src/` を削除してください。例：
+
+```json title="package.json" showLineNumbers
+{
+  "imports": {
+    "#components/*": "./components/*.tsx",
+    "#lib/*": "./lib/*.ts",
+    "#hooks/*": "./hooks/*.ts"
+  }
+}
+```
+
+### TypeScript を設定する
+
+パッケージインポートの解決を有効にします。
+
+```json title="tsconfig.json" showLineNumbers
+{
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    "resolvePackageJsonImports": true
+  }
+}
+```
+
+これらの alias に `compilerOptions.paths` は必要ありません。
+
+### `components.json` を設定する
+
+`components.json` で同じ `#...` ルートを使用します。
+
+```json title="components.json" showLineNumbers
+{
+  "aliases": {
+    "components": "#components",
+    "ui": "#components/ui",
+    "lib": "#lib",
+    "hooks": "#hooks",
+    "utils": "#lib/utils"
+  }
+}
+```
+
+`ui` alias は `#components/ui` を使用します。これは `package.json` の `#components/*` インポートでカバーされています。
+
+`utils` alias は `#lib/utils` を使用します。これは `#lib/*` でカバーされるため、別途 `#utils` インポートは不要です。
+
+</Steps>
+
+## モノレポ
+
+モノレポでは、各パッケージ内のファイルにはパッケージインポートを使用し、ワークスペース間で共有されるファイルにはパッケージ exports を使用します。
+
+アプリワークスペースの場合：
+
+```json title="apps/web/package.json" showLineNumbers
+{
+  "name": "web",
+  "private": true,
+  "imports": {
+    "#components/*": "./src/components/*.tsx",
+    "#lib/*": "./src/lib/*.ts",
+    "#hooks/*": "./src/hooks/*.ts"
+  },
+  "dependencies": {
+    "@workspace/ui": "workspace:*"
+  }
+}
+```
+
+```json title="apps/web/components.json" showLineNumbers
+{
+  "aliases": {
+    "components": "#components",
+    "ui": "@workspace/ui/components",
+    "lib": "#lib",
+    "hooks": "#hooks",
+    "utils": "@workspace/ui/lib/utils"
+  }
+}
+```
+
+共有 UI パッケージの場合：
+
+```json title="packages/ui/package.json" showLineNumbers
+{
+  "name": "@workspace/ui",
+  "private": true,
+  "imports": {
+    "#components/*": "./src/components/*.tsx",
+    "#lib/*": "./src/lib/*.ts",
+    "#hooks/*": "./src/hooks/*.ts"
+  },
+  "exports": {
+    "./globals.css": "./src/styles/globals.css",
+    "./components/*": "./src/components/*.tsx",
+    "./lib/*": "./src/lib/*.ts",
+    "./hooks/*": "./src/hooks/*.ts"
+  }
+}
+```
+
+```json title="packages/ui/components.json" showLineNumbers
+{
+  "aliases": {
+    "components": "#components",
+    "ui": "#components",
+    "lib": "#lib",
+    "hooks": "#hooks",
+    "utils": "#lib/utils"
+  }
+}
+```
+
+`apps/web` から `add` を実行すると、アプリローカルのファイルは `#...` インポートを使用し、共有 UI ファイルは `@workspace/ui` からインポートされます。
+
+```tsx
+import { Button } from "@workspace/ui/components/button"
+import { LoginForm } from "#components/login-form"
+```
+
+## ファイル拡張子
+
+`package.json#imports` のターゲットパターンにより、生成されるインポートにファイル拡張子が含まれるかどうかが決まります。
+
+```json title="package.json" showLineNumbers
+{
+  "imports": {
+    "#components/*": "./src/components/*.tsx"
+  }
+}
+```
+
+これにより拡張子なしのインポートが生成されます：
+
+```tsx
+import { Button } from "#components/ui/button"
+```
+
+拡張子なしのターゲットを使用する場合：
+
+```json title="package.json" showLineNumbers
+{
+  "imports": {
+    "#components/*": "./src/components/*"
+  }
+}
+```
+
+生成されるインポートにはソースの拡張子が保持されます：
+
+```tsx
+import { Button } from "#components/ui/button.tsx"
+```
+
+ほとんどのアプリでは、ターゲットパターンに拡張子を含めることを推奨します。
+
+## トラブルシューティング
+
+TypeScript が `#...` インポートを解決できない場合は、以下を確認してください：
+
+- 指定子が `#` で始まっている
+- `imports` エントリが最も近い `package.json` にある
+- `moduleResolution` が `bundler` に設定されている
+- `resolvePackageJsonImports` が有効になっている
+- コンポーネントが追加された後に対応するターゲットが存在する
+
+コンポーネントがインストールされているのにインポートが `@/...` を指している場合は、`components.json` がパッケージインポートと同じ `#...` alias を使用しているか確認してください。

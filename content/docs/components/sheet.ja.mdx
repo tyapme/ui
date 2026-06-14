@@ -1,0 +1,80 @@
+---
+title: Sheet
+description: 画面のメインコンテンツを補完するコンテンツを表示するために Dialog コンポーネントを拡張します。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/dialog
+  api: https://base-ui.com/react/components/dialog#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="sheet-demo" />
+
+## インストール
+
+<ComponentInstall name="sheet" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+```
+
+```tsx showLineNumbers
+<Sheet>
+  <SheetTrigger>Open</SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle>Are you absolutely sure?</SheetTitle>
+      <SheetDescription>This action cannot be undone.</SheetDescription>
+    </SheetHeader>
+  </SheetContent>
+</Sheet>
+```
+
+## コンポジション
+
+`Sheet` を構築するには以下のコンポジションを使用します:
+
+```text
+Sheet
+├── SheetTrigger
+└── SheetContent
+    ├── SheetHeader
+    │   ├── SheetTitle
+    │   └── SheetDescription
+    └── SheetFooter
+```
+
+## 例
+
+### 位置
+
+`SheetContent` の `side` プロップを使ってシートが表示される画面の端を設定します。値は `top`、`right`、`bottom`、`left` のいずれかです。
+
+<ComponentPreview styleName="base-nova" name="sheet-side" />
+
+### 閉じるボタンなし
+
+`SheetContent` に `showCloseButton={false}` を使って閉じるボタンを非表示にします。
+
+<ComponentPreview styleName="base-nova" name="sheet-no-close-button" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="sheet-rtl" direction="rtl" />
+
+## API リファレンス
+
+[Base UI Dialog](https://base-ui.com/react/components/dialog#api-reference) ドキュメントを参照してください。

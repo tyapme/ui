@@ -1,9 +1,16 @@
 import { COMPONENT_CATEGORIES } from "@/lib/docs"
 import type { source } from "@/lib/source"
 
-export type PageTreeNode = (typeof source.pageTree)["children"][number]
+// With i18n enabled, `source.pageTree` is keyed by language; a single tree is
+// obtained via `source.getPageTree(lang)`. These types describe one such tree.
+export type PageTreeRoot = ReturnType<typeof source.getPageTree>
+export type PageTreeNode = PageTreeRoot["children"][number]
 export type PageTreeFolder = Extract<PageTreeNode, { type: "folder" }>
 export type PageTreePage = Extract<PageTreeNode, { type: "page" }>
+
+export function getPageTreeRoot(tree: PageTreeRoot): PageTreeRoot {
+  return tree
+}
 
 // Recursively find all pages in a folder tree.
 export function getAllPagesFromFolder(folder: PageTreeFolder): PageTreePage[] {
@@ -56,19 +63,20 @@ export function getGroupedPagesFromFolder(
     }
   }
 
-  // Any pages not covered by the category map → append as "その他".
+  // Any pages not covered by the category map are appended as "Other".
   const uncategorized = allPages
     .filter((p) => !seen.has(p.url))
     .sort((a, b) => String(a.name).localeCompare(String(b.name)))
   if (uncategorized.length > 0) {
-    const existing = groups.find((g) => g.category.label === "その他")
+    const otherLabel = "Other"
+    const existing = groups.find((g) => g.category.label === otherLabel)
     if (existing) {
       existing.pages.push(...uncategorized)
       existing.pages.sort((a, b) =>
         String(a.name).localeCompare(String(b.name))
       )
     } else {
-      groups.push({ category: { label: "その他" }, pages: uncategorized })
+      groups.push({ category: { label: otherLabel }, pages: uncategorized })
     }
   }
 

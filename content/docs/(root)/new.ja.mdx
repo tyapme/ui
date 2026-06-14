@@ -1,0 +1,106 @@
+---
+title: プロジェクトの準備ができました！
+description: shadcn/ui で新しいプロジェクトを作成しました。
+---
+
+shadcn/ui でのビルドを始めるためにできることをいくつか紹介します。
+
+## コンポーネントを追加する
+
+CLI を使ってプロジェクトにコンポーネントを追加します。
+
+```bash
+npx shadcn@latest add button
+```
+
+コードにインポートして使います。
+
+```tsx title="app/page.tsx"
+import { Button } from "@/components/ui/button"
+
+export default function Home() {
+  return <Button>Click me</Button>
+}
+```
+
+従来のコンポーネントライブラリとは異なり、shadcn/ui はコンポーネントのソースコードを `components/ui/` 以下に直接プロジェクトに追加します。コードはあなたのものなので、自由にカスタマイズできます。
+
+一度に複数のコンポーネントを追加したり、利用可能なすべてのコンポーネントを追加したりできます。
+
+```bash
+npx shadcn@latest add button card input label
+```
+
+```bash
+npx shadcn@latest add --all
+```
+
+すべてのコンポーネントは[コンポーネント](/docs/components)ページで確認できます。
+
+## テーマをカスタマイズする
+
+CSS ファイルを直接編集してテーマを変更できます。CSS 変数またはユーティリティクラスの使い方については[テーマ設定](/docs/theming)を参照してください。
+
+新しいプリセットを試したい場合は、[ui.shadcn.com](https://ui.shadcn.com) でカスタムテーマをビジュアルに作成し、プリセットコードを使ってプロジェクトに適用できます。
+
+```bash
+npx shadcn@latest init --preset [CODE]
+```
+
+## ブロックを追加する
+
+CLI を使ってプロジェクトにブロックを追加できます。
+
+```bash
+npx shadcn@latest add login-03
+```
+
+これにより `login-03` ブロックがプロジェクトに追加されます。コードにインポートして使います。
+
+```tsx title="app/page.tsx"
+import { Login03 } from "@/components/login-03"
+
+export default function Home() {
+  return <Login03 />
+}
+```
+
+## レジストリからインストールする
+
+shadcn/ui にはコミュニティレジストリのエコシステムが育っています。CLI を使って任意のレジストリ URL からコンポーネントをインストールできます。
+
+```bash
+npx shadcn@latest add @[registry]/[name]
+```
+
+利用可能なレジストリの一覧は[レジストリディレクトリ](/docs/directory)で確認できます。
+
+## AI を使ってビルドする
+
+shadcn/ui は AI との連携を前提に設計されています。AI アシスタントはプロジェクト内のコンポーネントのソースコードを読み取り、API を理解し、それらを組み合わせてページや機能を構築できます。
+
+試してみるプロンプトの例：
+
+- _「名前、メール、パスワードを入力するフォームを含むサインアップページを作成して。」_
+- _「プロフィール情報を更新するフォームを含む設定ページを作成して。」_
+- _「ヘッダー、統計カード、データテーブルを含むダッシュボードを作成して。」_
+
+## shadcn スキルをインストールする
+
+AI アシスタントに shadcn スキルをインストールします。これにより AI アシスタントが完全なコンポーネントレジストリ、ドキュメント、検索にアクセスできるようになります。
+
+```bash
+npx skills add shadcn/ui
+```
+
+[スキル](/docs/skills)の詳細はこちら。
+
+## MCP サーバーに接続する
+
+shadcn MCP サーバーにより、AI アシスタントが完全なコンポーネントレジストリ、ドキュメント、検索にアクセスできるようになります。最高のエクスペリエンスのために、エディターで接続してください。
+
+```bash
+npx shadcn@latest mcp init
+```
+
+詳細は [MCP サーバー](/docs/mcp)ページで確認できます。

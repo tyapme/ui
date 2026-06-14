@@ -1,6 +1,6 @@
 "use client"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import { Checkbox } from "@/styles/base/ui-rtl/checkbox"
 import { Field, FieldLabel } from "@/styles/base/ui-rtl/field"
 
@@ -16,9 +16,7 @@ const translations = {
 }
 
 export function FieldCheckbox() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const { dir, terms } = translations[lang]
+  const { dir, terms } = useRtlTranslation(translations)
 
   return (
     <div dir={dir}>

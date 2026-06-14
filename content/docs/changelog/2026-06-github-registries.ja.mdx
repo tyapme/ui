@@ -1,0 +1,88 @@
+---
+title: 2026年6月 - GitHub Registries
+description: 任意のパブリック GitHub リポジトリを shadcn registry に変換。
+date: 2026-06-01
+---
+
+**任意のパブリック GitHub リポジトリを registry に変換できるようになりました。**
+
+リポジトリのルートに `registry.json` ファイルを追加し、配布したいアイテムを定義すると、ユーザーが `shadcn` CLI を使って GitHub から直接インストールできます。
+
+```bash
+npx shadcn@latest add <username>/<repo>/<item>
+```
+
+例えば、`acme/toolkit` リポジトリから `project-conventions` アイテムをインストールする場合：
+
+```bash
+npx shadcn@latest add acme/toolkit/project-conventions
+```
+
+GitHub registries はソース registry です。`shadcn build` を実行したり、生成されたアイテム JSON ファイルを公開したり、registry サーバーをセットアップしたりする必要はありません。CLI がルートの `registry.json` を読み込み、`include` エントリを解決し、リクエストされたアイテムを見つけてそのアイテムが宣言するファイルをインストールします。
+
+## 何でも配布できる
+
+Registry アイテムはコンポーネントに限りません。GitHub registry はコンポーネント、hooks、ユーティリティ、デザイントークン、機能キット、プロジェクト規約、エージェント指示、テストセットアップ、CI ワークフロー、リリースワークフロー、テンプレート、codemod、マイグレーションキット、その他のプロジェクトファイルを配布できます。
+
+例えば、共有ドキュメント、エディタ設定、エージェント指示をインストールする `project-conventions` アイテムを公開するリポジトリを作れます：
+
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme-toolkit",
+  "homepage": "https://github.com/acme/toolkit",
+  "items": [
+    {
+      "name": "project-conventions",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "AGENTS.md",
+          "type": "registry:file",
+          "target": "~/AGENTS.md"
+        },
+        {
+          "path": ".editorconfig",
+          "type": "registry:file",
+          "target": "~/.editorconfig"
+        },
+        {
+          "path": "docs/conventions.md",
+          "type": "registry:file",
+          "target": "~/docs/conventions.md"
+        }
+      ]
+    }
+  ]
+}
+```
+
+## コマンド
+
+GitHub registry のアドレスは他の registry アドレスと同じコマンドで使えます。
+
+GitHub registry からアイテムを一覧表示する：
+
+```bash
+npx shadcn@latest list acme/toolkit
+```
+
+アイテムを検索する：
+
+```bash
+npx shadcn@latest search acme/toolkit --query conventions
+```
+
+アイテムを表示する：
+
+```bash
+npx shadcn@latest view acme/toolkit/project-conventions
+```
+
+アイテムをインストールする：
+
+```bash
+npx shadcn@latest add acme/toolkit/project-conventions
+```
+
+詳細は [GitHub Registries](/docs/registry/github) ドキュメントの完全ガイドを参照してください。

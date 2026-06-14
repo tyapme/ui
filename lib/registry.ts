@@ -27,6 +27,15 @@ function getBaseForStyle(styleName: string) {
   return null
 }
 
+// Resolve the public, statically-served registry JSON URL for a component.
+// All current styles (e.g. "base-nova") resolve to their base ("base"), which
+// is the only style emitted by `registry:build`. This is the URL `shadcn add`
+// fetches, so it must match the on-disk path under public/r/styles/<base>/.
+export function getRegistryItemUrl(name: string, styleName: string) {
+  const base = getBaseForStyle(styleName) ?? styleName
+  return `https://ui.tyap.me/r/styles/${base}/${name}.json`
+}
+
 function getDemoIndexKey(styleName: string) {
   if (ExamplesIndex[styleName]) {
     return styleName

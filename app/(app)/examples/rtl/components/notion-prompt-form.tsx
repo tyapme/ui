@@ -13,7 +13,7 @@ import {
   IconX,
 } from "@tabler/icons-react"
 
-import { useLanguageContext } from "@/components/language-selector"
+import { useRtlTranslation } from "@/components/language-selector"
 import {
   Avatar,
   AvatarFallback,
@@ -155,9 +155,7 @@ function MentionableIcon({
 }
 
 export function NotionPromptForm() {
-  const context = useLanguageContext()
-  const lang = context?.language === "he" ? "he" : "ar"
-  const t = translations[lang]
+  const t = useRtlTranslation(translations)
 
   const SAMPLE_DATA = useMemo(
     () => ({

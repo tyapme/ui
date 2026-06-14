@@ -1,0 +1,45 @@
+---
+title: 2023年7月 - JavaScript
+description: CLI 経由でコンポーネントの JavaScript バージョンが利用可能になりました。
+date: 2023-07-04
+---
+
+このプロジェクトとコンポーネントは TypeScript で書かれています。**プロジェクトにも TypeScript の使用を推奨します**。
+
+ただし、[CLI](/docs/cli) を通じて JavaScript バージョンのコンポーネントも提供しています。
+
+```txt
+Would you like to use TypeScript (recommended)? no
+```
+
+TypeScript を使用しない場合は、`components.json` ファイルの `tsx` フラグを使用できます。
+
+```json {10} title="components.json" showLineNumbers
+{
+  "style": "default",
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "src/app/globals.css",
+    "baseColor": "zinc",
+    "cssVariables": true
+  },
+  "rsc": false,
+  "tsx": false,
+  "aliases": {
+    "utils": "~/lib/utils",
+    "components": "~/components"
+  }
+}
+```
+
+インポートエイリアスを設定するには、以下の `jsconfig.json` を使用できます：
+
+```json {4} title="jsconfig.json" showLineNumbers
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
+}
+```

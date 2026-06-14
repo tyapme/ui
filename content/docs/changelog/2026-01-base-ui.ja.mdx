@@ -1,0 +1,45 @@
+---
+title: 2026年1月 - Base UI ドキュメント
+description: Base UI コンポーネントの完全なドキュメントを公開。
+date: 2026-01-20
+---
+
+Base UI コンポーネントの完全なドキュメントを公開しました。
+
+<div className="mt-6 flex w-full items-center justify-center rounded-lg border bg-muted/50 py-32">
+  <svg width="17" height="24" viewBox="0 0 17 24" className="size-12">
+    <path
+      fill="currentColor"
+      d="M9.5001 7.01537C9.2245 6.99837 9 7.22385 9 7.49999V23C13.4183 23 17 19.4183 17 15C17 10.7497 13.6854 7.27351 9.5001 7.01537Z"
+    />
+    <path
+      fill="currentColor"
+      d="M8 9.8V12V23C3.58172 23 0 19.0601 0 14.2V12V1C4.41828 1 8 4.93989 8 9.8Z"
+    />
+  </svg>
+</div>
+
+12 月に `npx shadcn create` をリリースした際、Radix と Base UI のどちらをコンポーネントライブラリとして選択できる機能を導入しました。本日は、すべての Base UI コンポーネントに関する完全なドキュメントを追加します。
+
+### 新機能
+
+- **Base UI の完全なドキュメント** - すべてのコンポーネントに Base UI 専用のドキュメントが追加され、使い方・プロパティ・サンプルを網羅しています。
+- **サンプルを再構築** - すべてのコンポーネントサンプルを Radix と Base UI の両方で再構築しました。切り替えて実装の違いを確認できます。
+- **並べて比較** - ドキュメントでは、両ライブラリ間でコンポーネントの動作を簡単に比較できます。
+
+### 同じ抽象化、異なる Primitive
+
+目標は変わりません：どの primitive ライブラリを選んでも一貫した API を提供することです。コンポーネントの見た目と動作は同じで、変わるのは内部の実装だけです。
+
+```tsx
+// Works the same whether you're using Radix or Base UI.
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+```
+
+新しいプロジェクトを始める場合は、`npx shadcn create` を実行して好みのライブラリを選択してください。CLI が残りを処理します。
+
+<Button asChild size="sm">
+  <Link href="/create" className="mt-6 no-underline!">
+    Try shadcn/create
+  </Link>
+</Button>

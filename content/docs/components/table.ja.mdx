@@ -1,0 +1,112 @@
+---
+title: Table
+description: レスポンシブなテーブルコンポーネント。
+base: base
+component: true
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="table-demo"
+  previewClassName="h-[30rem]"
+/>
+
+## インストール
+
+<ComponentInstall name="table" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+```
+
+```tsx showLineNumbers
+<Table>
+  <TableCaption>A list of your recent invoices.</TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-[100px]">Invoice</TableHead>
+      <TableHead>Status</TableHead>
+      <TableHead>Method</TableHead>
+      <TableHead className="text-right">Amount</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">INV001</TableCell>
+      <TableCell>Paid</TableCell>
+      <TableCell>Credit Card</TableCell>
+      <TableCell className="text-right">$250.00</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+## コンポジション
+
+`Table` を構築するには以下のコンポジションを使用します:
+
+```text
+Table
+├── TableCaption
+├── TableHeader
+│   └── TableRow
+│       ├── TableHead
+│       ├── TableHead
+│       ├── TableHead
+│       └── TableHead
+├── TableBody
+│   ├── TableRow
+│   │   ├── TableCell
+│   │   ├── TableCell
+│   │   ├── TableCell
+│   │   └── TableCell
+│   └── TableRow
+│       ├── TableCell
+│       ├── TableCell
+│       ├── TableCell
+│       └── TableCell
+└── TableFooter
+```
+
+## 例
+
+### フッター
+
+`<TableFooter />` コンポーネントを使ってテーブルにフッターを追加します。
+
+<ComponentPreview styleName="base-nova" name="table-footer" />
+
+### アクション
+
+`<DropdownMenu />` コンポーネントを使って各行のアクションを表示するテーブル。
+
+<ComponentPreview styleName="base-nova" name="table-actions" />
+
+## データテーブル
+
+`<Table />` コンポーネントを使ってより複雑なデータテーブルを構築できます。[@tanstack/react-table](https://tanstack.com/table/v8) と組み合わせて、ソート、フィルタリング、ページネーションを備えたテーブルを作成します。
+
+詳細については [Data Table](/docs/components/data-table) ドキュメントを参照してください。
+
+データテーブルの例は [Tasks](/examples/tasks) デモでも確認できます。
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="table-rtl"
+  direction="rtl"
+  previewClassName="h-auto"
+/>

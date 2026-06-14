@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "filters-demo",
+  "title": "Filters",
+  "registryDependencies": [
+    "filters",
+    "example"
+  ],
+  "files": [
+    {
+      "path": "registry/base/examples/filters-demo.tsx",
+      "content": "\"use client\"\n\nimport { useState } from \"react\"\nimport { CircleIcon, FlagIcon, LayersIcon, UserIcon } from \"lucide-react\"\n\nimport { Example, ExampleWrapper } from \"@/registry/base/components/example\"\nimport {\n  createFilter,\n  Filters,\n  type Filter,\n  type FilterFieldConfig,\n} from \"@/registry/base/ui/filters\"\n\nconst fields: FilterFieldConfig[] = [\n  {\n    key: \"status\",\n    label: \"Status\",\n    type: \"multiselect\",\n    icon: <CircleIcon className=\"size-4\" />,\n    options: [\n      { value: \"backlog\", label: \"Backlog\" },\n      { value: \"todo\", label: \"Todo\" },\n      { value: \"in_progress\", label: \"In Progress\" },\n      { value: \"done\", label: \"Done\" },\n      { value: \"cancelled\", label: \"Cancelled\" },\n    ],\n  },\n  {\n    key: \"priority\",\n    label: \"Priority\",\n    type: \"multiselect\",\n    icon: <FlagIcon className=\"size-4\" />,\n    options: [\n      { value: \"urgent\", label: \"Urgent\" },\n      { value: \"high\", label: \"High\" },\n      { value: \"medium\", label: \"Medium\" },\n      { value: \"low\", label: \"Low\" },\n      { value: \"none\", label: \"No priority\" },\n    ],\n  },\n  {\n    key: \"assignee\",\n    label: \"Assignee\",\n    type: \"select\",\n    icon: <UserIcon className=\"size-4\" />,\n    options: [\n      { value: \"alice\", label: \"Alice\" },\n      { value: \"bob\", label: \"Bob\" },\n      { value: \"charlie\", label: \"Charlie\" },\n    ],\n  },\n  {\n    key: \"project\",\n    label: \"Project\",\n    type: \"multiselect\",\n    icon: <LayersIcon className=\"size-4\" />,\n    options: [\n      { value: \"design\", label: \"Design System\" },\n      { value: \"backend\", label: \"Backend API\" },\n      { value: \"mobile\", label: \"Mobile App\" },\n    ],\n  },\n  {\n    key: \"title\",\n    label: \"Title\",\n    type: \"text\",\n    placeholder: \"Search title...\",\n  },\n]\n\nexport default function FiltersDemoExample() {\n  const [filters, setFilters] = useState<Filter[]>([\n    createFilter(\"status\", \"is_any_of\", [\"in_progress\", \"todo\"]),\n    createFilter(\"priority\", \"is_any_of\", [\"high\", \"urgent\"]),\n  ])\n\n  return (\n    <ExampleWrapper>\n      <Example className=\"flex-col items-start gap-4 p-4\">\n        <Filters filters={filters} fields={fields} onChange={setFilters} />\n      </Example>\n    </ExampleWrapper>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

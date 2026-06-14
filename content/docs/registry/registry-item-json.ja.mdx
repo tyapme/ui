@@ -1,0 +1,469 @@
+---
+title: registry-item.json
+description: レジストリアイテムの仕様。
+---
+
+`registry-item.json` スキーマはカスタムレジストリアイテムを定義するために使用します。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hello-world",
+  "type": "registry:block",
+  "title": "Hello World",
+  "description": "A simple hello world component.",
+  "registryDependencies": [
+    "button",
+    "@acme/input-form",
+    "https://example.com/r/foo"
+  ],
+  "dependencies": ["is-even@3.0.0", "motion"],
+  "devDependencies": ["tw-animate-css"],
+  "files": [
+    {
+      "path": "registry/new-york/hello-world/hello-world.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/new-york/hello-world/use-hello-world.ts",
+      "type": "registry:hook"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "font-heading": "Poppins, sans-serif"
+    },
+    "light": {
+      "brand": "oklch(0.205 0.015 18)"
+    },
+    "dark": {
+      "brand": "oklch(0.205 0.015 18)"
+    }
+  }
+}
+```
+
+<div className="mt-6 flex items-center gap-2">
+  <Link href="/docs/registry/examples">さらに多くの例を見る</Link>
+</div>
+
+## 定義
+
+`registry-item.json` のJSONスキーマは[こちら](https://ui.shadcn.com/schema/registry-item.json)でご覧いただけます。
+
+### $schema
+
+`$schema` プロパティは `registry-item.json` ファイルのスキーマを指定するために使用します。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json"
+}
+```
+
+### name
+
+アイテムの名前です。レジストリ内でアイテムを識別するために使用されます。レジストリ内で一意でなければなりません。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "name": "hello-world"
+}
+```
+
+### title
+
+レジストリアイテムの人間が読めるタイトルです。短く説明的にしてください。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "title": "Hello World"
+}
+```
+
+### description
+
+レジストリアイテムの説明です。`title` より長く詳細にすることができます。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "description": "A simple hello world component."
+}
+```
+
+### type
+
+`type` プロパティはレジストリアイテムの型を指定するために使用します。プロジェクトに対して解決されるときのアイテムの型とターゲットパスを決定します。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "type": "registry:block"
+}
+```
+
+以下の型がサポートされています:
+
+| 型                   | 説明                                              |
+| -------------------- | ------------------------------------------------- |
+| `registry:base`      | デザインシステム全体に使用します。                |
+| `registry:block`     | 複数のファイルを持つ複雑なコンポーネントに使用。  |
+| `registry:component` | シンプルなコンポーネントに使用します。            |
+| `registry:font`      | フォントに使用します。                            |
+| `registry:lib`       | libとutilsに使用します。                          |
+| `registry:hook`      | フックに使用します。                              |
+| `registry:ui`        | UIコンポーネントと単一ファイルのプリミティブに使用。|
+| `registry:page`      | ページまたはファイルベースのルートに使用します。  |
+| `registry:file`      | その他のファイルに使用します。                    |
+| `registry:style`     | レジストリスタイルに使用します（例: `new-york`）。|
+| `registry:theme`     | テーマに使用します。                              |
+| `registry:item`      | ユニバーサルレジストリアイテムに使用します。      |
+
+### author
+
+`author` プロパティはレジストリアイテムの作者を指定するために使用します。
+
+レジストリアイテムに固有のものでも、レジストリの作者と同じものでも構いません。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "author": "John Doe <john@doe.com>"
+}
+```
+
+### dependencies
+
+`dependencies` プロパティはレジストリアイテムの依存関係を指定するために使用します。これは `npm` パッケージ用です。
+
+`@version` を使用してレジストリアイテムのバージョンを指定します。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "dependencies": [
+    "@radix-ui/react-accordion",
+    "zod",
+    "lucide-react",
+    "name@1.0.2"
+  ]
+}
+```
+
+### devDependencies
+
+`devDependencies` プロパティはレジストリアイテムの開発依存関係を指定するために使用します。これらは開発中のみ必要な `npm` パッケージです。
+
+`@version` を使用してパッケージのバージョンを指定します。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "devDependencies": ["tw-animate-css", "name@1.2.0"]
+}
+```
+
+### registryDependencies
+
+レジストリ依存関係に使用します。各エントリはアイテムアドレスです。
+
+- `button`、`input`、`select` などの `shadcn/ui` レジストリアイテムには名前を使用します（例: `['button', 'input', 'select']`）。
+- ネームスペース付きレジストリアイテムには `@namespace/item-name` を使用します（例: `['@acme/input-form']`）。
+- GitHubレジストリアイテムには `owner/repo/item-name` を使用します（例: `['acme/ui/button']`）。公開済みレジストリにはタグまたは完全なコミットSHAを使用することをお勧めします（例: `['acme/ui/button#v1.2.0']`）。
+- カスタムレジストリアイテムにはレジストリアイテムのURLを使用します（例: `['https://example.com/r/hello-world.json']`）。
+- ローカルレジストリアイテムファイルにはファイルパスを使用します（例: `['./hello-world.json']`）。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "registryDependencies": [
+    "button",
+    "@acme/input-form",
+    "acme/ui/button#v1.2.0",
+    "https://example.com/r/editor.json",
+    "./editor.json"
+  ]
+}
+```
+
+注意: 裸の名前は従来の動作を維持します。`button` は同じGitHubリポジトリのアイテムではなく、組み込みのshadcn `button` アイテムを意味します。同じリポジトリのGitHub依存関係には、完全なGitHubアイテムアドレスを使用してください。
+
+refは依存関係をまたいで継承されません。GitHub依存関係を再現可能にするには、その依存関係自体のタグまたは完全なコミットSHAにピン留めしてください。
+
+詳細については [GitHubレジストリ](/docs/registry/github) のドキュメントをご覧ください。
+
+### files
+
+`files` プロパティはレジストリアイテムのファイルを指定するために使用します。各ファイルには `path`、`type`、および `target`（オプション）プロパティがあります。
+
+**`target` プロパティは `registry:page` および `registry:file` 型には必須です。**
+
+```json title="registry-item.json" showLineNumbers
+{
+  "files": [
+    {
+      "path": "registry/new-york/hello-world/page.tsx",
+      "type": "registry:page",
+      "target": "app/hello/page.tsx"
+    },
+    {
+      "path": "registry/new-york/hello-world/hello-world.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/new-york/hello-world/use-hello-world.ts",
+      "type": "registry:hook"
+    },
+    {
+      "path": "registry/new-york/hello-world/.env",
+      "type": "registry:file",
+      "target": "~/.env"
+    }
+  ]
+}
+```
+
+#### path
+
+`path` プロパティはレジストリ内のファイルへのパスを指定するために使用します。このパスはビルドスクリプトがレジストリJSONペイロードを解析、変換、ビルドするために使用されます。
+
+#### type
+
+`type` プロパティはファイルの型を指定するために使用します。詳細については [type](#type) セクションをご覧ください。
+
+#### target
+
+`target` プロパティはファイルをプロジェクト内のどこに配置するかを示すために使用します。これはオプションで、`registry:page` と `registry:file` 型にのみ必須です。
+
+デフォルトでは、`shadcn` CLIはプロジェクトの `components.json` ファイルを読み込んでターゲットパスを決定します。ルートやコンフィグなど一部のファイルには、ターゲットパスを手動で指定できます。
+
+プロジェクトのルートを参照するには `~` を使用します（例: `~/foo.config.js`）。
+
+ユーザーの `components.json` で設定されたディレクトリにファイルを配置するために、レジストリターゲットプレースホルダーを使用することもできます。これらのプレースホルダーは `target` の先頭でのみサポートされており、プロジェクトのインポートプレフィックスとは独立しています。例えば、`@ui/button.tsx` はプロジェクトが `@/`、`#`、パッケージインポート、ワークスペースエクスポートでコンポーネントをインポートする場合でも機能します。
+
+| プレースホルダー | 解決先               |
+| -------------- | -------------------- |
+| `@components/` | `aliases.components` |
+| `@ui/`         | `aliases.ui`         |
+| `@lib/`        | `aliases.lib`        |
+| `@hooks/`      | `aliases.hooks`      |
+
+`components`、`src`、ワークスペースパッケージパスをハードコードせずに、プロジェクトの設定済みshadcnディレクトリにレジストリアイテムをインストールしたい場合にこれらのプレースホルダーを使用します。プレースホルダーの後の文字列はそのまま保持されるため、`@ui/ai/prompt-input.tsx` はユーザーの設定済み `ui` ディレクトリの `ai/prompt-input.tsx` にインストールされます。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "files": [
+    {
+      "path": "registry/new-york/example/button.tsx",
+      "type": "registry:ui",
+      "target": "@ui/button.tsx"
+    },
+    {
+      "path": "registry/new-york/example/prompt-input.tsx",
+      "type": "registry:ui",
+      "target": "@ui/ai/prompt-input.tsx"
+    },
+    {
+      "path": "registry/new-york/example/card.tsx",
+      "type": "registry:component",
+      "target": "@components/card.tsx"
+    },
+    {
+      "path": "registry/new-york/example/helper.ts",
+      "type": "registry:lib",
+      "target": "@lib/helper.ts"
+    },
+    {
+      "path": "registry/new-york/example/use-demo.ts",
+      "type": "registry:hook",
+      "target": "@hooks/use-demo.ts"
+    }
+  ]
+}
+```
+
+`target` プロパティはファイルの書き込み先を決定します。ファイルの `type` と異なるshadcnディレクトリを指すことができます。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "files": [
+    {
+      "path": "registry/new-york/example/format-date.ts",
+      "type": "registry:ui",
+      "target": "@lib/format-date.ts"
+    }
+  ]
+}
+```
+
+不明なプレースホルダーは通常のターゲットパスとして扱われます。例えば、`@foo/bar.ts` は `foo/bar.ts` として書き込まれます。`components/@ui/button.tsx` のような埋め込みプレースホルダーも通常のパスとして扱われます。
+
+<Callout>
+  `@utils/` はサポートされていません。`utils` はディレクトリではなくファイルを指すためです。
+</Callout>
+
+### tailwind
+
+**非推奨:** Tailwind v4プロジェクトでは代わりに `cssVars.theme` を使用してください。
+
+`tailwind` プロパティは `theme`、`plugins`、`content` などのTailwind設定に使用します。
+
+`tailwind.config` プロパティを使用して、レジストリアイテムに色、アニメーション、プラグインを追加できます。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "tailwind": {
+    "config": {
+      "theme": {
+        "extend": {
+          "colors": {
+            "brand": "hsl(var(--brand))"
+          },
+          "keyframes": {
+            "wiggle": {
+              "0%, 100%": { "transform": "rotate(-3deg)" },
+              "50%": { "transform": "rotate(3deg)" }
+            }
+          },
+          "animation": {
+            "wiggle": "wiggle 1s ease-in-out infinite"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### cssVars
+
+レジストリアイテムのCSS変数を定義するために使用します。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "cssVars": {
+    "theme": {
+      "font-heading": "Poppins, sans-serif"
+    },
+    "light": {
+      "brand": "20 14.3% 4.1%",
+      "radius": "0.5rem"
+    },
+    "dark": {
+      "brand": "20 14.3% 4.1%"
+    }
+  }
+}
+```
+
+### css
+
+`css` を使用して、プロジェクトのCSSファイルに新しいルールを追加します（例: `@layer base`、`@layer components`、`@utility`、`@keyframes`、`@plugin` など）。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "css": {
+    "@plugin @tailwindcss/typography": {},
+    "@plugin foo": {},
+    "@layer base": {
+      "body": {
+        "font-size": "var(--text-base)",
+        "line-height": "1.5"
+      }
+    },
+    "@layer components": {
+      "button": {
+        "background-color": "var(--color-primary)",
+        "color": "var(--color-white)"
+      }
+    },
+    "@utility text-magic": {
+      "font-size": "var(--text-base)",
+      "line-height": "1.5"
+    },
+    "@keyframes wiggle": {
+      "0%, 100%": {
+        "transform": "rotate(-3deg)"
+      },
+      "50%": {
+        "transform": "rotate(3deg)"
+      }
+    }
+  }
+}
+```
+
+### envVars
+
+`envVars` を使用してレジストリアイテムに環境変数を追加します。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "envVars": {
+    "NEXT_PUBLIC_APP_URL": "http://localhost:4000",
+    "DATABASE_URL": "postgresql://postgres:postgres@localhost:5432/postgres",
+    "OPENAI_API_KEY": ""
+  }
+}
+```
+
+環境変数は `.env.local` または `.env` ファイルに追加されます。既存の変数は上書きされません。
+
+<Callout>
+
+**重要:** `envVars` は開発用またはサンプルの変数を追加するために使用してください。本番用の変数には使用しないでください。
+
+</Callout>
+
+### font
+
+`font` プロパティは `registry:font` アイテムに必須です。フォントファミリー、プロバイダー、インポート名、CSS変数、非Next.jsプロジェクト向けのインストールパッケージを設定します。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "font": {
+    "family": "'Inter Variable', sans-serif",
+    "provider": "google",
+    "import": "Inter",
+    "variable": "--font-sans",
+    "subsets": ["latin"],
+    "dependency": "@fontsource-variable/inter"
+  }
+}
+```
+
+| プロパティ   | 型         | 必須 | 説明                                                                                          |
+| ------------ | ---------- | ---- | --------------------------------------------------------------------------------------------- |
+| `family`     | `string`   | はい | CSSのfont-familyの値。                                                                        |
+| `provider`   | `string`   | はい | フォントプロバイダー。現在は `google` のみサポートされています。                              |
+| `import`     | `string`   | はい | `next/font/google` からのフォントのインポート名。                                             |
+| `variable`   | `string`   | はい | フォントのCSS変数名（例: `--font-sans`、`--font-mono`）。                                     |
+| `weight`     | `string[]` | いいえ | 含めるフォントウェイトの配列。                                                               |
+| `subsets`    | `string[]` | いいえ | 含めるフォントサブセットの配列。                                                             |
+| `selector`   | `string`   | いいえ | フォントを適用するCSSセレクター。デフォルトは `html`。                                       |
+| `dependency` | `string`   | いいえ | 非Next.jsプロジェクト向けにインストールするnpmパッケージ（例: `@fontsource-variable/inter`）。|
+
+### docs
+
+`docs` を使用して、CLIでレジストリアイテムをインストールする際にカスタムドキュメントやメッセージを表示します。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "docs": "To get an OPENAI_API_KEY, sign up for an account at https://platform.openai.com."
+}
+```
+
+### categories
+
+`categories` を使用してレジストリアイテムを整理します。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "categories": ["sidebar", "dashboard"]
+}
+```
+
+### meta
+
+`meta` を使用してレジストリアイテムに追加のメタデータを付加します。ツールやスクリプトで利用できるカスタムのキー/値ペアを追加できます。
+
+```json title="registry-item.json" showLineNumbers
+{
+  "meta": { "foo": "bar" }
+}
+```

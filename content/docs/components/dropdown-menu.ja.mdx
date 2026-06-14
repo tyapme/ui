@@ -1,0 +1,169 @@
+---
+title: Dropdown Menu
+description: ボタンをトリガーとして、アクションや機能のセットなどのメニューをユーザーに表示します。
+featured: true
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/menu
+  api: https://base-ui.com/react/components/menu#api-reference
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="dropdown-menu-demo"
+  description="アイコン、ショートカット、サブメニューを持つドロップダウンメニュー。"
+/>
+
+## インストール
+
+<ComponentInstall name="dropdown-menu" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+```
+
+```tsx showLineNumbers
+<DropdownMenu>
+  <DropdownMenuTrigger render={<Button variant="outline" />}>
+    Open
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuGroup>
+      <DropdownMenuLabel>My Account</DropdownMenuLabel>
+      <DropdownMenuItem>Profile</DropdownMenuItem>
+      <DropdownMenuItem>Billing</DropdownMenuItem>
+    </DropdownMenuGroup>
+    <DropdownMenuSeparator />
+    <DropdownMenuGroup>
+      <DropdownMenuItem>Team</DropdownMenuItem>
+      <DropdownMenuItem>Subscription</DropdownMenuItem>
+    </DropdownMenuGroup>
+  </DropdownMenuContent>
+</DropdownMenu>
+```
+
+## 構成
+
+`DropdownMenu` を構築するには以下の構成を使用します:
+
+```text
+DropdownMenu
+├── DropdownMenuTrigger
+└── DropdownMenuContent
+    ├── DropdownMenuGroup
+    │   ├── DropdownMenuLabel
+    │   ├── DropdownMenuItem
+    │   └── DropdownMenuItem
+    ├── DropdownMenuSeparator
+    ├── DropdownMenuGroup
+    │   ├── DropdownMenuLabel
+    │   ├── DropdownMenuCheckboxItem
+    │   └── DropdownMenuCheckboxItem
+    ├── DropdownMenuSeparator
+    ├── DropdownMenuGroup
+    │   ├── DropdownMenuLabel
+    │   └── DropdownMenuRadioGroup
+    │       ├── DropdownMenuRadioItem
+    │       └── DropdownMenuRadioItem
+    └── DropdownMenuSub
+        ├── DropdownMenuSubTrigger
+        └── DropdownMenuSubContent
+            └── DropdownMenuGroup
+                ├── DropdownMenuLabel
+                ├── DropdownMenuItem
+                └── DropdownMenuItem
+```
+
+## 例
+
+### 基本
+
+ラベルとセパレーターを持つ基本的なドロップダウンメニュー。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-basic" />
+
+### サブメニュー
+
+`DropdownMenuSub` を使用してサブアクションをネストします。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-submenu" />
+
+### ショートカット
+
+`DropdownMenuShortcut` を追加してキーボードのヒントを表示します。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-shortcuts" />
+
+### アイコン
+
+アイコンとラベルを組み合わせて素早く識別できるようにします。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-icons" />
+
+### チェックボックス
+
+トグル操作には `DropdownMenuCheckboxItem` を使用します。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-checkboxes" />
+
+### チェックボックスアイコン
+
+チェックボックス項目にアイコンを追加します。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-checkboxes-icons" />
+
+### ラジオグループ
+
+排他的な選択には `DropdownMenuRadioGroup` を使用します。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-radio-group" />
+
+### ラジオアイコン
+
+アイコン付きのラジオ選択肢を表示します。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-radio-icons" />
+
+### 破壊的アクション
+
+取り消せない操作には `variant="destructive"` を使用します。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-destructive" />
+
+### アバター
+
+アバターでトリガーするアカウント切り替えドロップダウン。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-avatar" />
+
+### 複合
+
+グループ、アイコン、サブメニューを組み合わせたリッチな例。
+
+<ComponentPreview styleName="base-nova" name="dropdown-menu-complex" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="dropdown-menu-rtl"
+  direction="rtl"
+/>
+
+## API リファレンス
+
+完全な API リファレンスについては [Base UI ドキュメント](https://base-ui.com/react/components/menu)を参照してください。

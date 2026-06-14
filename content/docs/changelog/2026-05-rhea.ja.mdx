@@ -1,0 +1,45 @@
+---
+title: 2026年5月 - Rhea の紹介
+description: よりコンパクトな Luma。より小さなスペーシング。より密なサーフェス。集中したプロダクトインターフェース向けに構築。
+date: 2026-05-26
+---
+
+新しい shadcn/ui スタイル Rhea を紹介します。よりコンパクトな Luma。より小さなスペーシング。より密なサーフェス。集中したプロダクトインターフェース向けに構築。
+
+<a href="/create?preset=b27GcrRo">
+  <Image
+    src="/images/rhea-light.png"
+    width="3840"
+    height="2160"
+    alt="Rhea style preview"
+    className="mt-6 w-full overflow-hidden rounded-lg border dark:hidden"
+  />
+  <Image
+    src="/images/rhea-dark.png"
+    width="3840"
+    height="2160"
+    alt="Rhea style preview"
+    className="mt-6 hidden w-full overflow-hidden rounded-lg border shadow-sm dark:block"
+  />
+  <span className="sr-only">Try Rhea in shadcn/create</span>
+</a>
+
+Rhea は多く聞かれたシンプルなリクエストから生まれました：Luma、でももっとコンパクトに。新スタイルの使われ方と要望のパターンを観察すると、明確な傾向がありました。多くのチームが Luma の柔らかさと形状を気に入りつつ、よりタイトなスペーシング、小さなコントロール、高い情報密度を求めていました。
+
+Rhea は同じ丸みのある土台を保ちながら、スペースが重要なプロダクトインターフェース向けによりコンパクトにしています。ボタン、Input、メニュー、カード、リストがすべて少しタイトになっているので、UI が混雑に感じることなく多くの情報を収められます。
+
+## なぜ新しいスタイルが必要か？
+
+これを Luma のスペーシング調整にすることも検討しましたが、`--spacing` は乗数です。これを変えると、アプリ全体でお馴染みのユーティリティが意味するものが変わってしまいます。`p-2`、`w-4`、`m-16` が同じサイズを意味しなくなります。
+
+そのトレードオフは間違っていると感じました。コンパクトさのために Tailwind のスペーシングスケールを学び直したり、あるスタイルでユーティリティが別の意味を持つかどうか疑問に思ったりするべきではありません。
+
+そのため Rhea は新しいスタイルになりました。これにより、基本的なユーティリティスケールを予測可能に保ちながら、コンポーネントのサイズ、ギャップ、密度を直接調整できます。
+
+Radix と Base UI の両方で [shadcn/create](/create) から今すぐ利用できます。
+
+<Button asChild size="sm">
+  <Link href="/create?preset=b27GcrRo" className="mt-6 no-underline!">
+    Try Rhea
+  </Link>
+</Button>

@@ -1,0 +1,241 @@
+---
+title: モノレポ
+description: モノレポで shadcn/ui コンポーネントと CLI を使う方法。
+---
+
+これまで、モノレポで shadcn/ui を使うのは少し面倒でした。CLI を使ってコンポーネントを追加できましたが、コンポーネントのインストール先を管理し、インポートパスを手動で修正する必要がありました。
+
+CLI の新しいモノレポサポートにより、モノレポでの shadcn/ui の使用がずっと簡単になりました。
+
+CLI はモノレポの構造を理解し、コンポーネント、依存関係、レジストリの依存関係を正しいパスにインストールし、インポートを自動で処理します。
+
+## はじめ方
+
+<Steps>
+
+### 新しいモノレポプロジェクトを作成する
+
+新しいモノレポプロジェクトを作成するには、`--monorepo` フラグ付きで `init` コマンドを実行します。
+
+```bash
+npx shadcn@latest init --monorepo
+```
+
+使用するテンプレートを選択します。
+
+```bash
+? Select a template ›
+❯   Next.js
+    Vite
+    TanStack Start
+    React Router
+    Astro
+```
+
+これにより、`web` と `ui` の 2 つのワークスペースと、ビルドシステムとして [Turborepo](https://turbo.build/repo/docs) を含む新しいモノレポプロジェクトが作成されます。
+
+すべてが設定済みなので、すぐにコンポーネントをプロジェクトに追加できます。
+
+### プロジェクトにコンポーネントを追加する
+
+プロジェクトにコンポーネントを追加するには、**アプリのパスで** `add` コマンドを実行します。
+
+```bash
+cd apps/web
+```
+
+```bash
+npx shadcn@latest add [COMPONENT]
+```
+
+CLI は追加するコンポーネントの種類を判断し、正しいファイルを正しいパスにインストールします。
+
+例えば、`npx shadcn@latest add button` を実行すると、CLI は `packages/ui` に button コンポーネントをインストールし、`apps/web` のコンポーネントのインポートパスを更新します。
+
+`npx shadcn@latest add login-01` を実行すると、CLI は `packages/ui` に `button`、`label`、`input`、`card` コンポーネントをインストールし、`apps/web/components` に `login-form` コンポーネントをインストールします。
+
+### コンポーネントをインポートする
+
+`@workspace/ui` パッケージからコンポーネントを次のようにインポートできます：
+
+```tsx
+import { Button } from "@workspace/ui/components/button"
+```
+
+`@workspace/ui` パッケージからフックやユーティリティもインポートできます。
+
+```tsx
+import { useTheme } from "@workspace/ui/hooks/use-theme"
+import { cn } from "@workspace/ui/lib/utils"
+```
+
+</Steps>
+
+## ファイル構成
+
+新しいモノレポプロジェクトを作成すると、CLI は以下のファイル構成を作成します：
+
+```txt
+apps
+└── web         # アプリはここに置く
+    ├── app
+    │   └── page.tsx
+    ├── components
+    │   └── login-form.tsx
+    ├── components.json
+    └── package.json
+packages
+└── ui          # コンポーネントと依存関係はここにインストールされる
+    ├── src
+    │   ├── components
+    │   │   └── button.tsx
+    │   ├── hooks
+    │   ├── lib
+    │   │   └── utils.ts
+    │   └── styles
+    │       └── globals.css
+    ├── components.json
+    └── package.json
+package.json
+turbo.json
+```
+
+## 要件
+
+1. すべてのワークスペースに `components.json` ファイルが必要です。`package.json` ファイルが npm に依存関係のインストール方法を伝え、`components.json` ファイルが CLI にコンポーネントのインストール方法と場所を伝えます。
+
+2. `components.json` ファイルはワークスペースの alias を適切に定義する必要があります。これにより CLI はコンポーネント、フック、ユーティリティなどのインポート方法を把握できます。
+
+```json showLineNumbers title="apps/web/components.json"
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "radix-nova",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "../../packages/ui/src/styles/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@/components",
+    "hooks": "@/hooks",
+    "lib": "@/lib",
+    "utils": "@workspace/ui/lib/utils",
+    "ui": "@workspace/ui/components"
+  }
+}
+```
+
+```json showLineNumbers title="packages/ui/components.json"
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "radix-nova",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/styles/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@workspace/ui/components",
+    "utils": "@workspace/ui/lib/utils",
+    "hooks": "@workspace/ui/hooks",
+    "lib": "@workspace/ui/lib",
+    "ui": "@workspace/ui/components"
+  }
+}
+```
+
+3. 両方の `components.json` ファイルで `style`、`iconLibrary`、`baseColor` が同じであることを確認してください。
+
+4. **Tailwind CSS v4 の場合、`components.json` の `tailwind` 設定は空のままにしてください。**
+
+これらの要件を満たすことで、CLI が UI コンポーネント、ブロック、ライブラリ、フックを正しいパスにインストールし、インポートを処理できるようになります。
+
+<Callout className="mt-6">
+  `package.json#imports` は `packages/ui` などワークスペース内のパッケージローカル alias に適しています。`@workspace/ui/components` のようなワークスペース間の共有インポートには、`components.json` に明示的な alias を保持してください。CLI はそれらの alias を使ってワークスペース境界をまたいでファイルをルーティングします。
+</Callout>
+
+## `package.json#imports` の使用
+
+`tsconfig.json` の `paths` に依存せず、パッケージインポートを使用するモノレポの場合：
+
+- 各ワークスペース内のファイルにはローカル `#...` alias を使用
+- `@workspace/ui/components` のような共有インポートにはワークスペースパッケージの `exports` を使用
+
+例えば、アプリワークスペースはローカルパッケージインポートを使用できます：
+
+```json showLineNumbers title="apps/web/package.json"
+{
+  "name": "web",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#components/*": "./src/components/*.tsx",
+    "#lib/*": "./src/lib/*.ts",
+    "#hooks/*": "./src/hooks/*.ts"
+  },
+  "dependencies": {
+    "@workspace/ui": "workspace:*"
+  }
+}
+```
+
+```json showLineNumbers title="apps/web/components.json"
+{
+  "aliases": {
+    "components": "#components",
+    "ui": "@workspace/ui/components",
+    "lib": "#lib",
+    "hooks": "#hooks",
+    "utils": "@workspace/ui/lib/utils"
+  }
+}
+```
+
+共有 UI パッケージは `exports` でインストール先を公開できます：
+
+```json showLineNumbers title="packages/ui/package.json"
+{
+  "name": "@workspace/ui",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#components/*": "./src/components/*.tsx",
+    "#lib/*": "./src/lib/*.ts",
+    "#hooks/*": "./src/hooks/*.ts"
+  },
+  "exports": {
+    "./globals.css": "./src/styles/globals.css",
+    "./components/*": "./src/components/*.tsx",
+    "./lib/*": "./src/lib/*.ts",
+    "./hooks/*": "./src/hooks/*.ts"
+  }
+}
+```
+
+```json showLineNumbers title="packages/ui/components.json"
+{
+  "aliases": {
+    "components": "#components",
+    "ui": "#components",
+    "lib": "#lib",
+    "hooks": "#hooks",
+    "utils": "#lib/utils"
+  }
+}
+```
+
+この構成では：
+
+- アプリから共有 UI パッケージへ追加されるファイルは `@workspace/ui/...` 経由でルーティング
+- `packages/ui` 内に追加されるファイルはパッケージローカルの `#...` alias を使用
+- 共有パッケージは別のワークスペースから参照されるパスをすべて export する必要がある
+
+フレームワーク固有のパッケージインポート設定については、[パッケージインポートガイド](/docs/package-imports)を参照してください。

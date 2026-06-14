@@ -10,7 +10,7 @@ export function Announcement() {
       variant="secondary"
       className="bg-muted"
     >
-      TYAP.ME UI <ArrowRightIcon />
+      Ketyap UI <ArrowRightIcon />
     </Badge>
   )
 }

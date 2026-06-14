@@ -1,40 +1,54 @@
+import * as React from "react"
+
 import { cn } from "@/lib/utils"
 
-type SpinnerProps = Omit<React.ComponentProps<"span">, "children">
+export interface SpinnerProps extends React.ComponentProps<"svg"> {
+  /** The size of the spinner in pixels. Tailwind size-* classes also work. */
+  size?: number
+  /** The color of the spinner bars. Defaults to currentColor. */
+  color?: string
+}
 
-function Spinner({ className, ...props }: SpinnerProps) {
+const BAR_COUNT = 12
+const DURATION = 1.2
+
+function Spinner({
+  size = 16,
+  color = "currentColor",
+  className,
+  ...props
+}: SpinnerProps) {
   return (
-    <>
-      <style>{`
-        @keyframes spinner-fade {
-          from { opacity: 1; }
-          to { opacity: 0.15; }
-        }
-      `}</style>
-      <span
-        role="status"
-        className={cn("box-border inline-block size-5", className)}
-        {...props}
-      >
-        <span
-          aria-hidden="true"
-          className="relative top-1/2 left-1/2 block size-full"
-        >
-          {Array.from({ length: 12 }, (_, i) => (
-            <span
-              key={i}
-              className="absolute top-[-3.9%] left-[-10%] block h-[8%] w-[24%] rounded-(--radius) bg-current"
-              style={{
-                transform: `rotate(${i * 30}deg) translate(146%)`,
-                animation: "spinner-fade var(--duration, 1.2s) linear infinite",
-                animationDelay: `calc(var(--duration, 1.2s) / 12 * ${i - 12})`,
-              }}
-            />
-          ))}
-        </span>
-        <span className="sr-only">Loading</span>
-      </span>
-    </>
+    <svg
+      role="status"
+      aria-label="Loading"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      className={cn("shrink-0", className)}
+      {...props}
+    >
+      <style>
+        {"@keyframes bars-spinner-fade{0%{opacity:1}100%{opacity:0.15}}"}
+      </style>
+      {Array.from({ length: BAR_COUNT }, (_, i) => (
+        <rect
+          key={i}
+          x="11"
+          y="2"
+          width="2"
+          height="5.5"
+          rx="1"
+          fill={color}
+          transform={`rotate(${i * (360 / BAR_COUNT)} 12 12)`}
+          style={{
+            animation: `bars-spinner-fade ${DURATION}s linear ${
+              (i / BAR_COUNT) * DURATION - DURATION
+            }s infinite`,
+          }}
+        />
+      ))}
+    </svg>
   )
 }
 

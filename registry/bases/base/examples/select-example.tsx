@@ -27,10 +27,6 @@ import {
   ItemTitle,
 } from "@/registry/ui/item"
 import {
-  NativeSelect,
-  NativeSelectOption,
-} from "@/registry/ui/native-select"
-import {
   Select,
   SelectContent,
   SelectGroup,
@@ -542,12 +538,17 @@ function SelectInline() {
             </SelectGroup>
           </SelectContent>
         </Select>
-        <NativeSelect className="w-[140px]">
-          <NativeSelectOption value="">Sort by</NativeSelectOption>
-          <NativeSelectOption value="name">Name</NativeSelectOption>
-          <NativeSelectOption value="date">Date</NativeSelectOption>
-          <NativeSelectOption value="status">Status</NativeSelectOption>
-        </NativeSelect>
+        <Select kind="native">
+          <SelectTrigger className="w-[140px]">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="">Sort by</SelectItem>
+            <SelectItem value="name">Name</SelectItem>
+            <SelectItem value="date">Date</SelectItem>
+            <SelectItem value="status">Status</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
     </Example>
   )

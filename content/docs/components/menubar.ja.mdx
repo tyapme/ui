@@ -1,0 +1,125 @@
+---
+title: Menubar
+description: デスクトップアプリケーションで一般的な、一貫したコマンドセットへのクイックアクセスを提供する視覚的に固定されたメニュー。
+base: base
+component: true
+links:
+  doc: https://base-ui.com/react/components/menubar
+  api: https://base-ui.com/react/components/menubar#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="menubar-demo" />
+
+## インストール
+
+<ComponentInstall name="menubar" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  Menubar,
+  MenubarContent,
+  MenubarGroup,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@/components/ui/menubar"
+```
+
+```tsx showLineNumbers
+<Menubar>
+  <MenubarMenu>
+    <MenubarTrigger>File</MenubarTrigger>
+    <MenubarContent>
+      <MenubarGroup>
+        <MenubarItem>
+          New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+        </MenubarItem>
+        <MenubarItem>New Window</MenubarItem>
+      </MenubarGroup>
+      <MenubarSeparator />
+      <MenubarGroup>
+        <MenubarItem>Share</MenubarItem>
+        <MenubarItem>Print</MenubarItem>
+      </MenubarGroup>
+    </MenubarContent>
+  </MenubarMenu>
+</Menubar>
+```
+
+## コンポジション
+
+`Menubar` を構築するには以下のコンポジションを使用します:
+
+```text
+Menubar
+├── MenubarMenu
+│   ├── MenubarTrigger
+│   └── MenubarContent
+│       ├── MenubarGroup
+│       │   ├── MenubarLabel
+│       │   ├── MenubarItem
+│       │   └── MenubarItem
+│       ├── MenubarSeparator
+│       ├── MenubarGroup
+│       │   ├── MenubarLabel
+│       │   ├── MenubarCheckboxItem
+│       │   └── MenubarCheckboxItem
+│       ├── MenubarSeparator
+│       ├── MenubarGroup
+│       │   ├── MenubarLabel
+│       │   └── MenubarRadioGroup
+│       │       ├── MenubarRadioItem
+│       │       └── MenubarRadioItem
+│       └── MenubarSub
+│           ├── MenubarSubTrigger
+│           └── MenubarSubContent
+│               └── MenubarGroup
+│                   ├── MenubarLabel
+│                   ├── MenubarItem
+│                   └── MenubarItem
+└── MenubarMenu
+    ├── MenubarTrigger
+    └── MenubarContent
+        └── MenubarGroup
+            ├── MenubarLabel
+            ├── MenubarItem
+            └── MenubarItem
+```
+
+## 例
+
+### チェックボックス
+
+トグル可能なオプションには `MenubarCheckboxItem` を使用します。
+
+<ComponentPreview styleName="base-nova" name="menubar-checkbox" />
+
+### ラジオ
+
+単一選択のオプションには `MenubarRadioGroup` と `MenubarRadioItem` を使用します。
+
+<ComponentPreview styleName="base-nova" name="menubar-radio" />
+
+### サブメニュー
+
+ネストしたメニューには `MenubarSub`、`MenubarSubTrigger`、`MenubarSubContent` を使用します。
+
+<ComponentPreview styleName="base-nova" name="menubar-submenu" />
+
+### アイコン付き
+
+<ComponentPreview styleName="base-nova" name="menubar-icons" />
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="menubar-rtl" direction="rtl" />
+
+## API リファレンス
+
+[Base UI Menubar](https://base-ui.com/react/components/menubar#api-reference) ドキュメントを参照してください。

@@ -1,0 +1,136 @@
+---
+title: Input OTP
+description: コピー＆ペースト機能を備えたアクセシブルなワンタイムパスワードコンポーネント。
+base: base
+component: true
+links:
+  doc: https://input-otp.rodz.dev
+---
+
+<ComponentPreview styleName="base-nova" name="input-otp-demo" />
+
+## について
+
+Input OTP は [@guilherme_rodz](https://twitter.com/guilherme_rodz) による [input-otp](https://github.com/guilhermerodz/input-otp) の上に構築されています。
+
+## インストール
+
+<ComponentInstall name="input-otp" styleName="base-nova" />
+
+## 使い方
+
+```tsx showLineNumbers
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp"
+```
+
+```tsx showLineNumbers
+<InputOTP maxLength={6}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+  </InputOTPGroup>
+  <InputOTPSeparator />
+  <InputOTPGroup>
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>
+```
+
+## 構成
+
+`InputOTP` を構築するには以下の構成を使用します:
+
+```text
+InputOTP
+├── InputOTPGroup
+│   ├── InputOTPSlot
+│   ├── InputOTPSlot
+│   └── InputOTPSlot
+├── InputOTPSeparator
+├── InputOTPGroup
+│   ├── InputOTPSlot
+│   ├── InputOTPSlot
+│   └── InputOTPSlot
+├── InputOTPSeparator
+└── InputOTPGroup
+    ├── InputOTPSlot
+    └── InputOTPSlot
+```
+
+## パターン
+
+`pattern` プロパティを使用して OTP 入力のカスタムパターンを定義します。
+
+```tsx showLineNumbers {1,5}
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp"
+
+;<InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS}>
+  ...
+</InputOTP>
+```
+
+<ComponentPreview styleName="base-nova" name="input-otp-pattern" />
+
+## 例
+
+### セパレーター
+
+`<InputOTPSeparator />` コンポーネントを使用して入力グループ間にセパレーターを追加します。
+
+<ComponentPreview styleName="base-nova" name="input-otp-separator" />
+
+### 無効
+
+`disabled` プロパティを使用して入力を無効にします。
+
+<ComponentPreview styleName="base-nova" name="input-otp-disabled" />
+
+### 制御あり
+
+`value` と `onChange` プロパティを使用して入力値を制御します。
+
+<ComponentPreview styleName="base-nova" name="input-otp-controlled" />
+
+### エラー状態
+
+スロットに `aria-invalid` を使用してエラー状態を表示します。
+
+<ComponentPreview styleName="base-nova" name="input-otp-invalid" />
+
+### 4 桁
+
+PIN コードの一般的なパターン。`pattern={REGEXP_ONLY_DIGITS}` プロパティを使用します。
+
+<ComponentPreview styleName="base-nova" name="input-otp-four-digits" />
+
+### 英数字
+
+`REGEXP_ONLY_DIGITS_AND_CHARS` を使用して文字と数字の両方を受け付けます。
+
+<ComponentPreview styleName="base-nova" name="input-otp-alphanumeric" />
+
+### フォーム
+
+<ComponentPreview
+  styleName="base-nova"
+  name="input-otp-form"
+  previewClassName="h-[30rem]"
+/>
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="input-otp-rtl" direction="rtl" />
+
+## API リファレンス
+
+詳細については [input-otp](https://input-otp.rodz.dev) のドキュメントを参照してください。

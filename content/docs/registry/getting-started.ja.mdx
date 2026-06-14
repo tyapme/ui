@@ -1,0 +1,604 @@
+---
+title: はじめに
+description: 独自のコンポーネントレジストリをセットアップして運用する方法を学ぶ。
+---
+
+このガイドでは、独自レジストリのセットアップ手順を説明します。配布したいコンポーネント、フック、ユーティリティ、その他のファイルを含むプロジェクトがすでにあることを前提とします。
+
+**既存のパブリック GitHub リポジトリがある場合、ルートに `registry.json` ファイルを追加するだけでレジストリに変換できます。** 詳細は [GitHub レジストリ](/docs/registry/github) を参照してください。
+
+新しいレジストリプロジェクトを始める場合は、[registry テンプレート](https://github.com/shadcn-ui/registry-template) を出発点として使用できます。すでに設定済みです。
+
+## 要件
+
+独自レジストリは自由に設計・公開できます。唯一の要件は、レジストリカタログとレジストリアイテムが [レジストリスキーマ仕様](/docs/registry/registry-json) と [レジストリアイテムスキーマ仕様](/docs/registry/registry-item-json) に準拠していることです。
+
+レジストリは Next.js、Vite、Vue、Svelte、PHP、その他 HTTP 経由で JSON を提供できるフレームワークであれば何でも使えます。ルートに `registry.json` ファイルを持つパブリック GitHub リポジトリでも構いません。
+
+レジストリの例を見たい場合は、出発点として使える [テンプレートプロジェクト](https://github.com/shadcn-ui/registry-template) があります。
+
+## registry.json
+
+`registry.json` はレジストリのエントリポイントです。レジストリの名前、ホームページ、そしてレジストリに存在するすべてのアイテムを定義します。
+
+レジストリのエンドポイントのルートにこのファイル（または JSON ペイロード）が必要です。レジストリエンドポイントはレジストリがホストされている URL です。
+
+`registry.json` の例：
+
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme",
+  "homepage": "https://acme.com",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "A simple button component.",
+      "files": [
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}
+```
+
+## レジストリの構造化
+
+ソースレジストリは次の2通りの方法で構成できます：
+
+- すべてのアイテムを単一のルート `registry.json` に定義する。
+- `include` を使ってルート `registry.json` から複数の `registry.json` を合成する。
+
+### オプション A: 単一の registry.json
+
+プロジェクトのルートに `registry.json` ファイルを作成し、すべてのレジストリアイテムを `items` 配列に追加します。これが最もシンプルなレジストリの定義方法です。
+
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme",
+  "homepage": "https://acme.com",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "A simple button component.",
+      "files": [
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "hello-world",
+      "type": "registry:block",
+      "title": "Hello World",
+      "description": "A simple hello world component.",
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/default/hello-world/hello-world.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
+```
+
+この `registry.json` ファイルは [レジストリスキーマ仕様](/docs/registry/registry-json) に準拠している必要があります。
+
+### オプション B: include を使う
+
+大規模なレジストリでは、`include` を使って複数の `registry.json` ファイルからソースレジストリを合成できます。
+
+```txt
+registry.json
+components
+└── ui
+    ├── button.tsx
+    ├── input.tsx
+    └── registry.json
+hooks
+├── registry.json
+├── use-media-query.ts
+└── use-toggle.ts
+```
+
+ルートの `registry.json` はレジストリのメタデータを定義し、ネストされたレジストリファイルをインクルードします。
+
+{/* prettier-ignore */}
+```json title="registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme",
+  "homepage": "https://acme.com",
+  "include": [
+    "components/ui/registry.json",
+    "hooks/registry.json"
+  ]
+}
+```
+
+インクルードされた `registry.json` ファイルは合成用の有効なレジストリファイルで、`name` と `homepage` を省略できます。ルートの `registry.json` のみがレジストリメタデータを定義する必要があります。
+
+```json title="components/ui/registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}
+```
+
+```json title="hooks/registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "use-toggle",
+      "type": "registry:hook",
+      "files": [
+        {
+          "path": "use-toggle.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-media-query",
+      "type": "registry:hook",
+      "files": [
+        {
+          "path": "use-media-query.ts",
+          "type": "registry:hook"
+        }
+      ]
+    }
+  ]
+}
+```
+
+`include` を使う場合、ファイルパスはアイテムを宣言する `registry.json` ファイルからの相対パスになります。
+
+## アイテムを追加する
+
+### UI コンポーネントを作成する
+
+最初のアイテムを追加します。シンプルな `<Button />` コンポーネントの例：
+
+```tsx title="components/ui/button.tsx" showLineNumbers
+import * as React from "react"
+
+export function Button(props: React.ComponentProps<"button">) {
+  return (
+    <button
+      {...props}
+      className="rounded-md bg-neutral-900 px-4 py-2 text-sm font-medium text-white"
+    />
+  )
+}
+```
+
+<Callout className="mt-6">
+  **注意:** この例ではコンポーネントを `components/ui` ディレクトリに配置していますが、`registry.json` ファイルで正しいパスを設定していれば、プロジェクト内のどこにでも配置できます。
+</Callout>
+
+```txt
+components
+└── ui
+    └── button.tsx
+```
+
+### アイテムをレジストリに追加する
+
+コンポーネントをレジストリに追加するには、`registry.json` にアイテム定義を追加します。`include` を使っている場合は、コンポーネントを所有するインクルード済みの `registry.json` ファイルにアイテムを追加します。たとえば、UI コンポーネントは `components/ui/registry.json` に追加します。
+
+```json title="registry.json" showLineNumbers {6-17}
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme",
+  "homepage": "https://acme.com",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "A simple button component.",
+      "files": [
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}
+```
+
+レジストリアイテムは `name`、`type`、`title`、`description`、`files` を定義します。
+
+追加するすべてのファイルに対して、`path` と `type` を指定する必要があります。単一ファイルのレジストリでは `path` はプロジェクトのルートからの相対パスです。`include` を使う場合は、アイテムを宣言する `registry.json` ファイルからの相対パスです。`type` はファイルの種類です。
+
+レジストリアイテムスキーマとファイルタイプの詳細は [レジストリアイテムスキーマドキュメント](/docs/registry/registry-item-json) を参照してください。
+
+## レジストリを提供する
+
+レジストリは静的な JSON ファイルとして、またはダイナミックルートハンドラーから提供できます。
+
+### オプション A: 静的 JSON ファイル
+
+ビルドコマンドを実行して静的レジストリ JSON ファイルを生成します。
+
+```bash
+npx shadcn@latest build
+```
+
+ソースレジストリで `include` を使っている場合、`shadcn build` はインクルードされたレジストリを解決し、出力ディレクトリにフラット化されたレジストリを書き込みます。生成された `registry.json` には `include` は含まれません。
+
+<Callout className="mt-6">
+  **注意:** デフォルトでは、ビルドコマンドはレジストリ JSON ファイルを `public/r`（例: `public/r/button.json`）に生成します。`--output` オプションで出力ディレクトリを変更できます。詳細は [shadcn build コマンド](/docs/cli#build) を参照してください。
+</Callout>
+
+Next.js でレジストリを運用している場合、`next` サーバーを実行することでこれらのファイルを提供できます。他のフレームワークではコマンドが異なる場合があります。
+
+```bash
+npm run dev
+```
+
+ファイルは `http://localhost:3000/r/[NAME].json`（例: `http://localhost:3000/r/button.json`）で提供されます。
+
+### オプション B: ダイナミックルートハンドラー
+
+リクエスト時にソース `registry.json` からレジストリ JSON を提供したい場合は、`shadcn/registry` のプロデューサー側ローダー API を使います。
+
+`shadcn` をランタイム依存関係としてインストールします：
+
+```bash
+npm install shadcn
+```
+
+`loadRegistry` を使ってレジストリカタログを提供します。
+
+```ts title="app/r/registry.json/route.ts" showLineNumbers
+import { loadRegistry } from "shadcn/registry"
+
+export async function GET() {
+  try {
+    const registry = await loadRegistry()
+
+    return Response.json(registry)
+  } catch (error) {
+    console.error(error)
+
+    return Response.json({ error: "Failed to load registry." }, { status: 500 })
+  }
+}
+```
+
+`loadRegistryItem` を使って個別のレジストリアイテムを提供します。
+
+```ts title="app/r/[name].json/route.ts" showLineNumbers
+import { loadRegistryItem, RegistryItemNotFoundError } from "shadcn/registry"
+
+export async function GET(
+  _request: Request,
+  context: {
+    params: Promise<{
+      name: string
+    }>
+  }
+) {
+  const { name } = await context.params
+
+  try {
+    const item = await loadRegistryItem(name)
+
+    return Response.json(item)
+  } catch (error) {
+    if (error instanceof RegistryItemNotFoundError) {
+      return Response.json(
+        { error: `Registry item "${name}" was not found.` },
+        { status: 404 }
+      )
+    }
+
+    console.error(error)
+
+    return Response.json(
+      { error: "Failed to load registry item." },
+      { status: 500 }
+    )
+  }
+}
+```
+
+両方のローダーは JSON を返す前に `include` を解決するため、ルートハンドラーは `shadcn build` を実行せずに同じソース `registry.json` 構造を使用できます。
+
+<Accordion type="single" collapsible>
+  <AccordionItem value="content-negotiation">
+    <AccordionTrigger>コンテンツネゴシエーション</AccordionTrigger>
+    <AccordionContent>
+
+`shadcn` CLI は **HTTP コンテンツネゴシエーション** をサポートしています。これにより、ドメインのルートを含む任意のエンドポイントでレジストリをホストし、リクエスト元に応じて異なるコンテンツを提供できます。
+
+単一の URL から以下を提供できます：
+
+<ul>
+  <li>
+    <strong>HTML</strong> をブラウザに — ランディングページ、ドキュメント、またはマーケティングサイト。
+  </li>
+  <li>
+    <strong>JSON</strong> を <code>shadcn</code> CLI に — インストール可能なレジストリアイテム。
+  </li>
+  <li>
+    <strong>Markdown</strong> を AI エージェントと LLM に — コンテンツの機械可読バージョン。
+  </li>
+</ul>
+
+クライアントは `Accept` リクエストヘッダーで好みを通知し、サーバーが返す内容を決定します。
+
+#### リクエストヘッダー
+
+CLI がレジストリにリクエストを送信する際、次のヘッダーを送信します：
+
+- **User-Agent**: `shadcn`
+- **Accept**: `application/vnd.shadcn.v1+json, application/json;q=0.9`
+
+#### ルートホスティング
+
+サーバーでこれらのヘッダーを確認することで、CLI のトラフィックをインストール可能なレジストリアイテムにルーティングしながら、ブラウザのトラフィックはドキュメントやホームページに流すことができます。
+
+以下の例では、ビルドされたレジストリアイテムが `/r/index.json` で提供されていると仮定します。パスは実際の出力に合わせて調整してください。
+
+Next.js では `next.config.ts` のリライトとして表現します。この静的リライトでプロキシ関数を使わずにネゴシエーションをルーティング層で処理できます：
+
+```typescript title="next.config.ts" showLineNumbers
+import type { NextConfig } from "next"
+
+const nextConfig: NextConfig = {
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: "/",
+          has: [
+            {
+              type: "header",
+              key: "accept",
+              value: "(.*)application/vnd\\.shadcn\\.v1\\+json(.*)",
+            },
+          ],
+          destination: "/r/index.json",
+        },
+        {
+          source: "/",
+          has: [
+            {
+              type: "header",
+              key: "user-agent",
+              value: "shadcn",
+            },
+          ],
+          destination: "/r/index.json",
+        },
+      ],
+    }
+  },
+  async headers() {
+    return [
+      {
+        source: "/",
+        headers: [{ key: "Vary", value: "Accept, User-Agent" }],
+      },
+    ]
+  },
+}
+
+export default nextConfig
+```
+
+Express.js サーバーの場合：
+
+```javascript title="server.js" showLineNumbers
+app.get("/", (req, res) => {
+  res.vary("Accept")
+  res.vary("User-Agent")
+
+  // クライアントが shadcn ベンダータイプを優先するか確認する。
+  if (req.accepts("application/vnd.shadcn.v1+json")) {
+    return res.json(registryData)
+  }
+
+  // オプション: User-Agent の二次確認。
+  if (req.get("User-Agent") === "shadcn") {
+    return res.json(registryData)
+  }
+
+  // それ以外はドキュメントやホームページを提供する。
+  res.send(htmlContent)
+})
+```
+
+これにより：
+
+<ul>
+  <li>
+    <strong>ブランドレジストリ URL</strong>:{" "}
+    <code>shadcn add https://ui.example.com</code>
+  </li>
+  <li>
+    <strong>短い URL</strong>: ユーザーはドメインルートを入力するだけで、<code>/r/</code> や <code>/registry/</code> のサブパスは不要。
+  </li>
+  <li>
+    <strong>覚えやすい</strong>: ユーザーがレジストリを記憶・共有しやすくなる。
+  </li>
+</ul>
+
+      </AccordionContent>
+
+    </AccordionItem>
+
+</Accordion>
+
+## レジストリをテストする
+
+レジストリが提供されたら、他の開発者が使用するのと同じ CLI コマンドでテストします。
+
+### URL を使う
+
+アイテムを検索するコマンド（`list`、`search`）にはカタログ URL を使います。特定のアイテムを読み取り・インストールするコマンド（`view`、`add`）にはアイテム URL を使います。
+
+#### アイテムを一覧表示する
+
+まずレジストリカタログが検索できることを確認します。
+
+```bash
+npx shadcn@latest list http://localhost:3000/r/registry.json
+```
+
+#### アイテムを検索する
+
+クエリでレジストリを検索します。
+
+```bash
+npx shadcn@latest search http://localhost:3000/r/registry.json --query button
+```
+
+#### アイテムを表示する
+
+名前でレジストリアイテムを1つ表示します。
+
+```bash
+npx shadcn@latest view http://localhost:3000/r/button.json
+```
+
+#### アイテムを追加する
+
+インストールフローをテストするには、アイテムをインストールしたいプロジェクトから `add` を実行します。
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/button.json
+```
+
+### 名前空間を使う
+
+#### レジストリを追加する
+
+名前空間でもレジストリをテストできます。`components.json` ファイルがあるプロジェクトから、レジストリ URL テンプレートをプロジェクトに追加します。
+
+```bash
+npx shadcn@latest registry add @acme=http://localhost:3000/r/{name}.json
+```
+
+`{name}` プレースホルダーはアイテムの JSON ファイルに解決される必要があります。たとえば `@acme/button` は `http://localhost:3000/r/button.json` に解決されます。カタログは `http://localhost:3000/r/registry.json` で別途提供されます。
+
+#### アイテムを一覧表示する
+
+レジストリのアイテムを一覧表示します。
+
+```bash
+npx shadcn@latest list @acme
+```
+
+#### アイテムを検索する
+
+クエリでレジストリを検索します。
+
+```bash
+npx shadcn@latest search @acme --query button
+```
+
+#### アイテムを表示する
+
+名前でレジストリアイテムを1つ表示します。
+
+```bash
+npx shadcn@latest view @acme/button
+```
+
+#### アイテムを追加する
+
+インストールフローをテストするには、アイテムをインストールしたいプロジェクトから `add` を実行します。
+
+```bash
+npx shadcn@latest add @acme/button
+```
+
+詳細は [名前空間レジストリ](/docs/registry/namespace) ドキュメントを参照してください。
+
+## レジストリを公開する
+
+レジストリを他の開発者に提供するには、プロジェクトをパブリック URL に公開します。デプロイ後、ユーザーはアイテム URL から直接アイテムをインストールするか、プロジェクトに名前空間としてレジストリを追加できます。
+
+### 名前空間のセットアップ手順を共有する
+
+ユーザーが `@acme/button` のような名前空間でアイテムをインストールできるようにするには、レジストリ URL テンプレートをプロジェクトに追加するよう伝えます。CLI がレジストリアイテムを解決する際に `{name}` プレースホルダーがアイテム名に置き換えられます。
+
+テンプレートはアイテムの JSON ファイルに解決される必要があります。たとえば `@acme/button` は `https://acme.com/r/button.json` に解決されます。レジストリカタログは `https://acme.com/r/registry.json` で別途提供されます。
+
+CLI で名前空間を追加できます：
+
+```bash
+npx shadcn@latest registry add @acme=https://acme.com/r/{name}.json
+```
+
+または `components.json` の `registries` フィールドに手動で追加します：
+
+```json title="components.json" showLineNumbers
+{
+  "registries": {
+    "@acme": "https://acme.com/r/{name}.json"
+  }
+}
+```
+
+ユーザーは名前空間からアイテムを使用できます：
+
+```bash
+npx shadcn@latest add @acme/button
+```
+
+### 名前空間をレジストリインデックスに追加する
+
+レジストリがオープンソースでパブリックに公開されている場合、名前空間を公式レジストリインデックスに登録できます。これにより、ユーザーが完全な URL テンプレートを貼り付ける代わりに名前で名前空間を追加できるようになります。
+
+提出要件については [レジストリインデックス](/docs/registry/registry-index) ドキュメントを参照してください。
+
+## ガイドライン
+
+レジストリ用コンポーネントを構築する際のガイドライン：
+
+- レジストリアイテムは `registry/[STYLE]/[NAME]` ディレクトリに配置してください。`default` は一例で、`registry` ディレクトリの下にネストされていれば何でも構いません。
+- ブロックには `name`、`description`、`type`、`files` のプロパティが必須です。
+- レジストリアイテムには適切な名前と説明を追加することを推奨します。LLM がコンポーネントとその目的を理解するのに役立ちます。
+- `registryDependencies` にすべてのレジストリ依存関係を記載してください。レジストリ依存関係は `button`、`@acme/input-form`、`acme/ui/button`、`http://localhost:3000/r/editor.json` などのアイテムアドレスです。
+- `dependencies` にすべての依存関係を記載してください。依存関係はレジストリ内のパッケージ名（例: `zod`、`sonner`）です。バージョンを指定するには `name@version` 形式（例: `zod@^3.20.0`）を使います。
+- **インポートには常に `@/registry` パスを使用してください。** 例: `import { HelloWorld } from "@/registry/default/hello-world/hello-world"`
+- ファイルはレジストリアイテム内の `components`、`hooks`、`lib` ディレクトリに配置することを推奨します。

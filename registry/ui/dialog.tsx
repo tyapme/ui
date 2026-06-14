@@ -4,12 +4,12 @@ import * as React from "react"
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 
 import { cn } from "@/registry/bases/base/lib/utils"
-import { Button } from "@/registry/ui/button"
 import {
-  DIALOG_OVERLAY_CLASSES,
   DIALOG_CONTENT_BASE_CLASSES,
+  DIALOG_OVERLAY_CLASSES,
   DialogDragHandle,
 } from "@/registry/ui/_dialog-shared"
+import { Button } from "@/registry/ui/button"
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />
@@ -24,7 +24,8 @@ function DialogTrigger({
   asChild?: boolean
   children?: React.ReactNode
 }) {
-  let resolvedRender = asChild && React.isValidElement(children) ? children : render
+  let resolvedRender =
+    asChild && React.isValidElement(children) ? children : render
   if (React.isValidElement(resolvedRender)) {
     resolvedRender = React.cloneElement(
       resolvedRender as React.ReactElement<{ "data-slot"?: string }>,
@@ -74,11 +75,7 @@ function DialogContent({
       <DialogOverlay />
       <DialogPrimitive.Popup
         data-slot="dialog-content"
-        className={cn(
-          DIALOG_CONTENT_BASE_CLASSES,
-          "sm:max-w-md",
-          className
-        )}
+        className={cn(DIALOG_CONTENT_BASE_CLASSES, "sm:max-w-md", className)}
         {...props}
       >
         <DialogDragHandle />
@@ -117,7 +114,10 @@ function DialogFooter({
     >
       {children}
       {showCloseButton && (
-        <DialogPrimitive.Close nativeButton render={<Button variant="outline" />}>
+        <DialogPrimitive.Close
+          nativeButton
+          render={<Button variant="outline" />}
+        >
           Close
         </DialogPrimitive.Close>
       )}

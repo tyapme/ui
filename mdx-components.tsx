@@ -2,17 +2,18 @@ import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
 
-import { type PageTreeFolder } from "@/lib/page-tree"
+import { i18n } from "@/lib/i18n"
+import { getPageTreeRoot, type PageTreeFolder } from "@/lib/page-tree"
 import { source } from "@/lib/source"
 import { cn } from "@/lib/utils"
 import { Callout } from "@/components/callout"
-import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
+import { ComponentInstall } from "@/components/component-install"
 import { CodeBlockCommand } from "@/components/code-block-command"
+import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
 import { CodeTabs } from "@/components/code-tabs"
 import { ComponentPreview } from "@/components/component-preview"
 import { ComponentSource } from "@/components/component-source"
 import { ComponentsList } from "@/components/components-list"
-import { DirectoryList } from "@/components/directory-list"
 import { CopyButton } from "@/components/copy-button"
 import { DesignColorSwatches } from "@/components/design/color-swatches"
 import { DesignElevationScale } from "@/components/design/elevation-scale"
@@ -20,6 +21,7 @@ import { DesignIconGallery } from "@/components/design/icon-gallery"
 import { DesignRadiusScale } from "@/components/design/radius-scale"
 import { DesignSpacingScale } from "@/components/design/spacing-scale"
 import { DesignTypographyScale } from "@/components/design/typography-scale"
+import { DirectoryList } from "@/components/directory-list"
 import { getIconForLanguageExtension } from "@/components/icons"
 import {
   Accordion,
@@ -27,35 +29,24 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/styles/base/ui/accordion"
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/styles/base/ui/alert"
+import { Alert, AlertDescription, AlertTitle } from "@/styles/base/ui/alert"
 import { AspectRatio } from "@/styles/base/ui/aspect-ratio"
 import { Button } from "@/styles/base/ui/button"
 import { Kbd } from "@/styles/base/ui/kbd"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/styles/base/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/styles/base/ui/tabs"
 
 // Wrapper component that passes the components folder from the server.
 function ComponentsListWrapper() {
-  const componentsFolder = source.pageTree.children.find(
-    (page) => page.$id === "components"
-  )
+  const componentsFolder = getPageTreeRoot(
+    source.getPageTree(i18n.defaultLanguage)
+  ).children.find((page) => page.$id === "components")
 
   if (componentsFolder?.type !== "folder") {
     return null
   }
 
   return (
-    <ComponentsList
-      componentsFolder={componentsFolder as PageTreeFolder}
-    />
+    <ComponentsList componentsFolder={componentsFolder as PageTreeFolder} />
   )
 }
 
@@ -411,10 +402,7 @@ export const mdxComponents = {
   }: React.ComponentProps<typeof TabsList>) => (
     <TabsList
       variant="line"
-      className={cn(
-        "justify-start gap-6 px-0",
-        className
-      )}
+      className={cn("justify-start gap-6 px-0", className)}
       {...props}
     />
   ),
@@ -422,19 +410,14 @@ export const mdxComponents = {
     className,
     ...props
   }: React.ComponentProps<typeof TabsTrigger>) => (
-    <TabsTrigger
-      className={cn(
-        "px-0 pb-3 text-base",
-        className
-      )}
-      {...props}
-    />
+    <TabsTrigger className={cn("px-0 pb-3 text-base", className)} {...props} />
   ),
   TabsContent: ({
     className,
     ...props
   }: React.ComponentProps<typeof TabsContent>) => (
     <TabsContent
+      keepMounted
       className={cn(
         "relative [&_h3.font-heading]:text-base [&_h3.font-heading]:font-medium *:[figure]:first:mt-0 [&>.steps]:mt-6",
         className
@@ -483,4 +466,5 @@ export const mdxComponents = {
   DesignElevationScale,
   DesignIconGallery,
   DirectoryList,
+  ComponentInstall,
 }

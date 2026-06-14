@@ -1,6 +1,6 @@
 ---
 title: MD Parser
-description: Renders Markdown as styled typography components.
+description: Renders Markdown as styled typography components with syntax-highlighted code blocks.
 base: base
 component: true
 ---
@@ -18,7 +18,7 @@ component: true
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add md-parser
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/md-parser.json
 ```
 
 </TabsContent>
@@ -30,10 +30,22 @@ npx shadcn@latest add md-parser
 <Step>Install the required dependencies.</Step>
 
 ```bash
-npm install react-markdown remark-gfm
+npm install unified remark-parse remark-rehype remark-gfm rehype-pretty-code hast-util-to-jsx-runtime hast-util-to-string unist-util-visit
 ```
 
 <Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name="typography"
+  title="components/ui/typography.tsx"
+  styleName="base-nova"
+/>
+
+<ComponentSource
+  name="md-parser-code-block"
+  title="components/ui/md-parser-code-block.tsx"
+  styleName="base-nova"
+/>
 
 <ComponentSource
   name="md-parser"
@@ -59,11 +71,77 @@ import { MDParser } from "@/components/ui/md-parser"
 <MDParser>{markdownString}</MDParser>
 ```
 
+## Components
+
+MD Parser composes two separate component families that can also be used standalone.
+
+### Typography
+
+The `typography` component exports semantic HTML element wrappers with consistent typographic styles. These are used internally by `MDParser` to render all Markdown text elements.
+
+```tsx
+import {
+  TypographyH1,
+  TypographyH2,
+  TypographyH3,
+  TypographyH4,
+  TypographyP,
+  TypographyLead,
+  TypographyLarge,
+  TypographySmall,
+  TypographyMuted,
+  TypographyBlockquote,
+  TypographyUL,
+  TypographyOL,
+  TypographyInlineCode,
+  TypographyA,
+  TypographyTable,
+  TypographyTR,
+  TypographyTH,
+  TypographyTD,
+  TypographyHR,
+  TypographyStrong,
+  TypographyEM,
+} from "@/components/ui/typography"
+```
+
+All Typography components accept a `className` prop for customization on top of the base styles.
+
+```tsx
+<TypographyH1>The Joke Tax Chronicles</TypographyH1>
+<TypographyLead>
+  A story about a king who taxed jokes.
+</TypographyLead>
+<TypographyP>
+  Use <TypographyInlineCode>inline code</TypographyInlineCode> within prose.
+</TypographyP>
+```
+
+### CodeBlock (MD Parser Code Block)
+
+The `md-parser-code-block` component wraps syntax-highlighted `<pre>` output from rehype-pretty-code inside the design-system `CodeBlock` shell — complete with a language label and an animated copy button.
+
+```tsx
+import { MDCodeBlock } from "@/components/ui/md-parser-code-block"
+```
+
+```tsx
+<MDCodeBlock raw={codeString} language="tsx">
+  {/* pre element from rehype-pretty-code */}
+</MDCodeBlock>
+```
+
+| Prop       | Type              | Default | Description                              |
+| ---------- | ----------------- | ------- | ---------------------------------------- |
+| `raw`      | `string`          | —       | Plain-text code used by the copy button  |
+| `language` | `string`          | —       | Language label shown in the header       |
+| `children` | `React.ReactNode` | —       | Pre-highlighted `<pre>` element          |
+
 ## API Reference
 
 ### MDParser
 
-| Prop        | Type     | Default | Description                     |
-| ----------- | -------- | ------- | ------------------------------- |
-| `children`  | `string` | —       | Markdown string to render       |
+| Prop        | Type     | Default | Description                      |
+| ----------- | -------- | ------- | -------------------------------- |
+| `children`  | `string` | —       | Markdown string to render        |
 | `className` | `string` | `""`    | Additional class for the wrapper |

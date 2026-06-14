@@ -1,0 +1,95 @@
+---
+title: Scroll Mask
+description: Fades the scrollable edges of any container with a CSS mask, hinting at hidden content above, below, or beside the viewport.
+featured: false
+base: base
+component: true
+---
+
+<ComponentPreview styleName="base-nova" name="scroll-mask-demo" />
+
+Scroll Mask wraps scrollable content and applies a `mask-image` gradient to its
+edges, so content literally fades to transparent as it leaves the viewport — the
+same affordance used by the fumadocs sidebar. Because it uses a mask rather than
+a colored overlay, it works on any background. Each edge only fades once there is
+content scrolled past it.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add https://ui.tyap.me/r/styles/base/scroll-mask.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name="scroll-mask"
+  title="components/ui/scroll-mask.tsx"
+  styleName="base-nova"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx showLineNumbers
+import { ScrollMask } from "@/components/ui/scroll-mask"
+```
+
+```tsx showLineNumbers
+<ScrollMask className="h-72 w-48 rounded-md border">
+  Your scrollable content here.
+</ScrollMask>
+```
+
+`ScrollMask` is the scroll container itself, so drop any tall or wide content
+inside it. It is built to be embedded inside other components — sidebars, command
+lists, pickers — wherever a scroll region needs softened edges.
+
+## Examples
+
+### Horizontal
+
+Set `orientation="horizontal"` to fade the left and right edges of a horizontally
+scrolling row.
+
+<ComponentPreview styleName="base-nova" name="scroll-mask-horizontal-demo" />
+
+### Both axes
+
+Use `orientation="both"` to mask all four edges. The vertical and horizontal masks
+are composited together so corners stay correct.
+
+<ComponentPreview styleName="base-nova" name="scroll-mask-both-demo" />
+
+## API Reference
+
+The component renders a `div` and forwards every native `div` prop. The following
+props control the mask.
+
+| Prop          | Type                                       | Default      | Description                                                                                              |
+| ------------- | ------------------------------------------ | ------------ | -------------------------------------------------------------------------------------------------------- |
+| `orientation` | `"vertical" \| "horizontal" \| "both"`     | `"vertical"` | Which axis gets a fade at its scrollable edges.                                                          |
+| `size`        | `number \| string`                         | `"2rem"`     | Length of the fade. A number is treated as pixels; any CSS length is passed through.                     |
+| `always`      | `boolean`                                  | `false`      | Keep the fade visible even when an edge is not scrollable, instead of revealing it only on overflow.     |
+| `disabled`    | `boolean`                                  | `false`      | Remove the mask while keeping the scroll container, for toggling the effect without unmounting children. |

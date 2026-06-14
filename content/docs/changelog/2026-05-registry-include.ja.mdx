@@ -1,0 +1,106 @@
+---
+title: 2026年5月 - Registry Include と Validate
+description: ソース registry の整理とバリデーション。
+date: 2026-05-20
+---
+
+このリリースでは registry 作者向けに 2 つの更新を追加します：
+
+- 複数の `registry.json` ファイルから大きなソース registry を合成するための `include`。
+- 公開前にソース registry を確認するための `shadcn registry validate`。
+
+これにより、大きな `registry.json` ファイルを手動で管理することなく、ソースおよびダイナミック registry を維持しやすくなります。
+
+Registry 作者は、大きなソース registry を複数の `registry.json` ファイルに分割して整理し、`shadcn build` でそれらを合成できるようになりました。
+
+```txt /registry.json/
+registry.json
+components
+└── ui
+    ├── button.tsx
+    ├── input.tsx
+    └── registry.json
+hooks
+├── registry.json
+├── use-media-query.ts
+└── use-toggle.ts
+```
+
+{/* prettier-ignore */}
+```json title="registry.json" showLineNumbers {6-7}
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme",
+  "homepage": "https://acme.com",
+  "include": [
+    "components/ui/registry.json",
+    "hooks/registry.json"
+  ]
+}
+```
+
+インクルードされた `registry.json` ファイルは合成のための有効な registry ファイルであり、`name` と `homepage` は省略できます。ルートの `registry.json` だけが registry のメタデータを定義する必要があります。
+
+```json title="components/ui/registry.json" showLineNumbers
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}
+```
+
+## ビルド出力
+
+`shadcn build` はインクルードされた registry を解決し、`include` を含まないフラットな `registry.json` を出力します。アイテムのファイルパスはルート registry から保持されるため、`components/ui/registry.json` で宣言されたファイルは、ビルドされた registry アイテムに `components/ui/button.tsx` として書き出されます。
+
+## registry のバリデーション
+
+公開またはサービス提供前にソース registry をバリデーションできるようになりました。
+
+```bash
+npx shadcn registry validate
+```
+
+バリデーションはソース registry ファイルに対して直接実行されます。事前に `shadcn build` を実行する必要はありません。
+
+コマンドはルートの `registry.json`、インクルードされた registry ファイル、アイテムスキーマのエラー、重複するアイテム名、インクルードルール、ローカルアイテムのファイルパスをチェックします。バリデーションは 1 回の実行で検出できるすべての対応可能なエラーを報告します。
+
+## Registry ローダー
+
+`shadcn/registry` パッケージがダイナミック registry ルート向けに `loadRegistry` と `loadRegistryItem` もエクスポートするようになりました。
+
+```ts title="app/r/registry.json/route.ts" showLineNumbers
+import { loadRegistry } from "shadcn/registry"
+
+export async function GET() {
+  const registry = await loadRegistry()
+
+  return Response.json(registry)
+}
+```
+
+```ts title="app/r/[name].json/route.ts" showLineNumbers
+import { loadRegistryItem } from "shadcn/registry"
+
+export async function GET(
+  _: Request,
+  { params }: { params: Promise<{ name: string }> }
+) {
+  const { name } = await params
+  const item = await loadRegistryItem(name)
+
+  return Response.json(item)
+}
+```
+
+詳細は [registry.json ドキュメント](/docs/registry/registry-json#include) と [スタートガイド](/docs/registry/getting-started#structure-your-registry) を参照してください。

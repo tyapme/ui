@@ -1,0 +1,933 @@
+---
+title: ネームスペース
+description: ネームスペースサポートを使用して複数のリソースレジストリを設定・利用する。
+---
+
+ネームスペース付きレジストリを使用すると、1つのプロジェクトで複数のリソースソースを設定できます。つまり、公開、サードパーティ、または独自のカスタムプライベートライブラリなど、様々なレジストリからコンポーネント、ライブラリ、ユーティリティ、AIプロンプト、設定ファイル、その他のリソースをインストールできます。
+
+## 目次
+
+- [概要](#overview)
+- [分散型ネームスペースシステム](#decentralized-namespace-system)
+- [はじめに](#getting-started)
+- [レジストリ命名規則](#registry-naming-convention)
+- [設定](#configuration)
+- [認証とセキュリティ](#authentication--security)
+- [バージョン管理](#versioning)
+- [依存関係の解決](#dependency-resolution)
+- [組み込みレジストリ](#built-in-registries)
+- [CLIコマンド](#cli-commands)
+- [エラー処理](#error-handling)
+- [独自レジストリの作成](#creating-your-own-registry)
+- [設定例](#example-configurations)
+- [技術的詳細](#technical-details)
+- [ベストプラクティス](#best-practices)
+- [トラブルシューティング](#troubleshooting)
+
+---
+
+## 概要
+
+レジストリネームスペースは `@` でプレフィックスが付き、異なるソースからリソースを整理・参照する方法を提供します。リソースはコンポーネント、ライブラリ、ユーティリティ、フック、AIプロンプト、設定ファイル、テーマなど、あらゆる種類のコンテンツが可能です。例えば:
+
+- `@shadcn/button` - shadcnレジストリのUIコンポーネント
+- `@v0/dashboard` - v0レジストリのダッシュボードコンポーネント
+- `@ai-elements/input` - AIエレメントレジストリのAIプロンプト入力
+- `@acme/auth-utils` - 会社のプライベートレジストリの認証ユーティリティ
+- `@ai/chatbot-rules` - AIリソースレジストリのAIプロンプトルール
+- `@themes/dark-mode` - テーマレジストリのテーマ設定
+
+---
+
+## 分散型ネームスペースシステム
+
+ネームスペースシステムは意図的に分散型として設計されています。オープンソースのネームスペース向けに[中央オープンソースレジストリインデックス](/docs/registry/registry-index)がありますが、任意のネームスペースを自由に作成・使用できます。
+
+この分散型アプローチにより、組織にとって意味のある方法でリソースを整理する完全な柔軟性が得られます。
+
+異なる目的のために複数のレジストリを作成できます:
+
+```json title="components.json" showLineNumbers
+{
+  "registries": {
+    "@acme-ui": "https://registry.acme.com/ui/{name}.json",
+    "@acme-docs": "https://registry.acme.com/docs/{name}.json",
+    "@acme-ai": "https://registry.acme.com/ai/{name}.json",
+    "@acme-themes": "https://registry.acme.com/themes/{name}.json",
+    "@acme-internal": {
+      "url": "https://internal.acme.com/registry/{name}.json",
+      "headers": {
+        "Authorization": "Bearer ${INTERNAL_TOKEN}"
+      }
+    }
+  }
+}
+```
+
+これにより以下が可能になります:
+
+- **種類別の整理**: UIコンポーネント、ドキュメント、AIリソースなどを分離
+- **チーム別の整理**: 異なるチームが独自のレジストリを管理
+- **可視性別の整理**: 公開リソースとプライベートリソース
+- **バージョン別の整理**: 安定版と実験的なレジストリ
+- **命名の衝突なし**: 中央の権威がないため、ネームスペースの衝突を心配する必要がありません
+
+### マルチレジストリセットアップの例
+
+#### リソース種類別
+
+```json title="components.json" showLineNumbers
+{
+  "@components": "https://cdn.company.com/components/{name}.json",
+  "@hooks": "https://cdn.company.com/hooks/{name}.json",
+  "@utils": "https://cdn.company.com/utils/{name}.json",
+  "@prompts": "https://cdn.company.com/ai-prompts/{name}.json"
+}
+```
+
+#### チームまたは部門別
+
+```json title="components.json" showLineNumbers
+{
+  "@design": "https://create.company.com/registry/{name}.json",
+  "@engineering": "https://eng.company.com/registry/{name}.json",
+  "@marketing": "https://marketing.company.com/registry/{name}.json"
+}
+```
+
+#### 安定性別
+
+```json title="components.json" showLineNumbers
+{
+  "@stable": "https://registry.company.com/stable/{name}.json",
+  "@latest": "https://registry.company.com/beta/{name}.json",
+  "@experimental": "https://registry.company.com/experimental/{name}.json"
+}
+```
+
+---
+
+## はじめに
+
+### リソースのインストール
+
+設定が完了すると、ネームスペース構文を使用してリソースをインストールできます:
+
+```bash
+npx shadcn@latest add @v0/dashboard
+```
+
+または複数のリソースを一度に:
+
+```bash
+npx shadcn@latest add @acme/header @lib/auth-utils @ai/chatbot-rules
+```
+
+### クイック設定
+
+`components.json` にレジストリを追加します:
+
+```json title="components.json"
+{
+  "registries": {
+    "@v0": "https://v0.dev/chat/b/{name}",
+    "@acme": "https://registry.acme.com/resources/{name}.json"
+  }
+}
+```
+
+インストールを開始します:
+
+```bash
+npx shadcn@latest add @acme/button
+```
+
+---
+
+## レジストリ命名規則
+
+レジストリ名は以下のルールに従う必要があります:
+
+- `@` 記号で始まること
+- 英数字、ハイフン、アンダースコアのみ含むこと
+- 有効な名前の例: `@v0`、`@acme-ui`、`@my_company`
+
+リソースの参照パターンは: `@namespace/resource-name`
+
+---
+
+## GitHubとネームスペース
+
+GitHubレジストリアドレスとネームスペースは異なる問題を解決します。
+
+レジストリが公開GitHubリポジトリであり、ユーザーが `components.json` を設定せずにインストールしたい場合はGitHubアドレスを使用します。
+
+```bash
+npx shadcn@latest add acme/ui/button
+```
+
+安定したエイリアス、カスタムホスティング、認証、リクエストヘッダー、クエリパラメーター、またはプライベートレジストリのサポートが必要な場合はネームスペースを使用します。
+
+```bash
+npx shadcn@latest add @acme/button
+```
+
+詳細については [GitHubレジストリ](/docs/registry/github) のドキュメントをご覧ください。
+
+---
+
+## 設定
+
+ネームスペース付きレジストリは `components.json` ファイルの `registries` フィールドで設定します。
+
+### 基本設定
+
+レジストリを設定する最もシンプルな方法はURLテンプレート文字列を使用することです:
+
+```json title="components.json"
+{
+  "registries": {
+    "@v0": "https://v0.dev/chat/b/{name}",
+    "@acme": "https://registry.acme.com/resources/{name}.json",
+    "@lib": "https://lib.company.com/utilities/{name}",
+    "@ai": "https://ai-resources.com/r/{name}.json"
+  }
+}
+```
+
+> **注意:** URLの `{name}` プレースホルダーは、`npx shadcn@latest add @namespace/resource-name` を実行するときに自動的に解析されてリソース名に置き換えられます。例えば、`@acme/button` は `https://registry.acme.com/resources/button.json` になります。詳細については [URLパターンシステム](#url-pattern-system) を参照してください。
+
+### 高度な設定
+
+認証や追加パラメーターが必要なレジストリには、オブジェクト形式を使用します:
+
+```json title="components.json"
+{
+  "registries": {
+    "@private": {
+      "url": "https://api.company.com/registry/{name}.json",
+      "headers": {
+        "Authorization": "Bearer ${REGISTRY_TOKEN}",
+        "X-API-Key": "${API_KEY}"
+      },
+      "params": {
+        "version": "latest",
+        "format": "json"
+      }
+    }
+  }
+}
+```
+
+> **注意:** `${VAR_NAME}` 形式の環境変数は、環境（process.env）から自動的に展開されます。これはURL、ヘッダー、paramsで機能します。例えば、`${REGISTRY_TOKEN}` は `process.env.REGISTRY_TOKEN` の値に置き換えられます。環境変数の使用の詳細については [認証とセキュリティ](#authentication--security) を参照してください。
+
+---
+
+### URLパターンシステム
+
+レジストリURLは以下のプレースホルダーをサポートしています:
+
+### `{name}` プレースホルダー（必須）
+
+`{name}` プレースホルダーはリソース名に置き換えられます:
+
+```json title="components.json" showLineNumbers
+{
+  "@acme": "https://registry.acme.com/{name}.json"
+}
+```
+
+`@acme/button` をインストールすると、URLは `https://registry.acme.com/button.json` になります
+`@acme/auth-utils` をインストールすると、URLは `https://registry.acme.com/auth-utils.json` になります
+
+### `{style}` プレースホルダー（オプション）
+
+`{style}` プレースホルダーは現在のスタイル設定に置き換えられます:
+
+```json
+{
+  "@themes": "https://registry.example.com/{style}/{name}.json"
+}
+```
+
+スタイルが `new-york` に設定されている場合、`@themes/card` のインストールは `https://registry.example.com/new-york/card.json` に解決されます。
+
+スタイルプレースホルダーはオプションです。同じリソースの異なるバージョンを提供したい場合に使用します。例えば、スタイルごとに異なるバージョンのコンポーネントを提供できます。
+
+---
+
+## 認証とセキュリティ
+
+### 環境変数
+
+認証情報を安全に保存するために環境変数を使用します:
+
+```json title="components.json"
+{
+  "registries": {
+    "@private": {
+      "url": "https://api.company.com/registry/{name}.json",
+      "headers": {
+        "Authorization": "Bearer ${REGISTRY_TOKEN}"
+      }
+    }
+  }
+}
+```
+
+次に環境変数を設定します:
+
+```bash title=".env.local"
+REGISTRY_TOKEN=your_secret_token_here
+```
+
+### 認証方法
+
+#### Bearerトークン（OAuth 2.0）
+
+```json
+{
+  "@github": {
+    "url": "https://api.github.com/repos/org/registry/contents/{name}.json",
+    "headers": {
+      "Authorization": "Bearer ${GITHUB_TOKEN}"
+    }
+  }
+}
+```
+
+#### ヘッダーのAPIキー
+
+```json title="components.json" showLineNumbers
+{
+  "@private": {
+    "url": "https://api.company.com/registry/{name}",
+    "headers": {
+      "X-API-Key": "${API_KEY}"
+    }
+  }
+}
+```
+
+#### Basic認証
+
+```json title="components.json" showLineNumbers
+{
+  "@internal": {
+    "url": "https://registry.company.com/{name}.json",
+    "headers": {
+      "Authorization": "Basic ${BASE64_CREDENTIALS}"
+    }
+  }
+}
+```
+
+#### クエリパラメーター認証
+
+```json title="components.json" showLineNumbers
+{
+  "@secure": {
+    "url": "https://registry.example.com/{name}.json",
+    "params": {
+      "api_key": "${API_KEY}",
+      "client_id": "${CLIENT_ID}",
+      "signature": "${REQUEST_SIGNATURE}"
+    }
+  }
+}
+```
+
+#### 複数の認証方法
+
+一部のレジストリでは複数の認証方法が必要です:
+
+```json title="components.json" showLineNumbers
+{
+  "@enterprise": {
+    "url": "https://api.enterprise.com/v2/registry/{name}",
+    "headers": {
+      "Authorization": "Bearer ${ACCESS_TOKEN}",
+      "X-API-Key": "${API_KEY}",
+      "X-Workspace-Id": "${WORKSPACE_ID}"
+    },
+    "params": {
+      "version": "latest"
+    }
+  }
+}
+```
+
+### セキュリティの考慮事項
+
+ネームスペース付きレジストリ、特にサードパーティや公開のものを使用する場合、セキュリティが最重要です。セキュリティの処理方法は以下の通りです:
+
+### リソースの検証
+
+レジストリから取得したすべてのリソースは、インストール前にレジストリアイテムスキーマに対して検証されます。これにより以下が保証されます:
+
+- **構造の検証**: リソースは期待されるJSONスキーマに準拠する必要があります
+- **型の安全性**: リソースの型が検証されます（`registry:ui`、`registry:lib`など）
+- **任意のコード実行なし**: リソースはデータファイルであり、実行可能なスクリプトではありません
+
+### 環境変数のセキュリティ
+
+認証に使用される環境変数は:
+
+- **ログに記録されない**: CLIは環境変数の値をログに記録したり表示したりしません
+- **実行時に展開される**: 変数は必要なときにのみ展開され、保存されません
+- **レジストリごとに分離される**: 各レジストリは独自の認証コンテキストを維持します
+
+セキュアな設定の例:
+
+```json title="components.json" showLineNumbers
+{
+  "registries": {
+    "@private": {
+      "url": "https://api.company.com/registry/{name}.json",
+      "headers": {
+        "Authorization": "Bearer ${PRIVATE_REGISTRY_TOKEN}"
+      }
+    }
+  }
+}
+```
+
+実際のトークンをバージョン管理にコミットしないでください。`.env.local` を使用してください:
+
+```bash title=".env.local"
+PRIVATE_REGISTRY_TOKEN=actual_token_here
+```
+
+### HTTPSの強制
+
+すべてのレジストリURLにHTTPSの使用を強くお勧めします:
+
+- **暗号化された通信**: 中間者攻撃を防ぎます
+- **証明書の検証**: 正当なレジストリに接続していることを確認します
+- **認証情報の保護**: ヘッダーとトークンが転送中に暗号化されます
+
+```json title="components.json" showLineNumbers
+{
+  "registries": {
+    "@secure": "https://registry.example.com/{name}.json", // ✅ 良い
+    "@insecure": "http://registry.example.com/{name}.json" // ❌ 避ける
+  }
+}
+```
+
+### コンテンツのセキュリティ
+
+レジストリからのリソースはコードではなくデータとして扱われます:
+
+1. **JSONパースのみ**: リソースは有効なJSONでなければなりません
+2. **スキーマ検証**: レジストリアイテムスキーマに一致する必要があります
+3. **ファイルパスの制限**: ファイルは設定されたパスにのみ書き込めます
+4. **スクリプト実行なし**: CLIはレジストリリソースのコードを実行しません
+
+### レジストリの信頼モデル
+
+ネームスペースシステムは信頼モデルに基づいて動作します:
+
+- **インストールするものを信頼する**: 設定に追加するのは信頼できるレジストリのみ
+- **明示的な設定**: レジストリは `components.json` で明示的に設定する必要があります
+- **自動的なレジストリ検出なし**: CLIは自動的にレジストリを追加しません
+- **依存関係の透明性**: すべての依存関係はレジストリアイテムに明確に記載されます
+
+### レジストリ運営者のベストプラクティス
+
+独自のレジストリを運営する場合:
+
+1. **常にHTTPSを使用**: HTTPでレジストリコンテンツを提供しない
+2. **認証を実装**: プライベートレジストリにはAPIキーまたはトークンを要求する
+3. **レート制限**: レジストリを乱用から保護する
+4. **コンテンツの検証**: 提供前にリソースを検証する
+
+セキュアなレジストリ設定の例:
+
+```json title="components.json" showLineNumbers
+{
+  "@company": {
+    "url": "https://registry.company.com/v1/{name}.json",
+    "headers": {
+      "Authorization": "Bearer ${COMPANY_TOKEN}",
+      "X-Registry-Version": "1.0"
+    }
+  }
+}
+```
+
+### インストール前のリソース検査
+
+CLIはインストールされる内容について透明性を提供します。以下のコマンドでレジストリアイテムのペイロードを確認できます:
+
+```bash
+npx shadcn@latest view @acme/button
+```
+
+これにより、レジストリアイテムのペイロードがコンソールに出力されます。
+
+---
+
+## 依存関係の解決
+
+### 基本的な依存関係の解決
+
+リソースは異なるレジストリをまたいで依存関係を持てます:
+
+```json title="registry-item.json" showLineNumbers
+{
+  "name": "dashboard",
+  "type": "registry:block",
+  "registryDependencies": [
+    "@shadcn/card", // デフォルトレジストリから
+    "@v0/chart", // v0レジストリから
+    "@acme/data-table", // acmeレジストリから
+    "@lib/data-fetcher", // ユーティリティライブラリ
+    "@ai/analytics-prompt" // AIプロンプトリソース
+  ]
+}
+```
+
+CLIは各レジストリからすべての依存関係を自動的に解決してインストールします。
+
+### 高度な依存関係の解決
+
+レジストリを開発している場合や、サードパーティリソースをカスタマイズする必要がある場合は、依存関係が内部でどのように解決されるかを理解することが重要です。
+
+### 解決の仕組み
+
+`npx shadcn@latest add @namespace/resource` を実行すると、CLIは以下を行います:
+
+1. **レジストリコンテキストをクリア**して新鮮な状態で開始
+2. **メインリソースを取得**して指定されたレジストリから
+3. **依存関係を再帰的に解決**してそれぞれのレジストリから
+4. **トポロジカルソートを適用**して適切なインストール順序を確保
+5. **ターゲットパスに基づいてファイルを重複除去**（最後のものが優先）
+6. **設定を深くマージ**（tailwind、cssVars、css、envVars）
+
+つまり、以下のコマンドを実行すると:
+
+```bash
+npx shadcn@latest add @acme/auth @custom/login-form
+```
+
+`@custom/login-form` の `login-form.ts` が最後に解決されるため、`@acme/auth` の `login-form.ts` を上書きします。
+
+### サードパーティリソースの上書き
+
+`registryDependencies` にサードパーティリソースを追加し、独自のカスタム値で上書きすることで、依存関係の解決プロセスを活用できます。
+
+#### 例: サードパーティボタンのカスタマイズ
+
+ベンダーレジストリのボタンをカスタマイズしたいとします:
+
+**1. 元のベンダーボタン** (`@vendor/button`):
+
+```json title="button.json" showLineNumbers
+{
+  "name": "button",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "components/ui/button.tsx",
+      "type": "registry:ui",
+      "content": "// Vendor's button implementation\nexport function Button() { ... }"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "--button-bg": "blue"
+    }
+  }
+}
+```
+
+**2. カスタムオーバーライドを作成** (`@my-company/custom-button`):
+
+```json title="custom-button.json" showLineNumbers
+{
+  "name": "custom-button",
+  "type": "registry:ui",
+  "registryDependencies": [
+    "@vendor/button" // 最初に元のものをインポート
+  ],
+  "cssVars": {
+    "light": {
+      "--button-bg": "purple" // 色を上書き
+    }
+  }
+}
+```
+
+**3. カスタムバージョンをインストール**:
+
+```bash
+npx shadcn@latest add @my-company/custom-button
+```
+
+これにより `@vendor/button` から元のボタンがインストールされ、次にカスタム値で `cssVars` が上書きされます。
+
+### 高度な上書きパターン
+
+#### 置き換えずに拡張する
+
+元のものを保持して拡張を追加します:
+
+```json title="extended-table.json" showLineNumbers
+{
+  "name": "extended-table",
+  "registryDependencies": ["@vendor/table"],
+  "files": [
+    {
+      "path": "components/ui/table-extended.tsx",
+      "content": "import { Table } from '@vendor/table'\n// Add your extensions\nexport function ExtendedTable() { ... }"
+    }
+  ]
+}
+```
+
+これにより `@vendor/table` から元のテーブルがインストールされ、`components/ui/table-extended.tsx` に拡張が追加されます。
+
+#### 部分的な上書き（複数ファイルのリソース）
+
+複雑なコンポーネントの特定のファイルのみを上書きします:
+
+```json title="custom-auth.json" showLineNumbers
+{
+  "name": "custom-auth",
+  "registryDependencies": [
+    "@vendor/auth" // 複数のファイルを持つ
+  ],
+  "files": [
+    {
+      "path": "lib/auth-server.ts",
+      "type": "registry:lib",
+      "content": "// Your custom auth server"
+    }
+  ]
+}
+```
+
+### 解決順序の例
+
+複数のリソースに依存する `@custom/dashboard` をインストールする場合:
+
+```json title="dashboard.json" showLineNumbers
+{
+  "name": "dashboard",
+  "registryDependencies": [
+    "@shadcn/card", // 1. 最初に解決
+    "@vendor/chart", // 2. 2番目に解決
+    "@custom/card" // 3. 最後に解決（@shadcn/cardを上書き）
+  ]
+}
+```
+
+解決順序:
+
+1. `@shadcn/card` - `components/ui/card.tsx` にインストール
+2. `@vendor/chart` - `components/ui/chart.tsx` にインストール
+3. `@custom/card` - `components/ui/card.tsx` を上書き（同じターゲットの場合）
+
+### 主要な解決機能
+
+1. **ソーストラッキング**: 各リソースはどのレジストリから来たかを把握し、命名の衝突を回避します
+2. **循環依存の防止**: 循環依存を自動的に検出して防止します
+3. **スマートなインストール順序**: 依存関係が最初にインストールされ、次にそれを使用するリソースがインストールされます
+
+---
+
+## バージョン管理
+
+クエリパラメーターを使用してレジストリリソースのバージョン管理を実装できます。これにより、ユーザーは特定のバージョンをピン留めしたり、異なるリリースチャンネルを使用したりできます。
+
+### 基本的なバージョンパラメーター
+
+```json title="components.json" showLineNumbers
+{
+  "@versioned": {
+    "url": "https://registry.example.com/{name}",
+    "params": {
+      "version": "v2"
+    }
+  }
+}
+```
+
+これにより `@versioned/button` は `https://registry.example.com/button?version=v2` に解決されます。
+
+### 動的バージョン選択
+
+環境変数を使用してプロジェクト全体のバージョンを制御します:
+
+```json title="components.json" showLineNumbers
+{
+  "@stable": {
+    "url": "https://registry.company.com/{name}",
+    "params": {
+      "version": "${REGISTRY_VERSION}"
+    }
+  }
+}
+```
+
+これにより以下が可能になります:
+
+- 本番環境で `REGISTRY_VERSION=v1.2.3` を設定
+- 環境ごとに上書き（dev、staging、prod）
+
+### セマンティックバージョニング
+
+範囲サポートによるセマンティックバージョニングを実装します:
+
+```json title="components.json" showLineNumbers
+{
+  "@npm-style": {
+    "url": "https://registry.example.com/{name}",
+    "params": {
+      "semver": "^2.0.0",
+      "prerelease": "${ALLOW_PRERELEASE}"
+    }
+  }
+}
+```
+
+### バージョン解決のベストプラクティス
+
+1. 環境をまたいだバージョン管理には**環境変数を使用する**
+2. `${VAR:-default}` 構文を使用して**適切なデフォルト値を提供する**
+3. レジストリユーザー向けに**バージョンスキームを明確に文書化する**
+4. 再現可能なビルドのために**バージョンピン留めをサポートする**
+5. **バージョン検出エンドポイントを実装する**（例: `/versions/{name}`）
+6. 適切なキャッシュヘッダーで**バージョン付きリソースをキャッシュする**
+
+---
+
+## CLIコマンド
+
+shadcn CLIはネームスペース付きレジストリを操作するためのコマンドをいくつか提供しています:
+
+### リソースの追加
+
+任意の設定済みレジストリからリソースをインストールします:
+
+```bash
+# 特定のレジストリからインストール
+npx shadcn@latest add @v0/dashboard
+
+# 複数のリソースをインストール
+npx shadcn@latest add @acme/button @lib/utils @ai/prompt
+
+# URLから直接インストール
+npx shadcn@latest add https://registry.example.com/button.json
+
+# ローカルファイルからインストール
+npx shadcn@latest add ./local-registry/button.json
+```
+
+### リソースの表示
+
+インストール前にレジストリアイテムを検査します:
+
+```bash
+# レジストリからリソースを表示
+npx shadcn@latest view @acme/button
+
+# 複数のリソースを表示
+npx shadcn@latest view @v0/dashboard @shadcn/card
+
+# URLから表示
+npx shadcn@latest view https://registry.example.com/button.json
+```
+
+`view` コマンドは以下を表示します:
+
+- リソースのメタデータ（名前、型、説明）
+- 依存関係とレジストリ依存関係
+- インストールされるファイルの内容
+- CSS変数とTailwindの設定
+- 必要な環境変数
+
+### レジストリの検索
+
+レジストリ内の利用可能なリソースを検索します:
+
+```bash
+# 特定のレジストリを検索
+npx shadcn@latest search @v0
+
+# クエリで検索
+npx shadcn@latest search @acme --query "auth"
+
+# 複数のレジストリを検索
+npx shadcn@latest search @v0 @acme @lib
+
+# 結果を制限
+npx shadcn@latest search @v0 --limit 10 --offset 20
+
+# すべてのアイテムを一覧表示（searchのエイリアス）
+npx shadcn@latest list @acme
+```
+
+検索結果には以下が含まれます:
+
+- リソース名と型
+- 説明
+- レジストリソース
+
+---
+
+## エラー処理
+
+### レジストリが設定されていない場合
+
+設定されていないレジストリを参照した場合:
+
+```bash
+npx shadcn@latest add @non-existent/component
+```
+
+エラー:
+
+```txt
+Unknown registry "@non-existent". Make sure it is defined in components.json as follows:
+{
+  "registries": {
+    "@non-existent": "[URL_TO_REGISTRY]"
+  }
+}
+```
+
+### 環境変数が見つからない場合
+
+必要な環境変数が設定されていない場合:
+
+```txt
+Registry "@private" requires the following environment variables:
+
+  • REGISTRY_TOKEN
+
+Set the required environment variables to your .env or .env.local file.
+```
+
+### リソースが見つからない場合
+
+404 Not Found:
+
+```txt
+The item at https://registry.company.com/button.json was not found. It may not exist at the registry.
+```
+
+これは通常以下を意味します:
+
+- リソース名のスペルが間違っている
+- レジストリにリソースが存在しない
+- レジストリのURLパターンが正しくない
+
+### 認証の失敗
+
+401 Unauthorized:
+
+```txt
+You are not authorized to access the item at https://api.company.com/button.json
+Check your authentication credentials and environment variables.
+```
+
+403 Forbidden:
+
+```txt
+Access forbidden for https://api.company.com/button.json
+Verify your API key has the necessary permissions.
+```
+
+---
+
+## 独自レジストリの作成
+
+レジストリをネームスペースシステムと互換性を持たせるには、コンポーネント、ライブラリ、ユーティリティ、AIプロンプト、テーマ、設定、その他の共有可能なコード/コンテンツなど、あらゆる種類のリソースを提供できます:
+
+1. **レジストリアイテムスキーマを実装する**: レジストリは [レジストリアイテムスキーマ](/docs/registry/registry-item-json) に準拠したJSONを返す必要があります。
+
+2. **URLパターンをサポートする**: URLテンプレートにリソース名が挿入される `{name}` を含めてください。
+
+3. **リソース型を定義する**: 適切な `type` フィールドを使用してリソースを識別します（例: `registry:ui`、`registry:lib`、`registry:ai`、`registry:theme`など）。
+
+4. **認証を処理する**（必要な場合）: ヘッダーまたはクエリパラメーターを通じた認証を受け付けます。
+
+5. **ネームスペースを文書化する**: ユーザーがレジストリを設定するための明確な手順を提供します:
+
+```json title="components.json" showLineNumbers
+{
+  "registries": {
+    "@your-registry": "https://your-domain.com/r/{name}.json"
+  }
+}
+```
+
+---
+
+## 技術的詳細
+
+### パーサーパターン
+
+ネームスペースパーサーは以下の正規表現パターンを使用します:
+
+```regex title="namespace-parser.js"
+/^(@[a-zA-Z0-9](?:[a-zA-Z0-9-_]*[a-zA-Z0-9])?)\/(.+)$/
+```
+
+これにより有効なネームスペースの書式設定とコンポーネント名の適切な抽出が保証されます。
+
+### 解決プロセス
+
+1. **パース**: `@namespace/component` からネームスペースとコンポーネント名を抽出
+2. **ルックアップ**: `@namespace` のレジストリ設定を検索
+3. **URLの構築**: プレースホルダーを実際の値に置き換え
+4. **ヘッダーの設定**: 設定されている場合は認証ヘッダーを適用
+5. **フェッチ**: 解決されたURLからコンポーネントを取得
+6. **検証**: レスポンスがレジストリアイテムスキーマに一致することを確認
+7. **依存関係の解決**: レジストリ依存関係を再帰的に取得
+
+### クロスレジストリの依存関係
+
+コンポーネントが異なるレジストリからの依存関係を持つ場合、リゾルバーは:
+
+1. 各レジストリの認証コンテキストを分離して維持します
+2. 各依存関係をそれぞれのソースから解決します
+3. ターゲットパスに基づいてファイルを重複除去します
+4. すべてのソースからの設定（tailwind、cssVarsなど）をマージします
+
+---
+
+## ベストプラクティス
+
+1. APIキーやトークンなどの機密データには**環境変数を使用する**
+2. ユニークで説明的な名前で**レジストリをネームスペース化する**
+3. **認証要件をユーザーに明確に文書化する**
+4. 有益なメッセージで**適切なエラーレスポンスを実装する**
+5. パフォーマンス向上のために可能な場合は**レジストリレスポンスをキャッシュする**
+6. コンポーネントに複数のテーマがある場合は**スタイルバリアントをサポートする**
+
+---
+
+## トラブルシューティング
+
+### リソースが見つからない
+
+- レジストリURLが正しくアクセス可能であることを確認する
+- URLに `{name}` プレースホルダーが含まれていることを確認する
+- レジストリにリソースが存在することを確認する
+- レジストリが提供するものとリソースタイプが一致していることを確認する
+
+### 認証の問題
+
+- 環境変数が正しく設定されていることを確認する
+- APIキー/トークンが有効で期限切れでないことを確認する
+- ヘッダーが正しい形式で送信されていることを確認する
+
+### 依存関係の競合
+
+- 異なるレジストリからの同名のリソースを確認する
+- 曖昧さを避けるために完全修飾名（`@namespace/resource`）を使用する
+- レジストリ間の循環依存を確認する
+- レジストリを混在させる場合はリソースタイプの互換性を確認する

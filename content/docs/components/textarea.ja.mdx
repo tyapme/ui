@@ -1,0 +1,74 @@
+---
+title: Textarea
+description: フォームのテキストエリア、またはテキストエリアのように見えるコンポーネントを表示します。
+base: base
+component: true
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="textarea-demo"
+  previewClassName="*:max-w-xs"
+/>
+
+## インストール
+
+<ComponentInstall name="textarea" styleName="base-nova" />
+
+## 使い方
+
+```tsx
+import { Textarea } from "@/components/ui/textarea"
+```
+
+```tsx
+<Textarea />
+```
+
+## 例
+
+### フィールド
+
+`Field`、`FieldLabel`、`FieldDescription` を使ってラベルと説明付きのテキストエリアを作成します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="textarea-field"
+  previewClassName="*:max-w-xs"
+/>
+
+### 無効
+
+テキストエリアを無効化するには `disabled` プロップを使用します。無効状態をスタイリングするには `Field` コンポーネントに `data-disabled` 属性を追加します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="textarea-disabled"
+  previewClassName="*:max-w-xs"
+/>
+
+### 無効入力
+
+テキストエリアを無効としてマークするには `aria-invalid` プロップを使用します。無効状態をスタイリングするには `Field` コンポーネントに `data-invalid` 属性を追加します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="textarea-invalid"
+  previewClassName="*:max-w-xs"
+/>
+
+### ボタン
+
+`Button` と組み合わせて送信ボタン付きのテキストエリアを作成します。
+
+<ComponentPreview
+  styleName="base-nova"
+  name="textarea-button"
+  previewClassName="*:max-w-xs"
+/>
+
+## RTL
+
+shadcn/ui で RTL サポートを有効にするには、[RTL 設定ガイド](/docs/rtl)を参照してください。
+
+<ComponentPreview styleName="base-nova" name="textarea-rtl" direction="rtl" />
